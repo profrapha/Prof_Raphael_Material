@@ -1,0 +1,9 @@
+# Ignorar arquivos auxiliares do LaTeX
+*.aux
+*.log
+*.out
+*.gz
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
