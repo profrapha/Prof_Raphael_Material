@@ -1,0 +1,265 @@
+\documentclass[12pt, a4paper]{article}
+
+% Pacotes Essenciais
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amsfonts, amssymb}
+
+% Pacotes Visuais e Motor TikZ
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+% Paleta de Cores Padrão (Exemplos)
+\definecolor{myblue}{HTML}{3498DB}
+\definecolor{mygreen}{HTML}{27AE60}
+
+\begin{document}
+\section*{NÚMEROS RACIONAIS: REPRESENTAÇÃO, TRANSFORMAÇÃO E ORDENAÇÃO}
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 01}
+
+A leitura de instrumentos de precisão, como escalas em maquinários industriais, exige a correta interpretação das subdivisões decimais. O esquema ilustra a ampliação do mostrador de uma máquina de corte a laser, onde o marcador \textbf{P} indica a espessura exata da chapa de aço a ser utilizada.
+
+\begin{center}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{azulprincipal}{HTML}{2980B9}
+\definecolor{fundocaixa}{HTML}{ECF0F1}
+\definecolor{sombracaixa}{HTML}{BDC3C7}
+\definecolor{destaque}{HTML}{E74C3C}
+
+% LAYER 1: Sombra e Fundo expandidos (Margens Seguras)
+\fill[sombracaixa, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -0.5) rectangle (11, 2.5);
+\fill[fundocaixa, rounded corners=4pt] (-1, -0.5) rectangle (11, 2.5);
+
+% LAYER 2: Eixo Numérico
+\draw[thick, -latex, azulprincipal] (0.5, 1) -- (9.5, 1);
+
+% Marcas principais e secundárias
+\foreach \x in {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9} {
+    \draw[thick, azulprincipal] (\x, 0.8) -- (\x, 1.2);
+}
+
+% Rótulos com fill=fundocaixa e inner sep para não cruzar linhas
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (1, 0.7) {1,2};
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (5, 0.7) {1,24};
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (9, 0.7) {1,28};
+
+% Marcador P
+\fill[destaque] (7.5, 1) circle (0.15);
+\node[above, text=destaque, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (7.5, 1.4) {P};
+\end{tikzpicture}
+\end{center}
+
+Determine o valor decimal exato correspondente ao ponto \textbf{P} e, em seguida, converta esse valor para a forma de fração irredutível. Justifique seu raciocínio demonstrando a escala adotada no eixo.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 02}
+
+A transformação entre frações e números decimais obedece a regras de equivalência de base. Analise as afirmativas a seguir sobre a equivalência e a leitura geométrica dessas representações.
+
+Escreva V para verdadeiro ou F para falso em cada item e justifique matematicamente as afirmativas que julgar falsas.
+
+I. O número decimal correspondente à fração  $ \frac{15}{4} $  é exatamente \textbf{3,75}, que representa a soma de três inteiros com três quartos.\\[0.3cm]
+II. A leitura correta do número \textbf{0,045} é "quarenta e cinco centésimos".\\[0.3cm]
+III. Transformando o número \textbf{2,8} em fração irredutível, obtemos  $ \frac{14}{5} $.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 03}
+
+Na final olímpica dos 100 metros rasos masculinos, a precisão eletrônica é fundamental para definir as medalhas. O placar oficial registrou os seguintes tempos (em segundos) para os quatro primeiros colocados: Atleta A (\textbf{9,805}), Atleta B (\textbf{9,85}), Atleta C (\textbf{9,089}) e Atleta D (\textbf{9,8}).
+
+Organize os atletas do primeiro ao quarto lugar e calcule a diferença de tempo, em milésimos de segundo, entre o vencedor da prova e o medalhista de bronze.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 04}
+
+No projeto de um motor de combustão, as peças importadas geralmente possuem medidas em polegadas fracionárias, enquanto o sistema nacional exige a conversão para o sistema decimal. Um engenheiro precisa ajustar uma porca com especificação de  $ \frac{7}{16} $  de polegada e uma arruela de  $ \frac{3}{8} $  de polegada.
+
+Determine o valor decimal exato correspondente a cada uma das peças. Qual delas possui o maior diâmetro interno? Demonstre o cálculo da divisão.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 05}
+
+Laboratórios químicos utilizam beckers de precisão para preparar soluções. A graduação lateral do recipiente cilíndrico ilustra o volume ocupado por um reagente azul. A marcação superior máxima corresponde exatamente a \textbf{1 L} (um litro).
+
+\begin{center}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{vidro}{HTML}{7F8C8D}
+\definecolor{liquido}{HTML}{3498DB}
+\definecolor{marcadores}{HTML}{2C3E50}
+
+% LAYER 1: Fundo expandido e Sombra (Margens Seguras para não cortar os textos)
+\fill[black!10, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-0.5, -0.5) rectangle (6.5, 7.0);
+\fill[white, rounded corners=4pt] (-0.5, -0.5) rectangle (6.5, 7.0);
+
+% LAYER 2: Líquido
+\fill[liquido, opacity=0.85, rounded corners=2pt] (1.1, 0.1) rectangle (3.9, 4.3);
+
+% LAYER 3: Vidro e Borda
+\draw[ultra thick, vidro, rounded corners=4pt] (1, 6) -- (1, 0) -- (4, 0) -- (4, 6);
+\draw[thick, vidro] (1, 6) ellipse (1.5 and 0.3);
+
+% LAYER 4: Marcadores de Escala (10 divisões totais)
+\foreach \y in {0.6, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4, 6.0} {
+    \draw[thick, marcadores] (4, \y) -- (3.6, \y);
+}
+% Textos com máscara fill=white para leitura limpa
+\node[right, fill=white, inner sep=2pt, font=\bfseries] at (4.2, 6.0) {1 L};
+\node[right, fill=white, inner sep=2pt, font=\bfseries] at (4.2, 3.0) {0,5 L};
+\end{tikzpicture}
+\end{center}
+
+Com base na distribuição proporcional da escala visual, identifique o volume decimal de reagente contido no recipiente e converta esse valor para uma fração irredutível.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 06}
+
+A reta numérica é o modelo geométrico perfeito para compreender as desigualdades no conjunto dos Números Racionais. Julgue as afirmativas a seguir em relação à ordenação estrutural desses números, assinalando V para verdadeiro ou F para falso.
+
+Apresente a correção matemática para as sentenças falsas.
+
+I. Na reta numérica, o número \textbf{-2,54} está posicionado à direita do número \textbf{-2,5}, portanto, é maior.\\[0.3cm]
+II. O número decimal \textbf{0,35} está exatamente no ponto médio entre os números \textbf{0,3} e \textbf{0,4}.\\[0.3cm]
+III. Não existe nenhum número decimal exato (com duas casas decimais) compreendido entre \textbf{3,14} e \textbf{3,15}.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 07}
+
+O Índice de Massa Corporal (IMC) é uma relação que pode gerar números decimais não exatos. Suponha que, para determinar um "Fator de Risco" cardíaco, um hospital faça a divisão da massa do paciente (em kg) pela sua idade (em anos). O paciente Marcos tem \textbf{87 kg} e \textbf{40} anos de idade.
+
+Calcule o valor decimal exato do "Fator de Risco" de Marcos. Em seguida, represente como você explicaria a posição desse número na reta numérica, dizendo entre quais inteiros ele se encontra e de qual deles está mais próximo.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 08}
+
+\textbf{(Estilo VUNESP)} - Em um projeto arquitetônico corporativo, um grande salão retangular será dividido paralelamente em duas salas de reuniões menores. A planta baixa abaixo contém a distribuição estrutural da obra. A equipe de engenharia precisa conhecer a cota transversal da Sala B para instalar o forro acústico.
+
+\begin{center}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{parede}{HTML}{2C3E50}
+\definecolor{pisoA}{HTML}{D5DBDB}
+\definecolor{pisoB}{HTML}{EAEDED}
+
+% Sombra e Fundo projetados e BEM expandidos (Evita cortes nas cotas)
+\fill[black!20, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=4pt, shadow yshift=-4pt}] (-1.5, -2.0) rectangle (10.5, 6.5);
+\fill[white, rounded corners=4pt] (-1.5, -2.0) rectangle (10.5, 6.5);
+
+% Pisos
+\fill[pisoA] (0, 0) rectangle (5, 5);
+\fill[pisoB] (5, 0) rectangle (8, 5);
+
+% Paredes
+\draw[line width=5pt, parede] (0,0) rectangle (8,5);
+\draw[line width=5pt, parede] (5,0) -- (5,5);
+
+% Cotas com textos interrompendo a linha (fill=white)
+\draw[|<->|, thick] (0, -1.0) -- (5, -1.0) node[midway, fill=white, inner sep=3pt] {\textbf{5,45 m}};
+\draw[|<->|, thick] (5, -1.0) -- (8, -1.0) node[midway, fill=white, inner sep=3pt] {\textbf{x m}};
+\draw[|<->|, thick] (9.0, 0) -- (9.0, 5) node[midway, fill=white, inner sep=3pt] {\textbf{4,80 m}};
+
+% Textos internos protegidos com fill na cor do piso
+\node[font=\bfseries, fill=pisoA, inner sep=2pt] at (2.5, 2.5) {SALA A};
+\node[font=\bfseries, fill=pisoB, inner sep=2pt] at (6.5, 2.5) {SALA B};
+\node[font=\bfseries, text=parede, fill=pisoA, inner sep=2pt] at (2.5, 4.3) {Área Total = 41,76 m$^2$};
+\end{tikzpicture}
+\end{center}
+
+Determine o valor da medida \textbf{x}, correspondente à largura da Sala B. Expresse a resposta final na forma de um número misto (parte inteira e fração irredutível).
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 09}
+
+\textbf{(ENEM - Adaptada)} - Em uma prova de automobilismo, os tempos de volta dos pilotos são registrados com precisão de milésimos de segundo para evitar empates técnicos. Durante a volta classificatória, o sistema de telemetria registrou os seguintes dados das parciais de um setor da pista para quatro carros:
+
+Carro W: \textbf{22,093} s\\[0.3cm]
+Carro X: \textbf{22,30} s\\[0.3cm]
+Carro Y: \textbf{22,039} s\\[0.3cm]
+Carro Z: \textbf{22,1} s
+
+O diretor de prova solicitou que o engenheiro organizasse o grid de largada desse setor em ordem crescente de tempos (do mais rápido para o mais lento). Qual deve ser a sequência correta repassada aos pilotos?
+
+a) Y, W, Z, X\\[0.3cm]
+b) Y, Z, W, X\\[0.3cm]
+c) Z, W, Y, X\\[0.3cm]
+d) W, Y, Z, X\\[0.3cm]
+e) X, Z, W, Y
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 10}
+
+\textbf{(Estilo FUVEST)} - No estudo analítico dos conjuntos numéricos, a relação de ordem inverte-se em determinados intervalos. Considere as variáveis algébricas  $ a = 0,16 $  e  $ b = 0,2 $.
+
+Um estudante constrói as razões  $ K_1 = \frac{a}{b} $  e  $ K_2 = \frac{b}{a} $. Realize os cálculos necessários e responda: qual das duas grandezas ( $ K_1 $  ou  $ K_2 $ ) assumirá a posição mais à direita em uma reta numérica padrão? Justifique, apresentando a transformação dos valores decimais para suas respectivas frações irredutíveis.
+
+\section*{NÚMEROS RACIONAIS: OPERAÇÕES COM DECIMAIS}
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 11}
+
+Uma transação bancária internacional envolve tarifas e conversões precisas. Um cliente possui um saldo de \textbf{R\$ 450,75} em sua conta corrente. Em um único dia, ele realizou as seguintes operações:
+
+1. Pagou uma fatura de cartão de crédito no valor de \textbf{R\$ 189,90}.\\[0.3cm]
+2. Recebeu uma transferência (PIX) no valor de \textbf{R\$ 34,50}.\\[0.3cm]
+3. Teve debitada uma tarifa de manutenção de conta de \textbf{R\$ 12,85}.
+
+Modele matematicamente a expressão numérica que representa o fluxo de caixa do cliente e calcule o saldo final exato disponível ao final do dia.
+
+\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+
+\section*{QUESTÃO 12}
+
+Na auditoria das notas fiscais de um restaurante, o gerente encontrou um cupom fiscal danificado, onde a impressora falhou e ocultou dois valores importantes (identificados pelas letras \textbf{Y} e \textbf{Z}).
+
+\begin{center}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{papel}{HTML}{F9E79F} % Tom de papel amarelo
+\definecolor{texto}{HTML}{34495E}
+\definecolor{faixa}{HTML}{F5B041}
+
+% LAYER 1: Sombra Expandida e Corpo do Cupom ajustados
+\fill[black!20, rounded corners=4pt, drop shadow={opacity=0.3, shadow xshift=4pt, shadow yshift=-4pt}] (-0.5, -0.5) rectangle (7.5, 6.0);
+\fill[papel, rounded corners=4pt] (-0.5, -0.5) rectangle (7.5, 6.0);
+\fill[faixa, rounded corners=4pt] (-0.5, 4.8) rectangle (7.5, 6.0);
+
+% LAYER 2: Textos protegidos com máscara de cor de fundo
+\node[texto, font=\bfseries, fill=faixa, inner sep=2pt] at (3.5, 5.4) {CUPOM FISCAL ELETRÔNICO};
+
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 4.2) {01. Carne Bovina (2,5 kg) ........ R\$ 92,25};
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 3.4) {02. Azeite de Oliva (1 L) ........ R\$ 45,90};
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 2.6) {03. Arroz Branco (5 kg) .......... R\$ \textbf{Y}};
+
+\draw[dashed, thick, texto] (0.2, 2.0) -- (6.8, 2.0);
+
+\node[texto, right, font=\bfseries, fill=papel, inner sep=2pt] at (0.2, 1.2) {SUBTOTAL ........................... R\$ 168,00};
+\node[texto, right, font=\bfseries, fill=papel, inner sep=2pt] at (0.2, 0.4) {TROCO (Pgto R\$ 200) ................. R\$ \textbf{Z}};
+\end{tikzpicture}
+\end{center}
+
+O auditor financeiro precisa reconstruir o documento para o balanço mensal. Analisando as relações matemáticas de soma e subtração implícitas no documento, os valores exatos de \textbf{Y} (preço do arroz) e \textbf{Z} (valor do troco entregue ao cliente) são, respectivamente:
+
+a) Y = 29,85 e Z = 32,00\\[0.3cm]
+b) Y = 30,85 e Z = 32,00\\[0.3cm]
+c) Y = 29,85 e Z = 42,00\\[0.3cm]
+d) Y = 31,15 e Z = 31,00\\[0.3cm]
+e) Y = 29,85 e Z = 31,00
+\end{document}
