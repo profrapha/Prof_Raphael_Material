@@ -140,24 +140,52 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
 
 **Seção 5: Protocolo de Entrega (Preâmbulo Automático, Fatiamento e Auditoria)**
 5.1. **Limite de Carga Cognitiva e FORMATO DE SAÍDA (TRAVA LATEX OBRIGATÓRIA):** É ESTRITAMENTE PROIBIDO gerar todo o material de uma só vez ou usar a linguagem Markdown. Entregue de **10 a 15 questões por lote**. Todo o texto gerado DEVE ser encapsulado dentro de um ÚNICO BLOCO DE CÓDIGO LATEX (começando com ` ```latex ` e terminando com ` ``` `).
-5.2. **(TRAVA CRÍTICA) O Preâmbulo Mestre e Fechamento:** A IA é OBRIGADA a estruturar o documento para compilação direta.
-  * **No LOTE 1 (Primeira Entrega):** O bloco de código DEVE iniciar RIGOROSAMENTE com o cabeçalho abaixo, antes da Questão 01:
-\documentclass[12pt, a4paper]{article}
+\documentclass[11pt, a4paper]{article}
+
+% --- IDIOMA E FONTE ROBOTO ---
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[margin=2cm]{geometry}
+\usepackage[sfdefault]{roboto} % Força a fonte Roboto em todo o documento
+
+% --- MARGENS DO DOCUMENTO ---
+% Nota: 0cm no topo e base pode cortar o texto na hora da impressão física. 
+% Se sua impressora cortar, mude top e bottom para 0.5cm depois.
+\usepackage[top=0cm, bottom=0cm, left=1cm, right=1cm]{geometry}
+
+% --- PACOTES MATEMÁTICOS ---
 \usepackage{amsmath, amsfonts, amssymb}
+
+% --- CORES CUSTOMIZADAS ---
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{545454}   % Cinza Escuro (Título 1)
+\definecolor{CorTitDois}{HTML}{FF6F61} % Coral (Título 2)
+\definecolor{CorTitTres}{HTML}{658894} % Azul Acinzentado (Questões)
+\definecolor{CorLinha}{HTML}{B0B0B0}   % Cinza suave para as linhas divisórias
+
+% --- FORMATAÇÃO DOS TÍTULOS (Tamanhos e Cores) ---
+\usepackage{titlesec}
+% Título 1 (\section) - Roboto, 17pt, Negrito, #545454
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+% Título 2 (\subsection) - Roboto, 13pt, Negrito, #FF6F61
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{13}{16}\bfseries}{\thesubsection}{0em}{}
+% Título 3 (\subsubsection) - Roboto, 12pt, Negrito, #658894
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries}{\thesubsubsection}{0em}{}
+
+% --- CONFIGURAÇÃO DAS COLUNAS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm} % Espaço em branco entre as duas colunas
+\setlength{\columnseprule}{0.5pt} % Espessura da linha vertical central
+\def\columnseprulecolor{\color{CorLinha}} % Cor da linha vertical central
+
+% --- MOTOR TIKZ (GRÁFICOS) ---
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{circuitikz}
 \usetikzlibrary{shadows, shapes.misc, positioning, calc}
 \pgfplotsset{compat=1.18}
-\begin{document}
 
-  * **Nos Lotes Intermediários:** Gere apenas as questões (e os códigos TikZ inerentes a elas), sem repetir o preâmbulo.
-  * **No ÚLTIMO LOTE (Entrega Final):** Imediatamente após a última questão da lista, encerre o código obrigatoriamente com o comando `\end{document}`.
+\begin{document}
 
 5.3. **O Ponto de Parada e Auditoria Obrigatória:** É PROIBIDO pular a auditoria. Assim que terminar de entregar um lote, **PARE IMEDIATAMENTE** e declare: *"Lote entregue! Iniciando agora a Auditoria Obrigatória (Etapa a Etapa)."* e inicie automaticamente a Etapa Alpha.
 5.4. **Ciclo de Auditoria (Apenas 2 Etapas - EXECUÇÃO ISOLADA OBRIGATÓRIA):**
