@@ -1,33 +1,68 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[11pt, a4paper]{article}
 
-% Pacotes Essenciais
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
-\usepackage[margin=2cm]{geometry}
-\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[sfdefault]{roboto}
+\usepackage[top=0.3cm, bottom=0.3cm, left=1cm, right=1cm]{geometry}
 
-% Pacotes Visuais e Motor TikZ
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage[sans]{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+% --- FORMATAÇÃO E ESPAÇAMENTO DOS TÍTULOS ---
+\usepackage{titlesec}
+% Título 1 (Unidade)
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+
+% Título 2 (Capítulos) -> Sem hifenização (\raggedright) e respeitando minúsculas/maiúsculas
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt}
+
+% Título 3 (Questões) -> Mudamos de 2pt para 0pt o espaço ANTES
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+% --- LIMITADOR DE IMAGENS ---
+\usepackage{adjustbox}
+
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{circuitikz}
 \usetikzlibrary{shadows, shapes.misc, positioning, calc}
 \pgfplotsset{compat=1.18}
 
-% Paleta de Cores Padrão (Exemplos)
-\definecolor{myblue}{HTML}{3498DB}
-\definecolor{mygreen}{HTML}{27AE60}
-
 \begin{document}
+\raggedcolumns
 \section*{NÚMEROS RACIONAIS: REPRESENTAÇÃO, TRANSFORMAÇÃO E ORDENAÇÃO}
+\begin{multicols*}{2}
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\subsection*{Capítulo 1: Representação Decimal}
 
-\section*{QUESTÃO 01}
+\subsubsection*{QUESTÃO 01}
 
 A leitura de instrumentos de precisão, como escalas em maquinários industriais, exige a correta interpretação das subdivisões decimais. O esquema ilustra a ampliação do mostrador de uma máquina de corte a laser, onde o marcador \textbf{P} indica a espessura exata da chapa de aço a ser utilizada.
 
 \begin{center}
-\begin{tikzpicture}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.8, transform shape]
 % --- APLICANDO DROP SHADOW E CORES HEX ---
 \definecolor{azulprincipal}{HTML}{2980B9}
 \definecolor{fundocaixa}{HTML}{ECF0F1}
@@ -47,7 +82,7 @@ A leitura de instrumentos de precisão, como escalas em maquinários industriais
 }
 
 % Rótulos com fill=fundocaixa e inner sep para não cruzar linhas
-\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (1, 0.7) {1,2};
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (1, 0.7) {1,20};
 \node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (5, 0.7) {1,24};
 \node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (9, 0.7) {1,28};
 
@@ -55,46 +90,47 @@ A leitura de instrumentos de precisão, como escalas em maquinários industriais
 \fill[destaque] (7.5, 1) circle (0.15);
 \node[above, text=destaque, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (7.5, 1.4) {P};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Determine o valor decimal exato correspondente ao ponto \textbf{P} e, em seguida, converta esse valor para a forma de fração irredutível. Justifique seu raciocínio demonstrando a escala adotada no eixo.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 02}
+\subsubsection*{QUESTÃO 02}
 
 A transformação entre frações e números decimais obedece a regras de equivalência de base. Analise as afirmativas a seguir sobre a equivalência e a leitura geométrica dessas representações.
 
 Escreva V para verdadeiro ou F para falso em cada item e justifique matematicamente as afirmativas que julgar falsas.
 
-I. O número decimal correspondente à fração  $ \frac{15}{4} $  é exatamente \textbf{3,75}, que representa a soma de três inteiros com três quartos.\\[0.3cm]
+I. O número decimal correspondente à fração $ \mfrac{15}{4} $ é exatamente \textbf{3,75}, que representa a soma de três inteiros com três quartos.\\[0.3cm]
 II. A leitura correta do número \textbf{0,045} é "quarenta e cinco centésimos".\\[0.3cm]
-III. Transformando o número \textbf{2,8} em fração irredutível, obtemos  $ \frac{14}{5} $.
+III. Transformando o número \textbf{2,8} em fração irredutível, obtemos $ \mfrac{14}{5} $.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 03}
+\subsubsection*{QUESTÃO 03}
 
 Na final olímpica dos 100 metros rasos masculinos, a precisão eletrônica é fundamental para definir as medalhas. O placar oficial registrou os seguintes tempos (em segundos) para os quatro primeiros colocados: Atleta A (\textbf{9,805}), Atleta B (\textbf{9,85}), Atleta C (\textbf{9,089}) e Atleta D (\textbf{9,8}).
 
 Organize os atletas do primeiro ao quarto lugar e calcule a diferença de tempo, em milésimos de segundo, entre o vencedor da prova e o medalhista de bronze.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 04}
+\subsubsection*{QUESTÃO 04}
 
-No projeto de um motor de combustão, as peças importadas geralmente possuem medidas em polegadas fracionárias, enquanto o sistema nacional exige a conversão para o sistema decimal. Um engenheiro precisa ajustar uma porca com especificação de  $ \frac{7}{16} $  de polegada e uma arruela de  $ \frac{3}{8} $  de polegada.
+No projeto de motor de combustão, as peças importadas geralmente possuem medidas em polegadas fracionárias, enquanto o sistema nacional exige a conversão para o sistema decimal. Um engenheiro precisa ajustar uma porca com especificação de $ \mfrac{7}{16} $ de polegada e uma arruela de $ \mfrac{3}{8} $ de polegada.
 
 Determine o valor decimal exato correspondente a cada uma das peças. Qual delas possui o maior diâmetro interno? Demonstre o cálculo da divisão.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 05}
+\subsubsection*{QUESTÃO 05}
 
 Laboratórios químicos utilizam beckers de precisão para preparar soluções. A graduação lateral do recipiente cilíndrico ilustra o volume ocupado por um reagente azul. A marcação superior máxima corresponde exatamente a \textbf{1 L} (um litro).
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.8, transform shape]
 % --- APLICANDO DROP SHADOW E CORES HEX ---
 \definecolor{vidro}{HTML}{7F8C8D}
 \definecolor{liquido}{HTML}{3498DB}
@@ -123,9 +159,11 @@ Laboratórios químicos utilizam beckers de precisão para preparar soluções. 
 
 Com base na distribuição proporcional da escala visual, identifique o volume decimal de reagente contido no recipiente e converta esse valor para uma fração irredutível.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 06}
+\subsection*{Capítulo 2: Transformações e Comparações}
+
+\subsubsection*{QUESTÃO 06}
 
 A reta numérica é o modelo geométrico perfeito para compreender as desigualdades no conjunto dos Números Racionais. Julgue as afirmativas a seguir em relação à ordenação estrutural desses números, assinalando V para verdadeiro ou F para falso.
 
@@ -135,22 +173,22 @@ I. Na reta numérica, o número \textbf{-2,54} está posicionado à direita do n
 II. O número decimal \textbf{0,35} está exatamente no ponto médio entre os números \textbf{0,3} e \textbf{0,4}.\\[0.3cm]
 III. Não existe nenhum número decimal exato (com duas casas decimais) compreendido entre \textbf{3,14} e \textbf{3,15}.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 07}
+\subsubsection*{QUESTÃO 07}
 
 O Índice de Massa Corporal (IMC) é uma relação que pode gerar números decimais não exatos. Suponha que, para determinar um "Fator de Risco" cardíaco, um hospital faça a divisão da massa do paciente (em kg) pela sua idade (em anos). O paciente Marcos tem \textbf{87 kg} e \textbf{40} anos de idade.
 
 Calcule o valor decimal exato do "Fator de Risco" de Marcos. Em seguida, represente como você explicaria a posição desse número na reta numérica, dizendo entre quais inteiros ele se encontra e de qual deles está mais próximo.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 08}
+\subsubsection*{QUESTÃO 08}
 
 \textbf{(Estilo VUNESP)} - Em um projeto arquitetônico corporativo, um grande salão retangular será dividido paralelamente em duas salas de reuniões menores. A planta baixa abaixo contém a distribuição estrutural da obra. A equipe de engenharia precisa conhecer a cota transversal da Sala B para instalar o forro acústico.
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.75, transform shape]
 % --- APLICANDO DROP SHADOW E CORES HEX ---
 \definecolor{parede}{HTML}{2C3E50}
 \definecolor{pisoA}{HTML}{D5DBDB}
@@ -182,9 +220,9 @@ Calcule o valor decimal exato do "Fator de Risco" de Marcos. Em seguida, represe
 
 Determine o valor da medida \textbf{x}, correspondente à largura da Sala B. Expresse a resposta final na forma de um número misto (parte inteira e fração irredutível).
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 09}
+\subsubsection*{QUESTÃO 09}
 
 \textbf{(ENEM - Adaptada)} - Em uma prova de automobilismo, os tempos de volta dos pilotos são registrados com precisão de milésimos de segundo para evitar empates técnicos. Durante a volta classificatória, o sistema de telemetria registrou os seguintes dados das parciais de um setor da pista para quatro carros:
 
@@ -201,19 +239,19 @@ c) Z, W, Y, X\\[0.3cm]
 d) W, Y, Z, X\\[0.3cm]
 e) X, Z, W, Y
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 10}
+\subsubsection*{QUESTÃO 10}
 
-\textbf{(Estilo FUVEST)} - No estudo analítico dos conjuntos numéricos, a relação de ordem inverte-se em determinados intervalos. Considere as variáveis algébricas  $ a = 0,16 $  e  $ b = 0,2 $.
+\textbf{(Estilo FUVEST)} - No estudo analítico dos conjuntos numéricos, a relação de ordem inverte-se em determinados intervalos. Considere as variáveis algébricas $ a = 0,16 $ e $ b = 0,2 $.
 
-Um estudante constrói as razões  $ K_1 = \frac{a}{b} $  e  $ K_2 = \frac{b}{a} $. Realize os cálculos necessários e responda: qual das duas grandezas ( $ K_1 $  ou  $ K_2 $ ) assumirá a posição mais à direita em uma reta numérica padrão? Justifique, apresentando a transformação dos valores decimais para suas respectivas frações irredutíveis.
+Um estudante constrói as razões $ K_1 = \mfrac{a}{b} $ e $ K_2 = \mfrac{b}{a} $. Realize os cálculos necessários e responda: qual das duas grandezas ($ K_1 $ ou $ K_2 $) assumirá a posição mais à direita em uma reta numérica padrão? Justifique, apresentando a transformação dos valores decimais para suas respectivas frações irredutíveis.
 
-\section*{NÚMEROS RACIONAIS: OPERAÇÕES COM DECIMAIS}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\subsection*{Capítulo 3: Operações com Decimais}
 
-\section*{QUESTÃO 11}
+\subsubsection*{QUESTÃO 11}
 
 Uma transação bancária internacional envolve tarifas e conversões precisas. Um cliente possui um saldo de \textbf{R\$ 450,75} em sua conta corrente. Em um único dia, ele realizou as seguintes operações:
 
@@ -223,14 +261,14 @@ Uma transação bancária internacional envolve tarifas e conversões precisas. 
 
 Modele matematicamente a expressão numérica que representa o fluxo de caixa do cliente e calcule o saldo final exato disponível ao final do dia.
 
-\vspace{0.5cm} \noindent\rule{\textwidth}{0.4pt} \vspace{0.5cm}
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 
-\section*{QUESTÃO 12}
+\subsubsection*{QUESTÃO 12}
 
 Na auditoria das notas fiscais de um restaurante, o gerente encontrou um cupom fiscal danificado, onde a impressora falhou e ocultou dois valores importantes (identificados pelas letras \textbf{Y} e \textbf{Z}).
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85, transform shape]
 % --- APLICANDO DROP SHADOW E CORES HEX ---
 \definecolor{papel}{HTML}{F9E79F} % Tom de papel amarelo
 \definecolor{texto}{HTML}{34495E}
@@ -262,4 +300,769 @@ b) Y = 30,85 e Z = 32,00\\[0.3cm]
 c) Y = 29,85 e Z = 42,00\\[0.3cm]
 d) Y = 31,15 e Z = 31,00\\[0.3cm]
 e) Y = 29,85 e Z = 31,00
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 13}
+
+Uma farmácia de manipulação adota um rigoroso controle de massa em sua linha de produção. Para um lote específico de medicação neurológica, a receita exige exatamente \textbf{0,45 g} de princípio ativo por cápsula. 
+
+Se o laboratório recebeu uma encomenda para a produção contínua de \textbf{1000} cápsulas idênticas, determine a massa total de princípio ativo necessária. Em sua resposta, explique a regra prática de deslocamento da vírgula ao multiplicar um número decimal por potências de dez.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 14}
+
+A interpretação das operações matemáticas com números decimais costuma gerar dúvidas quando comparada às operações com números inteiros. Julgue as afirmativas a seguir, escrevendo V para verdadeiro ou F para falso.
+
+Para as afirmativas falsas, apresente o cálculo que comprova o erro.
+
+I. Ao multiplicar o valor \textbf{3,5} por \textbf{0,2}, o produto obtido será maior que \textbf{3,5}, pois a operação de multiplicação sempre aumenta o valor numérico original.\\[0.3cm]
+II. A divisão do número \textbf{4,8} por \textbf{0,5} é matematicamente equivalente a multiplicar \textbf{4,8} por \textbf{2}, resultando em \textbf{9,6}.\\[0.3cm]
+III. O quadrado do número decimal \textbf{0,3} é igual a \textbf{0,9}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 15}
+
+Um estúdio de marcenaria está produzindo prateleiras modulares. O projeto exige que uma prancha bruta de cedro seja fracionada em partes estritamente iguais. O esquema ilustra a prancha antes do corte, com sua cota total aferida a laser.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{fundo}{HTML}{F8F9F9}
+\definecolor{cota}{HTML}{2C3E50}
+
+% LAYER 1: Margem e Sombra
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.5) rectangle (9, 2.0);
+\fill[fundo, rounded corners=4pt] (-1, -1.5) rectangle (9, 2.0);
+
+% LAYER 2: Prancha de Madeira
+\fill[madeira!80!white, rounded corners=2pt] (0, 0) rectangle (7.65, 0.8);
+\draw[thick, madeira!40!black, rounded corners=2pt] (0, 0) rectangle (7.65, 0.8);
+
+% Textura simulada (linhas)
+\draw[madeira!40!black, opacity=0.3] (0.5, 0.2) -- (7.0, 0.2);
+\draw[madeira!40!black, opacity=0.3] (1.0, 0.6) -- (6.5, 0.6);
+
+% LAYER 3: Cotas
+\draw[|<->|, thick, cota] (0, -0.6) -- (7.65, -0.6) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {2,55 m};
+
+% Marcação de um pedaço projetado
+\draw[dashed, thick, cota] (2.55, 1.2) -- (2.55, -0.2);
+\draw[|<->|, thick, cota] (0, 1.0) -- (2.55, 1.0) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {0,85 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O carpinteiro ajustou a serra para criar pedaços de \textbf{0,85 m}, sem deixar margem de perda no corte. Calcule a quantidade exata de prateleiras que ele conseguirá produzir a partir desta prancha.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 16}
+
+A eficiência energética de um automóvel é medida pela razão entre a distância percorrida e o volume de combustível consumido. Um modelo sedã possui um tanque de combustível com capacidade máxima de \textbf{45,5} litros. Em testes de estrada, a montadora certificou que o veículo possui um rendimento médio de \textbf{12,4} km por litro.
+
+Demonstre o cálculo operatório e determine a distância máxima, em quilômetros, que este carro consegue percorrer com o tanque completamente cheio.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 17}
+
+A logística de transporte rodoviário exige precisão na alocação de cargas volumétricas. O esquema apresenta a montagem de um palete no interior de uma van de entregas. A altura do teto do compartimento de carga estabelece um limite estrutural rigoroso.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{palete}{HTML}{8D6E63}
+\definecolor{caixaA}{HTML}{5DADE2}
+\definecolor{caixaB}{HTML}{48C9B0}
+\definecolor{caixaC}{HTML}{F4D03F}
+\definecolor{fundo}{HTML}{F2F3F4}
+
+% LAYER 1: Fundo e Sombra
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.0) rectangle (6, 6.0);
+\fill[fundo, rounded corners=4pt] (-1, -1.0) rectangle (6, 6.0);
+
+% Chão
+\draw[ultra thick, black!70] (-0.5, 0) -- (5.5, 0);
+
+% LAYER 2: Palete e Caixas
+% Palete (0.15m) -> escala visual: 0.5 unidades
+\fill[palete, rounded corners=1pt] (0.5, 0) rectangle (3.5, 0.4);
+% Caixa 1 (0.65m) -> escala visual: 1.5 unidades
+\fill[caixaA, rounded corners=2pt] (0.7, 0.4) rectangle (3.3, 1.9);
+\node[font=\bfseries] at (2, 1.15) {CAIXA 1};
+% Caixa 2 (0.55m) -> escala visual: 1.3 unidades
+\fill[caixaB, rounded corners=2pt] (0.8, 1.9) rectangle (3.2, 3.2);
+\node[font=\bfseries] at (2, 2.55) {CAIXA 2};
+% Caixa 3 (x) -> escala visual: restando até 5.0 (teto)
+\fill[caixaC, rounded corners=2pt] (0.9, 3.2) rectangle (3.1, 4.8);
+\node[font=\bfseries] at (2, 4.0) {CAIXA 3};
+
+% Teto da Van
+\draw[ultra thick, red!80!black, dashed] (-0.5, 4.8) -- (5.5, 4.8);
+\node[above, text=red!80!black, font=\bfseries] at (2.5, 4.8) {LIMITE DO TETO};
+
+% LAYER 3: Cotas
+\draw[|<->|, thick] (4.0, 0) -- (4.0, 0.4) node[midway, right, fill=fundo, inner sep=2pt, font=\bfseries] {0,15 m};
+\draw[|<->|, thick] (4.0, 0.4) -- (4.0, 1.9) node[midway, right, fill=fundo, inner sep=2pt, font=\bfseries] {0,65 m};
+\draw[|<->|, thick] (4.0, 1.9) -- (4.0, 3.2) node[midway, right, fill=fundo, inner sep=2pt, font=\bfseries] {0,55 m};
+\draw[|<->|, thick] (4.0, 3.2) -- (4.0, 4.8) node[midway, right, fill=fundo, inner sep=2pt, font=\bfseries] {x};
+
+\draw[|<->|, ultra thick] (5.0, 0) -- (5.0, 4.8) node[midway, right, fill=fundo, inner sep=2pt, font=\bfseries] {2,10 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a altura exata máxima (\textbf{x}) que a terceira caixa pode ter para que a pilha atinja milimetricamente o limite do teto da van, sem ultrapassá-lo. Modele a equação de soma e subtração utilizada.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 18}
+
+Em uma aula de laboratório de física, um aluno precisou calcular a área da seção transversal de um bloco de alumínio. Ele mediu os lados com um paquímetro, encontrando as dimensões de \textbf{4,2 cm} e \textbf{2,5 cm}.
+
+Calcule o perímetro (soma de todos os lados) e a área (produto da base pela altura) desta face retangular do bloco. Lembre-se de expressar os resultados com as unidades de medida corretas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 19}
+
+O faturamento de uma microempresa apresentou um padrão de lucro diário constante durante uma semana útil (5 dias). Sabendo que o lucro total acumulado nesses 5 dias foi de \textbf{R\$ 894,75}, determine o lucro diário exato da empresa. Demonstre a armação da divisão.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 20}
+
+Julgue as igualdades algébricas a seguir, considerando as propriedades de movimentação da vírgula decimal em divisões e frações proporcionais. Assinale V para as verdadeiras e F para as falsas.
+
+I. A divisão $ \mfrac{2,5}{0,05} $ gera o mesmo quociente que a divisão $ \mfrac{250}{5} $.\\[0.3cm]
+II. Dividir um número por \textbf{0,1} resulta em um valor dez vezes menor que o original.\\[0.3cm]
+III. A expressão $ 1,5 \times 100 \div 10 $ resulta em \textbf{150}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 21}
+
+\textbf{(Estilo VUNESP)} - Um turista brasileiro em viagem ao exterior precisa adquirir moeda estrangeira. Na casa de câmbio, a cotação do dólar turismo para compra estava fixada em \textbf{R\$ 4,95}. Além do valor convertido, a corretora cobra uma taxa fixa operacional (IOF) de \textbf{R\$ 15,50} por transação, independentemente do montante.
+
+Se o turista deseja adquirir exatamente \textbf{120} dólares, qual será o custo total da operação em reais?
+
+a) R\$ 594,00\\[0.3cm]
+b) R\$ 609,50\\[0.3cm]
+c) R\$ 615,00\\[0.3cm]
+d) R\$ 578,50\\[0.3cm]
+e) R\$ 620,50
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 22}
+
+\textbf{(Estilo UNICAMP)} - O consumo de energia elétrica em uma residência é faturado multiplicando-se o consumo em quilowatts-hora (kWh) pela tarifa vigente. No último mês, uma família consumiu \textbf{254} kWh. A concessionária de energia cobra uma tarifa base de \textbf{R\$ 0,85} por kWh consumido. Sobre o valor total do consumo, é acrescida uma taxa de iluminação pública de \textbf{R\$ 12,40}.
+
+Escreva a expressão matemática que modela o custo total desta fatura e calcule o valor final a ser pago pela família.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 23}
+
+\textbf{(Estilo FUVEST)} - A análise de escoamento de fluidos em engenharia ambiental utiliza gráficos de barras para registrar o índice pluviométrico diário. O gráfico apresenta a precipitação em milímetros registrada em uma microbacia durante quatro dias consecutivos.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{FFFFFF}
+\definecolor{barra}{HTML}{3498DB}
+\definecolor{eixo}{HTML}{2C3E50}
+
+% Fundo com margem segura
+\fill[black!10, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1) rectangle (8, 6);
+\fill[fundo, rounded corners=4pt] (-1, -1) rectangle (8, 6);
+
+\begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=left,
+    axis line style={thick, eixo},
+    ymin=0, ymax=15,
+    xmin=0, xmax=5,
+    xtick={1,2,3,4},
+    xticklabels={Dia 1, Dia 2, Dia 3, Dia 4},
+    ytick={0, 2.5, 5, 7.5, 10, 12.5},
+    ymajorgrids=true,
+    grid style={dashed, gray!50},
+    bar width=20pt,
+    enlarge x limits=0.15,
+    nodes near coords,
+    every node near coord/.append style={fill=white, inner sep=2pt, font=\bfseries},
+    ylabel={Precipitação (mm)},
+    ylabel style={font=\bfseries},
+    tick label style={font=\bfseries}
+]
+
+\addplot[ybar, fill=barra!80!white, draw=barra!50!black, thick, rounded corners=1pt] coordinates {
+    (1, 12.4)
+    (2, 8.5)
+    (3, 10.25)
+    (4, 5.8)
+};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base no comportamento pluviométrico, determine a média aritmética diária de chuva (em mm) que incidiu sobre a microbacia nestes quatro dias. Apresente os cálculos da soma e da divisão.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 24}
+
+\textbf{(ENEM - Adaptada)} - No desenvolvimento de uma liga metálica aeroespacial, um engenheiro químico mistura \textbf{2,5 kg} do Metal Alfa, que custa \textbf{R\$ 140,40} o quilograma, com \textbf{1,5 kg} do Metal Beta, cujo custo é \textbf{R\$ 180,60} o quilograma. Após o derretimento conjunto, forma-se um bloco homogêneo de \textbf{4,0 kg}.
+
+O departamento financeiro precisa tabelar o preço de custo dessa nova liga. Qual é o valor do quilograma da liga formada?
+
+a) R\$ 155,47\\[0.3cm]
+b) R\$ 160,50\\[0.3cm]
+c) R\$ 165,00\\[0.3cm]
+d) R\$ 150,25\\[0.3cm]
+e) R\$ 170,00
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 25}
+
+\textbf{(Desafio Poliedro)} - Uma impressora 3D de alta precisão deposita camadas de resina fotossensível para construir protótipos industriais. A especificação técnica da máquina afirma que cada camada curada pelo laser possui uma espessura fixa de \textbf{0,025 mm}. Um engenheiro mecânico submeteu um arquivo para impressão de uma peça cilíndrica com \textbf{8,2 cm} de altura total.
+
+Sabendo que $1 \text{ cm} = 10 \text{ mm}$, calcule o número exato de camadas de resina que a impressora depositará do início ao fim do processo de construção dessa peça.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsection*{Capítulo 4: Porcentagem}
+
+\subsubsection*{QUESTÃO 26}
+
+A representação geométrica através de malhas é uma das formas mais visuais de se compreender a essência da porcentagem, que significa matematicamente "uma fração de denominador 100". O diagrama ilustra um piso de \textbf{100} lajotas, onde algumas foram revestidas com resina especial.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{F2F4F4}
+\definecolor{quadrado}{HTML}{16A085}
+
+% Sombra e Fundo Seguro
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1) rectangle (6, 6);
+\fill[fundo, rounded corners=4pt] (-1, -1) rectangle (6, 6);
+
+% Preenchimento da área resinada (37 quadrados de 0.5x0.5)
+% 3 fileiras completas embaixo = 30
+\fill[quadrado] (0,0) rectangle (5, 1.5);
+% + 7 quadrados na quarta fileira
+\fill[quadrado] (0,1.5) rectangle (3.5, 2.0);
+
+% Malha 10x10
+\draw[step=0.5, black!60, thick] (0,0) grid (5,5);
+\draw[ultra thick, black!80] (0,0) rectangle (5,5);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na proporção da área resinada em relação à área total do piso, expresse essa quantidade em três formatos matemáticos distintos: na forma de porcentagem (\%), na forma de fração irredutível e na forma de número decimal.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 27}
+
+O domínio das transformações entre taxas percentuais, decimais e frações é essencial para o cálculo financeiro moderno. Analise as afirmativas a seguir sobre essas equivalências e julgue-as assinalando V para verdadeiro ou F para falso. 
+
+Justifique matematicamente as afirmativas que julgar falsas.
+
+I. A taxa percentual de \textbf{5\%} é matematicamente equivalente à fração irredutível $ \mfrac{1}{20} $.\\[0.3cm]
+II. O número decimal \textbf{0,08} representa exatamente \textbf{80\%} de uma quantidade inteira.\\[0.3cm]
+III. Calcular \textbf{150\%} de um determinado valor \textbf{x} é o mesmo que somar a sua própria metade ao valor original.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 28}
+
+Durante uma campanha de liquidação de inverno, uma loja de eletrodomésticos anunciou uma televisão inteligente que custava \textbf{R\$ 3.200,00} com um desconto promocional de \textbf{15\%} para pagamentos à vista. 
+
+Demonstre o cálculo operatório utilizado para encontrar o valor absoluto do desconto (em reais) e, em seguida, determine qual será o preço final pago pelo cliente que optar por essa modalidade de pagamento.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 29}
+
+A capacidade de armazenamento de energia das baterias de dispositivos móveis é medida em miliampere-hora (mAh). O painel de controle do sistema de um smartphone exibe o nível atual de carga. Sabe-se que a bateria deste aparelho possui uma capacidade máxima e total de \textbf{4.500 mAh}.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{FFFFFF}
+\definecolor{batbg}{HTML}{D5DBDB}
+\definecolor{batfill}{HTML}{F39C12}
+
+% Fundo e Sombra Expandidos
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1.5, -1.5) rectangle (7.5, 2);
+\fill[fundo, rounded corners=4pt] (-1.5, -1.5) rectangle (7.5, 2);
+
+% Corpo da bateria (Contorno)
+\draw[ultra thick, black!80, rounded corners=3pt] (0, -0.5) rectangle (5, 1);
+\fill[black!80, rounded corners=1pt] (5.1, -0.1) rectangle (5.3, 0.6);
+
+% Fundo interno da bateria
+\fill[batbg, rounded corners=2pt] (0.1, -0.4) rectangle (4.9, 0.9);
+
+% Carga visual (68% do total interno)
+\fill[batfill, rounded corners=2pt] (0.1, -0.4) rectangle (3.26, 0.9);
+
+% Texto informativo centralizado
+\node[font=\bfseries, text=black!90] at (2.5, 0.25) {68\% de Carga};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a quantidade de carga, em mAh, que \textbf{já foi consumida} (ou seja, descarregada) pelo usuário desde o momento em que o aparelho foi desconectado da tomada com \textbf{100\%} de bateria.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 30}
+
+As estatísticas esportivas utilizam a porcentagem como principal métrica de conversão. Em um campeonato escolar de basquete, o armador da equipe arremessou \textbf{25} lances livres ao longo do torneio e conseguiu converter (acertar) exatamente \textbf{19} deles.
+
+Qual é a taxa percentual de aproveitamento deste jogador nos lances livres? Apresente o raciocínio utilizado para transformar a fração original em uma fração equivalente de denominador 100.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 31}
+
+Em uma escola de idiomas de grande porte, estão matriculados \textbf{1.200} alunos nos mais diversos níveis. O sistema acadêmico aponta que \textbf{35\%} desse total cursam o idioma Espanhol. Dentre os alunos que cursam Espanhol, sabe-se que \textbf{20\%} estão matriculados nas turmas do nível avançado.
+
+Determine o número exato de alunos da escola que estudam Espanhol no nível avançado. Demonstre as duas etapas do seu cálculo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 32}
+
+O planejamento orçamentário familiar exige uma distribuição rigorosa das despesas. O gráfico de setores (pizza) representa o destino da renda mensal de um casal, cujo rendimento total líquido soma \textbf{R\$ 6.000,00}.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{F8F9F9}
+\definecolor{setor1}{HTML}{3498DB} % Moradia 35%
+\definecolor{setor2}{HTML}{E74C3C} % Alimentação x% -> será 30%
+\definecolor{setor3}{HTML}{F1C40F} % Transporte 15%
+\definecolor{setor4}{HTML}{2ECC71} % Educação 20%
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-3.5, -3.2) rectangle (4.5, 3.2);
+\fill[fundo, rounded corners=4pt] (-3.5, -3.2) rectangle (4.5, 3.2);
+
+% Setores (Raio 2)
+% Moradia 35% = 126 graus (0 a 126)
+\draw[fill=setor1, draw=white, thick] (0,0) -- (0:2.2) arc (0:126:2.2) -- cycle;
+% Educação 20% = 72 graus (126 a 198)
+\draw[fill=setor4, draw=white, thick] (0,0) -- (126:2.2) arc (126:198:2.2) -- cycle;
+% Transporte 15% = 54 graus (198 a 252)
+\draw[fill=setor3, draw=white, thick] (0,0) -- (198:2.2) arc (198:252:2.2) -- cycle;
+% Alimentação x% = 30% = 108 graus (252 a 360)
+\draw[fill=setor2, draw=white, thick] (0,0) -- (252:2.2) arc (252:360:2.2) -- cycle;
+
+% Legendas com máscara de fundo (fill=fundo)
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (63:2.7) {Moradia: \textbf{35\%}};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (162:2.8) {Educação: \textbf{20\%}};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (225:2.8) {Transporte: \textbf{15\%}};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (306:2.8) {Alimentação: \textbf{x\%}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nas informações visuais, calcule primeiro a taxa percentual destinada à Alimentação (\textbf{x\%}). Em seguida, determine o valor financeiro absoluto, em reais, que essa família gasta exclusivamente com esse setor.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 33}
+
+\textbf{(Estilo ENEM)} - A inflação causa uma remarcação natural nos preços das prateleiras de um supermercado. No início de um semestre, um pacote de café de marca popular custava \textbf{R\$ 16,00}. Ao final do mesmo semestre, sem alteração no tamanho da embalagem, o mesmo produto passou a ser etiquetado por \textbf{R\$ 18,40}.
+
+Qual foi a taxa percentual de aumento que incidiu sobre o preço original deste produto?
+
+a) 12\%\\[0.3cm]
+b) 15\%\\[0.3cm]
+c) 18\%\\[0.3cm]
+d) 20\%\\[0.3cm]
+e) 24\%
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 34}
+
+\textbf{(Estilo VUNESP)} - Em uma vitrine de calçados, um par de tênis para corrida está sendo anunciado já com uma etiqueta vermelha promocional marcando \textbf{R\$ 204,00}. O vendedor informa que esse valor já embute um desconto absoluto de \textbf{15\%} em relação ao preço de tabela original. 
+
+Se um cliente decidisse comprar o calçado pelo preço original (sem o desconto), o valor que ele pagaria seria:
+
+a) R\$ 234,60\\[0.3cm]
+b) R\$ 235,00\\[0.3cm]
+c) R\$ 240,00\\[0.3cm]
+d) R\$ 245,00\\[0.3cm]
+e) R\$ 250,00
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 35}
+
+A interface de um sistema operacional exibe uma barra de progresso durante o download de uma atualização crítica de software. O pacote total de arquivos do sistema pesa \textbf{18 GB} (Gigabytes).
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{FFFFFF}
+\definecolor{barrabg}{HTML}{E5E8E8}
+\definecolor{barrafill}{HTML}{8E44AD}
+
+% Fundo e Sombra
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.5) rectangle (9, 2);
+\fill[fundo, rounded corners=4pt] (-1, -1.5) rectangle (9, 2);
+
+% Texto Superior
+\node[anchor=west, font=\bfseries] at (0, 1.2) {Baixando Atualização: Total de 18 GB};
+
+% Barra de fundo
+\fill[barrabg, rounded corners=4pt] (0, 0) rectangle (8, 0.6);
+% Preenchimento (45% de 8 = 3.6)
+\fill[barrafill, rounded corners=4pt] (0, 0) rectangle (3.6, 0.6);
+
+% Texto dentro/sobre a barra (fill=white para contraste)
+\node[fill=barrafill, text=white, inner sep=2pt, font=\bfseries] at (1.8, 0.3) {45\%};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Neste exato momento da transferência, quantos Gigabytes \textbf{ainda faltam} ser baixados para que a instalação do sistema seja totalmente concluída?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 36}
+
+Técnicas de marketing no varejo mascaram descontos percentuais usando promoções em unidades físicas. Um supermercado lançou a famosa promoção de cervejas artesanais: \textbf{"LEVE 5, PAGUE 4"}. 
+
+Se o consumidor aproveita exatamente essa promoção ao passar pelo caixa, o desconto financeiro real que ele obteve em toda a compra equivale a uma taxa percentual exata de:
+
+a) 20\%\\[0.3cm]
+b) 25\%\\[0.3cm]
+c) 15\%\\[0.3cm]
+d) 10\%\\[0.3cm]
+e) 30\%
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 37}
+
+\textbf{(Estilo FUVEST)} - A matemática das porcentagens sucessivas não obedece à lógica da adição simples. Devido a uma forte crise na colheita, o preço do tomate sofreu um reajuste (aumento) de \textbf{30\%} nas feiras livres. No mês seguinte, com a estabilização do clima, o preço desse alimento sofreu uma redução (desconto) de \textbf{30\%}.
+
+Após essa sequência de alterações, o preço final do tomate em relação ao preço antes da crise ficou:
+
+a) Inalterado (igual ao preço inicial).\\[0.3cm]
+b) 9\% mais caro.\\[0.3cm]
+c) 9\% mais barato.\\[0.3cm]
+d) 6\% mais barato.\\[0.3cm]
+e) 6\% mais caro.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 38}
+
+Na construção civil, alterações nos projetos geram impactos compostos na área final. A planta de um terreno retangular sofreu uma revisão municipal: a medida do seu comprimento foi \textbf{aumentada em 20\%}, enquanto a medida da sua largura foi obrigatoriamente \textbf{reduzida em 10\%}. 
+
+Considerando as duas alterações simultâneas, modele algebricamente o problema e demonstre o que ocorrerá com a área final do terreno. Ela aumentou ou diminuiu? De qual percentual?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 39}
+
+A análise de desempenho de vendas de uma startup de tecnologia é feita trimestralmente. O gráfico de colunas detalha a receita bruta (em milhares de reais) gerada pelo principal aplicativo da empresa durante os três primeiros meses do ano.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{FFFFFF}
+\definecolor{barra}{HTML}{9B59B6}
+\definecolor{eixo}{HTML}{34495E}
+
+% Fundo e Sombra Seguros
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1.5, -1.5) rectangle (7.5, 5.5);
+\fill[fundo, rounded corners=4pt] (-1.5, -1.5) rectangle (7.5, 5.5);
+
+\begin{axis}[
+    width=7cm, height=5.5cm,
+    axis lines=left,
+    axis line style={ultra thick, eixo},
+    ymin=0, ymax=150,
+    xmin=0, xmax=4,
+    xtick={1,2,3},
+    xticklabels={Janeiro, Fevereiro, Março},
+    ytick={0, 50, 100, 150},
+    ymajorgrids=true,
+    grid style={dashed, gray!40},
+    bar width=25pt,
+    enlarge x limits=0.2,
+    nodes near coords,
+    every node near coord/.append style={fill=white, inner sep=2pt, font=\bfseries},
+    ylabel={Receita (Milhares de R\$)},
+    ylabel style={font=\bfseries, fill=white, inner sep=2pt},
+    tick label style={font=\bfseries}
+]
+
+\addplot[ybar, fill=barra!80!white, draw=barra, ultra thick, rounded corners=2pt] coordinates {
+    (1, 80)
+    (2, 100)
+    (3, 125)
+};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a taxa percentual de crescimento da receita de fevereiro para março. Em seguida, explique se o aumento percentual de janeiro para fevereiro foi igual, maior ou menor que o aumento percentual de fevereiro para março.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 40}
+
+O mercado automotivo utiliza tabelas de depreciação para calcular a desvalorização dos veículos ao longo do tempo. Um carro zero quilômetro foi comprado por \textbf{R\$ 90.000,00}. No primeiro ano de uso, ele sofreu uma desvalorização de \textbf{10\%}. No segundo ano, sobre o valor já depreciado, o carro perdeu mais \textbf{15\%} de seu valor de mercado.
+
+Calcule o valor de mercado deste carro ao final do segundo ano. O desconto total acumulado nesses dois anos equivale a uma taxa percentual única de desvalorização de quantos por cento em relação ao valor zero quilômetro?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 41}
+
+A lógica percentual possui armadilhas matemáticas quando operações inversas são aplicadas sucessivamente. Analise as afirmativas a seguir sobre a matemática dos acréscimos e descontos, escrevendo V para verdadeiro ou F para falso.
+
+Apresente uma justificativa algébrica ou um exemplo numérico para a afirmativa que julgar falsa.
+
+I. Se o salário de um trabalhador aumentar em \textbf{25\%} num mês e, no mês seguinte, sofrer uma redução de \textbf{20\%}, o valor final voltará a ser exatamente igual ao salário original.\\[0.3cm]
+II. Aplicar um desconto de \textbf{10\%} e logo depois outro desconto de \textbf{10\%} sobre o novo valor é financeiramente equivalente a dar um único desconto direto de \textbf{20\%}.\\[0.3cm]
+III. Aumentar o preço de uma mercadoria em \textbf{100\%} significa que o novo preço será o dobro do preço original.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 42}
+
+\textbf{(Estilo VUNESP)} - Em uma indústria de cosméticos, um perfumista precisa preparar um lote de loção adstringente. Ele decide misturar \textbf{40} litros de uma solução que contém \textbf{30\%} de extrato de aloe vera com \textbf{60} litros de uma segunda solução que contém \textbf{50\%} do mesmo extrato.
+
+Após a mistura completa dessas duas soluções, qual será a porcentagem exata de extrato de aloe vera no volume final obtido?
+
+a) 40\%\\[0.3cm]
+b) 42\%\\[0.3cm]
+c) 45\%\\[0.3cm]
+d) 38\%\\[0.3cm]
+e) 80\%
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 43}
+
+No planejamento urbano e paisagístico, os municípios exigem que uma taxa mínima da área dos terrenos seja mantida como solo permeável (área verde). O projeto da residência da família Silveira foi desenhado sobre um lote retangular, com a área construída e a piscina devidamente alocadas, deixando o restante para o gramado.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{casa}{HTML}{95A5A6}
+\definecolor{piscina}{HTML}{3498DB}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra Projetada
+\fill[black!20, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=4pt, shadow yshift=-4pt}] (-1.5, -1.5) rectangle (9.5, 6.5);
+\fill[fundo, rounded corners=4pt] (-1.5, -1.5) rectangle (9.5, 6.5);
+
+% Terreno Total (Grama no fundo)
+\fill[grama!80!white, rounded corners=2pt] (0, 0) rectangle (8, 5);
+\draw[ultra thick, black!80] (0, 0) rectangle (8, 5);
+
+% Casa (Área Construída)
+\fill[casa, rounded corners=1pt] (0.5, 2.5) rectangle (4.5, 4.5);
+\draw[thick, black!90] (0.5, 2.5) rectangle (4.5, 4.5);
+\node[font=\bfseries, text=white] at (2.5, 3.5) {CASA};
+
+% Piscina
+\fill[piscina, rounded corners=3pt] (5.5, 0.5) rectangle (7.5, 2.5);
+\draw[thick, black!90] (5.5, 0.5) rectangle (7.5, 2.5);
+\node[font=\bfseries, text=white] at (6.5, 1.5) {PISCINA};
+
+% Cotas Terreno
+\draw[|<->|, thick] (0, -0.6) -- (8, -0.6) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {40 m};
+\draw[|<->|, thick] (-0.6, 0) -- (-0.6, 5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {25 m};
+
+% Cotas Casa
+\draw[|<->|, thick] (0.5, 4.8) -- (4.5, 4.8) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {20 m};
+\draw[|<->|, thick] (4.8, 2.5) -- (4.8, 4.5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {10 m};
+
+% Cotas Piscina
+\draw[|<->|, thick] (5.5, -0.2) -- (7.5, -0.2) node[midway, fill=grama!80!white, inner sep=2pt, font=\bfseries] {10 m};
+\draw[|<->|, thick] (7.8, 0.5) -- (7.8, 2.5) node[midway, fill=grama!80!white, inner sep=2pt, font=\bfseries] {10 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a área total do terreno. Em seguida, calcule qual é a taxa percentual exata que a área verde (gramado) representa em relação à área total do lote.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 44}
+
+O poder de compra de um cidadão é afetado diretamente pela relação entre o reajuste salarial e a inflação do período. Em janeiro, o custo de vida mensal (despesas essenciais) da senhora Helena era de \textbf{R\$ 3.000,00}, exatamente o mesmo valor de seu salário líquido. 
+
+No ano seguinte, seu salário teve um reajuste de \textbf{8\%}. Contudo, os itens que compõem suas despesas essenciais sofreram uma inflação de \textbf{11\%}. Após essas atualizações financeiras, Helena conseguirá pagar suas despesas com o novo salário? Caso falte ou sobre dinheiro, indique o valor exato da diferença em reais.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 45}
+
+Programas de edição gráfica alteram as dimensões de uma imagem usando proporções percentuais, o que afeta severamente a área total de impressão. Um designer possui uma fotografia retangular cujas dimensões originais são \textbf{20 cm} de comprimento por \textbf{15 cm} de largura. 
+
+Para adequar a imagem a um site, ele aplica uma redução geométrica de \textbf{20\%} no comprimento e, simultaneamente, \textbf{20\%} na largura. Calcule a nova área da fotografia reduzida e comprove matematicamente que a redução da área total não foi de apenas 20\%. Qual foi o verdadeiro percentual de perda de área?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 46}
+
+No mercado financeiro, a volatilidade de um ativo exige atenção aos percentuais diários de alta e queda. O gráfico de linha abaixo descreve a flutuação do preço de uma cota de fundo imobiliário ao longo de quatro dias úteis.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{FDFEFE}
+\definecolor{linha}{HTML}{E67E22}
+\definecolor{eixo}{HTML}{2C3E50}
+
+% Fundo e Sombra Seguros
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1.5, -1.5) rectangle (7.5, 6.0);
+\fill[fundo, rounded corners=4pt] (-1.5, -1.5) rectangle (7.5, 6.0);
+
+\begin{axis}[
+    width=8cm, height=6cm,
+    axis lines=left,
+    axis line style={ultra thick, eixo},
+    ymin=100, ymax=160,
+    xmin=0.5, xmax=4.5,
+    xtick={1,2,3,4},
+    xticklabels={Seg, Ter, Qua, Qui},
+    ytick={100, 115, 125, 140, 150},
+    ymajorgrids=true,
+    grid style={dashed, gray!50},
+    enlarge x limits=0.05,
+    ylabel={Preço da Cota (R\$)},
+    ylabel style={font=\bfseries, fill=fundo, inner sep=2pt},
+    tick label style={font=\bfseries}
+]
+
+% Linha principal
+\addplot[color=linha, ultra thick, mark=*, mark size=3pt, mark options={fill=white, draw=linha, thick}] coordinates {
+    (1, 125)
+    (2, 150)
+    (3, 114)
+    (4, 140)
+};
+
+% Rótulos nos pontos com máscara de fundo
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (axis cs:1, 131) {R\$ 125};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (axis cs:2, 156) {R\$ 150};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (axis cs:3, 108) {R\$ 114};
+\node[fill=fundo, inner sep=2pt, font=\bfseries] at (axis cs:4, 146) {R\$ 140};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Analisando a trajetória da cota, determine a taxa percentual de desvalorização (queda) sofrida exclusivamente na passagem da terça-feira para a quarta-feira.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 47}
+
+\textbf{(Estilo UNICAMP)} - Durante uma eleição para o grêmio estudantil de um colégio, três chapas disputaram os votos dos alunos. O regulamento previa que os votos nulos e brancos não seriam contabilizados para a definição dos percentuais válidos. Apurados os \textbf{800} votos totais depositados nas urnas, verificou-se que \textbf{15\%} correspondiam a votos brancos ou nulos.
+
+Sabendo que a Chapa A recebeu \textbf{40\%} dos votos válidos, qual foi o número absoluto de alunos que votou na Chapa A?
+
+a) 258 alunos.\\[0.3cm]
+b) 272 alunos.\\[0.3cm]
+c) 320 alunos.\\[0.3cm]
+d) 240 alunos.\\[0.3cm]
+e) 280 alunos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 48}
+
+A diferença conceitual entre margem de lucro sobre o custo e margem de lucro sobre a venda é uma das métricas mais vitais da contabilidade. Uma fábrica produz camisetas esportivas a um custo de produção de \textbf{R\$ 40,00} por unidade. Essas mesmas camisetas são repassadas para as lojas e vendidas ao consumidor final por \textbf{R\$ 50,00}.
+
+Calcule e responda separadamente: qual é a taxa percentual de lucro obtida em relação ao preço de custo? E qual é a taxa percentual de lucro considerando-se o preço de venda?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 49}
+
+Na pesquisa de satisfação de um refeitório corporativo, diagramas lógicos são utilizados para mapear a aceitação do cardápio pelos funcionários. O diagrama de Venn exibe o perfil percentual de preferência entre duas opções de refeição.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES HEX ---
+\definecolor{fundo}{HTML}{F4F6F7}
+\definecolor{circA}{HTML}{E74C3C} % Carne
+\definecolor{circB}{HTML}{3498DB} % Frango
+\definecolor{texto}{HTML}{2C3E50}
+
+% Sombra Projetada
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-3, -3) rectangle (7, 4);
+\fill[fundo, rounded corners=4pt] (-3, -3) rectangle (7, 4);
+\draw[thick, black!70, rounded corners=4pt] (-3, -3) rectangle (7, 4);
+
+% Universo
+\node[anchor=north west, font=\bfseries] at (-2.8, 3.8) {Total de Entrevistados: 100\%};
+\node[anchor=south east, font=\bfseries, fill=fundo, inner sep=2pt] at (6.8, -2.8) {Nenhum dos dois: \textbf{15\%}};
+
+% Círculos com opacidade
+\fill[circA, opacity=0.3] (0, 0) circle (2.2);
+\draw[thick, circA] (0, 0) circle (2.2);
+
+\fill[circB, opacity=0.3] (3, 0) circle (2.2);
+\draw[thick, circB] (3, 0) circle (2.2);
+
+% Rótulos com fill=white para legibilidade perfeita sobre a intersecção
+\node[font=\bfseries, text=texto, fill=white, inner sep=2pt, rounded corners=1pt] at (0, 2.5) {Gostam de Carne (60\%)};
+\node[font=\bfseries, text=texto, fill=white, inner sep=2pt, rounded corners=1pt] at (3, 2.5) {Gostam de Frango (55\%)};
+
+% Valor na intersecção
+\node[font=\bfseries, text=black, fill=white, inner sep=2pt, rounded corners=1pt] at (1.5, 0) {x\%};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Baseando-se nos dados apresentados, equacione o problema dos conjuntos e determine a taxa percentual de funcionários (\textbf{x\%}) que declararam gostar simultaneamente das duas opções (Carne e Frango).
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+
+\subsubsection*{QUESTÃO 50}
+
+\textbf{(Desafio ITA/FUVEST)} - A conservação de alimentos por desidratação (secagem) altera drasticamente a concentração de massa dos compostos. Um produtor colheu \textbf{100 kg} de cogumelos frescos. Análises laboratoriais mostram que \textbf{99\%} da massa desses cogumelos frescos é composta apenas por água.
+
+Após algumas horas em uma estufa de desidratação contínua, os cogumelos perderam parte dessa umidade por evaporação, de modo que a água passou a representar exatamente \textbf{98\%} da massa total dos cogumelos, agora parcialmente secos. 
+
+Sabendo que apenas a água evaporou e a "massa sólida" do cogumelo permaneceu intacta, calcule a massa total (em kg) desse lote de cogumelos logo após a retirada da estufa.
+
+\end{multicols*}
 \end{document}
