@@ -4,7 +4,15 @@
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 \usepackage[sfdefault]{roboto}
-\usepackage[top=0.3cm, bottom=0.3cm, left=1cm, right=1cm]{geometry}
+\usepackage[top=6.0cm, headheight=5.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{graphicx}
+% --- CABEÇALHO EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpa qualquer numeração ou texto padrão
+\renewcommand{\headrulewidth}{0pt} % Remove a linha preta padrão do fancyhdr
+\fancyhead[C]{\includegraphics[width=\textwidth]{MATEMATICA_7ANO.png}}
+\fancyfoot[C]{Página \thepage}
 
 \usepackage{setspace}
 \setstretch{1.15}
