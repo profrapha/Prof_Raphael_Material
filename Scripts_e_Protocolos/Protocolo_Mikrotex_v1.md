@@ -108,8 +108,14 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
 
 3.1. **Layout, Separador e Estrutura da Questão:**
   * **Regra da Linha Divisória:** Insira o comando `\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}`.
-  * **Posicionamento da Linha (TRAVA DE CAPÍTULO):** Se a questão iniciar um NOVO CAPÍTULO, a linha divisória DEVE ser colocada ANTES do título do capítulo (`\subsection*{...}`). É ESTRITAMENTE PROIBIDO colocar linha divisória entre o título do capítulo e a primeira questão dele. Nas demais questões, a linha vem normalmente antes da questão.
-  * **Cabeçalho:** Use OBRIGATORIAMENTE o comando `\subsubsection*{QUESTÃO XX}` (Onde XX é o número) para acionar a cor e tamanho do Título 3. PROIBIDO usar `\section*`.
+  * **Transição de Capítulo (MOLDE OBRIGATÓRIO):** Quando iniciar um novo capítulo, você NÃO usará a regra padrão. A ordem exata do código DEVE ser rigorosamente esta:
+    [COMANDO DA LINHA DIVISÓRIA]
+    \subsection*{Capítulo X: Nome do Capítulo}
+    \subsubsection*{QUESTÃO XX}
+    (É ESTRITAMENTE PROIBIDO colocar qualquer linha divisória entre o Capítulo e a sua primeira questão).
+  * **Cabeçalho Normal:** Para as demais questões que não iniciam capítulo, use OBRIGATORIAMENTE o comando `\subsubsection*{QUESTÃO XX}` após a linha divisória. PROIBIDO usar `\section*`.
+  * **Frações e Fórmulas:** É OBRIGATÓRIO usar o comando `\mfrac{...}{...}` (do pacote nccmath) para todas as frações no meio do texto, garantindo tamanho médio. É ESTRITAMENTE PROIBIDO usar `\frac` (muito pequeno) ou `\dfrac` (quebra o entrelinhas).
+  
 
 3.2. **(TRAVA CRÍTICA) INJEÇÃO TIKZ NATIVA E REDIMENSIONAMENTO:** É OBRIGATÓRIO deixar claro onde a figura deve ser inserida. Para evitar que a imagem vaze e ultrapasse a largura da coluna, você DEVE envolver o ambiente `tikzpicture` dentro de um `adjustbox`. Use EXATAMENTE a sintaxe abaixo após o cenário/contexto e ANTES da pergunta:
 \begin{center}
