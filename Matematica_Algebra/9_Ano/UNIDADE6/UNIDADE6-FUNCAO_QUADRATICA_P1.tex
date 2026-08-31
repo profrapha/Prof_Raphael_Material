@@ -1,0 +1,844 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+% Margem inferior ajustada para 1.5cm para caber o rodapé
+\usepackage[top=6.0cm, headheight=5.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
+
+% --- CARREGA O PACOTE DE IMAGEM PRIMEIRO ---
+\usepackage{graphicx}
+
+% --- CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[C]{\includegraphics[width=\textwidth]{MATEMATICA_9ANO.png}}
+\fancyfoot[C]{Página \thepage} % Numeração centralizada (Use [R] se preferir à direita)
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+% --- LIMITADOR DE IMAGENS ---
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\raggedcolumns
+\section*{UNIDADE 6 - FUNÇÃO QUADRÁTICA (PARTE 1)}
+\begin{multicols*}{2}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 1: Definição e Lei de Formação}
+\subsubsection*{QUESTÃO 01}
+
+Considere a expressão algébrica que define uma relação de dependência entre duas grandezas, dada por $f(x) = 3x(x - 2) + 5 - x^2$. Para que esta função seja classificada corretamente e seus parâmetros identificados, ela deve ser escrita na forma canônica $f(x) = ax^2 + bx + c$.
+
+A partir da expansão algébrica, determine os valores numéricos dos coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 02}
+
+O projeto arquitetônico de uma praça prevê a construção de um espelho d'água retangular envolto por uma calçada de concreto. As dimensões do espelho d'água dependem de uma variável \textbf{x} (medida em metros), conforme ilustrado no esquema da planta baixa.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS HEXADECIMAIS ---
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{agua}{HTML}{3498DB}
+\definecolor{grama}{HTML}{27AE60}
+
+% LAYER 1: Fundo Sombra e Calçada (Concreto)
+\fill[drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}, concreto, rounded corners=4pt] (0,0) rectangle (6,4);
+
+% LAYER 2: Espelho D'água
+\fill[agua!80!white, rounded corners=2pt] (1,0.8) rectangle (5,3.2);
+
+% LAYER 3: Cotas e Textos
+\draw[thick, <->, >=stealth] (1, 0.4) -- (5, 0.4) node[midway, fill=concreto, inner sep=2pt] {\textbf{2x + 4}};
+\draw[thick, <->, >=stealth] (5.4, 0.8) -- (5.4, 3.2) node[midway, fill=concreto, inner sep=2pt, rotate=-90] {\textbf{x - 1}};
+
+\node[fill=agua!80!white, inner sep=2pt, text=white] at (3, 2) {\textbf{Espelho d'água}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Expresse a área do espelho d'água por meio de uma função polinomial do 2º grau $A(x)$. Em seguida, justifique o que o termo independente dessa função representa, sabendo que a medida \textbf{x} deve ser estritamente maior que \textbf{1}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 03}
+
+Na matemática, a validade de uma função quadrática está atrelada à preservação de seu termo de maior grau. Considere a lei de formação $g(x) = (3m - 12)x^2 + 5x - 7$, em que \textbf{m} é uma constante real.
+
+Para que $g(x)$ seja de fato uma função do 2º grau, determine a condição de existência que deve ser rigorosamente respeitada para o valor de \textbf{m}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 04}
+
+A lei de formação de uma função determina como cada valor de entrada se transforma em um valor de saída. Seja a função $h(x) = -2x^2 + 4x - 1$.
+
+Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F), apresentando o cálculo comprobatório para cada caso:
+
+I) O valor numérico da função para $x = -2$ é igual a \textbf{-17}. \\[0.3cm]
+II) Se $x = 0$, a função atinge exatamente o valor do seu coeficiente independente. \\[0.3cm]
+III) O coeficiente quadrático dessa função indica que, ao dobrarmos o valor de \textbf{x}, o resultado final também dobrará.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 05}
+
+Um engenheiro civil projeta o pilar central de uma estrutura metálica e define que a capacidade de carga $C$, em toneladas, em função da espessura \textbf{x} do pilar, em centímetros, é regida por uma função do tipo $C(x) = ax^2 + c$. Ele sabe que, se a espessura for nula, a carga suportada é zero e que, para um pilar de \textbf{10 cm} de espessura, a capacidade é de \textbf{150 toneladas}.
+
+Determine os coeficientes \textbf{a} e \textbf{c} dessa função.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 06}
+
+(Estilo VUNESP) O setor financeiro de uma pequena fábrica de calçados modelou o seu lucro mensal $L$, em milhares de reais, em função do número \textbf{x} de lotes produzidos. A relação foi validada algébricamente pela lei $L(x) = -x^2 + 40x - 300$.
+
+Considerando as propriedades fundamentais dessa função, julgue os itens a seguir com \textbf{V} para verdadeiro ou \textbf{F} para falso.
+
+A) Se a fábrica não produzir nenhum lote, o prejuízo será de \textbf{300 mil reais}. \\[0.3cm]
+B) O coeficiente \textbf{a} negativo indica uma limitação física ou de mercado, sugerindo que o aumento infinito da produção não gerará aumento infinito de lucro. \\[0.3cm]
+C) A produção de exatamente \textbf{10 lotes} garante lucro positivo para a empresa.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 07}
+
+Em uma montadora de veículos, uma peça plana de aço precisa ser recortada por uma máquina a laser. O modelo da peça tem formato retangular, e, para aliviar peso, um retângulo central menor será removido, conforme a vista frontal abaixo. O recorte interno e as margens da peça dependem do parâmetro \textbf{x}, medido em milímetros.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+\definecolor{aco}{HTML}{7F8C8D}
+\definecolor{furo}{HTML}{ECF0F1}
+
+% LAYER 1: Peça de Aço (Fundo)
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, aco, rounded corners=3pt] (0,0) rectangle (6,5);
+
+% LAYER 2: Recorte interno
+\fill[furo, rounded corners=2pt] (1.5, 1.5) rectangle (4.5, 3.5);
+
+% LAYER 3: Cotas
+\draw[thick, <->, >=stealth] (0, -0.4) -- (6, -0.4) node[midway, fill=white, inner sep=2pt] {\textbf{3x + 10}};
+\draw[thick, <->, >=stealth] (-0.4, 0) -- (-0.4, 5) node[midway, fill=white, inner sep=2pt, rotate=90] {\textbf{2x + 5}};
+
+\draw[thick, <->, >=stealth] (1.5, 1.1) -- (4.5, 1.1) node[midway, fill=aco, text=white, inner sep=2pt] {\textbf{x + 2}};
+\draw[thick, <->, >=stealth] (4.9, 1.5) -- (4.9, 3.5) node[midway, fill=aco, text=white, inner sep=2pt, rotate=-90] {\textbf{x}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a lei de formação da função polinomial do 2º grau que descreve a área útil de aço restante $A(x)$ após o recorte. Simplifique ao máximo os termos semelhantes e indique claramente os coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 08}
+
+(ENEM - Adaptada) Um foguete de sinalização marítima é lançado de um navio durante um treinamento de resgate. A altura \textbf{h}, em metros, atingida pelo foguete em relação ao nível do mar, é descrita em função do tempo \textbf{t}, em segundos, por meio da equação termodinâmica simplificada $h(t) = 10 + 40t - 5t^2$.
+
+A partir da lei de formação apresentada, determine a altura inicial da qual o foguete foi lançado (no instante $t = 0$) e justifique fisicamente a presença do coeficiente negativo acompanhando o termo quadrático.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 09}
+
+Para que a equação $y = (k^2 - 16)x^2 + (k + 4)x - 8$ represente verdadeiramente o modelo matemático de uma função quadrática, o coeficiente que multiplica $x^2$ deve obedecer a uma restrição vital de não-nulidade. 
+
+Determine os valores reais que a constante \textbf{k} está estritamente proibida de assumir. 
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 10}
+
+Em um laboratório de física aplicada, um projétil é disparado horizontalmente, e seu movimento descendente forma um arco perfeitamente modelado por uma função do 2º grau do tipo $f(x) = ax^2 + bx + c$.
+
+A câmera de alta velocidade registrou três posições chave num plano cartesiano, sendo \textbf{x} e \textbf{f(x)} em metros. As posições são: $(0, 20)$, $(1, 18)$ e $(-1, 18)$. 
+
+Escreva a lei de formação que descreve a trajetória do projétil neste sistema de referência.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 2: Gráfico - Parábola}
+\subsubsection*{QUESTÃO 11}
+
+A representação gráfica de uma função quadrática é uma curva chamada parábola, que possui características visuais diretamente ligadas aos seus coeficientes. Observe o gráfico de uma função $f(x) = ax^2 + bx + c$ desenhado no plano cartesiano abaixo.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS ---
+\definecolor{eixo}{HTML}{2C3E50}
+\definecolor{curva}{HTML}{E74C3C}
+\definecolor{fundo}{HTML}{ECF0F1}
+
+% LAYER 1: Fundo com grid leve
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-3) rectangle (5,5);
+\draw[step=1cm, gray!40, thin] (-1.9,-2.9) grid (4.9,4.9);
+
+% LAYER 2: Eixos
+\draw[thick, ->, eixo] (-2,0) -- (5,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-3) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Parábola (y = x^2 - 4x + 3)
+\draw[ultra thick, curva, smooth, samples=50, domain=-0.2:4.2] plot (\x, {\x*\x - 4*\x + 3});
+
+% LAYER 4: Pontos de destaque
+\filldraw[eixo] (0,3) circle (2.5pt) node[right, fill=fundo, inner sep=1.5pt] {\textbf{3}};
+\filldraw[eixo] (1,0) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{1}};
+\filldraw[eixo] (3,0) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{3}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base estritamente na análise visual da figura, determine o sinal do coeficiente quadrático \textbf{a} (positivo ou negativo) e o valor exato do coeficiente independente \textbf{c}. Justifique ambas as respostas com base no comportamento da curva geométrica.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 12}
+
+O coeficiente independente de uma função do 2º grau é o grande responsável por revelar onde a parábola "corta" o eixo vertical das ordenadas. Dada a função $g(x) = -5x^2 + 12x - 18$.
+
+Determine as coordenadas exatas do ponto de intersecção do gráfico de $g(x)$ com o eixo \textbf{y}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 13}
+
+O estudo do esboço de parábolas permite prever o comportamento da função sem a necessidade de desenhá-la ponto a ponto. Considere a função real definida por $h(x) = 2x^2 - 8x$.
+
+Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F), apresentando o cálculo ou a justificativa teórica para cada caso:
+
+I) A concavidade desta parábola é voltada para baixo, pois possui um coeficiente linear negativo. \\[0.3cm]
+II) O gráfico desta função intercepta o eixo vertical exatamente na origem do sistema cartesiano, no ponto $(0, 0)$. \\[0.3cm]
+III) A função possui duas intersecções distintas com o eixo horizontal das abscissas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 14}
+
+A engenharia civil utiliza amplamente o formato parabólico na construção de pontes suspensas para distribuir o peso de forma otimizada. A vista lateral do cabo principal de sustentação de uma ponte é projetada sobre um plano cartesiano.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E CORES ---
+\definecolor{pilar}{HTML}{7F8C8D}
+\definecolor{cabo}{HTML}{2980B9}
+\definecolor{pista}{HTML}{34495E}
+
+% LAYER 1: Pista de rolamento (Fundo/Sombra)
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, pista] (-1,-0.5) rectangle (7,0);
+\node[fill=pista, text=white, inner sep=2pt] at (3, -0.25) {\textbf{Pista (Eixo x)}};
+
+% LAYER 2: Pilares
+\fill[pilar, rounded corners=1pt] (0,0) rectangle (0.4, 4);
+\fill[pilar, rounded corners=1pt] (5.6,0) rectangle (6, 4);
+
+% LAYER 3: Eixo Y fantasma para referência
+\draw[dashed, thick, ->] (0.2, 0) -- (0.2, 4.5) node[above, fill=white, inner sep=1pt] {\textbf{y}};
+
+% LAYER 4: Cabo parabólico
+\draw[ultra thick, cabo, smooth, samples=50, domain=0.2:5.8] plot (\x, {0.4*(\x-3)*(\x-3) + 0.5});
+
+% LAYER 5: Hastes verticais de sustentação
+\foreach \x in {1, 1.8, 2.6, 3.4, 4.2, 5} {
+    \draw[thin, gray!80!black] (\x, {0.4*(\x-3)*(\x-3) + 0.5}) -- (\x, 0);
+}
+
+% LAYER 6: Cota de altura mínima
+\draw[thick, <->, >=stealth] (3, 0) -- (3, 0.5) node[midway, right, fill=white, inner sep=1pt] {\textbf{5 m}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Admitindo que o pilar da esquerda representa o eixo \textbf{y} e a pista representa o eixo \textbf{x}, explique por que a função quadrática que modela este cabo possui coeficiente \textbf{a} positivo e um coeficiente \textbf{c} obrigatoriamente maior que \textbf{5}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 15}
+
+Os pontos onde a parábola corta o eixo horizontal são conhecidos como raízes ou zeros da função, locais onde a altura (o valor de $y$) zera.
+
+Determine algebricamente os pontos exatos de intersecção com o eixo das abscissas para a função $p(x) = x^2 - 10x + 21$. Apresente as respostas na forma de pares ordenados $(x, y)$.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 16}
+
+(Estilo VUNESP) O fluxo de caixa diário de uma loja de eletrônicos, medido em centenas de reais, ao longo de um dia de \textbf{12 horas} de funcionamento, é descrito pela função $F(t) = -t^2 + 10t - 16$, onde \textbf{t} representa as horas passadas desde a abertura da loja.
+
+Se $F(t)$ positivo indica lucro e $F(t)$ negativo indica prejuízo, calcule os instantes \textbf{t} em que o fluxo de caixa foi exatamente nulo. Com base nisso, determine durante quantas horas do dia a loja operou com lucro (fluxo acima de zero).
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 17}
+
+Nem toda função do 2º grau é obrigada a possuir intersecções com o eixo \textbf{x}. Considere a função de custo industrial $C(x) = 2x^2 + 4x + 10$.
+
+Demonstre, através do cálculo do discriminante ($\Delta$), por que o gráfico desta função jamais tocará o eixo horizontal. Em seguida, informe se essa parábola está inteiramente acima ou inteiramente abaixo do eixo das abscissas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 18}
+
+(ENEM - Adaptada) Um jardineiro projeta um sistema de irrigação onde o jato de água do aspersor descreve uma trajetória parabólica perfeitamente simétrica. O sistema cartesiano foi posicionado de forma que o aspersor se encontra na origem.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS ---
+\definecolor{gramado}{HTML}{27AE60}
+\definecolor{agua}{HTML}{3498DB}
+\definecolor{aspersor}{HTML}{7F8C8D}
+
+% LAYER 1: Gramado
+\fill[drop shadow={opacity=0.3, shadow xshift=0pt, shadow yshift=-3pt}, gramado, rounded corners=2pt] (-1,-0.5) rectangle (7,0);
+\node[fill=gramado, text=white, inner sep=2pt] at (6, -0.25) {\textbf{Eixo x}};
+
+% LAYER 2: Eixo Y
+\draw[thick, ->, gray!80!black] (0,-0.5) -- (0,4) node[above, fill=white, inner sep=1pt] {\textbf{Altura (y)}};
+
+% LAYER 3: Trajetória da água (y = -0.5x^2 + 2x -> raízes 0 e 4, vértice em 2, max 2)
+\draw[ultra thick, agua, smooth, dashed, samples=50, domain=0:4] plot (\x, {-0.5*\x*\x + 2*\x});
+
+% LAYER 4: Aspersor e impacto
+\fill[aspersor, rounded corners=1pt] (-0.2,0) rectangle (0.2, 0.3);
+\filldraw[agua] (4,0) circle (3pt) node[above right, fill=white, inner sep=2pt] {\textbf{Ponto de Impacto}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que o jato atinge o solo a uma distância de \textbf{4 metros} da origem e que sua altura máxima ocorreu exatamente na metade do caminho, atingindo \textbf{2 metros} de altura, determine a lei de formação da função $h(x)$ que descreve essa trajetória.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 19}
+
+Ao lançar uma bola de basquete, a trajetória descrita no espaço bidimensional obedece à equação $y = -2x^2 + 12x + 14$, onde \textbf{y} é a altura e \textbf{x} é a distância horizontal percorrida, ambas em metros.
+
+Com base na interpretação geométrica dos coeficientes dessa equação, julgue os itens I, II e III com Verdadeiro (V) ou Falso (F):
+
+I) A bola foi lançada do chão, pois o eixo \textbf{x} representa o solo e a função corta a origem. \\[0.3cm]
+II) A distância horizontal percorrida pela bola desde a origem até o momento em que ela toca o solo novamente é de \textbf{7 metros}. \\[0.3cm]
+III) A concavidade da trajetória, orientada para baixo, é uma imposição da gravidade e é representada matematicamente pelo coeficiente $a = -2$.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 20}
+
+Em uma simulação computacional, dois foguetes virtuais possuem trajetórias regidas pelas funções $f(x) = x^2 - 6x + 8$ e $g(x) = -x^2 + 6x - 5$.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- DUAS PARÁBOLAS ESTILO PREMIUM ---
+\definecolor{fogueteA}{HTML}{E67E22}
+\definecolor{fogueteB}{HTML}{8E44AD}
+\definecolor{fundo}{HTML}{F8F9F9}
+
+\begin{axis}[
+    axis lines=middle,
+    width=10cm, height=7cm,
+    ymin=-3, ymax=6,
+    xmin=-1, xmax=7,
+    xtick={1,2,4,5},
+    ytick={-5,8},
+    ticklabel style={fill=white, inner sep=2pt},
+    grid=none,
+    axis line style={thick},
+    background/.style={fill=fundo, drop shadow={opacity=0.1}}
+]
+% Foguete A
+\addplot[ultra thick, fogueteA, smooth, domain=0.5:5.5] {x^2 - 6*x + 8} node[right, pos=0.9, fill=white, inner sep=1pt] {\textbf{f(x)}};
+% Foguete B
+\addplot[ultra thick, fogueteB, smooth, domain=0.5:5.5] {-x^2 + 6*x - 5} node[right, pos=0.8, fill=white, inner sep=1pt] {\textbf{g(x)}};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem calcular o vértice, mas utilizando apenas a intersecção com o eixo \textbf{x} (as raízes), demonstre algebricamente qual dos dois foguetes virtuais intercepta o solo (eixo x) nos pontos mais distantes entre si. Calcule a distância entre os pontos de contato para ambas as funções.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 21}
+
+Considere a família de funções quadráticas dadas por $y = ax^2 - 3x + c$. Sabe-se que o gráfico dessa função cruza o eixo vertical no ponto $(0, -10)$ e cruza o eixo horizontal em $x = 5$ e em um outro valor desconhecido.
+
+Encontre o valor do coeficiente \textbf{a} e, em seguida, determine qual é a segunda raiz da função.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 22}
+
+(ENEM - Adaptada) A temperatura no interior de uma estufa de cultivo de orquídeas sofre variações ao longo do dia, controladas por um termostato. A variação da temperatura $T$, em graus Celsius, em função do tempo \textbf{h}, em horas a partir da meia-noite, segue aproximadamente a lei $T(h) = -h^2 + 14h + 15$.
+
+Para não danificar as plantas, um alarme dispara se a temperatura cair abaixo de $0^\circ \text{C}$. Sabendo que o modelo é válido para $0 \le h \le 24$:
+
+A) A temperatura inicial na estufa à meia-noite era igual a \textbf{0$^\circ$ C}. \\[0.3cm]
+B) O alarme disparará às \textbf{15 horas} (3 da tarde), pois as raízes indicam os momentos em que a temperatura atinge zero. \\[0.3cm]
+C) A parábola tem concavidade voltada para cima, indicando que a temperatura subirá infinitamente. \\[0.3cm]
+D) A estufa só atingirá temperatura zero em $h = 15$. \\[0.3cm]
+E) O alarme disparará à meia-noite, pois $c = 0$.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 23}
+
+O gráfico de uma função quadrática da forma $f(x) = x^2 + bx + c$ é uma parábola que intercepta o eixo \textbf{x} nos pontos de coordenadas $(-3, 0)$ e $(7, 0)$.
+
+A partir exclusivamente dessas informações gráficas, monte a lei de formação da função e determine o ponto exato onde a parábola "cortará" o eixo vertical \textbf{y}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 24}
+
+No estudo de física óptica, a seção transversal de um espelho refletor astronômico pode ser modelada por uma parábola no plano cartesiano. A base do espelho repousa sobre a origem, logo o vértice da parábola é $(0,0)$.
+
+Se o espelho possui uma concavidade voltada para cima e passa pelo ponto de coordenadas $(4, 8)$, determine a equação polinomial do 2º grau completa que rege esta curva. 
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 25}
+
+(FUVEST - Adaptada) A trajetória de uma gota d'água expelida por uma roda d'água em movimento pode ser descrita num referencial cartesiano. Sabe-se que a gota passa pelos pontos $A(-1, 0)$, $B(3, 0)$ e intercepta o eixo vertical no ponto $C(0, 6)$.
+
+A lei de formação polinomial do 2º grau que descreve a trajetória geométrica desta gota d'água no ar é dada por:
+
+A) $y = -2x^2 + 4x + 6$ \\[0.3cm]
+B) $y = -x^2 + 2x + 6$ \\[0.3cm]
+C) $y = 2x^2 - 4x + 6$ \\[0.3cm]
+D) $y = -2x^2 - 4x + 6$ \\[0.3cm]
+E) $y = x^2 - 2x + 6$
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 3: Vértice e Eixo de Simetria}
+\subsubsection*{QUESTÃO 26}
+
+O vértice de uma parábola representa o ponto de inflexão extrema do gráfico de uma função quadrática, indicando o valor máximo ou mínimo que a relação pode atingir. Considere a função $f(x) = x^2 - 12x + 32$.
+
+Determine algebricamente as coordenadas exatas $(x_v, y_v)$ do vértice desta parábola. Em seguida, justifique se este ponto representa um valor máximo ou mínimo para a função.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 27}
+
+O eixo de simetria é uma reta vertical imaginária que divide a parábola em duas metades espelhadas perfeitamente congruentes. O plano cartesiano abaixo exibe o gráfico de uma função do 2º grau e sua malha referencial.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS PREMIUM ---
+\definecolor{fundo}{HTML}{FDFEFE}
+\definecolor{malha}{HTML}{BDC3C7}
+\definecolor{eixo}{HTML}{2C3E50}
+\definecolor{parabola}{HTML}{8E44AD}
+\definecolor{simetria}{HTML}{E67E22}
+
+% LAYER 1: Fundo com Grid
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-5) rectangle (6,5);
+\draw[step=1cm, malha, thin] (-1.9,-4.9) grid (5.9,4.9);
+
+% LAYER 2: Eixos Cartesianos
+\draw[thick, ->, eixo] (-2,0) -- (6,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-5) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Reta do Eixo de Simetria
+\draw[ultra thick, dashed, simetria] (2,-5) -- (2,5);
+\node[fill=fundo, text=simetria, inner sep=2pt] at (3.5, 4.2) {\textbf{Eixo de simetria}};
+
+% LAYER 4: Parábola
+\draw[ultra thick, parabola, smooth, samples=50, domain=-1:5] plot (\x, {\x*\x - 4*\x - 1});
+
+% LAYER 5: Destaque do Vértice
+\filldraw[eixo] (2,-5) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{V}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem realizar cálculos complexos, extraia da leitura do gráfico a equação matemática da reta que representa o eixo de simetria e indique as coordenadas do vértice \textbf{V}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 28}
+
+As fórmulas do vértice $x_v = \mfrac{-b}{2a}$ e $y_v = \mfrac{-\Delta}{4a}$ são ferramentas fundamentais para a análise de funções sem a necessidade de desenhar o gráfico completo. Considere a função $C(x) = 2x^2 + 8x - 10$.
+
+Julgue as proposições abaixo como Verdadeiras (V) ou Falsas (F), apresentando os cálculos que atestam sua conclusão:
+
+I) O eixo de simetria desta parábola é a reta definida pela equação $x = -2$. \\[0.3cm]
+II) A função atinge seu valor mínimo exatamente no ponto de ordenada $y = -18$. \\[0.3cm]
+III) A concavidade da função indica que a parábola possui um ponto de máximo, e não de mínimo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 29}
+
+Na indústria, a minimização de custos é uma aplicação direta do estudo de vértices. O custo de produção diário de uma confecção, em reais, é modelado pela equação $C(p) = 4p^2 - 40p + 300$, onde \textbf{p} é a quantidade de lotes de camisas fabricadas no dia.
+
+Determine a quantidade exata de lotes que deve ser produzida para que o custo da fábrica seja o menor possível e informe qual é o valor em reais desse custo mínimo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 30}
+
+As coordenadas do vértice podem ajudar a desvendar os coeficientes ocultos de uma função. Sabe-se que a parábola descrita por $g(x) = -3x^2 + bx + 12$ possui o eixo de simetria passando exatamente sobre a reta $x = 2$.
+
+Com base nessa restrição geométrica, descubra o valor do coeficiente linear \textbf{b} e, em seguida, calcule o valor máximo que a função $g(x)$ pode alcançar.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 31}
+
+Em um torneio colegial de basquete, um arremesso perfeito descreve uma trajetória descrita pela função $h(x) = -0.2x^2 + 1.2x + 1.8$, onde \textbf{h} é a altura da bola em metros e \textbf{x} é a distância horizontal percorrida a partir do momento em que a bola deixa a mão do jogador.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, LAYERS E HEX ---
+\definecolor{quadra}{HTML}{D35400}
+\definecolor{parede}{HTML}{34495E}
+\definecolor{bola}{HTML}{E67E22}
+\definecolor{cesta}{HTML}{C0392B}
+
+% LAYER 1: Cenário Fundo e Chão
+\fill[parede, rounded corners=2pt] (0,0) rectangle (8,5);
+\fill[quadra, drop shadow={opacity=0.4, shadow xshift=0pt, shadow yshift=-2pt}] (0,0) rectangle (8,0.5);
+\node[fill=quadra, text=white, inner sep=2pt] at (4, 0.25) {\textbf{Piso da Quadra (Eixo x)}};
+
+% LAYER 2: Eixo Y fantasma e jogador abstrato
+\draw[thick, ->, white] (0.5, 0.5) -- (0.5, 4.5) node[above, fill=parede, inner sep=1pt] {\textbf{Altura (h)}};
+\fill[white, rounded corners=1pt] (0.2, 0.5) rectangle (0.8, 1.8);
+
+% LAYER 3: Cesta e tabela
+\fill[white, drop shadow={opacity=0.2}] (7.2, 2.5) rectangle (7.4, 4);
+\draw[ultra thick, cesta] (6.5, 3) -- (7.2, 3);
+\draw[thick, white] (6.5, 3) -- (6.7, 2.7) -- (7, 2.7) -- (7.2, 3);
+
+% LAYER 4: Trajetória e Bola no topo
+\draw[ultra thick, dashed, bola, smooth, samples=50, domain=0.5:6.8] plot (\x, {-0.2*(\x-3)*(\x-3) + 3.6});
+\filldraw[bola, drop shadow={opacity=0.3}] (3, 3.6) circle (4pt);
+
+% LAYER 5: Cotas e indicações
+\draw[thick, <->, white, >=stealth] (3, 0.5) -- (3, 3.6) node[midway, fill=parede, inner sep=2pt] {\textbf{$h_{max}$}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que a tabela da cesta de basquete exige um arco alto para a entrada perfeita da bola, calcule, em metros, a altura máxima alcançada por este arremesso durante a trajetória.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 32}
+
+(Estilo VUNESP) O departamento financeiro de uma startup de tecnologia conseguiu estabelecer que o lucro diário $L$, em milhares de reais, proveniente da venda de um software por assinatura é expresso pela função $L(x) = -2x^2 + 120x - 1000$, onde \textbf{x} representa o número de centenas de assinaturas vendidas por dia.
+
+Para maximizar o faturamento da empresa sem sobrecarregar os servidores, determine a quantidade de assinaturas diárias que deve ser comercializada para atingir o lucro máximo. Calcule, também, o valor desse lucro.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 33}
+
+Uma propriedade valiosa da parábola é a simetria de suas raízes em relação ao vértice. Sabendo que a função quadrática $f(x) = x^2 - 10x + 24$ possui raízes que cortam o eixo das abscissas, comprove matematicamente que a coordenada $x_v$ do vértice equivale exatamente à média aritmética das raízes dessa função.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 34}
+
+Um fazendeiro deseja construir um curral de confinamento de formato retangular utilizando exatamente \textbf{120 metros} lineares de cerca de arame estruturado. Para economizar material, ele fará o curral aproveitando o muro reto e já existente do celeiro para fechar um dos quatro lados do retângulo.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, TEXTURAS E CAMADAS ---
+\definecolor{celeiro}{HTML}{C0392B}
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{cerca}{HTML}{7F8C8D}
+
+% LAYER 1: Grama e Fundo
+\fill[grama, rounded corners=2pt] (-1,-1) rectangle (7,4);
+
+% LAYER 2: Muro do Celeiro
+\fill[celeiro, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-1,2.5) rectangle (7,3.5);
+\node[fill=celeiro, text=white, inner sep=2pt] at (3, 3) {\textbf{Muro de Alvenaria do Celeiro}};
+
+% LAYER 3: Cerca Metálica
+\draw[ultra thick, cerca, drop shadow={opacity=0.4}] (1,2.5) -- (1,0) -- (5,0) -- (5,2.5);
+\draw[dashed, thick, white] (1,2.5) -- (5,2.5); % Lado sem cerca
+
+% LAYER 4: Cotas de área
+\node[fill=grama, text=white, inner sep=2pt] at (3, 1.25) {\textbf{Área do Curral: A(x)}};
+\draw[thick, <->, white, >=stealth] (0.6, 0) -- (0.6, 2.5) node[midway, fill=grama, inner sep=2pt] {\textbf{x}};
+\draw[thick, <->, white, >=stealth] (5.4, 0) -- (5.4, 2.5) node[midway, fill=grama, inner sep=2pt] {\textbf{x}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se \textbf{x} representa a medida dos lados perpendiculares ao celeiro, monte a função $A(x)$ que representa a área do curral. Com base no cálculo do vértice, qual deve ser o valor de \textbf{x} para garantir a maior área útil de confinamento possível?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 35}
+
+(ENEM - Adaptada) Para otimizar a iluminação de uma praça pública, arquitetos desenharam um refletor cujo perfil interno acompanha o arco de uma parábola. Em um projeto no plano cartesiano, os projetistas definiram o vértice exatamente na origem $(0,0)$. O refletor possui \textbf{20 cm} de largura total na sua borda superior.
+
+Sabendo que o arco do refletor é moldado pela função algébrica $y = \mfrac{1}{5}x^2$, onde \textbf{x} e \textbf{y} estão em centímetros, determine a profundidade exata (altura máxima \textbf{y}) desse refletor em seu ponto central.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 36}
+
+A dinâmica dos coeficientes altera profundamente a posição do vértice no plano. Observe o comportamento da função original $P(x) = x^2 - 6x + 10$ e julgue os itens I, II e III como Verdadeiros (V) ou Falsos (F):
+
+I) Se aumentarmos o valor do termo independente \textbf{c} de 10 para 20, a coordenada $x_v$ não sofrerá alteração, mas a parábola inteira se moverá para cima. \\[0.3cm]
+II) A coordenada $x_v$ da função $P(x)$ está localizada do lado esquerdo do eixo vertical (possui valor negativo). \\[0.3cm]
+III) A menor altura que o gráfico dessa função atinge no eixo \textbf{y} é \textbf{1}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 37}
+
+(Estilo FUVEST) A farmacologia estuda a velocidade de absorção de medicamentos. Um teste clínico determinou que a concentração $C$, em miligramas por litro, de um antitérmico na corrente sanguínea de um paciente infantil é regida pela função $C(t) = -2t^2 + 8t + 10$, onde \textbf{t} é o tempo decorrido, em horas, após a ingestão.
+
+De acordo com essa modelagem terapêutica, após quantas horas o medicamento atingirá a sua concentração máxima no organismo do paciente? Qual será, nesse momento, a quantidade em mg/L de medicamento presente no sangue?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 38}
+
+A posição do eixo de simetria é determinada exclusivamente pelos coeficientes \textbf{a} e \textbf{b}. Considere a função $f(x) = -4x^2 + 20x - 7$.
+
+Determine a equação formal da reta que divide o gráfico desta função em duas metades simétricas. Escreva a equação na forma $x = \text{valor}$.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 39}
+
+A engenharia rodoviária utiliza arcos parabólicos para estruturar túneis sob montanhas com distribuição de carga ideal. Um túnel rochoso foi cravado com formato interno que obedece à equação da parábola no plano cartesiano, sendo o solo o eixo \textbf{x} horizontal.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO LAYERS, TEXTURAS E DROP SHADOW ---
+\definecolor{rocha}{HTML}{5D6D7E}
+\definecolor{asfalto}{HTML}{2C3E50}
+\definecolor{ceu}{HTML}{AED6F1}
+
+% LAYER 1: Céu de fundo
+\fill[ceu, rounded corners=2pt] (0,0) rectangle (8,5);
+
+% LAYER 2: Maciço rochoso (Montanha com recorte parabólico)
+\begin{scope}
+  \clip (0,0) rectangle (8,5);
+  \fill[rocha, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+        (0,5) -- (8,5) -- (8,0) -- (0,0) -- cycle;
+  % Recorta o túnel (y = -0.5*(x-4)^2 + 4.5 -> raízes 1 e 7, larg 6, alt 4.5)
+  \fill[ceu] (1,0) -- plot[domain=1:7, smooth, samples=50] (\x, {-0.5*(\x-4)*(\x-4) + 4.5}) -- (7,0) -- cycle;
+\end{scope}
+
+% LAYER 3: Asfalto rodovia
+\fill[asfalto] (0,0) rectangle (8,0.4);
+\draw[thick, dashed, white] (0,0.2) -- (8,0.2);
+\node[fill=asfalto, text=white, inner sep=2pt] at (4, -0.2) {\textbf{Rodovia (Nível do Solo)}};
+
+% LAYER 4: Cotas de referência
+\draw[thick, <->, white, >=stealth] (4, 0.4) -- (4, 4.5) node[midway, fill=ceu, text=black, inner sep=2pt] {\textbf{Altura Vértice}};
+\draw[thick, <->, white, >=stealth] (1, 0.6) -- (7, 0.6) node[midway, fill=ceu, text=black, inner sep=2pt] {\textbf{Largura Base = 12 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que o túnel tem uma largura na base de \textbf{12 metros} e que as bordas da base estão posicionadas simetricamente nos pontos $(-6, 0)$ e $(6, 0)$ do plano cartesiano, a equação do arco é dada por $y = -0.25x^2 + c$. Calcule a altura máxima no centro exato desse túnel.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 40}
+
+(ENEM - Adaptada) Uma empresa de transporte rodoviário notou que, cobrando \textbf{50 reais} pela passagem, consegue vender \textbf{200 bilhetes} diários. O setor de pesquisa da empresa avaliou o comportamento da clientela e deduziu que a cada \textbf{1 real} aumentado no preço da passagem, a empresa perde exatamente \textbf{2 passageiros}.
+
+O faturamento bruto diário $F$, em reais, é obtido pela multiplicação do preço da passagem pela quantidade de passageiros. Se o aumento for chamado de variável \textbf{x}, a função que rege o faturamento é $F(x) = (50 + x) \cdot (200 - 2x)$.
+
+Qual deve ser o valor exato do aumento \textbf{x} para que a empresa atinja o maior faturamento diário possível, e qual será o valor cobrado pela passagem com esse novo reajuste matemático?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 4: Raízes e Discriminante}
+\subsubsection*{QUESTÃO 41}
+
+O discriminante, simbolizado pela letra grega Delta ($\Delta$), é o termo matemático que define a natureza e a quantidade de intersecções que uma parábola terá com o eixo horizontal. Considere a função quadrática $f(x) = 2x^2 - 12x + 18$.
+
+Sem desenhar o gráfico, calcule o valor exato do discriminante dessa função e, a partir desse resultado, justifique quantas vezes a parábola tocará o eixo das abscissas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 42}
+
+O comportamento visual de uma função quadrática no plano cartesiano permite a leitura imediata dos sinais de seus coeficientes principais e de seu discriminante. Observe a parábola abstrata representada abaixo.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS HEXADECIMAIS ---
+\definecolor{fundo}{HTML}{F4F6F7}
+\definecolor{eixo}{HTML}{34495E}
+\definecolor{parabola}{HTML}{2ECC71}
+
+% LAYER 1: Fundo
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-1) rectangle (5,5);
+
+% LAYER 2: Eixos Cartesianos
+\draw[thick, ->, eixo] (-2,0) -- (5,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-1) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Parábola Flutuante (Nenhuma raiz real)
+\draw[ultra thick, parabola, smooth, samples=50, domain=0.2:3.8] plot (\x, {0.8*(\x-2)*(\x-2) + 1.5});
+
+% LAYER 4: Marcador do Vértice (Apenas referência visual)
+\filldraw[eixo] (2, 1.5) circle (2pt);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base exclusivamente na posição e formato da curva em relação aos eixos cartesianos, determine os sinais algébricos (positivo, negativo ou nulo) do coeficiente quadrático \textbf{a} e do discriminante $\Delta$. Justifique sua resposta matematicamente.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 43}
+
+A Fórmula de Bhaskara utiliza a extração da raiz quadrada do discriminante para determinar os zeros da função. Sobre as regras matemáticas que regem essa fórmula no universo dos números reais (estudado no 9º ano), julgue as sentenças como Verdadeiras (V) ou Falsas (F):
+
+I) Se $\Delta < 0$, a equação não possui solução, o que geometricamente significa que a parábola não intercepta o eixo \textbf{x}. \\[0.3cm]
+II) O sinal de $\pm$ presente na Fórmula de Bhaskara é o responsável por garantir que, quando $\Delta > 0$, a parábola cruze o eixo horizontal em dois pontos simétricos em relação ao vértice. \\[0.3cm]
+III) A ausência do termo linear (quando $b = 0$) garante automaticamente que o discriminante será negativo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 44}
+
+Para projetar as sapatas de fundação de um muro de arrimo, um engenheiro calculou que os pontos de ancoragem no solo coincidem exatamente com as raízes da função estrutural $y = -x^2 + 7x - 10$.
+
+Utilizando o método de resolução de equações completas do 2º grau, determine as coordenadas de intersecção da parábola com o eixo das abscissas e informe a distância, em unidades de medida, entre essas duas sapatas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 45}
+
+(Estilo Colégios Militares) O estudo paramétrico de funções permite prever o comportamento de um gráfico antes mesmo de seus valores serem totalmente definidos. Considere a função $g(x) = x^2 - 6x + k$, na qual \textbf{k} é uma constante real desconhecida.
+
+Determine o conjunto de valores que a constante \textbf{k} pode assumir para que esta função intercepte o eixo das abscissas em exatamente dois pontos distintos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 46}
+
+Um teste de balística militar avalia a eficiência de um morteiro posicionado no topo de uma colina. O projétil é disparado e a sua altura \textbf{h}, em metros, em relação ao solo plano do vale, em função do tempo \textbf{t}, em segundos, obedece à lei física $h(t) = -5t^2 + 10t + 175$.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, TEXTURAS E CAMADAS ---
+\definecolor{solo}{HTML}{27AE60}
+\definecolor{colina}{HTML}{7F8C8D}
+\definecolor{fumaca}{HTML}{BDC3C7}
+\definecolor{trajetoria}{HTML}{E74C3C}
+
+% LAYER 1: Solo plano (Eixo X)
+\fill[solo, drop shadow={opacity=0.3, shadow xshift=0pt, shadow yshift=-2pt}] (-1, -1) rectangle (8, 0);
+\node[fill=solo, text=white, inner sep=2pt] at (3.5, -0.5) {\textbf{Solo do Vale (h = 0)}};
+
+% LAYER 2: Colina de lançamento
+\fill[colina, rounded corners=2pt] (-1, 0) -- (1, 0) -- (1, 3.5) -- (-1, 3.5) -- cycle;
+\node[fill=colina, text=white, inner sep=2pt, rotate=90] at (0, 1.75) {\textbf{Altura Inicial}};
+
+% LAYER 3: Trajetória balística
+\draw[ultra thick, trajetoria, smooth, dashed, samples=50, domain=1:7] plot (\x, {-0.25*(\x-3)*(\x-3) + 4.5});
+\filldraw[trajetoria, drop shadow={opacity=0.4}] (7, 0.5) circle (3pt) node[above right, fill=white, inner sep=1pt] {\textbf{Impacto}};
+
+% LAYER 4: Cotas de tempo
+\draw[thick, ->, >=stealth, gray!80!black] (1, 4.5) -- (2, 4.5) node[right, fill=white, inner sep=2pt] {\textbf{Tempo (t)}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o instante exato, em segundos, em que o projétil atinge o solo do vale. Apresente o cálculo das raízes e justifique qual delas deve ser descartada no contexto deste problema físico.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 47}
+
+(ENEM - Adaptada) Uma fábrica de painéis solares estuda a sua receita financeira $R$, em milhares de reais, associada à produção de \textbf{x} dezenas de painéis, dada pela função quadrática $R(x) = -2x^2 + 60x + 100$.
+
+O conselho diretor estabeleceu a meta de alcançar exatamente \textbf{550 mil reais} em receita num único mês. Utilizando a análise do discriminante ($\Delta$), demonstre matematicamente se essa meta é possível de ser alcançada ou se ela ultrapassa o limite máximo da função.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 48}
+
+A arquitetura de pontes frequentemente utiliza o arco parabólico por sua excelência em distribuir tensões estruturais para as fundações nas margens de um rio. No projeto abaixo, a curvatura inferior do vão principal da ponte é modelada pela função $y = -0.5x^2 + 2x + 6$.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E PALETAS ---
+\definecolor{rio}{HTML}{3498DB}
+\definecolor{margem}{HTML}{27AE60}
+\definecolor{ponte}{HTML}{95A5A6}
+\definecolor{arco}{HTML}{2C3E50}
+
+% LAYER 1: Rio e Margens
+\fill[rio, drop shadow={opacity=0.2, shadow xshift=0pt, shadow yshift=-2pt}] (-3,-1) rectangle (7,0);
+\fill[margem, rounded corners=1pt] (-3,-1) rectangle (-1.5,0.5);
+\fill[margem, rounded corners=1pt] (5.5,-1) rectangle (7,0.5);
+\node[fill=rio, text=white, inner sep=2pt] at (2, -0.5) {\textbf{Nível da Água (Eixo x)}};
+
+% LAYER 2: Pista da ponte
+\fill[ponte, drop shadow={opacity=0.4}] (-3,4) rectangle (7,4.5);
+
+% LAYER 3: Arco parabólico (Raízes: x = -2 e x = 6)
+\draw[ultra thick, arco, smooth, samples=50, domain=-2:6] plot (\x, {-0.5*\x*\x + 2*\x + 6});
+
+% LAYER 4: Fundação (Intersecção)
+\filldraw[arco] (-2,0) circle (3pt);
+\filldraw[arco] (6,0) circle (3pt);
+\draw[thick, <->, white, >=stealth] (-2, 0.2) -- (6, 0.2) node[midway, fill=rio, inner sep=2pt] {\textbf{Vão Livre}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+As fundações do arco repousam exatamente ao nível da água (eixo das abscissas). Determine a largura total do vão livre dessa ponte, em metros, calculando a distância horizontal entre as duas fundações do arco parabólico.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 49}
+
+A compreensão da Fórmula de Bhaskara vai além da memorização mecânica. Considere que, ao resolvermos a equação $-x^2 + 8x - 12 = 0$, encontramos $x_v = 4$ e $\Delta = 16$. 
+
+Explique, utilizando conceitos matemáticos do 9º ano e a própria estrutura da fórmula ($x = \mfrac{-b \pm \sqrt{\Delta}}{2a}$), qual é a relação exata entre a primeira parte da fração ($\mfrac{-b}{2a}$) e a segunda parte ($\mfrac{\pm \sqrt{\Delta}}{2a}$) no que diz respeito ao eixo de simetria e à distância geométrica até as raízes.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 50}
+
+(Estilo VUNESP) O departamento de controle de qualidade de uma indústria química identificou que a taxa de evaporação de um solvente em função do tempo forma uma parábola que intercepta o eixo horizontal exatamente nas horas $t = 2$ e $t = 8$. Sabe-se ainda que a equação é regida por um coeficiente quadrático $a = -3$.
+
+A lei de formação polinomial completa $y = ax^2 + bx + c$ que descreve essa evaporação possui os coeficientes \textbf{b} e \textbf{c} cujos valores somados totalizam:
+
+A) $78$ \\[0.3cm]
+B) $48$ \\[0.3cm]
+C) $-18$ \\[0.3cm]
+D) $30$ \\[0.3cm]
+E) $-78$
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 51}
+
+A óptica estuda a fabricação de lentes espelhadas que seguem padrões geométricos exatos. Um laser de testes é disparado perfeitamente na horizontal ao longo do eixo das abscissas (reta $y = 0$). O perfil de uma lente convergente defeituosa foi modelado pela função $f(x) = x^2 - 7x + 10$.
+
+A equipe técnica precisa calcular a espessura da lente no nível exato em que o laser atravessa o equipamento. Sabendo que essa espessura corresponde à distância entre os dois pontos em que a parábola intercepta o eixo \textbf{x}, calcule essa medida geométrica.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 52}
+
+A síntese entre o vértice e as raízes define a maestria na resolução de problemas complexos de funções quadráticas. O lucro de uma empresa de logística, em milhares de reais, é determinado pela função $L(x) = -2x^2 + 20x + m$, em que \textbf{x} é o volume diário de entregas (em dezenas) e \textbf{m} é uma constante que representa o repasse de subsídios.
+
+Para que o lucro diário máximo possível atinja o patamar de exatamente \textbf{80 mil reais}, determine primeiro o valor obrigatório que a constante \textbf{m} deve assumir. Em seguida, utilizando o \textbf{m} encontrado, calcule quais são os volumes de entrega \textbf{x} que tornam o lucro da empresa estritamente nulo (raízes da função).
+
+\end{multicols*}
+\end{document}
