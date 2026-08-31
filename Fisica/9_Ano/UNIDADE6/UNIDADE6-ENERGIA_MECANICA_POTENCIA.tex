@@ -1,0 +1,513 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+% Margem inferior ajustada para 1.5cm para caber o rodapé
+\usepackage[top=7.5cm, headheight=7.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
+
+% --- CARREGA O PACOTE DE IMAGEM PRIMEIRO ---
+\usepackage{graphicx}
+
+% --- CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[C]{\includegraphics[width=\textwidth]{FISICA_9ANO.JPG}}
+\fancyfoot[C]{Página \thepage} % Numeração centralizada (Use [R] se preferir à direita)
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+% --- LIMITADOR DE IMAGENS ---
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\raggedcolumns
+\section*{UNIDADE 6 - ENERGIA MECÂNICA E POTÊNCIA}
+\begin{multicols*}{2}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 1: Energia Cinética}
+
+\subsubsection*{QUESTÃO 01}
+A figura ilustra um teste de desempenho automotivo em uma pista retilínea. Com base exclusivamente nos dados operacionais exibidos na telemetria, equacione literalmente o Teorema da Energia Cinética e determine o trabalho resultante realizado pelo motor do veículo entre os pontos \textbf{A} e \textbf{B}.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- CORES CUSTOMIZADAS ---
+\definecolor{asfalto}{HTML}{2F3640}
+\definecolor{ceu}{HTML}{D9EEF7}
+\definecolor{carroceria}{HTML}{E74C3C}
+\definecolor{vidro}{HTML}{34495E}
+\definecolor{roda}{HTML}{192A56}
+
+% LAYER 1: Fundo e Pista
+\fill[ceu, rounded corners=2pt] (-0.5,-1.5) rectangle (8.5, 3.5);
+\fill[asfalto, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (-0.5,-1.5) rectangle (8.5, 0);
+\draw[dashed, white, thick] (-0.5, -0.75) -- (8.5, -0.75);
+
+% LAYER 2: Veículo A
+\begin{scope}[shift={(0.5, 0)}]
+    \fill[carroceria, rounded corners=3pt, drop shadow={opacity=0.2}] (0,0.2) rectangle (2, 0.8);
+    \fill[carroceria, rounded corners=2pt] (0.3,0.8) -- (0.6,1.3) -- (1.5,1.3) -- (1.8,0.8) -- cycle;
+    \fill[vidro] (0.4,0.8) -- (0.65,1.2) -- (1.1,1.2) -- (1.1,0.8) -- cycle;
+    \fill[vidro] (1.15,0.8) -- (1.15,1.2) -- (1.45,1.2) -- (1.7,0.8) -- cycle;
+    \fill[roda] (0.4,0.2) circle (0.25);
+    \fill[roda] (1.6,0.2) circle (0.25);
+    \draw[->, ultra thick, black] (2.2, 0.6) -- (3.2, 0.6) node[above, font=\bfseries] {v\textsubscript{A} = 10 m/s};
+    \node[black, font=\bfseries\small] at (1, 0.6) {m = 1200 kg};
+\end{scope}
+
+% LAYER 3: Veículo B
+\begin{scope}[shift={(5.5, 0)}]
+    \fill[carroceria, rounded corners=3pt, drop shadow={opacity=0.2}, opacity=0.5] (0,0.2) rectangle (2, 0.8);
+    \fill[carroceria, rounded corners=2pt, opacity=0.5] (0.3,0.8) -- (0.6,1.3) -- (1.5,1.3) -- (1.8,0.8) -- cycle;
+    \fill[roda, opacity=0.5] (0.4,0.2) circle (0.25);
+    \fill[roda, opacity=0.5] (1.6,0.2) circle (0.25);
+    \draw[->, ultra thick, white] (2.2, 0.6) -- (4.0, 0.6) node[above, font=\bfseries] {v\textsubscript{B} = 20 m/s};
+\end{scope}
+
+% LAYER 4: Marcadores
+\draw[thick, white] (1.5, -0.2) -- (1.5, 0) node[below=0.2cm, fill=asfalto, inner sep=2pt] {Posição A};
+\draw[thick, white] (6.5, -0.2) -- (6.5, 0) node[below=0.2cm, fill=asfalto, inner sep=2pt] {Posição B};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 02}
+A energia cinética é a grandeza escalar associada ao estado de movimento de um corpo. Julgue os itens a seguir como Verdadeiros (V) ou Falsos (F), justificando algebricamente as afirmativas consideradas falsas.
+
+I. Se a velocidade de um objeto for duplicada, sua energia cinética também será duplicada, pois são grandezas diretamente proporcionais.\\[0.3cm]
+II. O trabalho total realizado pelas forças que atuam sobre uma partícula é igual à variação da sua energia cinética.\\[0.3cm]
+III. É possível que um sistema apresente energia cinética negativa se o corpo estiver se movendo no sentido oposto ao referencial adotado.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 03}
+O gráfico ilustra o comportamento da força resultante \textbf{F} que atua sobre um bloco de massa \textbf{4 kg}, inicialmente em repouso na origem das posições, em função do deslocamento \textbf{d}. Extraia as informações geométricas do diagrama para determinar a velocidade do bloco ao atingir a marca de \textbf{10 m}.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{grafico}{HTML}{27AE60}
+\definecolor{fundo}{HTML}{F9F9F9}
+\begin{axis}[
+    width=7cm, height=5cm,
+    axis lines=middle,
+    xmin=0, xmax=12,
+    ymin=0, ymax=60,
+    xlabel={\textbf{d (m)}},
+    ylabel={\textbf{F (N)}},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!50},
+    ticklabel style={font=\footnotesize, fill=fundo, inner sep=1pt},
+    enlargelimits={abs=0.5},
+    axis background/.style={fill=fundo} % <--- SINTAXE CORRETA AQUI
+]
+% --- APLICANDO DROP SHADOW NO GRÁFICO (ÁREA) ---
+\addplot[fill=grafico, fill opacity=0.3, draw=grafico, thick] coordinates {(0,50) (8,50) (10,0)} \closedcycle;
+\addplot[mark=*, mark size=1.5pt, grafico] coordinates {(0,50) (8,50) (10,0)};
+\node[fill=fundo, inner sep=2pt] at (axis cs:4,25) {\textbf{Área = Trabalho}};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 04}
+Um projétil de massa \textbf{m} penetra em um anteparo com uma energia cinética inicial \textbf{E\textsubscript{c}}. A força de resistência oferecida pelo material é constante e realiza um trabalho dissipativo até parar o projétil completamente após uma distância \textbf{x}. Estabeleça, de forma estritamente literal, a equação que define a intensidade da força resistiva em função de \textbf{m}, da velocidade de impacto \textbf{v} e da distância \textbf{x}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 05}
+(ENEM - Adaptada) O Conselho Nacional de Trânsito adverte constantemente sobre os riscos do excesso de velocidade. A severidade dos danos estruturais em uma colisão frontal é diretamente proporcional à energia cinética dissipada no instante do impacto. Considere dois veículos idênticos trafegando em uma mesma via. O veículo A desloca-se a \textbf{40 km/h}, enquanto o veículo B encontra-se a \textbf{120 km/h}.
+Com base no princípio físico da energia cinética, se ambos colidirem contra uma barreira de concreto idêntica, a energia dissipada pelo veículo B será:
+
+a) equivalente ao triplo da energia dissipada pelo veículo A.\\[0.3cm]
+b) equivalente ao sêxtuplo da energia dissipada pelo veículo A.\\[0.3cm]
+c) equivalente a nove vezes a energia dissipada pelo veículo A.\\[0.3cm]
+d) equivalente a doze vezes a energia dissipada pelo veículo A.\\[0.3cm]
+e) igual à do veículo A, pois as massas dos veículos são idênticas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 06}
+(Estilo UNESP) O sistema de frenagem de emergência de uma composição ferroviária de \textbf{200 toneladas} é acionado quando o trem atinge a velocidade de \textbf{72 km/h}. Os freios aplicam uma força de atrito constante que realiza um trabalho total dissipativo para imobilizar a composição de forma segura. Aplique o Teorema da Energia Cinética, estruturando a equação algébrica passo a passo, para descobrir o módulo do trabalho mecânico realizado durante a frenagem.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 2: Energia Potencial}
+
+\subsubsection*{QUESTÃO 07}
+O arranjo logístico apresenta caixas armazenadas em um galpão de distribuição. A análise estrutural exige o cálculo das energias acumuladas no sistema. Considere a aceleração gravitacional no local como \textbf{10 m/s²}. Observe a posição relativa e a massa de cada volume na figura para calcular a diferença algébrica entre a energia potencial gravitacional da Caixa Alfa e da Caixa Beta, tomando o solo como referencial nulo.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{parede}{HTML}{ECF0F1}
+\definecolor{prateleira}{HTML}{7F8C8D}
+\definecolor{caixaA}{HTML}{E67E22}
+\definecolor{caixaB}{HTML}{9B59B6}
+\definecolor{chao}{HTML}{BDC3C7}
+
+% LAYER 1: Fundo e Solo
+\fill[parede] (-1, 0) rectangle (7, 5);
+\fill[chao, drop shadow={opacity=0.1}] (-1, -1) rectangle (7, 0);
+\draw[thick] (-1,0) -- (7,0);
+
+% LAYER 2: Prateleiras (com cantos arredondados)
+\fill[prateleira, rounded corners=1pt] (0.5, 3.8) rectangle (3.5, 4.0);
+\fill[prateleira, rounded corners=1pt] (3.5, 1.8) rectangle (6.5, 2.0);
+
+% LAYER 3: Caixas (com sombras)
+\fill[caixaA, rounded corners=2pt, drop shadow={opacity=0.2}] (1.0, 4.0) rectangle (2.5, 5.0);
+\node[white, font=\bfseries] at (1.75, 4.5) {ALFA};
+\node[white, font=\bfseries\scriptsize] at (1.75, 4.2) {20 kg};
+
+\fill[caixaB, rounded corners=2pt, drop shadow={opacity=0.2}] (4.0, 2.0) rectangle (5.5, 3.0);
+\node[white, font=\bfseries] at (4.75, 2.5) {BETA};
+\node[white, font=\bfseries\scriptsize] at (4.75, 2.2) {50 kg};
+
+% LAYER 4: Cotas de Altura
+\draw[<->, thick, dashed] (0.2, 0) -- (0.2, 3.8) node[midway, fill=parede, inner sep=2pt, font=\bfseries] {h\textsubscript{1} = 4,0 m};
+\draw[<->, thick, dashed] (6.8, 0) -- (6.8, 1.8) node[midway, left, fill=parede, inner sep=2pt, font=\bfseries] {h\textsubscript{2} = 1,5 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 08}
+Uma prensa mecânica industrial opera utilizando um sistema de amortecimento por molas. Um componente de massa \textbf{M} comprime a mola em uma distância \textbf{x}. Sabendo que a mola armazena uma energia potencial elástica \textbf{E\textsubscript{e}}, formule algebricamente a expressão da constante elástica \textbf{k} da mola em função da energia armazenada e da compressão sofrida, explicitando todos os passos lógicos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 09}
+Os engenheiros de teste plotaram o diagrama de deformação elástica para o feixe de molas de uma suspensão automotiva, que obedece perfeitamente à Lei de Hooke. Utilize os dados geométricos extraídos do gráfico para determinar a energia potencial elástica armazenada no sistema quando a deformação atingir \textbf{0,5 m}.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{linhaelastica}{HTML}{8E44AD}
+\definecolor{fundografico}{HTML}{FFFFFF}
+\begin{axis}[
+    width=7cm, height=5.5cm,
+    axis lines=left,
+    xmin=0, xmax=0.6,
+    ymin=0, ymax=1200,
+    xlabel={\textbf{Deformação x (m)}},
+    ylabel={\textbf{Força Restauradora F (N)}},
+    grid=major,
+    grid style={dashed, gray!40},
+    ticklabel style={font=\footnotesize},
+    scaled y ticks=false,
+]
+% LAYER 1: Gráfico e Rótulos
+\addplot[domain=0:0.4, linhaelastica, ultra thick] {2500*x};
+\addplot[mark=*, mark size=2pt, linhaelastica] coordinates {(0.4, 1000)};
+\draw[dashed, thick] (axis cs:0.4,0) -- (axis cs:0.4,1000) -- (axis cs:0,1000);
+\node[anchor=south east] at (axis cs:0.4, 1000) {\textbf{Ponto de Teste}};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 10}
+Sobre a natureza das energias potenciais, analise os itens e julgue-os como Verdadeiros (V) ou Falsos (F).
+
+I. A energia potencial gravitacional de um sistema independe do referencial adotado, sendo uma propriedade intrínseca da massa do corpo.\\[0.3cm]
+II. Duas molas diferentes, com constantes elásticas \textbf{k\textsubscript{1}} e \textbf{k\textsubscript{2}}, sendo $k_1 > k_2$, se deformadas pela mesma distância, armazenarão quantidades diferentes de energia elástica.\\[0.3cm]
+III. A energia potencial está sempre associada a forças conservativas, como o peso e a força elástica.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 11}
+Em um salto de *Bungee Jump*, o praticante de massa \textbf{m} atinge o ponto mais baixo de sua trajetória, no qual a corda elástica, de constante \textbf{k}, apresenta um alongamento máximo \textbf{$\Delta x$}. Neste ponto de inversão do movimento, escreva a igualdade literal que relaciona a perda de energia potencial gravitacional do praticante com a energia potencial elástica armazenada na corda, desprezando a resistência do ar.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 12}
+(FUVEST - Adaptada) O dimensionamento de turbinas em usinas hidrelétricas depende da carga hidráulica do reservatório. A água do reservatório flui pelos dutos e converte sua energia de posição em movimento. Considerando a densidade da água como \textbf{1.000 kg/m³} e a gravidade \textbf{g = 10 m/s²}, se um volume equivalente a \textbf{5 m³} despenca de um desnível de \textbf{120 m} de altura, calcule a energia potencial gravitacional disponível nesse volume antes da queda.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 13}
+(Estilo UNESP) O diagrama ilustra um arqueiro de alta precisão esticando a corda de seu arco composto. A balança de tensão acoplada indica o comportamento linear das hastes flexíveis. Assumindo que a flecha possui massa de \textbf{40 g} ($ 0,04 \text{ kg} $) e que toda a energia mecânica do arco é transferida para o projétil sem perdas dissipativas, assinale a alternativa que indica a velocidade de lançamento da flecha assim que abandona a corda.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{arco}{HTML}{D35400}
+\definecolor{corda}{HTML}{2C3E50}
+\definecolor{flecha}{HTML}{7F8C8D}
+\definecolor{fundoarco}{HTML}{FDFEFE}
+
+\fill[fundoarco, rounded corners=4pt, drop shadow={opacity=0.1}] (-2, -3) rectangle (6, 3);
+
+% LAYER 1: Arco Tensionado
+\draw[arco, line width=4pt] (0,2) to[bend left=30] (0,-2);
+\draw[corda, thick] (0,2) -- (2.5,0) -- (0,-2);
+
+% LAYER 2: Flecha
+\draw[flecha, line width=2pt, ->] (2.5,0) -- (-1.5,0);
+\fill[black] (-1.5,-0.1) -- (-1.8,0) -- (-1.5,0.1) -- cycle;
+
+% LAYER 3: Cotas
+\draw[<->, dashed, thick] (0, -0.5) -- (2.4, -0.5) node[below, right,font=\bfseries] {Deformação = 0,8 m};
+\node[fill=fundoarco, draw=black, inner sep=3pt, rounded corners=2pt, drop shadow={opacity=0.2}] at (2.8, 2.4) {\textbf{Constante elástica k = 500 N/m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+a) $ 20 \text{ m/s} $\\[0.3cm]
+b) $ 40 \text{ m/s} $\\[0.3cm]
+c) $ 60 \text{ m/s} $\\[0.3cm]
+d) $ 80 \text{ m/s} $\\[0.3cm]
+e) $ 100 \text{ m/s} $
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 14}
+(ENEM - Adaptada) Pinballs antigos utilizam um lançador mecânico acionado por mola para colocar a esfera metálica em jogo. Para modernizar o equipamento, um engenheiro propõe substituir a mola original por uma nova que possui o dobro da constante elástica ($ k_{nova} = 2k_{original} $). Se o jogador comprimir o êmbolo exatamente a mesma distância \textbf{x} de antes, o que ocorrerá com a energia elástica transferida para a esfera?
+
+a) Será reduzida à metade da energia original.\\[0.3cm]
+b) Permanecerá inalterada, pois a deformação foi mantida.\\[0.3cm]
+c) Dobrará de valor em relação à energia original.\\[0.3cm]
+d) Quadruplicará, devido à natureza quadrática da lei de Hooke.\\[0.3cm]
+e) Aumentará em fator correspondente à raiz quadrada da constante.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 3: Conservação de Energia Mecânica}
+
+\subsubsection*{QUESTÃO 15}
+A figura ilustra o arranjo experimental de um pêndulo simples utilizado em laboratório. A massa pendular é liberada do repouso na posição \textbf{A}. O nível de referência para a energia potencial gravitacional está posicionado no ponto mais baixo da trajetória (posição \textbf{B}). Deduza literalmente, passo a passo, a equação que determina a velocidade da massa no ponto \textbf{B}, em função da aceleração da gravidade \textbf{g}, do comprimento \textbf{L} e do ângulo \textbf{$\theta$} estabelecido na imagem.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{teto}{HTML}{34495E}
+\definecolor{esfera}{HTML}{E74C3C}
+\definecolor{linhas}{HTML}{7F8C8D}
+
+% LAYER 1: Teto e Fundo
+\fill[teto, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (-2, 0) rectangle (2, 0.4);
+\draw[linhas, dashed, thick] (0,0) -- (0,-4) node[below, font=\bfseries] {Nível Zero (B)};
+
+% LAYER 2: Pêndulo na Posição A
+\draw[thick] (0,0) -- (2.5, -3);
+\fill[esfera, drop shadow={opacity=0.3}] (2.5, -3) circle (0.3);
+\node[white, font=\bfseries] at (2.5, -3) {m};
+
+% LAYER 3: Pêndulo na Posição B (Fantasma)
+\draw[thick, dashed, opacity=0.5] (0,0) -- (0, -3.7);
+\fill[esfera, opacity=0.3] (0, -3.7) circle (0.3);
+
+% LAYER 4: Cotas e Ângulos
+% CORREÇÃO APLICADA AQUI: Substituição de "asfalto" por "linhas"
+\draw[->, thick, linhas] (0, -1) arc (270:309:1) node[midway, below=0.1cm, font=\bfseries] {$\theta$};
+\node[fill=white, inner sep=2pt, font=\bfseries] at (1.25, -1.5) {L};
+\draw[<->, dashed, thick] (3.0, -3.7) -- (3.0, -3.0) node[midway, right, font=\bfseries] {h};
+\draw[dashed, thick] (0, -3.7) -- (3.2, -3.7);
+\draw[dashed, thick] (2.5, -3.0) -- (3.2, -3.0);
+\node[font=\bfseries, fill=white, inner sep=2pt] at (2.9, -2.5) {A};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 16}
+Em um sistema conservativo ideal, onde atuam exclusivamente as forças peso e elástica, julgue os itens a seguir como Verdadeiros (V) ou Falsos (F). Justifique obrigatoriamente as alternativas falsas utilizando o princípio da conservação.
+
+I. Se um corpo em queda livre diminui sua energia potencial gravitacional em \textbf{50 J}, sua energia cinética deve, simultaneamente, aumentar em \textbf{50 J}.\\[0.3cm]
+II. A energia mecânica total de um sistema conservativo é nula em todos os pontos da trajetória, pois a soma algébrica das variações de energia é zero.\\[0.3cm]
+III. A presença de atrito do ar transformaria parte da energia mecânica em energia térmica, caracterizando o sistema como não conservativo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 17}
+Um bloco de \textbf{5 kg} desliza por uma pista com perfil curvo, cujas superfícies são perfeitamente polidas (sem atrito). O objeto inicia seu movimento a partir do repouso no ponto \textbf{P}. Extraia os desníveis topográficos apresentados na figura e calcule a velocidade do bloco ao atingir o platô no ponto \textbf{Q}. Considere $ g = 10 \text{ m/s}^2 $.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{pista}{HTML}{95A5A6}
+\definecolor{bloco}{HTML}{F39C12}
+\definecolor{solo}{HTML}{ECF0F1}
+
+% LAYER 1: Pista e Solo
+\fill[solo] (-1, -1) rectangle (8, 0);
+\draw[thick] (-1,0) -- (8,0);
+
+% Construção da Pista com sombra
+\fill[pista, drop shadow={opacity=0.15}] 
+    (0,4) to[out=-70, in=180] (3,1) to[out=0, in=180] (5,2) -- (7,2) -- (7,0) -- (0,0) -- cycle;
+
+% LAYER 2: Bloco no Ponto P
+\fill[bloco, rounded corners=1pt, drop shadow={opacity=0.2}] (-0.2, 4) rectangle (0.2, 4.4);
+\node[above, font=\bfseries] at (0, 4.4) {P};
+
+% LAYER 3: Bloco no Ponto Q (Fantasma)
+\fill[bloco, rounded corners=1pt, opacity=0.4] (5.8, 2) rectangle (6.2, 2.4);
+\node[above, font=\bfseries] at (6.0, 2.4) {Q};
+
+% LAYER 4: Cotas de Altura (Teste Cego)
+\draw[<->, dashed, thick] (-0.5, 0) -- (-0.5, 4) node[midway, fill=white, inner sep=2pt, font=\bfseries] {12,0 m};
+\draw[<->, dashed, thick] (7.5, 0) -- (7.5, 2) node[midway, fill=white, inner sep=2pt, font=\bfseries] {3,2 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 18}
+Um objeto de massa \textbf{m} é abandonado do alto de um edifício de altura \textbf{H}. Durante a queda, devido à resistência do ar, uma quantidade constante de energia mecânica é dissipada sob a forma de calor. Ao tocar o solo, a velocidade do objeto é \textbf{v}. Desenvolva a expressão literal que determina o trabalho realizado pela força de resistência do ar ($ W_{ar} $) em função de \textbf{m}, \textbf{g}, \textbf{H} e \textbf{v}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 19}
+O departamento de engenharia monitorou a descida de uma composição em uma montanha-russa ideal (sem atrito). O gráfico gerado pelo software de telemetria relaciona a variação das energias cinética (\textbf{E\textsubscript{c}}) e potencial (\textbf{E\textsubscript{p}}) em função do tempo \textbf{t}. A partir da leitura visual das intersecções, identifique o valor da Energia Mecânica Total do sistema e comprove numericamente que ela se mantém constante nos instantes $ t = 0 \text{ s} $ e $ t = 4 \text{ s} $.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{ecin}{HTML}{2ECC71}
+\definecolor{epot}{HTML}{3498DB}
+\definecolor{fundo}{HTML}{FDFEFE}
+\begin{axis}[
+    width=7cm, height=5.5cm,
+    axis lines=left,
+    xmin=0, xmax=6,
+    ymin=0, ymax=600,
+    xlabel={\textbf{Tempo t (s)}},
+    ylabel={\textbf{Energia (J)}},
+    grid=major,
+    grid style={dashed, gray!30},
+    ticklabel style={font=\footnotesize},
+    legend style={at={(0.5,1.05)}, anchor=south, legend columns=2, draw=none, fill=fundo},
+]
+% LAYER 1: Curvas de Energia
+\addplot[domain=0:5, ecin, ultra thick, drop shadow={opacity=0.1}] {500 - 500*exp(-x)};
+\addlegendentry{\textbf{E\textsubscript{c}}} % Correto: Sem ponto e vírgula
+
+\addplot[domain=0:5, epot, ultra thick, drop shadow={opacity=0.1}] {500*exp(-x)};
+\addlegendentry{\textbf{E\textsubscript{p}}} % Correto: Sem ponto e vírgula
+
+% LAYER 2: Pontos Notáveis
+\addplot[mark=*, mark size=2pt, ecin] coordinates {(0, 0) (4, 490)};
+\addplot[mark=*, mark size=2pt, epot] coordinates {(0, 500) (4, 10)};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 20}
+Um projétil é disparado verticalmente para cima com uma velocidade inicial \textbf{v\textsubscript{0}}. Desprezando a resistência do ar e adotando o ponto de disparo como referencial zero, em que fração da altura máxima alcançada pelo projétil a sua energia cinética será exatamente igual à sua energia potencial gravitacional? Demonstre a resolução unicamente através do equacionamento literal.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 21}
+Em competições de saltos ornamentais, o atleta caminha até a extremidade do trampolim flexível, deprime a prancha para baixo e é impulsionado para o ar antes de mergulhar na piscina. Elabore um diagrama descritivo detalhando as transformações sucessivas de energia (Elástica, Cinética e Gravitacional) desde o instante de máxima deformação da prancha até o momento exato em que o atleta atinge a superfície da água.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 22}
+No pátio de triagem, um bloco de \textbf{2 kg} é pressionado contra uma mola, contraindo-a em \textbf{0,5 m}. Ao ser liberado, o bloco percorre um trecho horizontal liso e sobe uma rampa rugosa, parando instantaneamente no ponto \textbf{S}. Extraia os parâmetros dinâmicos e geométricos do desenho para determinar a quantidade de energia mecânica transformada em calor pelo atrito durante a subida da rampa. Adote $ g = 10 \text{ m/s}^2 $.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{base}{HTML}{7F8C8D}
+\definecolor{mola}{HTML}{2C3E50}
+\definecolor{bloco}{HTML}{16A085}
+
+% LAYER 1: Superfícies
+\fill[base, opacity=0.3] (-2, -0.5) rectangle (3, 0);
+\draw[thick] (-2,0) -- (3,0);
+\fill[base, opacity=0.5] (3, 0) -- (7, 2) -- (7, -0.5) -- (3, -0.5) -- cycle;
+\draw[thick] (3,0) -- (7,2);
+
+% LAYER 2: Parede e Mola
+\fill[base] (-2, 0) rectangle (-1.5, 1.5);
+\draw[mola, thick, decorate, decoration={zigzag, segment length=4pt, amplitude=3pt}] (-1.5, 0.5) -- (0, 0.5);
+\node[fill=white, inner sep=1pt, font=\bfseries\scriptsize] at (-0.67, 1.2) {k = 400 N/m};
+
+% LAYER 3: Bloco Inicial
+\fill[bloco, rounded corners=1pt, drop shadow={opacity=0.2}] (0, 0) rectangle (1, 1);
+
+% LAYER 4: Bloco Final
+\begin{scope}[shift={(5, 1)}, rotate=26.5]
+    \fill[bloco, rounded corners=1pt, opacity=0.5] (0, 0) rectangle (1, 1);
+    \node[above, font=\bfseries] at (0.5, 1.0) {S};
+\end{scope}
+
+% LAYER 5: Cotas
+\draw[<->, dashed, thick] (5.5, -0.5) -- (5.5, 1.25) node[midway, right, font=\bfseries] {h = 1,2 m};
+\node[font=\bfseries, fill=white, inner sep=2pt] at (4.8, 0.5) {$\mu \neq 0$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 23}
+(ENEM - Adaptada) Em uma simulação de segurança viária, um automóvel de massa \textbf{m} desloca-se a uma velocidade de \textbf{108 km/h} (ou seja, \textbf{30 m/s}). O motorista aciona os freios abruptamente, travando as quatro rodas. O veículo derrapa e percorre uma distância retilínea até a imobilização completa. Considerando que a energia térmica gerada no asfalto equivale ao trabalho da força de atrito, deduza a expressão para o coeficiente de atrito cinético \textbf{$\mu$} em função de \textbf{v}, \textbf{g} e da distância de parada \textbf{d}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 24}
+(Estilo FUVEST) O diagrama mostra uma pista de acrobacias contendo um *looping* circular. Para que uma esfera rígida de massa \textbf{m} complete a volta inteira sem perder contato com a pista no ponto mais alto (\textbf{T}), ela deve possuir uma velocidade mínima crítica. Analise a geometria e estabeleça, rigorosamente, a equação algébrica que define a altura mínima de lançamento \textbf{h} em função exclusivamente do raio \textbf{R} da trajetória circular. Assuma que não há forças dissipativas.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{metal}{HTML}{BDC3C7}
+\definecolor{esfera}{HTML}{8E44AD}
+
+% LAYER 1: Pista (Looping)
+\draw[thick, double=metal, double distance=3pt] (-3, 4) to[out=-60, in=180] (0, 0) arc (-90:270:1.5) to[out=0, in=180] (5,0);
+
+% LAYER 2: Esfera Inicial
+\fill[esfera, drop shadow={opacity=0.3}] (-3, 4.3) circle (0.2);
+\draw[dashed, thick] (-3, 0) -- (-3, 4.3);
+\draw[<->, thick] (-3.5, 0) -- (-3.5, 4.3) node[midway, left, font=\bfseries] {h};
+
+% LAYER 3: Looping Cotas
+\draw[dashed, thick] (1.5, 1.5) -- (1.5, 3.0) node[midway, right, font=\bfseries] {R};
+\fill[black] (1.5, 1.5) circle (1.5pt);
+\node[above, font=\bfseries] at (1.5, 3.2) {T};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 25}
+(Estilo VUNESP) Um praticante de *Snowboard* de \textbf{70 kg} inicia sua descida, a partir do repouso, do topo de uma encosta gelada. Ao longo da descida, devido à leve camada de neve irregular, cerca de \textbf{15\%} da energia mecânica inicial do atleta é dissipada por atrito e resistência aerodinâmica. Se o ponto de partida encontra-se a \textbf{40 m} acima da base plana, determine a velocidade com que o snowboarder atinge a parte inferior da pista. Adote $ g = 10 \text{ m/s}^2 $.
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 26}
+(FUVEST - Adaptada) Uma bola de basquete é solta, a partir do repouso, de uma altura de \textbf{2,0 m} em relação a um piso rígido de concreto. A cada colisão com o solo, ocorre uma deformação inelástica que dissipa \textbf{20\%} da energia mecânica da bola sob forma de calor e som. Com base no princípio da conservação fracionária, qual será a altura máxima atingida pela bola imediatamente após o seu segundo quique no chão?
+
+a) $ 1,28 \text{ m} $
+
+b) $ 1,44 \text{ m} $
+
+c) $ 1,60 \text{ m} $
+
+d) $ 1,80 \text{ m} $
+
+e) $ 1,92 \text{ m} $
+
+\end{multicols*}
+\end{document}
