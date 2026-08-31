@@ -1,0 +1,562 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+% Margem inferior ajustada para 1.5cm para caber o rodapé
+\usepackage[top=7.5cm, headheight=7.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
+
+% --- CARREGA O PACOTE DE IMAGEM PRIMEIRO ---
+\usepackage{graphicx}
+
+% --- CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[C]{\includegraphics[width=\textwidth]{MATEMATICA_1SERIE.png}}
+\fancyfoot[C]{Página \thepage} % Numeração centralizada (Use [R] se preferir à direita)
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+% --- LIMITADOR DE IMAGENS ---
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\raggedcolumns
+\section*{UNIDADE 6 - INEQUAÇÕES}
+\begin{multicols*}{2}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 1: Inequações do 1º Grau}
+\subsubsection*{QUESTÃO 01}
+A inequação é uma ferramenta matemática essencial para determinar intervalos de viabilidade e restrições. Determine o conjunto solução da inequação $ 3(x - 2) - 4(x + 1) \le 5x + 8 $ no universo dos números reais. Apresente a resposta final utilizando rigorosamente a notação de intervalos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 02}
+Julgue os itens a seguir, que tratam das propriedades fundamentais das desigualdades e inequações do 1º grau, escrevendo V (verdadeiro) ou F (falso). Justifique algebricamente as afirmativas que considerar falsas.
+
+I) Ao multiplicar ou dividir ambos os membros de uma desigualdade por um número real estritamente negativo, o sentido da desigualdade deve ser invertido para manter a sentença verdadeira.\\[0.3cm]
+II) Se $ a < b $ e $ c < d $, então é sempre matematicamente correto afirmar que $ a - c < b - d $.\\[0.3cm]
+III) A inequação $ \mfrac{x}{2} + 3 > 5 $ possui como conjunto solução o intervalo $ (4, +\infty) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 03}
+Uma empresa de telemarketing oferece aos seus funcionários dois planos mensais de remuneração. O plano \textbf{A} garante um valor fixo de R\$ 1.200,00 adicionado de R\$ 2,00 por venda concretizada. O plano \textbf{B} oferece um fixo menor, de R\$ 900,00, mas paga R\$ 4,50 por venda concretizada. Modele o cenário e determine o número mínimo de vendas inteiras necessárias em um mês para que o plano \textbf{B} seja estritamente mais vantajoso financeiramente que o plano \textbf{A}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 04}
+Considere a representação geométrica a seguir, que ilustra o controle de qualidade e a tolerância técnica na fabricação de um eixo metálico cilíndrico em uma indústria automobilística. Sabe-se que a medida de projeto (ideal) está perfeitamente centralizada na faixa exibida.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES MODERNAS ---
+\definecolor{cinzaFundo}{HTML}{F4F6F7}
+\definecolor{azulEixo}{HTML}{3498DB}
+\definecolor{laranjaTol}{HTML}{E67E22}
+\definecolor{grafite}{HTML}{2C3E50}
+
+% LAYER 1: Fundo com margem de sobra
+\fill[cinzaFundo, rounded corners=3pt] (-1, -1) rectangle (8, 2.5);
+
+% LAYER 2: Reta Numérica (Eixo)
+\draw[thick, ->, grafite] (0, 0) -- (7, 0) node[right, fill=cinzaFundo, inner sep=2pt] {$x$ (mm)};
+
+% LAYER 3: Marcações da Reta
+\foreach \x/\label in {1/48, 2/49, 3/50, 4/51, 5/52, 6/53} {
+    \draw[thick, grafite] (\x, 0.1) -- (\x, -0.1) node[below, fill=cinzaFundo, inner sep=2pt] {\label};
+}
+
+% LAYER 4: Intervalo de Tolerância com sombra
+\draw[line width=4pt, azulEixo, opacity=0.8, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-1pt}] (1.5, 0.5) -- (4.5, 0.5);
+
+% Bolinhas do intervalo (fechadas)
+\filldraw[azulEixo, draw=grafite, thick] (1.5, 0.5) circle (3pt);
+\filldraw[azulEixo, draw=grafite, thick] (4.5, 0.5) circle (3pt);
+
+% LAYER 5: Textos Explicativos e linhas guias
+\node[above, grafite, font=\bfseries] at (3, 0.8) {Faixa Aceitável};
+\draw[dashed, grafite] (3, 0) -- (3, 0.5);
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base no esquema técnico, deduza e escreva a inequação modular que representa a faixa aceitável para o diâmetro \textbf{x} do eixo metálico. Demonstre a conversão algébrica do intervalo lido no gráfico para a notação de módulo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 05}
+Para garantir a estabilidade estrutural de um andaime tubular modular, a engenharia de segurança determina que a tensão \textbf{T} suportada pela base (em Megapascals) deve satisfazer rigorosamente a condição simultânea $ 120 \le 4T - 8 < 200 $. Analise o intervalo de operação e determine todos os valores inteiros possíveis para a tensão \textbf{T} que mantêm o andaime dentro da norma de segurança estipulada.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 06}
+O diagrama esquemático abaixo representa a planta baixa de uma nova área de lazer que será construída e totalmente cercada em um condomínio fechado. Por questões de regimento interno e orçamento do material da cerca, o perímetro total dessa área deve ser estritamente inferior a \textbf{140 metros}.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES MODERNAS ---
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{borda}{HTML}{2C3E50}
+
+% LAYER 1: Fundo com margem segura
+\fill[white] (-1, -1) rectangle (6, 4);
+
+% LAYER 2: Retângulo da planta com sombra
+\fill[grama!20, draw=borda, thick, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (5,3);
+
+% LAYER 3: Hachuras de grama estilizada
+\foreach \x in {0.5, 1.5, ..., 4.5} {
+    \draw[grama, thick] (\x, 1) -- (\x+0.2, 1.2);
+    \draw[grama, thick] (\x, 2) -- (\x+0.2, 2.2);
+}
+
+% LAYER 4: Dimensões (Nodes com fill para máscara anti-sobreposição)
+\node[fill=grama!20, inner sep=2pt, text=borda, font=\bfseries] at (2.5, -0.3) {$(3x - 5)$ m};
+\node[fill=grama!20, inner sep=2pt, text=borda, font=\bfseries, rotate=90] at (-0.3, 1.5) {$(x + 15)$ m};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Modele o problema estabelecendo o sistema de inequações necessário. Determine o intervalo real possível para o valor de \textbf{x}, lembrando-se de incorporar à sua resolução a condição de existência geométrica básica de que os lados de um polígono devem assumir valores estritamente positivos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 07}
+(Estilo UNESP) O custo total de operação mensal de uma máquina de corte a laser industrial é composto por uma taxa fixa de manutenção de R\$ 450,00 mais um custo variável de R\$ 12,50 por hora efetiva de funcionamento. Um pequeno empresário possui um teto orçamentário mensal de R\$ 1.800,00 dedicado exclusivamente à operação dessa máquina. Determine o número máximo de horas completas que ele poderá operá-la no mês, apresentando o modelo algébrico em forma de inequação que fundamenta o seu cálculo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 08}
+(ENEM - Adaptada) Uma operadora de logística oferece o serviço de transporte de cargas fracionadas utilizando duas frotas distintas para atender a diferentes perfis de clientes. A frota Expressa cobra um valor fixo de R\$ 150,00 pelo despacho operacional e mais R\$ 3,50 por quilômetro efetivamente rodado. A frota Econômica, por sua vez, não cobra nenhuma taxa de despacho, mas o custo por quilômetro é mais elevado, fixado em R\$ 5,50. A partir de qual quilometragem, exatamente, a frota Expressa passa a ser financeiramente mais vantajosa para o cliente?
+
+a) 74 km\\[0.3cm]
+b) 75 km\\[0.3cm]
+c) 76 km\\[0.3cm]
+d) 80 km\\[0.3cm]
+e) 150 km\\
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 09}
+A modelagem cartesiana é fundamental para a tomada de decisões corporativas baseadas em custos e receitas cruzadas. No plano cartesiano abaixo, construído pelo departamento financeiro, estão representadas duas projeções lineares: $ f(x) $, que traduz o lucro líquido de um produto Alfa, e $ g(x) $, que traduz o lucro líquido de um produto Beta. Ambas as projeções estão dadas em milhares de reais, em função da quantidade \textbf{x} de unidades comercializadas (em centenas).
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO ESTÉTICA PREMIUM E PGFPLOTS ---
+\definecolor{alfaCor}{HTML}{E74C3C}
+\definecolor{betaCor}{HTML}{2980B9}
+\definecolor{fundo}{HTML}{F8F9F9}
+
+\begin{axis}[
+    width=7.5cm, height=6cm,
+    axis background/.style={fill=fundo},
+    axis lines=middle,
+    grid=major,
+    grid style={dashed, gray!30},
+    xmin=0, xmax=10,
+    ymin=0, ymax=10,
+    xlabel={\textbf{x} (unidades)},
+    ylabel={Lucro (milhares)},
+    tick label style={font=\footnotesize, fill=fundo, inner sep=1pt},
+    legend style={at={(0.95,0.2)}, anchor=south east, font=\footnotesize, rounded corners=2pt},
+    enlargelimits=0.05
+]
+
+% Função f(x) (Lucro Alfa)
+\addplot[thick, alfaCor, domain=1:9, samples=2] {x - 1};
+\addlegendentry{$f(x)$ Alfa}
+
+% Função g(x) (Lucro Beta)
+\addplot[thick, betaCor, domain=0:9, samples=2] {-0.5*x + 8};
+\addlegendentry{$g(x)$ Beta}
+
+% Intersecção em x=6, y=5 com máscara de fundo no node
+\filldraw[black] (axis cs:6,5) circle (2pt);
+\draw[dashed, black, thick] (axis cs:6,0) -- (axis cs:6,5);
+\node[below, fill=fundo, inner sep=1pt] at (axis cs:6,0) {6};
+
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Extraia as condições visuais do gráfico e escreva, de forma analítica, o intervalo real para \textbf{x} no qual a rentabilidade do produto Alfa supera estritamente a do produto Beta, e formule as equações e inequações das retas que atestam sua resposta.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 10}
+(Estilo FUVEST) Em um laboratório de síntese de polímeros, a inequação $ |2x - 5| \le 3 $ foi estabelecida para modelar o tempo ideal de cozimento \textbf{x} (em minutos) de uma reação química industrial, visando evitar a degradação irreversível do reagente principal. Considerando o universo dos números reais, extraia a restrição de desigualdade dupla embutida na notação de módulo e prove algebricamente o intervalo contínuo de tempo considerado seguro para a reação ocorrer.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 11}
+Julgue os itens a seguir, que aplicam os conceitos de inequações a cenários práticos de otimização no cotidiano. Escreva V (verdadeiro) ou F (falso) para cada item e justifique rigorosamente as afirmações que julgar falsas.
+
+I) Se a receita mensal de uma padaria é dada pela função $ R(x) = 15x $ e o custo operacional por $ C(x) = 500 + 5x $, então é estritamente necessário vender no mínimo 51 unidades do produto para que o estabelecimento comece a operar com lucro ($ R > C $).\\[0.3cm]
+II) A análise de sinal da inequação linear $ -2x + 10 \ge 0 $ indica que, para todos os valores de \textbf{x} estritamente maiores do que 5, a expressão resultará em números de natureza positiva.\\[0.3cm]
+III) A inequação dupla $ 10 < 3x + 1 < 22 $ restringe o conjunto solução de tal forma que ele possui exatamente 3 soluções contidas no conjunto dos números inteiros.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 12}
+(Estilo UNICAMP) Um agricultor de precisão precisa adubar sua plantação utilizando uma bomba dosadora. A marca AgroX fornece um fertilizante líquido altamente concentrado que exige, por norma técnica da ANVISA, a diluição de no mínimo 200 ml e no máximo 350 ml para cada 100 litros de água pura. Sabendo que o tanque de pulverização do trator desse agricultor está aferido com exatos 500 litros de água e que ele já adicionou inadvertidamente 150 ml de um outro suplemento de base compatível (que conta para o volume de adubação total), estabeleça o sistema de inequações simultâneas que determina a quantidade viável do fertilizante AgroX que ainda pode ser adicionada sem infringir as normas técnicas.
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 13}
+(Estilo FUVEST) Durante a calibração de um sensor óptico de alta precisão utilizado na automação de tornos CNC, um engenheiro determinou que a variação de voltagem \textbf{v} (em milivolts) não pode se afastar do valor ideal de 12 mV em mais do que 1,5 mV para que o sistema não entre em colapso de leitura. Apresente a inequação modular que descreve essa margem de segurança contínua e, a partir dela, calcule o intervalo real da voltagem \textbf{v} que assegura o funcionamento ininterrupto da máquina.
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 14}
+O painel de controle termodinâmico de um reator nuclear de pesquisas exibe a zona de temperatura crítica por meio do gráfico de barras horizontais a seguir. A barra principal mostra a oscilação térmica de um fluido refrigerante durante um ensaio de estresse de 10 minutos.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES MODERNAS ---
+\definecolor{fundoT}{HTML}{E5E8E8}
+\definecolor{vermelhoAlerta}{HTML}{C0392B}
+\definecolor{cinzaBorda}{HTML}{34495E}
+
+% LAYER 1: Fundo do painel
+\fill[fundoT, rounded corners=4pt] (-1.6, -1.5) rectangle (8.7, 2.5);
+
+% LAYER 2: Eixo das Temperaturas (Horizontal)
+\draw[thick, ->, cinzaBorda] (-1, 0) -- (7.5, 0) node[right, fill=fundoT, inner sep=2pt] {$T$ ($^\circ$C)};
+
+% LAYER 3: Marcações de Escala
+\foreach \x/\label in {0/-20, 2/0, 4/20, 6/40} {
+    \draw[thick, cinzaBorda] (\x, 0.15) -- (\x, -0.15) node[below, fill=fundoT, inner sep=2pt, font=\bfseries] {\label};
+}
+
+% LAYER 4: Barra de Zona Crítica com Drop Shadow
+\fill[vermelhoAlerta, opacity=0.85, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-0.5, 0.5) rectangle (4.5, 1.2);
+\draw[thick, cinzaBorda, rounded corners=2pt] (-0.5, 0.5) rectangle (4.5, 1.2);
+
+% LAYER 5: Limites visuais (Máscara aplicada)
+\draw[dashed, cinzaBorda] (-0.5, 0.5) -- (-0.5, 0);
+\draw[dashed, cinzaBorda] (4.5, 0.5) -- (4.5, 0);
+\node[fill=fundoT, inner sep=1pt, text=cinzaBorda, font=\bfseries] at (-0.5, -0.4) {-25};
+\node[fill=fundoT, inner sep=1pt, text=cinzaBorda, font=\bfseries] at (4.5, -0.4) {25};
+
+\node[text=white, font=\bfseries] at (2, 0.85) {FLUIDO EM ESTRESSE};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Extraia do display a faixa de temperatura registrada no ensaio. Em seguida, usando o conceito de distância geométrica na reta real até a origem, escreva a inequação modular mais compacta possível que defina essa zona crítica de temperatura \textbf{T}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 15}
+Julgue os itens a seguir relativos à teoria algébrica do módulo e suas desigualdades intrínsecas, assinalando V (verdadeiro) ou F (falso). Prove a falsidade das alternativas incorretas com contraexemplos numéricos ou manipulação algébrica.
+
+I) A inequação modular $ |x - 4| < -2 $ possui um conjunto solução vazio nos números reais, uma vez que a distância geométrica não pode ser medida por um valor estritamente negativo.\\[0.3cm]
+II) Se $ |x| > 5 $, então o conjunto solução se restringe ao intervalo real $ (5, +\infty) $, desconsiderando a porção negativa da reta.\\[0.3cm]
+III) A condição $ |2x - 1| \le 7 $ é perfeitamente equivalente, do ponto de vista algébrico, ao sistema simultâneo $ 2x - 1 \le 7 $ e $ 2x - 1 \ge -7 $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 2: Inequações do 2º Grau e Sistemas}
+\subsubsection*{QUESTÃO 16}
+A parábola é a representação geométrica central para a análise de fenômenos quadráticos. Determine o conjunto solução da inequação polinomial do 2º grau $ -x^2 + 6x - 5 \ge 0 $. Construa obrigatoriamente o esboço do estudo de sinais no eixo real (reta \textbf{x}) para fundamentar a sua resposta e liste todos os valores inteiros que satisfazem a restrição.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 17}
+Na modelagem de um sistema de controle biológico, o pH \textbf{x} ideal de uma cultura de bactérias precisa satisfazer a duas condições metabólicas simultâneas para que a colônia prospere sem mutações. O biólogo responsável formatou o seguinte sistema de inequações:
+
+$$ \begin{cases} 3x - 12 > 0 \\ x^2 - 8x + 15 \le 0 \end{cases} $$
+
+Desenvolva a resolução gráfica e algébrica desse sistema, determinando a intersecção exata dos intervalos que compõem o conjunto solução final admissível para o pH.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 18}
+O departamento financeiro de um conglomerado empresarial plotou no plano cartesiano a evolução dos lucros de duas de suas startups recém-adquiridas. A curva $ f(x) $ modela a startup Ômega (comporta-se de forma quadrática) e a reta $ g(x) $ modela a startup Delta (linear). Ambas estão em função do tempo \textbf{x} em meses. 
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E MÁSCARAS ---
+\definecolor{fundoGraf}{HTML}{FDFEFE}
+\definecolor{omegaCor}{HTML}{8E44AD}
+\definecolor{deltaCor}{HTML}{16A085}
+
+\begin{axis}[
+    width=8cm, height=6.5cm,
+    axis background/.style={fill=fundoGraf},
+    axis lines=middle,
+    grid=none,
+    xmin=-2, xmax=7,
+    ymin=-4, ymax=6,
+    xlabel={Tempo \textbf{x}},
+    ylabel={Lucro},
+    tick label style={font=\footnotesize, fill=fundoGraf, inner sep=1pt},
+    legend style={at={(0.95,0.95)}, anchor=north east, font=\footnotesize, rounded corners=2pt}
+]
+
+% Função f(x) (Parábola) - Raízes em 1 e 5, concavidade p/ baixo
+\addplot[thick, omegaCor, domain=0:6, samples=50] {-(x-1)*(x-5)};
+\addlegendentry{$f(x)$ Ômega}
+
+% Função g(x) (Reta) - Raiz em 3, crescente
+\addplot[thick, deltaCor, domain=-1:6, samples=2] {x - 3};
+\addlegendentry{$g(x)$ Delta}
+
+% Marcação de raízes com preenchimento (Anti-sobreposição)
+\node[fill=fundoGraf, inner sep=1.5pt, font=\footnotesize] at (axis cs:1, -0.4) {1};
+\node[fill=fundoGraf, inner sep=1.5pt, font=\footnotesize] at (axis cs:3, -0.4) {3};
+\node[fill=fundoGraf, inner sep=1.5pt, font=\footnotesize] at (axis cs:5, -0.4) {5};
+
+% Pontos notáveis
+\filldraw[omegaCor] (axis cs:1,0) circle (1.5pt);
+\filldraw[omegaCor] (axis cs:5,0) circle (1.5pt);
+\filldraw[deltaCor] (axis cs:3,0) circle (1.5pt);
+
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O diretor quer saber em quais intervalos de tempo, rigorosamente, os desempenhos financeiros das duas empresas apresentam sinais \textbf{opostos} (isto é, quando uma lucra e a outra opera em déficit). Deduza visualmente os intervalos e justifique, estruturando o quadro de sinais para o produto $ f(x) \cdot g(x) < 0 $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 19}
+A inequação quociente exige atenção extrema à condição de existência do denominador. Analise a expressão matemática que rege a deformação de um material polimérico sob tensão: $ \mfrac{x^2 - 7x + 10}{x - 3} \le 0 $. Resolva essa inequação, apresentando o quadro de sinais unificado e tomando o cuidado absoluto de não incluir no conjunto solução o valor que torna o sistema indeterminado.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 20}
+Julgue os itens a seguir sobre o estudo do sinal do trinômio do 2º grau e suas implicações. Escreva V para verdadeiro e F para falso, fundamentando algebricamente as alternativas que descartar.
+
+I) Para que a inequação $ ax^2 + bx + c > 0 $ possua como conjunto solução todos os números reais ($ S = \mathbb{R} $), é condição necessária e suficiente que a constante \textbf{a} seja estritamente positiva e o discriminante ($ \Delta $) seja estritamente negativo.\\[0.3cm]
+II) A inequação $ x^2 + 4 \le 0 $ admite duas raízes reais no seu conjunto solução, devido à presença do termo quadrático.\\[0.3cm]
+III) Ao resolver o produto $ (x - 2)(x + 4) \ge 0 $, é um erro matemático grave multiplicar os termos para transformá-los num trinômio; a única forma permitida é analisar o sinal de cada binômio separadamente.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 21}
+O domínio de uma função real reflete o conjunto de valores admissíveis para o qual a lei de formação opera sem ferir os axiomas da matemática (como a impossibilidade de extrair raízes quadradas de valores negativos nos Reais). Sendo assim, determine o Domínio formal da função $ h(x) = \sqrt{18 - x^2 + 3x} $, expressando o resultado através da notação de conjuntos.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 22}
+(Estilo UNESP) Em um teste balístico de campo, o Instituto de Física lançou um projétil sinalizador verticalmente para cima. A equação horária que modela a altura \textbf{h} (em metros) atingida pelo projétil em função do tempo \textbf{t} (em segundos) é dada pela expressão quadrática $ h(t) = -5t^2 + 40t $. A equipe de resgate só consegue rastrear visualmente o sinalizador enquanto ele estiver a uma altura estritamente superior a 60 metros. Formule a inequação do 2º grau correspondente e calcule, em segundos, a duração do intervalo de tempo no qual o rastreio visual será possível.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 23}
+Para que uma moldura retangular de alumínio seja aprovada pelo controle de qualidade arquitetônico, ela precisa obedecer, simultaneamente, a duas restrições espaciais: sua área interna deve ser maior que $ 12 \text{ cm}^2 $ e o seu perímetro externo deve ser rigorosamente inferior a 20 cm. O esquema da planta técnica está exibido abaixo.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- ESTÉTICA ARQUITETÔNICA COM SOMBRAS E PREENCHIMENTOS ---
+\definecolor{metalFundo}{HTML}{BDC3C7}
+\definecolor{azulArq}{HTML}{2980B9}
+\definecolor{textoEscuro}{HTML}{2C3E50}
+
+% LAYER 1: Fundo branco de sobra
+\fill[white] (-1, -1) rectangle (8, 4);
+
+% LAYER 2: Moldura com Drop Shadow
+\fill[metalFundo, rounded corners=2pt, draw=textoEscuro, thick, drop shadow={opacity=0.25, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (6,3);
+
+% LAYER 3: Furo interno (Vazado/Branco) indicando a área
+\fill[white, rounded corners=1pt, draw=azulArq, thick, dashed] (0.5, 0.5) rectangle (5.5, 2.5);
+
+% LAYER 4: Dimensões Algébricas (com máscara)
+\node[fill=metalFundo, inner sep=2pt, text=textoEscuro, font=\bfseries] at (3, -0.3) {$(x + 2)$ cm};
+\node[fill=metalFundo, inner sep=2pt, text=textoEscuro, font=\bfseries, rotate=90] at (-0.3, 1.5) {$(x - 2)$ cm};
+
+% LAYER 5: Indicações no vazado
+\node[text=azulArq, font=\bfseries] at (3, 1.5) {ÁREA INTERNA};
+\node[text=textoEscuro, font=\footnotesize] at (3, 1.1) {Perímetro Externo};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Traduza as exigências de área e perímetro para a linguagem algébrica, montando um sistema de inequações quadrático/linear simultâneo. Encontre o intervalo exato que o valor de \textbf{x} deve assumir para que a moldura seja construída sem ser reprovada no teste.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 24}
+(ENEM - Adaptada) Um engenheiro ambiental analisa o nível de contaminação \textbf{C} de um tanque de decantação, cujo comportamento decrescente e estabilizador longo dos meses \textbf{x} de tratamento biológico segue o modelo fracionário:
+$ C(x) = \mfrac{x^2 - 16}{x^2 - x - 2} $
+Sabe-se que, para que o tratamento seja considerado ativo e seguro, a relação química exige que $ C(x) \le 0 $, ignorando-se o fato de o tempo ser positivo na vida real para focar na restrição analítica abstrata proposta. Assinale a alternativa que indica o conjunto real que soluciona essa inequação quociente.
+
+a) $ [-4, -1) \cup (2, 4] $\\[0.3cm]
+b) $ [-4, -1] \cup [2, 4] $\\[0.3cm]
+c) $ (-4, -1) \cup (2, 4) $\\[0.3cm]
+d) $ [-4, 2) $\\[0.3cm]
+e) $ (-1, 4] $
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 25}
+A intersecção de comportamentos de funções matemáticas permite prever o funcionamento simultâneo de sistemas. No plano cartesiano a seguir, estão representadas duas funções reais: uma parábola $ p(x) $ e uma reta decrescente $ r(x) $.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- ESTÉTICA PREMIUM E MÁSCARAS ---
+\definecolor{fundoBranco}{HTML}{FFFFFF}
+\definecolor{parabolaCor}{HTML}{D35400}
+\definecolor{retaCor}{HTML}{2980B9}
+
+\begin{axis}[
+    width=7.5cm, height=6.5cm,
+    axis background/.style={fill=fundoBranco},
+    axis lines=middle,
+    grid=major,
+    grid style={dashed, gray!20},
+    xmin=-4, xmax=5,
+    ymin=-5, ymax=6,
+    xlabel={\textbf{x}},
+    ylabel={\textbf{y}},
+    tick label style={font=\footnotesize, fill=fundoBranco, inner sep=1.5pt},
+    legend style={at={(0.95,0.95)}, anchor=north east, font=\footnotesize, rounded corners=2pt}
+]
+
+% Função p(x) = x^2 - 4 (Raízes -2 e 2)
+\addplot[thick, parabolaCor, domain=-3.1:3.1, samples=50] {x^2 - 4};
+\addlegendentry{$p(x)$}
+
+% Função r(x) = -x + 1 (Raiz 1)
+\addplot[thick, retaCor, domain=-3:5, samples=2] {-x + 1};
+\addlegendentry{$r(x)$}
+
+% Máscaras nos eixos para as raízes
+\node[fill=fundoBranco, inner sep=1pt, font=\footnotesize] at (axis cs:-2, -0.5) {-2};
+\node[fill=fundoBranco, inner sep=1pt, font=\footnotesize] at (axis cs:2, -0.5) {2};
+\node[fill=fundoBranco, inner sep=1pt, font=\footnotesize] at (axis cs:1, -0.5) {1};
+
+\filldraw[parabolaCor] (axis cs:-2,0) circle (1.5pt);
+\filldraw[parabolaCor] (axis cs:2,0) circle (1.5pt);
+\filldraw[retaCor] (axis cs:1,0) circle (1.5pt);
+
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Extraindo unicamente os dados visuais das raízes e o comportamento gráfico das curvas, determine o conjunto solução da inequação produto $ p(x) \cdot r(x) \ge 0 $. Monte obrigatoriamente o quadro de sinais, alinhando as três raízes na reta real, para validar sua resposta.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 26}
+(Estilo UNESP) Para que o chassi de um drone de mapeamento aéreo ofereça a resistência aerodinâmica necessária sem comprometer os motores, a engenharia estabeleceu que a constante de arrasto \textbf{k} deve satisfazer a inequação simultânea $ \mfrac{k^2 - 3k - 10}{-k^2 + 8k - 15} \ge 0 $. Resolva essa inequação quociente, garantindo a exclusão matemática dos valores que anulam o denominador, e entregue o intervalo seguro para a constante \textbf{k}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 27}
+Julgue os itens a seguir que versam sobre as armadilhas algébricas no estudo do sinal de inequações produto e quociente. Marque V (verdadeiro) ou F (falso) e demonstre o erro matemático grave cometido nas afirmativas falsas.
+
+I) Ao resolver a inequação $ (x - 2)^2 \cdot (x - 5) < 0 $, o fator $ (x - 2)^2 $ não altera o sinal do produto por ser sempre não negativo, logo, a única restrição gerada recai sobre $ x < 5 $, desconsiderando qualquer análise sobre o ponto $ x = 2 $.\\[0.3cm]
+II) Na inequação quociente $ \mfrac{x - 3}{x + 4} \ge 0 $, é um erro conceitual grave multiplicar ambos os lados por $ (x + 4) $ para "eliminar a fração", pois não se conhece previamente o sinal do denominador.\\[0.3cm]
+III) A expressão $ \mfrac{x^2 + 9}{x - 1} \le 0 $ tem solução vazia nos números reais, uma vez que o numerador $ x^2 + 9 $ é estritamente positivo e não possui raízes reais.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 28}
+A análise de domínio de uma função real é essencial para evitar indeterminações matemáticas em modelagens computacionais. Considere o algoritmo de uma inteligência artificial que calcula a probabilidade de falha estrutural por meio da função real $ f(x) = \sqrt{\mfrac{-x^2 + x + 6}{x^2 - 9}} $. Determine, via quadro de sinais, o domínio de validade dessa função $ f(x) $, respeitando rigorosamente a restrição imposta pelo radical de índice par e pelo denominador.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 29}
+Para a liberação do tráfego de caminhões superpesados, a engenharia de tráfego analisou o vão livre de uma ponte em forma de arco parabólico. A estrutura deve garantir que a altura livre disponível não interfira na carga.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO SOMBRAS E ESTÉTICA DE ENGENHARIA ---
+\definecolor{concreto}{HTML}{7F8C8D}
+\definecolor{estrada}{HTML}{34495E}
+\definecolor{caminhaoCor}{HTML}{E67E22}
+\definecolor{ceu}{HTML}{ECF0F1}
+
+% LAYER 1: Fundo (Céu e margens)
+\fill[ceu, rounded corners=4pt] (-3, -1) rectangle (7, 4.5);
+
+% LAYER 2: Arco da Ponte (Parábola com sombreamento)
+\fill[concreto!50, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    plot[domain=-0.5:4.5, smooth] (\x, {-0.4*(\x-2)^2 + 3.5}) -- (4.5, 0) -- (-0.5, 0) -- cycle;
+% Recorte vazado do arco
+\fill[ceu] plot[domain=0:4, smooth] (\x, {-0.5*(\x-2)^2 + 3}) -- (4,0) -- (0,0) -- cycle;
+
+% LAYER 3: Rodovia
+\fill[estrada] (-2.5, -0.5) rectangle (6.5, 0);
+\draw[white, dashed, thick] (-2.5, -0.25) -- (6.5, -0.25);
+
+% LAYER 4: Eixos e Dimensões Matemáticas (Máscara branca)
+\draw[thick, ->, black] (0, 0) -- (0, 4) node[above, fill=ceu, inner sep=1pt] {$y$ (m)};
+\draw[thick, ->, black] (-1, 0) -- (5, 0) node[right, fill=ceu, inner sep=1pt] {$x$ (m)};
+
+\node[fill=ceu, inner sep=1.5pt, font=\footnotesize] at (4, -0.2) {4};
+\node[fill=ceu, inner sep=1.5pt, font=\footnotesize] at (0, -0.2) {0};
+
+% Vértice do arco interno
+\draw[dashed] (2, 0) -- (2, 3);
+\node[fill=ceu, inner sep=1.5pt, font=\footnotesize] at (2, -0.2) {2};
+\node[fill=ceu, inner sep=1.5pt, font=\footnotesize] at (-0.3, 3) {3};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O formato do arco interno (vazado) obedece à equação de uma parábola. Sabendo que um caminhão especial de transporte possui formato retangular com \textbf{2 metros} de largura e trafega rigorosamente centralizado no eixo de simetria do arco, monte a inequação do 2º grau que descreve a altura do arco. Em seguida, prove algebricamente se um caminhão de \textbf{2,6 metros} de altura conseguirá passar sem colidir com a estrutura de concreto.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 30}
+(Estilo FUVEST) Em um ecossistema marinho monitorado, a proliferação de uma microalga tóxica é controlada pela salinidade da água. Biólogos constataram que a alga só se reproduz de forma agressiva se a salinidade \textbf{S} (em partes por mil) for solução estrita do sistema de inequações não lineares abaixo:
+
+$$ \begin{cases} S^2 - 14S + 45 > 0 \\ -S^2 + 16S - 39 \ge 0 \end{cases} $$
+Para intervir e aplicar um inibidor químico, a equipe precisa mapear esse perigo. Determine com exatidão matemática o intervalo real da salinidade \textbf{S} em que ocorre a proliferação agressiva.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 31}
+(ENEM - Adaptada) Uma indústria metalúrgica projeta o custo de fundição de uma peça especial de aço carbono. O departamento de controladoria determinou que a rentabilidade da operação só se sustenta quando o número de lotes forjados \textbf{n} obedece à condição matemática restritiva imposta pela inequação quociente $ \mfrac{n^2 - 12n + 32}{n - 5} \le 0 $. Sabendo que \textbf{n} representa uma quantidade inteira de lotes de produção, qual é o número máximo absoluto de lotes que a indústria pode forjar mantendo a rentabilidade da operação?
+
+a) 4 lotes\\[0.3cm]
+b) 5 lotes\\[0.3cm]
+c) 7 lotes\\[0.3cm]
+d) 8 lotes\\[0.3cm]
+e) 12 lotes\\[0.3cm]
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 32}
+A elaboração de misturas químicas requer precisão nas taxas de concentração. A acidez de uma solução \textbf{x} é governada simultaneamente por três fatores operacionais. A condição para que a solução não oxide os tambores de armazenamento é que o produto de suas reações parciais seja estritamente positivo:
+$ (x - 1) \cdot (x^2 - 8x + 12) \cdot (-x + 4) > 0 $
+Construa o quadro de sinais para esse produto de múltiplos fatores, alinhando todas as quatro raízes envolvidas, e extraia o conjunto solução final para a acidez \textbf{x}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 33}
+(Estilo VUNESP) O projeto paisagístico de uma praça pública determinou a criação de um jardim cujo formato em planta baixa é um retângulo. Por limitações do terreno, o comprimento supera a largura em exatos \textbf{3 metros}. Devido a normas de permeabilidade do solo ditadas pela prefeitura, a área total desse jardim não pode ser inferior a $ 40 \text{ m}^2 $, mas seu perímetro total deve ser estritamente menor que \textbf{34 metros}. Construa o modelo algébrico em forma de sistema e determine o intervalo real possível para a medida da largura desse jardim.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 34}
+A termodinâmica de resfriamento de uma câmara frigorífica exige que a diferença de pressão \textbf{P} (em atm) permaneça confinada na zona de segurança estabelecida pelo manual do fabricante. O engenheiro técnico consultou o esquema de segurança que traz a relação algébrica em formato modular: $ |3P - 6| \le P + 2 $. Utilizando as propriedades operatórias das inequações modulares quando o segundo membro também possui variável, resolva a inequação e encontre a faixa de pressão \textbf{P} admissível.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 35}
+(Desafio Final de Modelagem) Uma concessionária de rodovias administra uma praça de pedágio e estuda o impacto do aumento da tarifa no volume de tráfego. Atualmente, a tarifa custa R\$ 10,00 e passam cerca de 5.000 veículos por dia. Estudos de elasticidade revelam que, para cada R\$ 1,00 de aumento na tarifa, o fluxo sofre uma redução drástica de 200 veículos diários. Os acionistas impuseram que a receita diária de arrecadação dessa praça precisa, compulsoriamente, superar a barreira de R\$ 55.000,00 para justificar os investimentos em recapeamento. 
+Seja \textbf{x} o valor em reais do acréscimo embutido na tarifa. Modele a função quadrática da Receita $ R(x) $ e resolva a inequação gerada para encontrar o intervalo financeiro possível para o acréscimo \textbf{x}, assegurando que a imposição dos acionistas seja integralmente cumprida.
+
+\end{multicols*}
+\end{document}
