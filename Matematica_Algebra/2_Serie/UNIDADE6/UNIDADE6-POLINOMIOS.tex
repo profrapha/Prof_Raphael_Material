@@ -1,0 +1,590 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+% Margem inferior ajustada para 1.5cm para caber o rodapé
+\usepackage[top=7.5cm, headheight=7.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
+
+% --- CARREGA O PACOTE DE IMAGEM PRIMEIRO ---
+\usepackage{graphicx}
+
+% --- CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[C]{\includegraphics[width=\textwidth]{MATEMATICA_2SERIE.jpg}}
+\fancyfoot[C]{Página \thepage} % Numeração centralizada (Use [R] se preferir à direita)
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+% --- LIMITADOR DE IMAGENS ---
+\usepackage{adjustbox}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\raggedcolumns
+\section*{UNIDADE 6 - POLINÔMIOS}
+\begin{multicols*}{2}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 1: Conceitos Fundamentais}
+\subsubsection*{QUESTÃO 01}
+
+O gráfico representativo ilustra o comportamento de uma função polinomial \textbf{P(x)} definida nos números reais. A curva cruza o eixo das abscissas em pontos notáveis que traduzem propriedades fundamentais do polinômio.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS ---
+\definecolor{grafite}{HTML}{2C3E50}
+\definecolor{azulcurva}{HTML}{2980B9}
+\definecolor{gridcolor}{HTML}{ECF0F1}
+
+% --- LAYER 1: Eixos e Grid (Limpeza Didática) ---
+\begin{axis}[
+    axis lines=middle,
+    xmin=-3.5, xmax=3.5,
+    ymin=-5.5, ymax=5.5,
+    xtick={-2, -1, 1, 2},
+    ytick={-4, -2, 2, 4},
+    grid=both,
+    grid style={line width=0.5pt, draw=gridcolor},
+    axis line style={grafite, thick, ->},
+    ticklabel style={font=\footnotesize, fill=white, inner sep=2pt}, % Trava de sobreposição
+    xlabel={$x$},
+    ylabel={$P(x)$},
+    xlabel style={anchor=north},
+    ylabel style={anchor=east},
+    width=7cm, height=6cm
+]
+
+% --- LAYER 2: Curva da Função com Drop Shadow ---
+\addplot[
+    domain=-2.4:2.4, 
+    samples=100, 
+    line width=1.5pt, 
+    color=azulcurva,
+    drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt} % Sombra na curva
+] {x^3 - 4*x};
+
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Identifique todas as raízes reais desse polinômio extraídas da leitura gráfica. Com base exclusivamente no número de interseções, qual é o grau mínimo que esse polinômio pode assumir? Justifique seu raciocínio.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 02}
+
+A classificação do grau de um polinômio depende inteiramente do seu coeficiente líder. Considere o polinômio modelado pela expressão algébrica $ P(x) = (m^2 - 4)x^4 + (m + 2)x^3 + 5x - 7 $, em que \textbf{m} representa um parâmetro real.
+
+Determine todos os valores possíveis para o parâmetro \textbf{m} de modo que o grau do polinômio $ P(x) $ seja rigorosamente igual a 3.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 03}
+
+Analise as afirmativas a seguir a respeito das definições intrínsecas e das propriedades operacionais dos polinômios. Julgue-as preenchendo com V (verdadeiro) ou F (falso) e apresente uma justificativa formal para os itens classificados como falsos.
+
+I) Se a função polinomial $ P(x) $ é classificada como o polinômio nulo, então o seu grau matemático é definido convencionalmente como zero.\\[0.3cm]
+II) O cálculo do valor numérico de $ P(x) $ para $ x = 0 $ resulta sempre no termo independente do polinômio, independentemente do seu grau.\\[0.3cm]
+III) Se a avaliação numérica resulta em $ P(2) = 0 $, então o valor \textbf{2} é classificado como uma raiz do polinômio $ P(x) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 04}
+
+O esquema arquitetônico ilustra um terreno retangular cujas dimensões (em metros) são dadas por expressões polinomiais. No interior desse espaço, foi construída uma piscina de formato também retangular, destacada em azul. A área restante é recoberta por um piso antiderrapante.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS ---
+\definecolor{areacor}{HTML}{E8F8F5}
+\definecolor{piscinacor}{HTML}{5DADE2}
+\definecolor{bordacor}{HTML}{117864}
+\definecolor{medidacor}{HTML}{2C3E50}
+
+% --- LAYER 1: Terreno Principal ---
+\filldraw[fill=areacor, draw=bordacor, line width=1pt, rounded corners=3pt, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (6,4);
+
+% --- LAYER 2: Piscina ---
+\filldraw[fill=piscinacor, draw=bordacor, line width=1pt, rounded corners=2pt, opacity=0.9] (1,1) rectangle (4,3);
+
+% --- LAYER 3: Cotas de Medida (Paralelismo Rigoroso) ---
+% Cotas Externas
+\draw[|<->|, >=stealth, medidacor, thick] (0,-0.4) -- (6,-0.4) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$2x - 1$};
+\draw[|<->|, >=stealth, medidacor, thick] (-0.4,0) -- (-0.4,4) node[midway, fill=white, inner sep=2pt, font=\bfseries, rotate=90] {$x + 2$};
+
+% Cotas Internas
+\draw[|<->|, >=stealth, white, thick] (1,2) -- (4,2) node[midway, fill=piscinacor, inner sep=2pt, font=\bfseries\small] {$x$};
+\draw[|<->|, >=stealth, white, thick] (2.5,1) -- (2.5,3) node[midway, fill=piscinacor, inner sep=2pt, font=\bfseries\small, rotate=90] {$x - 1$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Escreva o polinômio $ A(x) $ na sua forma reduzida que representa a área correspondente apenas à região do piso antiderrapante. Em seguida, calcule essa área caso a variável seja \textbf{x = 5 m}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 05}
+
+Um engenheiro de infraestrutura modelou a latência (tempo de resposta) de dois servidores na nuvem através das seguintes funções polinomiais, onde o tempo \textbf{t} é medido em segundos:
+$ R_1(t) = (a - 3)t^2 + (b + 1)t + c $ e $ R_2(t) = 5t^2 - 4t + 2 $. 
+
+Para garantir o balanceamento perfeito da rede, os dois servidores devem apresentar rigorosamente o mesmo tempo de resposta para qualquer instante \textbf{t} medido. Determine os valores numéricos de \textbf{a}, \textbf{b} e \textbf{c} que satisfazem essa condição de identidade polinomial.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 06}
+
+A etapa de calibração de um software de engenharia utiliza o polinômio referencial $ Q(x) = x^3 - kx^2 + 3x - 2 $. Durante os testes de validação do código, o programador inseriu a entrada $ x = 1 $ e o sistema retornou exatamente a saída \textbf{4}.
+
+Sabendo dessa relação numérica, calcule primeiramente o valor real do coeficiente \textbf{k}. Feito isso, determine qual será a saída do sistema caso o programador insira o valor $ x = -2 $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 07}
+
+O gráfico a seguir descreve a variação térmica de um composto químico ao longo de uma reação, modelado de forma contínua pelo polinômio $ T(x) $. Observe atentamente o comportamento da curva ao tangenciar e cruzar os eixos cartesianos.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS ---
+\definecolor{eixos}{HTML}{34495E}
+\definecolor{grafico}{HTML}{E74C3C}
+\definecolor{malha}{HTML}{BDC3C7}
+
+\begin{axis}[
+    axis lines=middle,
+    xmin=-2.5, xmax=3.5,
+    ymin=-3.5, ymax=4.5,
+    xtick={-1, 2},
+    ytick={-2, 2},
+    grid=both,
+    grid style={line width=0.4pt, draw=malha, dashed},
+    axis line style={eixos, thick, ->},
+    ticklabel style={font=\footnotesize, fill=white, inner sep=2pt}, 
+    xlabel={$x$},
+    ylabel={$T(x)$},
+    xlabel style={anchor=south west},
+    ylabel style={anchor=north east},
+    width=7cm, height=6cm
+]
+
+% Curva de grau par (ex: concavidade p/ cima, toca em x=2, cruza em x=-1)
+% Função baseada em (x+1)*(x-2)^2 / 2 para ter raízes nessas posições.
+\addplot[
+    domain=-2:3, 
+    samples=100, 
+    line width=1.5pt, 
+    color=grafico,
+    drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}
+] {0.5 * (x + 1) * (x - 2)^2};
+
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+De acordo com as propriedades visuais extraídas do comportamento gráfico e da multiplicidade de raízes, julgue as sentenças colocando V (verdadeiro) ou F (falso).
+
+I) O termo independente do polinômio $ T(x) $ é um valor estritamente positivo, pois intercepta o eixo vertical acima da origem.\\[0.3cm]
+II) O ponto $ x = 2 $ representa uma raiz de multiplicidade par para este polinômio.\\[0.3cm]
+III) O gráfico sugere que o polinômio possui grau mínimo igual a 3.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 08}
+
+O princípio de modelagem exige a compreensão profunda das operações internas da álgebra. Assuma que $ P(x) $ seja um polinômio estritamente do primeiro grau, podendo ser escrito em sua forma genérica $ P(x) = ax + b $, com $ a \neq 0 $.
+
+Se esse polinômio obedece à equação funcional $ P(x) + P(2x - 1) = 6x - 5 $, estruture os passos algébricos da identidade polinomial para demonstrar e encontrar a lei de formação definitiva de $ P(x) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 09}
+
+O deslocamento geométrico em queda livre e os lançamentos parabólicos na física podem ser diretamente modelados utilizando a estrutura polinomial. 
+
+A trajetória do salto de um felino caçando no chão da savana foi captada por sensores e é descrita pelo polinômio $ H(x) = -2x^2 + 8x $, onde a variável \textbf{x} representa a distância horizontal percorrida (em metros) e o valor $ H(x) $ a altura do animal em relação ao solo (também em metros). 
+
+Determine a distância horizontal total que o felino atinge no momento exato em que toca o solo novamente, demonstrando como o cálculo das raízes desse polinômio embasa sua resposta física.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 10}
+
+(Estilo VUNESP) Para que um polinômio complexo da forma genérica $ P(x) = ax^3 + bx^2 + cx + d $ seja classificado como identicamente nulo, é necessário e suficiente que todos os seus coeficientes sejam simultaneamente iguais a zero.
+
+Considere a expressão do polinômio paramétrico $ M(x) = (k^2 - 9)x^3 + (k - 3)x^2 + (p + 1)x $. 
+Determine os valores numéricos reais das constantes \textbf{k} e \textbf{p} que forçam esse polinômio a ser identicamente nulo. Explique textualmente o motivo lógico pelo qual o parâmetro \textbf{k} admite apenas uma única solução, mesmo estando elevado ao quadrado no primeiro termo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 11}
+
+(Estilo FUVEST) O projeto de uma montanha-russa exige cálculos estruturais precisos para garantir a segurança dos trilhos. O perfil de elevação de um dos trechos principais foi modelado no plano cartesiano pelo polinômio $ P(x) = -0.5x^3 + 3x^2 $, onde \textbf{x} representa a distância horizontal a partir da plataforma de embarque e \textbf{P(x)} indica a altura do trilho, ambas as medidas em dezenas de metros.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS E SOMBREAMENTO ---
+\definecolor{ceu}{HTML}{ECF0F1}
+\definecolor{trilho}{HTML}{C0392B}
+\definecolor{pilar}{HTML}{7F8C8D}
+\definecolor{eixocor}{HTML}{2C3E50}
+
+% LAYER 1: Fundo
+\fill[ceu, rounded corners=3pt] (-1, -1) rectangle (7, 4.5);
+
+% LAYER 2: Eixos Ocultos para Base
+\draw[eixocor, thick, ->] (-0.5, 0) -- (6.5, 0) node[right, fill=ceu, inner sep=2pt] {$x$};
+\draw[eixocor, thick, ->] (0, -0.5) -- (0, 4) node[above, fill=ceu, inner sep=2pt] {$P(x)$};
+
+% LAYER 3: Pilares de Sustentação
+\fill[pilar, drop shadow={opacity=0.2, shadow xshift=1pt}] (3.8, 0) rectangle (4.2, 3.2);
+\fill[pilar, drop shadow={opacity=0.2, shadow xshift=1pt}] (5.8, 0) rectangle (6.2, 0);
+
+% LAYER 4: Trilho (Polinômio Cúbico)
+\draw[trilho, line width=3pt, drop shadow={opacity=0.4, shadow xshift=2pt, shadow yshift=-2pt}] plot[domain=0:6.2, samples=100] (\x, {-0.1*\x*\x*\x + 0.6*\x*\x});
+
+% Máscara de Legibilidade
+\node[fill=white, inner sep=2pt, rounded corners=1pt] at (2, 2.5) {\textbf{P(x)}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Os engenheiros precisam instalar pilares de ancoragem exatos nos pontos onde o trilho toca o nível do solo (eixo das abscissas). Determine as coordenadas horizontais de todos os pontos de ancoragem e justifique sua resposta através da fatoração polinomial.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 12}
+
+(ENEM - Adaptada) Um reservatório de contenção de águas pluviais tem seu volume de preenchimento, em metros cúbicos, modelado por um polinômio em função do tempo \textbf{t}, medido em horas desde o início de uma tempestade. O modelo hidrológico é dado por $ V(t) = -2t^3 + 12t^2 + 14t $.
+
+A equipe de defesa civil precisa prever o volume exato acumulado no reservatório quando o relógio marcar rigorosamente \textbf{4 horas} de chuva contínua, para acionar ou não as sirenes de evacuação. O volume de água contido nesse instante será de:
+
+a) \textbf{76 m$^3$}\\[0.3cm]
+b) \textbf{96 m$^3$}\\[0.3cm]
+c) \textbf{120 m$^3$}\\[0.3cm]
+d) \textbf{144 m$^3$}\\[0.3cm]
+e) \textbf{200 m$^3$}
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 13}
+
+(Estilo UNICAMP) O departamento de controladoria de uma indústria de semicondutores determinou que a função Receita $ R(x) $ e a função Custo $ C(x) $ de um novo microchip são descritas por polinômios de grau 3, dados por $ R(x) = 5x^3 - 2x^2 + 10x $ e $ C(x) = x^3 + 4x^2 - 5x + 50 $, onde \textbf{x} é o lote de milhares de unidades produzidas.
+
+Sabendo que a função Lucro é obtida pela subtração $ L(x) = R(x) - C(x) $, escreva o polinômio reduzido $ L(x) $ e determine se a indústria terá lucro ou prejuízo ao fabricar e vender exatamente um lote inteiro (\textbf{x = 1}). Apresente o valor algébrico que fundamenta sua conclusão.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 14}
+
+A estabilidade aerodinâmica de um drone durante voos de teste foi avaliada por sensores de telemetria. O polinômio $ E(x) = ax^3 + bx^2 + cx + d $ descreve o grau de inclinação do aparelho em função do tempo \textbf{x} (em segundos). A equipe técnica confirmou que nos instantes \textbf{x = 1}, \textbf{x = 3} e \textbf{x = 5}, o drone estava perfeitamente nivelado, ou seja, a inclinação era nula.
+
+Considerando que o coeficiente líder dessa função é \textbf{a = 2}, reconstrua a forma original do polinômio $ E(x) $ na sua forma expandida, utilizando o conceito de raízes polinomiais.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 15}
+
+Em um laboratório de física clássica, um sistema de blocos interligados por molas possui uma força resultante modelada pelo polinômio $ F(x) = (m^2 - 9)x^2 + (m + 3)x + (p - 1) $, onde \textbf{x} é o deslocamento e \textbf{m} e \textbf{p} são parâmetros de calibração do equipamento.
+
+Para que o sistema permaneça em repouso absoluto, independentemente do deslocamento \textbf{x} que se tente impor, a força resultante deve comportar-se como o \textbf{polinômio identicamente nulo}. Calcule os valores reais de \textbf{m} e \textbf{p} que garantem esse equilíbrio estático e explique por que existe apenas um valor viável para \textbf{m}, descartando possíveis ambiguidades algébricas.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsection*{Capítulo 2: Operações com Polinômios}
+\subsubsection*{QUESTÃO 16}
+
+A igualdade de polinômios é o alicerce para a resolução de sistemas de frações parciais no cálculo avançado. Considere os polinômios $ A(x) = (a + b)x^2 + 5x - c $ e $ B(x) = 4x^2 + (a - 2b)x + 7 $.
+
+Sabendo que $ A(x) $ e $ B(x) $ são polinômios idênticos para qualquer valor de \textbf{x}, estruture o sistema linear correspondente aos coeficientes e determine os valores numéricos exatos de \textbf{a}, \textbf{b} e \textbf{c}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 17}
+
+As operações de adição e subtração de polinômios exigem alinhamento rigoroso dos graus correspondentes. Dados os polinômios $ P(x) = 3x^4 - 2x^3 + x - 5 $, $ Q(x) = -x^4 + 2x^3 + 4x^2 + 2 $ e $ R(x) = x^2 - 3x $, calcule a expressão reduzida que resulta da operação combinada $ P(x) - Q(x) + 2 \cdot R(x) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 18}
+
+O algoritmo de divisão de polinômios conhecido como Dispositivo Prático de Briot-Ruffini é uma ferramenta essencial para rebaixamento de grau. O esquema abaixo representa a divisão de um polinômio $ P(x) $ do terceiro grau pelo binômio $ (x - 2) $. Alguns valores foram acidentalmente apagados e substituídos por letras (A, B e C).
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS E SOMBRAS ---
+\definecolor{linhadecorte}{HTML}{34495E}
+\definecolor{caixapreenchida}{HTML}{E74C3C}
+\definecolor{caixavazia}{HTML}{ECF0F1}
+\definecolor{textodestaque}{HTML}{2C3E50}
+
+% Linhas principais do dispositivo de Briot-Ruffini
+\draw[linhadecorte, thick] (1.5, 1) -- (1.5, -1.5);
+\draw[linhadecorte, thick] (0, 0) -- (7, 0);
+\draw[linhadecorte, thick, dashed] (5.5, 1) -- (5.5, -1.5);
+
+% Números Superiores (Coeficientes de P(x))
+\node[font=\bfseries, textodestaque] at (0.75, 0.5) {\textbf{2}};
+\node[font=\bfseries, textodestaque] at (2.5, 0.5) {\textbf{1}};
+\node[font=\bfseries, textodestaque] at (3.5, 0.5) {\textbf{0}};
+\node[font=\bfseries, textodestaque] at (4.5, 0.5) {\textbf{-5}};
+\node[font=\bfseries, textodestaque] at (6.25, 0.5) {\textbf{3}};
+
+% Número Inferior Fixo
+\node[font=\bfseries, textodestaque] at (2.5, -0.6) {\textbf{1}};
+
+% Caixas de Valores Desconhecidos com Cantos Arredondados e Sombra
+\node[draw=linhadecorte, thick, rounded corners=2pt, fill=caixavazia, minimum width=0.7cm, minimum height=0.7cm, drop shadow={opacity=0.15}] at (3.5, -0.6) {\textbf{A}};
+\node[draw=linhadecorte, thick, rounded corners=2pt, fill=caixavazia, minimum width=0.7cm, minimum height=0.7cm, drop shadow={opacity=0.15}] at (4.5, -0.6) {\textbf{B}};
+\node[draw=linhadecorte, thick, rounded corners=2pt, fill=caixapreenchida, text=white, minimum width=0.7cm, minimum height=0.7cm, drop shadow={opacity=0.3, shadow yshift=-1pt}] at (6.25, -0.6) {\textbf{C}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Recalcule mentalmente os passos do dispositivo prático. Quais são os valores numéricos que devem preencher corretamente as posições \textbf{A}, \textbf{B} e \textbf{C}? Qual é o significado matemático específico da caixa destacada em vermelho (valor C)?
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 19}
+
+Quando o divisor não é do primeiro grau, o uso do Dispositivo de Briot-Ruffini torna-se inviável, exigindo a aplicação do Método da Chave (Divisão Longa). 
+
+Efetue a divisão algébrica do polinômio $ D(x) = 2x^4 - 3x^3 + 5x - 1 $ pelo polinômio $ d(x) = x^2 - x + 2 $. Determine o polinômio quociente $ Q(x) $ e o polinômio resto $ R(x) $, demonstrando todos os passos do abatimento de grau.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 20}
+
+O Teorema do Resto estabelece um atalho analítico poderoso: o resto da divisão de um polinômio $ P(x) $ por um binômio do tipo $ (x - a) $ é numericamente igual a $ P(a) $.
+
+Considere o polinômio $ P(x) = x^{99} - 2x^{98} + 5x - 7 $. É humanamente inviável aplicar o Método da Chave para um grau tão elevado. Utilizando o Teorema do Resto, calcule o resto da divisão desse polinômio por $ (x - 2) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 21}
+
+O Teorema de D'Alembert é uma consequência direta do Teorema do Resto e afirma que um polinômio é estritamente divisível por $ (x - a) $ se, e somente se, \textbf{a} for uma de suas raízes. 
+
+Sabendo disso, determine o valor real da constante \textbf{k} para que o polinômio geométrico $ V(x) = x^3 + kx^2 - 4x + 12 $ seja exatamente divisível pelo fator $ (x + 3) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 22}
+
+Analise as afirmativas a seguir sobre as propriedades de grau nas operações de divisão de polinômios. Preencha com V (verdadeiro) ou F (falso) e justifique matematicamente as afirmativas consideradas falsas. Considere $ P(x) $ o dividendo e $ D(x) $ o divisor, com $ \text{grau}(P) \geq \text{grau}(D) $.
+
+I) O grau do polinômio quociente será sempre igual à diferença exata entre o grau de $ P(x) $ e o grau de $ D(x) $.\\[0.3cm]
+II) Na divisão de um polinômio de grau 5 por um polinômio de grau 2, o resto da divisão será obrigatoriamente um polinômio de grau 3.\\[0.3cm]
+III) Se a divisão for exata, o polinômio resto é considerado identicamente nulo e, portanto, não possui grau definido.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 23}
+
+(Estilo FUVEST) A teoria dos restos afirma que ao dividir um polinômio genérico $ P(x) $ por um divisor do segundo grau, o resto esperado será, no máximo, do primeiro grau, assumindo a forma $ R(x) = ax + b $. 
+
+Um polinômio $ P(x) $ desconhecido deixa resto \textbf{4} quando dividido por $ (x - 1) $ e deixa resto \textbf{10} quando dividido por $ (x + 2) $. Utilizando essas informações e os princípios do Teorema do Resto, determine o polinômio resto da divisão de $ P(x) $ pelo produto $ (x - 1)(x + 2) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 24}
+
+Para garantir o acoplamento perfeito em uma modelagem estrutural geométrica, o polinômio $ E(x) = x^4 - px^3 + qx^2 - 4x + 4 $ deve ser estritamente divisível pelo binômio composto $ x^2 - 4 $. 
+
+Escreva o sistema linear gerado pelas condições do Teorema de D'Alembert e calcule os valores exatos dos coeficientes reais \textbf{p} e \textbf{q} que viabilizam esse acoplamento.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 25}
+
+(ENEM - Adaptada) Uma indústria de embalagens projeta uma caixa retangular para o transporte de eletrônicos. A equipe de design estabeleceu que o volume total da embalagem é dado pelo polinômio $ V(x) = x^3 + 7x^2 + 14x + 8 $, e que a área da base da caixa é modelada por $ A(x) = x^2 + 5x + 4 $, onde \textbf{x} é uma medida de escala em centímetros.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS E EFEITO 3D ---
+\definecolor{caixafrente}{HTML}{E67E22}
+\definecolor{caixatopo}{HTML}{F39C12}
+\definecolor{caixalado}{HTML}{D35400}
+\definecolor{textocor}{HTML}{2C3E50}
+
+% LAYER 1: Sombra projetada
+\fill[drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}, fill=white] (0,0) rectangle (0.1,0.1); % Hack para ativar sombra no escopo
+\fill[black, opacity=0.15, rounded corners=2pt] (1.5, -0.2) -- (5.5, -0.2) -- (6.5, 1.3) -- (2.5, 1.3) -- cycle;
+
+% LAYER 2: Face Lateral Direita
+\filldraw[fill=caixalado, draw=white, thick, rounded corners=1pt] (4,0) -- (5.5,1.5) -- (5.5,3.5) -- (4,2) -- cycle;
+
+% LAYER 3: Face Superior
+\filldraw[fill=caixatopo, draw=white, thick, rounded corners=1pt] (0,2) -- (4,2) -- (5.5,3.5) -- (1.5,3.5) -- cycle;
+
+% LAYER 4: Face Frontal
+\filldraw[fill=caixafrente, draw=white, thick, rounded corners=1pt] (0,0) rectangle (4,2);
+
+% LAYER 5: Textos e Cotas
+\node[fill=white, inner sep=2pt, rounded corners=2pt, text=textocor, font=\bfseries\small] at (2,1) {$V(x) = x^3 + 7x^2 + 14x + 8$};
+\node[fill=white, inner sep=1pt, rounded corners=2pt, text=textocor, font=\bfseries\footnotesize] at (2,2.7) {$A(x) = x^2 + 5x + 4$};
+
+% Indicador de Altura
+\draw[|<->|, >=stealth, thick, textocor] (-0.5,0) -- (-0.5,2) node[midway, fill=white, inner sep=1.5pt, font=\bfseries] {$H(x)$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que o volume de um prisma retangular é o produto da área da base pela sua altura $ H(x) $, determine a expressão reduzida que representa a altura da embalagem efetuando a divisão polinomial. 
+
+a) $ H(x) = x - 2 $\\[0.3cm]
+b) $ H(x) = x + 1 $\\[0.3cm]
+c) $ H(x) = x + 2 $\\[0.3cm]
+d) $ H(x) = x + 3 $\\[0.3cm]
+e) $ H(x) = x + 4 $
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 26}
+
+O Dispositivo de Briot-Ruffini pode ser aplicado consecutivamente para verificar a multiplicidade de uma raiz. Sabendo que o polinômio $ P(x) = x^4 - 5x^3 + 9x^2 - 7x + 2 $ admite a raiz $ x = 1 $, aplique o dispositivo iterativamente para provar se essa raiz é simples, dupla ou tripla. Demonstre os esquemas numéricos utilizados na sua verificação.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 27}
+
+(Estilo UNICAMP) Na engenharia civil, o momento fletor ao longo de uma viga biapoiada sujeita a um carregamento irregular é descrito por um polinômio do terceiro grau $ M(x) $. Os apoios garantem que o momento fletor nas extremidades (pontos $ x = 0 $ e $ x = 6 $) seja nulo.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS MODERNAS E SOMBREAMENTO ---
+\definecolor{viga}{HTML}{95A5A6}
+\definecolor{carga}{HTML}{3498DB}
+\definecolor{apoio}{HTML}{7F8C8D}
+\definecolor{linhaeixo}{HTML}{2C3E50}
+
+% Carga distribuída (Setas)
+\foreach \x in {0.5, 1.5, 2.5, 3.5, 4.5, 5.5} {
+    \draw[->, >=stealth, thick, carga] (\x, 2) -- (\x, 0.7);
+}
+\draw[carga, thick] (0.2, 2) -- (5.8, 2);
+\node[carga, font=\bfseries\small] at (3, 2.3) {Carregamento Irregular};
+
+% Viga
+\filldraw[fill=viga, draw=linhaeixo, thick, rounded corners=1pt, drop shadow={opacity=0.3}] (0,0.2) rectangle (6,0.6);
+
+% Apoios (Triângulos)
+\filldraw[fill=apoio, draw=linhaeixo, thick] (0.2, 0.2) -- (-0.2, -0.4) -- (0.6, -0.4) -- cycle;
+\filldraw[fill=apoio, draw=linhaeixo, thick] (5.8, 0.2) -- (5.4, -0.4) -- (6.2, -0.4) -- cycle;
+
+% Eixo x cotas
+\draw[|<->|, >=stealth, thick, linhaeixo] (0.2, -0.8) -- (5.8, -0.8) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$6\text{ m}$};
+\node[font=\bfseries, linhaeixo] at (0.2, -1.2) {$x = 0$};
+\node[font=\bfseries, linhaeixo] at (5.8, -1.2) {$x = 6$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que $ M(x) $ é divisível por $ x $ e também por $ (x - 6) $, e sabendo que no ponto $ x = 3 $ o momento medido foi de \textbf{54 kN.m}, determine a expressão algébrica completa de $ M(x) $ assumindo que o coeficiente do termo linear ($ x $) seja igual a zero.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 28}
+
+Quando deparamos com expoentes massivos, a divisão em chaves é obsoleta. Considere o polinômio $ P(x) = x^{200} - 3x^{199} + x - 5 $. Calcule o resto da divisão desse polinômio gigantesco pelo binômio $ (x - 1) $. Justifique teoricamente qual o teorema que sustenta a sua resolução em apenas uma linha de cálculo.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 29}
+
+(Estilo VUNESP) A divisão do polinômio $ P(x) = 2x^3 - mx^2 + nx - 3 $ por $ (x - 1) $ resulta em um resto igual a \textbf{2}. Sabe-se também que $ P(x) $ é divisível de forma exata por $ (x + 1) $. 
+
+A partir do equacionamento dessas duas condições, estruture a matriz ou o sistema linear correspondente para encontrar os valores dos coeficientes \textbf{m} e \textbf{n}.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 30}
+
+Sistemas de criptografia baseados em hardware utilizam a divisão de polinômios binários para validação de integridade (como o protocolo CRC). O esquema abaixo ilustra um bloco de processamento genérico onde uma mensagem polinomial $ M(x) $ sofre a ação de uma chave divisora $ C(x) $.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO PALETAS E SOMBRAS (Diagrama de Blocos) ---
+\definecolor{blocomsg}{HTML}{3498DB}
+\definecolor{blocochave}{HTML}{9B59B6}
+\definecolor{blocoprocess}{HTML}{34495E}
+\definecolor{blocoresto}{HTML}{E74C3C}
+\definecolor{textobranco}{HTML}{FFFFFF}
+
+% Mensagem M(x)
+\node[fill=blocomsg, text=textobranco, font=\bfseries, minimum width=3cm, minimum height=1cm, rounded corners=3pt, drop shadow={opacity=0.2}] (msg) at (0,3) {Mensagem $M(x)$};
+
+% Chave C(x)
+\node[fill=blocochave, text=textobranco, font=\bfseries, minimum width=3cm, minimum height=1cm, rounded corners=3pt, drop shadow={opacity=0.2}] (chave) at (5,3) {Divisor $C(x)$};
+
+% Processador (Divisão)
+\node[fill=blocoprocess, text=textobranco, font=\bfseries, minimum width=4cm, minimum height=1.5cm, rounded corners=3pt, drop shadow={opacity=0.3}] (process) at (2.5,1) {Módulo de Divisão};
+
+% Resto R(x) (Hash)
+\node[fill=blocoresto, text=textobranco, font=\bfseries, minimum width=3cm, minimum height=1cm, rounded corners=3pt, drop shadow={opacity=0.2}] (resto) at (2.5,-1) {Resto Hash $R(x)$};
+
+% Setas de fluxo
+\draw[->, >=stealth, thick, black] (msg) -- (0, 1.5) -- (process.west);
+\draw[->, >=stealth, thick, black] (chave) -- (5, 1.5) -- (process.east);
+\draw[->, >=stealth, thick, black] (process) -- (resto) node[midway, fill=white, inner sep=2pt, font=\footnotesize\bfseries] {Extração};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Seja a mensagem $ M(x) = x^5 - 2x^4 + 3x^3 - x^2 + 4 $ e a chave divisora $ C(x) = x^2 + 1 $. Determine o polinômio Hash $ R(x) $ gerado por esse bloco de processamento e explique a relevância de o grau de $ R(x) $ ser obrigatoriamente inferior ao grau de $ C(x) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 31}
+
+Um polinômio $ P(x) $ do terceiro grau possui a forma $ P(x) = x^3 - 6x^2 + 11x - 6 $. Sem utilizar tentativa e erro livre, aplique o raciocínio dos divisores do termo independente (Teorema das Raízes Racionais) e o Dispositivo de Briot-Ruffini para encontrar o conjunto completo de raízes desse polinômio, detalhando as etapas do rebaixamento de grau.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 32}
+
+Julgue as proposições a seguir, fundamentadas na Teoria dos Restos e na Divisibilidade Polinomial, preenchendo com V (verdadeiro) ou F (falso). Exija-se rigor absoluto na justificativa matemática para sentenças falsas.
+
+I) Se um polinômio $ P(x) $ é divisível simultaneamente por $ (x - a) $ e por $ (x - b) $, com $ a \neq b $, então ele obrigatoriamente será divisível pelo produto $ (x - a)(x - b) $.\\[0.3cm]
+II) O resto da divisão do polinômio $ x^n - a^n $ por $ (x - a) $ será nulo apenas se \textbf{n} for um número inteiro par.\\[0.3cm]
+III) Ao aplicar o algoritmo da chave, se o divisor possui grau 3, o resto será rigorosamente um polinômio de grau 2 em todos os cenários possíveis.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 33}
+
+(Estilo ITA) O limite do raciocínio analítico em polinômios envolve manipular suas raízes sem necessariamente conhecê-las inicialmente. Sabe-se que o polinômio $ P(x) = x^3 - 12x^2 + 44x - 48 $ possui três raízes reais distintas e que essas raízes formam uma Progressão Aritmética (P.A.). 
+
+Utilizando as propriedades operacionais dos polinômios e a definição estrutural de uma P.A. de três termos $ (r - d, r, r + d) $, determine as três raízes do polinômio $ P(x) $.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 34}
+
+Considere a expressão polinomial $ Q(x) = (x - 2)^5 + (x - 3)^4 - 1 $. Pela aplicação direta do Teorema do Resto, calcule qual será o resto quando $ Q(x) $ for dividido pelo binômio $ (x - 3) $. Mostre que a enorme potência algébrica não precisa ser expandida para solucionar o problema.
+
+\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+\subsubsection*{QUESTÃO 35}
+
+Um problema clássico de fatoração superior exige observar padrões. O polinômio $ S(x) = x^5 - 1 $ é dividido por $ (x - 1) $. O polinômio quociente $ Q(x) $ dessa divisão exata forma uma sequência geométrica em seus termos. 
+
+Escreva a forma expandida completa do polinômio quociente $ Q(x) $ e, em seguida, calcule o valor numérico desse quociente quando avaliado em $ x = -1 $.
+
+\end{multicols*}
+\end{document}
