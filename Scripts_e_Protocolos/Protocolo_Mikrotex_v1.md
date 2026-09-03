@@ -177,7 +177,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 5.1. **Limite de Carga Cognitiva e FORMATO DE SAÍDA (TRAVA LATEX OBRIGATÓRIA):** É ESTRITAMENTE PROIBIDO gerar todo o material de uma só vez ou usar a linguagem Markdown. Entregue de **10 a 15 questões por lote**. Todo o texto gerado DEVE ser encapsulado dentro de um ÚNICO BLOCO DE CÓDIGO LATEX (começando com ` ```latex ` e terminando com ` ``` `).
 
 5.2. **(TRAVA CRÍTICA) O Preâmbulo Mestre e Fechamento:** A IA é OBRIGADA a estruturar o documento para compilação direta.
-  * **Regra do Cabeçalho Dinâmico (Sem Imagens):** O cabeçalho agora é desenhado via código LaTeX na primeira página. Você (IA) DEVE capturar as respostas do usuário no "Passo 1" e substituir OBRIGATORIAMENTE os marcadores `[DISCIPLINA]`, `[ANO_SERIE]` e `[BIMESTRE]` no código abaixo pelos dados reais informados (tudo em maiúsculas).
+  * **Regra do Cabeçalho Dinâmico (Sem Imagens no Topo):** O cabeçalho agora é desenhado via código LaTeX na primeira página. Você (IA) DEVE capturar as respostas do usuário no "Passo 1" e substituir OBRIGATORIAMENTE os marcadores `[DISCIPLINA]`, `[ANO_SERIE]`, `[BIMESTRE]` e `[BLOCO]` no código abaixo pelos dados reais informados (tudo em maiúsculas).
   * **No LOTE 1 (Primeira Entrega):** O bloco de código DEVE iniciar RIGOROSAMENTE com o preâmbulo abaixo. Copie a estrutura exata:
 
 \documentclass[11pt, a4paper]{article}
@@ -186,15 +186,18 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 \usepackage[sfdefault]{roboto}
-% Margens otimizadas (sem cabeçalho de imagem ocupando espaço)
-\usepackage[top=2cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+% Margem superior configurada para abrigar o mini-cabeçalho
+\usepackage[top=2.5cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{graphicx} % OBRIGATÓRIO para inserir o logo no rodapé
 
-% --- RODAPÉ EM TODAS AS PÁGINAS ---
+% --- MINI-CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
 \renewcommand{\headrulewidth}{0pt} 
-\fancyfoot[C]{Página \thepage} 
+\fancyhead[R]{\footnotesize\bfseries\textcolor{gray!70!black}{\MakeUppercase{[DISCIPLINA]} $\vert$ Bloco [BLOCO] $\vert$ [ANO_SERIE]}}
+\fancyfoot[L]{\includegraphics[height=0.8cm]{logo.png}} % Logo da escola
+\fancyfoot[C]{\footnotesize Página \thepage} 
 
 \usepackage{setspace}
 \setstretch{1.15}
@@ -255,7 +258,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \end{tcolorbox}
 \vspace{-0.3cm}
 \begin{tcolorbox}[colback=gray!5, colframe=gray!40, arc=3pt, boxrule=0.8pt, left=10pt, right=10pt, top=4pt, bottom=4pt]
-    \small\bfseries\textcolor{gray!70}{Ano/Série:} \textcolor{black}{[ANO_SERIE]} \hspace{3cm} \textcolor{gray!70}{Bloco/Bimestre:} \textcolor{black}{[BIMESTRE]}
+    \small\bfseries\textcolor{gray!70}{Ano/Série:} \textcolor{black}{[ANO_SERIE]} \hspace{2.5cm} \textcolor{gray!70}{Bloco:} \textcolor{black}{[BLOCO]} \hspace{2.5cm} \textcolor{gray!70}{Bimestre:} \textcolor{black}{[BIMESTRE]}
 \end{tcolorbox}
 \vspace{0.5cm}
 % --- FIM DO CABEÇALHO ---
