@@ -1,49 +1,133 @@
-\documentclass[11pt, a4paper]{article}
+\documentclass[twoside, 10pt, a4paper]{article}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
-\usepackage[sfdefault]{roboto}
-\usepackage[top=7.5cm, headheight=7.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
-\usepackage{graphicx}
-% --- CABEÇALHO EM TODAS AS PÁGINAS ---
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{} % Limpa qualquer numeração ou texto padrão
-\renewcommand{\headrulewidth}{0pt} % Remove a linha preta padrão do fancyhdr
-\fancyhead[C]{\includegraphics[width=\textwidth]{MATEMATICA_7ANO.png}}
-\fancyfoot[C]{Página \thepage}
 
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
 \usepackage{setspace}
-\setstretch{1.15}
+\setstretch{1.0} % Espaçamento simples
 \usepackage{parskip}
 \setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 
+% ==========================================
+%   PAINEL DE CONTROLE DE ESPAÇAMENTO E ESCALA
+% ==========================================
+% Altere os valores abaixo para apertar ou expandir o documento inteiro
+
+% 1. Espaços das Questões
+\newlength{\espacoPosTitulo}
+\setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
+
+\newlength{\espacoPreQuestao}
+\setlength{\espacoPreQuestao}{0.2cm} % Espaço entre a linha fina divisória e a questão
+
+\newlength{\espacoQuestao}
+\setlength{\espacoQuestao}{0.1cm}    % Espaço de "respiro" no FINAL de cada questão
+
+\newlength{\espacoAlt}
+\setlength{\espacoAlt}{0.2cm}        % Espaço para quebras manuais de alternativas
+
+% 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
+\usepackage{enumitem}
+% Altere os valores (como itemsep) para apertar as listas (ex: mude 0.2cm para 0pt)
+\setlist{
+    itemsep=0.2cm,    % Espaço vertical entre a letra a), b), c)
+    topsep=0.1cm,     % Espaço em branco antes de começar a lista
+    parsep=0pt,       % Espaço entre parágrafos dentro de um mesmo item
+    partopsep=0pt     % Espaço extra no topo da lista
+}
+
+% 3. Controle de Escala de Imagens
+\newlength{\larguraTikz}
+\setlength{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
+% ==========================================
+
+% --- MATEMÁTICA ---
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{nccmath}
 \usepackage{mathastext}
+
+% --- CORES CUSTOMIZADAS PREMIUM ---
 \usepackage{xcolor}
 \definecolor{CorTitUm}{HTML}{FF6F61}
 \definecolor{CorTitDois}{HTML}{FF6F61}
 \definecolor{CorTitTres}{HTML}{658894}
 \definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
 
+% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[LE]{
+    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{OPERAÇÕES} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
+}
+\fancyhead[RO]{
+    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{OPERAÇÕES} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
+}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+% --- CAIXAS DE DESTAQUE (tcolorbox) ---
+\usepackage[most]{tcolorbox}
+
+% 1. Box de Resposta do Aluno
+\newtcolorbox{boxresponda}{
+    colback=white,        
+    colframe=gray!45,       
+    boxrule=0pt,          
+    leftrule=1.7pt,        
+    sharp corners,        
+    enlarge left by=0.4cm,  
+    width=\linewidth-0.4cm, 
+    left=8pt, right=0pt,  
+    top=2pt, bottom=2pt,
+    fontupper=\small % Ajustado para evitar erro em fórmulas matemáticas
+}
+
+% 2. Box de Dica (Estilo Ciano Claríssimo)
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{
+    colback=CorDicaFundo,        
+    colframe=CorDicaBorda,      
+    boxrule=0pt,          
+    leftrule=2.5pt,         
+    sharp corners,        
+    width=\linewidth, % Sem recuo, conforme solicitado
+    left=8pt, right=8pt,  
+    top=6pt, bottom=6pt,
+    halign=center, 
+    fontupper=\small      
+}
+
+% --- TÍTULOS (ESTILO EDITORIAL) ---
 \usepackage{titlesec}
-\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
-\titlespacing*{\section}{0pt}{5pt}{6pt} 
-\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
-\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
-\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
-\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+\titleformat{\section}[block]{\color{black}\large\bfseries}{\thesection}{0em}{}[\vspace{0.1cm}\noindent\rule{\linewidth}{0.8pt}]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
 
+% --- PACOTES DE ESTRUTURA E GRÁFICOS ---
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{CorLinha}}
 
-% --- LIMITADOR DE IMAGENS ---
 \usepackage{adjustbox}
-
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{circuitikz}
@@ -51,35 +135,78 @@
 \pgfplotsset{compat=1.18}
 
 \begin{document}
+\color{Cinzablack}
+\vspace*{-1.7cm}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.09\linewidth}
+    \vspace{8pt}
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../Modelos_Templates/Elv_novo_logo.png} 
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.90\linewidth} 
+    \vspace{0pt}
+    \fontfamily{phv}\selectfont
+    
+    % BLOCO 1
+    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \begin{minipage}[c]{0.62\linewidth}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.32\linewidth}
+            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{OPERAÇÕES}}
+        \end{minipage}%
+    \end{tcolorbox}
+    \par\vspace{0.18cm} 
+    
+    % BLOCO 2
+    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{7º ANO} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{1}
+    \end{tcolorbox}
+\end{minipage}%
+
+\par\vspace{0.2cm} 
+\noindent\rule{\linewidth}{1.5pt} 
+\vspace{-0.7cm}
+% --- FIM DO CABEÇALHO ---
+
 \raggedcolumns
-\section*{UNIDADE 6 - DECIMAIS, POTENCIAÇÃO E RADICIAÇÃO DE RACIONAIS}
 \begin{multicols*}{2}
+\vspace{0.1cm}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 \subsection*{Capítulo 1: Operações com Decimais}
-\subsubsection*{QUESTÃO 01}
-Resolva a expressão numérica a seguir, respeitando a ordem de precedência das operações. Justifique o passo a passo da divisão entre números decimais, demonstrando como você igualou as casas decimais.
-
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\textbf{1.} Resolva a expressão numérica a seguir, respeitando a ordem de precedência das operações. Justifique o passo a passo da divisão entre números decimais, demonstrando como você igualou as casas decimais.
 $$ \textbf{E} = (4,5 \times 1,2) - \left( 3,6 \div 0,4 \right) $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 02}
-Julgue as afirmativas abaixo como Verdadeiras (V) ou Falsas (F). Para as falsas, reescreva a sentença corrigindo o erro matemático.
-I. Ao multiplicarmos $ 0,4 $ por $ 0,4 $, o resultado obtido é $ 1,6 $. \\[0.3cm]
-II. Toda fração cujo denominador é uma potência de $ 10 $ pode ser escrita como um número decimal exato. \\[0.3cm]
-III. A divisão de $ 7,5 $ por $ 0,1 $ produz o mesmo resultado que a multiplicação de $ 7,5 $ por $ 10 $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{2.} Julgue as afirmativas abaixo como Verdadeiras (V) ou Falsas (F). Para as falsas, reescreva a sentença corrigindo o erro matemático.
+\begin{enumerate}[label=\Roman*.]
+    \item Ao multiplicarmos $ 0,4 $ por $ 0,4 $, o resultado obtido é $ 1,6 $.
+    \item Toda fração cujo denominador é uma potência de $ 10 $ pode ser escrita como um número decimal exato.
+    \item A divisão de $ 7,5 $ por $ 0,1 $ produz o mesmo resultado que a multiplicação de $ 7,5 $ por $ 10 $.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 03}
-Uma família decidiu trocar o piso retangular da sala de estar. O pedreiro enviou um esboço com as medidas do cômodo para que o proprietário pudesse calcular a quantidade de metros quadrados de cerâmica necessários.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{3.} Uma família decidiu trocar o piso retangular da sala de estar. O pedreiro enviou um esboço com as medidas do cômodo para que o proprietário pudesse calcular a quantidade de metros quadrados de cerâmica necessários.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}[x=1cm, y=1cm]
 \definecolor{fundo}{HTML}{ECF0F1}
 \definecolor{parede}{HTML}{2C3E50}
 \definecolor{piso}{HTML}{E67E22}
-\definecolor{mascara}{HTML}{FFFFFF}
 
 % --- APLICANDO DROP SHADOW E ROUNDED CORNERS ---
 % LAYER 1: Base/Sombra
@@ -95,35 +222,41 @@ Uma família decidiu trocar o piso retangular da sala de estar. O pedreiro envio
 % LAYER 4: Cotas (Com máscara para não cruzar linhas)
 \draw[|<->|, >=latex, thick] (0, -0.3) -- (5, -0.3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {5,4 m};
 \draw[|<->|, >=latex, thick] (5.3, 0) -- (5.3, 3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries, rotate=90] {3,5 m};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Com base nas dimensões indicadas no esboço, calcule a área exata da sala em metros quadrados ($ \textbf{m}^{2} $). Arme a conta e demonstre o posicionamento da vírgula no resultado final.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 04}
-Transforme as frações a seguir em números decimais, utilizando o algoritmo da divisão longa. Em seguida, classifique cada um como decimal exato ou dízima periódica.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{4.} O estudante fictício Carlos tentou transformar a fração $ \mfrac{5}{8} $ em decimal e escreveu o seguinte raciocínio na lousa: 
+\textit{"Como 8 não divide 5, eu inverto as posições e divido 8 por 5, o que dá 1,6. Logo, $ \mfrac{5}{8} = 1,6 $."}
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique o erro conceitual cometido por Carlos e apresente o cálculo e o resultado corretos utilizando o algoritmo formal da divisão longa.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-a) $ \mfrac{5}{8} $ \\[0.3cm]
-b) $ \mfrac{7}{3} $ \\[0.3cm]
-c) $ \mfrac{11}{4} $
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{5.} Organize as ideias: elabore um fluxograma simples (em texto) ou mapa de regras explicando o que acontece com a posição da vírgula quando multiplicamos um número decimal por $ 100 $ e quando o dividimos por $ 10 $. Exemplifique sua explicação utilizando o número $ 42,8 $.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 05}
-Organize as ideias: explique, com suas palavras, o que acontece com a posição da vírgula quando multiplicamos um número decimal por $ 100 $ e quando o dividimos por $ 10 $. Exemplifique sua explicação utilizando o número $ 42,8 $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{6.} Para realizar uma receita de bolo, Joana foi ao mercado e comprou $ \textbf{2,5 kg} $ de farinha de trigo, sendo que cada quilograma custa $ \textbf{R\$ 4,80} $. Ela pagou sua compra com uma nota de $ \textbf{R\$ 20,00} $. Determine o valor exato do troco que Joana deve receber.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 06}
-(Estilo VUNESP) Para realizar uma receita de bolo, Joana foi ao mercado e comprou $ \textbf{2,5 kg} $ de farinha de trigo, sendo que cada quilograma custa $ \textbf{R\$ 4,80} $. Ela pagou sua compra com uma nota de $ \textbf{R\$ 20,00} $. Determine o valor exato do troco que Joana deve receber.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 07}
-Na padaria do bairro, os clientes utilizam balanças digitais de autoatendimento. Um cliente colocou uma bandeja de pães de queijo sobre o equipamento e o visor digital imediatamente retornou os dados da pesagem e do preço.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{7.} Na padaria do bairro, os clientes utilizam balanças digitais de autoatendimento. Um cliente colocou uma bandeja de pães de queijo sobre o equipamento e o visor digital imediatamente retornou os dados da pesagem e do preço.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{balanca}{HTML}{BDC3C7}
 \definecolor{prato}{HTML}{95A5A6}
@@ -148,23 +281,27 @@ Na padaria do bairro, os clientes utilizam balanças digitais de autoatendimento
 
 \node[text=display, font=\bfseries\Large] at (4.5, 1.1) {32,00};
 \node[text=texto, font=\bfseries\footnotesize] at (4.5, 2.1) {Preço/kg (R\$)};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Com base nas informações exibidas nos visores da balança, calcule o valor total a ser pago por essa bandeja de pães de queijo.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 08}
-Uma escola fará uma campanha de doação de álcool em gel. A direção comprou um galão contendo $ \textbf{15,5 litros} $ do produto e deseja fracioná-lo em pequenos frascos individuais. Sabendo que cada frasco tem capacidade exata para $ \textbf{0,25 litro} $, calcule quantos frascos poderão ser completamente enchidos. 
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{8.} Uma escola fará uma campanha de doação de álcool em gel. A direção comprou um galão contendo $ \textbf{15,5 litros} $ do produto e deseja fracioná-lo em pequenos frascos individuais. Sabendo que cada frasco tem capacidade exata para $ \textbf{0,25 litro} $, calcule quantos frascos poderão ser completamente enchidos.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 09}
-(Estilo UNICAMP - Adaptada) O gráfico de barras a seguir ilustra o índice pluviométrico diário (quantidade de chuva, em milímetros) registrado em uma cidade durante os quatro primeiros dias de uma semana.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{9.} (Estilo UNICAMP - Adaptada) O gráfico de barras a seguir ilustra o índice pluviométrico diário (quantidade de chuva, em milímetros) registrado em uma cidade durante os quatro primeiros dias de uma semana.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{fundoaxis}{HTML}{FAFAFA}
 \definecolor{barra}{HTML}{3498DB}
@@ -176,14 +313,14 @@ Uma escola fará uma campanha de doação de álcool em gel. A direção comprou
     ybar,
     width=7cm, height=5.5cm,
     axis lines=middle,
-    ymin=0, ymax=20,
+    ymin=0, ymax=18,
     xmin=0, xmax=5,
     xtick={1,2,3,4},
-    xticklabels={Seg., Ter., Qua., Qui.},
+    xticklabels={Seg, Ter, Qua, Qui},
     ytick={0, 5, 10, 15},
     ylabel={Chuva (mm)},
     nodes near coords,
-    nodes near coords style={font=\bfseries, text=black},
+    nodes near coords style={font=\bfseries, text=black, yshift=4pt},
     bar width=20pt,
     enlarge x limits=0.15
 ]
@@ -198,38 +335,54 @@ Uma escola fará uma campanha de doação de álcool em gel. A direção comprou
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Determine a diferença exata, em milímetros, entre o dia em que mais choveu e o dia em que menos choveu nesse período. Além de assinalar a alternativa correta, \textbf{apresente o cálculo refutando matematicamente o erro contido na alternativa (a)}.
+\begin{enumerate}[label=\alph*)]
+    \item $ 14,8 \text{ mm} $
+    \item $ 9,5 \text{ mm} $
+    \item $ 7,1 \text{ mm} $
+    \item $ 3,9 \text{ mm} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-Determine a diferença exata, em milímetros, entre o dia em que mais choveu e o dia em que menos choveu nesse período.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{10.} (ENEM - Adaptada) Um motorista de aplicativo abasteceu seu veículo com gasolina. A bomba registrou que foram colocados exatos $ \textbf{40,5 litros} $ no tanque. Se o preço do litro de gasolina no posto era de $ \textbf{R\$ 5,40} $, assinale a alternativa que apresenta o valor total pago por esse abastecimento.
+\begin{enumerate}[label=\alph*)]
+    \item $ \text{R\$} \ 218,70 $
+    \item $ \text{R\$} \ 228,50 $
+    \item $ \text{R\$} \ 216,40 $
+    \item $ \text{R\$} \ 214,70 $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 10}
-(ENEM - Adaptada) Um motorista de aplicativo abasteceu seu veículo com gasolina. A bomba registrou que foram colocados exatos $ \textbf{40,5 litros} $ no tanque. Se o preço do litro de gasolina no posto era de $ \textbf{R\$ 5,40} $, assinale a alternativa que apresenta o valor total pago por esse abastecimento.
-a) $ \text{R\$} \ 218,70 $ \\[0.3cm]
-b) $ \text{R\$} \ 228,50 $ \\[0.3cm]
-c) $ \text{R\$} \ 216,40 $ \\[0.3cm]
-d) $ \text{R\$} \ 214,70 $ \\[0.3cm]
-e) $ \text{R\$} \ 208,70 $
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 \subsection*{Capítulo 2: Potenciação de Racionais}
-\subsubsection*{QUESTÃO 11}
-A potenciação no conjunto dos números racionais obedece a regras de sinais dependendo do expoente. Calcule o valor exato da expressão algébrica a seguir, demonstrando os resultados parciais antes da soma.
-
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\textbf{11.} A potenciação no conjunto dos números racionais obedece a regras de sinais dependendo do expoente. Calcule o valor exato da expressão algébrica a seguir, demonstrando os resultados parciais antes da soma.
 $$ \textbf{P} = \left( -\mfrac{1}{2} \right)^{3} + \left( \mfrac{3}{4} \right)^{2} $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 12}
-Julgue as afirmativas matemáticas a seguir como Verdadeiras (V) ou Falsas (F). Justifique as sentenças que julgar incorretas.
-I. Toda potência de base negativa, elevada a um expoente ímpar, resulta em um número racional negativo. \\[0.3cm]
-II. O cálculo de $ \left( \mfrac{2}{5} \right)^{-2} $ equivale à inversão da base, resultando na fração $ \mfrac{25}{4} $. \\[0.3cm]
-III. A potência $ \left( 0,3 \right)^{2} $ tem como resultado exato o número decimal $ 0,9 $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{12.} Julgue as afirmativas matemáticas a seguir como Verdadeiras (V) ou Falsas (F). Justifique as sentenças que julgar incorretas.
+\begin{enumerate}[label=\Roman*.]
+    \item Toda potência de base negativa, elevada a um expoente ímpar, resulta em um número racional negativo.
+    \item O cálculo de $ \left( \mfrac{2}{5} \right)^{-2} $ equivale à inversão da base, resultando na fração $ \mfrac{25}{4} $.
+    \item A potência $ \left( 0,3 \right)^{2} $ tem como resultado exato o número decimal $ 0,9 $.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 13}
-Durante uma aula prática de geometria e arte, um aluno recorta peças quadradas de papelão para montar um mosaico. Ele recebe uma placa matriz e precisa calcular a área exata da superfície.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{13.} Durante uma aula prática de geometria e arte, um aluno recorta peças quadradas de papelão para montar um mosaico. Ele recebe uma placa matriz e precisa calcular a área exata da superfície.
+\par\vspace{0.1cm}
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=1.2cm 1.2cm 1.2cm 1.2cm, clip, max width=0.6\linewidth}
 \begin{tikzpicture}
 \definecolor{papelao}{HTML}{D4AC0D}
 \definecolor{corte}{HTML}{9A7D0A}
@@ -245,32 +398,38 @@ Durante uma aula prática de geometria e arte, um aluno recorta peças quadradas
 
 % LAYER 3: Indicação de medidas (Fração)
 \draw[|<->|, >=latex, thick] (1, 0.5) -- (4, 0.5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {$ \mfrac{5}{2} $ cm};
-\draw[|<->|, >=latex, thick] (4.6, 1) -- (4.6, 4) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {$ \mfrac{5}{2} $ cm};
-
+\draw[|<->|, >=latex, thick] (4.7, 1) -- (4.7, 4) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {$ \mfrac{5}{2} $ cm};
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Exiba a montagem da equação da área utilizando a notação de potenciação (base e expoente) e, em seguida, resolva-a, entregando o resultado final em formato de fração irredutível.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 14}
-Organize as ideias: sabendo que a base de uma potência representa o fator que se repete e o expoente indica a quantidade de repetições, simplifique a expressão a seguir reduzindo-a a uma \textbf{única potência} (não é necessário calcular o valor final numérico, aplique apenas a propriedade da multiplicação e divisão de mesma base):
-
-$$ \mfrac{ \left( \mfrac{3}{7} \right)^{4} \cdot \left( \mfrac{3}{7} \right)^{5} }{ \left( \mfrac{3}{7} \right)^{2} } $$
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 15}
-Aplica-se o conceito de expoente negativo invertendo-se a base racional. Resolva a expressão algébrica abaixo passo a passo, exibindo a transformação dos expoentes negativos em positivos e determinando o resultado numérico final em forma de fração irredutível.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{14.} O aluno Marcelo estava resolvendo uma tarefa sobre propriedades das potências e simplificou a expressão fracionária abaixo da seguinte maneira:
+$$ \textbf{M} = \mfrac{ \left( \mfrac{3}{7} \right)^{4} \cdot \left( \mfrac{3}{7} \right)^{5} }{ \left( \mfrac{3}{7} \right)^{2} } \Rightarrow \text{Marcelo fez:} \quad \mfrac{3}{7}^{(4 \cdot 5)} \div \mfrac{3}{7}^{2} = \mfrac{3}{7}^{20 - 2} = \left( \mfrac{3}{7} \right)^{18} $$
+\begin{boxresponda}
+\textbf{Responda:} Identifique e explique textualmente a propriedade matemática que Marcelo confundiu no numerador. Em seguida, refaça o cálculo simplificando a expressão corretamente até reduzi-la a uma única potência.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{15.} Aplica-se o conceito de expoente negativo invertendo-se a base racional. Resolva a expressão algébrica abaixo passo a passo, exibindo a transformação dos expoentes negativos em positivos e determinando o resultado numérico final em forma de fração irredutível.
 $$ \textbf{K} = \left( \mfrac{3}{2} \right)^{-2} + \left( -\mfrac{1}{3} \right)^{2} $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 16}
-Um projeto de artesanato utiliza chapas quadradas de acrílico para montar luminárias. O fornecedor enviou uma chapa piloto com as especificações dimensionais na planta baixa.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{16.} Um projeto de artesanato utiliza chapas quadradas de acrílico para montar luminárias. O fornecedor enviou uma chapa piloto com as especificações dimensionais exibidas na planta baixa.
+\par\vspace{0.3cm}
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{acrilico}{HTML}{3498DB}
 \definecolor{fundo}{HTML}{ECF0F1}
@@ -278,7 +437,7 @@ Um projeto de artesanato utiliza chapas quadradas de acrílico para montar lumin
 
 % --- APLICANDO DROP SHADOW ---
 % LAYER 1: Bancada
-\fill[fundo, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt] (-1, -1) rectangle (5, 5);
+%\fill[fundo, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt] (-1, -1) rectangle (5, 5);
 
 % LAYER 2: Chapa de Acrílico (Quadrada com opacidade para vidro)
 \fill[acrilico, opacity=0.6, drop shadow={opacity=0.4, shadow xshift=3pt, shadow yshift=-3pt}, rounded corners=1pt] (0.5, 0.5) rectangle (3.5, 3.5);
@@ -287,34 +446,47 @@ Um projeto de artesanato utiliza chapas quadradas de acrílico para montar lumin
 % LAYER 3: Cotas (Com máscara de leitura branca)
 \draw[|<->|, >=latex, thick, cota] (0.5, 0.1) -- (3.5, 0.1) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {1,4 m};
 \draw[|<->|, >=latex, thick, cota] (3.9, 0.5) -- (3.9, 3.5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries, rotate=90] {1,4 m};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Modele a equação da área da superfície dessa chapa de acrílico utilizando o conceito de potenciação e, em seguida, calcule o resultado exato em metros quadrados.
+\par\vspace{\espacoQuestao}
 
-Modele a área da superfície dessa chapa de acrílico utilizando o conceito de potenciação (base e expoente). Em seguida, calcule a área exata em metros quadrados.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{17.} O estudante fictício João estava resolvendo exercícios sobre base negativa e escreveu a seguinte afirmação na lousa: 
+\textit{"As expressões $ -0,5^{2} $ e $ (-0,5)^{2} $ produzem exatamente o mesmo resultado numérico, pois o expoente é par em ambas, o que sempre garante um resultado positivo, ou seja, $ +0,25 $."}
+\begin{boxresponda}
+\textbf{Responda:} João cometeu um erro grave de sintaxe matemática e de interpretação da regra de sinais. Diagnostique e explique o erro textualmente. Em seguida, prove matematicamente calculando o valor exato de cada uma das duas expressões.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 17}
-Julgue as afirmativas a seguir sobre as propriedades das potências com números racionais. Assinale Verdadeiro (V) ou Falso (F) e justifique matematicamente as afirmativas incorretas.
-I. O quadrado do número decimal $ -0,5 $ é igual a $ -0,25 $. \\[0.3cm]
-II. Toda potência de base $ 10 $ com expoente inteiro positivo possui tantos zeros quanto indica o número do expoente. \\[0.3cm]
-III. A expressão $ \left( \mfrac{5}{4} \right)^{-1} $ é matematicamente equivalente à fração $ \mfrac{4}{5} $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{18.} (Estilo UNICAMP) Um biólogo monitora o crescimento de uma cultura de bactérias em laboratório. A população inicial era de apenas $ \textbf{1 bactéria} $. O pesquisador observou que, devido às condições ideais da estufa, o número de bactérias triplica exatamente a cada hora. Modele a expressão em forma de potência que representa a quantidade de bactérias após exatas $ \textbf{5 horas} $ e calcule o número total de micro-organismos nesse instante.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 18}
-(Estilo UNICAMP) Um biólogo monitora o crescimento de uma cultura de bactérias em laboratório. A população inicial era de apenas $ \textbf{1 bactéria} $. O pesquisador observou que, devido às condições ideais da estufa, o número de bactérias triplica exatamente a cada hora. Modele a expressão em forma de potência que representa a quantidade de bactérias após exatas $ \textbf{5 horas} $ e calcule o número total de micro-organismos nesse instante.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{19.} Um processo mecânico de filtragem de água ocorre em múltiplos estágios. A cada passagem por um filtro cilíndrico, a quantidade de partículas sólidas na água é reduzida estritamente à metade. Sabendo que a água passa por $ \textbf{4 filtros} $ consecutivos, assinale a alternativa que traz a fração exata de partículas que restará na água. Além de achar a certa, \textbf{refute matematicamente a alternativa (a), explicando que erro comum de potenciação leva o aluno a escolhê-la.}
+\begin{enumerate}[label=\alph*)]
+    \item $ \mfrac{1}{8} $
+    \item $ \mfrac{1}{16} $
+    \item $ \mfrac{1}{32} $
+    \item $ \mfrac{1}{4} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 19}
-Um processo mecânico de filtragem de água industrial ocorre em múltiplos estágios para atingir a pureza necessária. A cada passagem por um filtro cilíndrico, a quantidade de partículas sólidas na água é reduzida à metade. Sabendo que a água passa por $ \textbf{4 filtros} $ consecutivos e iguais, expresse, em forma de potência fracionária, a razão de partículas que restará na água após o término de todo o processo de filtragem.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 20}
-Um arquiteto de redes estruturou o cabeamento de um pequeno prédio comercial utilizando um padrão fixo de ramificação, partindo do servidor principal em direção aos computadores das estações de trabalho.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{20.} Um arquiteto de redes estruturou o cabeamento de um pequeno prédio comercial utilizando um padrão fixo de ramificação exponencial, partindo do servidor em direção aos computadores.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{servidor}{HTML}{8E44AD}
 \definecolor{roteador}{HTML}{3498DB}
@@ -344,39 +516,42 @@ Um arquiteto de redes estruturou o cabeamento de um pequeno prédio comercial ut
 % Labels de ramificação
 \node[fill=fundo, text=linha, inner sep=2pt, font=\bfseries\small] at (4, 2.5) {3 Conexões};
 \node[fill=fundo, text=linha, inner sep=2pt, font=\bfseries] at (4, 0.5) {Cada roteador liga a 3 PCs};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Com base na topologia da rede ilustrada, escreva a potência matemática que representa o total de computadores (PCs) no final do processo e calcule esse número exato de estações de trabalho.
+\par\vspace{\espacoQuestao}
 
-Com base na topologia da rede ilustrada, escreva a potência que representa o total de computadores (PCs) no final do processo e calcule esse número de estações de trabalho.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{21.} (ENEM - Adaptada) O origami é a arte tradicional japonesa de dobrar o papel. Um estudante pegou uma folha de papel cuja espessura original era de $ \textbf{0,1 mm} $ e começou a dobrá-la exatamente ao meio, sucessivas vezes. Calcule a espessura total, em milímetros, que a folha dobrada atingirá após ser dobrada ao meio $ \textbf{6 vezes} $ consecutivas.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 21}
-(ENEM - Adaptada) O origami é a arte tradicional japonesa de dobrar o papel. Um estudante pegou uma folha de papel cuja espessura original era de $ \textbf{0,1 mm} $ e começou a dobrá-la exatamente ao meio, sucessivas vezes. Assinale a alternativa que indica a espessura total, em milímetros, que a folha dobrada atingirá após ser dobrada ao meio $ \textbf{6 vezes} $ consecutivas.
-a) $ 0,6 \text{ mm} $ \\[0.3cm]
-b) $ 3,2 \text{ mm} $ \\[0.3cm]
-c) $ 6,4 \text{ mm} $ \\[0.3cm]
-d) $ 12,8 \text{ mm} $ \\[0.3cm]
-e) $ 64,0 \text{ mm} $
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{22.} Em um torneio de xadrez escolar eliminatório, metade dos competidores é eliminada a cada rodada. O torneio iniciou com exatos $ \textbf{128 alunos} $. O estudante fictício Marcos tentou calcular quantos jogadores restariam após a quinta rodada fazendo a seguinte operação: $ 128 \div 5 = 25,6 $ alunos.
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique o absurdo lógico e matemático na modelagem de Marcos. Em seguida, utilize a multiplicação por potências de fração para demonstrar o cálculo correto e encontrar o número real de alunos que restarão.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 22}
-Organize as ideias: em um torneio de xadrez escolar eliminatório, as chaves são organizadas de modo que, a cada rodada, metade dos competidores é eliminada. Se o torneio começou com $ \textbf{128 alunos} $, modele a situação utilizando uma potência de fração multiplicada pelo total inicial para descobrir quantos jogadores restarão exatamente após a \textbf{quinta rodada}.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 \subsection*{Capítulo 3: Raiz Quadrada Exata}
-\subsubsection*{QUESTÃO 23}
-Para extrair a raiz quadrada de uma fração, devemos extrair separadamente a raiz quadrada do numerador e a do denominador. Com base nessa regra matemática, calcule o valor exato da expressão numérica a seguir:
-
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\textbf{23.} Para extrair a raiz quadrada exata de uma fração, devemos operar separadamente o numerador e o denominador. Com base nessa premissa fundamental, calcule o valor da expressão numérica a seguir, entregando o resultado final de forma simplificada.
 $$ \textbf{R} = \sqrt{\mfrac{81}{144}} + \mfrac{1}{4} $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 24}
-A direção de uma escola contratou uma empresa de engenharia para demarcar um novo pátio cimentado no formato de um quadrado perfeito, onde os alunos realizarão atividades de recreação.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{24.} A direção de uma escola contratou uma empresa de engenharia para demarcar um novo pátio cimentado no formato de um quadrado perfeito.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{patio}{HTML}{95A5A6}
 \definecolor{grama}{HTML}{27AE60}
@@ -397,36 +572,50 @@ A direção de uma escola contratou uma empresa de engenharia para demarcar um n
 
 % LAYER 4: Identificação de Lado
 \draw[|<->|, >=latex, thick, white] (1, 0.5) -- (4, 0.5) node[midway, fill=grama, inner sep=2pt, font=\bfseries] {Lado \textbf{x}};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Transforme a área informada na planta para a forma de fração decimal e extraia a raiz quadrada para encontrar a medida exata do lado $ \textbf{x} $ desse pátio, em metros.
+\par\vspace{\espacoQuestao}
 
-Transforme a área informada na planta para a forma de fração decimal e extraia a raiz quadrada para encontrar a medida exata do lado $ \textbf{x} $ desse pátio em metros.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{25.} Julgue as afirmativas matemáticas a respeito da radiciação, utilizando Verdadeiro (V) ou Falso (F). Apresente a correção matemática para as sentenças falsas.
+\begin{enumerate}[label=\Roman*.]
+    \item A operação de raiz quadrada atua como o processo inverso da potenciação de expoente $ 2 $.
+    \item No conjunto dos números racionais, a raiz quadrada exata de $ -25 $ tem como resultado o número $ -5 $.
+    \item A raiz quadrada exata do número decimal $ 0,64 $ corresponde estritamente à fração $ \mfrac{4}{5} $.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 25}
-Julgue as afirmativas matemáticas a respeito da radiciação, marcando (V) para Verdadeiro e (F) para Falso. Se a sentença for falsa, apresente a correção.
-I. A operação de raiz quadrada atua como o processo inverso da potenciação de expoente $ 2 $. \\[0.3cm]
-II. No conjunto dos números racionais, existe raiz quadrada exata de números negativos, como no caso de $ \sqrt{-25} = -5 $. \\[0.3cm]
-III. A raiz quadrada exata do número decimal $ 0,64 $ corresponde à fração $ \mfrac{4}{5} $.
+\begin{boxdica}
+\textbf{Dica Metodológica:} Para extrair a raiz de decimais pequenos sem errar a posição da vírgula, converta-os para fração com denominador $ 100 $, $ 10.000 $, etc., tire a raiz de cima e de baixo separadamente, e depois volte para decimal!
+\end{boxdica}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 26}
-Transformar um número decimal em uma fração cujo denominador é potência de $ 10 $ facilita a extração da raiz quadrada. Utilizando esse método de racionalização, demonstre o passo a passo para calcular o valor exato de $ \sqrt{0,0144} $. Exiba o resultado final também em formato de número decimal.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{26.} Aplicando o raciocínio indicado na dica anterior, demonstre o passo a passo operatório para calcular o valor exato da expressão $ \sqrt{0,0144} $. Exiba o resultado final obrigatoriamente no formato decimal.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 27}
-Calcule o valor exato da expressão numérica abaixo, que envolve a extração de raízes exatas de frações e operações básicas. Apresente o resultado final na forma de fração irredutível.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{27.} O estudante fictício Bruno tentou calcular o tamanho da hipotenusa de um triângulo retângulo e chegou na seguinte equação: $ \textbf{h} = \sqrt{16 + 9} $. Ao resolver, ele anotou: 
+\textit{"Eu sei que a raiz de 16 é 4 e a raiz de 9 é 3. Como é uma soma, o resultado de h é $ 4 + 3 = 7 $."}
+\begin{boxresponda}
+\textbf{Responda:} Bruno cometeu um dos erros mais clássicos da radiciação. Explique teoricamente o porquê da regra usada por ele estar errada, calcule o resultado exato correto de $ \textbf{h} $ e prove numericamente a diferença.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-$$ \textbf{H} = \sqrt{\mfrac{144}{25}} - \mfrac{1}{5} $$
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 28}
-Uma vidraçaria corta tampos de vidro temperado estritamente no formato de quadrados perfeitos. O controle de qualidade inspeciona duas peças produzidas em sequência, cujas superfícies totais estão etiquetadas na bancada.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{28.} Uma vidraçaria corta tampos de vidro temperado estritamente no formato de quadrados perfeitos. O controle de qualidade inspeciona duas peças produzidas em sequência.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 1cm 0cm 0.7cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{bancada}{HTML}{E5E8E8}
 \definecolor{vidroA}{HTML}{3498DB}
@@ -451,23 +640,26 @@ Uma vidraçaria corta tampos de vidro temperado estritamente no formato de quadr
 \node[fill=etiqueta, text=texto, inner sep=3pt, font=\bfseries, text width=2cm, align=center] at (5.5, 1.5) {Área = 1,21 m²};
 \node[text=texto, font=\bfseries\small] at (2, 4) {Tampo A};
 \node[text=texto, font=\bfseries\small] at (5.5, 3) {Tampo B};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Determine o comprimento exato do lado de cada tampo de vidro, calculando as respectivas raízes. Em seguida, determine a diferença, em metros, entre as medidas.
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{29.} (Estilo VUNESP) O tabuleiro do clássico jogo de xadrez é um grande quadrado perfeito formado por exatamente $ \textbf{64 casas} $ menores, também quadradas e idênticas, intercaladas em cores claras e escuras. Sabendo que a área total da superfície desse tabuleiro mede exatos $ \textbf{1.024 cm}^{2} $, determine a medida do lado de cada uma das pequenas casas quadradas do jogo.
+\par\vspace{\espacoQuestao}
 
-Determine o comprimento exato do lado de cada tampo de vidro. Em seguida, calcule a diferença, em metros, entre a medida do lado do Tampo B e do Tampo A.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 29}
-(Estilo VUNESP) O tabuleiro do clássico jogo de xadrez é um grande quadrado perfeito formado por exatamente $ \textbf{64 casas} $ menores, também quadradas e idênticas, intercaladas em cores claras e escuras. Sabendo que a área total da superfície desse tabuleiro mede exatos $ \textbf{1.024 cm}^{2} $, determine a medida do lado de cada uma das pequenas casas quadradas do jogo.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 30}
-Um professor construiu um varal matemático em sala de aula para representar a reta numérica e marcou posições específicas, exigindo dos alunos a alocação correta de algumas raízes exatas.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{30.} Um professor construiu um varal matemático em sala de aula para representar a reta numérica e marcou posições específicas, exigindo dos alunos a alocação correta de algumas raízes exatas.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 1.2cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{reta}{HTML}{34495E}
 \definecolor{ponto}{HTML}{E74C3C}
@@ -490,38 +682,45 @@ Um professor construiu um varal matemático em sala de aula para representar a r
 }
 
 % LAYER 4: Pontos A, B, C (Com máscaras)
-\fill[ponto, drop shadow={opacity=0.4}] (4, 0) circle (4pt) node[align=center, above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Pt.\\ A};
-\fill[ponto, drop shadow={opacity=0.4}] (5, 0) circle (4pt) node[align=center, above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Pt.\\ B};
-\fill[ponto, drop shadow={opacity=0.4}] (6, 0) circle (4pt) node[align=center, above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Pt.\\ C};
-
+\fill[ponto, drop shadow={opacity=0.4}] (4, 0) circle (4pt) node[above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Ponto A};
+\fill[ponto, drop shadow={opacity=0.4}] (5, 0) circle (4pt) node[above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Ponto B};
+\fill[ponto, drop shadow={opacity=0.4}] (6, 0) circle (4pt) node[above=0.2cm, fill=fundo, inner sep=1pt, font=\bfseries] {Ponto C};
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
+Dada a expressão numérica $ \textbf{x} = \sqrt{2,25} $, calcule o valor exato de $ \textbf{x} $ e indique qual dos pontos demarcados na reta (A, B ou C) corresponde rigorosamente a esse resultado.
+\par\vspace{\espacoQuestao}
 
-Dada a expressão numérica $ \textbf{x} = \sqrt{2,25} $, calcule o valor exato de $ \textbf{x} $ e assinale qual dos pontos demarcados na reta (A, B ou C) corresponde rigorosamente a esse resultado.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{31.} (ENEM - Adaptada) O proprietário de uma fazenda deseja cercar completamente um curral que possui o formato geométrico de um quadrado perfeito. O engenheiro agrônomo informa que a área total destinada a esse curral mede exatamente $ \textbf{256 m}^{2} $. Sabendo que será instalada uma cerca utilizando $ \textbf{4 fios} $ de arame, assinale a alternativa que indica a quantidade total de arame que deverá ser comprada. \textbf{Além de marcar a resposta correta, diagnostique e refute matematicamente o distrator presente na alternativa (b).}
+\begin{enumerate}[label=\alph*)]
+    \item $ 16 \text{ m} $
+    \item $ 64 \text{ m} $
+    \item $ 128 \text{ m} $
+    \item $ 256 \text{ m} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 31}
-(ENEM - Adaptada) O proprietário de uma fazenda deseja cercar completamente um curral que possui o formato geométrico de um quadrado perfeito. O engenheiro agrônomo informa que a área total destinada a esse curral mede exatamente $ \textbf{256 m}^{2} $. Sabendo que será instalada uma cerca utilizando $ \textbf{4 fios} $ de arame, determine a quantidade total de arame, em metros, que deverá ser comprada.
-a) $ 16 \text{ m} $ \\[0.3cm]
-b) $ 64 \text{ m} $ \\[0.3cm]
-c) $ 128 \text{ m} $ \\[0.3cm]
-d) $ 256 \text{ m} $ \\[0.3cm]
-e) $ 1.024 \text{ m} $
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{32.} O estudante fictício Ricardo tentou calcular raízes de números decimais baseando-se apenas nos algarismos significativos. Ele escreveu na prova: 
+\textit{"Como $ \sqrt{144} = 12 $, então a raiz de $ \textbf{14,4} $ é obviamente $ \textbf{1,2} $."}
+\begin{boxresponda}
+\textbf{Responda:} Ricardo caiu em uma famosa "pegadinha" da radiciação decimal. Explique matematicamente por que $ \sqrt{14,4} $ NÃO é igual a $ 1,2 $, demonstrando qual seria a fração geratriz correta se ele quisesse que a resposta fosse $ 1,2 $.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 32}
-Organize as ideias: um erro muito comum cometido pelos alunos é achar que a raiz da soma é igual à soma das raízes. Para provar numericamente que isso é falso, resolva e compare os resultados das duas expressões a seguir:
-$ \textbf{X} = \sqrt{64 + 36} $
-$ \textbf{Y} = \sqrt{64} + \sqrt{36} $
-Após os cálculos matemáticos, explique a diferença entre os resultados obtidos.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 33}
-A malha quadriculada apresenta a planta baixa da sala de testes de um laboratório de robótica. A área total reservada para o circuito dos robôs é composta pela união de diversos quadrados idênticos pintados em azul.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{33.} A malha quadriculada apresenta a planta baixa da sala de testes de um laboratório de robótica. A área total reservada para o circuito dos robôs é composta pela união de diversos quadrados idênticos pintados em azul.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{malha}{HTML}{BDC3C7}
 \definecolor{circuito}{HTML}{8E44AD}
@@ -542,34 +741,38 @@ A malha quadriculada apresenta a planta baixa da sala de testes de um laboratór
 \draw[->, >=latex, thick, texto] (4.5, 3.5) -- (2.8, 3.5);
 \node[fill=fundo, text=texto, inner sep=2pt, font=\bfseries\small] at (4.5, 3.8) {Área Unitária};
 \node[fill=fundo, text=texto, inner sep=2pt, font=\bfseries\small] at (4.5, 3.2) {= $ 0,25 \text{ m}^{2} $};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Baseando-se na área de cada um dos quadrados azuis isoladamente, calcule a medida do lado de um único quadrado. Em seguida, determine a medida total do perímetro (contorno externo) dessa pista de robótica.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 34}
-O cálculo da raiz quadrada de números grandes pode ser facilitado aplicando-se a fatoração (decomposição em fatores primos). Utilizando esse método de agrupamento de pares iguais, extraia passo a passo a raiz quadrada de $ \textbf{1.296} $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{34.} O cálculo da raiz quadrada de números grandes pode ser facilitado aplicando-se a fatoração (decomposição em fatores primos). Utilizando esse método rigorosamente (agrupamento de pares iguais), extraia passo a passo a raiz quadrada de $ \textbf{1.296} $.
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{35.} (Estilo UNICAMP - Adaptada) Uma indústria produz painéis solares no formato de grandes quadrados perfeitos. Por razões de segurança aerodinâmica, a engenharia estabelece que a área útil de captação de um modelo específico de painel deve ser de exatamente $ \textbf{3,24 m}^{2} $. Determine o comprimento do lado desse painel em metros.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 35}
-(Estilo UNICAMP - Adaptada) Uma indústria produz painéis solares no formato de grandes quadrados perfeitos. Por razões de segurança aerodinâmica, a engenharia estabelece que a área útil de captação de um modelo específico de painel deve ser de exatamente $ \textbf{3,24 m}^{2} $. Determine o comprimento do lado desse painel em metros.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 36}
-Calcule o valor exato da expressão algébrica abaixo, que exige o domínio da extração de raízes fracionárias seguida de uma multiplicação. Simplifique o resultado obtido até transformá-lo em uma fração irredutível.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{36.} Calcule o valor exato da expressão algébrica abaixo, que exige o domínio da extração de raízes fracionárias seguida de uma multiplicação. Simplifique o resultado obtido até transformá-lo em uma fração irredutível.
 $$ \textbf{M} = \sqrt{\mfrac{25}{36}} \cdot \sqrt{\mfrac{49}{100}} $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 \subsection*{Capítulo 4: Razão e Proporção - Introdução}
-\subsubsection*{QUESTÃO 37}
-No estacionamento de um shopping, um sensor fotográfico cataloga os veículos de acordo com a sua tonalidade de cor para gerar estatísticas no painel de controle.
-
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\textbf{37.} No estacionamento de um shopping, um sensor fotográfico cataloga os veículos de acordo com a sua tonalidade de cor para gerar estatísticas no painel de controle.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{asfalto}{HTML}{7F8C8D}
 \definecolor{carrovermelho}{HTML}{E74C3C}
@@ -598,29 +801,34 @@ No estacionamento de um shopping, um sensor fotográfico cataloga os veículos d
 \fill[carrovermelho, rounded corners=2pt, drop shadow={opacity=0.5}] (4.7, 1) rectangle (5.8, 3);
 
 % LAYER 3: Legenda do painel
-\fill[fundo, rounded corners=2pt, drop shadow={opacity=0.4}] (1.0, -1.2) rectangle (5.8, -0.2);
+\fill[fundo, rounded corners=2pt, drop shadow={opacity=0.4}] (1, -1.2) rectangle (5.7, -0.2);
 \node[text=texto, font=\bfseries\small] at (3.5, -0.7) {Setor Alfa - Monitoramento};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Baseando-se estritamente na imagem obtida pelo sensor do Setor Alfa, determine a razão matemática (em formato de fração irredutível) entre o número de veículos vermelhos e o número total de veículos estacionados nesse setor.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 38}
-A densidade demográfica é uma razão fundamental utilizada em geografia e planejamento urbano, calculada dividindo-se o número de habitantes de uma região pela sua área territorial. Se um município abriga $ \textbf{45.000 habitantes} $ em uma área exata de $ \textbf{1.500 km}^{2} $, determine a densidade demográfica local.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{38.} A densidade demográfica é uma razão fundamental utilizada em geografia e planejamento urbano, calculada dividindo-se o número de habitantes de uma região pela sua área territorial. Se um município abriga $ \textbf{45.000 habitantes} $ em uma área exata de $ \textbf{1.500 km}^{2} $, determine a densidade demográfica local.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 39}
-(Estilo VUNESP) O cálculo da velocidade média de um veículo é uma razão matemática que relaciona a distância percorrida pelo tempo gasto no trajeto. Em uma viagem, uma família percorreu exatos $ \textbf{240 quilômetros} $ de forma ininterrupta durante $ \textbf{3 horas} $. Qual foi a razão, em $ \textbf{km/h} $, que representou a velocidade média desse automóvel?
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{39.} (Estilo VUNESP) O cálculo da velocidade média de um veículo é uma razão matemática que relaciona a distância percorrida pelo tempo gasto no trajeto. Em uma viagem, uma família percorreu exatos $ \textbf{240 quilômetros} $ de forma ininterrupta durante $ \textbf{3 horas} $. Qual foi a razão, em $ \textbf{km/h} $, que representou a velocidade média desse automóvel?
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 40}
-Um cartógrafo desenhou o mapa turístico de uma trilha utilizando regras matemáticas de proporcionalidade para garantir a fidelidade do terreno real no documento de papel.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{40.} Um cartógrafo desenhou o mapa turístico de uma trilha utilizando regras matemáticas de proporcionalidade para garantir a fidelidade do terreno real no documento de papel.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{mapa}{HTML}{FDFEFE}
 \definecolor{trilha}{HTML}{27AE60}
@@ -629,8 +837,8 @@ Um cartógrafo desenhou o mapa turístico de uma trilha utilizando regras matem�
 
 % --- APLICANDO DROP SHADOW ---
 % LAYER 1: Base do Mapa
-\fill[mapa, rounded corners=3pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (7.5,4);
-\draw[moldura, thick, rounded corners=3pt] (0,0) rectangle (7.5,4);
+\fill[mapa, rounded corners=3pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (8,4);
+\draw[moldura, thick, rounded corners=3pt] (0,0) rectangle (8,4);
 
 % LAYER 2: Trilha
 \draw[dashed, line width=1.5pt, trilha] (1.5, 2) -- (5.5, 2);
@@ -643,27 +851,31 @@ Um cartógrafo desenhou o mapa turístico de uma trilha utilizando regras matem�
 % LAYER 4: Selo de Escala
 \fill[moldura, rounded corners=2pt] (0.2, 0.2) rectangle (3.2, 0.8);
 \node[text=white, font=\bfseries] at (1.7, 0.5) {Escala 1 : 50.000};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Considerando que a razão estipulada pela escala é de $ \textbf{1 : 50.000} $ (isto é, $ 1 $ cm no mapa equivale a $ 50.000 $ cm na realidade), calcule qual é a distância real percorrida na trilha entre a Base e a Cachoeira, entregando o resultado convertido em quilômetros.
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{41.} Para calcular a razão matemática entre duas grandezas, é obrigatório que ambas estejam expressas na mesma unidade de medida. Sabendo disso, determine a razão, na forma de fração irredutível, entre a massa de $ \textbf{450 g} $ de açúcar e a massa de um pacote de farinha que pesa $ \textbf{1,5 kg} $.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 41}
-Para calcular a razão matemática entre duas grandezas, é obrigatório que ambas estejam expressas na mesma unidade de medida. Sabendo disso, determine a razão, na forma de fração irredutível, entre a massa de $ \textbf{450 g} $ de açúcar e a massa de um pacote de farinha que pesa $ \textbf{1,5 kg} $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{42.} (Estilo VUNESP) O consumo de combustível de um automóvel é diretamente proporcional à distância percorrida. O manual do proprietário informa que o veículo consome $ \textbf{8 litros} $ de gasolina para percorrer $ \textbf{100 km} $ em rodovias. Mantendo esse mesmo padrão de desempenho, determine a quantidade exata de combustível, em litros, necessária para concluir uma viagem de $ \textbf{250 km} $.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 42}
-(Estilo VUNESP) O consumo de combustível de um automóvel é diretamente proporcional à distância percorrida. O manual do proprietário informa que o veículo consome $ \textbf{8 litros} $ de gasolina para percorrer $ \textbf{100 km} $ em rodovias. Mantendo esse mesmo padrão de desempenho, determine a quantidade exata de combustível, em litros, necessária para concluir uma viagem de $ \textbf{250 km} $.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 43}
-A planta baixa a seguir apresenta a área destinada à construção de uma piscina retangular em um clube recreativo. O arquiteto desenhou o projeto utilizando instrumentos precisos de rascunho geométrico.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{43.} A planta baixa a seguir apresenta a área destinada à construção de uma piscina retangular em um clube recreativo. O arquiteto desenhou o projeto utilizando instrumentos precisos de rascunho geométrico e aplicou uma escala de redução de $ 100 $ vezes.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{papel}{HTML}{FDFEFE}
 \definecolor{agua}{HTML}{3498DB}
@@ -684,35 +896,39 @@ A planta baixa a seguir apresenta a área destinada à construção de uma pisci
 
 % LAYER 4: Escala Indicada
 \node[fill=borda, text=white, rounded corners=2pt, inner sep=3pt, font=\bfseries\small] at (1.5, 3.2) {Escala 1 : 100};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Determine as dimensões reais da piscina (comprimento e largura) em metros e, em seguida, calcule a sua área real exata em metros quadrados ($ \textbf{m}^{2} $).
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 44}
-(ENEM - Adaptada) A velocidade média é a grandeza que expressa a razão entre a distância total percorrida e o tempo total de viagem. Um ônibus de viagem percorreu a distância intermunicipal de $ \textbf{120 km} $ de forma constante durante um intervalo de exatas $ \textbf{1,5 hora} $. Assinale a alternativa que indica a velocidade média desenvolvida pelo veículo ao longo desse trajeto.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{44.} (ENEM - Adaptada) A velocidade média é a grandeza que expressa a razão entre a distância total percorrida e o tempo total de viagem. Um ônibus de viagem percorreu a distância intermunicipal de $ \textbf{120 km} $ de forma constante durante um intervalo de exatas $ \textbf{1,5 hora} $. Assinale a alternativa que indica a velocidade média desenvolvida pelo veículo. \textbf{Em seguida, justifique o cálculo, refutando o porquê de um aluno desatento possivelmente assinalar a alternativa (a).}
+\begin{enumerate}[label=\alph*)]
+    \item $ 180 \text{ km/h} $
+    \item $ 60 \text{ km/h} $
+    \item $ 80 \text{ km/h} $
+    \item $ 100 \text{ km/h} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-a) $ 60 \text{ km/h} $ \\[0.3cm]
-b) $ 70 \text{ km/h} $ \\[0.3cm]
-c) $ 80 \text{ km/h} $ \\[0.3cm]
-d) $ 90 \text{ km/h} $ \\[0.3cm]
-e) $ 100 \text{ km/h} $
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 45}
-A propriedade fundamental das proporções afirma que o produto dos meios é igual ao produto dos extremos. Aplique essa propriedade rigorosamente para resolver a proporção matemática a seguir, determinando o valor numérico exato da variável $ \textbf{x} $.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{45.} A propriedade fundamental das proporções afirma que o produto dos meios é igual ao produto dos extremos. Aplique essa propriedade rigorosamente para resolver a proporção matemática a seguir, determinando o valor numérico exato da variável $ \textbf{x} $.
 $$ \mfrac{\textbf{x}}{15} = \mfrac{4}{5} $$
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 46}
-A interface gráfica de um aplicativo de transferência de arquivos exibe o progresso de um download diretamente no painel do usuário.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{46.} A interface gráfica de um aplicativo de transferência de arquivos exibe o progresso de um download diretamente no painel do usuário.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{tela}{HTML}{1A1A1A}
 \definecolor{barravazia}{HTML}{7F8C8D}
@@ -725,37 +941,46 @@ A interface gráfica de um aplicativo de transferência de arquivos exibe o prog
 
 % LAYER 2: Barra de Progresso
 \fill[barravazia, rounded corners=2pt] (1, 1.2) rectangle (6, 1.6);
-\fill[barracheia, rounded corners=2pt] (1, 1.2) rectangle (3, 1.6); % 40% da barra (2/5 de 5cm)
+\fill[barracheia, rounded corners=2pt] (1, 1.2) rectangle (3, 1.6); % 40% da barra
 
 % LAYER 3: Informações de Texto
 \node[text=texto, font=\bfseries] at (3.5, 2) {Progresso do Download};
 \node[text=texto, font=\bfseries] at (1.5, 0.7) {40\% Concluído};
 \node[text=barracheia, font=\bfseries] at (5.2, 0.7) {Baixado: 120 MB};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 Baseando-se nos dados numéricos exibidos no painel do aplicativo, utilize o raciocínio proporcional para calcular o tamanho total exato desse arquivo em Megabytes ($ \textbf{MB} $).
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 47}
-Para preparar a coloração de uma fachada, um pintor mistura tinta acrílica azul e tinta acrílica amarela na razão estrita de $ \textbf{2 partes} $ de azul para cada $ \textbf{5 partes} $ de amarelo. Se ele despejar no balde de mistura exatos $ \textbf{750 ml} $ de tinta amarela, determine a quantidade proporcional de tinta azul que deverá ser adicionada.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{47.} Para preparar a coloração de uma fachada, um pintor mistura tinta acrílica azul e tinta acrílica amarela na razão estrita de $ \textbf{2 partes} $ de azul para cada $ \textbf{5 partes} $ de amarelo. Se ele despejar no balde de mistura exatos $ \textbf{750 ml} $ de tinta amarela, determine a quantidade proporcional de tinta azul que deverá ser adicionada para manter a tonalidade original.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 48}
-(Estilo UNICAMP - Adaptada) Um instituto de geografia publicou o estudo demográfico de um estado em franco desenvolvimento. O relatório aponta que a região possui uma população consolidada de $ \textbf{2.400.000 habitantes} $ distribuída por uma área territorial idêntica a $ \textbf{60.000 km}^{2} $. Calcule a razão que expressa a densidade demográfica desse estado e apresente o resultado final com a unidade de medida adequada.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{48.} O aluno fictício Thiago precisava calcular a densidade demográfica de um pequeno município que possui $ \textbf{5.000 habitantes} $ e uma área territorial de $ \textbf{250 km}^{2} $. Ele escreveu o seguinte cálculo na lousa:
+\textit{"Densidade é uma divisão. Se eu dividir a área pelo número de pessoas, terei $ 250 \div 5000 = 0,05 $."}
+\begin{boxresponda}
+\textbf{Responda:} Thiago errou a modelagem conceitual da razão. Explique textualmente o que significa densidade demográfica, identifique o erro na montagem da fração dele e efetue o cálculo correto apresentando a unidade de medida adequada.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 49}
-Um barista prepara uma bebida fria artesanal misturando concentrado de café expresso e leite evaporado. Os recipientes medidores abaixo ilustram a dosagem exata extraída para a montagem de um único copo da bebida.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{49.} Um barista prepara uma bebida fria artesanal misturando concentrado de café expresso e leite evaporado. Os recipientes medidores abaixo ilustram a dosagem exata extraída para a montagem de um único copo da bebida.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{fundo}{HTML}{F8F9F9}
 \definecolor{cafe}{HTML}{5D4037}
-\definecolor{leite}{HTML}{cdd4d4}
+\definecolor{leite}{HTML}{e7e7e7}
 \definecolor{vidro}{HTML}{BDC3C7}
 \definecolor{texto}{HTML}{2C3E50}
 
@@ -780,32 +1005,38 @@ Um barista prepara uma bebida fria artesanal misturando concentrado de café exp
 }
 \node[text=texto, font=\bfseries\small] at (5, 3.3) {250 ml};
 \node[text=texto, font=\bfseries] at (5, -0.3) {Leite Evaporado};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 A partir dos volumes extraídos visualmente dos medidores, estabeleça a razão matemática entre a quantidade de extrato de café e a quantidade de leite evaporado. Entregue a resposta na sua forma irredutível.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 50}
-Organize as ideias: na matemática, dizemos que duas frações formam uma proporção verdadeira quando elas são equivalentes. Explique de forma prática, utilizando a ideia de simplificação de frações, por que a razão $ \mfrac{4}{6} $ representa exatamente a mesma proporção que $ \mfrac{10}{15} $.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{50.} Organize as ideias: na matemática, dizemos que duas frações formam uma proporção verdadeira quando elas são equivalentes. Explique de forma prática, utilizando a ideia de simplificação de frações, por que a razão $ \mfrac{4}{6} $ representa exatamente a mesma proporção que $ \mfrac{10}{15} $.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 51}
-(ENEM - Adaptada) A cozinheira de um restaurante industrial segue uma ficha técnica que indica o uso de $ \textbf{250 g} $ de farinha de rosca para empanar filés suficientes para atender uma mesa com $ \textbf{4 pessoas} $. Certo dia, ela recebeu uma reserva exclusiva para um banquete com $ \textbf{10 pessoas} $. Assinale a alternativa que traz a quantidade proporcional exata de farinha de rosca que ela deverá utilizar.
-a) $ 350 \text{ g} $ \\[0.3cm]
-b) $ 400 \text{ g} $ \\[0.3cm]
-c) $ 550 \text{ g} $ \\[0.3cm]
-d) $ 625 \text{ g} $ \\[0.3cm]
-e) $ 750 \text{ g} $
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{51.} (ENEM - Adaptada) A cozinheira de um restaurante industrial segue uma ficha técnica que indica o uso de $ \textbf{250 g} $ de farinha de rosca para empanar filés suficientes para atender uma mesa com $ \textbf{4 pessoas} $. Certo dia, ela recebeu uma reserva exclusiva para um banquete com $ \textbf{10 pessoas} $. Assinale a alternativa que traz a quantidade proporcional exata de farinha de rosca que ela deverá utilizar.
+\begin{enumerate}[label=\alph*)]
+    \item $ 400 \text{ g} $
+    \item $ 500 \text{ g} $
+    \item $ 550 \text{ g} $
+    \item $ 625 \text{ g} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 52}
-O computador de bordo de um veículo de frota empresarial armazena os dados das viagens realizadas para auditar a eficiência energética do motorista. A tela exibe o relatório da última entrega intermunicipal concluída.
-
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\textbf{52.} O computador de bordo de um veículo de frota empresarial armazena os dados das viagens realizadas para auditar a eficiência energética do motorista. A tela exibe o relatório da última entrega intermunicipal concluída.
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{painel}{HTML}{2C3E50}
 \definecolor{visor}{HTML}{ECF0F1}
@@ -814,25 +1045,23 @@ O computador de bordo de um veículo de frota empresarial armazena os dados das 
 
 % --- APLICANDO DROP SHADOW ---
 % LAYER 1: Estrutura do Painel Veicular
-\fill[painel, rounded corners=6pt, drop shadow={opacity=0.4, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (8, 3.5);
+\fill[painel, rounded corners=6pt, drop shadow={opacity=0.4, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (9, 3.5);
 
 % LAYER 2: Tela Digital Principal
-\fill[visor, rounded corners=3pt, drop shadow={opacity=0.2}] (0.3, 0.3) rectangle (7.7, 3.2);
+\fill[visor, rounded corners=3pt, drop shadow={opacity=0.2}] (0.3, 0.3) rectangle (8.7, 3.2);
 
 % LAYER 3: Divisórias e Informações
-\draw[painel, thick, dashed] (3.7, 0.5) -- (3.7, 3);
-\node[text=texto, font=\bfseries\Large] at (1.9, 2) {360 km};
-\node[text=texto, font=\bfseries\small] at (1.9, 1.2) {Distância Percorrida};
+\draw[painel, thick, dashed] (4.5, 0.5) -- (4.5, 3);
+\node[text=texto, font=\bfseries\Large] at (2.25, 2) {360 km};
+\node[text=texto, font=\bfseries\small] at (2.25, 1.2) {Distância Percorrida};
 
-\node[text=destaque, font=\bfseries\Large] at (5.7, 2) {30 Litros};
-\node[text=texto, font=\bfseries\small] at (5.7, 1.2) {Combustível Consumido};
+\node[text=destaque, font=\bfseries\Large] at (6.5, 2) {30 Litros};
+\node[text=texto, font=\bfseries\small] at (6.5, 1.2) {Combustível Consumido};
 
-\node[fill=painel, text=white, rounded corners=2pt, inner sep=2pt, font=\bfseries\footnotesize] at (3.85, 2.9) {RELATÓRIO DE ROTA};
-
+\node[fill=painel, text=white, rounded corners=2pt, inner sep=2pt, font=\bfseries\footnotesize] at (4.5, 2.9) {RELATÓRIO DE ROTA};
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-
 A eficiência energética (ou consumo médio) de um carro no Brasil é mensurada pela razão entre a distância percorrida e a quantidade de combustível consumido. Utilizando os dados da tela digital, calcule a eficiência dessa viagem em quilômetros por litro ($ \textbf{km/L} $).
 
 \end{multicols*}
