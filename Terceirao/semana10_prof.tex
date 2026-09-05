@@ -1,0 +1,239 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1cm, right=1cm, headheight=12pt, headsep=0.4cm]{geometry}
+\usepackage{graphicx}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[R]{\scriptsize\bfseries\textcolor{gray!50}{\MakeUppercase{MATEMÁTICA} $\vert$ GABARITO PROFESSOR $\vert$ SEMANA 10}}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{CorGabarito}{HTML}{27AE60} 
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{
+    colback=gray!5,         
+    colframe=gray!60,      
+    boxrule=0pt,           
+    leftrule=3pt,          
+    sharp corners,         
+    left=8pt, right=0pt,   
+    top=4pt, bottom=4pt,
+    fontupper=\small      
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{black}\fontsize{13}{15}\bfseries\raggedright}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+\begin{document}
+
+\noindent
+\begin{minipage}[t]{0.12\linewidth}
+    \vspace{0pt}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.85\linewidth}
+    \vspace{0pt}
+    \begin{tcolorbox}[colback=white, colframe=gray!50, arc=4pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt, top=6pt, bottom=6pt]
+        \begin{minipage}[c]{0.65\linewidth}
+            \Large\bfseries MANUAL DO PROFESSOR (RESOLUÇÕES)
+        \end{minipage}
+        \hfill
+        \begin{minipage}[c]{0.33\linewidth}
+            \raggedleft\small\bfseries\textcolor{gray!70!black}{\MakeUppercase{MATEMÁTICA}}
+        \end{minipage}
+    \end{tcolorbox}
+    \vspace{0.15cm} 
+    \begin{tcolorbox}[colback=white, colframe=gray!50, arc=4pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt, top=2pt, bottom=2pt]
+        \small\bfseries\textcolor{gray!85}{Ano/Série:} \textcolor{black}{3º ANO / PRÉ-VESTIBULAR} \hspace{2.5cm} \textcolor{gray!85}{Bloco:} \textcolor{black}{SEMANA 10}
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{0.7cm}
+\noindent\rule{\linewidth}{1.2pt} 
+\vspace{0.4cm}
+
+\raggedcolumns
+\begin{multicols*}{2}
+
+\vspace{0.5cm}
+\subsection*{Semana 10: Análise e Diagnóstico de Soluções}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.2pt} 
+\vspace{0.2cm}
+
+\textbf{1. Gabarito: \textcolor{CorGabarito}{D}}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} A armadilha central da questão está no uso impulsivo do diâmetro. O cálculo exige o raio (metade do diâmetro).
+\\[0.1cm]
+1. Pizza Média ($D = 30$, logo $R = 15$): $A = 3 \cdot (15)^2 = 3 \cdot 225 = 675$ cm².
+\\[0.1cm]
+2. Pizza Grande ($D = 40$, logo $R = 20$): $A = 3 \cdot (20)^2 = 3 \cdot 400 = 1200$ cm².
+\\[0.1cm]
+Diferença: $1200 - 675 = 525$ cm².
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{2. Refutação Estratégica (Questão Discursiva)}
+\begin{boxresponda}
+\textbf{Diagnóstico do Erro:} O proprietário comprou rolos a mais. Ele precisa calcular o perímetro (comprimento da circunferência).
+\\[0.1cm]
+$C = 2 \cdot \pi \cdot R = 2 \cdot 3,14 \cdot 15 = 94,2$ metros de tela.
+\\[0.1cm]
+Se cada rolo possui \textbf{50 m}, para cobrir \textbf{94,2 m} ele precisa comprar o mínimo múltiplo superior de 50, que são \textbf{2 rolos} (totalizando \textbf{100 m} de tela).
+\\[0.1cm]
+\textbf{Correção:} Com 2 rolos, a sobra real será de $100 - 94,2 = 5,8$ metros. A decisão de comprar 3 rolos gera um desperdício financeiro injustificado.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{3. Coroa Circular (Questão Discursiva)}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} A pavimentação ocorre em uma coroa circular. Subtrai-se a área menor da área maior.
+\\[0.1cm]
+Área Total da Praça: $A_{maior} = \pi \cdot (20)^2 = 400\pi$ m².
+\\[0.1cm]
+Área do Chafariz: $A_{menor} = \pi \cdot (5)^2 = 25\pi$ m².
+\\[0.1cm]
+Área de Pavimentação: $400\pi - 25\pi = 375\pi$ m².
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{4. Gabarito: \textcolor{CorGabarito}{C}}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} O comprimento de uma volta completa do pneu é o perímetro. O diâmetro é \textbf{60 cm} ($R = 30$ cm $= 0,3$ m).
+\\[0.1cm]
+$C = 2 \cdot 3,14 \cdot 0,3 = 1,884$ metros por volta.
+\\[0.1cm]
+O número de voltas ($N$) é a distância total dividida pelo perímetro: $N = \mfrac{1884}{1,884} = 1000$ voltas completas.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{5. Diagnóstico Lógico (Questão Discursiva)}
+\begin{boxresponda}
+\textbf{Diagnóstico do Erro:} O estudante confundiu o total de graus de um círculo. Ele dividiu por 3 assumindo que o total seria de 180 graus (meia-volta), mas um círculo completo possui \textbf{360 graus}.
+\\[0.1cm]
+\textbf{Correção (Proporção):} O ângulo de \textbf{60 graus} representa exatamente a sexta parte da circunferência total ($\mfrac{60}{360} = \mfrac{1}{6}$).
+\\[0.1cm]
+Área real monitorada = $\mfrac{144\pi}{6} = 24\pi$ km².
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{6. Gabarito: \textcolor{CorGabarito}{A}}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} Cálculo de área hachurada (restante). Extrai-se a área do quadrado e subtrai-se a do círculo inscrito (onde o diâmetro é igual ao lado).
+\\[0.1cm]
+Área do Quadrado: $10 \cdot 10 = 100$ m².
+\\[0.1cm]
+O raio do círculo é \textbf{5 m}. Área do Círculo = $\pi \cdot R^2 = 3,1 \cdot (5)^2 = 3,1 \cdot 25 = 77,5$ m².
+\\[0.1cm]
+Grama (Área Restante): $100 - 77,5 = 22,5$ m².
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{7. Julgamento Analítico (Questão Discursiva)}
+\begin{boxresponda}
+\textbf{Veredito: VERDADEIRA.}
+\\[0.1cm]
+\textbf{Prova Algébrica:}
+Seja o raio inicial $R$. O novo raio será $R' = 2R$.
+\\[0.1cm]
+Perímetro Inicial: $C = 2\pi R$.
+Perímetro Final: $C' = 2\pi (2R) = 4\pi R$. Logo, $C' = 2 \cdot C$ (Dobra).
+\\[0.1cm]
+Área Inicial: $A = \pi R^2$.
+Área Final: $A' = \pi (2R)^2 = \pi \cdot 4R^2 = 4\pi R^2$. Logo, $A' = 4 \cdot A$ (Quadruplica). A dimensão quadrática justifica o fenômeno geométrico.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{8. Gabarito: \textcolor{CorGabarito}{C}}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} A pista é formada por duas retas e dois semicírculos. A união dos dois semicírculos forma uma circunferência completa.
+\\[0.1cm]
+Trechos Retos: $100 + 100 = 200$ metros.
+\\[0.1cm]
+Curvas (Circunferência com diâmetro 60, logo $R = 30$):
+$C = 2 \cdot 3 \cdot 30 = 180$ metros.
+\\[0.1cm]
+Total = $200 + 180 = 380$ metros.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{9. Modelagem Aplicada (Questão Discursiva)}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} Engrenagens acopladas trabalham com grandezas inversamente proporcionais. A engrenagem menor gira mais vezes para compensar seu raio menor.
+\\[0.1cm]
+Equação de Conservação: $V_1 \cdot R_1 = V_2 \cdot R_2$
+\\[0.1cm]
+$10 \cdot 10 = V_2 \cdot 25$
+\\[0.1cm]
+$100 = 25 \cdot V_2 \longrightarrow V_2 = \mfrac{100}{25} = 4$ voltas.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{10. Gabarito: \textcolor{CorGabarito}{B}}
+\begin{boxresponda}
+\textbf{Resolução Analítica:} Regra de três simples para o comprimento de arco.
+\\[0.1cm]
+Comprimento Total (360 graus): $C = 2 \cdot \pi \cdot 18 = 36\pi$ cm.
+\\[0.1cm]
+O ângulo de \textbf{40 graus} representa a nona parte da circunferência ($\mfrac{360}{40} = 9$). 
+\\[0.1cm]
+Portanto, o arco mede: $\mfrac{36\pi}{9} = 4\pi$ cm.
+\end{boxresponda}
+
+\end{multicols*}
+\end{document}

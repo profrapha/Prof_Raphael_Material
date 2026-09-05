@@ -1,0 +1,294 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[sfdefault]{roboto}
+% Geometria exata baseada nas marcações milimétricas (Área de texto começando em 1.5cm)
+\usepackage[top=1.5cm, bottom=1.5cm, left=1cm, right=1cm, headheight=12pt, headsep=0.4cm]{geometry}
+\usepackage{graphicx}
+
+% --- MINI-CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+% Mini-cabeçalho mais claro (gray!50), alinhado ao topo, com BIMESTRE no final
+\fancyhead[R]{\scriptsize\bfseries\textcolor{gray!50}{\MakeUppercase{MATEMÁTICA} $\vert$ Bloco SEMANA 10 $\vert$ 2º BIMESTRE}}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+
+% --- BOX RESPONDA (ESTILO BLOCO DE CITAÇÃO C/ LINHA LATERAL) ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{
+    colback=white,         
+    colframe=gray!60,      
+    boxrule=0pt,           
+    leftrule=3pt,          
+    sharp corners,         
+    left=8pt, right=0pt,   
+    top=2pt, bottom=2pt,
+    fontupper=\small      
+}
+
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{black}\fontsize{13}{15}\bfseries\raggedright}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.12\linewidth}
+    \vspace{0pt}
+    % Substitua 'logo.png' pelo brasão da sua escola se desejar compilar com logo.
+    % \includegraphics[width=\linewidth, height=1.65cm, keepaspectratio]{logo.png} 
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.85\linewidth}
+    \vspace{0pt}
+    % BLOCO 1 (Canto inferior esquerdo reto - southwest)
+    \begin{tcolorbox}[colback=white, colframe=gray!50, arc=4pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt, top=6pt, bottom=6pt]
+        \begin{minipage}[c]{0.65\linewidth}
+            \Large\bfseries CADERNO DE ATIVIDADES
+        \end{minipage}
+        \hfill
+        \begin{minipage}[c]{0.33\linewidth}
+            \raggedleft\small\bfseries\textcolor{gray!70!black}{\MakeUppercase{MATEMÁTICA}}
+        \end{minipage}
+    \end{tcolorbox}
+    \vspace{0.15cm} % Distanciamento entre os blocos
+    % BLOCO 2 (Canto superior esquerdo reto - northwest)
+    \begin{tcolorbox}[colback=white, colframe=gray!50, arc=4pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt, top=2pt, bottom=2pt]
+        \small\bfseries\textcolor{gray!85}{Ano/Série:} \textcolor{black}{3º ANO / PRÉ-VESTIBULAR} \hspace{2.5cm} \textcolor{gray!85}{Bloco:} \textcolor{black}{SEMANA 10}
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{0.7cm} % Empurra a linha grossa exatamente para a marca de 3.9cm
+\noindent\rule{\linewidth}{1.2pt} 
+\vspace{0.4cm}
+% --- FIM DO CABEÇALHO ---
+
+\raggedcolumns
+\begin{multicols*}{2}
+
+\vspace{0.5cm}
+\subsection*{Semana 10: O Círculo e a Circunferência}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.2pt} 
+\vspace{0.2cm}
+
+\textbf{1.} (ENEM 2012) Uma pizzaria oferece duas opções de tamanho: a pizza média, com diâmetro de \textbf{30 cm}, e a pizza grande, com diâmetro de \textbf{40 cm}. Um cliente deseja saber a diferença real de tamanho (área) entre as duas opções antes de decidir o pedido. 
+
+Considerando o valor de $\pi = 3$, a diferença de área entre a pizza grande e a pizza média, em centímetros quadrados, é exatamente de:
+
+a) 75\\[0.3cm]
+b) 100\\[0.3cm]
+c) 300\\[0.3cm]
+d) 525\\[0.3cm]
+e) 2.100\\[0.3cm]
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{2.} (ENEM - Adaptada) O proprietário de um sítio deseja cercar um lago de formato perfeitamente circular utilizando uma tela especial de arame. Ele verificou que a distância do centro do lago até a sua margem é de \textbf{15 m}. Sabe-se que a tela é vendida exclusivamente em rolos fechados de \textbf{50 m}. Considere $\pi = 3,14$.
+
+Com base nestes dados, o proprietário concluiu que precisaria comprar \textbf{3 rolos} de tela para dar uma volta completa no lago e ainda guardar uma sobra de \textbf{55,8 m}. 
+
+Refute a conclusão do proprietário, provando matematicamente por que a quantidade de rolos e a sobra calculadas por ele estão incorretas. Determine a quantidade real de rolos necessários.
+
+\vspace{2.5cm}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{3.} (FUVEST) Em um parque, há uma grande praça circular com raio de \textbf{20 m}. Bem no centro dessa praça, foi construído um chafariz, também de formato circular, com raio de \textbf{5 m}. A prefeitura pretende pavimentar com blocos de concreto toda a área da praça, deixando intacta apenas a área já ocupada pelo chafariz. 
+
+Determine, em metros quadrados e em função de $\pi$, a área exata que receberá a pavimentação de concreto.
+
+\vspace{2.5cm}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{4.} (ENEM 2014) Uma bicicleta de marcha única possui o pneu dianteiro com \textbf{60 cm} de diâmetro. Um ciclista amador vai realizar um percurso em linha reta medindo exatos \textbf{1.884 m}. 
+
+Considerando a aproximação $\pi = 3,14$, determine o número total de voltas completas que o pneu dianteiro dessa bicicleta dará até o final do trajeto percorrido.
+
+a) 100\\[0.3cm]
+b) 500\\[0.3cm]
+c) 1.000\\[0.3cm]
+d) 10.000\\[0.3cm]
+e) 100.000\\[0.3cm]
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{5.} (Estilo ENEM) Um radar de trânsito fixo consegue monitorar uma área da rodovia que possui formato geométrico de um setor circular. O manual do equipamento informa que ele possui um raio de alcance de \textbf{12 km} e sua lente monitora um ângulo de varredura de exatos \textbf{60 graus}.
+
+Para calcular a área monitorada, um estudante de engenharia apresentou a seguinte resolução em seu relatório:
+
+\textit{"Se a área do círculo total é calculada por $\pi \cdot R^2$, temos $\pi \cdot 12^2 = 144\pi$. Como o ângulo é de 60 graus, e o círculo tem 360 graus, eu devo dividir a área total por 3, já que $3 \times 60 = 180$, que é a metade da circunferência. Portanto, a área de varredura é de $48\pi$ km²."}
+
+\begin{boxresponda}
+\textbf{Responda:} Qual foi o erro conceitual primário na linha de raciocínio do estudante ao estabelecer a proporção do setor circular? Corrija o cálculo estruturando a proporção correta e apresente a área real coberta pelo radar.
+\end{boxresponda}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{6.} (ENEM 2018) Um projeto paisagístico baseia-se em um canteiro central de formato quadrado, com lado medindo \textbf{10 m}. O arquiteto responsável inscreveu dentro deste quadrado o maior espelho d'água circular possível, de modo que a borda do círculo tangencie os quatro lados do canteiro. O espaço do quadrado que não foi ocupado pela água será preenchido com grama natural.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{asfalto}{HTML}{2F3640}
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{agua}{HTML}{3498DB}
+
+% --- APLICANDO DROP SHADOW E ROUNDED CORNERS ---
+% LAYER 1: Canteiro quadrado com grama e sombra
+\fill[drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, grama, rounded corners=2pt] (-2.5,-2.5) rectangle (2.5,2.5);
+
+% LAYER 2: Espelho d'água (Círculo)
+\fill[agua, opacity=0.85] (0,0) circle (2.5);
+\draw[white, thick] (0,0) circle (2.5);
+
+% LAYER 3: Cotas com máscara de legibilidade
+\draw[|<->|, thick, asfalto] (-2.5,-2.9) -- (2.5,-2.9) node[midway, fill=white, inner sep=2pt] {\textbf{10 m}};
+\draw[dashed, thick, white] (0,0) -- (2.5,0);
+\fill[asfalto] (0,0) circle (2pt);
+\node[fill=agua, inner sep=1pt, text=white] at (1.25, 0.25) {\textbf{R}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando $\pi = 3,1$, a área aproximada que receberá a aplicação da grama natural, em metros quadrados, é igual a:
+
+a) 22,5\\[0.3cm]
+b) 40,0\\[0.3cm]
+c) 69,0\\[0.3cm]
+d) 78,5\\[0.3cm]
+e) 100,0\\[0.3cm]
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{7.} (FUVEST) Analise detalhadamente a afirmação a seguir sobre as propriedades fundamentais da geometria plana:
+
+\textit{"Ao se duplicar o comprimento do raio de um círculo qualquer, o valor do seu perímetro dobra, porém o valor da sua área quadruplica, uma vez que a dimensão radial se encontra elevada ao quadrado na determinação da superfície."}
+
+Julgue a afirmativa como VERDADEIRA ou FALSA. Justifique a sua resposta apresentando o equacionamento algébrico que comprova o comportamento da área e do perímetro após a alteração.
+
+\vspace{2.5cm}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{8.} (ENEM 2013) Uma pista de atletismo foi projetada na forma de um grande retângulo ladeado por dois semicírculos idênticos em suas extremidades. O trecho retangular central tem \textbf{100 m} de comprimento. A largura total da pista, que corresponde exatamente ao diâmetro de cada semicírculo, é de \textbf{60 m}.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{pista}{HTML}{E67E22}
+\definecolor{linha}{HTML}{FFFFFF}
+\definecolor{grama}{HTML}{2ECC71}
+
+% --- APLICANDO DROP SHADOW E LAYERS ---
+% LAYER 1: Sombra e Fundo Verde (Grama do Estádio)
+\fill[drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}, grama, rounded corners=8pt] (-4,-2.5) rectangle (4,2.5);
+
+% LAYER 2: Pista de Atletismo (Retângulo + 2 Semicírculos)
+\fill[pista] (-2,-1.5) rectangle (2,1.5);
+\fill[pista] (-2,0) circle (1.5);
+\fill[pista] (2,0) circle (1.5);
+
+% LAYER 3: Área central em grama
+\fill[grama] (-2,-1) rectangle (2,1);
+\fill[grama] (-2,0) circle (1);
+\fill[grama] (2,0) circle (1);
+
+% LAYER 4: Linhas de marcação
+\draw[linha, thick, dashed] (-2,-1.25) rectangle (2,1.25);
+\draw[linha, thick, dashed] (-2,0) circle (1.25);
+\draw[linha, thick, dashed] (2,0) circle (1.25);
+\draw[linha, thick] (-2,-1) -- (-2,1);
+\draw[linha, thick] (2,-1) -- (2,1);
+
+% LAYER 5: Cotas com fundo máscara (inner sep)
+\draw[|<->|, thick] (-2, 1.8) -- (2, 1.8) node[midway, fill=grama, inner sep=2pt, text=white] {\textbf{100 m}};
+\draw[|<->|, thick] (3.8, -1.5) -- (3.8, 1.5) node[midway, fill=grama, inner sep=2pt, text=white] {\textbf{60 m}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Um atleta de corrida treina exatamente sobre a marcação da linha mais interna desta pista. Considerando o valor de $\pi = 3$, qual é a distância exata percorrida pelo atleta ao completar uma volta inteira na pista?
+
+a) 260 m\\[0.3cm]
+b) 320 m\\[0.3cm]
+c) 380 m\\[0.3cm]
+d) 400 m\\[0.3cm]
+e) 480 m\\[0.3cm]
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{9.} (ENEM 2020) No mecanismo interno de uma máquina industrial, engrenagens menores transmitem rotação para engrenagens maiores de forma acoplada. O sistema possui uma engrenagem motora de raio \textbf{10 cm} firmemente acoplada a uma engrenagem movida de raio \textbf{25 cm}. 
+
+Considerando o princípio das grandezas proporcionais em roldanas e polias, determine a quantidade de voltas completas que a engrenagem maior dará quando a engrenagem menor completar exatamente \textbf{10 voltas}. Apresente a memória de cálculo.
+
+\vspace{2.5cm}
+
+\vspace{0.4cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\vspace{0.2cm}
+
+\textbf{10.} (FUVEST - Adaptada) O comprimento de um arco é determinado pelo ângulo central que o "enxerga". Considere uma circunferência maciça cujo raio mede exatamente \textbf{18 cm}. Um recorte específico desta circunferência forma um arco cujo ângulo central mede \textbf{40 graus}. 
+
+O comprimento exato da linha correspondente a esse arco, expresso em função de $\pi$, é de:
+
+a) $2\pi$ cm\\[0.3cm]
+b) $4\pi$ cm\\[0.3cm]
+c) $6\pi$ cm\\[0.3cm]
+d) $8\pi$ cm\\[0.3cm]
+e) $12\pi$ cm\\[0.3cm]
+
+\end{multicols*}
+\end{document}
