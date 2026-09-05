@@ -109,37 +109,41 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
 **Seção 3: Formatação Visual, Sintaxe LaTeX e Integração TikZ OBRIGATÓRIA**
 
 3.1. **MOLDES OBRIGATÓRIOS DE QUESTÃO (Copie a estrutura exata):**
-  Você (IA) tem APENAS três moldes para iniciar uma questão/bloco, além da caixa de dicas opcional. É ESTRITAMENTE PROIBIDO usar "\subsubsection*{QUESTÃO}". As questões devem começar apenas com o número em negrito. Todo final de questão deve ser fechado com `\vspace{0.3cm}`.
+ Você (IA) tem APENAS três moldes para iniciar uma questão/bloco, além da caixa de dicas opcional. É ESTRITAMENTE PROIBIDO usar "\subsubsection*{QUESTÃO}". O espaçamento deve ser controlado ESTRITAMENTE pelas variáveis dinâmicas do preâmbulo.
 
-  * **MOLDE A (Para iniciar um NOVO CAPÍTULO):**
-    \subsection*{Nome do Capítulo ou Tema Aqui}
-    \vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
-    \par\vspace{0.2cm}
-    \textbf{1.} [Texto da primeira questão do capítulo aqui]
-    \vspace{0.3cm}
+ * **MOLDE A (Para iniciar um NOVO CAPÍTULO):**
+   \subsection*{Nome do Capítulo ou Tema Aqui}
+   \vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+   \par\vspace{\espacoPosTitulo}
+   \textbf{1.} [Texto da primeira questão do capítulo aqui]
+   \par\vspace{\espacoQuestao}
 
-  * **MOLDE B (Para as DEMAIS questões normais - Diretas ou ENEM):**
-    \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
-    \par\vspace{0.2cm}
-    \textbf{XX.} [Texto da questão aqui]
-    \vspace{0.3cm}
+ * **MOLDE B (Para as DEMAIS questões normais - Diretas ou ENEM):**
+   \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+   \par\vspace{\espacoPreQuestao}
+   \textbf{XX.} [Texto da questão aqui]
+   \par\vspace{\espacoQuestao}
 
-  * **MOLDE C (Para Questões de Diagnóstico Lógico - O "Box Responda"):**
-    \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
-    \par\vspace{0.2cm}
-    \textbf{XX.} [Texto do contexto ou da resolução fictícia do aluno que errou]
-    \begin{boxresponda}
-    \textbf{Responda:} [Roteiro de perguntas guiadas fatiando o raciocínio. PROIBIDO dar spoilers matemáticos.]
-    \end{boxresponda}
-    \vspace{0.3cm}
+ * **MOLDE C (Para Questões de Diagnóstico Lógico - O "Box Responda"):**
+   \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+   \par\vspace{\espacoPreQuestao}
+   \textbf{XX.} [Texto do contexto ou da resolução fictícia]
+   \begin{boxresponda}
+   \textbf{Responda:} [Roteiro guiado]
+   \end{boxresponda}
+   \par\vspace{\espacoQuestao}
 
-  * **RECURSO ADICIONAL: CAIXA DE DICAS (`boxdica`):**
-    Se a questão (especialmente as de Nível Desafio/Fase 2) exigir um empurrão cognitivo para o aluno não travar, insira a caixa de dicas logo após a pergunta ou após o `boxresponda`, antes do fechamento de espaçamento da questão:
-    \begin{boxdica}
-      [Escreva aqui a dica metodológica ou o alerta matemático]
-    \end{boxdica}
+ * **RECURSO ADICIONAL: CAIXA DE DICAS (`boxdica`):**
+   \begin{boxdica}
+     [Escreva aqui a dica metodológica ou o alerta matemático]
+   \end{boxdica}
 
-  * **Espaçamento de Listas:** É OBRIGATÓRIO deixar uma linha em branco no código-fonte (duplo Enter) entre o final do enunciado e o início das alternativas (a, b, c) ou afirmativas (I, II, III).
+ * **(TRAVA DE LISTAS) Alternativas e Afirmativas:** 
+   É ESTRITAMENTE PROIBIDO criar alternativas manuais com quebras de linha (`\\` ou `\par`). Para que o espaçamento dinâmico do documento funcione, você DEVE usar os ambientes automáticos do pacote enumitem:
+   - Para alternativas múltiplas (a, b, c, d): Use `\begin{enumerate}[label=\alph*)] ... \end{enumerate}`.
+   - Para afirmativas de julgamento (I, II, III): Use `\begin{enumerate}[label=\Roman*.] ... \end{enumerate}`.
+   - Se for estritamente necessário quebrar uma linha manual dentro do texto, use `\\[\espacoAlt]`.
+
   * **Frações e Fórmulas:** É OBRIGATÓRIO usar `\mfrac{...}{...}` (pacote nccmath) para frações no meio do texto. PROIBIDO usar `\frac` ou `\dfrac`.
 
 3.2. **Regras Visuais e Gráficos (TikZ):**
@@ -194,14 +198,56 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 
-% --- FONTE ---
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
 \usepackage{helvet} 
 \renewcommand{\familydefault}{\sfdefault}
 
-% --- GEOMETRIA ---
+% --- GEOMETRIA E ESPAÇAMENTO ---
 \usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
-\usepackage{graphicx}
 \usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0} % Espaçamento simples
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+% ==========================================
+%   PAINEL DE CONTROLE DE ESPAÇAMENTO E ESCALA
+% ==========================================
+% Altere os valores abaixo para apertar ou expandir o documento inteiro
+
+% 1. Espaços das Questões
+\newlength{\espacoPosTitulo}
+\setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
+
+\newlength{\espacoPreQuestao}
+\setlength{\espacoPreQuestao}{0.3cm} % Espaço entre a linha fina divisória e a questão
+
+\newlength{\espacoQuestao}
+\setlength{\espacoQuestao}{0.4cm}    % Espaço de "respiro" no FINAL de cada questão
+
+\newlength{\espacoAlt}
+\setlength{\espacoAlt}{0.3cm}        % Espaço para quebras manuais de alternativas
+
+% 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
+\usepackage{enumitem}
+% Altere os valores (como itemsep) para apertar as listas (ex: mude 0.2cm para 0pt)
+\setlist{
+    itemsep=0.2cm,    % Espaço vertical entre a letra a), b), c)
+    topsep=0.1cm,     % Espaço em branco antes de começar a lista
+    parsep=0pt,       % Espaço entre parágrafos dentro de um mesmo item
+    partopsep=0pt     % Espaço extra no topo da lista
+}
+
+% 3. Controle de Escala de Imagens
+\newlength{\larguraTikz}
+\setlength{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
+% ==========================================
+
+% --- MATEMÁTICA ---
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
 
 % --- CORES CUSTOMIZADAS PREMIUM ---
 \usepackage{xcolor}
@@ -218,7 +264,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \definecolor{CinzaMedio}{HTML}{848484} 
 \definecolor{Cinzablack}{HTML}{353535} 
 
-% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE) ---
+% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
@@ -231,17 +277,10 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 }
 \fancyfoot[C]{\footnotesize Página \thepage} 
 
-\usepackage{setspace}
-\setstretch{1.15}
-\usepackage{parskip}
-\setlength{\parskip}{2pt}
-\setlength{\parindent}{0pt}
-\usepackage{amsmath, amsfonts, amssymb}
-\usepackage{nccmath}
-\usepackage{mathastext}
-
-% --- BOX RESPONDA ---
+% --- CAIXAS DE DESTAQUE (tcolorbox) ---
 \usepackage[most]{tcolorbox}
+
+% 1. Box de Resposta do Aluno
 \newtcolorbox{boxresponda}{
     colback=white,        
     colframe=gray!45,       
@@ -252,10 +291,10 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     width=\linewidth-0.4cm, 
     left=8pt, right=0pt,  
     top=2pt, bottom=2pt,
-    fontupper=\fontsize{9.5}{11.5}\selectfont 
+    fontupper=\small % Ajustado para evitar erro em fórmulas matemáticas
 }
 
-% --- BOX DE DICAS ---
+% 2. Box de Dica (Estilo Ciano Claríssimo)
 \definecolor{CorDicaBorda}{HTML}{17c1be} 
 \definecolor{CorDicaFundo}{HTML}{f3fbfb} 
 \newtcolorbox{boxdica}{
@@ -264,19 +303,19 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     boxrule=0pt,          
     leftrule=2.5pt,         
     sharp corners,        
-    width=\linewidth,     
+    width=\linewidth, % Sem recuo, conforme solicitado
     left=8pt, right=8pt,  
     top=6pt, bottom=6pt,
     halign=center, 
     fontupper=\small      
 }
 
+% --- TÍTULOS (ESTILO EDITORIAL) ---
 \usepackage{titlesec}
-\titleformat{\section}{\color{CorTitUm}\fontsize{13}{15}\bfseries}{\thesection}{0em}{}
-\titlespacing*{\section}{0pt}{5pt}{6pt} 
-\titleformat{\subsection}{\color{black}\fontsize{11}{13}\bfseries\raggedright}{\thesubsection}{0em}{}
-\titlespacing*{\subsection}{0pt}{1pt}{0pt} 
+\titleformat{\section}[block]{\color{black}\large\bfseries}{\thesection}{0em}{}[\vspace{0.1cm}\noindent\rule{\linewidth}{0.8pt}]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
 
+% --- PACOTES DE ESTRUTURA E GRÁFICOS ---
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
 \setlength{\columnseprule}{0.5pt}
@@ -330,6 +369,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \raggedcolumns
 \begin{multicols*}{2}
 \vspace{0.1cm}
+
 
   * **Nos Lotes Intermediários:** Gere apenas as questões (e os códigos TikZ inerentes a elas), mantendo a continuidade. É PROIBIDO repetir o preâmbulo ou o cabeçalho inicial.
   * **No ÚLTIMO LOTE (Entrega Final):** Imediatamente após a última questão da lista, a IA DEVE fechar as colunas digitando `\end{multicols*}` e encerrar com `\end{document}`.
