@@ -1,0 +1,598 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE ---
+% A remoção do 'roboto' aqui permite que a Helvetica assuma o texto encorpado original
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{microtype} 
+
+% --- CORES CUSTOMIZADAS PREMIUM ---
+% Todas as suas cores originais mantidas para não quebrar o resto do arquivo
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[LE]{% Esquerda nas páginas PARES
+    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{{Geometria} $\vert$ Bloco 2 $\vert$ 3 Bimestre}}
+}
+\fancyhead[RO]{% Direita nas páginas ÍMPARES
+    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{{Geometria} $\vert$ Bloco 2 $\vert$ 3 Bimestre}}
+}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+
+% --- BOX RESPONDA ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{
+    colback=white,        
+    colframe=gray!45,       % Barra mais clara
+    boxrule=0pt,          
+    leftrule=1.7pt,         % Espessura da barra reduzida
+    sharp corners,        
+    enlarge left by=0.4cm,  % Recuo externo (aprox. duas letras)
+    width=\linewidth-0.4cm, % Compensa a largura para não estourar a margem direita
+    left=8pt, right=0pt,  
+    top=2pt, bottom=2pt,
+    fontupper=\fontsize{9.5}{11.5}\selectfont % Fonte cravada em 9.5pt
+}
+
+% --- BOX DE DICAS (Fundo ciano claro, borda vibrante e texto centralizado) ---
+\definecolor{CorDicaBorda}{HTML}{17c1be} % Ciano vibrante da barra
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} % Fundo ciano bem clarinho
+
+\newtcolorbox{boxdica}{
+    colback=CorDicaFundo,        
+    colframe=CorDicaBorda,      
+    boxrule=0pt,          
+    leftrule=2.5pt,         
+    sharp corners,        
+    width=\linewidth,     % Largura total da coluna (sem recuo)
+    left=8pt, right=8pt,  
+    top=6pt, bottom=6pt,
+    halign=center, 
+    fontupper=\small      % Usa tamanho padrão reduzido para não dar erro na matemática
+}
+
+% --- TÍTULOS ORIGINAIS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{CorTitUm}\fontsize{13}{15}\bfseries}{\thesection}{0em}{}
+\titlespacing*{\section}{0pt}{5pt}{6pt} 
+\titleformat{\subsection}{\color{black}\fontsize{11}{13}\bfseries\raggedright}{\thesubsection}{0em}{}
+\titlespacing*{\subsection}{0pt}{1pt}{0pt} 
+
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+
+\begin{document}
+\color{Cinzablack}
+\vspace*{-1.7cm}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.09\linewidth}
+    \vspace{8pt}
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../Modelos_Templates/Elv_novo_logo.png} 
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.90\linewidth} % Ajustado para 0.90 para matar o Overfull \hbox
+    \vspace{0pt}
+    \fontfamily{phv}\selectfont
+    
+    % BLOCO 1
+    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \begin{minipage}[c]{0.78\linewidth}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.20\linewidth}
+            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{GEOMETRIA}}
+        \end{minipage}%
+    \end{tcolorbox}
+    \par\vspace{0.18cm} 
+    
+    % BLOCO 2
+    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{9 Ano} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{2}
+    \end{tcolorbox}
+\end{minipage}%
+
+\par\par\vspace{0.5cm} 
+\noindent\rule{\linewidth}{1.5pt} 
+\vspace{-0.7cm}
+% --- FIM DO CABEÇALHO ---
+
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Noções Básicas de Geometria Espacial}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{0.1cm}
+\textbf{1.} Um designer de embalagens está projetando uma caixa especial convexa que possui exatamente \textbf{14} faces, sendo \textbf{8} faces triangulares e \textbf{6} faces octogonais. Para encomendar as conexões metálicas que unirão as arestas nos vértices, ele precisa determinar o número total de vértices dessa embalagem. Modele algebricamente o cálculo do número de arestas e, em seguida, aplique a Relação de Euler para determinar o número de vértices.
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{0.1cm}
+\textbf{2.} Na montagem de um galpão industrial, um engenheiro define o piso nivelado como um plano \textbf{alpha} e um cabo de aço tensionado no teto como uma reta \textbf{r}, estritamente paralela ao plano \textbf{alpha}. Uma máquina, representada por um ponto \textbf{P}, repousa no piso (\textbf{P} pertence a \textbf{alpha}). A partir da máquina \textbf{P}, quantas canaletas retilíneas, totalmente contidas no piso \textbf{alpha}, podem ser instaladas de modo que sejam perfeitamente paralelas ao cabo de aço \textbf{r}? Justifique sua resposta empregando os postulados da geometria de posição.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\par\vspace{0.5cm}
+\textbf{3.} Durante uma aula de laboratório sobre estruturas geométricas, um grupo de alunos discutiu as posições relativas entre as hastes de suporte de uma ponte. O líder do grupo anotou a seguinte conclusão no quadro: "Se pegarmos duas hastes metálicas que não se cruzam (não têm ponto em comum) em nenhum lugar do espaço, podemos garantir matematicamente que essas duas hastes são paralelas."
+\begin{boxresponda}
+\textbf{Responda:} O raciocínio registrado pelo aluno está correto? Diagnostique a falha conceitual (se houver) explicando qual posição relativa específica no espaço tridimensional ele ignorou, e dê um exemplo no cotidiano que prove o erro de sua afirmação.
+\end{boxresponda}
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{4.} O bloco de vidro a seguir possui suportes metálicos nas suas bordas. Considere as arestas prolongadas como retas e os vértices como pontos no espaço tridimensional.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Sombra
+\fill[gray!30, drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}, rounded corners=2pt] (0.5, -0.5) rectangle (3.5, 2.5);
+% LAYER 2: Prisma/Bloco de Vidro
+\draw[thick, metal, fill=vidro!15, rounded corners=1pt] (0,0) -- (3,0) -- (3,3) -- (0,3) -- cycle;
+\draw[thick, metal, fill=vidro!10, rounded corners=1pt] (3,0) -- (4,1) -- (4,4) -- (3,3) -- cycle;
+\draw[thick, metal, fill=vidro!20, rounded corners=1pt] (0,3) -- (1,4) -- (4,4) -- (3,3) -- cycle;
+% Arestas ocultas
+\draw[thick, metal, dashed, rounded corners=1pt] (0,0) -- (1,1) -- (4,1);
+\draw[thick, metal, dashed, rounded corners=1pt] (1,1) -- (1,4);
+% Vértices e Rótulos com máscara (fill=white)
+\node[fill=white, inner sep=1pt, text=black] at (-0.2, -0.2) {\textbf{A}};
+\node[fill=white, inner sep=1pt, text=black] at (3.2, -0.2) {\textbf{B}};
+\node[fill=white, inner sep=1pt, text=black] at (4.2, 0.8) {\textbf{C}};
+\node[fill=white, inner sep=1pt, text=black] at (1.2, 0.8) {\textbf{D}};
+\node[fill=white, inner sep=1pt, text=black] at (-0.2, 3.2) {\textbf{E}};
+\node[fill=white, inner sep=1pt, text=black] at (3.2, 3.2) {\textbf{F}};
+\node[fill=white, inner sep=1pt, text=black] at (4.2, 4.2) {\textbf{G}};
+\node[fill=white, inner sep=1pt, text=black] at (1.2, 4.2) {\textbf{H}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Julgue as afirmativas abaixo acerca das posições relativas presentes na estrutura. Indique (V) para verdadeiro e (F) para falso, justificando rigorosamente os itens falsos.
+
+a) As retas determinadas pelas arestas \textbf{AB} e \textbf{CG} são ortogonais, logo, elas são concorrentes em um ponto do espaço.\par\par\vspace{0.5cm}
+b) A reta que contém a aresta \textbf{EH} e a reta que contém a aresta \textbf{BC} são exemplos clássicos de retas reversas, pois não são paralelas e não possuem ponto de interseção.\par\par\vspace{0.5cm}
+c) Os pontos \textbf{A}, \textbf{F}, \textbf{G} e \textbf{D} são estritamente coplanares, ou seja, pertencem a um mesmo plano que "corta" diagonalmente o bloco.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{5.} Uma fabricante de bolas de couro estuda um novo design costurado formado exclusivamente por \textbf{x} polígonos hexagonais e \textbf{y} polígonos pentagonais, com todos os vértices perfurando a superfície esférica sem "buracos". Construa a expressão algébrica literal fechada que determina o número total de arestas \textbf{A} dessa estrutura em função das variáveis \textbf{x} e \textbf{y}.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{6.} (ENEM - Adaptada) Um lapidador recebeu um cristal bruto e, utilizando cortes precisos a laser, esculpiu a gema no formato de um octaedro regular, apoiado sobre uma base expositora. A estrutura está ancorada por suportes metálicos ao longo de certas arestas.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+% Fundo expositor
+\fill[gray!10, rounded corners=4pt] (-2.5, -3.5) rectangle (2.5, 3.5);
+\fill[gray!80!black, drop shadow={opacity=0.4, shadow xshift=2pt, shadow yshift=-2pt}] (-2, -3) -- (2, -3) -- (2.5, -2.5) -- (-1.5, -2.5) -- cycle;
+% Octaedro (Metade Superior)
+\draw[thick, metal, fill=vidro!30, opacity=0.9] (0,2.5) -- (-1.5,0) -- (1, -0.5) -- cycle;
+\draw[thick, metal, fill=vidro!50, opacity=0.8] (0,2.5) -- (1, -0.5) -- (2, 0.5) -- cycle;
+% Octaedro (Metade Inferior)
+\draw[thick, metal, fill=vidro!70, opacity=0.9] (-1.5,0) -- (1, -0.5) -- (0, -2) -- cycle;
+\draw[thick, metal, fill=vidro!90, opacity=0.8] (1, -0.5) -- (2, 0.5) -- (0, -2) -- cycle;
+% Linhas Ocultas
+\draw[dashed, metal, thick] (-1.5,0) -- (-0.5, 1) -- (2, 0.5);
+\draw[dashed, metal, thick] (0, 2.5) -- (-0.5, 1);
+\draw[dashed, metal, thick] (0, -2) -- (-0.5, 1);
+% Rótulos
+\node[fill=white, inner sep=1pt, text=black] at (0, 2.8) {\textbf{Topo ($T$)}};
+\node[fill=white, inner sep=1pt, text=black] at (0, -2.3) {\textbf{Base ($B$)}};
+\node[fill=white, inner sep=1pt, text=black] at (-1.8, 0) {\textbf{V}};
+\node[fill=white, inner sep=1pt, text=black] at (2.3, 0.5) {\textbf{W}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Em relação às propriedades espaciais desse cristal e considerando a reta que liga o \textbf{Topo ($T$)} à \textbf{Base ($B$)} e a reta que contém a aresta oculta \textbf{VW} (passando por dentro do equador da joia), é correto afirmar que essas retas são:
+
+a) paralelas e coplanares.\par\par\vspace{0.5cm}
+b) concorrentes no centroide do octaedro.\par\par\vspace{0.5cm}
+c) reversas, não coplanares e mantêm a mesma distância ao longo do espaço.\par\par\vspace{0.5cm}
+d) ortogonais, mas não se interceptam (são reversas).\par\par\vspace{0.5cm}
+e) perpendiculares, cruzando-se internamente em um ângulo reto.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{7.} (Estilo VUNESP) Em um projeto arquitetônico, um museu foi desenhado como um grande poliedro convexo maciço. Sabe-se que esse poliedro possui \textbf{20} arestas e apenas dois tipos de faces: \textbf{f} faces quadrangulares e \textbf{t} faces triangulares. Além disso, a contagem de vértices revelou que a estrutura tem exatamente \textbf{9} vértices. 
+O engenheiro estagiário tentou calcular quantas faces triangulares o projeto possui. Prove matematicamente qual é o valor correto de \textbf{t} e apresente a justificativa algébrica completa que refuta a ideia de que esse poliedro poderia ter 10 faces quadrangulares.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{8.} A tesoura de telhado é uma estrutura treliçada de madeira essencial para sustentar a cobertura de residências. O esquema estrutural abaixo detalha a disposição das vigas mestras.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}
+\fill[gray!5] (-4,-1) rectangle (4, 3.5);
+% Vigas da Tesoura (Traços Grossos com Sombra)
+\draw[line width=4pt, madeira!80!black, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-3,0) -- (3,0); 
+\draw[line width=4pt, madeira!80!black] (-3,0) -- (0,2.5) -- (3,0); 
+\draw[line width=3pt, madeira!60!black] (0,0) -- (0,2.5); 
+\draw[line width=3pt, madeira!60!black] (-1.5, 0) -- (-1.5, 1.25); 
+\draw[line width=3pt, madeira!60!black] (1.5, 0) -- (1.5, 1.25); 
+\draw[line width=3pt, madeira!60!black] (-3,0) -- (-1.5, 1.25); 
+\draw[line width=3pt, madeira!60!black] (0,0) -- (-1.5, 1.25);
+\draw[line width=3pt, madeira!60!black] (0,0) -- (1.5, 1.25);
+\draw[line width=3pt, madeira!60!black] (3,0) -- (1.5, 1.25);
+% Nós / Rótulos
+\fill[black] (-3,0) circle (2pt) node[below] {\textbf{A}};
+\fill[black] (3,0) circle (2pt) node[below] {\textbf{B}};
+\fill[black] (0,2.5) circle (2pt) node[above] {\textbf{C}};
+\fill[black] (0,0) circle (2pt) node[below] {\textbf{D}};
+\fill[black] (-1.5,1.25) circle (2pt) node[above left, fill=gray!5, inner sep=1pt] {\textbf{E}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Supondo que a reta de suporte da viga horizontal inferior seja perpendicular ao plano das paredes (não desenhadas), defina a posição geométrica relativa (concorrentes, paralelas ou reversas) entre a reta suporte da viga \textbf{CD} (pendural central) e a reta que contém a viga \textbf{AE}, baseando-se unicamente nas intersecções visíveis neste plano bidimensional de corte da estrutura.
+
+\vspace{0.5cm}
+\subsection*{Capítulo 2: Vistas Ortogonais}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.2pt} 
+\par\par\vspace{0.5cm}
+\textbf{9.} Um aluno de marcenaria montou a escultura isométrica abaixo utilizando pequenos cubos de madeira maciça idênticos, colando-os face a face.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[x=(210:0.5cm), y=(-30:0.5cm), z=(90:0.5cm)]
+\definecolor{cubo}{HTML}{D4AC0D}
+\tikzstyle{face_top} = [fill=cubo!40, draw=black, thick, rounded corners=0.5pt]
+\tikzstyle{face_left} = [fill=cubo!80, draw=black, thick, rounded corners=0.5pt]
+\tikzstyle{face_right} = [fill=cubo!100, draw=black, thick, rounded corners=0.5pt]
+
+\def\cubo#1#2#3{
+  \draw[face_top] (#1,#2,#3+1) -- (#1+1,#2,#3+1) -- (#1+1,#2+1,#3+1) -- (#1,#2+1,#3+1) -- cycle;
+  \draw[face_left] (#1+1,#2,#3) -- (#1+1,#2+1,#3) -- (#1+1,#2+1,#3+1) -- (#1+1,#2,#3+1) -- cycle;
+  \draw[face_right] (#1,#2+1,#3) -- (#1+1,#2+1,#3) -- (#1+1,#2+1,#3+1) -- (#1,#2+1,#3+1) -- cycle;
+}
+
+% Base (Z=0)
+\cubo{0}{0}{0}
+\cubo{0}{1}{0}
+\cubo{0}{2}{0}
+\cubo{1}{0}{0}
+% Nivel 1 (Z=1)
+\cubo{0}{1}{1}
+\cubo{0}{2}{1}
+% Nivel 2 (Z=2)
+\cubo{0}{2}{2}
+
+\draw[->, ultra thick, red!80!black] (2, -1, 0) -- (1, 0, 0) node[midway, below right, fill=white, inner sep=1pt] {\textbf{Frontal}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Desenhe o esboço ou decreva detalhadamente (indicando colunas e alturas) como ficarão a \textbf{Vista Superior} (olhando de cima) e a \textbf{Vista Lateral Esquerda} desta montagem tridimensional.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\par\vspace{0.5cm}
+\textbf{10.} Ao receber a mesma peça isométrica da questão anterior para análise, um torneiro mecânico desenhou a Vista Superior formando apenas um retângulo contínuo de proporção $3 \times 1$, sem nenhuma linha interna dividindo os quadrados. 
+\begin{boxresponda}
+\textbf{Responda:} Qual erro técnico de representação o torneiro cometeu ao ignorar as linhas internas da Vista Superior? O que as linhas contínuas internas em uma vista ortogonal revelam sobre a topografia (alturas/profundidades) do objeto tridimensional que ele falhou em representar?
+\end{boxresponda}
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{11.} Considere um cilindro maciço de aço posicionado em pé sobre uma bancada plana. 
+Julgue as afirmativas abaixo, relacionadas à representação técnica desse cilindro, marcando V ou F e justificando os possíveis erros das afirmativas.
+
+I. A Vista Superior de um cilindro em pé é perfeitamente representada por uma circunferência geométrica.\par\par\vspace{0.5cm}
+II. A Vista Frontal desse cilindro apresentará linhas curvas nas laterais, acompanhando o raio do objeto.\par\par\vspace{0.5cm}
+III. A Vista Lateral Direita e a Vista Frontal deste cilindro em pé gerarão projeções retangulares absolutamente idênticas na folha de projeto.
+
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{12.} (ENEM - Adaptada) O sol a pino ao meio-dia gera sombras que, geometricamente, se comportam como Vistas Superiores exatas dos objetos iluminados em relação ao chão plano. Uma prefeitura instalou no parque uma escultura abstrata metálica com o formato de um tronco de cone circular reto vazado (como um copo de ponta-cabeça sem o fundo superior e sem a base). 
+Desconsiderando a espessura da chapa de metal, a sombra projetada por essa estrutura no piso horizontal perfeitamente plano ao meio-dia solar será identificada visualmente como:
+
+a) um único círculo maciço e escurecido.\par\par\vspace{0.5cm}
+b) dois círculos concêntricos separados por uma região preenchida (coroa circular).\par\par\vspace{0.5cm}
+c) um trapézio isósceles com bases retas e laterais inclinadas.\par\par\vspace{0.5cm}
+d) uma elipse alongada no sentido da iluminação.\par\par\vspace{0.5cm}
+e) apenas a borda de uma circunferência, sem espessura, já que a peça é vazada nos dois extremos.
+\textbf{13.} (ENEM - Adaptada) Um estúdio de design projetou um pódio maciço de premiação esculpido em um único bloco geométrico. O projeto isométrico tridimensional da estrutura está detalhado abaixo.
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[x=(210:0.5cm), y=(-30:0.5cm), z=(90:0.5cm)]
+\tikzstyle{face_top} = [fill=concreto!40, draw=CinzaEscuro, thick, rounded corners=0.5pt]
+\tikzstyle{face_left} = [fill=concreto!70, draw=CinzaEscuro, thick, rounded corners=0.5pt]
+\tikzstyle{face_right} = [fill=concreto!100, draw=CinzaEscuro, thick, rounded corners=0.5pt]
+
+\def\cubo#1#2#3{
+  \draw[face_top] (#1,#2,#3+1) -- (#1+1,#2,#3+1) -- (#1+1,#2+1,#3+1) -- (#1,#2+1,#3+1) -- cycle;
+  \draw[face_left] (#1+1,#2,#3) -- (#1+1,#2+1,#3) -- (#1+1,#2+1,#3+1) -- (#1+1,#2,#3+1) -- cycle;
+  \draw[face_right] (#1,#2+1,#3) -- (#1+1,#2+1,#3) -- (#1+1,#2+1,#3+1) -- (#1,#2+1,#3+1) -- cycle;
+}
+
+% Base nivel 0
+\cubo{0}{0}{0} \cubo{0}{1}{0} \cubo{0}{2}{0}
+\cubo{1}{0}{0} \cubo{1}{1}{0} \cubo{1}{2}{0}
+% Nivel 1 (degrau do meio e alto)
+\cubo{0}{1}{1} \cubo{0}{2}{1}
+\cubo{1}{1}{1} \cubo{1}{2}{1}
+% Nivel 2 (degrau mais alto)
+\cubo{0}{2}{2}
+\cubo{1}{2}{2}
+
+% Setas de observação
+\draw[->, ultra thick, ouro, drop shadow] (2.5, -1, 0) -- (1.5, 0, 0) node[midway, below right, fill=white, inner sep=2pt] {\textbf{Vista Frontal}};
+\draw[->, ultra thick, vidro, drop shadow] (3, 3, 0) -- (1.5, 2, 0) node[midway, above right, fill=white, inner sep=2pt] {\textbf{Vista Lateral}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Um marceneiro precisa fabricar o molde bidimensional exato da \textbf{Vista Frontal} dessa peça. Considerando a seta indicativa, assinale a alternativa que descreve o perfil correto dessa vista e justifique matematicamente o erro das alternativas B e C, explicando qual falha de leitura espacial elas representam.
+
+a) Um retângulo de proporção $3 \times 1$ com dois quadrados empilhados na extremidade direita.\par\par\vspace{0.5cm}
+b) Uma escada decrescente da esquerda para a direita, contendo linhas tracejadas.\par\par\vspace{0.5cm}
+c) Um quadrado perfeito $3 \times 3$ subdividido em 9 quadrados menores, todos visíveis.\par\par\vspace{0.5cm}
+d) Um contorno em formato de "L" invertido, com $2$ colunas de largura e $3$ de altura.\par\par\vspace{0.5cm}
+e) Três colunas retangulares lado a lado, com alturas proporcionais a $1$, $2$ e $3$ unidades, crescendo da esquerda para a direita.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{14.} Durante o desenvolvimento de um jogo 3D, um programador desenhou a \textbf{Vista Superior} de um castelo cuja torre principal é um cilindro perfeito finalizado por um telhado em formato de cone circular reto (o cone está centralizado e tem o mesmo raio da base do cilindro). Ao renderizar a planta baixa, ele desenhou apenas um círculo contínuo com um ponto escuro no centro.
+\begin{boxresponda}
+\textbf{Responda:} A representação técnica bidimensional (Vista Superior) feita pelo programador está completa para distinguir o cone do cilindro? Diagnostique qual informação geométrica de profundidade ou superfície o "ponto central" tenta traduzir e por que essa vista seria idêntica se a torre fosse apenas uma pirâmide de base circular (cone) diretamente no chão.
+\end{boxresponda}
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{15.} Um bloco maciço foi usinado de modo que sua \textbf{Vista Frontal} é um triângulo isósceles e sua \textbf{Vista Superior} é um retângulo contínuo, com uma linha reta dividindo o retângulo exatamente ao meio no sentido do comprimento. A partir da engenharia reversa dessas vistas bidimensionais, deduza e escreva o nome geométrico tridimensional (sólido) mais provável para essa peça.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{16.} Analise as afirmativas a seguir sobre a rotação de objetos no espaço e a alteração de suas vistas ortogonais. Marque (V) para verdadeiro e (F) para falso. Apresente uma justificativa analítica provando o erro das afirmativas falsas.
+
+I. Se rotacionarmos um cubo perfeito em \textbf{45 graus} em torno do seu eixo vertical (z), sua Vista Superior deixará de ser um quadrado e passará a ser representada por um losango ou dois retângulos adjacentes.\par\par\vspace{0.5cm}
+II. A Vista Frontal de uma esfera maciça é a única representação ortogonal que não sofre nenhuma alteração geométrica, independentemente do eixo ou do ângulo em que a esfera seja rotacionada.\par\par\vspace{0.5cm}
+III. Quando uma pirâmide regular de base quadrada é tombada de lado (apoiando uma de suas faces triangulares no chão plano), sua Vista Superior continua apresentando um contorno perfeitamente quadrado.
+\par\vspace{0.5cm}
+
+\subsection*{Capítulo 3: Representações Técnicas}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\par\vspace{0.5cm}
+\textbf{17.} Na leitura de desenho técnico mecânico, a relação entre as vistas dita a topografia da peça. Considere um prisma metálico cujo esboço da \textbf{Vista Superior} mostra dois círculos concêntricos (um dentro do outro, com linhas contínuas). A \textbf{Vista Frontal} desse mesmo prisma é um retângulo contendo duas linhas internas tracejadas verticais, que cruzam a peça de cima a baixo. Descreva fisicamente o que essas linhas tracejadas representam no objeto tridimensional real.
+\begin{boxdica}
+    Lembre-se: em desenho técnico, linhas visíveis e contínuas indicam arestas expostas ao observador. Linhas tracejadas indicam contornos, furos ou rebaixos que existem na peça, mas estão ocultos pela massa do material daquela perspectiva.
+\end{boxdica}
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{18.} O professor de robótica distribuiu a planta de uma haste estabilizadora. O aluno Pedro analisou a \textbf{Vista Lateral Direita}, que consistia em um retângulo atravessado horizontalmente por uma linha contínua grossa no terço superior. Pedro imediatamente concluiu: "A peça tem um rasgo/furo invisível que a atravessa nesse ponto".
+\begin{boxresponda}
+\textbf{Responda:} Qual é o erro técnico de leitura cometido por Pedro ao interpretar a linha bidimensional? Qual é o tipo exato de linha que deveria aparecer no desenho para validar a conclusão dele sobre um "furo invisível"?
+\end{boxresponda}
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{19.} Um suporte de prateleira em formato de "U" invertido é fabricado dobrando-se uma chapa de aço maciça. Se olharmos essa peça diretamente por cima (\textbf{Vista Superior}), veremos apenas um retângulo longo e contínuo. Sabendo que o "U" é oco por baixo, explique por que o desenhista é obrigado a inserir linhas tracejadas nessa Vista Superior e determine exatamente quantas linhas tracejadas longitudinais devem ser traçadas.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{20.} O componente mecânico de aço ilustrado abaixo possui um furo cilíndrico passante (que atravessa toda a aba inferior). 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[x=(210:0.5cm), y=(-30:0.5cm), z=(90:0.5cm)]
+% Layer Sombra
+\fill[gray!20, drop shadow={opacity=0.4, shadow xshift=4pt, shadow yshift=-4pt}, rounded corners=2pt] (1.5,0.5,-0.5) -- (5,0,-0.5) -- (5,2,-0.5) -- (1,2.5,-0.5) -- cycle;
+
+% Aba inferior (fundo)
+\draw[fill=metal!60, draw=CinzaEscuro, thick, rounded corners=1pt] (0,0,0) -- (4,0,0) -- (4,2,0) -- (0,2,0) -- cycle;
+% Aba superior (vertical)
+\draw[fill=metal!40, draw=CinzaEscuro, thick, rounded corners=1pt] (0,0,0) -- (1,0,0) -- (1,0,3) -- (0,0,3) -- cycle;
+\draw[fill=metal!90, draw=CinzaEscuro, thick, rounded corners=1pt] (1,0,0) -- (1,2,0) -- (1,2,3) -- (1,0,3) -- cycle;
+\draw[fill=metal!30, draw=CinzaEscuro, thick, rounded corners=1pt] (0,0,3) -- (1,0,3) -- (1,2,3) -- (0,2,3) -- cycle;
+\draw[fill=metal!80, draw=CinzaEscuro, thick, rounded corners=1pt] (0,2,0) -- (1,2,0) -- (1,2,3) -- (0,2,3) -- cycle;
+
+% Furo na aba inferior
+\draw[fill=white, draw=Cinzablack, thick] (2.5,1,0) circle (0.4cm);
+\draw[fill=metal!20, draw=none] (2.4, 0.9, -0.1) circle (0.35cm); % Profundidade do furo
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se um engenheiro precisar projetar rigorosamente a \textbf{Vista Superior} desse componente, qual deverá ser a representação geométrica correta das arestas visíveis? Refute as opções incorretas apontando a omissão geométrica de cada uma.
+
+a) Um retângulo simples com um círculo no centro, sem nenhuma linha divisória interna.\par\par\vspace{0.5cm}
+b) Dois retângulos adjacentes (um representando a espessura da aba vertical e outro a base) e um círculo contido no retângulo maior.\par\par\vspace{0.5cm}
+c) Três retângulos paralelos e um furo tracejado no retângulo central.\par\par\vspace{0.5cm}
+d) Apenas um contorno em "L" contendo um círculo em uma de suas pernas.\par\par\vspace{0.5cm}
+e) Um quadrado perfeito cortado por uma reta diagonal, com um círculo posicionado em um dos vértices.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{21.} (FUVEST - Adaptada) O diedro de projeção é o sistema normatizado de organização das vistas em um papel. No Brasil, utiliza-se como padrão o sistema de projeção no 1º Diedro. Sobre as regras rígidas de posicionamento de vistas técnicas neste sistema, julgue as afirmativas (V ou F) apresentando a justificativa estrutural.
+
+I. A Vista Superior é obrigatoriamente desenhada abaixo da Vista Frontal, pois a projeção reflete a imagem no plano que está posicionado atrás/abaixo da peça.\par\par\vspace{0.5cm}
+II. A Vista Lateral Direita deve ser posicionada à esquerda da Vista Frontal.\par\par\vspace{0.5cm}
+III. A cotação (medidas) da peça só pode ser inserida na Vista Frontal, sendo proibido indicar comprimentos nas vistas laterais para evitar redundância.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{22.} Em uma planta baixa arquitetônica (que é uma aplicação direta da Vista Superior com um corte horizontal), as paredes são desenhadas com duas linhas paralelas. Uma janela em uma parede é representada apagando-se o preenchimento dessas linhas e desenhando-se traços mais finos no meio. Se um vão de porta não possui porta instalada, apenas a abertura livre, como a continuidade das linhas do piso e da parede deve ser matematicamente representada para garantir a fluidez do trânsito no desenho bidimensional?
+\par\vspace{0.5cm}
+
+\subsection*{Capítulo 4: Sistema de Medidas}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\par\vspace{0.5cm}
+\textbf{23.} A astronomia utiliza o Sistema Internacional para mensurar escalas que fogem à percepção humana. A distância média entre a Terra e Marte em seu ponto de maior aproximação é de cerca de \textbf{54,6} milhões de quilômetros. Uma sonda espacial viaja a uma velocidade constante de $ \mfrac{3}{10} $ da velocidade da luz (onde a velocidade da luz $c = 3 \cdot 10^8$ m/s). Converta a distância até Marte estritamente para metros em notação científica e modele a equação algébrica que determina o tempo de viagem dessa sonda em segundos.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{24.} Ao conectar um pen drive novo de "32 GB" no computador, um aluno percebe que o sistema operacional exibe a capacidade máxima como sendo apenas aproximadamente \textbf{29,8 GB}. Ele reclama na loja alegando que faltam mais de 2 Gigabytes no produto. O vendedor de TI tenta explicar que a culpa não é da fabricante, mas da matemática base computacional versus a matemática comercial.
+\begin{boxresponda}
+\textbf{Responda:} Qual é a raiz matemática (base numérica) exata que gera essa divergência estrutural de medidas informáticas? Diagnostique o erro de conversão multiplicativa que o cérebro do aluno faz (base 10) versus o que o processador do computador calcula rigorosamente (base 2) na transição de Bytes para Kilobytes e Gigabytes.
+\end{boxresponda}
+\begin{boxdica}
+    Atenção à nomenclatura estrutural do SI: o prefixo "Kilo" no comércio significa $10^3$ (1000). No entanto, o sistema binário da máquina agrupa os dados em potências de 2. Qual é a potência de base 2 que mais se aproxima de 1000?
+\end{boxdica}
+\par\vspace{0.5cm}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{25.} A nanotecnologia opera em escalas imperceptíveis ao olho humano. Enquanto o diâmetro médio de um fio de cabelo humano mede cerca de \textbf{80 micrometros} ($80 \, \mu\text{m}$), um nanotubo de carbono de parede única possui um diâmetro de aproximadamente \textbf{2 nanômetros} ($2 \text{ nm}$). Sabendo que as grandezas estão no Sistema Internacional, modele a equação utilizando notação científica e determine quantos nanotubos de carbono caberiam, perfeitamente alinhados lado a lado, na espessura de um único fio de cabelo. Utilize o formato de fração $ \mfrac{a}{b} $ na armação do seu cálculo analítico.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{26.} Um data center de armazenamento em nuvem organiza seus dados em racks físicos modulares, cuja estrutura de uma gaveta (blade) frontal está ilustrada abaixo.
+\begin{center}
+\begin{adjustbox}{max width=0.8\linewidth}
+\begin{tikzpicture}
+% Sombra do Rack
+\fill[gray!20, drop shadow={opacity=0.5, shadow xshift=4pt, shadow yshift=-4pt}, rounded corners=2pt] (0,0) rectangle (6,4);
+% Chassi do Rack
+\draw[thick, Cinzablack, fill=metal!40, rounded corners=2pt] (0,0) rectangle (6,4);
+\draw[thick, CinzaEscuro, fill=Cinzablack, rounded corners=1pt] (0.2,0.2) rectangle (5.8,3.8);
+
+% Discos Rígidos (Leds e Baias)
+\foreach \y in {0.4, 1.3, 2.2, 3.1} {
+    \draw[thick, CinzaMedio, fill=metal!80, rounded corners=1pt] (0.4, \y) rectangle (5.6, \y+0.7);
+    % Slots de HD
+    \foreach \x in {0.6, 1.4, 2.2, 3.0} {
+        \draw[thick, Cinzablack, fill=CinzaEscuro] (\x, \y+0.1) rectangle (\x+0.6, \y+0.6);
+        % Led de atividade
+        \fill[CorDicaBorda] (\x+0.1, \y+0.5) circle (1.5pt);
+    }
+    % Etiqueta de capacidade (Máscara branca para leitura)
+    \node[fill=white, inner sep=1.5pt, rounded corners=1pt] at (4.7, \y+0.35) {\scriptsize \textbf{16 TB}};
+}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Cada linha da gaveta acima representa um conjunto de processamento. Sabe-se que cada conjunto suporta exatamente \textbf{4} discos rígidos de \textbf{16 Terabytes} (\textbf{TB}) cada. Calcule a capacidade máxima de armazenamento bruto dessa gaveta estrutural em \textbf{TB}. Em seguida, prove matematicamente por que a conversão desse volume total para Gigabytes (\textbf{GB}) no rigor do sistema binário da máquina (onde \textbf{1 TB} equivale a \textbf{1024 GB}) resulta em um número sensivelmente maior do que a conversão comercial praticada pelas lojas na base 10.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{27.} (ENEM - Adaptada) O fluxo de transferência de dados em redes de computadores é medido em \textbf{bits} por segundo (bps), enquanto o armazenamento de arquivos é medido em \textbf{Bytes} (B). Sabe-se na arquitetura de computadores que \textbf{1 Byte} é composto exatamente por um pacote de \textbf{8 bits}. Um estudante contratou um plano de internet de fibra óptica com velocidade real e constante de download de \textbf{400 Megabits por segundo} (Mbps). Ele iniciou o download de um jogo em rede que ocupa um espaço de armazenamento maciço de \textbf{90 Gigabytes} (GB).
+Desconsiderando instabilidades na rede e considerando os prefixos do Sistema Internacional na base 10 para facilitar o cálculo do tempo estimado (onde Mega = $10^6$ e Giga = $10^9$), o tempo teórico mínimo, em minutos, para a conclusão desse download será de:
+
+a) \textbf{30} minutos.\par\par\vspace{0.5cm}
+b) \textbf{3} minutos.\par\par\vspace{0.5cm}
+c) \textbf{240} minutos.\par\par\vspace{0.5cm}
+d) \textbf{24} minutos.\par\par\vspace{0.5cm}
+e) \textbf{45} minutos.\par\par\vspace{0.5cm}
+
+Apresente os cálculos de conversão e justifique matematicamente o erro da alternativa C, demonstrando qual conversão estrutural de unidades o candidato esqueceu de aplicar no cruzamento entre fluxo e armazenamento.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{28.} Em um projeto escolar de engenharia para criar o contrapiso de uma maquete, um grupo precisa encher um molde tridimensional de concreto. O volume interno calculado foi de \textbf{0,5 m³}. O aluno responsável pela dosagem do material fez a seguinte anotação no relatório do grupo:
+"Como sabemos perfeitamente que a conversão direta de metros para centímetros é multiplicar por 100, então o volume da nossa maquete será de $0,5 \times 100 = 50 \text{ cm}^3$. Logo, apenas um copo americano de cimento será suficiente para preencher o piso."
+\begin{boxresponda}
+\textbf{Responda:} Qual erro dimensional o estudante cometeu ao aplicar a conversão linear de base decimal direta em uma grandeza espacial de volume? Demonstre passo a passo a dedução geométrica das arestas de um cubo de \textbf{1 m} para provar qual é a taxa de conversão correta de metros cúbicos para centímetros cúbicos e apresente o volume verdadeiro da maquete.
+\end{boxresponda}
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{29.} A astronomia contemporânea utiliza as propriedades de potenciação do Sistema Internacional para mensurar vazios que fogem à percepção humana. A distância média da Terra à estrela Alpha Centauri é de aproximadamente \textbf{4,3 anos-luz}. Sabendo que a luz viaja no vácuo a uma velocidade extrema de $3 \cdot 10^5 \text{ km/s}$ e assumindo, para fins de aproximação estrutural, que um ano terrestre possui cerca de $3 \cdot 10^7 \text{ segundos}$, determine o valor algébrico exato dessa distância em quilômetros. O resultado final deve ser escrito obrigatoriamente utilizando as regras de notação científica padronizada.
+\par\vspace{0.5cm}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\par\vspace{0.5cm}
+\textbf{30.} O avanço do poder de processamento global depende puramente da miniaturização geométrica. O diagrama a seguir representa um recorte da vista ortogonal de um "die" (núcleo de silício) de um processador.
+\begin{center}
+\begin{adjustbox}{max width=0.6\linewidth}
+\begin{tikzpicture}
+% Fundo do Chip de Silício
+\fill[Cinzablack, drop shadow={opacity=0.4, shadow xshift=3pt, shadow yshift=-3pt}, rounded corners=2pt] (0,0) rectangle (4,4);
+\draw[ouro, line width=1.5pt] (0.2,0.2) rectangle (3.8,3.8);
+
+% Pinos e trilhas externas
+\foreach \x in {0.6, 1.3, 2.0, 2.7, 3.4} {
+    \draw[ouro, thick] (\x, 0) -- (\x, -0.3);
+    \draw[ouro, thick] (\x, 4) -- (\x, 4.3);
+    \draw[ouro, thick] (0, \x) -- (-0.3, \x);
+    \draw[ouro, thick] (4, \x) -- (4.3, \x);
+}
+
+% Destaque microscópico (Callout de Lente)
+\draw[thick, vidro, fill=CinzaMedio!40, rounded corners=1pt] (1.2, 1.2) rectangle (2.8, 2.8);
+\draw[thick, vidro, dashed] (2.8, 2.8) -- (4.5, 4.5);
+\draw[thick, vidro, dashed] (2.8, 1.2) -- (4.5, -0.5);
+
+% Janela da Lente (Transistor)
+\fill[metal!20, draw=vidro, thick, drop shadow={opacity=0.3}] (4.5, -0.5) rectangle (7.5, 4.5);
+\fill[ouro!80!black] (5.5, 1) rectangle (6.5, 3.5); % Gate do Transistor
+\draw[<->, thick, Cinzablack] (5.5, 0.5) -- (6.5, 0.5);
+% Máscara branca no nó para proteção das retas de fundo
+\node[fill=white, inner sep=2pt] at (6, 0.5) {\textbf{14 nm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Nesta arquitetura clássica, a largura de controle do fluxo de elétrons indicada pela cota no destaque determina a escala nominal da tecnologia. A fabricante planeja migrar dessa arquitetura atual de \textbf{14 nm} para a novíssima litografia de \textbf{2 nm}. 
+Considerando que a área total da pastilha do processador permanecerá estritamente a mesma, explique algebricamente por que a redução unidimensional (comprimento) do transistor não gera um ganho linear de espaço. 
+\begin{boxdica}
+    Modelagem mental: Para comparar as densidades, pense no espaço do transistor como sendo um quadrado simples de lado \textbf{L}. A área microscópica ocupada por ele na placa será $L^2$. A proporção bruta de ganho de espaço (quantas peças a mais cabem) é obtida dividindo a área espacial da geração antiga pela nova.
+\end{boxdica}
+Calcule geometricamente quantas vezes mais transistores poderão, em teoria, ser empacotados nessa nova pastilha de \textbf{2 nm}.
+\par\vspace{0.5cm}
+
+\end{multicols*}
+\end{document}
