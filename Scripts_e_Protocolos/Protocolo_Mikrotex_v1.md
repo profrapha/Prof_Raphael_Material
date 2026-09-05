@@ -115,19 +115,19 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
    \subsection*{Nome do Capítulo ou Tema Aqui}
    \vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
    \par\vspace{\espacoPosTitulo}
-   \textbf{1.} [Texto da primeira questão do capítulo aqui]
+   \subsubsection*{1.} [Texto da primeira questão do capítulo aqui]
    \par\vspace{\espacoQuestao}
 
  * **MOLDE B (Para as DEMAIS questões normais - Diretas ou ENEM):**
    \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
    \par\vspace{\espacoPreQuestao}
-   \textbf{XX.} [Texto da questão aqui]
+   \subsubsection*{XX.} [Texto da questão aqui]
    \par\vspace{\espacoQuestao}
 
  * **MOLDE C (Para Questões de Diagnóstico Lógico - O "Box Responda"):**
    \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
    \par\vspace{\espacoPreQuestao}
-   \textbf{XX.} [Texto do contexto ou da resolução fictícia]
+   \subsubsection*{XX.} [Texto do contexto ou da resolução fictícia]
    \begin{boxresponda}
    \textbf{Responda:} [Roteiro guiado]
    \end{boxresponda}
@@ -318,8 +318,20 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 
 % --- TÍTULOS (ESTILO EDITORIAL) ---
 \usepackage{titlesec}
-\titleformat{\section}[block]{\color{black}\large\bfseries}{\thesection}{0em}{}[\vspace{0.1cm}\noindent\rule{\linewidth}{0.8pt}]
-\titlespacing*{\section}{0pt}{10pt}{6pt}
+\titleformat{\section}
+  {\color{black}\large\bfseries}
+  {\thesection}
+  {0em}
+  {}
+  [\vspace{0.1cm}\titlerule[0.8pt]]
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% Disfarça a subsubsection para agir como o \textbf{} e aparecer no Outline
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
 
 % --- PACOTES DE ESTRUTURA E GRÁFICOS ---
 \usepackage{multicol}
@@ -342,7 +354,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \noindent
 \begin{minipage}[t]{0.09\linewidth}
     \vspace{8pt}
-    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../Modelos_Templates/Elv_novo_logo.png} 
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../Modelos_Templates/Elv_novo_logo.png} 
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.90\linewidth} 
@@ -351,11 +363,11 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     
     % BLOCO 1
     \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
-        \begin{minipage}[c]{0.62\linewidth}
+        \begin{minipage}[c]{0.84\linewidth}
             \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES}
         \end{minipage}%
         \hfill
-        \begin{minipage}[c]{0.32\linewidth}
+        \begin{minipage}[c]{0.15\linewidth}
             \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{[DISCIPLINA]}}
         \end{minipage}%
     \end{tcolorbox}
