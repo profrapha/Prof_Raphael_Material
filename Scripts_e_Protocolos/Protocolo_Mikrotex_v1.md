@@ -227,13 +227,13 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
 
 \newlength{\espacoPreQuestao}
-\setlength{\espacoPreQuestao}{0.3cm} % Espaço entre a linha fina divisória e a questão
+\setlength{\espacoPreQuestao}{0.1cm} % Espaço entre a linha fina divisória e a questão
 
 \newlength{\espacoQuestao}
-\setlength{\espacoQuestao}{0.4cm}    % Espaço de "respiro" no FINAL de cada questão
+\setlength{\espacoQuestao}{0.2cm}    % Espaço de "respiro" no FINAL de cada questão
 
 \newlength{\espacoAlt}
-\setlength{\espacoAlt}{0.3cm}        % Espaço para quebras manuais de alternativas
+\setlength{\espacoAlt}{0.2cm}        % Espaço para quebras manuais de alternativas
 
 % 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
 \usepackage{enumitem}
