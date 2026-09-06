@@ -245,8 +245,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 }
 
 % 3. Controle de Escala de Imagens
-\newlength{\larguraTikz}
-\setlength{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
+\newcommand{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
 % ==========================================
 
 % --- MATEMÁTICA ---
