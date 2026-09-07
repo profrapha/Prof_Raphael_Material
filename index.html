@@ -15,107 +15,271 @@
         <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
             <div>
                 <h1 class="text-2xl font-bold tracking-tight">Portal de Material Didático</h1>
-                <p class="text-slate-400 text-sm mt-1">Matemática e Física • Ensino Fundamental e Médio</p>
+                <p class="text-slate-400 text-sm mt-1">Ensino Fundamental e Médio • Acesso Rápido para Sala de Aula</p>
             </div>
-            <div class="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 text-sm">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>Online
+            <div class="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 text-sm flex items-center">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>Ambiente Online
             </div>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-12">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
 
-        <!-- SEÇÃO: FÍSICA -->
-        <section>
-            <div class="flex items-center mb-6 border-b border-slate-200 pb-3">
-                <div class="p-2 bg-amber-100 text-amber-600 rounded-lg mr-3">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <h2 class="text-2xl font-bold text-slate-900">Física</h2>
-            </div>
+        <!-- Navegação / Breadcrumbs dinâmico -->
+        <nav id="breadcrumbs" class="mb-8 hidden items-center text-sm text-slate-500 space-x-2">
+            <button onclick="resetarPortal()" class="hover:text-indigo-600 font-medium">Início</button>
+            <span>/</span>
+            <span id="bc-disciplina" class="text-slate-800 font-semibold"></span>
+            <span id="bc-ano-sep" class="hidden">/</span>
+            <span id="bc-ano" class="text-slate-800 font-semibold"></span>
+        </nav>
 
-            <!-- Bloco por Série -->
-            <div class="space-y-6">
-                <h3 class="text-lg font-semibold text-slate-700 flex items-center">
-                    <span class="bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded text-sm mr-2">7º Ano</span> Unidades e Módulos
-                </h3>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    
-                    <!-- Card de Conteúdo Misto (Exemplo: Unidade 6 - Máquinas Simples) -->
-                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-amber-200">Unidade 6</span>
-                                <span class="text-xs text-slate-400">Atualizado recentemente</span>
-                            </div>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">Máquinas Simples e Trabalho</h4>
-                            <p class="text-sm text-slate-600 mb-4">Estudo das alavancas, polias, plano inclinado e a conservação de energia aplicada ao cotidiano.</p>
-                            
-                            <!-- Mini Player do YouTube embutido (Browser de vídeo) -->
-                            <div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
-                                <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/SUO_ID_DO_VIDEO" title="Videoaula explicativa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-
-                        <!-- Links de Ação (PDFs e Materiais) -->
-                        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3">
-                            <a href="Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">
-                                <span class="mr-2">📄</span> Baixar Lista de Exercícios (PDF)
-                            </a>
-                            <a href="#resumo" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">
-                                <span class="mr-2">📖</span> Ler Resumo Teórico
-                            </a>
-                        </div>
+        <!-- ETAPA 1: ESCOLHER DISCIPLINA -->
+        <div id="view-disciplinas" class="space-y-6">
+            <h2 class="text-xl font-bold text-slate-900 border-b pb-3">Selecione a Disciplina</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Física -->
+                <div onclick="selecionarDisciplina('Fisica', 'Física')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
+                    <h3 class="text-lg font-bold text-slate-900">Física</h3>
+                    <p class="text-sm text-slate-500 mt-1">Anos Finais e Ensino Médio</p>
+                </div>
 
-                    <!-- Espaço para outro card de Física -->
-                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center justify-center text-slate-400 border-dashed">
-                        <p class="text-sm">Próxima unidade em desenvolvimento...</p>
+                <!-- Matemática Álgebra -->
+                <div onclick="selecionarDisciplina('Matematica_Algebra', 'Matemática - Álgebra')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     </div>
-
+                    <h3 class="text-lg font-bold text-slate-900">Matemática - Álgebra</h3>
+                    <p class="text-sm text-slate-500 mt-1">Listas e Conteúdos Numéricos</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- SEÇÃO: MATEMÁTICA -->
-        <section>
-            <div class="flex items-center mb-6 border-b border-slate-200 pb-3">
-                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg mr-3">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                </div>
-                <h2 class="text-2xl font-bold text-slate-900">Matemática e Álgebra</h2>
-            </div>
-
-            <div class="space-y-6">
-                <h3 class="text-lg font-semibold text-slate-700 flex items-center">
-                    <span class="bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded text-sm mr-2">7º Ano</span> Unidades e Módulos
-                </h3>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
-                        <div>
-                            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 inline-block mb-3">Unidade 6</span>
-                            <h4 class="text-lg font-bold text-slate-900 mb-2">Decimais, Potenciação e Radiciação</h4>
-                            <p class="text-sm text-slate-600 mb-4">Fixação de operações com números racionais e introdução estruturada às potências.</p>
-                        </div>
-                        <div class="pt-4 border-t border-slate-100">
-                            <a href="Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors inline-flex items-center shadow-sm">
-                                <span class="mr-2">📄</span> Baixar Lista de Exercícios (PDF)
-                            </a>
-                        </div>
+                <!-- Matemática Geometria -->
+                <div onclick="selecionarDisciplina('Matematica_Geometria', 'Matemática - Geometria')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
+                    <h3 class="text-lg font-bold text-slate-900">Matemática - Geometria</h3>
+                    <p class="text-sm text-slate-500 mt-1">Espacial e Plana</p>
                 </div>
+
+                <!-- Terceirão -->
+                <div onclick="selecionarDisciplina('Terceirao', 'Terceirão')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Terceirão</h3>
+                    <p class="text-sm text-slate-500 mt-1">Preparatório e Revisões</p>
+                </div>
+
             </div>
-        </section>
+        </div>
+
+        <!-- ETAPA 2: ESCOLHER O ANO / SÉRIE -->
+        <div id="view-anos" class="space-y-6 hidden">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h2 class="text-xl font-bold text-slate-900">Selecione o Ano ou Série</h2>
+                <button onclick="resetarPortal()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às disciplinas</button>
+            </div>
+            <div id="grid-anos" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+        <!-- ETAPA 3: CONTEÚDOS E UNIDADES -->
+        <div id="view-conteudos" class="space-y-6 hidden">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h2 class="text-xl font-bold text-slate-900">Conteúdos e Materiais Disponíveis</h2>
+                <button onclick="voltarParaAnos()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar aos anos</button>
+            </div>
+            <div id="grid-conteudos" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
 
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500">
-        <p>Ambiente Virtual de Ensino • Atualizado via Git</p>
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500 mt-auto">
+        <p>Ambiente Virtual de Ensino • SolaEdu Material</p>
     </footer>
 
+    <!-- BANCOS DE DADOS DOS CONTEÚDOS -->
+    <script>
+        // Mapeamento completo baseado na sua árvore de pastas
+        const bancoDados = {
+            "Fisica": {
+                nome: "Física",
+                anos: {
+                    "6_Ano": { nome: "6º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Introdução aos Fenômenos Físicos", desc: "Conceitos iniciais de matéria, energia e observação científica.", pdf: "Fisica/6_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "7_Ano": { nome: "7º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Máquinas Simples e Trabalho", desc: "Estudo das alavancas, polias, plano inclinado e conservação mecânica.", pdf: "Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf", temVideo: true, videoUrl: "https://www.youtube-nocookie.com/embed/SUO_ID_DO_VIDEO", temTeoria: false }
+                    ]},
+                    "8_Ano": { nome: "8º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Calor e Termometria", desc: "Escalas termométricas, propagação de calor e dilatação térmica.", pdf: "Fisica/8_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "9_Ano": { nome: "9º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Eletrodinâmica Básica", desc: "Circuitos elétricos, corrente, tensão e resistência (Ofertado com Circuitikz).", pdf: "Fisica/9_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "1_Serie": { nome: "1ª Série (EM)", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Dinâmica e Leis de Newton", desc: "Forças aplicadas, atrito, plano inclinado e dinâmica curvilínea.", pdf: "Fisica/1_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "2_Serie": { nome: "2ª Série (EM)", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Termodinâmica", desc: "Leis da termodinâmica, máquinas térmicas e ciclos gasosos.", pdf: "Fisica/2_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "3_Serie": { nome: "3ª Série (EM)", unidades: [
+                        { id: "GERAL", titulo: "Revisão Geral e Eletromagnetismo", desc: "Indução eletromagnética e ondas para vestibulares.", pdf: "Fisica/3_Serie/REVISAO.pdf", temVideo: false, temTeoria: false }
+                    ]}
+                }
+            },
+            "Matematica_Algebra": {
+                nome: "Matemática - Álgebra",
+                anos: {
+                    "6_Ano": { nome: "6º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Frações e Operações", desc: "Significado, equivalência e operações fundamentais com frações.", pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "7_Ano": { nome: "7º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Decimais, Potenciação e Radiciação", desc: "Fixação de racionais e introdução estruturada a potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "8_Ano": { nome: "8º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Cálculo Algébrico e Polinômios", desc: "Expressões algébricas, fatoração e produtos notáveis.", pdf: "Matematica_Algebra/8_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "9_Ano": { nome: "9º Ano", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Equações do 2º Grau e Funções", desc: "Bhaskara, vértice da parábola e aplicações práticas.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "1_Serie": { nome: "1ª Série (EM)", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Funções Afim e Quadrática", desc: "Estudo analítico e gráfico aprofundado das funções polinomiais.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "2_Serie": { nome: "2ª Série (EM)", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Análise Combinatória e Binômio", desc: "Arranjos, permutações, combinações e probabilidades.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]},
+                    "3_Serie": { nome: "3ª Série (EM)", unidades: [
+                        { id: "GERAL", titulo: "Matemática Financeira e Estatística Avançada", desc: "Juros compostos, desvio padrão e estatística para exames.", pdf: "Matematica_Algebra/3_Serie/MATERIAL.pdf", temVideo: false, temTeoria: false }
+                    ]}
+                }
+            },
+            "Matematica_Geometria": {
+                nome: "Matemática - Geometria",
+                anos: {
+                    "Geral": { nome: "Módulos de Geometria", unidades: [
+                        { id: "UNIDADE6", titulo: "Unidade 6: Relações Métricas e Espaciais", desc: "Teorema de Tales, semelhança de triângulos e áreas de figuras planas.", pdf: "Matematica_Geometria/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                    ]}
+                }
+            },
+            "Terceirao": {
+                nome: "Terceirão (Preparatório)",
+                anos: {
+                    "Geral": { nome: "Turma Intensiva", unidades: [
+                        { id: "MODULO1", titulo: "Simulado Geral Integrado - Exatas", desc: "Questões discursivas e teste de múltipla escolha integradas.", pdf: "Terceirao/SIMULADO.pdf", temVideo: false, temTeoria: false }
+                    ]}
+                }
+            }
+        };
+
+        let disciplinaAtual = null;
+        let anoAtual = null;
+
+        function selecionarDisciplina(chave, nome) {
+            disciplinaAtual = chave;
+            document.getElementById('bc-disciplina').innerText = nome;
+            document.getElementById('breadcrumbs').classList.remove('hidden');
+            document.getElementById('breadcrumbs').classList.add('flex');
+            
+            document.getElementById('view-disciplinas').classList.add('hidden');
+            document.getElementById('view-anos').classList.remove('hidden');
+
+            // Renderizar anos disponíveis
+            const gridAnos = document.getElementById('grid-anos');
+            gridAnos.innerHTML = '';
+            
+            const anosObj = bancoDados[chave].anos;
+            for (let anoKey in anosObj) {
+                let anoData = anosObj[anoKey];
+                let card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex items-center justify-between";
+                card.innerHTML = `<span class="font-bold text-slate-800 text-lg">${anoData.nome}</span><span class="text-indigo-600 font-medium text-sm">Acessar →</span>`;
+                card.onclick = () => selecionarAno(anoKey, anoData.nome);
+                gridAnos.appendChild(card);
+            }
+        }
+
+        function selecionarAno(chaveAno, nomeAno) {
+            anoAtual = chaveAno;
+            document.getElementById('bc-ano-sep').classList.remove('hidden');
+            document.getElementById('bc-ano').innerText = nomeAno;
+
+            document.getElementById('view-anos').classList.add('hidden');
+            document.getElementById('view-conteudos').classList.remove('hidden');
+
+            // Renderizar conteúdos
+            const gridConteudos = document.getElementById('grid-conteudos');
+            gridConteudos.innerHTML = '';
+
+            const unidades = bancoDados[disciplinaAtual].anos[chaveAno].unidades;
+            
+            unidades.forEach(uni => {
+                let card = document.createElement('div');
+                card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between";
+                
+                // Bloco de Vídeo
+                let videoHtml = '';
+                if (uni.temVideo) {
+                    videoHtml = `<div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
+                        <iframe class="w-full h-full" src="${uni.videoUrl}" frameborder="0" allowfullscreen></iframe>
+                    </div>`;
+                } else {
+                    videoHtml = `<div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center">
+                        <span>📹 Videoaula em construção</span>
+                    </div>`;
+                }
+
+                // Bloco de Texto Teórico
+                let teoriaHtml = uni.temTeoria ? 
+                    `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">📖 Ler Resumo Teórico</a>` :
+                    `<span class="bg-slate-100 text-slate-400 text-xs px-3 py-2 rounded-lg cursor-not-allowed">📖 Teoria em construção</span>`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200">${uni.id}</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">${uni.titulo}</h4>
+                        <p class="text-sm text-slate-600 mb-4">${uni.desc}</p>
+                        ${videoHtml}
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
+                        <a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">
+                            📄 Baixar Lista de Exercícios (PDF)
+                        </a>
+                        ${teoriaHtml}
+                    </div>
+                `;
+                gridConteudos.appendChild(card);
+            });
+        }
+
+        function voltarParaAnos() {
+            document.getElementById('bc-ano-sep').classList.add('hidden');
+            document.getElementById('bc-ano').innerText = '';
+            document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-anos').classList.remove('hidden');
+        }
+
+        function resetarPortal() {
+            disciplinaAtual = null;
+            anoAtual = null;
+            document.getElementById('breadcrumbs').classList.remove('flex');
+            document.getElementById('breadcrumbs').classList.add('hidden');
+            document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-anos').classList.add('hidden');
+            document.getElementById('view-disciplinas').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
