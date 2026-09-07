@@ -1,0 +1,635 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0} % Espaçamento simples
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+% ==========================================
+%   PAINEL DE CONTROLE DE ESPAÇAMENTO E ESCALA
+% ==========================================
+% Altere os valores abaixo para apertar ou expandir o documento inteiro
+
+% 1. Espaços das Questões
+\newlength{\espacoPosTitulo}
+\setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
+
+\newlength{\espacoPreQuestao}
+\setlength{\espacoPreQuestao}{0.1cm} % Espaço entre a linha fina divisória e a questão
+
+\newlength{\espacoQuestao}
+\setlength{\espacoQuestao}{0.2cm}    % Espaço de "respiro" no FINAL de cada questão
+
+\newlength{\espacoAlt}
+\setlength{\espacoAlt}{0.2cm}        % Espaço para quebras manuais de alternativas
+
+% 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
+\usepackage{enumitem}
+\setlist{
+    itemsep=0.4cm,    % <- AQUI: Espaço vertical automático entre a letra a), b), c)
+    topsep=0.1cm,     
+    parsep=0pt,       
+    partopsep=0pt
+}
+
+% 3. Controle de Escala de Imagens
+\newcommand{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
+% ==========================================
+
+% --- MATEMÁTICA ---
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{nccmath}
+\usepackage{mathastext}
+
+% --- CORES CUSTOMIZADAS PREMIUM ---
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% Cores Adicionais para TikZ Premium
+\definecolor{asfalto}{HTML}{2F3640}
+\definecolor{blocoA}{HTML}{E74C3C}
+\definecolor{blocoB}{HTML}{3498DB}
+
+% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[LE]{
+    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{FÍSICA} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
+}
+\fancyhead[RO]{
+    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{FÍSICA} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
+}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+% --- CAIXAS DE DESTAQUE (tcolorbox) ---
+\usepackage[most]{tcolorbox}
+
+% 1. Box de Resposta do Aluno
+\newtcolorbox{boxresponda}{
+    colback=white,        
+    colframe=gray!45,       
+    boxrule=0pt,          
+    leftrule=1.7pt,        
+    sharp corners,        
+    enlarge left by=0.4cm,  
+    width=\linewidth-0.4cm, 
+    left=8pt, right=0pt,  
+    top=2pt, bottom=2pt,
+    fontupper=\small % Ajustado para evitar erro em fórmulas matemáticas
+}
+
+% 2. Box de Dica (Estilo Ciano Claríssimo)
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{
+    colback=CorDicaFundo,        
+    colframe=CorDicaBorda,      
+    boxrule=0pt,          
+    leftrule=2.5pt,         
+    sharp corners,        
+    width=\linewidth, % Sem recuo, conforme solicitado
+    left=8pt, right=8pt,  
+    top=6pt, bottom=6pt,
+    halign=center, 
+    fontupper=\small      
+}
+
+% --- TÍTULOS (ESTILO EDITORIAL) ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% Disfarça a subsubsection para agir como o \textbf{} e aparecer no Outline
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- PACOTES DE ESTRUTURA E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc, patterns}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\color{Cinzablack}
+\vspace*{-1.7cm}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.09\linewidth}
+    \vspace{8pt}
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../Modelos_Templates/Elv_novo_logo.png} 
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.90\linewidth} 
+    \vspace{0pt}
+    \fontfamily{phv}\selectfont
+    
+    % BLOCO 1
+    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \begin{minipage}[c]{0.84\linewidth}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.15\linewidth}
+            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{FÍSICA}}
+        \end{minipage}%
+    \end{tcolorbox}
+    \par\vspace{0.18cm} 
+    
+    % BLOCO 2
+    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{1ª SÉRIE} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{2}
+    \end{tcolorbox}
+\end{minipage}%
+
+\par\vspace{0.2cm} 
+\noindent\rule{\linewidth}{1.5pt} 
+\vspace{-0.7cm}
+% --- FIM DO CABEÇALHO ---
+
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 10: Atrito e Planos}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} A figura ilustra um bloco de aço industrial de massa \textbf{12 kg} apoiado sobre uma superfície horizontal de concreto. Uma força externa horizontal de intensidade \textbf{F} é aplicada ao bloco. Sabe-se que os coeficientes de atrito estático e cinético entre o aço e o concreto são, respectivamente, \textbf{0,6} e \textbf{0,4}. Considere a aceleração da gravidade local como \textbf{10 m/s²}.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+% LAYER 1: Fundo/Superfície
+\fill[asfalto, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-2pt}] (-3.5, -0.4) rectangle (3.5, 0);
+\draw[white, thick, dashed] (-3.5, -0.2) -- (3.5, -0.2);
+
+% LAYER 2: Objeto principal (Bloco)
+\fill[blocoA, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (-1, 0) rectangle (1, 1.5);
+\draw[Cinzablack, thick, rounded corners=2pt] (-1, 0) rectangle (1, 1.5);
+\node[text=white, font=\bfseries] at (0, 0.75) {12 kg};
+
+% LAYER 3: Vetores e Forças
+\draw[->, >=stealth, ultra thick, ouro] (1, 0.75) -- (2.8, 0.75) node[above, font=\bfseries, text=black] {F};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine analiticamente o módulo da força de atrito que atua sobre o bloco e o estado de movimento (em repouso ou acelerado) caso a força aplicada \textbf{F} possua intensidade igual a \textbf{60 N}.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} Considere o esquema a seguir, que representa o sistema de esteira de carregamento de uma mineradora. Um engradado de massa \textbf{m} desliza com velocidade constante descendo um plano inclinado que forma um ângulo $\theta$ com a horizontal.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E ROTAÇÃO ---
+% LAYER 1: Cunha
+\fill[concreto!50, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) -- (4,0) -- (4,3) -- cycle;
+\draw[Cinzablack, thick] (0,0) -- (4,0) -- (4,3) -- cycle;
+
+% LAYER 2: Ângulo
+\draw[Cinzablack, thick] (0.8,0) arc (0:36.87:0.8);
+\node at (1.1, 0.35) {$\theta$};
+
+% LAYER 3: Bloco inclinado
+\begin{scope}[rotate around={36.87:(0,0)}]
+    \fill[metal, rounded corners=1.5pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (1.5,0) rectangle (2.7, 0.8);
+    \draw[Cinzablack, thick, rounded corners=1.5pt] (1.5,0) rectangle (2.7, 0.8);
+    \node[text=white, font=\bfseries, rotate=36.87] at (2.1, 0.4) {m};
+    
+    % Indicador de movimento
+    \draw[->, >=stealth, thick, red] (2.9, 0.4) -- (3.9, 0.4);
+    \node[red, rotate=36.87] at (3.4, 0.7) {v = cte};
+\end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Prove, por meio da decomposição vetorial das forças atuantes, que o coeficiente de atrito cinético $\mu_c$ entre o engradado e a esteira depende exclusivamente da inclinação e é dado pela relação trigonométrica $\mu_c = \tan \theta$.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Durante uma aula prática de Dinâmica, um estudante fictício chamado Marcos precisava calcular o módulo da Força de Atrito Cinético sobre um bloco de massa \textbf{10 kg} que escorregava plano abaixo. A inclinação do plano era de $30^\circ$ e o coeficiente de atrito valia \textbf{0,3}. Marcos apresentou a seguinte resolução na lousa:
+
+"Sabemos que $F_{at} = \mu \cdot N$. Como a Normal anula o Peso do corpo, temos $N = P$. Logo, $N = m \cdot g = 10 \cdot 10 = 100 N$. Aplicando na fórmula do atrito, encontro $F_{at} = 0,3 \cdot 100 = 30 N$."
+
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique textualmente o erro conceitual grave na modelagem de Marcos. Qual premissa vetorial ele ignorou ao assumir que $N = P$? Apresente em seguida o cálculo rigorosamente correto da Força de Atrito, sabendo que $\sin 30^\circ = \mfrac{1}{2}$ e $\cos 30^\circ \approx \textbf{0,87}$.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Ao aplicar uma força externa progressivamente maior em um armário pesado apoiado no chão, percebemos que, inicialmente, ele não se move. Chega um ponto em que ele "destrava" e, a partir daí, parece ficar ligeiramente mais fácil empurrá-lo em linha reta. Diante desse fenômeno físico real, assinale a alternativa que modela corretamente as leis do atrito e justifique matematicamente o erro das alternativas falsas.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A força de atrito estático possui sempre um valor constante e igual à força externa aplicada, independente da massa do armário.
+    \item O "destravamento" ocorre porque o coeficiente de atrito cinético passa a atuar, possuindo um valor numérico superior ao coeficiente estático.
+    \item A força de atrito estático é variável e ajusta sua intensidade para anular a força externa, até atingir um limite máximo conhecido como eminência de movimento.
+    \item Durante o movimento retilíneo, a força de atrito cinético aumenta proporcionalmente à velocidade adquirida pelo armário.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Construa um mapa conceitual ou um fluxograma lógico matemático que guie a decisão de cálculo entre as equações do Atrito Estático e do Atrito Cinético. Seu esquema deve possuir uma etapa de teste da força motriz externa contra o valor de $F_{at(MAX)}$, indicando qual ramo da física seguir caso o sistema permaneça em repouso ou acelere.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} A figura ilustra um mecanismo de prensa. Um bloco de massa \textbf{2 kg} é mantido em repouso contra uma parede vertical áspera através da aplicação de uma força horizontal \textbf{F}. O coeficiente de atrito estático entre a parede e o bloco é \textbf{0,40} e $g = \textbf{10 m/s²}$.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- LAYER 1: Parede Vertical ---
+\fill[asfalto, drop shadow={opacity=0.1, shadow xshift=2pt, shadow yshift=-2pt}] (2, -1.5) rectangle (2.5, 1.5);
+\pattern[pattern=north east lines, pattern color=black!30] (2, -1.5) rectangle (2.5, 1.5);
+\draw[thick] (2, -1.5) -- (2, 1.5);
+
+% --- LAYER 2: Bloco ---
+\fill[madeira, rounded corners=1pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0.8, -0.6) rectangle (2, 0.6);
+\draw[Cinzablack, thick, rounded corners=1pt] (0.8, -0.6) rectangle (2, 0.6);
+\node[text=white, font=\bfseries] at (1.4, 0) {2 kg};
+
+% --- LAYER 3: Força F ---
+\draw[->, >=stealth, ultra thick, ouro] (-1, 0) -- (0.8, 0) node[midway, above, text=black, font=\bfseries] {F};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Aplicando o diagrama de corpo livre, monte as equações de equilíbrio nos eixos horizontal e vertical e determine a intensidade mínima da força \textbf{F} para que o bloco não escorregue.
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Atenção à geometria do problema: em superfícies verticais, a Força Normal não está atrelada ao Peso, mas sim à força compressora \textbf{F}. O atrito atua impedindo a queda.
+\end{boxdica}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Um sistema de freio em testes é montado conforme o esquema a seguir. O bloco \textbf{A} tem massa de \textbf{6 kg} e o bloco \textbf{B}, suspenso idealmente, tem massa de \textbf{4 kg}. A superfície horizontal apresenta um coeficiente de atrito cinético de \textbf{0,5}. Considerando os fios e a polia como ideais e $g = \textbf{10 m/s²}$, calcule a aceleração do sistema quando liberado a partir do repouso.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% Fundo / Mesa
+\fill[concreto, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (-1, 0) rectangle (3, -0.4);
+\draw[thick] (-1, 0) -- (3, 0);
+
+% Polia e Fios
+\draw[thick] (3, 0) -- (3, -1.5); % Parede lateral
+\fill[gray!50] (3, 0.25) circle (0.25);
+\draw[thick] (3, 0.25) circle (0.25);
+\fill[black] (3, 0.25) circle (0.05);
+
+\draw[thick] (1, 0.25) -- (3, 0.25); % Fio horizontal
+\draw[thick] (3.25, 0.25) -- (3.25, -2); % Fio vertical
+
+% Bloco A
+\fill[blocoB, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0, 0) rectangle (1.2, 0.8);
+\draw[Cinzablack, thick, rounded corners=2pt] (0, 0) rectangle (1.2, 0.8);
+\node[text=white, font=\bfseries] at (0.6, 0.4) {A};
+
+% Bloco B
+\fill[blocoB, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (2.85, -2) rectangle (3.65, -3);
+\draw[Cinzablack, thick, rounded corners=2pt] (2.85, -2) rectangle (3.65, -3);
+\node[text=white, font=\bfseries] at (3.25, -2.5) {B};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} O senso comum na física básica frequentemente induz o aluno a declarar que "A Força de Atrito sempre atua no sentido oposto ao do movimento de um corpo". 
+
+\begin{boxresponda}
+\textbf{Responda:} Avalie criticamente a frase acima. Ela é rigorosamente verdadeira em todos os cenários? Utilize a mecânica da caminhada humana ou a tração dos pneus dianteiros de um carro com tração frontal para diagnosticar o equívoco da frase, demonstrando para onde aponta o vetor atrito nesses casos específicos.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} O zelador de uma escola precisa movimentar um móvel pesado pelo piso de cerâmica. Ele tenta empurrar a mobília exercendo uma força oblíqua direcionada de cima para baixo. Assinale a alternativa correta e prove matematicamente por que as demais são falhas no aspecto de decomposição vetorial.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A componente vertical da força exercida para baixo anula o peso do móvel, zerando o atrito entre as superfícies.
+    \item Ao empurrar o móvel com uma força oblíqua para baixo, a compressão normal no piso aumenta, elevando o valor máximo da força de atrito estático a ser rompida.
+    \item A força normal continua sendo idêntica à força peso do corpo, não importando a inclinação do braço do zelador.
+    \item É sempre mais difícil puxar o móvel exercendo uma força oblíqua de baixo para cima do que empurrá-lo para baixo.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} No gráfico representativo abaixo, modelou-se o comportamento da Força de Atrito ($F_{at}$) atuante sobre um bloco de massa \textbf{10 kg} em função da intensidade da força externa motriz (\textbf{F}) aplicada paralelamente à superfície horizontal.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=0, xmax=80,
+    ymin=0, ymax=60,
+    xlabel={\textbf{F (N)}},
+    ylabel={\textbf{$F_{at}$ (N)}},
+    width=8cm,
+    height=6cm,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!30},
+    major grid style={line width=.2pt,draw=gray!50},
+    xtick={0,20,40,60,80},
+    ytick={0,20,40,50,60},
+    every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south},
+    ticklabel style={fill=white, inner sep=2pt} % Máscara de texto OBRIGATÓRIA
+]
+
+% Linha de Atrito Estático (F = Fat)
+\addplot[ultra thick, blue, domain=0:50] {x};
+
+% Queda para Cinético
+\draw[ultra thick, blue] (axis cs:50,50) -- (axis cs:50,40);
+
+% Linha de Atrito Cinético
+\addplot[ultra thick, red, domain=50:80] {40};
+
+% Linhas guias
+\draw[dashed, thick, black!60] (axis cs:50,0) -- (axis cs:50,50);
+\draw[dashed, thick, black!60] (axis cs:0,50) -- (axis cs:50,50);
+\draw[dashed, thick, black!60] (axis cs:0,40) -- (axis cs:50,40);
+
+% Textos explicativos com máscara
+\node[fill=white, inner sep=2pt, blue, font=\bfseries] at (axis cs: 25, 35) {Repouso};
+\node[fill=white, inner sep=2pt, red, font=\bfseries] at (axis cs: 65, 45) {Movimento};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base estritamente nos dados extraídos visualmente da malha do gráfico, calcule o valor dos coeficientes de atrito estático ($\mu_e$) e cinético ($\mu_c$) entre as superfícies em contato. Considere $g = \textbf{10 m/s²}$.
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{11.} (FUVEST - Adaptada) Um bloco de massa \textbf{5 kg} desce a partir do repouso por um plano inclinado que faz um ângulo de $37^\circ$ com a horizontal. O comprimento total da rampa é de \textbf{10 m} e o coeficiente de atrito cinético entre o bloco e a superfície vale \textbf{0,25}. Sabendo que $\sin 37^\circ = \textbf{0,6}$ e $\cos 37^\circ = \textbf{0,8}$, e considerando $g = \textbf{10 m/s²}$:
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% LAYER 1: Plano Inclinado
+\fill[concreto!40, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) -- (5,0) -- (5, 3.76) -- cycle;
+\draw[Cinzablack, thick] (0,0) -- (5,0) -- (5, 3.76) -- cycle;
+
+% LAYER 2: Ângulo e cotas
+\draw[Cinzablack, thick] (1,0) arc (0:36.87:1);
+\node[font=\bfseries] at (1.4, 0.4) {$37^\circ$};
+\node[font=\bfseries, fill=white, inner sep=1pt] at (2.6, 2.2) {L = 10 m};
+
+% LAYER 3: Bloco na rampa
+\begin{scope}[rotate around={36.87:(0,0)}]
+    \fill[blocoB, rounded corners=1.5pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (2,0) rectangle (3.2, 0.9);
+    \draw[Cinzablack, thick, rounded corners=1.5pt] (2,0) rectangle (3.2, 0.9);
+    \node[text=white, font=\bfseries, rotate=36.87] at (2.6, 0.45) {5 kg};
+\end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o valor da aceleração com que o bloco desce o plano e a velocidade com que ele atinge a base da rampa.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} (UNICAMP - Adaptada) Para realizar a manutenção de uma estrutura metálica, um operário puxa um vagão de carga de massa \textbf{80 kg} para cima, ao longo de um plano inclinado de $45^\circ$, com velocidade constante. O coeficiente de atrito cinético entre o vagão e o plano é \textbf{0,20}. Considerando $\sin 45^\circ = \cos 45^\circ \approx \textbf{0,71}$ e $g = \textbf{10 m/s²}$, calcule a intensidade da força paralela ao plano exercida pelo operário.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} (Estilo ENEM) Blocos interligados por fios inextensíveis e de massas desprezíveis são frequentemente utilizados em sistemas de transporte industrial. Na montagem abaixo, o bloco \textbf{A} (massa \textbf{4 kg}) está sobre uma mesa horizontal com atrito ($\mu_c = \textbf{0,3}$) e é puxado por um fio que passa por uma polia ideal, ligando-se verticalmente ao bloco \textbf{B} (massa \textbf{6 kg}).
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% Mesa
+\fill[concreto, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (-0.5, 0) rectangle (3.5, -0.3);
+\draw[thick] (-0.5, 0) -- (3.5, 0);
+
+% Polia
+\fill[gray!60] (3.5, 0.3) circle (0.3);
+\draw[thick] (3.5, 0.3) circle (0.3);
+\fill[black] (3.5, 0.3) circle (0.05);
+
+% Fios
+\draw[thick] (1.5, 0.3) -- (3.5, 0.3);
+\draw[thick] (3.8, 0.3) -- (3.8, -2.2);
+
+% Blocos
+\fill[blocoA, rounded corners=2pt, drop shadow={opacity=0.2}] (0.3, 0) rectangle (1.5, 1);
+\node[text=white, font=\bfseries] at (0.9, 0.5) {A (4kg)};
+
+\fill[blocoB, rounded corners=2pt, drop shadow={opacity=0.2}] (3.4, -2.2) rectangle (4.2, -3.2);
+\node[text=white, font=\bfseries] at (3.8, -2.7) {B (6kg)};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Adotando $g = \textbf{10 m/s²}$, determine a tração no fio que conecta os dois blocos durante o movimento acelerado.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} Uma aluna do Ensino Médio, ao analisar um problema de plano inclinado, cometeu o seguinte erro metodológico em sua resolução escrita:
+
+"Como o corpo está sobre o plano, a força de atrito atua sempre para baixo, no mesmo sentido do movimento de descida, ajudando a acelerar o bloco junto com a componente paralela da gravidade."
+
+\begin{boxresponda}
+\textbf{Responda:} Aponte detalhadamente o equívoco conceitual da afirmação da aluna em relação à direção e ao sentido da Força de Atrito Cinético. Para onde aponta o vetor atrito quando um corpo escorrega ladeira abaixo e por quê?
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} (FUVEST) Um bloco de granito de massa \textbf{20 kg} é puxado sobre uma laje horizontal rústica. O gráfico a seguir modela a força aplicada em função do tempo, gerando um deslocamento onde a força de atrito passa de estática máxima para cinemática constante. Analise as afirmativas abaixo e julgue-as justificadamente:
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O pico máximo de força observado no início do regime estático representa a ruptura da aderência microscópica entre as superfícies.
+    \item Após o início do movimento, a força de atrito decresce ligeiramente porque o coeficiente de atrito cinético é menor que o estático.
+    \item A aceleração do bloco permanece constante durante todo o intervalo em que a força aplicada supera o atrito cinético.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\section*{Capítulo 11: Dinâmica Curvilínea}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{16.} Um automóvel de massa \textbf{1000 kg} descreve uma curva horizontal plana e circular de raio \textbf{50 m} em uma rodovia federal. O coeficiente de atrito estático entre os pneus do veículo e o asfalto seco é \textbf{0,8}. Considerando $g = \textbf{10 m/s²}$, calcule a máxima velocidade escalar que o automóvel pode desenvolver nessa curva sem derrapar lateralmente.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% LAYER 1: Curva / Pista
+\fill[asfalto, drop shadow={opacity=0.15}] (0,0) circle (2.2cm);
+\fill[white] (0,0) circle (1.4cm);
+\fill[white!90!asfalto] (0,0) circle (0.2cm);
+
+% LAYER 2: Carro esquematizado na pista superior
+\fill[ouro, rounded corners=3pt, drop shadow={opacity=0.2}] (1.5, -0.3) rectangle (2.1, 0.3);
+\draw[black, thick, rounded corners=3pt] (1.5, -0.3) rectangle (2.1, 0.3);
+\node[black, font=\tiny\bfseries, rotate=90] at (1.8, 0) {AUTO};
+
+% LAYER 3: Vetores de raio e velocidade
+\draw[->, >=stealth, thick, red] (0,0) -- (1.8, 0) node[midway, above, font=\bfseries] {R};
+\draw[->, >=stealth, ultra thick, blue] (1.8, 0.5) -- (1.8, 1.3) node[right, font=\bfseries] {v};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} (ENEM - Adaptada) Engenheiros rodoviários projetam curvas superelevadas (inclinadas transversalmente) para estradas de alta velocidade. Considere uma curva de raio \textbf{200 m} projetada para veículos trafegarem a uma velocidade ideal de \textbf{20 m/s} sem depender da força de atrito lateral. Calcule o ângulo de inclinação transversal ($\theta$) da pista necessário para satisfazer essa condição. Adote $g = \textbf{10 m/s²}$.
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Em uma curva superelevada sem atrito, a componente horizontal da Força Normal é a única responsável por atuar como a Resultante Centrípeta do veículo.
+\end{boxdica}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} Um motociclista acrobático realiza a clássica apresentação no "Globo da Morte", uma esfera oca de aço de raio \textbf{4 m}. 
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% LAYER 1: Esfera (Globo)
+\fill[vidro!15, drop shadow={opacity=0.15}] (0,0) circle (2cm);
+\draw[Cinzablack, thick] (0,0) circle (2cm);
+\draw[dashed, gray] (0,-2) arc (-90:90:0.8 and 2);
+
+% LAYER 2: Moto no topo
+\fill[blocoA, rounded corners=1.5pt] (-0.3, 1.7) rectangle (0.3, 2.1);
+\draw[->, >=stealth, ultra thick, red] (0, 1.7) -- (0, 0.8) node[right, font=\bfseries] {P + N};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a velocidade linear mínima que o conjunto (moto + piloto) deve manter ao passar pelo ponto mais alto da trajetória circular vertical para não perder o contato com a superfície interna do globo. Considere $g = \textbf{10 m/s²}$.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} Um carro de massa \textbf{1200 kg} passa pelo ponto mais alto de uma lombada (trecho de pista com curvatura circular convexa para cima) cujo raio de curvatura vertical é de \textbf{40 m}. Se a velocidade do veículo nesse instante é de \textbf{10 m/s}, adote $g = \textbf{10 m/s²}$ e determine a intensidade da Força Normal exercida pela pista sobre o veículo.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} (UNICAMP) Analise criticamente a seguinte resolução apresentada por um grupo de estudantes para um problema de dinâmica curvilínea em depressão de pista (lombada invertida):
+
+"No fundo de uma depressão convexa para baixo, o carro sente uma força centrífuga puxando-o para fora da pista. Portanto, somamos o peso com essa força centrífuga para achar a Normal."
+
+\begin{boxresponda}
+\textbf{Responda:} O termo "força centrífuga" é válido em referenciais inerciais? Corrija o equívoco da argumentação dos alunos utilizando estritamente a análise da Força Resultante centrípeta em um referencial inercial fixo na Terra.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} (FUVEST - Adaptada) Um satélite artificial orbita a Terra em movimento circular uniforme a uma altitude onde a aceleração da gravidade local vale \textbf{8 m/s²}. Sabendo que o raio orbital médio do satélite é de \textbf{7000 km}, calcule a velocidade orbital escalar desenvolvida pelo satélite em torno da Terra.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Um pêndulo cônico é constituído por uma esfera de massa \textbf{2 kg} presa na extremidade de um fio inextensível e de massa desprezível, com comprimento de \textbf{1,5 m}. A esfera descreve um movimento circular horizontal uniforme com o fio inclinado de um ângulo constante de $30^\circ$ em relação à vertical. Adotando $g = \textbf{10 m/s²}$, determine a tração no fio e o raio da trajetória circular descrita pela esfera.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} (ITA - Adaptada) Um bloco pequeno de massa \textbf{m} desliza sem atrito pelo interior de uma superfície semiesférica oca de raio \textbf{R}, mantida fixa com a abertura voltada para cima. Solto a partir do repouso na borda superior (altura do centro da esfera), determine a intensidade da força normal exercida pela superfície sobre o bloco quando este passa pelo ponto mais baixo da trajetória hemisférica.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} (ENEM) Um motorista desavisado conduz seu automóvel por uma ponte em arco circular vertical convexo. Ao passar exatamente pelo topo da ponte com uma velocidade excessiva, os passageiros experimentam uma breve sensação de "perda de peso" (quase flutuando nos bancos). 
+
+\begin{boxresponda}
+\textbf{Responda:} Justifique física e matematicamente o fenômeno ocorrido, demonstrando qual seria a velocidade limite exata para que a Força Normal sobre o carro se tornasse exatamente nula no topo da ponte de raio \textbf{R}.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} (FUVEST/UNICAMP - Híbrida de Otimização) Um bloco de massa \textbf{2 kg} é colocado sobre uma plataforma circular horizontal que gira em torno de um eixo vertical central com velocidade angular constante $\omega$. O bloco está situado a uma distância \textbf{0,5 m} do centro de rotação. Sabe-se que o coeficiente de atrito estático entre o bloco e a plataforma é \textbf{0,5} e que $g = \textbf{10 m/s²}$. 
+
+Determine o valor máximo da velocidade angular $\omega$ (em rad/s) para que o bloco não escorregue e seja arremessado para fora da plataforma giratória.
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
