@@ -9,7 +9,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 % --- GEOMETRIA E ESPAÇAMENTO ---
-\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage[top=1.8cm, bottom=1.8cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.6cm]{geometry}
 \usepackage{microtype} 
 \usepackage{setspace}
 \setstretch{1.0} % Espaçamento simples
@@ -63,20 +63,21 @@
 \definecolor{madeira}{HTML}{D35400}
 \definecolor{CinzaEscuro}{HTML}{4A4A4A} 
 \definecolor{CinzaMedio}{HTML}{848484} 
-\definecolor{Cinzablack}{HTML}{353535} 
+\definecolor{Cinzablack}{HTML}{353535}
+\definecolor{indigo}{HTML}{4F46E5} 
 
-% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
+% --- MINI-CABEÇALHO E RODAPÉ EDITORIAL (TWOSIDE) ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
-\renewcommand{\headrulewidth}{0pt} 
-\fancyhead[LE]{
-    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{OPERAÇÕES} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
-}
-\fancyhead[RO]{
-    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{OPERAÇÕES} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}
-}
-\fancyfoot[C]{\footnotesize Página \thepage} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} Números Racionais e Operações}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
 
 % --- CAIXAS DE DESTAQUE (tcolorbox) ---
 \usepackage[most]{tcolorbox}
@@ -129,41 +130,38 @@
 \pgfplotsset{compat=1.18}
 
 \begin{document}
+\thispagestyle{empty}
 \color{Cinzablack}
-\vspace*{-1.7cm}
+\vspace*{-1.8cm}
 
-% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+% --- CABEÇALHO DA PRIMEIRA PÁGINA (Ajustado ao Topo) ---
 \noindent
-\begin{minipage}[t]{0.09\linewidth}
-    \vspace{8pt}
-    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../Modelos_Templates/Elv_novo_logo.png} 
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.90\linewidth} 
-    \vspace{0pt}
+\begin{minipage}{\textwidth}
     \fontfamily{phv}\selectfont
     
-    % BLOCO 1
-    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
-        \begin{minipage}[c]{0.84\linewidth}
-            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
-        \end{minipage}%
-        \hfill
-        \begin{minipage}[c]{0.15\linewidth}
-            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{OPERAÇÕES}}
-        \end{minipage}%
-    \end{tcolorbox}
-    \par\vspace{0.18cm} 
+    % Título Principal e Professor
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Números Racionais e Operações}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    
+    % Barra divisória e metadados logo acima
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA / ÁLGEBRA \hfill \textbf{NÍVEL:} EF II (6º ANO)}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
 
-    % BLOCO 2
-    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
-        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{6º ANO} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{1}
-    \end{tcolorbox}
-\end{minipage}%
-
-\par\vspace{0.2cm} 
-\noindent\rule{\linewidth}{1.5pt} 
-\vspace{-0.7cm}
+\par\vspace{0.3cm} 
 % --- FIM DO CABEÇALHO ---
 
 \raggedcolumns
