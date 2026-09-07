@@ -1,54 +1,138 @@
-\documentclass[11pt, a4paper]{article}
+\documentclass[twoside, 10pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
-\usepackage[sfdefault]{roboto}
-% Margem inferior ajustada para 1.5cm para caber o rodapé
-\usepackage[top=7.5cm, headheight=7.5cm, bottom=1.3cm, footskip=0.5cm, left=1cm, right=1cm]{geometry}
 
-% --- CARREGA O PACOTE DE IMAGEM PRIMEIRO ---
-\usepackage{graphicx}
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
 
-% --- CABEÇALHO E RODAPÉ EM TODAS AS PÁGINAS ---
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{} 
-\renewcommand{\headrulewidth}{0pt} 
-\fancyhead[C]{\includegraphics[width=\textwidth]{FISICA_8ANO.jpg}}
-\fancyfoot[C]{Página \thepage} 
-
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
 \usepackage{setspace}
-\setstretch{1.15}
+\setstretch{1.0} % Espaçamento simples
 \usepackage{parskip}
 \setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 
+% ==========================================
+%   PAINEL DE CONTROLE DE ESPAÇAMENTO E ESCALA
+% ==========================================
+% Altere os valores abaixo para apertar ou expandir o documento inteiro
+
+% 1. Espaços das Questões
+\newlength{\espacoPosTitulo}
+\setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
+
+\newlength{\espacoPreQuestao}
+\setlength{\espacoPreQuestao}{0.1cm} % Espaço entre a linha fina divisória e a questão
+
+\newlength{\espacoQuestao}
+\setlength{\espacoQuestao}{0.2cm}    % Espaço de "respiro" no FINAL de cada questão
+
+\newlength{\espacoAlt}
+\setlength{\espacoAlt}{0.2cm}        % Espaço para quebras manuais de alternativas
+
+% 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
+\usepackage{enumitem}
+\setlist{
+    itemsep=0.4cm,    % <- AQUI: Espaço vertical automático entre a letra a), b), c)
+    topsep=0.1cm,     
+    parsep=0pt,       
+    partopsep=0pt     
+}
+
+% 3. Controle de Escala de Imagens
+\newcommand{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
+% ==========================================
+
+% --- MATEMÁTICA ---
 \usepackage{amsmath, amsfonts, amssymb}
 \usepackage{nccmath}
 \usepackage{mathastext}
+
+% --- CORES CUSTOMIZADAS PREMIUM ---
 \usepackage{xcolor}
 \definecolor{CorTitUm}{HTML}{FF6F61}
 \definecolor{CorTitDois}{HTML}{FF6F61}
 \definecolor{CorTitTres}{HTML}{658894}
 \definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
 
+% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[LE]{
+    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{FÍSICA} $\vert$ Bloco 1 $\vert$ 3º BIMESTRE}}
+}
+\fancyhead[RO]{
+    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{FÍSICA} $\vert$ Bloco 1 $\vert$ 3º BIMESTRE}}
+}
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+% --- CAIXAS DE DESTAQUE (tcolorbox) ---
+\usepackage[most]{tcolorbox}
+
+% 1. Box de Resposta do Aluno
+\newtcolorbox{boxresponda}{
+    colback=white,        
+    colframe=gray!45,       
+    boxrule=0pt,          
+    leftrule=1.7pt,        
+    sharp corners,        
+    enlarge left by=0.4cm,  
+    width=\linewidth-0.4cm, 
+    left=8pt, right=0pt,  
+    top=2pt, bottom=2pt,
+    fontupper=\small % Ajustado para evitar erro em fórmulas matemáticas
+}
+
+% 2. Box de Dica (Estilo Ciano Claríssimo)
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{
+    colback=CorDicaFundo,        
+    colframe=CorDicaBorda,      
+    boxrule=0pt,          
+    leftrule=2.5pt,         
+    sharp corners,        
+    width=\linewidth, % Sem recuo, conforme solicitado
+    left=8pt, right=8pt,  
+    top=6pt, bottom=6pt,
+    halign=center, 
+    fontupper=\small      
+}
+
+% --- TÍTULOS (ESTILO EDITORIAL) ---
 \usepackage{titlesec}
-\titleformat{\section}{\color{CorTitUm}\fontsize{17}{20}\bfseries}{\thesection}{0em}{}
-\titlespacing*{\section}{0pt}{5pt}{6pt} 
-\titleformat{\subsection}{\color{CorTitDois}\fontsize{14}{16}\bfseries\raggedright\MakeUppercase}{\thesubsection}{0em}{}
-\titlespacing*{\subsection}{0pt}{1pt}{5pt} 
-\titleformat{\subsubsection}{\color{CorTitTres}\fontsize{12}{14}\bfseries\raggedright}{\thesubsubsection}{0em}{}
-\titlespacing*{\subsubsection}{0pt}{-3pt}{1pt}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% Disfarça a subsubsection para agir como o \textbf{} e aparecer no Outline
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- PACOTES DE ESTRUTURA E GRÁFICOS ---
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{CorLinha}}
 
-% --- LIMITADOR DE IMAGENS ---
 \usepackage{adjustbox}
-
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{circuitikz}
@@ -56,17 +140,59 @@
 \pgfplotsset{compat=1.18}
 
 \begin{document}
+\color{Cinzablack}
+\vspace*{-1.7cm}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.09\linewidth}
+    \vspace{8pt}
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../Modelos_Templates/Elv_novo_logo.png} 
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.90\linewidth} 
+    \vspace{0pt}
+    \fontfamily{phv}\selectfont
+    
+    % BLOCO 1
+    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \begin{minipage}[c]{0.84\linewidth}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.15\linewidth}
+            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{FÍSICA}}
+        \end{minipage}%
+    \end{tcolorbox}
+    \par\vspace{0.18cm} 
+    
+    % BLOCO 2
+    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{8º ANO} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{1}
+    \end{tcolorbox}
+\end{minipage}%
+
+\par\vspace{0.2cm} 
+\noindent\rule{\linewidth}{1.5pt} 
+\vspace{-0.7cm}
+% --- FIM DO CABEÇALHO ---
+
 \raggedcolumns
-\section*{SISTEMA SOL-TERRA-LUA E MOVIMENTOS PLANETÁRIOS}
 \begin{multicols*}{2}
+\vspace{0.1cm}
 
 \subsection*{Capítulo 1: O Sistema Sol-Terra-Lua}
-\subsubsection*{QUESTÃO 01}
-
-Uma feira de ciências montou um modelo em escala do sistema Sol-Terra-Lua. No pátio da escola, o grupo de alunos posicionou os astros respeitando a proporção de distâncias. Considere o esquema montado pelos alunos, onde a malha quadriculada no chão ajuda a identificar as posições. 
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Uma feira de ciências montou um modelo em escala do sistema Sol-Terra-Lua. No pátio da escola, o grupo de alunos posicionou os astros respeitando a proporção de distâncias. Considere o esquema montado pelos alunos, onde a malha quadriculada no chão ajuda a identificar as posições. 
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 % --- PALETA HEXADECIMAL MODERNA ---
 \definecolor{bgchao}{HTML}{E8F6F3}
@@ -93,42 +219,56 @@ Uma feira de ciências montou um modelo em escala do sistema Sol-Terra-Lua. No p
 \draw[<->, thick, dashed] (Sol) -- node[fill=bgchao, inner sep=2pt, font=\bfseries\footnotesize] {\textbf{d}} (Terra);
 \draw[<->, thick, dashed] (Terra) -- (Lua);
 \node[fill=bgchao, inner sep=1pt, font=\bfseries\tiny, align=center] at (6.8, 0.5) {\textbf{x}};
-
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
 
-Na montagem, cada quadrado da malha equivale a $ \mfrac{1}{4} $ de Unidade Astronômica (UA) no modelo. Determine a distância \textbf{d} representada no pátio da escola, em Unidades Astronômicas, e justifique por que, na vida real, a representação de \textbf{x} na mesma escala de \textbf{d} seria inviável para esse modelo visual.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 02}
+Na montagem, cada quadrado da malha equivale a $ \mfrac{1}{4} $ de Unidade Astronômica (UA) no modelo. Determine a distância \textbf{d} representada no pátio da escola, em Unidades Astronômicas, e justifique por que, na vida real, a representação de \textbf{x} na mesma escala de \textbf{d} seria inviável para esse modelo visual visualizado a olho nu.
+\par\vspace{\espacoQuestao}
 
-A luz viaja no vácuo a uma velocidade aproximada de \textbf{300.000 km/s}. Sabe-se que a distância média entre a Terra e o Sol é de cerca de \textbf{150 milhões de quilômetros}, enquanto a distância média da Terra à Lua é de aproximadamente \textbf{384.000 quilômetros}. Demonstre matematicamente, através do cálculo de tempo de viagem da luz, por que observamos a Lua praticamente em "tempo real" e o Sol com um atraso significativo.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 03}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} A luz viaja no vácuo a uma velocidade aproximada de \textbf{300.000 km/s}. Sabe-se que a distância média entre a Terra e o Sol é de cerca de \textbf{150.000.000 km}, enquanto a distância média da Terra à Lua é de aproximadamente \textbf{384.000 km}. Demonstre matematicamente, através do cálculo de tempo de viagem da luz (usando regras proporcionais), por que observamos a Lua praticamente em "tempo real" e o Sol com um atraso significativo.
+\par\vspace{\espacoQuestao}
 
-Sobre os componentes do Sistema Sol-Terra-Lua e suas proporções, julgue as afirmativas a seguir com V (Verdadeiro) ou F (Falso) e justifique aquelas que forem falsas:
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Sobre os componentes do Sistema Sol-Terra-Lua e suas proporções, julgue as afirmativas a seguir com V (Verdadeiro) ou F (Falso) e justifique aquelas que considerar falsas:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O Sol é a fonte primária de energia do sistema, sendo uma estrela que emite luz própria devido a reações nucleares, enquanto Terra e Lua são astros iluminados.
+    \item O diâmetro da Terra é aproximadamente quatro vezes maior que o da Lua, o que justifica a diferença de gravidade, mas no céu Sol e Lua parecem ter tamanhos similares apenas devido à perspectiva de distância.
+    \item Se a distância da Terra até a Lua dobrasse de tamanho, o tempo que a luz do Sol demora para chegar à Terra também dobraria.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-I. O Sol é a fonte primária de energia do sistema, sendo uma estrela que emite luz própria devido a reações nucleares, enquanto Terra e Lua são corpos iluminados.\\[0.3cm]
-II. O diâmetro da Terra é aproximadamente quatro vezes maior que o da Lua, o que justifica a diferença de gravidade, mas no céu parecem ter tamanhos similares devido à distância.\\[0.3cm]
-III. Se a distância Terra-Lua dobrasse, o tempo que a luz do Sol demora para chegar à Terra também dobraria.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} (Estilo VUNESP) O projeto astronômico "Via Láctea na Praça" propõe a criação de esferas de diferentes materiais para representar planetas. Se a Terra for representada por uma bola de gude com \textbf{1,5 cm} de diâmetro, o Sol deverá ser representado por uma esfera maior, montada em uma praça adjacente. Sabendo que o diâmetro real do Sol é cerca de \textbf{109 vezes} maior que o da Terra, calcule qual deve ser o diâmetro, em metros, da esfera que representará o Sol neste projeto escolar.
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 04}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Durante uma aula de ciências, um aluno fictício chamado Marcos fez a seguinte afirmação sobre a dinâmica do nosso sistema planetário: 
 
-(Estilo VUNESP) O projeto astronômico "Via Láctea na Praça" propõe a criação de esferas de diferentes materiais para representar planetas. Se a Terra for representada por uma bola de gude com \textbf{1,5 cm} de diâmetro, o Sol deverá ser representado por uma esfera maior, montada em uma praça adjacente. Sabendo que o diâmetro real do Sol é cerca de \textbf{109 vezes} maior que o da Terra, calcule qual deve ser o diâmetro, em metros, da esfera que representará o Sol neste projeto. 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 05}
+\begin{boxresponda}
+\textbf{Responda:} "A Terra orbita o Sol porque o Sol é o corpo mais quente do sistema, possuindo forte energia térmica que atrai a Terra. Já a Lua orbita a Terra porque ela está presa dentro da atmosfera terrestre, não conseguindo escapar para o espaço sideral."\\
+\\
+Diagnostique os \textbf{dois} erros conceituais (físicos e orbitais) na argumentação de Marcos e reescreva a explicação utilizando o conceito correto que define quem orbita quem no Sistema Sol-Terra-Lua.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-A classificação dos corpos celestes no sistema Sol-Terra-Lua obedece a critérios físicos e orbitais precisos. Explique o principal critério dinâmico (movimento e órbita) que define a Terra como um planeta e a Lua como um satélite natural, destacando quem orbita quem e em torno de qual centro de massa gravitacional o sistema principal se movimenta.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
 \subsection*{Capítulo 2: Movimentos da Terra}
-\subsubsection*{QUESTÃO 06}
-
-A inclinação do eixo de rotação terrestre é o principal fator responsável pelas características de insolação em diferentes épocas do ano. O esquema gráfico ilustra a incidência dos raios solares sobre o globo terrestre em um determinado momento da translação. 
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{6.} A inclinação do eixo de rotação terrestre é o principal fator responsável pelas características de insolação em diferentes épocas do ano. O esquema gráfico ilustra a incidência dos raios solares sobre o globo terrestre em um determinado momento da translação. 
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 % --- PALETA HEXADECIMAL MODERNA ---
 \definecolor{terra}{HTML}{3498DB}
@@ -171,26 +311,33 @@ A inclinação do eixo de rotação terrestre é o principal fator responsável 
 \end{adjustbox}
 \end{center}
 
-Analisando exclusivamente a geometria de incidência luminosa no esquema, determine em qual hemisfério (Norte ou Sul) está ocorrendo o verão e justifique sua resposta baseado na área de iluminação mostrada.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 07}
+Analisando exclusivamente a geometria de incidência luminosa no esquema, determine em qual hemisfério (Norte ou Sul) está ocorrendo o verão e justifique sua resposta demonstrando como a área de iluminação (lado claro) se distribui em relação ao Equador.
+\par\vspace{\espacoQuestao}
 
-O movimento de rotação da Terra ocorre de Oeste para Leste, com duração de aproximadamente \textbf{24 horas}. Como consequência direta desse sentido de giro, observamos o movimento aparente do Sol no céu durante o dia. Considerando duas cidades brasileiras, Recife (PE) e Rio Branco (AC), separadas por uma grande distância longitudinal, explique qual delas vê o nascer do Sol primeiro e como isso se relaciona com a rotação planetária.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 08}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} O movimento de rotação da Terra ocorre de Oeste para Leste, com duração de aproximadamente \textbf{24 horas}. Como consequência direta desse sentido de giro, observamos o movimento aparente do Sol no céu durante o dia. Considerando duas cidades brasileiras, Recife (PE) no litoral e Rio Branco (AC) no extremo oeste do país, explique qual delas vê o nascer do Sol primeiro e como isso se relaciona com o sentido da rotação planetária.
+\par\vspace{\espacoQuestao}
 
-Analise os itens abaixo relacionados ao movimento de translação e a ocorrência das estações do ano, assinalando V para verdadeiro e F para falso:
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Analise os itens abaixo relacionados ao movimento de translação e à ocorrência das estações do ano, assinalando V para verdadeiro e F para falso. Corrija matematicamente ou conceitualmente as afirmativas incorretas:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O periélio (ponto da órbita mais próximo do Sol) é a causa exclusiva do verão, pois a Terra recebe mais calor do que no afélio, anulando os efeitos do eixo.
+    \item Nos equinócios, os raios solares incidem perpendicularmente sobre a Linha do Equador, resultando em dias e noites com durações aproximadamente iguais em todo o planeta.
+    \item Se o eixo da Terra não possuísse inclinação (fosse totalmente reto), a translação não geraria estações do ano distintas, mantendo o clima uniforme nas latitudes.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-I. O periélio (ponto da órbita mais próximo do Sol) é a causa exclusiva do verão, pois a Terra recebe mais calor do que no afélio.\\[0.3cm]
-II. Nos equinócios, os raios solares incidem perpendicularmente sobre a Linha do Equador, resultando em dias e noites com durações iguais em quase todo o planeta.\\[0.3cm]
-III. A translação, se ocorresse sem a inclinação do eixo terrestre, não geraria estações do ano distintas, mantendo o clima uniforme nas latitudes.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 09}
-
-(ENEM - Adaptada) O gráfico documenta a variação do número de horas de luz solar ao longo dos meses do ano para uma cidade X.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} (ENEM - Adaptada) O gráfico documenta a variação do número de horas de luz solar ao longo dos meses do ano para uma cidade X.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \begin{axis}[
     width=8cm, height=5cm,
@@ -221,22 +368,34 @@ III. A translação, se ocorresse sem a inclinação do eixo terrestre, não ger
 \end{adjustbox}
 \end{center}
 
-Com base na interpretação gráfica das horas de insolação, conclua em qual hemisfério a Cidade X está localizada. Em sua justificativa, aponte os meses que caracterizam o solstício de inverno e o solstício de verão para esta localidade.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 10}
+Com base na interpretação gráfica das horas de insolação e sua variação cíclica, conclua em qual hemisfério a Cidade X está localizada. Em sua justificativa, aponte explicitamente os meses que caracterizam o solstício de inverno e o solstício de verão para esta localidade.
+\par\vspace{\espacoQuestao}
 
-Durante um experimento escolar, um aluno posiciona uma haste reta de \textbf{1 metro} verticalmente no solo plano. Ele decide medir o comprimento da sombra projetada pela haste exatamente ao meio-dia solar, durante os dias de solstício de verão e de inverno em sua cidade (localizada ao sul do Trópico de Capricórnio). Descreva como será o comportamento geométrico dessa sombra: em qual dos dois eventos (verão ou inverno) a sombra projetada será mais longa e por que isso ocorre do ponto de vista da inclinação dos raios solares?
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 11}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} Durante um experimento escolar de observação indireta, um aluno posiciona uma haste reta de \textbf{1 metro} verticalmente no solo plano. Ele decide medir o comprimento da sombra projetada pela haste exatamente ao meio-dia solar, durante os dias de solstício de verão e de inverno em sua cidade (localizada na região Sul do Brasil). Descreva analiticamente como será o comportamento geométrico dessa sombra: em qual dos dois eventos a sombra projetada será mais longa e por que isso ocorre?
+\par\vspace{\espacoQuestao}
 
-A translação terrestre dura exatamente \textbf{365 dias, 5 horas, 48 minutos e 46 segundos}. Para facilitar o uso do calendário civil, adotou-se o ano de \textbf{365 dias}. Demonstre, através de cálculos proporcionais, por que ocorre a necessidade de se adicionar um dia extra no mês de fevereiro a cada quatro anos (Ano Bissexto) e o que aconteceria com as estações do ano a longo prazo se essa correção matemática não fosse aplicada.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 12}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{11.} Um jornal publicou uma matéria sobre a organização do calendário civil contendo o seguinte trecho:
 
-O monumento arqueológico de Stonehenge, na Inglaterra, possui pedras alinhadas especificamente para marcar os eventos astronômicos anuais. Observe a modelagem do alinhamento da luz do Sol nascendo em relação a uma pedra de referência (Trilithon).
+\begin{boxresponda}
+\textbf{Responda:} "O ano bissexto ocorre a cada quatro anos com a adição do dia 29 de fevereiro. Isso é necessário porque a Terra demora exatos 365 dias e 12 horas para dar a volta no Sol. Sem essa correção, as estações do ano se inverteriam de 6 em 6 meses."\\
+\\
+Utilizando o valor astronômico real da translação terrestre (aprox. 365 dias e 6 horas), refute a afirmação matemática do jornal e explique qual seria o verdadeiro impacto nas estações do ano a longo prazo se não utilizássemos o ano bissexto.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} O monumento arqueológico de Stonehenge, na Inglaterra, possui pedras alinhadas especificamente para marcar eventos astronômicos anuais ditados pela translação e inclinação terrestre. Observe a modelagem do alinhamento da luz do Sol nascendo em relação a uma pedra de referência.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{pedra}{HTML}{7F8C8D}
 \definecolor{grama}{HTML}{27AE60}
@@ -262,87 +421,20 @@ O monumento arqueológico de Stonehenge, na Inglaterra, possui pedras alinhadas 
 \end{adjustbox}
 \end{center}
 
-Se o feixe de luz atinge perfeitamente o centro do monumento apenas no dia em que o hemisfério Norte atinge seu grau máximo de insolação anual, a qual fenômeno astronômico exato (incluindo a estação) a pedra principal está alinhada? Justifique.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 13}
-
-(Estilo ENEM) A figura esquematiza a Terra em uma posição específica de sua órbita ao redor do Sol, destacando três cidades (A, B e C) localizadas em diferentes latitudes. O eixo de rotação terrestre e o sentido do movimento estão indicados.
-
-\begin{center}
-\begin{adjustbox}{max width=\linewidth}
-\begin{tikzpicture}
-% --- PALETA HEXADECIMAL MODERNA ---
-\definecolor{fundoespaco}{HTML}{1C2833}
-\definecolor{luzsol}{HTML}{F1C40F}
-\definecolor{aguaterra}{HTML}{3498DB}
-\definecolor{sombraterra}{HTML}{17202A}
-
-% --- LAYER 1: Fundo (Rounded Corners e Drop Shadow) ---
-\fill[fundoespaco, rounded corners=5pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-4,-3.5) rectangle (3,3.5);
-
-% --- LAYER 2: Raios Solares ---
-\foreach \y in {-2.5, -1.5, -0.5, 0.5, 1.5, 2.5} {
-    \draw[->, ultra thick, luzsol] (-3.5, \y) -- (-1.8, \y);
-}
-\node[fill=fundoespaco, text=luzsol, font=\bfseries] at (-2.5, 3) {Luz Solar};
-
-% --- LAYER 3: Terra e Sombreamento ---
-\begin{scope}[rotate=-23.5]
-    % Noite
-    \clip (0,-2.5) rectangle (2.5,2.5);
-    \fill[sombraterra] (0,0) circle (2cm);
-\end{scope}
-
-\begin{scope}[rotate=-23.5]
-    % Dia
-    \clip (-2.5,-2.5) rectangle (0,2.5);
-    \fill[aguaterra] (0,0) circle (2cm);
-    % Equador e Trópicos
-    \draw[dashed, white, thick] (-2,0) -- (2,0);
-    \draw[dashed, white, thin] (-1.73,1) -- (1.73,1); % Trópico Câncer
-    \draw[dashed, white, thin] (-1.73,-1) -- (1.73,-1); % Trópico Capricórnio
-\end{scope}
-
-% --- LAYER 4: Eixo e Pontos (Teste Cego: A e B no mesmo meridiano, C na noite) ---
-\draw[thick, white, dashed] (0,-3) -- (0,3); % Eixo de Rotação Inclinado (após scope)
-\begin{scope}[rotate=-23.5]
-    \draw[ultra thick, red] (0,-2.8) -- (0,2.8);
-    \node[fill=white, text=red, inner sep=1pt, font=\bfseries\tiny] at (0, 3) {Eixo};
-    \draw[->, white, thick] (0, 2.2) arc (90:130:2.2); % Sentido de Rotação
-    
-    % Pontos
-    \fill[white] (-0.8, 1) circle (2pt) node[left, font=\bfseries\small, text=black, fill=white, inner sep=1pt] {A};
-    \fill[white] (-0.8, -1) circle (2pt) node[left, font=\bfseries\small, text=black, fill=white, inner sep=1pt] {B};
-    \fill[white] (1, 0) circle (2pt) node[right, font=\bfseries\small, text=black, fill=white, inner sep=1pt] {C};
-\end{scope}
-
-\end{tikzpicture}
-\end{adjustbox}
-\end{center}
-
-Com base estritamente na geometria de insolação apresentada, assinale a alternativa correta sobre as condições físicas experimentadas pelas cidades naquele exato momento:
-a) A cidade A vivencia o solstício de verão, apresentando o dia mais longo do ano.\\[0.3cm]
-b) As cidades A e B, por estarem na face iluminada, possuem exatamente a mesma duração de horas de luz ao longo das \textbf{24 horas} dessa data.\\[0.3cm]
-c) A cidade B passa pelo inverno e está prestes a entrar na área de sombra (anoitecer) antes da cidade A, devido à inclinação.\\[0.3cm]
-d) A cidade C experimenta o ápice do verão, pois está na região escura, onde a Terra retém mais calor latente.\\[0.3cm]
-e) Os raios solares incidem perpendicularmente sobre a cidade A, indicando um equinócio perfeito em ambos os hemisférios.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 14}
-
-A velocidade de rotação da Terra não é uniforme em toda a sua superfície. Enquanto a velocidade angular é idêntica para todos os pontos (uma volta completa em aproximadamente \textbf{24 horas}), a velocidade linear na Linha do Equador atinge cerca de \textbf{1.670 km/h}, sendo quase nula nos polos. Explique fisicamente por que essa diferença de velocidade linear ocorre, relacionando-a com o formato geométrico do planeta e a distância em relação ao eixo de rotação.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 15}
-
-O plano de órbita da Terra ao redor do Sol define o que chamamos de Eclíptica. Durante o movimento de translação ao longo dos \textbf{12 meses} do ano, um observador noturno na Terra vê o Sol projetado contra diferentes constelações (o Zodíaco). Justifique por que as constelações visíveis no céu noturno de meia-noite em junho são completamente diferentes daquelas visíveis em dezembro, utilizando o conceito de translação.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
+Se o feixe de luz atinge perfeitamente o centro geométrico do monumento apenas no dia em que o hemisfério Norte atinge seu grau máximo de insolação anual, a qual fenômeno astronômico exato (incluindo o nome da estação) a pedra principal está alinhada?
+\par\vspace{\espacoQuestao}
 \subsection*{Capítulo 3: Movimentos da Lua}
-\subsubsection*{QUESTÃO 16}
-
-O ciclo lunar é governado pela posição relativa entre a Terra, a Lua e o Sol. O esquema representa uma vista superior do plano orbital da Lua (representada em quatro posições numéricas) ao redor da Terra.
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{13.} O ciclo lunar é governado pela posição relativa entre a Terra, a Lua e o Sol. O esquema representa uma vista superior do plano orbital da Lua (representada em quatro posições numéricas) ao redor da Terra.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{fundo}{HTML}{2C3E50}
 \definecolor{terra}{HTML}{3498DB}
@@ -364,22 +456,22 @@ O ciclo lunar é governado pela posição relativa entre a Terra, a Lua e o Sol.
 \node[fill=white, text=terra, font=\bfseries\tiny, inner sep=1pt] at (0, -0.9) {Terra};
 
 % LAYER 4: Luas nas Posições (Lado direito iluminado)
-% Pos 1 (Direita - Lua Nova)
+% Pos 1 (Direita)
 \fill[black] (2.2,0) arc (-90:90:0.3cm) -- cycle;
 \fill[lua] (2.2,0) arc (270:90:0.3cm) -- cycle;
 \node[fill=white, text=black, font=\bfseries, inner sep=2pt, circle] at (2.8, 0.5) {1};
 
-% Pos 2 (Cima - Crescente)
+% Pos 2 (Cima)
 \fill[black] (0,2.2) arc (-90:90:0.3cm) -- cycle;
 \fill[lua] (0,2.2) arc (270:90:0.3cm) -- cycle;
 \node[fill=white, text=black, font=\bfseries, inner sep=2pt, circle] at (-0.6, 2.7) {2};
 
-% Pos 3 (Esquerda - Cheia)
+% Pos 3 (Esquerda)
 \fill[black] (-2.2,0) arc (-90:90:0.3cm) -- cycle;
 \fill[lua] (-2.2,0) arc (270:90:0.3cm) -- cycle;
 \node[fill=white, text=black, font=\bfseries, inner sep=2pt, circle] at (-2.8, -0.5) {3};
 
-% Pos 4 (Baixo - Minguante)
+% Pos 4 (Baixo)
 \fill[black] (0,-2.2) arc (-90:90:0.3cm) -- cycle;
 \fill[lua] (0,-2.2) arc (270:90:0.3cm) -- cycle;
 \node[fill=white, text=black, font=\bfseries, inner sep=2pt, circle] at (0.6, -2.7) {4};
@@ -388,26 +480,28 @@ O ciclo lunar é governado pela posição relativa entre a Terra, a Lua e o Sol.
 \end{adjustbox}
 \end{center}
 
-Baseando-se na perspectiva de um observador localizado na Terra, relacione cada posição numérica (1, 2, 3 e 4) à sua respectiva fase lunar e justifique por que a face da Lua voltada para a Terra na Posição 1 não pode ser vista durante a noite.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 17}
+Baseando-se na perspectiva de um observador localizado na Terra, relacione cada posição numérica (1, 2, 3 e 4) à sua respectiva fase lunar. Em seguida, justifique por que a face iluminada da Lua na Posição 1 não pode ser vista durante a noite terrestre.
+\par\vspace{\espacoQuestao}
 
-Apesar de orbitar a Terra e realizar seu próprio movimento de rotação, um observador terrestre vê sempre a mesma face (ou "lado") da Lua, independentemente da fase em que ela se encontra. Denominamos essa dinâmica de "rotação síncrona". Explique o que é a rotação síncrona e relacione os tempos de duração dos movimentos de rotação e translação lunares que causam esse fenômeno.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 18}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} Apesar de orbitar a Terra e realizar seu próprio movimento de rotação, um observador terrestre vê sempre a mesma face da Lua, independentemente da fase em que ela se encontra. Sobre esse fenômeno dinâmico, julgue as afirmativas a seguir com V (Verdadeiro) ou F (Falso):
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Denominamos essa dinâmica de "rotação síncrona", o que significa que o tempo que a Lua leva para dar uma volta em torno de si mesma é exatamente igual ao tempo que ela leva para orbitar a Terra.
+    \item A face oculta da Lua é conhecida como "lado escuro" porque nunca recebe a luz do Sol em nenhum momento do ciclo lunar de \textbf{29,5 dias}.
+    \item Se a Lua parasse subitamente de girar em torno do seu próprio eixo, mas mantivesse sua órbita ao redor da Terra, os observadores terrestres passariam a enxergar toda a sua superfície ao longo de um mês.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
 
-Sobre as características orbitais e temporais da Lua, analise as afirmativas a seguir e marque V para Verdadeiro ou F para Falso:
-
-I. O ciclo completo das fases da Lua (mês sinódico) dura cerca de \textbf{29,5 dias}, que é o tempo exato necessário para ela completar uma volta em torno da Terra e realinhar-se com o Sol.\\[0.3cm]
-II. A gravidade lunar é nula, por isso os astronautas flutuam na sua superfície durante as missões Apollo.\\[0.3cm]
-III. A órbita da Lua ao redor da Terra é perfeitamente circular, mantendo a distância exata de \textbf{384.000 km} em qualquer dia do ano, o que impede variações no tamanho aparente da Lua no céu.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 19}
-
-Os eclipses ocorrem quando há o alinhamento geométrico perfeito entre o Sol, a Terra e a Lua. O diagrama óptico detalha a formação dos cones de sombra durante um evento específico.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} Os eclipses ocorrem quando há o alinhamento geométrico entre o Sol, a Terra e a Lua. O diagrama óptico detalha a formação dos cones de sombra durante um evento específico.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{fundo}{HTML}{ECF0F1}
 \definecolor{sol}{HTML}{F39C12}
@@ -443,23 +537,49 @@ Os eclipses ocorrem quando há o alinhamento geométrico perfeito entre o Sol, a
 \end{adjustbox}
 \end{center}
 
-Com base no traçado óptico dos raios solares:
+Com base no traçado óptico dos raios solares, determine e explique detalhadamente a diferença do fenômeno astronômico visualizado por um observador no ponto \textbf{A} e outro no ponto \textbf{B}, justificando através dos conceitos físicos de umbra e penumbra.
+\par\vspace{\espacoQuestao}
 
-a) Identifique qual tipo de eclipse está sendo representado no esquema.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} Durante uma prova de recuperação, a estudante Júlia tentou justificar a raridade dos eclipses escrevendo o seguinte argumento na prova:
 
-b) Determine e explique a diferença do fenômeno astronômico visualizado por um observador no ponto \textbf{A} (região de umbra) e outro no ponto \textbf{B} (região de penumbra).
+\begin{boxresponda}
+\textbf{Responda:} "Como a Lua cruza a frente da Terra a cada 29,5 dias na Fase Nova, nós deveríamos ter um eclipse solar todos os meses. O motivo disso não acontecer é que a velocidade da Lua é inconstante. Às vezes ela passa tão rápido na frente do Sol que a sombra não tem tempo de atingir a Terra."\\
+\\
+O argumento de Júlia contém uma falha conceitual grave envolvendo a mecânica orbital. Diagnostique esse erro e apresente a verdadeira justificativa astronômica (relacionada ao plano da órbita) que explica por que não temos eclipses mensais.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
 
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 20}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} (ENEM - Adaptada) A força gravitacional que a Lua e o Sol exercem sobre as massas de água do nosso planeta é responsável pelo fenômeno das marés. Sabe-se que as "marés de sizígia" (marés vivas, de maior amplitude) ocorrem quando Sol, Terra e Lua estão perfeitamente alinhados, somando suas forças gravitacionais. Esse alinhamento máximo coincide estritamente com quais fases lunares?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Fases Crescente e Minguante.
+    \item Fases Nova e Cheia.
+    \item Apenas na fase Cheia, devido ao aumento da reflexão de luz solar.
+    \item Apenas na fase Nova, quando a Lua cruza o Trópico de Capricórnio.
+    \item Nas fases de Quarto Crescente, em conjunção direta com os equinócios.
+\end{enumerate}
+\begin{boxdica}
+\textbf{Refutação Obrigatória:} Escolha a alternativa correta e escreva um parágrafo provando fisicamente por que a alternativa "a)" está profundamente incorreta no que diz respeito aos vetores gravitacionais.
+\end{boxdica}
+\par\vspace{\espacoQuestao}
 
-Sabendo que a Lua cruza entre a Terra e o Sol a cada Fase Nova (a cada \textbf{29,5 dias}) e passa por trás da Terra a cada Fase Cheia, seria lógico concluir que deveríamos ter um eclipse solar e um eclipse lunar todos os meses. No entanto, os eclipses são eventos raros. Explique o fator geométrico espacial relacionado à órbita lunar que impede a ocorrência mensal de eclipses.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 21}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} A órbita da Lua ao redor da Terra não é um círculo perfeito, mas sim uma elipse. Isso significa que a distância entre os dois astros varia, possuindo um ponto de maior proximidade (perigeu) e um de maior afastamento (apogeu). Durante um alinhamento para um eclipse solar, se a Lua estiver no seu apogeu, ela não conseguirá encobrir todo o disco solar. Como é classificado e visualmente caracterizado o eclipse solar que ocorre nessas condições específicas de distanciamento?
+\par\vspace{\espacoQuestao}
 
-(Estilo VUNESP) O eclipse lunar total ocorre quando a Lua mergulha completamente no cone de umbra projetado pela Terra. Observe a sequência da trajetória de inserção lunar simulada em um plano.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} O eclipse lunar total ocorre quando a Lua mergulha completamente no cone de umbra projetado pela Terra. Observe a sequência da trajetória de inserção lunar simulada em um plano de perfil.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{ceu}{HTML}{1A1A24}
 \definecolor{umbra}{HTML}{34495E}
@@ -472,43 +592,33 @@ Sabendo que a Lua cruza entre a Terra e o Sol a cada Fase Nova (a cada \textbf{2
 % Cones projetados transversalmente
 \fill[penumbra, opacity=0.5] (4,1) circle (2.5cm);
 \fill[umbra, opacity=0.8] (4,1) circle (1.2cm);
-\node[fill=white, text=black, font=\bfseries\footnotesize, inner sep=1pt] at (4, 1.6) {Umbra da Terra};
+\node[fill=white, text=black, font=\bfseries\footnotesize, inner sep=1pt] at (4, 1) {Umbra da Terra};
 \node[fill=white, text=black, font=\bfseries\footnotesize, inner sep=1pt] at (4, 3) {Penumbra};
 
 % Trajetória
 \draw[dashed, thick, white] (0.5, -0.5) -- (7.5, 2.5);
 
 % Luas
-\fill[luabranca] (1.2, -0.2) circle (0.3cm) node[above=7pt, text=white, font=\bfseries\tiny] {T1};
-\fill[luasangue] (4, 1) circle (0.3cm) node[below=6pt, text=white, font=\bfseries\tiny] {T2};
-\fill[luabranca] (6.8, 2.2) circle (0.3cm) node[above=7pt, text=white, font=\bfseries\tiny] {T3};
+\fill[luabranca] (1.2, -0.2) circle (0.3cm) node[above=4pt, text=white, font=\bfseries\tiny] {T1};
+\fill[luasangue] (4, 1) circle (0.3cm) node[below=4pt, text=white, font=\bfseries\tiny] {T2};
+\fill[luabranca] (6.8, 2.2) circle (0.3cm) node[above=4pt, text=white, font=\bfseries\tiny] {T3};
 
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
 
-Durante o instante \textbf{T2}, quando a Lua está totalmente imersa na umbra da Terra, ela não desaparece completamente do céu, mas adquire uma coloração avermelhada característica (frequentemente chamada de "Lua de Sangue"). Explique o fenômeno físico (envolvendo a atmosfera da Terra e a luz solar) que causa essa coloração.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 22}
+Durante o instante \textbf{T2}, quando a Lua está totalmente imersa na umbra da Terra (área teórica de escuridão total), ela não desaparece completamente do céu noturno, mas adquire uma coloração avermelhada característica ("Lua de Sangue"). Explique analiticamente o fenômeno de refração atmosférica terrestre que permite que a luz atinja a Lua nesse instante.
+\par\vspace{\espacoQuestao}
 
-A órbita da Lua ao redor da Terra não é um círculo perfeito, mas sim uma elipse. Isso significa que a distância entre os dois astros varia, possuindo um ponto de maior proximidade (perigeu, cerca de \textbf{362.000 km}) e um de maior afastamento (apogeu, cerca de \textbf{405.000 km}). Durante um alinhamento perfeito para um eclipse solar, se a Lua estiver no seu apogeu, ela não conseguirá cobrir todo o disco solar. Como é classificado e visualmente caracterizado o eclipse solar que ocorre nessas condições específicas?
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 23}
-
-(ENEM - Adaptada) A força gravitacional que a Lua e o Sol exercem sobre as massas de água do nosso planeta é responsável pelo fenômeno das marés. Sabe-se que as "marés de sizígia" (marés vivas, de maior amplitude) ocorrem quando Sol, Terra e Lua estão alinhados, somando as forças gravitacionais. Esse alinhamento máximo coincide com quais fases da Lua?
-a) Crescente e Minguante.\\[0.3cm]
-b) Nova e Cheia.\\[0.3cm]
-c) Apenas na fase Cheia, devido à reflexão total da luz.\\[0.3cm]
-d) Apenas na fase Nova, quando a Lua cruza os trópicos.\\[0.3cm]
-e) Nas fases de Quarto Crescente, em conjunção com os equinócios.
-
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 24}
-
-A observação astronômica depende profundamente do referencial adotado. Imagine que uma base de exploração foi instalada na superfície da Lua, na face voltada para nós.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} A observação astronômica depende profundamente do referencial adotado. Imagine que uma base de exploração foi instalada na superfície da Lua, na face voltada para nós, e um astronauta observa o espaço sideral.
 
 \begin{center}
-\begin{adjustbox}{max width=\linewidth}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
 \definecolor{fundo}{HTML}{212F3D}
 \definecolor{terra}{HTML}{3498DB}
@@ -549,13 +659,50 @@ A observação astronômica depende profundamente do referencial adotado. Imagin
 \end{adjustbox}
 \end{center}
 
-Baseando-se no posicionamento esquematizado, no qual a Terra está exatamente entre o Sol e a Lua, responda:
-a) Qual seria a fase da Lua vista pelos humanos na Terra nesse exato momento?\\[0.3cm]
-b) Olhando para o céu lunar, qual seria a aparência (a "fase") da Terra visualizada pelo astronauta na base? Justifique com base na iluminação dos hemisférios.
-\vspace{0cm} \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} \vspace{-0.2cm}
-\subsubsection*{QUESTÃO 25}
+Baseando-se no posicionamento esquematizado (em que a Terra se encontra perfeitamente entre o Sol e a Lua), julgue os cenários abaixo e explique o raciocínio:
+Qual seria a fase da Lua vista pelos humanos na Terra nesse exato momento e, simultaneamente, qual seria a aparência da "fase da Terra" visualizada pelo astronauta na base lunar?
+\par\vspace{\espacoQuestao}
 
-O Programa Artemis, da NASA, planeja estabelecer presença sustentável no Polo Sul lunar. Um dos maiores desafios de engenharia para a sobrevivência das missões é o controle de temperatura e energia, visto que a duração do "dia" e da "noite" na Lua é ditada pela sua rotação. Sabendo que o período de rotação da Lua é de aproximadamente \textbf{29,5 dias terrestres} (sincronizado com a translação), calcule a duração aproximada, em dias terrestres, de um período contínuo de escuridão (a "noite lunar") em um ponto equatorial da Lua. Explique o impacto desse longo período no fornecimento de energia solar para uma base científica.
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} (Estilo VUNESP) Em documentários científicos, é comum escutar que a gravidade na superfície lunar é cerca de um sexto ($ \mfrac{1}{6} $) da gravidade na superfície terrestre.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A massa da Lua é extremamente menor, o que a impede de reter moléculas gasosas, resultando na ausência de atmosfera.
+    \item O raio da Lua é um sexto do raio da Terra, resultando em uma proporção geométrica perfeita de atração.
+    \item A rotação lenta da Lua neutraliza a força centrífuga, diminuindo o peso aparente dos corpos em sua superfície.
+    \item A Lua sofre influência magnética direta do Sol, anulando parte de sua própria atração gravitacional.
+    \item A composição do solo lunar não possui metais pesados como o ferro, impossibilitando a geração de gravidade intensa.
+\end{enumerate}
+\begin{boxdica}
+\textbf{Refutação Obrigatória:} Escolha a alternativa correta que explica o fenômeno atrelado à baixa gravidade lunar e escreva um diagnóstico justificando por que a alternativa "c)" trata-se de um conceito físico incorreto.
+\end{boxdica}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Um fórum de internet sobre astronomia debatia a iluminação do nosso satélite natural, e um dos usuários publicou o seguinte comentário:
+
+\begin{boxresponda}
+\textbf{Responda:} "As fases da Lua (como a Crescente e a Minguante) ocorrem por causa da sombra da Terra. Conforme a Lua gira, a Terra entra na frente do Sol e projeta uma sombra parcial nela. Quando a sombra da Terra cobre a Lua inteira, nós chamamos de Lua Nova."\\
+\\
+O comentário confunde dois fenômenos astronômicos completamente distintos. Diagnostique a confusão lógica do usuário, separando o que causa as Fases da Lua do que realmente representa a projeção da sombra da Terra.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} O mês sinódico (tempo para a Lua retornar à mesma fase, como de Nova para Nova) dura cerca de \textbf{29,5 dias}. No entanto, o mês sideral (tempo que a Lua leva para completar uma volta de $360^\circ$ ao redor da Terra em relação às estrelas de fundo) dura apenas cerca de \textbf{27,3 dias}. Utilizando a geometria da translação da Terra ao redor do Sol, explique analiticamente por que o ciclo de fases lunares exige esses \textbf{2,2 dias} adicionais para ser completado.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} O plano da órbita lunar apresenta uma inclinação de aproximadamente $5^\circ$ em relação ao plano da órbita terrestre (a Eclíptica). Desenhe mentalmente ou crie um esquema escrito provando que, sem essa inclinação angular de $5^\circ$, os habitantes da Terra vivenciariam um evento astronômico drástico e repetitivo no céu a cada fase de Lua Cheia. Que evento seria esse?
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} O Programa Artemis, da NASA, planeja estabelecer presença sustentável no Polo Sul lunar. Um dos maiores desafios de engenharia para a sobrevivência das missões é o controle térmico e de energia solar, visto que a duração do "dia" e da "noite" na Lua é ditada exclusivamente pela sua rotação síncrona. Sabendo que o período de rotação da Lua tem a duração de aproximadamente um mês terrestre, demonstre matematicamente a duração aproximada, em dias terrestres, de um período contínuo de escuridão total (a "noite lunar") enfrentado por uma base posicionada na região equatorial da Lua.
+\par\vspace{\espacoQuestao}
 
 \end{multicols*}
 \end{document}
