@@ -18,7 +18,7 @@
                 <p class="text-slate-400 text-sm mt-1">Ensino Fundamental e Médio • Acesso Rápido para Sala de Aula</p>
             </div>
             <div class="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 text-sm flex items-center">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>Ambiente Online
+                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>Online
             </div>
         </div>
     </header>
@@ -108,33 +108,29 @@
         <p>Ambiente Virtual de Ensino • SolaEdu Material</p>
     </footer>
 
-    <!-- BANCOS DE DADOS DOS CONTEÚDOS -->
+    <!-- BANCOS DE DADOS DOS CONTEÚDOS (MAPEADO COM OS ARQUIVOS REAIS) -->
     <script>
-        // Mapeamento completo baseado na sua árvore de pastas
         const bancoDados = {
             "Fisica": {
                 nome: "Física",
                 anos: {
                     "6_Ano": { nome: "6º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Introdução aos Fenômenos Físicos", desc: "Conceitos iniciais de matéria, energia e observação científica.", pdf: "Fisica/6_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Estrutura da Terra", desc: "Estudo da estrutura interna e camadas da Terra.", pdf: "Fisica/6_Ano/UNIDADE6/UNIDADE6-ESTRUTURA_TERRA.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "7_Ano": { nome: "7º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Máquinas Simples e Trabalho", desc: "Estudo das alavancas, polias, plano inclinado e conservação mecânica.", pdf: "Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf", temVideo: true, videoUrl: "https://www.youtube-nocookie.com/embed/SUO_ID_DO_VIDEO", temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Máquinas Simples e Trabalho", desc: "Estudo das alavancas, polias e plano inclinado.", pdf: "Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "8_Ano": { nome: "8º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Calor e Termometria", desc: "Escalas termométricas, propagação de calor e dilatação térmica.", pdf: "Fisica/8_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Sol, Terra e Lua", desc: "Movimentos astronômicos, eclipses e estações do ano.", pdf: "Fisica/8_Ano/UNIDADE6/UNIDADE6-SOL_TERRA_LUA.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "9_Ano": { nome: "9º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Eletrodinâmica Básica", desc: "Circuitos elétricos, corrente, tensão e resistência (Ofertado com Circuitikz).", pdf: "Fisica/9_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Energia Mecânica e Potência", desc: "Trabalho, energia cinética, potencial e potência.", pdf: "Fisica/9_Ano/UNIDADE6/UNIDADE6-ENERGIA_MECANICA_POTENCIA.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Dinâmica e Leis de Newton", desc: "Forças aplicadas, atrito, plano inclinado e dinâmica curvilínea.", pdf: "Fisica/1_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Dinâmica e Leis de Newton", desc: "Forças de atrito, resultantes e aplicações das leis de Newton.", pdf: "Fisica/1_Serie/UNIDADE6/UNIDADE6-DINAMICA.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "2_Serie": { nome: "2ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Termodinâmica", desc: "Leis da termodinâmica, máquinas térmicas e ciclos gasosos.", pdf: "Fisica/2_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "3_Serie": { nome: "3ª Série (EM)", unidades: [
-                        { id: "GERAL", titulo: "Revisão Geral e Eletromagnetismo", desc: "Indução eletromagnética e ondas para vestibulares.", pdf: "Fisica/3_Serie/REVISAO.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Termodinâmica", desc: "Estudo dos gases e leis da termodinâmica.", pdf: "", temVideo: false, temTeoria: false }
                     ]}
                 }
             },
@@ -142,25 +138,22 @@
                 nome: "Matemática - Álgebra",
                 anos: {
                     "6_Ano": { nome: "6º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Frações e Operações", desc: "Significado, equivalência e operações fundamentais com frações.", pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Números Racionais", desc: "Frações, decimais e representações na reta numérica.", pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "7_Ano": { nome: "7º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Decimais, Potenciação e Radiciação", desc: "Fixação de racionais e introdução estruturada a potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Decimais, Potenciação e Radiciação", desc: "Operações com racionais, potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "8_Ano": { nome: "8º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Cálculo Algébrico e Polinômios", desc: "Expressões algébricas, fatoração e produtos notáveis.", pdf: "Matematica_Algebra/8_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Equações Quadráticas Incompletas", desc: "Resolução e modelagem de equações do 2º grau incompletas.", pdf: "Matematica_Algebra/8_Ano/UNIDADE6/UNIDADE6-EQ_QUADRATICAS_INCOMPLETA.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "9_Ano": { nome: "9º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Equações do 2º Grau e Funções", desc: "Bhaskara, vértice da parábola e aplicações práticas.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Função Quadrática (Parte 1)", desc: "Estudo inicial dos gráficos e vértices da parábola.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6-FUNCAO_QUADRATICA_P1.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Funções Afim e Quadrática", desc: "Estudo analítico e gráfico aprofundado das funções polinomiais.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Inequações", desc: "Resolução de inequações do 1º e 2º grau.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6-INEQUACOES.pdf", temVideo: false, temTeoria: false }
                     ]},
                     "2_Serie": { nome: "2ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Análise Combinatória e Binômio", desc: "Arranjos, permutações, combinações e probabilidades.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "3_Serie": { nome: "3ª Série (EM)", unidades: [
-                        { id: "GERAL", titulo: "Matemática Financeira e Estatística Avançada", desc: "Juros compostos, desvio padrão e estatística para exames.", pdf: "Matematica_Algebra/3_Serie/MATERIAL.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Polinômios", desc: "Operações com polinômios e dispositivos de Briot-Ruffini.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6-POLINOMIOS.pdf", temVideo: false, temTeoria: false }
                     ]}
                 }
             },
@@ -168,7 +161,7 @@
                 nome: "Matemática - Geometria",
                 anos: {
                     "Geral": { nome: "Módulos de Geometria", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Relações Métricas e Espaciais", desc: "Teorema de Tales, semelhança de triângulos e áreas de figuras planas.", pdf: "Matematica_Geometria/UNIDADE6/UNIDADE6.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE6", titulo: "Unidade 6: Geometria Espacial", desc: "Áreas e volumes de sólidos geométricos.", pdf: "Matematica_Geometria/UNIDADE6/UNIDADE6-GEOMETRIA-ESPACIAL.pdf", temVideo: false, temTeoria: false }
                     ]}
                 }
             },
@@ -176,7 +169,8 @@
                 nome: "Terceirão (Preparatório)",
                 anos: {
                     "Geral": { nome: "Turma Intensiva", unidades: [
-                        { id: "MODULO1", titulo: "Simulado Geral Integrado - Exatas", desc: "Questões discursivas e teste de múltipla escolha integradas.", pdf: "Terceirao/SIMULADO.pdf", temVideo: false, temTeoria: false }
+                        { id: "SEMANA10", titulo: "Semana 10: Material do Aluno", desc: "Lista de exercícios integrada para vestibulares.", pdf: "Terceirao/semana10.pdf", temVideo: false, temTeoria: false },
+                        { id: "SEMANA10_PROF", titulo: "Semana 10: Material do Professor (Gabarito)", desc: "Resolução comentada para projeção em aula.", pdf: "Terceirao/semana10_prof.pdf", temVideo: false, temTeoria: false }
                     ]}
                 }
             }
@@ -194,7 +188,6 @@
             document.getElementById('view-disciplinas').classList.add('hidden');
             document.getElementById('view-anos').classList.remove('hidden');
 
-            // Renderizar anos disponíveis
             const gridAnos = document.getElementById('grid-anos');
             gridAnos.innerHTML = '';
             
@@ -217,7 +210,6 @@
             document.getElementById('view-anos').classList.add('hidden');
             document.getElementById('view-conteudos').classList.remove('hidden');
 
-            // Renderizar conteúdos
             const gridConteudos = document.getElementById('grid-conteudos');
             gridConteudos.innerHTML = '';
 
@@ -227,22 +219,17 @@
                 let card = document.createElement('div');
                 card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between";
                 
-                // Bloco de Vídeo
-                let videoHtml = '';
-                if (uni.temVideo) {
-                    videoHtml = `<div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
-                        <iframe class="w-full h-full" src="${uni.videoUrl}" frameborder="0" allowfullscreen></iframe>
-                    </div>`;
-                } else {
-                    videoHtml = `<div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center">
-                        <span>📹 Videoaula em construção</span>
-                    </div>`;
-                }
+                let videoHtml = uni.temVideo ? 
+                    `<div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner"><iframe class="w-full h-full" src="${uni.videoUrl}" frameborder="0" allowfullscreen></iframe></div>` :
+                    `<div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center"><span>📹 Videoaula em construção</span></div>`;
 
-                // Bloco de Texto Teórico
                 let teoriaHtml = uni.temTeoria ? 
                     `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">📖 Ler Resumo Teórico</a>` :
                     `<span class="bg-slate-100 text-slate-400 text-xs px-3 py-2 rounded-lg cursor-not-allowed">📖 Teoria em construção</span>`;
+
+                let botaoPdf = uni.pdf ? 
+                    `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista (PDF)</a>` :
+                    `<span class="bg-slate-100 text-slate-400 text-sm px-4 py-2 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
 
                 card.innerHTML = `
                     <div>
@@ -254,9 +241,7 @@
                         ${videoHtml}
                     </div>
                     <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
-                        <a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">
-                            📄 Baixar Lista de Exercícios (PDF)
-                        </a>
+                        ${botaoPdf}
                         ${teoriaHtml}
                     </div>
                 `;
