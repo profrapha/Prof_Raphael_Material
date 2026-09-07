@@ -1,0 +1,593 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} ÁREAS DE FIGURAS PLANAS}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: ÁREAS DE FIGURAS PLANAS}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA / GEOMETRIA \hfill \textbf{NÍVEL:} EM (1ª SÉRIE)}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Áreas de Triângulos e Quadriláteros}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Considere um trapézio retângulo onde a base maior é o dobro da base menor e a altura possui a mesma medida da base menor. Se a base menor mede \textbf{x} metros, estabeleça a expressão algébrica que define a área desse trapézio e, em seguida, determine o valor numérico da área quando a base maior medir \textbf{12 m}. Apresente o desenvolvimento estruturado.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} Um arquiteto projetou uma praça cujo formato é composto pela junção geométrica ilustrada no croqui a seguir. Todo o espaço interno destacado na cor mais escura receberá um piso intertravado especial, enquanto as extremidades brancas serão destinadas a jardins.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS MODERNAS ---
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{piso}{HTML}{95A5A6}
+\definecolor{asfalto}{HTML}{2C3E50}
+
+% LAYER 1: Fundo/Terreno Total
+\fill[white, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt, draw=asfalto, thick] (0,0) rectangle (6,4);
+
+% LAYER 2: Regiões de Jardim (Triângulos nos cantos)
+\fill[grama!40, draw=asfalto] (0,0) -- (2,0) -- (0,3) -- cycle;
+\fill[grama!40, draw=asfalto] (6,4) -- (4,4) -- (6,1) -- cycle;
+
+% LAYER 3: Área de Piso (Paralelogramo central)
+\fill[piso!60, draw=asfalto, thick] (2,0) -- (6,0) -- (4,4) -- (0,4) -- cycle;
+
+% LAYER 4: Cotas e Medidas
+\draw[|<->|, >=latex] (0,-0.3) -- (2,-0.3) node[midway, fill=white, inner sep=1pt] {\textbf{15 m}};
+\draw[|<->|, >=latex] (2,-0.3) -- (6,-0.3) node[midway, fill=white, inner sep=1pt] {\textbf{30 m}};
+\draw[|<->|, >=latex] (-0.3,0) -- (-0.3,4) node[midway, fill=white, inner sep=1pt] {\textbf{20 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Determine a área total que será coberta com o piso intertravado especial, demonstrando o raciocínio utilizado para a decomposição ou cálculo direto da figura.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Durante a correção de uma prova, o professor encontrou a seguinte resolução do estudante Marcos para calcular a área de um losango cujos lados medem \textbf{10 cm} e a diagonal menor mede \textbf{12 cm}:
+
+\textit{"Para calcular a área do losango, multipliquei a base pela altura. Como todos os lados medem 10, fiz $A = 10 \cdot 10 = 100$ cm²."}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+a) Diagnostique o erro conceitual cometido pelo estudante ao confundir o losango com outro quadrilátero.
+b) Apresente a resolução correta, demonstrando como encontrar a diagonal maior antes de aplicar a lei de formação da área do losango.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} (Estilo ENEM) - Dois terrenos, \textbf{A} e \textbf{B}, foram colocados à venda. O terreno \textbf{A} é retangular, com comprimento de \textbf{40 m} e largura de \textbf{25 m}. O terreno \textbf{B} tem o formato de um paralelogramo, com o mesmo perímetro do terreno \textbf{A}, mesma base de \textbf{40 m}, porém seus lados oblíquos formam um ângulo agudo com a base, resultando em uma altura de \textbf{20 m}. Sobre a relação entre os terrenos, assinale a alternativa correta e, obrigatoriamente, apresente o cálculo que refuta matematicamente as alternativas falsas.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Ambos os terrenos possuem a mesma área, pois possuem a mesma base e o mesmo perímetro.
+\item O terreno \textbf{A} possui área superior à do terreno \textbf{B} em exatamente 200 m².
+\item O terreno \textbf{B} possui área superior à do terreno \textbf{A} em exatos 20\%.
+\item A área de ambos não pode ser comparada sem o uso de trigonometria para o ângulo do paralelogramo.
+\item O terreno \textbf{A} tem uma área de 1000 m², sendo o dobro da área do terreno \textbf{B}.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Construa um fluxograma lógico ou um mapa conceitual textual que explique passo a passo como calcular a área de um trapézio qualquer caso o estudante esqueça a expressão $A = \mfrac{(B+b) \cdot h}{2}$. O seu roteiro deve mostrar como fatiar a figura geométrica utilizando apenas retângulos e triângulos, provando que a soma de suas áreas resulta na mesma medida.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Uma folha retangular de papelão rígido sofreu um corte reto que removeu uma de suas pontas, gerando a placa poligonal exibida abaixo. Essa peça será utilizada para a confecção de uma maquete e o engenheiro precisa saber exatamente a quantidade de material restante.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CAMADAS ---
+\definecolor{papelao}{HTML}{D2B48C}
+\definecolor{borda}{HTML}{8B4513}
+
+% LAYER 1: Sombra e Figura Principal
+\fill[papelao!80, drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}, draw=borda, thick] (0,0) -- (7,0) -- (7,2) -- (4,5) -- (0,5) -- cycle;
+
+% LAYER 2: Linha tracejada mostrando o corte
+\draw[dashed, borda!70, thick] (7,2) -- (7,5) -- (4,5);
+
+% LAYER 3: Medidas
+\node[fill=papelao!80, inner sep=1.5pt] at (3.5,-0.3) {\textbf{70 cm}};
+\node[fill=papelao!80, inner sep=1.5pt] at (-0.4,2.5) {\textbf{50 cm}};
+\node[fill=papelao!80, inner sep=1.5pt] at (7.4,1) {\textbf{20 cm}};
+\node[fill=papelao!80, inner sep=1.5pt] at (2,5.3) {\textbf{40 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Com base no projeto, determine a área, em centímetros quadrados, da placa de papelão hachurada.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} (ENEM - Adaptada) - Para reformar o telhado de um galpão de armazenamento, optou-se por utilizar telhas ecológicas translúcidas em uma parte estratégica para aproveitar a luz solar. A estrutura do telhado plano a ser coberta tem o formato de um trapézio isósceles. As telhas translúcidas serão aplicadas exclusivamente em uma região triangular centralizada, conforme mostra a estrutura de fixação no desenho técnico.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO CAMADAS E DETALHES EDITORIAIS ---
+\definecolor{telhado}{HTML}{C0392B}
+\definecolor{vidro2}{HTML}{AED6F1}
+\definecolor{ferragem}{HTML}{34495E}
+
+% LAYER 1: Estrutura do Telhado (Trapézio isósceles)
+\fill[telhado, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-3pt}, draw=ferragem, thick, rounded corners=1pt] (1,0) -- (9,0) -- (7,4) -- (3,4) -- cycle;
+
+% LAYER 2: Região de Vidro/Translúcida (Triângulo central)
+\fill[vidro2, draw=ferragem, thick, opacity=0.85] (2.5,0) -- (7.5,0) -- (5,4) -- cycle;
+
+% LAYER 3: Cotas com máscara de fundo
+\draw[|<->|, >=latex] (1,-0.4) -- (9,-0.4) node[midway, fill=white, inner sep=1pt] {\textbf{24 m}};
+\draw[|<->|, >=latex] (3,4.4) -- (7,4.4) node[midway, fill=white, inner sep=1pt] {\textbf{12 m}};
+\draw[|<->|, >=latex] (2.5,-0.8) -- (7.5,-0.8) node[midway, fill=white, inner sep=1pt] {\textbf{16 m} (Base Translúcida)};
+\draw[|<->|, >=latex, dashed] (9.4,0) -- (9.4,4) node[midway, fill=white, inner sep=1pt] {\textbf{8 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que cada metro quadrado de telha ecológica convencional custa R\$ 35,00 e a translúcida custa R\$ 60,00, qual será o custo total, apenas em material de cobertura, para revestir integralmente o telhado desse galpão?
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} (Estilo UNICAMP) - Analise as afirmativas a seguir referentes às propriedades de otimização e áreas de figuras geométricas planas. Assinale (V) para as verdadeiras e (F) para as falsas, apresentando, no espaço abaixo de cada uma, a justificativa algébrica rigorosa ou um contraexemplo que valide seu julgamento.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item Ao dobrar simultaneamente as medidas das diagonais de um losango, a sua área total final será multiplicada por quatro.
+\item Dentre todos os retângulos que possuem um perímetro fixo de \textbf{40 cm}, aquele que possuirá a maior área possível é um quadrado de lado \textbf{10 cm}.
+\item Se a altura de um triângulo for reduzida pela metade e a sua base for duplicada, a nova área do triângulo sofrerá uma redução de 50\%.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} Um designer de interiores planejou um painel decorativo utilizando placas de MDF com formato de paralelogramo. Durante a instalação, uma das peças precisou ser transpassada por uma faixa de LED, gerando a seguinte intersecção projetada na malha.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO GRID E COMPOSIÇÃO DE FORMAS ---
+\definecolor{mdf}{HTML}{E67E22}
+\definecolor{led}{HTML}{F1C40F}
+\definecolor{malha}{HTML}{BDC3C7}
+
+% Grid de fundo
+\draw[step=1cm, malha, very thin] (-1,-1) grid (8,5);
+
+% LAYER 1: Placa Paralelogramo MDF
+\fill[mdf, opacity=0.9, draw=black, thick, drop shadow={opacity=0.2}] (0,0) -- (5,0) -- (7,4) -- (2,4) -- cycle;
+
+% LAYER 2: Faixa LED cruzando
+\fill[led, opacity=0.8, draw=black] (1,-0.5) -- (2,-0.5) -- (6,4.5) -- (5,4.5) -- cycle;
+
+% Identificação
+\node[fill=white, inner sep=1pt, circle, draw=black] at (3.5, 2) {\textbf{P}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que cada quadrado da malha projetada corresponde a uma área real de \textbf{0,25 m²}, e observando as coordenadas extraídas da figura acima, calcule qual é a área visível do painel de MDF que NÃO foi coberta pela faixa de LED (região laranja exposta). 
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Lembre-se: Extraia as dimensões da base e da altura diretamente contando os segmentos da malha geométrica. A área de cada quadrado da malha já foi informada e atuará como fator multiplicativo no final.
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} (Estilo FUVEST) - Em um galpão retangular de dimensões \textbf{20 m} por \textbf{30 m}, deseja-se cercar uma área triangular no canto para ser utilizada como almoxarifado. O engenheiro delimitou esse almoxarifado traçando uma linha reta que corta dois lados consecutivos do galpão. Para que a operação da empilhadeira não seja prejudicada, determinou-se que a hipotenusa desse triângulo cercado meça exatamente \textbf{13 m} e que o perímetro da área cercada seja de \textbf{30 m}. Sob essas restrições métricas, defina o sistema de equações e calcule qual será a área, em metros quadrados, destinada ao almoxarifado.
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 2: Áreas de Polígonos e Círculo}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} Um polígono regular possui perímetro de \textbf{48 cm} e a sua área é de \textbf{166,27 cm²}. Sabendo que a lei de formação geral da área de polígonos regulares relaciona o semiperímetro e o apótema, estabeleça o desenvolvimento algébrico necessário para determinar o valor aproximado do apótema desse polígono. Indique a resposta final com duas casas decimais.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} Um projeto de engenharia mecânica prevê o corte de uma peça circular de metal a partir de uma chapa em formato de hexágono regular, garantindo o máximo de aproveitamento do material. O esquema técnico ilustra a peça final inscrita na matriz hexagonal.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E CORES MODERNAS ---
+\definecolor{chapa}{HTML}{7F8C8D}
+\definecolor{peca}{HTML}{F39C12}
+\definecolor{tracos}{HTML}{2C3E50}
+
+% LAYER 1: Sombra e Hexágono Base
+\fill[chapa!60, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, draw=tracos, thick] (30:3) \foreach \x in {90,150,210,270,330} { -- (\x:3) } -- cycle;
+
+% LAYER 2: Círculo Inscrito (Peça final)
+\fill[peca!80, draw=tracos, thick] (0,0) circle ({3*sqrt(3)/2});
+
+% LAYER 3: Centro e Cotas de Referência
+\fill[tracos] (0,0) circle (2pt);
+\draw[dashed, tracos, thick] (0,0) -- (330:3) node[midway, fill=chapa!60, inner sep=1pt, sloped] {\textbf{20 mm}};
+\draw[dashed, tracos, thick] (0,0) -- (270:{3*sqrt(3)/2}) node[midway, fill=peca!80, inner sep=1pt] {\textbf{a}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Considerando as dimensões indicadas no projeto, calcule, em milímetros quadrados, a área do material que será descartado (regiões cinzas), adotando o valor aproximado de \textbf{1,7} para a raiz de três e \textbf{3,1} para a constante Pi.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} Um aluno do 1º ano do Ensino Médio foi desafiado a calcular a área de um setor circular de um disco rígido cujo raio mede \textbf{10 cm} e o arco correspondente possui comprimento de \textbf{15 cm}. Ele registrou a seguinte resolução no quadro:
+
+\textit{"O setor circular lembra muito um triângulo. Como a base dele é o arco que mede 15 e a altura é o raio que mede 10, basta fazer base vezes altura sobre dois: $A = \mfrac{15 \cdot 10}{2} = 75$ cm²."}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+a) Diagnostique a linha de raciocínio do aluno. Apesar de usar a fórmula do triângulo para uma figura curva, o resultado numérico final dele está correto ou incorreto? 
+b) Prove algebricamente a sua afirmação utilizando a proporção correta entre a área do círculo e o comprimento da circunferência.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} (ENEM - Adaptada) - Para a inauguração de um parque, a prefeitura construiu uma pista de caminhada emborrachada ao redor de um canteiro central de flores. O projeto visto de cima é formado por circunferências concêntricas. 
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E PALETAS EDITORIAIS ---
+\definecolor{flores}{HTML}{8E44AD}
+\definecolor{pista}{HTML}{E74C3C}
+\definecolor{contorno}{HTML}{2C3E50}
+
+% LAYER 1: Pista (Coroa circular externa com sombra)
+\fill[pista!80, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, draw=contorno, thick] (0,0) circle (4.5);
+
+% LAYER 2: Canteiro (Círculo interno)
+\fill[flores!70, draw=contorno, thick] (0,0) circle (3);
+
+% LAYER 3: Cotas com máscara
+\fill[contorno] (0,0) circle (2pt);
+\draw[|->, >=latex, contorno, thick] (0,0) -- (180:3) node[midway, fill=flores!70, inner sep=1pt] {\textbf{15 m}};
+\draw[|->, >=latex, contorno, thick] (0,0) -- (45:4.5) node[pos=0.8, fill=pista!80, inner sep=1pt, rotate=45] {\textbf{x}};
+\draw[|<->|, >=latex, contorno, thick] (3,0) -- (4.5,0) node[midway, fill=pista!80, inner sep=1pt] {\textbf{5 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que o material emborrachado custa R\$ \textbf{40,00} por metro quadrado, assinale a alternativa que representa o valor total aproximado gasto na cobertura da pista, considerando a constante Pi como \textbf{3,14}. Justifique obrigatoriamente refutando o distrator que calcula a área do círculo inteiro em vez da coroa.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item R\$ 28.260,00
+\item R\$ 18.840,00
+\item R\$ 21.980,00
+\item R\$ 50.240,00
+\item R\$ 9.420,00
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} Construa um mapa conceitual ou um fluxograma textual que diferencie claramente os conceitos de \textit{Setor Circular}, \textit{Segmento Circular} e \textit{Coroa Circular}. Para cada um, defina a estratégia matemática de cálculo de área utilizando a subtração ou proporção em relação ao círculo principal.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} Uma comporta cilíndrica instalada em uma rede de esgoto opera travando o fluxo da água conforme o seu nível sobe. O esquema abaixo representa um corte transversal da tubulação parcialmente preenchida por água.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO CAMADAS E EFEITOS EDITORIAIS ---
+\definecolor{tubo}{HTML}{BDC3C7}
+\definecolor{agua}{HTML}{3498DB}
+\definecolor{linha}{HTML}{2C3E50}
+
+% LAYER 1: Tubulação (Fundo claro)
+\fill[tubo!30, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, draw=linha, very thick] (0,0) circle (3);
+
+% LAYER 2: Água (Segmento circular)
+\begin{scope}
+    \clip (0,0) circle (3);
+    \fill[agua, opacity=0.75] (-4,-3) rectangle (4,-1.5);
+    \draw[linha, thick] (-4,-1.5) -- (4,-1.5);
+\end{scope}
+
+% LAYER 3: Raios e Cotas
+\fill[linha] (0,0) circle (2pt) node[above] {O};
+\draw[linha, dashed, thick] (0,0) -- (-2.598, -1.5);
+\draw[linha, dashed, thick] (0,0) -- (2.598, -1.5);
+
+% Ângulo e Altura (CORREÇÃO DO MODO MATEMÁTICO APLICADA AQUI)
+\draw[linha] (-0.8, -0.46) arc (210:330:0.9) node[midway, below=3pt] {\textbf{120}$^\circ$};
+\draw[|<->|, >=latex, linha, thick] (3.5, 0) -- (3.5, -3) node[midway, fill=white, inner sep=1pt] {\textbf{1,2 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Com base nos dados geométricos extraídos da ilustração, estruture o cálculo para encontrar a área correspondente ao segmento circular ocupado pela água.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} (Estilo FUVEST) - Julgue as afirmativas a seguir, classificando-as como (V) verdadeiras ou (F) falsas. É obrigatório registrar a justificativa algébrica para cada julgamento, utilizando abstração com as variáveis originais.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item Ao triplicar a medida do raio de um círculo, a nova área correspondente será seis vezes maior que a área original.
+\item A área de um setor circular com um ângulo central de \textbf{72 graus} representa exatamente \textbf{20\%} da área total do círculo que o contém.
+\item Se uma coroa circular possui os raios externo e interno medindo respectivamente \textbf{R} e \textbf{r}, a área da coroa pode ser reescrita como um produto notável: `$ A = \pi \cdot (R - r) \cdot (R + r) $`.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} Uma renomada marca de joias está projetando um novo pingente de ouro composto por um quadrado central cercado por quatro semicírculos tangentes aos seus lados, como exibido no projeto de design abaixo.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES EDITORIAIS ---
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{contorno}{HTML}{8E6F0F}
+
+% Configuração da sombra conjunta
+\begin{scope}[drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}]
+    % Quadrado Central
+    \fill[ouro!80, draw=contorno, thick] (-2,-2) rectangle (2,2);
+    % Semicírculos
+    \fill[ouro!90, draw=contorno, thick] (2,2) arc (90:-90:2) -- cycle;
+    \fill[ouro!90, draw=contorno, thick] (-2,-2) arc (270:90:2) -- cycle;
+    \fill[ouro!90, draw=contorno, thick] (-2,2) arc (180:0:2) -- cycle;
+    \fill[ouro!90, draw=contorno, thick] (2,-2) arc (360:180:2) -- cycle;
+\end{scope}
+
+% Cotas internas
+\draw[|<->|, >=latex, contorno, thick] (-2, 0) -- (2, 0) node[midway, fill=ouro!80, inner sep=1pt] {\textbf{1,2 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Desenvolva a expressão que determina a área total de ouro exposta nesse pingente. Em seguida, calcule a massa aproximada da joia final, sabendo que cada centímetro quadrado de área exposta equivale a \textbf{3 gramas} de metal fundido.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} Um ciclista deseja estimar o desgaste dos pneus de sua bicicleta ao longo de um mês de treinamento. Sabendo que o pneu da bicicleta tem um diâmetro de \textbf{70 cm} e que ele percorre uma distância reta média de \textbf{22 km} por semana, calcule, aproximadamente, quantas voltas completas cada roda efetua no asfalto em um período de quatro semanas. Utilize \textbf{3,14} como aproximação para Pi.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} Durante testes de tiro com arco, o alvo oficial foi danificado e precisou ser reconstruído analisando as sobreposições de suas áreas. A região central de maior pontuação é descrita pela intersecção entre um quadrado e um círculo.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO GRID E COMPOSIÇÃO DE FORMAS ---
+\definecolor{alvo1}{HTML}{E74C3C}
+\definecolor{alvo2}{HTML}{F1C40F}
+\definecolor{malha}{HTML}{BDC3C7}
+
+% Grid de fundo
+\draw[step=1cm, malha, very thin] (-4,-4) grid (4,4);
+
+% LAYER 1: Quadrado Base
+\fill[alvo2!60, draw=black, thick] (-3,-3) rectangle (3,3);
+
+% LAYER 2: Círculo Inscrito
+\fill[alvo1!80, draw=black, thick, opacity=0.85] (0,0) circle (3);
+
+% Identificação da malha
+\node[fill=white, inner sep=1pt, circle] at (1, 1) {\textbf{A}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que cada quadrado menor da malha cartesiana projetada ao fundo possui lado igual a \textbf{2 dm}, determine, por meio da leitura do gráfico e das proporções, a diferença exata (em $dm^2$) entre a área da região de cor amarela e a área da região de cor vermelha. Deixe a resposta final em função de Pi.
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+O Teste Cego exige a leitura atenta da imagem. Identifique o valor do raio do círculo e a medida do lado do quadrado contando diretamente os módulos na malha geométrica.
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} (Estilo UNICAMP) - Dois amigos compraram pizzas de tamanhos distintos, porém ambas de espessura uniforme. O amigo \textbf{A} adquiriu duas fatias de uma pizza cujo raio mede \textbf{15 cm} e que foi dividida em \textbf{8 partes iguais}. O amigo \textbf{B} adquiriu três fatias de uma pizza cujo raio mede \textbf{12 cm} e que foi dividida em \textbf{6 partes iguais}. Diagnosticando o custo-benefício de ambos em relação à quantidade real de comida consumida (área total ingerida), quem levou vantagem? Demonstre matematicamente o seu argumento comparando as áreas dos setores circulares.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Em uma indústria, uma engrenagem primária \textbf{P} de \textbf{10 cm} de raio está acoplada a uma engrenagem secundária \textbf{S} de \textbf{4 cm} de raio por meio de uma correia de transmissão ideal que não escorrega. Se a engrenagem primária executar exatamente \textbf{150 rotações} por minuto, modele a equação da velocidade angular e calcule a quantidade de giros que a engrenagem secundária completará no mesmo intervalo de tempo.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} Um projeto paisagístico urbano prevê um lago ornamental inserido em uma praça quadrada, formando o desenho simétrico revelado pelo esquema arquitetônico. O espaço escuro representa a lâmina d'água, formada pela intersecção de dois quartos de círculo.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CAMADAS ---
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{lago}{HTML}{2980B9}
+\definecolor{borda}{HTML}{2C3E50}
+
+% LAYER 1: Sombra e Praça Quadrada
+\fill[concreto!40, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, draw=borda, thick] (0,0) rectangle (4,4);
+
+% LAYER 2: Intersecção Hachurada (Lago)
+\begin{scope}
+    \clip (0,0) rectangle (4,4);
+    \clip (0,4) circle (4);
+    \fill[lago!80] (4,0) circle (4);
+    % Opcional: hachuras para textura
+    \draw[borda, thin, opacity=0.3, step=0.15cm] (0,0) grid (4,4);
+\end{scope}
+
+% LAYER 3: Contornos dos quartos de círculo
+\draw[borda, thick] (4,4) arc (90:180:4);
+\draw[borda, thick] (0,0) arc (270:360:4);
+
+% Cotas
+\draw[|<->|, >=latex, borda, thick] (0, -0.4) -- (4, -0.4) node[midway, fill=white, inner sep=1pt] {\textbf{20 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Descreva e equacione passo a passo o processo de decomposição de áreas necessário para isolar e descobrir a área da região central ocupada pelo lago.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} Considere a estrutura algébrica para o cálculo do apótema de um octógono regular inscrito em uma circunferência de raio \textbf{R}. Sabendo que o octógono é composto por oito triângulos isósceles cujos ângulos centrais medem \textbf{45 graus}, demonstre a aplicação da Lei dos Cossenos ou do Teorema de Pitágoras para estabelecer o tamanho do lado \textbf{L} em função do raio \textbf{R}.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} (Estilo FUVEST - Nível Avançado) - Três engrenagens cilíndricas idênticas, cujas faces transversais podem ser modeladas como círculos de raio \textbf{r}, estão armazenadas em uma caixa estreita, dispostas de maneira mutuamente tangente entre si e tangentes à base reta do suporte, conforme o desenho técnico frontal.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES EDITORIAIS ---
+\definecolor{aco}{HTML}{7F8C8D}
+\definecolor{caixa}{HTML}{E67E22}
+
+% LAYER 1: Círculos com sombra
+\begin{scope}[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}]
+    % Círculo Inferior Esquerdo
+    \fill[aco!50, draw=black, thick] (1,1) circle (1);
+    % Círculo Inferior Direito
+    \fill[aco!50, draw=black, thick] (3,1) circle (1);
+    % Círculo Superior
+    \fill[aco!50, draw=black, thick] (2, {1+sqrt(3)}) circle (1);
+\end{scope}
+
+% LAYER 2: Base Tangente
+\draw[caixa, line width=2pt] (-0.5,0) -- (4.5,0);
+
+% Identificação Literal
+\fill[black] (1,1) circle (1.5pt);
+\draw[black, dashed, thick] (1,1) -- (1,0) node[midway, fill=aco!50, inner sep=1pt] {\textbf{r}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Determine, exclusivamente em função do raio \textbf{r}, a expressão algébrica pura que calcula a área da região delimitada no espaço vazio (intersecção central) restrito pelos contornos dos três cilindros.
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
