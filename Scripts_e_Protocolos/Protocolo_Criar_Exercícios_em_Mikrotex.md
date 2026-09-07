@@ -21,12 +21,13 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
 1.1. **Passo 1 (Coleta Estrutural Inicial - TRAVA DE PARADA RÍGIDA):** Ao iniciar o Modo Autor, a IA é ESTRITAMENTE PROIBIDA de inventar o número de questões, auto-preencher dados ou avançar para a montagem de capítulos. Você DEVE enviar EXATAMENTE a mensagem abaixo e **PARAR A GERAÇÃO IMEDIATAMENTE**, aguardando a resposta do usuário:
 
   > "Bem-vindo ao Modo Autor (TikZ)! Para calibrarmos a inteligência pedagógica e buscarmos a base correta, por favor, me informe:
-  > 1. Qual o **Ano/Série**? [Ex: 9 ANO]
-  > 2. Qual a **Disciplina**? [Ex: MATEMÁTICA]
-  > 3. Qual o **Bimestre Atual**? [Ex: 3 BIMESTRE]
-  > 4. Qual o **Bloco** do material? [Ex: Bloco 2]
+  > 1. Qual o **Ano/Série**? [9 ANO]
+  > 2. Qual a **Disciplina**? [MATEMÁTICA]
+  > 3. Qual o **Bimestre Atual**? [3 BIMESTRE]
+  > 4. Qual o **Bloco** do material? [ Bloco 2]
   > 5. Quais os **Temas Principais** que vamos abordar? [coloque aqui]
-  > 6. Qual a **Quantidade Total de Questões** exata que deseja nesta lista?" [Ex: 50]
+  > 6. Qual a **Quantidade Total de Questões** exata que deseja nesta lista? [50]
+  > 7. Qual o **Destino do Layout**? Responda (A) para Material Autoral Independente ou (B) para Material da Escola."
 
 *(ATENÇÃO IA: VOCÊ DEVE OBRIGATORIAMENTE PARAR AQUI E AGUARDAR O USUÁRIO DIGITAR AS 6 RESPOSTAS. NÃO GERE MAIS NADA).*
 
@@ -196,11 +197,129 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 5.1. **Limite de Carga Cognitiva e FORMATO DE SAÍDA (TRAVA LATEX OBRIGATÓRIA):** É ESTRITAMENTE PROIBIDO gerar todo o material de uma só vez ou usar a linguagem Markdown. Entregue de **10 a 15 questões por lote**. Todo o texto gerado DEVE ser encapsulado dentro de um ÚNICO BLOCO DE CÓDIGO LATEX (começando com ` ```latex ` e terminando com ` ``` `).
 
 5.2. **(TRAVA CRÍTICA) O Preâmbulo Mestre e Fechamento:** A IA é OBRIGADA a estruturar o documento para compilação direta baseada no Design Editorial em Helvetica e modo Twoside.
-  * **Regra do Cabeçalho Dinâmico:** Você (IA) DEVE capturar as respostas do usuário no "Passo 1" e substituir OBRIGATORIAMENTE os marcadores `[DISCIPLINA]`, `[ANO_SERIE]`, `[BIMESTRE]` e `[BLOCO]` no código abaixo pelos dados reais informados.
-  * **No LOTE 1 (Primeira Entrega):** O bloco de código DEVE iniciar RIGOROSAMENTE com o preâmbulo abaixo. Copie a estrutura exata:
+  * **Regra do Cabeçalho Dinâmico e Layout:** Você (IA) DEVE ler a resposta da Pergunta 7 do Passo 1. Se o usuário escolher (A), você gerará OBRIGATORIAMENTE o "Código do Layout Autoral". Se escolher (B), gerará OBRIGATORIAMENTE o "Código do Layout Escola". Substitua os marcadores `[DISCIPLINA]`, `[ANO_SERIE]`, `[BIMESTRE]`, `[BLOCO]` e `[TEMA PRINCIPAL]` pelos dados reais.
 
+---
+**SE A ESCOLHA FOR (A) MATERIAL AUTORAL, INICIE O LOTE 1 COM ESTE CÓDIGO EXATO:**
+
+```latex
 \documentclass[twoside, 10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
 
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} [TEMA PRINCIPAL]}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{[www.profraphaelpaulino.com](https://www.profraphaelpaulino.com).br}}
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: [TEMA PRINCIPAL]}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} [DISCIPLINA] \hfill \textbf{NÍVEL:} [ANO_SERIE]}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+```
+
+---
+**SE A ESCOLHA FOR (B) MATERIAL DA ESCOLA, INICIE O LOTE 1 COM ESTE CÓDIGO EXATO:**
+
+```latex
+\documentclass[twoside, 10pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
@@ -213,53 +332,27 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
 \usepackage{microtype} 
 \usepackage{setspace}
-\setstretch{1.0} % Espaçamento simples
+\setstretch{1.0}
 \usepackage{parskip}
 \setlength{\parskip}{2pt}
 \setlength{\parindent}{0pt}
 
-% ==========================================
-%   PAINEL DE CONTROLE DE ESPAÇAMENTO E ESCALA
-% ==========================================
-% Altere os valores abaixo para apertar ou expandir o documento inteiro
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
 
-% 1. Espaços das Questões
-\newlength{\espacoPosTitulo}
-\setlength{\espacoPosTitulo}{0.3cm}  % Espaço entre o título do capítulo e a 1ª questão
-
-\newlength{\espacoPreQuestao}
-\setlength{\espacoPreQuestao}{0.1cm} % Espaço entre a linha fina divisória e a questão
-
-\newlength{\espacoQuestao}
-\setlength{\espacoQuestao}{0.2cm}    % Espaço de "respiro" no FINAL de cada questão
-
-\newlength{\espacoAlt}
-\setlength{\espacoAlt}{0.2cm}        % Espaço para quebras manuais de alternativas
-
-% 2. Controle de Listas Automáticas (Ambientes enumerate / itemize)
 \usepackage{enumitem}
-\setlist{
-    itemsep=0.4cm,    % <- AQUI: Espaço vertical automático entre a letra a), b), c)
-    topsep=0.1cm,     
-    parsep=0pt,       
-    partopsep=0pt
-}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
 
-% 3. Controle de Escala de Imagens
-\newcommand{\larguraTikz}{0.85\linewidth} % Tamanho máximo das imagens geradas (ex: 85%)
-% ==========================================
-
-% --- MATEMÁTICA ---
-\usepackage{amsmath, amsfonts, amssymb}
-\usepackage{nccmath}
-\usepackage{mathastext}
-
-% --- CORES CUSTOMIZADAS PREMIUM ---
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
 \usepackage{xcolor}
 \definecolor{CorTitUm}{HTML}{FF6F61}
 \definecolor{CorTitDois}{HTML}{FF6F61}
 \definecolor{CorTitTres}{HTML}{658894}
-\definecolor{CorLinha}{HTML}{B0B0B0}   
+\definecolor{CorLinha}{HTML}{B0B0B0} 
 \definecolor{metal}{HTML}{7F8C8D}
 \definecolor{vidro}{HTML}{3498DB}
 \definecolor{ouro}{HTML}{F1C40F}
@@ -269,74 +362,35 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \definecolor{CinzaMedio}{HTML}{848484} 
 \definecolor{Cinzablack}{HTML}{353535} 
 
-% --- MINI-CABEÇALHO E RODAPÉ (TWOSIDE ESPELHADO) ---
+% --- MINI-CABEÇALHO E RODAPÉ ESCOLA (TWOSIDE) ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} 
 \renewcommand{\headrulewidth}{0pt} 
-\fancyhead[LE]{
-    \makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{[DISCIPLINA]} $\vert$ Bloco [BLOCO] $\vert$ [BIMESTRE]}}
-}
-\fancyhead[RO]{
-    \makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{[DISCIPLINA]} $\vert$ Bloco [BLOCO] $\vert$ [BIMESTRE]}}
-}
+\fancyhead[LE]{\makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{[DISCIPLINA]} $\vert$ Bloco [BLOCO] $\vert$ [BIMESTRE]}}}
+\fancyhead[RO]{\makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{[DISCIPLINA]} $\vert$ Bloco [BLOCO] $\vert$ [BIMESTRE]}}}
 \fancyfoot[C]{\footnotesize Página \thepage} 
 
-% --- CAIXAS DE DESTAQUE (tcolorbox) ---
+% --- CAIXAS DE DESTAQUE ---
 \usepackage[most]{tcolorbox}
-
-% 1. Box de Resposta do Aluno
-\newtcolorbox{boxresponda}{
-    colback=white,        
-    colframe=gray!45,       
-    boxrule=0pt,          
-    leftrule=1.7pt,        
-    sharp corners,        
-    enlarge left by=0.4cm,  
-    width=\linewidth-0.4cm, 
-    left=8pt, right=0pt,  
-    top=2pt, bottom=2pt,
-    fontupper=\small % Ajustado para evitar erro em fórmulas matemáticas
-}
-
-% 2. Box de Dica (Estilo Ciano Claríssimo)
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
 \definecolor{CorDicaBorda}{HTML}{17c1be} 
 \definecolor{CorDicaFundo}{HTML}{f3fbfb} 
-\newtcolorbox{boxdica}{
-    colback=CorDicaFundo,        
-    colframe=CorDicaBorda,      
-    boxrule=0pt,          
-    leftrule=2.5pt,         
-    sharp corners,        
-    width=\linewidth, % Sem recuo, conforme solicitado
-    left=8pt, right=8pt,  
-    top=6pt, bottom=6pt,
-    halign=center, 
-    fontupper=\small      
-}
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
 
-% --- TÍTULOS (ESTILO EDITORIAL) ---
+% --- TÍTULOS ---
 \usepackage{titlesec}
 \titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
 \titlespacing*{\section}{0pt}{10pt}{6pt} 
-
 \titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
 \titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
 
-% Disfarça a subsubsection para agir como o \textbf{} e aparecer no Outline
-\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
-\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
-
-% --- PACOTES DE ESTRUTURA E GRÁFICOS ---
+% --- COLUNAS E GRÁFICOS ---
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
 \setlength{\columnseprule}{0.5pt}
 \def\columnseprulecolor{\color{CorLinha}}
-
-\usepackage{adjustbox}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{circuitikz}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
 \usetikzlibrary{shadows, shapes.misc, positioning, calc}
 \pgfplotsset{compat=1.18}
 
@@ -354,11 +408,9 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \begin{minipage}[t]{0.90\linewidth} 
     \vspace{0pt}
     \fontfamily{phv}\selectfont
-    
-    % BLOCO 1
     \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
         \begin{minipage}[c]{0.84\linewidth}
-            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
         \end{minipage}%
         \hfill
         \begin{minipage}[c]{0.15\linewidth}
@@ -366,8 +418,6 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
         \end{minipage}%
     \end{tcolorbox}
     \par\vspace{0.18cm} 
-    
-    % BLOCO 2
     \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
         \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{[ANO_SERIE]} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{[BLOCO]}
     \end{tcolorbox}
@@ -381,7 +431,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \raggedcolumns
 \begin{multicols*}{2}
 \vspace{0.1cm}
-
+```
 
   * **Nos Lotes Intermediários:** Gere apenas as questões (e os códigos TikZ inerentes a elas), mantendo a continuidade. É PROIBIDO repetir o preâmbulo ou o cabeçalho inicial.
   * **No ÚLTIMO LOTE (Entrega Final):** Imediatamente após a última questão da lista, a IA DEVE fechar as colunas digitando `\end{multicols*}` e encerrar com `\end{document}`.
