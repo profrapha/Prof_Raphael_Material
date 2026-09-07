@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Material Didático - Professor</title>
-    <!-- Tailwind CSS para um design moderno e limpo -->
+    <title>Portal de Aulas e Recursos Didáticos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400,500,600,700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
@@ -17,84 +14,107 @@
     <header class="bg-slate-900 text-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
             <div>
-                <h1 class="text-2xl font-bold tracking-tight">Portal de Aulas e Cadernos</h1>
-                <p class="text-slate-400 text-sm mt-1">Acesso rápido aos materiais para projeção em sala de aula</p>
+                <h1 class="text-2xl font-bold tracking-tight">Portal de Material Didático</h1>
+                <p class="text-slate-400 text-sm mt-1">Matemática e Física • Ensino Fundamental e Médio</p>
             </div>
             <div class="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 text-sm">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>Status: Online
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>Online
             </div>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-12">
 
-        <!-- Seção: Matemática -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6 border-b border-slate-200 pb-3">
-                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg mr-3">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                </div>
-                <h2 class="text-xl font-bold text-slate-900">Matemática e Álgebra</h2>
-            </div>
-
-            <!-- Grade de Anos / Unidades -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Card do 7º Ano -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                    <h3 class="font-semibold text-lg text-slate-900 mb-3">7º Ano do Ensino Fundamental</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li>
-                            <a href="Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
-                                <span class="mr-2">📄</span> Unidade 6: Decimais, Potenciação e Radiciação
-                            </a>
-                        </li>
-                        <!-- Adicione mais links de unidades aqui conforme criar -->
-                    </ul>
-                </div>
-
-                <!-- Card Exemplo 8º Ano -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                    <h3 class="font-semibold text-lg text-slate-900 mb-3">8º Ano do Ensino Fundamental</h3>
-                    <p class="text-sm text-slate-400 italic">Nenhum material publicado ainda.</p>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Seção: Física -->
-        <section class="mb-12">
+        <!-- SEÇÃO: FÍSICA -->
+        <section>
             <div class="flex items-center mb-6 border-b border-slate-200 pb-3">
                 <div class="p-2 bg-amber-100 text-amber-600 rounded-lg mr-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-                <h2 class="text-xl font-bold text-slate-900">Física</h2>
+                <h2 class="text-2xl font-bold text-slate-900">Física</h2>
             </div>
 
-            <!-- Grade de Anos / Unidades -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Card do 7º Ano (Física) -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                    <h3 class="font-semibold text-lg text-slate-900 mb-3">7º Ano</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li>
-                            <a href="Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
-                                <span class="mr-2">📄</span> Unidade 6: Máquinas Simples
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Bloco por Série -->
+            <div class="space-y-6">
+                <h3 class="text-lg font-semibold text-slate-700 flex items-center">
+                    <span class="bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded text-sm mr-2">7º Ano</span> Unidades e Módulos
+                </h3>
 
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Card de Conteúdo Misto (Exemplo: Unidade 6 - Máquinas Simples) -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-amber-200">Unidade 6</span>
+                                <span class="text-xs text-slate-400">Atualizado recentemente</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Máquinas Simples e Trabalho</h4>
+                            <p class="text-sm text-slate-600 mb-4">Estudo das alavancas, polias, plano inclinado e a conservação de energia aplicada ao cotidiano.</p>
+                            
+                            <!-- Mini Player do YouTube embutido (Browser de vídeo) -->
+                            <div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
+                                <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/SUO_ID_DO_VIDEO" title="Videoaula explicativa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Links de Ação (PDFs e Materiais) -->
+                        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3">
+                            <a href="Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">
+                                <span class="mr-2">📄</span> Baixar Lista de Exercícios (PDF)
+                            </a>
+                            <a href="#resumo" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">
+                                <span class="mr-2">📖</span> Ler Resumo Teórico
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Espaço para outro card de Física -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex items-center justify-center text-slate-400 border-dashed">
+                        <p class="text-sm">Próxima unidade em desenvolvimento...</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: MATEMÁTICA -->
+        <section>
+            <div class="flex items-center mb-6 border-b border-slate-200 pb-3">
+                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg mr-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900">Matemática e Álgebra</h2>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-lg font-semibold text-slate-700 flex items-center">
+                    <span class="bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded text-sm mr-2">7º Ano</span> Unidades e Módulos
+                </h3>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 inline-block mb-3">Unidade 6</span>
+                            <h4 class="text-lg font-bold text-slate-900 mb-2">Decimais, Potenciação e Radiciação</h4>
+                            <p class="text-sm text-slate-600 mb-4">Fixação de operações com números racionais e introdução estruturada às potências.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <a href="Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors inline-flex items-center shadow-sm">
+                                <span class="mr-2">📄</span> Baixar Lista de Exercícios (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
-        <p>Desenvolvido para uso docente • Atualizado automaticamente via GitHub Pages</p>
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500">
+        <p>Ambiente Virtual de Ensino • Atualizado via Git</p>
     </footer>
 
 </body>
