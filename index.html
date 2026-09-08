@@ -328,20 +328,24 @@
             anoAtual = chaveAno;
             nomeAnoGlobal = nomeAno;
 
+            // Atualiza Breadcrumb com segurança
             document.getElementById('bc-ano-sep').classList.remove('hidden');
             document.getElementById('bc-ano').classList.remove('hidden');
             document.getElementById('bc-ano').innerText = nomeAno;
 
+            // Oculta as outras telas e exibe a view de unidades
+            document.getElementById('view-frentes').classList.add('hidden');
             document.getElementById('view-anos').classList.add('hidden');
+            document.getElementById('view-conteudos').classList.add('hidden');
             document.getElementById('view-unidades').classList.remove('hidden');
 
             const gridUnidades = document.getElementById('grid-unidades');
             gridUnidades.innerHTML = '';
 
             let unidades = [];
-            if (frenteAtual) {
+            if (frenteAtual && bancoDados[disciplinaAtual].frentes[frenteAtual]) {
                 unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[chaveAno].unidades;
-            } else {
+            } else if (bancoDados[disciplinaAtual].anos) {
                 unidades = bancoDados[disciplinaAtual].anos[chaveAno].unidades;
             }
 
@@ -490,21 +494,20 @@
         }
 
         function navegarParaAno() {
-    if (!anoAtual) return;
-    
-    // Reseta o índice da unidade atual
-    unidadeAtualIndex = null;
+            if (!anoAtual || !nomeAnoGlobal) return;
+            
+            unidadeAtualIndex = null;
 
-    // Esconde os breadcrumbs e visualizações à frente
-    document.getElementById('bc-unidade-sep').classList.add('hidden');
-    document.getElementById('bc-unidade').innerText = '';
+            // Esconde o breadcrumb da unidade e limpa seu texto
+            document.getElementById('bc-unidade-sep').classList.add('hidden');
+            document.getElementById('bc-unidade').innerText = '';
 
-    document.getElementById('view-conteudos').classList.add('hidden');
-    document.getElementById('view-unidades').classList.remove('hidden');
-    
-    // Reaplica o seletor de ano garantindo que a grade de unidades reapareça limpa
-    selecionarAno(anoAtual, nomeAnoGlobal);
-}
+            document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-unidades').classList.remove('hidden');
+
+            // Reexecuta o renderizador daquele ano sem perder o contexto
+            selecionarAno(anoAtual, nomeAnoGlobal);
+        }
 
         function navegarParaUnidades() {
             if (!anoAtual) return;
