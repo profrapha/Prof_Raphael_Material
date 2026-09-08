@@ -26,54 +26,76 @@
     <!-- Conteúdo Principal -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
 
-        <!-- Navegação / Breadcrumbs dinâmico -->
+        <!-- Navegação / Breadcrumbs Dinâmico e Totalmente Clicável -->
         <nav id="breadcrumbs" class="mb-8 hidden items-center text-sm text-slate-500 space-x-2">
-            <button onclick="resetarPortal()" class="hover:text-indigo-600 font-medium">Início</button>
+            <button onclick="resetarPortal()" class="hover:text-indigo-600 font-medium transition-colors">Início</button>
             <span>/</span>
-            <span id="bc-disciplina" class="text-slate-800 font-semibold"></span>
+            <button id="bc-disciplina" onclick="navegarParaDisciplina()" class="hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
+            <span id="bc-frente-sep" class="hidden">/</span>
+            <button id="bc-frente" onclick="navegarParaFrente()" class="hidden hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
             <span id="bc-ano-sep" class="hidden">/</span>
-            <span id="bc-ano" class="text-slate-800 font-semibold"></span>
+            <span id="bc-ano" class="font-semibold text-slate-900 cursor-default"></span>
         </nav>
 
-        <!-- ETAPA 1: ESCOLHER DISCIPLINA -->
+        <!-- ETAPA 1: PILARES PRINCIPAIS (FÍSICA E MATEMÁTICA) -->
         <div id="view-disciplinas" class="space-y-6">
-            <h2 class="text-xl font-bold text-slate-900 border-b pb-3">Selecione a Disciplina</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 class="text-xl font-bold text-slate-900 border-b pb-3">Selecione a Área do Conhecimento</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <!-- Física -->
-                <div onclick="selecionarDisciplina('Fisica', 'Física')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div onclick="selecionarDisciplina('Fisica')" class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-amber-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Física</h3>
-                    <p class="text-sm text-slate-500 mt-1">Anos Finais e Ensino Médio</p>
+                    <h3 class="text-2xl font-bold text-slate-900">Física</h3>
+                    <p class="text-sm text-slate-500 mt-2">Mecânica, Termodinâmica, Ondulatória e Astronomia para Fundamental II e Ensino Médio.</p>
                 </div>
 
-                <!-- Matemática Álgebra -->
-                <div onclick="selecionarDisciplina('Matematica_Algebra', 'Matemática - Álgebra')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                <!-- Matemática -->
+                <div onclick="selecionarDisciplina('Matematica')" class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Matemática</h3>
+                    <p class="text-sm text-slate-500 mt-2">Álgebra, Geometria Espacial e Plana, Educação Financeira e Treinamento para Vestibulares.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ETAPA 1.5: FRENTES DE MATEMÁTICA -->
+        <div id="view-frentes" class="space-y-6 hidden">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h2 class="text-xl font-bold text-slate-900">Selecione a Frente de Matemática</h2>
+                <button onclick="resetarPortal()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às áreas</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Álgebra -->
+                <div onclick="selecionarFrente('Algebra')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
                     <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Matemática - Álgebra</h3>
-                    <p class="text-sm text-slate-500 mt-1">Listas e Conteúdos Numéricos</p>
+                    <h3 class="text-lg font-bold text-slate-900">Álgebra</h3>
+                    <p class="text-sm text-slate-500 mt-1">Operações, Equações, Funções e Turma Intensiva (Terceirão).</p>
                 </div>
 
-                <!-- Matemática Geometria -->
-                <div onclick="selecionarDisciplina('Matematica_Geometria', 'Matemática - Geometria')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <!-- Geometria -->
+                <div onclick="selecionarFrente('Geometria')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-emerald-500 hover:shadow-md transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Matemática - Geometria</h3>
-                    <p class="text-sm text-slate-500 mt-1">Espacial e Plana</p>
+                    <h3 class="text-lg font-bold text-slate-900">Geometria</h3>
+                    <p class="text-sm text-slate-500 mt-1">Geometria Plana, Espacial, Áreas, Perímetros e Cones.</p>
                 </div>
 
-                <!-- Terceirão -->
-                <div onclick="selecionarDisciplina('Terceirao', 'Terceirão')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                <!-- Matemática Financeira (Futura) -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-dashed border-slate-300 opacity-60 cursor-not-allowed">
+                    <div class="w-12 h-12 bg-slate-200 text-slate-400 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900">Terceirão</h3>
-                    <p class="text-sm text-slate-500 mt-1">Preparatório e Revisões</p>
+                    <h3 class="text-lg font-bold text-slate-500">Matemática Financeira</h3>
+                    <p class="text-sm text-slate-400 mt-1">Juros, Porcentagem e Finanças • Em Breve</p>
                 </div>
 
             </div>
@@ -83,7 +105,7 @@
         <div id="view-anos" class="space-y-6 hidden">
             <div class="flex items-center justify-between border-b pb-3">
                 <h2 class="text-xl font-bold text-slate-900">Selecione o Ano ou Série</h2>
-                <button onclick="resetarPortal()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às disciplinas</button>
+                <button onclick="voltarParaNivelAnteriorDosAnos()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar</button>
             </div>
             <div id="grid-anos" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Preenchido via JavaScript -->
@@ -94,7 +116,7 @@
         <div id="view-conteudos" class="space-y-6 hidden">
             <div class="flex items-center justify-between border-b pb-3">
                 <h2 class="text-xl font-bold text-slate-900">Conteúdos e Materiais Disponíveis</h2>
-                <button onclick="voltarParaAnos()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar aos anos</button>
+                <button onclick="navegarParaFrente()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às séries</button>
             </div>
             <div id="grid-conteudos" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Preenchido via JavaScript -->
@@ -105,101 +127,150 @@
 
     <!-- Rodapé -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500 mt-auto">
-        <p>Portal de Aulas • Professor Raphael</p>
+        <p>Portal de Aulas • Professor Raphael Paulino</p>
     </footer>
 
-    <!-- BANCOS DE DADOS DOS CONTEÚDOS (ATUALIZADO COM A ÁRVORE REAL) -->
+    <!-- BANCO DE DADOS INTEGRADO E SINCRONIZADO COM O TREE -->
     <script>
         const bancoDados = {
             "Fisica": {
                 nome: "Física",
+                tipo: "direto",
                 anos: {
                     "6_Ano": { nome: "6º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Estrutura da Terra", desc: "Estudo da estrutura interna e camadas da Terra.", pdf: "Fisica/6_Ano/UNIDADE6/UNIDADE6-ESTRUTURA_TERRA.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Estrutura da Terra", desc: "Estudo da estrutura interna e camadas da Terra.", pdf: "Fisica/6_Ano/UNIDADE6/UNIDADE6-ESTRUTURA_TERRA.pdf", videos: [], temTeoria: false }
                     ]},
                     "7_Ano": { nome: "7º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Máquinas Simples e Trabalho", desc: "Estudo das alavancas, polias e plano inclinado.", pdf: "Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Máquinas Simples e Trabalho", desc: "Estudo das alavancas, polias e plano inclinado.", pdf: "Fisica/7_Ano/UNIDADE6/UNIDADE6-MAQUINA_SIMPLES.pdf", videos: [], temTeoria: false }
                     ]},
                     "8_Ano": { nome: "8º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Sol, Terra e Lua", desc: "Movimentos astronômicos, eclipses e estações do ano.", pdf: "Fisica/8_Ano/UNIDADE6/UNIDADE6-SOL_TERRA_LUA.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Sol, Terra e Lua", desc: "Movimentos astronômicos, eclipses e estações do ano.", pdf: "Fisica/8_Ano/UNIDADE6/UNIDADE6-SOL_TERRA_LUA.pdf", videos: [], temTeoria: false }
                     ]},
                     "9_Ano": { nome: "9º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Energia Mecânica e Potência", desc: "Trabalho, energia cinética, potencial e potência.", pdf: "Fisica/9_Ano/UNIDADE6/UNIDADE6-ENERGIA_MECANICA_POTENCIA.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Energia Mecânica e Potência", desc: "Trabalho, energia cinética, potencial e potência.", pdf: "Fisica/9_Ano/UNIDADE6/UNIDADE6-ENERGIA_MECANICA_POTENCIA.pdf", videos: [], temTeoria: false }
                     ]},
                     "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Dinâmica e Leis de Newton", desc: "Forças de atrito, resultantes e aplicações das leis de Newton.", pdf: "Fisica/1_Serie/UNIDADE6/UNIDADE6-DINAMICA.pdf", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Dinâmica e Leis de Newton", desc: "Forças de atrito, resultantes e aplicações das leis de Newton.", pdf: "Fisica/1_Serie/UNIDADE6/UNIDADE6-DINAMICA.pdf", videos: [], temTeoria: false }
                     ]},
                     "2_Serie": { nome: "2ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Termodinâmica", desc: "Estudo dos gases e leis da termodinâmica.", pdf: "", temVideo: false, temTeoria: false }
+                        { id: "UNIDADE 6", titulo: "Termodinâmica", desc: "Estudo dos gases e leis da termodinâmica.", pdf: "", videos: [], temTeoria: false }
                     ]}
                 }
             },
-            "Matematica_Algebra": {
-                nome: "Matemática - Álgebra",
-                anos: {
-                    "6_Ano": { nome: "6º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Números Racionais", desc: "Frações, decimais e representações na reta numérica.", pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "7_Ano": { nome: "7º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Decimais, Potenciação e Radiciação", desc: "Operações com racionais, potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "8_Ano": { nome: "8º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Equações Quadráticas Incompletas", desc: "Resolução e modelagem de equações do 2º grau incompletas.", pdf: "Matematica_Algebra/8_Ano/UNIDADE6/UNIDADE6-EQ_QUADRATICAS_INCOMPLETA.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "9_Ano": { nome: "9º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Função Quadrática (Parte 1)", desc: "Estudo inicial dos gráficos e vértices da parábola.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6-FUNCAO_QUADRATICA_P1.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Inequações", desc: "Resolução de inequações do 1º e 2º grau.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6-INEQUACOES.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "2_Serie": { nome: "2ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Polinômios", desc: "Operações com polinômios e dispositivos de Briot-Ruffini.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6-POLINOMIOS.pdf", temVideo: false, temTeoria: false }
-                    ]}
-                }
-            },
-            "Matematica_Geometria": {
-                nome: "Matemática - Geometria",
-                anos: {
-                    "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Figuras Planas", desc: "Áreas, perímetros e propriedades de figuras planas.", pdf: "Matematica_Geometria/1_Serie/UNIDADE6/UNIDADE6-FIGURAS_PLANAS.pdf", temVideo: false, temTeoria: false }
-                    ]},
-                    "9_Ano": { nome: "9º Ano", unidades: [
-                        { id: "UNIDADE6", titulo: "Unidade 6: Geometria Espacial", desc: "Áreas e volumes de sólidos geométricos.", pdf: "Matematica_Geometria/9_Ano/UNIDADE6/UNIDADE6-GEOMETRIA-ESPACIAL.pdf", temVideo: false, temTeoria: false }
-                    ]}
-                }
-            },
-            "Terceirao": {
-                nome: "Terceirão (Preparatório)",
-                anos: {
-                    "Geral": { nome: "Turma Intensiva", unidades: [
-                        { id: "SEMANA10", titulo: "Semana 10: Material do Aluno", desc: "Lista de exercícios integrada para vestibulares.", pdf: "Terceirao/semana10.pdf", temVideo: false, temTeoria: false },
-                        { id: "SEMANA10_PROF", titulo: "Semana 10: Material do Professor (Gabarito)", desc: "Resolução comentada para projeção em aula.", pdf: "Terceirao/semana10_prof.pdf", temVideo: false, temTeoria: false }
-                    ]}
+            "Matematica": {
+                nome: "Matemática",
+                tipo: "frentes",
+                frentes: {
+                    "Algebra": {
+                        nome: "Álgebra",
+                        anos: {
+                            "6_Ano": { nome: "6º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Números Racionais", desc: "Frações, decimais e representações na reta numérica.", pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "7_Ano": { nome: "7º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Decimais, Potenciação e Radiciação", desc: "Operações com racionais, potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "8_Ano": { nome: "8º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Equações Quadráticas Incompletas", desc: "Resolução e modelagem de equações do 2º grau incompletas.", pdf: "Matematica_Algebra/8_Ano/UNIDADE6/UNIDADE6-EQ_QUADRATICAS_INCOMPLETA.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "9_Ano": { nome: "9º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Função Quadrática (Parte 1)", desc: "Estudo inicial dos gráficos e vértices da parábola.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6-FUNCAO_QUADRATICA_P1.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "1_Serie": { nome: "1ª Série (EM)", unidades: [
+                                { id: "UNIDADE 6", titulo: "Inequações", desc: "Resolução de inequações do 1º e 2º grau.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6-INEQUACOES.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "2_Serie": { nome: "2ª Série (EM)", unidades: [
+                                { id: "UNIDADE 6", titulo: "Polinômios", desc: "Operações com polinômios e dispositivos práticos de divisão.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6-POLINOMIOS.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "3_Serie": { nome: "3ª Série (Intensivo / Terceirão)", unidades: [
+                                { 
+                                    id: "SEMANA 10", 
+                                    titulo: "Revisão e Aprofundamento para Vestibulares", 
+                                    desc: "Caderno intensivo com resolução e foco em bancas oficiais.", 
+                                    pdf: "Matematica_Algebra/3_Serie/Intensivo/semana10.pdf", 
+                                    pdfProf: "Matematica_Algebra/3_Serie/Intensivo/semana10_prof.pdf",
+                                    videos: [], 
+                                    temTeoria: false 
+                                }
+                            ]}
+                        }
+                    },
+                    "Geometria": {
+                        nome: "Geometria",
+                        anos: {
+                            "6_Ano": { nome: "6º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Área de Figuras Planas", desc: "Cálculo e decomposição de áreas fundamentais.", pdf: "Matematica_Geometria/6_Ano/UNIDADE6/UNIDADE6-AREA_FIGURAS_PLANAS.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "7_Ano": { nome: "7º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Área e Perímetro", desc: "Relações métricas, contorno e superfície.", pdf: "Matematica_Geometria/7_Ano/UNIDADE6/UNIDADE6-AREA_E_PERIMETRO.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "8_Ano": { nome: "8º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Figuras Planas", desc: "Propriedades geométricas e polígonos.", pdf: "Matematica_Geometria/8_Ano/UNIDADE6/UNIDADE6-FIGURAS_PLANAS.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "9_Ano": { nome: "9º Ano", unidades: [
+                                { id: "UNIDADE 6", titulo: "Geometria Espacial", desc: "Sólidos geométricos, prismas e volumes.", pdf: "Matematica_Geometria/9_Ano/UNIDADE6/UNIDADE6-GEOMETRIA-ESPACIAL.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "1_Serie": { nome: "1ª Série (EM)", unidades: [
+                                { id: "UNIDADE 6", titulo: "Figuras Planas", desc: "Trigonometria e geometria euclidiana plana.", pdf: "Matematica_Geometria/1_Serie/UNIDADE6/UNIDADE6-FIGURAS_PLANAS.pdf", videos: [], temTeoria: false }
+                            ]},
+                            "2_Serie": { nome: "2ª Série (EM)", unidades: [
+                                { id: "UNIDADE 6", titulo: "Cones e Corpos Redondos", desc: "Estudo métrico, seções e volumes de cones.", pdf: "Matematica_Geometria/2_Serie/UNIDADE6/UNIDADE6-CONES.pdf", videos: [], temTeoria: false }
+                            ]}
+                        }
+                    }
                 }
             }
         };
 
+        // Estado Global da Aplicação
         let disciplinaAtual = null;
+        let frenteAtual = null;
         let anoAtual = null;
 
-        function selecionarDisciplina(chave, nome) {
+        function selecionarDisciplina(chave) {
             disciplinaAtual = chave;
-            document.getElementById('bc-disciplina').innerText = nome;
+            const obj = bancoDados[chave];
+
+            // Atualiza Breadcrumb
+            document.getElementById('bc-disciplina').innerText = obj.nome;
             document.getElementById('breadcrumbs').classList.remove('hidden');
             document.getElementById('breadcrumbs').classList.add('flex');
-            
-            document.getElementById('view-disciplinas').classList.add('hidden');
-            document.getElementById('view-anos').classList.remove('hidden');
 
+            document.getElementById('view-disciplinas').classList.add('hidden');
+
+            if (obj.tipo === 'frentes') {
+                document.getElementById('view-frentes').classList.remove('hidden');
+            } else {
+                renderizarAnos(obj.anos);
+            }
+        }
+
+        function selecionarFrente(chaveFrente) {
+            frenteAtual = chaveFrente;
+            const objFrente = bancoDados[disciplinaAtual].frentes[chaveFrente];
+
+            // Atualiza Breadcrumb
+            document.getElementById('bc-frente-sep').classList.remove('hidden');
+            document.getElementById('bc-frente').classList.remove('hidden');
+            document.getElementById('bc-frente').innerText = objFrente.nome;
+
+            document.getElementById('view-frentes').classList.add('hidden');
+            renderizarAnos(objFrente.anos);
+        }
+
+        function renderizarAnos(anosObj) {
+            document.getElementById('view-anos').classList.remove('hidden');
             const gridAnos = document.getElementById('grid-anos');
             gridAnos.innerHTML = '';
-            
-            const anosObj = bancoDados[chave].anos;
+
             for (let anoKey in anosObj) {
                 let anoData = anosObj[anoKey];
                 let card = document.createElement('div');
-                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex items-center justify-between";
-                card.innerHTML = `<span class="font-bold text-slate-800 text-lg">${anoData.nome}</span><span class="text-indigo-600 font-medium text-sm">Acessar →</span>`;
+                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group";
+                card.innerHTML = `
+                    <span class="font-bold text-slate-800 text-lg group-hover:text-indigo-600 transition-colors">${anoData.nome}</span>
+                    <span class="text-indigo-600 font-medium text-sm">Acessar →</span>
+                `;
                 card.onclick = () => selecionarAno(anoKey, anoData.nome);
                 gridAnos.appendChild(card);
             }
@@ -207,6 +278,8 @@
 
         function selecionarAno(chaveAno, nomeAno) {
             anoAtual = chaveAno;
+
+            // Atualiza Breadcrumb
             document.getElementById('bc-ano-sep').classList.remove('hidden');
             document.getElementById('bc-ano').innerText = nomeAno;
 
@@ -216,23 +289,54 @@
             const gridConteudos = document.getElementById('grid-conteudos');
             gridConteudos.innerHTML = '';
 
-            const unidades = bancoDados[disciplinaAtual].anos[chaveAno].unidades;
-            
-            unidades.forEach(uni => {
+            let unidades = [];
+            if (frenteAtual) {
+                unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[chaveAno].unidades;
+            } else {
+                unidades = bancoDados[disciplinaAtual].anos[chaveAno].unidades;
+            }
+
+            unidades.forEach((uni, idx) => {
                 let card = document.createElement('div');
                 card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between";
-                
-                let videoHtml = uni.temVideo ? 
-                    `<div class="mb-4 aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner"><iframe class="w-full h-full" src="${uni.videoUrl}" frameborder="0" allowfullscreen></iframe></div>` :
-                    `<div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center"><span>📹 Videoaula em construção</span></div>`;
 
-                let teoriaHtml = uni.temTeoria ? 
-                    `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">📖 Ler Resumo Teórico</a>` :
-                    `<span class="bg-slate-100 text-slate-400 text-xs px-3 py-2 rounded-lg cursor-not-allowed">📖 Teoria em construção</span>`;
+                // Gerenciador de Vídeos (Múltiplos vídeos ou individual)
+                let videoHtml = '';
+                if (uni.videos && uni.videos.length > 0) {
+                    let abas = uni.videos.map((v, i) => `
+                        <button onclick="mudarVideo('player-${idx}', '${v.url}')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-xs font-semibold rounded text-slate-700">
+                            ${v.titulo}
+                        </button>
+                    `).join('');
 
+                    videoHtml = `
+                        <div class="mb-4">
+                            <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner mb-2">
+                                <iframe id="player-${idx}" class="w-full h-full" src="${uni.videos[0].url}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <div class="flex flex-wrap gap-2">${abas}</div>
+                        </div>
+                    `;
+                } else {
+                    videoHtml = `
+                        <div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center">
+                            <span>📹 Videoaula em gravação</span>
+                        </div>
+                    `;
+                }
+
+                // Botão Aluno (PDF)
                 let botaoPdf = uni.pdf ? 
                     `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista (PDF)</a>` :
                     `<span class="bg-slate-100 text-slate-400 text-sm px-4 py-2 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
+
+                // Botão Material do Professor (Se houver)
+                let botaoProf = uni.pdfProf ? 
+                    `<a href="${uni.pdfProf}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">🔒 Gabarito (Professor)</a>` : '';
+
+                let teoriaHtml = uni.temTeoria ? 
+                    `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">📖 Resumo Teórico</a>` :
+                    `<span class="bg-slate-100 text-slate-400 text-xs px-3 py-2 rounded-lg cursor-not-allowed">📖 Teoria em breve</span>`;
 
                 card.innerHTML = `
                     <div>
@@ -245,6 +349,7 @@
                     </div>
                     <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
                         ${botaoPdf}
+                        ${botaoProf}
                         ${teoriaHtml}
                     </div>
                 `;
@@ -252,20 +357,72 @@
             });
         }
 
-        function voltarParaAnos() {
+        function mudarVideo(playerId, novaUrl) {
+            const iframe = document.getElementById(playerId);
+            if (iframe) iframe.src = novaUrl;
+        }
+
+        // ==========================================
+        // ROTAS DE VOLTA RÁPIDA (BREADCRUMBS CLICÁVEIS)
+        // ==========================================
+        function navegarParaDisciplina() {
+            if (!disciplinaAtual) return;
+            const obj = bancoDados[disciplinaAtual];
+
+            // Limpa níveis inferiores
+            document.getElementById('bc-frente-sep').classList.add('hidden');
+            document.getElementById('bc-frente').classList.add('hidden');
             document.getElementById('bc-ano-sep').classList.add('hidden');
             document.getElementById('bc-ano').innerText = '';
+
             document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-anos').classList.remove('hidden');
+            document.getElementById('view-anos').classList.add('hidden');
+
+            if (obj.tipo === 'frentes') {
+                frenteAtual = null;
+                document.getElementById('view-frentes').classList.remove('hidden');
+            } else {
+                renderizarAnos(obj.anos);
+            }
+        }
+
+        function navegarParaFrente() {
+            if (frenteAtual) {
+                document.getElementById('bc-ano-sep').classList.add('hidden');
+                document.getElementById('bc-ano').innerText = '';
+                document.getElementById('view-conteudos').classList.add('hidden');
+                renderizarAnos(bancoDados[disciplinaAtual].frentes[frenteAtual].anos);
+            } else if (disciplinaAtual) {
+                navegarParaDisciplina();
+            }
+        }
+
+        function voltarParaNivelAnteriorDosAnos() {
+            if (frenteAtual) {
+                frenteAtual = null;
+                document.getElementById('bc-frente-sep').classList.add('hidden');
+                document.getElementById('bc-frente').classList.add('hidden');
+                document.getElementById('view-anos').classList.add('hidden');
+                document.getElementById('view-frentes').classList.remove('hidden');
+            } else {
+                resetarPortal();
+            }
         }
 
         function resetarPortal() {
             disciplinaAtual = null;
+            frenteAtual = null;
             anoAtual = null;
             document.getElementById('breadcrumbs').classList.remove('flex');
             document.getElementById('breadcrumbs').classList.add('hidden');
+            document.getElementById('bc-frente-sep').classList.add('hidden');
+            document.getElementById('bc-frente').classList.add('hidden');
+            document.getElementById('bc-ano-sep').classList.add('hidden');
+            document.getElementById('bc-ano').innerText = '';
+
             document.getElementById('view-conteudos').classList.add('hidden');
             document.getElementById('view-anos').classList.add('hidden');
+            document.getElementById('view-frentes').classList.add('hidden');
             document.getElementById('view-disciplinas').classList.remove('hidden');
         }
     </script>
