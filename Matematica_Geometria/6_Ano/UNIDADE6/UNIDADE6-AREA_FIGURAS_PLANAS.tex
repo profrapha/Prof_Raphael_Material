@@ -1,0 +1,855 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- CORES CUSTOMIZADAS ---
+\definecolor{PisoVerde}{HTML}{27AE60}
+\definecolor{AguaPiscina}{HTML}{3498DB}
+\definecolor{GramaFundo}{HTML}{2ECC71}
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} ÁREA DE FIGURAS PLANAS}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc, patterns}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: ÁREA DE FIGURAS PLANAS}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA / GEOMETRIA \hfill \textbf{NÍVEL:} EF II (6º ANO)}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Conceito de Área e Unidades}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{1.} A prefeitura de uma cidade está revitalizando a praça central. Para planejar a quantidade de grama necessária, um arquiteto desenhou o formato do canteiro principal sobre uma malha quadriculada, onde cada quadradinho representa \textbf{1 m²} de superfície. Observe o esboço do arquiteto a seguir.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo).
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETA PREMIUM ---
+% LAYER 1: Malha de Fundo
+\draw[step=1cm, gray!30, very thin] (0,0) grid (6,5);
+% LAYER 2: Objeto principal (Canteiro)
+\filldraw[fill=PisoVerde!80, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,1) -- (5,1) -- (5,3) -- (4,3) -- (4,4) -- (2,4) -- (2,2) -- (1,2) -- cycle;
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a área total, em metros quadrados, que será ocupada pelo canteiro de grama e explique qual foi a estratégia de contagem utilizada para as partes irregulares, caso existam.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} A área de uma superfície está diretamente ligada à unidade de medida escolhida para avaliá-letra. Considere os três espaços a seguir:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A superfície da tela de um telefone celular.
+    \item A área verde do Parque Ibirapuera em São Paulo.
+    \item O piso de uma sala de aula.
+\end{enumerate}
+Para cada um dos espaços, indique qual seria a unidade de medida de área mais adequada (entre \textbf{cm²}, \textbf{m²} e \textbf{km²}) para expressar a sua dimensão sem o uso de números excessivamente grandes ou pequenos.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Durante a aula de Geometria, o professor Raphael pediu que os alunos determinassem a área do painel retangular ilustrado abaixo, sabendo que cada quadradinho da malha mede \textbf{1 cm²}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E DESIGN ---
+\draw[step=1cm, gray!30, very thin] (0,0) grid (5,3);
+\filldraw[fill=CorTitTres!40, draw=CinzaEscuro, thick, rounded corners=1pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) rectangle (5,3);
+\draw[step=1cm, gray!80, dashed, thin] (0,0) grid (5,3);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O aluno Heitor analisou a imagem e afirmou: \textit{"A área desse painel é de 16 cm², pois contei 5 quadradinhos embaixo, 3 do lado direito, 5 em cima e 3 do lado esquerdo, somando tudo."}
+\begin{boxresponda}
+\textbf{Responda:} Heitor acertou o conceito de área? Explique textualmente qual grandeza geométrica ele realmente calculou e indique qual é a área verdadeira do painel em centímetros quadrados.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} (Estilo OBMEP - Adaptada) Uma fábrica produz dois modelos de peças de cerâmica para mosaicos, conforme as representações sombreadas na malha quadriculada.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Malha
+\draw[step=0.5cm, gray!30, very thin] (0,0) grid (7,3);
+% LAYER 2: Peça A
+\filldraw[fill=ouro!80, draw=black, thick, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-1pt}] 
+    (0.5, 0.5) rectangle (2.5, 2.5);
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (1.5, 1.5) {\footnotesize Peça A};
+% LAYER 3: Peça B
+\filldraw[fill=vidro!80, draw=black, thick, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-1pt}] 
+    (4,0.5) -- (6.5,0.5) -- (6.5,1.5) -- (5,1.5) -- (5,2.5) -- (4,2.5) -- cycle;
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (5, 1) {\footnotesize Peça B};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na imagem, analise as alternativas abaixo. Você deve não apenas encontrar a alternativa correta, mas apresentar o cálculo de área provando o erro das demais. Cada quadrado menor da malha representa \textbf{1 u.a.} (unidade de área).
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A peça A possui o dobro da área da peça B.
+    \item As duas peças ocupam exatamente a mesma quantidade de superfície.
+    \item A área da peça B é de 10 u.a., sendo maior que a da peça A.
+    \item A peça A tem área de 16 u.a., enquanto a peça B tem 14 u.a.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Flávia deseja trocar o piso de um quarto de sua casa. O arquiteto entregou a planta baixa do quarto representada na malha quadriculada, onde o lado de cada quadradinho mede \textbf{1 m}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Malha
+\draw[step=1cm, gray!30, very thin] (0,0) grid (6,5);
+% LAYER 2: Planta
+\filldraw[fill=madeira!40, draw=madeira!90!black, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,1) -- (5,1) -- (5,2) -- (4,2) -- (4,4) -- (1,4) -- cycle;
+% LAYER 3: Indicação visual
+\draw[|<->|, thick] (1,0.5) -- (5,0.5) node[midway, fill=white, inner sep=2pt] {\textbf{4 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se a loja vende o piso desejado ao custo de \textbf{R\$ 30,00} por metro quadrado (\textbf{m²}), qual será o custo total, apenas com o material, para cobrir toda a superfície do quarto?
+\par\vspace{\espacoQuestao}
+
+\subsection*{Capítulo 2: Área de Retângulos e Quadrados}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{6.} Calcule a área das seguintes superfícies retangulares, demonstrando a multiplicação que origina o resultado:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Uma quadra de vôlei com \textbf{18 m} de comprimento e \textbf{9 m} de largura.
+    \item Um terreno de formato quadrado que possui perímetro igual a \textbf{40 m}. (Atenção: descubra a medida do lado primeiro).
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Um marceneiro desenhou o projeto de um armário fixado na parede. A chapa principal de madeira, vista de frente, tem o formato de uma letra "L", cujas medidas estão representadas no esquema abaixo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CANTOS ARREDONDADOS ---
+\filldraw[fill=madeira!70, draw=madeira!50!black, ultra thick, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) -- (6,0) -- (6,2) -- (2,2) -- (2,5) -- (0,5) -- cycle;
+
+% Cotas (linhas de medida)
+\draw[|<->|] (0,-0.4) -- (6,-0.4) node[midway, fill=white, inner sep=1pt] {\textbf{1,20 m}};
+\draw[|<->|] (-0.4,0) -- (-0.4,5) node[midway, fill=white, inner sep=1pt] {\textbf{1,00 m}};
+\draw[|<->|] (6.4,0) -- (6.4,2) node[midway, fill=white, inner sep=1pt] {\textbf{0,40 m}};
+\draw[|<->|] (0,5.4) -- (2,5.4) node[midway, fill=white, inner sep=1pt] {\textbf{0,40 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a área total dessa chapa de madeira em metros quadrados. Para resolver, você deve decompor a figura em dois retângulos menores. Apresente os cálculos da sua estratégia.
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Sempre que encontrar polígonos irregulares retos (como a letra L ou T), passe uma linha imaginária dividindo a figura em quadrados e retângulos conhecidos. A área total é a soma das áreas dessas partes!
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Uma piscina residencial de formato retangular possui \textbf{8 m} de comprimento por \textbf{4 m} de largura e tem uma profundidade constante de \textbf{1,5 m}. Durante uma avaliação, foi pedido aos alunos que calculassem a área do espelho d'água (a superfície da piscina visível para quem está de pé do lado de fora). 
+
+O aluno Matheus fez o seguinte cálculo:
+$ 8 \times 4 \times 1,5 = 48 $
+Ele então afirmou: \textit{"A área do espelho d'água é de 48 m²"}.
+
+\begin{boxresponda}
+\textbf{Responda:} Qual erro conceitual gravíssimo Matheus cometeu em relação ao cálculo de áreas planas? Mostre o cálculo correto e justifique por que a profundidade não deve ser usada para encontrar a área da superfície.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} (Estilo VUNESP) Para reformar um salão de festas retangular de \textbf{12 m} de comprimento por \textbf{8 m} de largura, o proprietário comprou lajotas quadradas, onde cada lajota tem \textbf{0,5 m} de lado. Não haverá perda de material por quebras ou recortes. Sobre a quantidade de lajotas necessárias, analise as opções e prove matematicamente por que as alternativas distratoras são incorretas.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Serão necessárias 96 lajotas, pois a área do salão é 96 m².
+    \item Serão necessárias 192 lajotas, pois cabem 2 lajotas em cada metro quadrado.
+    \item Serão necessárias 384 lajotas.
+    \item Serão necessárias 24 lajotas, bastando somar as áreas.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} Um clube deseja construir uma quadra poliesportiva retangular dentro de um terreno também retangular destinado ao lazer. As partes do terreno que não forem ocupadas pela quadra serão integralmente cobertas por grama natural, conforme mostra a vista superior do projeto arquitetônico.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+% Fundo (Terreno com grama)
+\filldraw[fill=GramaFundo, draw=black, thick, drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}] 
+    (0,0) rectangle (8,5);
+% Quadra (Concreto)
+\filldraw[fill=concreto!30, draw=gray, ultra thick, rounded corners=1pt] 
+    (2,1) rectangle (6,4);
+    
+% Rótulos de Texto (Com máscara branca para leitura perfeita)
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (4, -0.4) {\textbf{40 m}};
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (-0.6, 2.5) {\textbf{25 m}};
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (4, 2.5) {Quadra};
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (4, 1.4) {\textbf{20 m}};
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (2.6, 2.5) {\textbf{12 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nas dimensões informadas na ilustração, calcule a área total, em metros quadrados, que será recoberta por grama nesse projeto.
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 3: Área de Triângulos e Paralelogramos}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{11.} Um engenheiro projetou a instalação de um painel solar fotovoltaico no telhado de uma residência. O painel, visto de cima, tem o formato de um paralelogramo, cujas dimensões principais estão indicadas no esquema técnico a seguir.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo).
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+% LAYER 1: Painel Solar (Paralelogramo)
+\filldraw[fill=vidro!50, draw=CinzaEscuro, ultra thick, rounded corners=1pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,0) -- (6,0) -- (7,2.5) -- (2,2.5) -- cycle;
+    
+% LAYER 2: Linhas de grade do painel (Estética)
+\draw[gray, thin] (2.2, 0.5) -- (6.2, 0.5);
+\draw[gray, thin] (2.5, 1.25) -- (6.5, 1.25);
+\draw[gray, thin] (2.8, 2.0) -- (6.8, 2.0);
+
+% LAYER 3: Cotas
+\draw[|<->|, thick] (1,-0.5) -- (6,-0.5) node[midway, fill=white, inner sep=2pt] {\textbf{2,5 m}};
+\draw[dashed, thick] (6,0) -- (7,0);
+\draw[|<->|, thick] (7,0) -- (7,2.5) node[midway, fill=white, inner sep=2pt] {\textbf{1,2 m}};
+\draw[|<->|, thick, sloped] (6.2, -0.2) -- (7.2, 2.3) node[midway, fill=white, inner sep=2pt, rotate=0] {\textbf{1,4 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a área da superfície de captação de luz desse painel solar em metros quadrados. Lembre-se de analisar cuidadosamente qual medida representa a altura real da figura geométrica.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} Durante uma aula de artes, os alunos foram desafiados a confeccionar bandeirinhas de festa junina gigantes utilizando um tecido especial. O molde escolhido foi um triângulo isósceles, conforme ilustrado no diagrama de corte.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.55\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Molde (Triângulo)
+\filldraw[fill=CorTitUm!40, draw=CorTitUm!90!black, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,4) -- (2,0) -- (4,4) -- cycle;
+
+% LAYER 2: Cotas e Altura
+\draw[dashed, thick] (2,0) -- (2,4);
+\node[fill=CorTitUm!40, inner sep=1pt] at (2.4, 2) {\textbf{60 cm}};
+
+\draw[|<->|, thick] (0,4.4) -- (4,4.4) node[midway, fill=white, inner sep=2pt] {\textbf{40 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Calcule a área de tecido, em centímetros quadrados (\textbf{cm²}), necessária para produzir exatamente uma dessas bandeirinhas. Mostre a operação matemática utilizada.
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Ao contrário do retângulo e do paralelogramo, o triângulo representa exatamente a metade da área de um quadrilátero com a mesma base e altura. Não se esqueça da divisão!
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} (Diagnóstico de Erro) O professor desenhou na lousa um terreno em formato de paralelogramo e pediu que a turma determinasse a sua área. O croqui continha as seguintes informações geométricas.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Paralelogramo
+\filldraw[fill=madeira!40, draw=madeira!90!black, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) -- (5,0) -- (6.5,2.5) -- (1.5,2.5) -- cycle;
+
+% LAYER 2: Cotas
+\draw[|<->|, thick] (0,-0.4) -- (5,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{10 m}};
+\draw[dashed, thick] (0,0) -- (0,2.5);
+\draw[dashed, thick] (0,2.5) -- (1.5,2.5);
+\draw[|<->|, thick] (-0.4,0) -- (-0.4,2.5) node[midway, fill=white, inner sep=2pt] {\textbf{4 m}};
+\node[fill=madeira!40, inner sep=1pt, rotate=59] at (0.5, 1.25) {\textbf{5 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O aluno Rafael levantou a mão e apresentou sua resolução textualmente: \textit{"Para achar a área do paralelogramo, basta multiplicar os lados. Então eu fiz $ 10 \times 5 = 50 $. A área do terreno é 50 m²."}
+
+\begin{boxresponda}
+\textbf{Responda:} Rafael cometeu um erro clássico no cálculo da área do paralelogramo. Diagnostique qual foi a falha conceitual na escolha das medidas, explique a regra correta e determine a área verdadeira do terreno.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} Em um estúdio de design, três logotipos preliminares foram desenhados sobre uma mesma malha quadriculada, onde o lado de cada pequeno quadrado representa \textbf{1 u.m.} (unidade de medida).
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.9\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Malha
+\draw[step=1cm, gray!40, very thin] (0,0) grid (13,4);
+
+% LAYER 2: Figura A (Retângulo)
+\filldraw[fill=indigo!60, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,1) rectangle (3,3);
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (2, 2) {\textbf{A}};
+
+% LAYER 3: Figura B (Paralelogramo)
+\filldraw[fill=ouro!70, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (4.5,1) -- (6.5,1) -- (7.5,3) -- (5.5,3) -- cycle;
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (6, 2) {\textbf{B}};
+
+% LAYER 4: Figura C (Triângulo)
+\filldraw[fill=PisoVerde!70, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (9,1) -- (12,1) -- (10.5,3) -- cycle;
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (10.5, 1.6) {\textbf{C}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Julgue as afirmativas a seguir sobre as áreas das três figuras, assinalando se são Verdadeiras (V) ou Falsas (F). Justifique matematicamente todas as afirmativas que julgar como falsas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A figura A e a figura B possuem exatamente a mesma área, pois ambas têm a mesma medida de base e a mesma altura na malha.
+    \item A área da figura C é igual à área da figura A.
+    \item A área da figura C equivale a $ \mfrac{3}{4} $ da área da figura B.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} (Estilo OBMEP - Adaptada) Um jardineiro precisa comprar lona para cobrir dois canteiros durante o inverno. O primeiro canteiro é retangular, medindo \textbf{6 m} de base por \textbf{3 m} de altura. O segundo canteiro tem a forma de um triângulo, com \textbf{6 m} de base e \textbf{6 m} de altura. Sobre a quantidade de lona necessária para cobrir estritamente a superfície de cada canteiro, analise as alternativas e, no seu caderno, justifique o erro das opções incorretas através dos cálculos de área.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item O canteiro triangular consumirá o dobro de lona que o canteiro retangular.
+    \item O canteiro retangular consumirá mais lona, pois quadriláteros sempre têm áreas maiores que triângulos.
+    \item Ambos os canteiros consumirão exatamente a mesma quantidade de lona.
+    \item A soma das áreas dos dois canteiros totaliza 27 m².
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} A fachada frontal de um galpão industrial será inteiramente pintada com uma tinta impermeabilizante. O formato geométrico da fachada é composto por um retângulo (a parede principal) e um triângulo (o frontão do telhado), conforme detalhado no projeto esquemático.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E COMPOSIÇÃO DE FORMAS ---
+% LAYER 1: Parede Retangular
+\filldraw[fill=concreto!50, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) rectangle (8,3);
+% LAYER 2: Telhado Triangular
+\filldraw[fill=madeira!60, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,3) -- (8,3) -- (4,5.5) -- cycle;
+
+% Cotas
+\draw[|<->|, thick] (0,-0.4) -- (8,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{12 m}};
+\draw[|<->|, thick] (-0.4,0) -- (-0.4,3) node[midway, fill=white, inner sep=2pt] {\textbf{4 m}};
+\draw[dashed, thick] (4,3) -- (4,5.5);
+\draw[|<->|, thick] (4.2,3) -- (4.2,5.5) node[midway, fill=white, inner sep=2pt] {\textbf{2,5 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Decompondo a figura geométrica, calcule a área total dessa fachada. Apresente os cálculos separados para a região retangular e para a região triangular antes de somar o resultado final.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} Uma vela de um pequeno barco esportivo sofreu um rasgo e precisa ser totalmente substituída. O material escolhido pelo velejador custa \textbf{R\$ 40,00} por metro quadrado. O formato da vela de reposição e suas dimensões estão representados na figura técnica.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.55\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Vela (Triângulo Retângulo)
+\filldraw[fill=vidro!30, draw=vidro!90!black, thick, drop shadow={opacity=0.15, shadow xshift=3pt, shadow yshift=-3pt}] 
+    (0,0) -- (3,0) -- (0,5) -- cycle;
+% LAYER 2: Mastro (Detalhe estético)
+\draw[line width=3pt, metal] (-0.1, -0.5) -- (-0.1, 5.5);
+
+% Cotas
+\draw[|<->|, thick] (0,-0.4) -- (3,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{1,5 m}};
+\draw[|<->|, thick] (-0.6,0) -- (-0.6,5) node[midway, fill=white, inner sep=2pt] {\textbf{4,0 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Calcule o custo total, apenas em relação ao material, que o velejador terá para confeccionar a nova vela.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} (Desafio Lógico) O professor Raphael entregou aos alunos um retângulo desenhado em uma folha de papel e pediu que traçassem uma das diagonais, cortando o retângulo com uma tesoura exatamente sobre a linha traçada. Observe o esquema do experimento.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Retângulo Original
+\filldraw[fill=ouro!30, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) rectangle (6,3);
+% LAYER 2: Linha de Corte
+\draw[dashed, very thick, Cinzablack] (0,3) -- (6,0);
+% LAYER 3: Rótulos
+\node[fill=ouro!30, inner sep=2pt] at (3, 2) {Peça 1};
+\node[fill=ouro!30, inner sep=2pt] at (3, 1) {Peça 2};
+\node[fill=white, inner sep=1pt] at (3, -0.3) {\textbf{Base (b)}};
+\node[fill=white, inner sep=1pt, rotate=90] at (-0.3, 1.5) {\textbf{Altura (h)}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Ao separar as peças, formaram-se dois triângulos idênticos. 
+\begin{boxresponda}
+\textbf{Responda:} Utilizando as informações visuais deste experimento geométrico, construa um texto lógico explicando por que a fórmula matemática para calcular a área de qualquer triângulo exige que o resultado da multiplicação da base pela altura seja sempre dividido por dois.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} Na aula de robótica, os alunos precisam programar um braço mecânico para cortar peças de acrílico em formato de paralelogramo. Um dos moldes apresenta uma peculiaridade: por ser muito inclinado, a altura não "cai" dentro da própria base geométrica, conforme mostra a projeção técnica abaixo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Peça de Acrílico
+\filldraw[fill=vidro!50, draw=vidro!90!black, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (2,0) -- (6,0) -- (8.5,3) -- (4.5,3) -- cycle;
+
+% LAYER 2: Linhas de projeção e cotas
+\draw[dashed, thick, gray] (6,0) -- (8.5,0);
+\draw[dashed, thick] (8.5,3) -- (8.5,0);
+\draw[|<->|, thick] (2,-0.4) -- (6,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{8 cm}};
+\draw[|<->|, thick] (8.9,0) -- (8.9,3) node[midway, fill=white, inner sep=2pt] {\textbf{6 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na projeção ortogonal informada, determine a área dessa peça de acrílico. Explique, com suas palavras, se o fato da altura estar desenhada "fora" da peça altera a forma como calculamos sua área.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} (Estilo VUNESP) A prefeitura comprou uma grande área retangular para a construção de um parque ecológico. O terreno mede \textbf{120 m} de base e \textbf{80 m} de largura. Um lago artificial, de formato triangular, foi projetado em um dos cantos do terreno, conforme detalhado na planta abaixo. O restante do terreno será arborizado.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.75\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Terreno Completo (Arborizado)
+\filldraw[fill=GramaFundo!70, draw=CinzaEscuro, thick, drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-3pt}] 
+    (0,0) rectangle (9,6);
+    
+% LAYER 2: Lago Artificial (Triângulo)
+\filldraw[fill=AguaPiscina!70, draw=blue!90!black, thick] 
+    (0,6) -- (5,6) -- (0,2) -- cycle;
+\node[fill=AguaPiscina!70, inner sep=1pt] at (1.5, 4.8) {Lago};
+\node[fill=GramaFundo!70, inner sep=1pt] at (5, 2.5) {\textbf{Área Arborizada}};
+
+% LAYER 3: Cotas do Terreno
+\draw[|<->|, thick] (0,-0.5) -- (9,-0.5) node[midway, fill=white, inner sep=2pt] {\textbf{120 m}};
+\draw[|<->|, thick] (9.5,0) -- (9.5,6) node[midway, fill=white, inner sep=2pt] {\textbf{80 m}};
+
+% LAYER 4: Cotas do Lago
+\draw[|<->|, thick] (0,6.4) -- (5,6.4) node[midway, fill=white, inner sep=2pt] {\textbf{40 m}};
+\draw[|<->|, thick] (-0.5,2) -- (-0.5,6) node[midway, fill=white, inner sep=2pt] {\textbf{30 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na planta do projeto, analise as afirmativas e, em seguida, apresente os cálculos provando por que apenas uma delas é a correta:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A área do lago ocupa mais de 1000 m² do terreno.
+    \item A área destinada à arborização é exatamente 8400 m².
+    \item A área do lago corresponde a 600 m², restando 9000 m² para a arborização.
+    \item A área total do terreno é de 200 m², e o lago tem 120 m².
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 4: Área de Trapézios e Comparação de Áreas}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{21.} Uma fábrica de vidros automotivos foi contratada para produzir o para-brisa traseiro de um novo modelo de carro. O projeto arquitetônico da peça geométrica tem a forma de um trapézio isósceles, cujas medidas foram detalhadas no desenho técnico de produção.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo).
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+% LAYER 1: Vidro (Trapézio)
+\filldraw[fill=vidro!40, draw=CinzaEscuro, thick, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,0) -- (7,0) -- (6,3) -- (2,3) -- cycle;
+    
+% LAYER 2: Cotas e Projeções
+\draw[|<->|, thick] (1,-0.4) -- (7,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{1,6 m}};
+\draw[|<->|, thick] (2,3.4) -- (6,3.4) node[midway, fill=white, inner sep=2pt] {\textbf{1,0 m}};
+\draw[dashed, thick] (2,3) -- (2,0);
+\draw[|<->|, thick] (1.5,0) -- (1.5,3) node[midway, fill=white, inner sep=2pt] {\textbf{0,8 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando as dimensões indicadas, calcule a área total desse para-brisa em metros quadrados. 
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+A fórmula da área do trapézio exige a soma das duas bases (maior e menor) ANTES de multiplicar pela altura. Lembre-se de resolver a adição dentro dos parênteses no seu cálculo!
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Durante o planejamento de um evento na escola, a diretora separou duas áreas no pátio, demarcando-as no chão. A representação dessas duas áreas foi feita na malha quadriculada abaixo, onde cada quadrado menor possui lado de \textbf{1 m}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Malha
+\draw[step=1cm, gray!30, very thin] (0,0) grid (12,5);
+
+% LAYER 2: Área 1 (Retângulo)
+\filldraw[fill=ouro!60, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (1,1) rectangle (4,4);
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (2.5, 2.5) {\textbf{Área 1}};
+
+% LAYER 3: Área 2 (Trapézio Retângulo)
+\filldraw[fill=PisoVerde!60, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (6,1) -- (11,1) -- (9,4) -- (6,4) -- cycle;
+\node[fill=white, inner sep=2pt, rounded corners=2pt] at (7.5, 2.5) {\textbf{Área 2}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem realizar estimativas precipitadas, extraia visualmente as medidas de base e altura das duas figuras geométricas na malha. Calcule a área exata de ambas em metros quadrados e conclua qual delas ocupa o maior espaço no pátio (ou se possuem a mesma área).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} (Diagnóstico de Erro Lógico) Para a construção de uma rampa de skate, um carpinteiro desenhou a lateral geométrica da estrutura, que forma um trapézio retângulo perfeito, e registrou suas dimensões na imagem a seguir.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.55\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Lateral da Rampa
+\filldraw[fill=madeira!70, draw=madeira!90!black, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) -- (4,0) -- (0,3) -- cycle;
+% Modificando a figura para um trapézio retângulo
+\filldraw[fill=madeira!70, draw=madeira!90!black, thick] 
+    (0,0) -- (5,0) -- (2,3) -- (0,3) -- cycle;
+
+% Cotas
+\draw[|<->|, thick] (0,-0.4) -- (5,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{5,0 m}};
+\draw[|<->|, thick] (-0.4,0) -- (-0.4,3) node[midway, fill=white, inner sep=2pt] {\textbf{3,0 m}};
+\draw[|<->|, thick] (0,3.4) -- (2,3.4) node[midway, fill=white, inner sep=2pt] {\textbf{2,0 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O aluno Caio foi encarregado de calcular a área dessa estrutura de madeira. Em seu caderno, ele registrou o seguinte cálculo matemático: $ (5 + 2) \times 3 = 7 \times 3 = 21 $. Logo, a área seria \textbf{21 m²}.
+
+\begin{boxresponda}
+\textbf{Responda:} Caio esqueceu um passo fundamental na fórmula da área do trapézio que superdimensionou o tamanho da rampa. Explique qual foi esse esquecimento e refaça o cálculo de forma correta, encontrando a área real da lateral da rampa.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} (Estilo VUNESP) O telhado de um celeiro, quando visto de lado, tem a forma de um trapézio para facilitar o escoamento da chuva. Suas dimensões são: base maior de \textbf{12 m}, base menor de \textbf{8 m} e altura correspondente de \textbf{4 m}. O proprietário deseja cobrir essa face lateral com telhas, e o custo de instalação é de \textbf{R\$ 25,00} por metro quadrado. Sobre o valor que será gasto, julgue as alternativas e apresente os cálculos matemáticos que refutam as opções erradas.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item O proprietário gastará R\$ 1.000,00 na instalação, pois a área total é 40 m².
+    \item A área do telhado é 80 m², gerando um custo de R\$ 2.000,00.
+    \item A soma das bases é 20 m, e multiplicando pelo custo (R\$ 25,00), o gasto será R\$ 500,00.
+    \item O gasto total será de R\$ 800,00, pois a área do trapézio é de 32 m².
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} Na região amazônica, é comum o transporte fluvial utilizando balsas de carga. O piso do convés principal de uma dessas balsas possui o formato de um grande trapézio isósceles. No projeto abaixo, todas as dimensões de limite de carga estão detalhadas.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Rio (Fundo estético)
+\filldraw[fill=AguaPiscina!20, draw=none] (-1,-1) rectangle (9,4);
+% LAYER 2: Balsa (Trapézio)
+\filldraw[fill=metal!50, draw=CinzaEscuro, ultra thick, drop shadow={opacity=0.4, shadow xshift=3pt, shadow yshift=-3pt}] 
+    (0,0) -- (8,0) -- (7,2.5) -- (1,2.5) -- cycle;
+
+% Cotas
+\draw[|<->|, thick] (0,-0.4) -- (8,-0.4) node[midway, fill=white, inner sep=2pt] {\textbf{24 m}};
+\draw[|<->|, thick] (1,2.9) -- (7,2.9) node[midway, fill=white, inner sep=2pt] {\textbf{16 m}};
+\draw[dashed, thick] (1,0) -- (1,2.5);
+\draw[|<->|, thick] (0.5,0) -- (0.5,2.5) node[midway, fill=white, inner sep=2pt] {\textbf{10 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que a balsa pode acomodar contêineres e que, por normas de segurança fluvial, é permitido carregar o máximo de 2 toneladas de carga útil por cada metro quadrado de área de convés, calcule a capacidade máxima de peso (em toneladas) que essa embarcação pode transportar no convés.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} Para facilitar o cálculo da área de superfícies que não possuem uma fórmula geométrica exata, o agrimensor Rafael utiliza o método de estimativa por malha quadriculada, contando os quadrados inteiros e unindo metades/pedaços. Observe o mapa de uma pequena ilha na malha onde cada quadradinho representa \textbf{1 km²}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Malha
+\draw[step=1cm, gray!40, very thin] (0,0) grid (6,5);
+% LAYER 2: Ilha Irregular
+\filldraw[fill=GramaFundo!80, draw=Cinzablack, thick, smooth cycle, tension=0.7, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    plot coordinates{(1,2) (2,4) (4,4.5) (5,3) (4.5,1.5) (2,1)};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que as bordas cortam os quadrados, faça uma estimativa cuidadosa. Indique primeiramente quantos quilômetros quadrados inteiros (que estão totalmente preenchidos) você encontra e, em seguida, some a estimativa dos pedaços parciais. Apresente o seu resultado aproximado da área da ilha.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} A fachada de um museu moderno possui uma enorme estrutura de vidro espelhado dividida em três regiões geométricas exatas, representadas e dimensionadas no croqui estrutural abaixo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Parede base
+\filldraw[fill=concreto!30, draw=CinzaEscuro, thick] (0,0) rectangle (9,4.5);
+
+% LAYER 2: Regiões de Vidro
+% Região 1 (Triângulo esquerdo)
+\filldraw[fill=vidro!60, draw=Cinzablack, thick] (1,1) -- (3,1) -- (1,4) -- cycle;
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (1.6, 1.8) {Reg. 1};
+% Região 2 (Retângulo central)
+\filldraw[fill=vidro!80, draw=Cinzablack, thick] (4,1) rectangle (6,4);
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (5, 2.5) {Reg. 2};
+% Região 3 (Trapézio retângulo direito)
+\filldraw[fill=vidro!60, draw=Cinzablack, thick] (7,1) -- (8.5,1) -- (8.5,4) -- (7,2.5) -- cycle;
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (7.8, 2.2) {Reg. 3};
+
+% Cotas Reg. 1
+\draw[|<->|] (1,0.6) -- (3,0.6) node[midway, fill=white, inner sep=1pt] {\textbf{2 m}};
+\draw[|<->|] (0.6,1) -- (0.6,4) node[midway, fill=white, inner sep=1pt] {\textbf{3 m}};
+% Cotas Reg. 2
+\draw[|<->|] (4,0.6) -- (6,0.6) node[midway, fill=white, inner sep=1pt] {\textbf{2 m}};
+% Cotas Reg. 3
+\draw[|<->|] (7,0.6) -- (8.5,0.6) node[midway, fill=white, inner sep=1pt] {\textbf{1,5 m}};
+\draw[|<->|] (8.9,1) -- (8.9,4) node[midway, fill=white, inner sep=1pt] {\textbf{3 m}};
+\draw[|<->|] (6.6,1) -- (6.6,2.5) node[midway, fill=white, inner sep=1pt] {\textbf{1,5 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Julgue as afirmativas seguintes, anotando \textbf{V} para verdadeiras e \textbf{F} para falsas, e construa um texto com as operações matemáticas necessárias para comprovar por que as falsas estão equivocadas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A Região 2 é a que consome a maior área de vidro de toda a estrutura (6 m²).
+    \item A área da Região 1 é igual à área da Região 3.
+    \item Somadas, as três regiões consomem exatos 12,375 m² de vidro espelhado.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} (Fase 2 - Refutação de Distratores) O mosaico de ladrilhos da casa de Heitor possui pedras brancas e pedras cinzas escuras montadas para formar a figura abaixo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+\draw[step=1cm, gray!30, very thin] (0,0) grid (6,4);
+% Losango formado por dois triângulos justapostos ou composição
+\filldraw[fill=CinzaEscuro!80, draw=Cinzablack, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (3,0) -- (6,2) -- (3,4) -- (0,2) -- cycle;
+\node[fill=white, inner sep=1pt] at (3,2) {\textbf{Ladrilho Central}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que cada pequeno quadradinho da malha de assentamento mede \textbf{2 cm²} de área (atenção redobrada, não é de lado!), assinale a alternativa que apresenta corretamente a área do ladrilho escuro. Mostre na sua folha a decomposição de figura que você utilizou.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A área é de 24 cm², pois a figura abrange visualmente 12 quadrados da malha.
+    \item A área é de 12 cm², pois a fórmula exige dividir o resultado da grade por dois.
+    \item A figura totaliza 20 cm² de área ocupada.
+    \item O losango não pode ter sua área calculada apenas com malhas quadriculadas sem usar o Teorema de Pitágoras.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} A planta de um quarto possui o formato geométrico de uma letra "L", mas com a parede de fechamento transversal, formando o polígono irregular representado abaixo. Para calcular o volume de tinta para o forro (teto), Flávia precisa saber com precisão a área dessa planta.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+% LAYER 1: Planta do Forro
+\filldraw[fill=madeira!30, draw=CinzaEscuro, thick, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) -- (5,0) -- (5,2) -- (3,2) -- (2,4) -- (0,4) -- cycle;
+    
+% LAYER 2: Cotas
+\draw[|<->|] (0,-0.4) -- (5,-0.4) node[midway, fill=white, inner sep=1pt] {\textbf{5 m}};
+\draw[|<->|] (5.4,0) -- (5.4,2) node[midway, fill=white, inner sep=1pt] {\textbf{2 m}};
+\draw[|<->|] (-0.4,0) -- (-0.4,4) node[midway, fill=white, inner sep=1pt] {\textbf{4 m}};
+\draw[|<->|] (0,4.4) -- (2,4.4) node[midway, fill=white, inner sep=1pt] {\textbf{2 m}};
+% Cota complementar superior
+\draw[|<->|] (2,4.4) -- (3,2.4) node[midway, fill=white, inner sep=1pt, sloped] {\textbf{2,2 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Decomponha mentalmente essa planta em duas figuras geométricas planas básicas cujas fórmulas você já domina (um retângulo e um trapézio, por exemplo) e determine a área total do teto. \textit{(Dica: A medida inclinada de 2,2 m não é necessária caso você faça o corte na direção correta).}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} (Desafio Final - OBMEP) Na fazenda de Sr. Silva, há um campo de cultivo de formato quadrado muito peculiar. O campo tem \textbf{100 m} de lado. No centro desse campo, ele destinou uma região para plantio especial que tem o formato de um polígono cujos vértices tocam os pontos médios dos lados do grande quadrado externo, desenhando um novo quadrilátero girado lá dentro.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.55\linewidth}
+\begin{tikzpicture}
+% Quadrado externo (Campo Inteiro)
+\filldraw[fill=PisoVerde!40, draw=Cinzablack, thick, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] 
+    (0,0) rectangle (4,4);
+    
+% Quadrilátero Interno (Plantio Especial)
+\filldraw[fill=GramaFundo!90!black, draw=white, ultra thick] 
+    (2,0) -- (4,2) -- (2,4) -- (0,2) -- cycle;
+
+% Marcações visuais
+\node[fill=white, inner sep=1pt, rounded corners=2pt] at (2,-0.4) {\textbf{100 m}};
+\node[fill=white, inner sep=1pt, rotate=90, rounded corners=2pt] at (-0.4,2) {\textbf{100 m}};
+\node[fill=GramaFundo!90!black, inner sep=1pt] at (2,2) {\textcolor{white}{\textbf{Plantio Especial}}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Observe atentamente as propriedades da figura. Sem a necessidade de usar o Teorema de Pitágoras para descobrir o tamanho do lado do Plantio Especial, deduza, provando através da sua argumentação lógica e dos triângulos ao redor, qual é a área exata (em m²) da região de "Plantio Especial".
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
