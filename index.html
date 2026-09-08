@@ -485,11 +485,15 @@
         }
 
         function navegarParaUnidades() {
-            if (unidadeAtualIndex !== null) {
-                abrirUnidade(unidadeAtualIndex);
-            } else {
-                navegarParaAno();
-            }
+            if (!anoAtual) return;
+            unidadeAtualIndex = null;
+
+            // Oculta apenas a view de conteúdos e mostra a de unidades mantendo o ano atual selecionado
+            document.getElementById('bc-unidade-sep').classList.add('hidden');
+            document.getElementById('bc-unidade').innerText = '';
+
+            document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-unidades').classList.remove('hidden');
         }
 
         function voltarParaNivelAnteriorDosAnos() {
