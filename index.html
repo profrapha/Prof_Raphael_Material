@@ -34,7 +34,9 @@
             <span id="bc-frente-sep" class="hidden">/</span>
             <button id="bc-frente" onclick="navegarParaFrente()" class="hidden hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
             <span id="bc-ano-sep" class="hidden">/</span>
-            <span id="bc-ano" class="font-semibold text-slate-900 cursor-default"></span>
+            <button id="bc-ano" onclick="navegarParaAno()" class="hidden hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
+            <span id="bc-unidade-sep" class="hidden">/</span>
+            <span id="bc-unidade" class="font-semibold text-slate-900 cursor-default"></span>
         </nav>
 
         <!-- ETAPA 1: PILARES PRINCIPAIS (FÍSICA E MATEMÁTICA) -->
@@ -77,7 +79,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
                     </div>
                     <h3 class="text-lg font-bold text-slate-900">Álgebra</h3>
-                    <p class="text-sm text-slate-500 mt-1">Operações, Equações, Funções.</p>
+                    <p class="text-sm text-slate-500 mt-1">Operações, Equações, Funções e Turma Intensiva (Terceirão).</p>
                 </div>
 
                 <!-- Geometria -->
@@ -112,14 +114,25 @@
             </div>
         </div>
 
-        <!-- ETAPA 3: CONTEÚDOS E UNIDADES -->
+        <!-- ETAPA 2.5: ESCOLHER A UNIDADE (NOVA ETAPA) -->
+        <div id="view-unidades" class="space-y-6 hidden">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h2 class="text-xl font-bold text-slate-900">Selecione a Unidade de Estudo</h2>
+                <button onclick="navegarParaAno()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar aos anos</button>
+            </div>
+            <div id="grid-unidades" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+
+        <!-- ETAPA 3: CONTEÚDOS DA UNIDADE (MATERIAIS NO TOPO + VÍDEOS EM FILA ABAIXO) -->
         <div id="view-conteudos" class="space-y-6 hidden">
             <div class="flex items-center justify-between border-b pb-3">
-                <h2 class="text-xl font-bold text-slate-900">Conteúdos e Materiais Disponíveis</h2>
-                <button onclick="navegarParaFrente()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às séries</button>
+                <h2 id="titulo-pagina-unidade" class="text-xl font-bold text-slate-900">Conteúdos da Unidade</h2>
+                <button onclick="navegarParaUnidades()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às unidades</button>
             </div>
-            <div id="grid-conteudos" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Preenchido via JavaScript -->
+            <div id="container-conteudos" class="space-y-6">
+                <!-- Preenchido dinamicamente via JavaScript -->
             </div>
         </div>
 
@@ -130,7 +143,7 @@
         <p>Portal de Aulas • Professor Raphael Paulino</p>
     </footer>
 
-    <!-- BANCO DE DADOS INTEGRADO E SINCRONIZADO COM O TREE -->
+    <!-- BANCO DE DADOS ATUALIZADO COM OS VÍDEOS DO 6º ANO -->
     <script>
         const bancoDados = {
             "Fisica": {
@@ -165,27 +178,67 @@
                         nome: "Álgebra",
                         anos: {
                             "6_Ano": { 
-    nome: "6º Ano", 
-    unidades: [
-        { 
-            id: "UNIDADE 6", 
-            titulo: "Números Racionais: Decimais e Porcentagem", 
-            desc: "Frações, representação decimal, operações com vírgula e introdução à porcentagem.", 
-            pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", 
-            videos: [
-                { titulo: "Leitura de Decimais (Gis)", url: "https://www.youtube.com/embed/EMAoOklEA5w" },
-                { titulo: "Números Decimais (Vilma)", url: "https://www.youtube.com/embed/ijhusRH1P7M" },
-                { titulo: "Fração para Decimal (Gis)", url: "https://www.youtube.com/embed/excWklaEb_E" },
-                { titulo: "Decimais (Smile and Learn)", url: "https://www.youtube.com/embed/TKO9ZsGAnMA" },
-                { titulo: "Adição e Subtração (Curió)", url: "https://www.youtube.com/embed/UXs1R5mDY6o" },
-                { titulo: "Operações (Demóclis)", url: "https://www.youtube.com/embed/BMufUaLtFQ0" },
-                { titulo: "Porcentagem (Gis)", url: "https://www.youtube.com/embed/OjOyNmTt7Mw" },
-                { titulo: "Aprenda Porcentagem (Curió)", url: "https://www.youtube.com/embed/azedx0uou64" }
-            ], 
-            temTeoria: false 
-        }
-    ]
-},
+                                nome: "6º Ano", 
+                                unidades: [
+                                    { 
+                                        id: "UNIDADE 6", 
+                                        titulo: "Números Racionais: Decimais e Porcentagem", 
+                                        desc: "Frações, representação decimal, operações com vírgula e introdução à porcentagem.", 
+                                        pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", 
+                                        videos: [
+                                            { 
+                                                duvida: "com dúvida em Leitura e Escrita de Números Decimais?", 
+                                                titulo: "Leitura e Escrita de Números Decimais", 
+                                                autor: "Prof.ª Gis", 
+                                                url: "https://www.youtube.com/embed/EMAoOklEA5w" 
+                                            },
+                                            { 
+                                                duvida: "precisando relembrar o conceito geral de Números Decimais?", 
+                                                titulo: "Números Decimais", 
+                                                autor: "Prof.ª Vilma Ribeiro", 
+                                                url: "https://www.youtube.com/embed/ijhusRH1P7M" 
+                                            },
+                                            { 
+                                                duvida: "com dificuldade em Como Transformar Fração em Número Decimal?", 
+                                                titulo: "Como Transformar Fração em Número Decimal", 
+                                                autor: "Prof.ª Gis", 
+                                                url: "https://www.youtube.com/embed/excWklaEb_E" 
+                                            },
+                                            { 
+                                                duvida: "querendo ver uma explicação lúdica sobre Números Decimais para Crianças?", 
+                                                titulo: "Números Decimais para Crianças", 
+                                                autor: "Smile and Learn", 
+                                                url: "https://www.youtube.com/embed/TKO9ZsGAnMA" 
+                                            },
+                                            { 
+                                                duvida: "com dúvida em Adição e Subtração com Vírgula?", 
+                                                titulo: "Adição e Subtração com Vírgula", 
+                                                autor: "Sandro Curió", 
+                                                url: "https://www.youtube.com/embed/UXs1R5mDY6o" 
+                                            },
+                                            { 
+                                                duvida: "precisando praticar as Operações com Números Decimais?", 
+                                                titulo: "Números Decimais: Operações", 
+                                                autor: "Prof. Demóclis Rocha", 
+                                                url: "https://www.youtube.com/embed/BMufUaLtFQ0" 
+                                            },
+                                            { 
+                                                duvida: "com dúvida em Porcentagem | Como Calcular?", 
+                                                titulo: "Porcentagem | Como Calcular", 
+                                                autor: "Prof.ª Gis", 
+                                                url: "https://www.youtube.com/embed/OjOyNmTt7Mw" 
+                                            },
+                                            { 
+                                                duvida: "querendo dominar o conteúdo com Aprenda Porcentagem em 8 Minutos?", 
+                                                titulo: "Aprenda Porcentagem em 8 Minutos", 
+                                                autor: "Sandro Curió", 
+                                                url: "https://www.youtube.com/embed/azedx0uou64" 
+                                            }
+                                        ], 
+                                        temTeoria: false 
+                                    }
+                                ]
+                            },
                             "7_Ano": { nome: "7º Ano", unidades: [
                                 { id: "UNIDADE 6", titulo: "Decimais, Potenciação e Radiciação", desc: "Operações com racionais, potências e raízes.", pdf: "Matematica_Algebra/7_Ano/UNIDADE6/UNIDADE6-DECIMAIS-POT-RAD.pdf", videos: [], temTeoria: false }
                             ]},
@@ -201,7 +254,7 @@
                             "2_Serie": { nome: "2ª Série (EM)", unidades: [
                                 { id: "UNIDADE 6", titulo: "Polinômios", desc: "Operações com polinômios e dispositivos práticos de divisão.", pdf: "Matematica_Algebra/2_Serie/UNIDADE6/UNIDADE6-POLINOMIOS.pdf", videos: [], temTeoria: false }
                             ]},
-                            "3_Serie": { nome: "3ª Série (EM)", unidades: [
+                            "3_Serie": { nome: "3ª Série (Intensivo / Terceirão)", unidades: [
                                 { 
                                     id: "SEMANA 10", 
                                     titulo: "Revisão e Aprofundamento para Vestibulares", 
@@ -245,6 +298,7 @@
         let disciplinaAtual = null;
         let frenteAtual = null;
         let anoAtual = null;
+        let unidadeAtualIndex = null;
 
         function selecionarDisciplina(chave) {
             disciplinaAtual = chave;
@@ -288,7 +342,7 @@
                 card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group";
                 card.innerHTML = `
                     <span class="font-bold text-slate-800 text-lg group-hover:text-indigo-600 transition-colors">${anoData.nome}</span>
-                    <span class="text-indigo-600 font-medium text-sm">Acessar →</span>
+                    <span class="text-indigo-600 font-medium text-sm">Acessar Unidades →</span>
                 `;
                 card.onclick = () => selecionarAno(anoKey, anoData.nome);
                 gridAnos.appendChild(card);
@@ -300,13 +354,14 @@
 
             // Atualiza Breadcrumb
             document.getElementById('bc-ano-sep').classList.remove('hidden');
+            document.getElementById('bc-ano').classList.remove('hidden');
             document.getElementById('bc-ano').innerText = nomeAno;
 
             document.getElementById('view-anos').classList.add('hidden');
-            document.getElementById('view-conteudos').classList.remove('hidden');
+            document.getElementById('view-unidades').classList.remove('hidden');
 
-            const gridConteudos = document.getElementById('grid-conteudos');
-            gridConteudos.innerHTML = '';
+            const gridUnidades = document.getElementById('grid-unidades');
+            gridUnidades.innerHTML = '';
 
             let unidades = [];
             if (frenteAtual) {
@@ -317,68 +372,103 @@
 
             unidades.forEach((uni, idx) => {
                 let card = document.createElement('div');
-                card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between";
-
-                // Gerenciador de Vídeos (Múltiplos vídeos ou individual)
-                let videoHtml = '';
-                if (uni.videos && uni.videos.length > 0) {
-                    let abas = uni.videos.map((v, i) => `
-                        <button onclick="mudarVideo('player-${idx}', '${v.url}')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-xs font-semibold rounded text-slate-700">
-                            ${v.titulo}
-                        </button>
-                    `).join('');
-
-                    videoHtml = `
-                        <div class="mb-4">
-                            <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner mb-2">
-                                <iframe id="player-${idx}" class="w-full h-full" src="${uni.videos[0].url}" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                            <div class="flex flex-wrap gap-2">${abas}</div>
-                        </div>
-                    `;
-                } else {
-                    videoHtml = `
-                        <div class="mb-4 p-4 bg-slate-100 rounded-lg border border-dashed border-slate-300 text-center text-slate-400 text-sm flex items-center justify-center">
-                            <span>📹 Videoaula em gravação</span>
-                        </div>
-                    `;
-                }
-
-                // Botão Aluno (PDF)
-                let botaoPdf = uni.pdf ? 
-                    `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista (PDF)</a>` :
-                    `<span class="bg-slate-100 text-slate-400 text-sm px-4 py-2 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
-
-                // Botão Material do Professor (Se houver)
-                let botaoProf = uni.pdfProf ? 
-                    `<a href="${uni.pdfProf}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center shadow-sm">🔒 Gabarito (Professor)</a>` : '';
-
-                let teoriaHtml = uni.temTeoria ? 
-                    `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center">📖 Resumo Teórico</a>` :
-                    `<span class="bg-slate-100 text-slate-400 text-xs px-3 py-2 rounded-lg cursor-not-allowed">📖 Teoria em breve</span>`;
-
+                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group";
                 card.innerHTML = `
                     <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200">${uni.id}</span>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900 mb-2">${uni.titulo}</h4>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-3 inline-block">${uni.id}</span>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">${uni.titulo}</h3>
                         <p class="text-sm text-slate-600 mb-4">${uni.desc}</p>
-                        ${videoHtml}
                     </div>
-                    <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
-                        ${botaoPdf}
-                        ${botaoProf}
-                        ${teoriaHtml}
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium">${uni.videos ? uni.videos.length : 0} vídeo(s) • Material PDF</span>
+                        <span class="text-indigo-600 font-semibold text-sm">Entrar na Unidade →</span>
                     </div>
                 `;
-                gridConteudos.appendChild(card);
+                card.onclick = () => abrirUnidade(idx);
+                gridUnidades.appendChild(card);
             });
         }
 
-        function mudarVideo(playerId, novaUrl) {
-            const iframe = document.getElementById(playerId);
-            if (iframe) iframe.src = novaUrl;
+        function abrirUnidade(index) {
+            unidadeAtualIndex = index;
+
+            let unidades = [];
+            let nomeAnoTexto = document.getElementById('bc-ano').innerText;
+            if (frenteAtual) {
+                unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[anoAtual].unidades;
+            } else {
+                unidades = bancoDados[disciplinaAtual].anos[anoAtual].unidades;
+            }
+
+            let uni = unidades[index];
+
+            // Atualiza Breadcrumb
+            document.getElementById('bc-unidade-sep').classList.remove('hidden');
+            document.getElementById('bc-unidade').innerText = uni.id;
+            document.getElementById('titulo-pagina-unidade').innerText = `${uni.id}: ${uni.titulo}`;
+
+            document.getElementById('view-unidades').classList.add('hidden');
+            document.getElementById('view-conteudos').classList.remove('hidden');
+
+            const container = document.getElementById('container-conteudos');
+            container.innerHTML = '';
+
+            // 1. BLOCO DE MATERIAIS NO TOPO (PDFs e Teoria)
+            let botaoPdf = uni.pdf ? 
+                `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista de Exercícios (PDF)</a>` :
+                `<span class="bg-slate-100 text-slate-400 text-sm px-5 py-2.5 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
+
+            let botaoProf = uni.pdfProf ? 
+                `<a href="${uni.pdfProf}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center shadow-sm">🔒 Gabarito do Professor (PDF)</a>` : '';
+
+            let teoriaHtml = uni.temTeoria ? 
+                `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center">📖 Resumo Teórico</a>` : '';
+
+            let topoMateriais = document.createElement('div');
+            topoMateriais.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4";
+            topoMateriais.innerHTML = `
+                <div>
+                    <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-2 inline-block">${uni.id}</span>
+                    <h3 class="text-2xl font-bold text-slate-900">${uni.titulo}</h3>
+                    <p class="text-slate-600 mt-1">${uni.desc}</p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
+                    ${botaoPdf}
+                    ${botaoProf}
+                    ${teoriaHtml}
+                </div>
+            `;
+            container.appendChild(topoMateriais);
+
+            // 2. SEÇÃO DE VÍDEOS EM FILA VERTICAL (COM CHAMADA CONTEXTUALIZADA)
+            if (uni.videos && uni.videos.length > 0) {
+                let tituloSecaoVideos = document.createElement('div');
+                tituloSecaoVideos.className = "pt-4";
+                tituloSecaoVideos.innerHTML = `<h3 class="text-lg font-bold text-slate-900">🎥 Videoaulas Explicativas</h3><p class="text-sm text-slate-500">Assista aos vídeos abaixo conforme sua necessidade de estudo:</p>`;
+                container.appendChild(tituloSecaoVideos);
+
+                uni.videos.forEach(v => {
+                    let cardVideo = document.createElement('div');
+                    cardVideo.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden p-6 space-y-3";
+                    cardVideo.innerHTML = `
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg text-sm text-amber-900">
+                            💡 Está <span class="font-semibold">${v.duvida}</span> Veja o vídeo abaixo para te ajudar:
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">${v.titulo} <span class="text-xs font-normal text-slate-500">(${v.autor})</span></h4>
+                        </div>
+                        <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
+                            <iframe class="w-full h-full" src="${v.url}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    `;
+                    container.appendChild(cardVideo);
+                });
+            } else {
+                let semVideo = document.createElement('div');
+                semVideo.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center text-slate-400";
+                semVideo.innerHTML = `<p>📹 Videoaulas para esta unidade estão em fase de gravação e organização.</p>`;
+                container.appendChild(semVideo);
+            }
         }
 
         // ==========================================
@@ -392,9 +482,12 @@
             document.getElementById('bc-frente-sep').classList.add('hidden');
             document.getElementById('bc-frente').classList.add('hidden');
             document.getElementById('bc-ano-sep').classList.add('hidden');
-            document.getElementById('bc-ano').innerText = '';
+            document.getElementById('bc-ano').classList.add('hidden');
+            document.getElementById('bc-unidade-sep').classList.add('hidden');
+            document.getElementById('bc-unidade').innerText = '';
 
             document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-unidades').classList.add('hidden');
             document.getElementById('view-anos').classList.add('hidden');
 
             if (obj.tipo === 'frentes') {
@@ -408,11 +501,32 @@
         function navegarParaFrente() {
             if (frenteAtual) {
                 document.getElementById('bc-ano-sep').classList.add('hidden');
-                document.getElementById('bc-ano').innerText = '';
+                document.getElementById('bc-ano').classList.add('hidden');
+                document.getElementById('bc-unidade-sep').classList.add('hidden');
+                document.getElementById('bc-unidade').innerText = '';
+
                 document.getElementById('view-conteudos').classList.add('hidden');
+                document.getElementById('view-unidades').classList.add('hidden');
                 renderizarAnos(bancoDados[disciplinaAtual].frentes[frenteAtual].anos);
             } else if (disciplinaAtual) {
                 navegarParaDisciplina();
+            }
+        }
+
+        function navegarParaAno() {
+            if (!anoAtual) return;
+            document.getElementById('bc-unidade-sep').classList.add('hidden');
+            document.getElementById('bc-unidade').innerText = '';
+
+            document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-unidades').classList.remove('hidden');
+        }
+
+        function navegarParaUnidades() {
+            if (unidadeAtualIndex !== null) {
+                abrirUnidade(unidadeAtualIndex);
+            } else {
+                navegarParaAno();
             }
         }
 
@@ -432,14 +546,19 @@
             disciplinaAtual = null;
             frenteAtual = null;
             anoAtual = null;
+            unidadeAtualIndex = null;
+            
             document.getElementById('breadcrumbs').classList.remove('flex');
             document.getElementById('breadcrumbs').classList.add('hidden');
             document.getElementById('bc-frente-sep').classList.add('hidden');
             document.getElementById('bc-frente').classList.add('hidden');
             document.getElementById('bc-ano-sep').classList.add('hidden');
-            document.getElementById('bc-ano').innerText = '';
+            document.getElementById('bc-ano').classList.add('hidden');
+            document.getElementById('bc-unidade-sep').classList.add('hidden');
+            document.getElementById('bc-unidade').innerText = '';
 
             document.getElementById('view-conteudos').classList.add('hidden');
+            document.getElementById('view-unidades').classList.add('hidden');
             document.getElementById('view-anos').classList.add('hidden');
             document.getElementById('view-frentes').classList.add('hidden');
             document.getElementById('view-disciplinas').classList.remove('hidden');
