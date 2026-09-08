@@ -240,7 +240,23 @@
                                 ]
                             },
                             "9_Ano": { nome: "9º Ano", unidades: [
-                                { id: "UNIDADE 6", titulo: "Função Quadrática (Parte 1)", desc: "Estudo inicial dos gráficos e vértices da parábola.", pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6-FUNCAO_QUADRATICA_P1.pdf", videos: [], temTeoria: false }
+                                { 
+    id: "UNIDADE 6", 
+    titulo: "Função Quadrática (Parte 1)", 
+    desc: "Estudo da definição, lei de formação, construção de parábolas, vértices e raízes da função quadrática.", 
+    pdf: "Matematica_Algebra/9_Ano/UNIDADE6/UNIDADE6-FUNCAO_QUADRATICA_P1.pdf", 
+    videos: [
+        { duvida: "com dúvida na Definição e Lei de Formação da Função do Segundo Grau?", titulo: "Aula 01 - Função do Segundo Grau: Definição da Função Quadrática", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/mzEGFoEenh8" },
+        { duvida: "precisando entender melhor a Função do 2º Grau - Função Quadrática?", titulo: "Função do 2º Grau - Função Quadrática", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/mX3Xeq4QEyQ" },
+        { duvida: "com dificuldade em Construir uma Parábola e ver o Gráfico do 2º Grau?", titulo: "4 Passos para Construir uma Parábola | Gráfico do 2º Grau", autor: "Sandro Curió", url: "https://www.youtube.com/embed/rHal93QAGyo" },
+        { duvida: "querendo revisar o Gráfico da Função Quadrática e a Parábola?", titulo: "Gráfico da Função Quadrática | Parábola", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/aIOKZ0rFzS4" },
+        { duvida: "com dúvida nas Coordenadas do Vértice da Parábola?", titulo: "Coordenadas do Vértice da Parábola", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/DCT9jRSAwfs" },
+        { duvida: "precisando entender Vértice da Parábola - Ponto de Máximo e Mínimo?", titulo: "Vértice da Parábola - Ponto de Máximo e Ponto de Mínimo", autor: "Prof.ª Angela Matemática", url: "https://www.youtube.com/embed/fjSWmSPtfww" },
+        { duvida: "com dúvida na Análise do Discriminante da Equação do 2º Grau?", titulo: "Equação do 2º Grau | Análise do Discriminante", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/bDzwyFUqPHw" },
+        { duvida: "querendo conferir a Condição para o Número de Raízes?", titulo: "Equação do 2º Grau | Condição para o Número de Raízes", autor: "Sandro Curió", url: "https://www.youtube.com/embed/xu_38JKujn0" }
+    ], 
+    temTeoria: false 
+}
                             ]},
                             "1_Serie": { nome: "1ª Série (EM)", unidades: [
                                 { id: "UNIDADE 6", titulo: "Inequações", desc: "Resolução de inequações do 1º e 2º grau.", pdf: "Matematica_Algebra/1_Serie/UNIDADE6/UNIDADE6-INEQUACOES.pdf", videos: [], temTeoria: false }
@@ -516,20 +532,47 @@
         }
 
         function navegarParaAno() {
-            if (!anoAtual || !nomeAnoGlobal) return;
-            
-            unidadeAtualIndex = null;
+    if (!anoAtual) return;
+    
+    // Reseta o estado da unidade mas mantém a série ativa
+    unidadeAtualIndex = null;
 
-            // Esconde o breadcrumb da unidade e limpa seu texto
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
+    // Oculta a view de conteúdos e exibe a view de unidades
+    document.getElementById('bc-unidade-sep').classList.add('hidden');
+    document.getElementById('bc-unidade').innerText = '';
 
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.remove('hidden');
+    document.getElementById('view-conteudos').classList.add('hidden');
+    document.getElementById('view-unidades').classList.remove('hidden');
 
-            // Reexecuta o seletor para garantir a grade limpa
-            selecionarAno(anoAtual, nomeAnoGlobal);
-        }
+    // Reconstrói a grade de unidades chamando diretamente a renderização
+    const gridUnidades = document.getElementById('grid-unidades');
+    gridUnidades.innerHTML = '';
+
+    let unidades = [];
+    if (frenteAtual && bancoDados[disciplinaAtual].frentes[frenteAtual]) {
+        unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[anoAtual].unidades;
+    } else if (bancoDados[disciplinaAtual].anos) {
+        unidades = bancoDados[disciplinaAtual].anos[anoAtual].unidades;
+    }
+
+    unidades.forEach((uni, idx) => {
+        let card = document.createElement('div');
+        card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group";
+        card.innerHTML = `
+            <div>
+                <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-3 inline-block">${uni.id}</span>
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">${uni.titulo}</h3>
+                <p class="text-sm text-slate-600 mb-4">${uni.desc}</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">${uni.videos ? uni.videos.length : 0} vídeo(s) • Material PDF</span>
+                <span class="text-indigo-600 font-semibold text-sm">Entrar na Unidade →</span>
+            </div>
+        `;
+        card.onclick = () => abrirUnidade(idx);
+        gridUnidades.appendChild(card);
+    });
+}
 
         function navegarParaUnidades() {
             if (!anoAtual || !nomeAnoGlobal) return;
