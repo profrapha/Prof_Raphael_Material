@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <!-- ETAPA 2.5: ESCOLHER A UNIDADE (NOVA ETAPA) -->
+        <!-- ETAPA 2.5: ESCOLHER A UNIDADE -->
         <div id="view-unidades" class="space-y-6 hidden">
             <div class="flex items-center justify-between border-b pb-3">
                 <h2 class="text-xl font-bold text-slate-900">Selecione a Unidade de Estudo</h2>
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <!-- ETAPA 3: CONTEÚDOS DA UNIDADE (MATERIAIS NO TOPO + VÍDEOS EM FILA ABAIXO) -->
+        <!-- ETAPA 3: CONTEÚDOS DA UNIDADE -->
         <div id="view-conteudos" class="space-y-6 hidden">
             <div class="flex items-center justify-between border-b pb-3">
                 <h2 id="titulo-pagina-unidade" class="text-xl font-bold text-slate-900">Conteúdos da Unidade</h2>
@@ -143,7 +143,7 @@
         <p>Portal de Aulas • Professor Raphael Paulino</p>
     </footer>
 
-    <!-- BANCO DE DADOS ATUALIZADO COM OS VÍDEOS DO 6º ANO -->
+    <!-- SCRIPT DE GERENCIAMENTO E NAVEGAÇÃO -->
     <script>
         const bancoDados = {
             "Fisica": {
@@ -186,54 +186,14 @@
                                         desc: "Frações, representação decimal, operações com vírgula e introdução à porcentagem.", 
                                         pdf: "Matematica_Algebra/6_Ano/UNIDADE6/UNIDADE6-NUMEROS_RACIONAIS.pdf", 
                                         videos: [
-                                            { 
-                                                duvida: "com dúvida em Leitura e Escrita de Números Decimais?", 
-                                                titulo: "Leitura e Escrita de Números Decimais", 
-                                                autor: "Prof.ª Gis", 
-                                                url: "https://www.youtube.com/embed/EMAoOklEA5w" 
-                                            },
-                                            { 
-                                                duvida: "precisando relembrar o conceito geral de Números Decimais?", 
-                                                titulo: "Números Decimais", 
-                                                autor: "Prof.ª Vilma Ribeiro", 
-                                                url: "https://www.youtube.com/embed/ijhusRH1P7M" 
-                                            },
-                                            { 
-                                                duvida: "com dificuldade em Como Transformar Fração em Número Decimal?", 
-                                                titulo: "Como Transformar Fração em Número Decimal", 
-                                                autor: "Prof.ª Gis", 
-                                                url: "https://www.youtube.com/embed/excWklaEb_E" 
-                                            },
-                                            { 
-                                                duvida: "querendo ver uma explicação lúdica sobre Números Decimais para Crianças?", 
-                                                titulo: "Números Decimais para Crianças", 
-                                                autor: "Smile and Learn", 
-                                                url: "https://www.youtube.com/embed/TKO9ZsGAnMA" 
-                                            },
-                                            { 
-                                                duvida: "com dúvida em Adição e Subtração com Vírgula?", 
-                                                titulo: "Adição e Subtração com Vírgula", 
-                                                autor: "Sandro Curió", 
-                                                url: "https://www.youtube.com/embed/UXs1R5mDY6o" 
-                                            },
-                                            { 
-                                                duvida: "precisando praticar as Operações com Números Decimais?", 
-                                                titulo: "Números Decimais: Operações", 
-                                                autor: "Prof. Demóclis Rocha", 
-                                                url: "https://www.youtube.com/embed/BMufUaLtFQ0" 
-                                            },
-                                            { 
-                                                duvida: "com dúvida em Porcentagem | Como Calcular?", 
-                                                titulo: "Porcentagem | Como Calcular", 
-                                                autor: "Prof.ª Gis", 
-                                                url: "https://www.youtube.com/embed/OjOyNmTt7Mw" 
-                                            },
-                                            { 
-                                                duvida: "querendo dominar o conteúdo com Aprenda Porcentagem em 8 Minutos?", 
-                                                titulo: "Aprenda Porcentagem em 8 Minutos", 
-                                                autor: "Sandro Curió", 
-                                                url: "https://www.youtube.com/embed/azedx0uou64" 
-                                            }
+                                            { duvida: "com dúvida em Leitura e Escrita de Números Decimais?", titulo: "Leitura e Escrita de Números Decimais", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/EMAoOklEA5w" },
+                                            { duvida: "precisando relembrar o conceito geral de Números Decimais?", titulo: "Números Decimais", autor: "Prof.ª Vilma Ribeiro", url: "https://www.youtube.com/embed/ijhusRH1P7M" },
+                                            { duvida: "com dificuldade em Como Transformar Fração em Número Decimal?", titulo: "Como Transformar Fração em Número Decimal", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/excWklaEb_E" },
+                                            { duvida: "querendo ver uma explicação lúdica sobre Números Decimais para Crianças?", titulo: "Números Decimais para Crianças", autor: "Smile and Learn", url: "https://www.youtube.com/embed/TKO9ZsGAnMA" },
+                                            { duvida: "com dúvida em Adição e Subtração com Vírgula?", titulo: "Adição e Subtração com Vírgula", autor: "Sandro Curió", url: "https://www.youtube.com/embed/UXs1R5mDY6o" },
+                                            { duvida: "precisando praticar as Operações com Números Decimais?", titulo: "Números Decimais: Operações", autor: "Prof. Demóclis Rocha", url: "https://www.youtube.com/embed/BMufUaLtFQ0" },
+                                            { duvida: "com dúvida em Porcentagem | Como Calcular?", titulo: "Porcentagem | Como Calcular", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/OjOyNmTt7Mw" },
+                                            { duvida: "querendo dominar o conteúdo com Aprenda Porcentagem em 8 Minutos?", titulo: "Aprenda Porcentagem em 8 Minutos", autor: "Sandro Curió", url: "https://www.youtube.com/embed/azedx0uou64" }
                                         ], 
                                         temTeoria: false 
                                     }
@@ -298,13 +258,13 @@
         let disciplinaAtual = null;
         let frenteAtual = null;
         let anoAtual = null;
+        let nomeAnoGlobal = null;
         let unidadeAtualIndex = null;
 
         function selecionarDisciplina(chave) {
             disciplinaAtual = chave;
             const obj = bancoDados[chave];
 
-            // Atualiza Breadcrumb
             document.getElementById('bc-disciplina').innerText = obj.nome;
             document.getElementById('breadcrumbs').classList.remove('hidden');
             document.getElementById('breadcrumbs').classList.add('flex');
@@ -322,7 +282,6 @@
             frenteAtual = chaveFrente;
             const objFrente = bancoDados[disciplinaAtual].frentes[chaveFrente];
 
-            // Atualiza Breadcrumb
             document.getElementById('bc-frente-sep').classList.remove('hidden');
             document.getElementById('bc-frente').classList.remove('hidden');
             document.getElementById('bc-frente').innerText = objFrente.nome;
@@ -351,8 +310,8 @@
 
         function selecionarAno(chaveAno, nomeAno) {
             anoAtual = chaveAno;
+            nomeAnoGlobal = nomeAno;
 
-            // Atualiza Breadcrumb
             document.getElementById('bc-ano-sep').classList.remove('hidden');
             document.getElementById('bc-ano').classList.remove('hidden');
             document.getElementById('bc-ano').innerText = nomeAno;
@@ -393,7 +352,6 @@
             unidadeAtualIndex = index;
 
             let unidades = [];
-            let nomeAnoTexto = document.getElementById('bc-ano').innerText;
             if (frenteAtual) {
                 unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[anoAtual].unidades;
             } else {
@@ -402,7 +360,6 @@
 
             let uni = unidades[index];
 
-            // Atualiza Breadcrumb
             document.getElementById('bc-unidade-sep').classList.remove('hidden');
             document.getElementById('bc-unidade').innerText = uni.id;
             document.getElementById('titulo-pagina-unidade').innerText = `${uni.id}: ${uni.titulo}`;
@@ -413,7 +370,6 @@
             const container = document.getElementById('container-conteudos');
             container.innerHTML = '';
 
-            // 1. BLOCO DE MATERIAIS NO TOPO (PDFs e Teoria)
             let botaoPdf = uni.pdf ? 
                 `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista de Exercícios (PDF)</a>` :
                 `<span class="bg-slate-100 text-slate-400 text-sm px-5 py-2.5 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
@@ -440,7 +396,6 @@
             `;
             container.appendChild(topoMateriais);
 
-            // 2. SEÇÃO DE VÍDEOS EM FILA VERTICAL (COM CHAMADA CONTEXTUALIZADA)
             if (uni.videos && uni.videos.length > 0) {
                 let tituloSecaoVideos = document.createElement('div');
                 tituloSecaoVideos.className = "pt-4";
@@ -478,7 +433,10 @@
             if (!disciplinaAtual) return;
             const obj = bancoDados[disciplinaAtual];
 
-            // Limpa níveis inferiores
+            frenteAtual = null;
+            anoAtual = null;
+            unidadeAtualIndex = null;
+
             document.getElementById('bc-frente-sep').classList.add('hidden');
             document.getElementById('bc-frente').classList.add('hidden');
             document.getElementById('bc-ano-sep').classList.add('hidden');
@@ -491,7 +449,6 @@
             document.getElementById('view-anos').classList.add('hidden');
 
             if (obj.tipo === 'frentes') {
-                frenteAtual = null;
                 document.getElementById('view-frentes').classList.remove('hidden');
             } else {
                 renderizarAnos(obj.anos);
@@ -500,6 +457,9 @@
 
         function navegarParaFrente() {
             if (frenteAtual) {
+                anoAtual = null;
+                unidadeAtualIndex = null;
+
                 document.getElementById('bc-ano-sep').classList.add('hidden');
                 document.getElementById('bc-ano').classList.add('hidden');
                 document.getElementById('bc-unidade-sep').classList.add('hidden');
@@ -515,6 +475,8 @@
 
         function navegarParaAno() {
             if (!anoAtual) return;
+            unidadeAtualIndex = null;
+
             document.getElementById('bc-unidade-sep').classList.add('hidden');
             document.getElementById('bc-unidade').innerText = '';
 
@@ -533,6 +495,7 @@
         function voltarParaNivelAnteriorDosAnos() {
             if (frenteAtual) {
                 frenteAtual = null;
+                anoAtual = null;
                 document.getElementById('bc-frente-sep').classList.add('hidden');
                 document.getElementById('bc-frente').classList.add('hidden');
                 document.getElementById('view-anos').classList.add('hidden');
@@ -546,6 +509,7 @@
             disciplinaAtual = null;
             frenteAtual = null;
             anoAtual = null;
+            nomeAnoGlobal = null;
             unidadeAtualIndex = null;
             
             document.getElementById('breadcrumbs').classList.remove('flex');
