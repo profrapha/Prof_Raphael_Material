@@ -490,20 +490,21 @@
         }
 
         function navegarParaAno() {
-            if (!anoAtual) return;
-            
-            // Limpa apenas o estado da unidade atual, mas preserva o ano selecionado
-            unidadeAtualIndex = null;
+    if (!anoAtual) return;
+    
+    // Reseta o índice da unidade atual
+    unidadeAtualIndex = null;
 
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
+    // Esconde os breadcrumbs e visualizações à frente
+    document.getElementById('bc-unidade-sep').classList.add('hidden');
+    document.getElementById('bc-unidade').innerText = '';
 
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.remove('hidden');
-            
-            // Recarrega a listagem de unidades daquele ano corretamente
-            selecionarAno(anoAtual, nomeAnoGlobal);
-        }
+    document.getElementById('view-conteudos').classList.add('hidden');
+    document.getElementById('view-unidades').classList.remove('hidden');
+    
+    // Reaplica o seletor de ano garantindo que a grade de unidades reapareça limpa
+    selecionarAno(anoAtual, nomeAnoGlobal);
+}
 
         function navegarParaUnidades() {
             if (!anoAtual) return;
