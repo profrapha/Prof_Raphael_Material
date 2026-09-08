@@ -60,6 +60,13 @@
 \definecolor{CorDicaFundo}{HTML}{f3fbfb} 
 \newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
 
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
 % --- COLUNAS E GRÁFICOS ---
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
@@ -102,152 +109,475 @@
 \begin{multicols*}{2}
 \vspace{0.1cm}
 
-% --- CAPÍTULO 11 ---
-\noindent{\large\bfseries Capítulo 11: Refração Luminosa}
-\vspace{-0.1cm}\noindent\rule{\linewidth}{1.2pt} 
-\par\vspace{0.2cm}
-
-\subsubsection*{1.} Considere o feixe de luz monocromático propagando-se a partir do meio \textbf{A} (ar atmosférico) e incidindo sobre a superfície plana de um bloco de acrílico, designado como meio \textbf{B}, conforme ilustrado no esquema a seguir. 
+\subsection*{Refração Luminosa}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Um feixe de luz monocromático propagando-se inicialmente no ar incide sobre a superfície plana de um bloco de vidro especial, conforme ilustrado no esquema vetorial a seguir.
 \begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
 \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
-    \definecolor{arFundo}{HTML}{FDFEFE}
-    \definecolor{acrilico}{HTML}{AED6F1}
-    \definecolor{laser}{HTML}{E74C3C}
-    \definecolor{traco}{HTML}{34495E}
+% --- PALETAS E CORES ---
+\definecolor{arFundo}{HTML}{FDFEFE}
+\definecolor{vidroL}{HTML}{AED6F1}
+\definecolor{laser}{HTML}{E74C3C}
+\definecolor{traco}{HTML}{34495E}
 
-    \fill[acrilico, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt] (-3,-2.5) rectangle (3,0);
-    \fill[arFundo] (-3,0) rectangle (3,2.5);
-    \draw[thick, traco] (-3,0) -- (3,0);
+% LAYER 1: Fundos e Sombras
+% --- APLICANDO DROP SHADOW ---
+\fill[vidroL, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt] (-3,-2.5) rectangle (3,0);
+\fill[arFundo] (-3,0) rectangle (3,2.5);
+\draw[thick, traco] (-3,0) -- (3,0); 
 
-    \draw[dashed, thick, traco] (0,-2) -- (0,2) node[above] {\textbf{N}};
-    
-    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-2,2) -- (0,0);
-    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.6 with {\arrow[scale=1.5]{stealth}}}}] (0,0) -- (1.15,-2);
+% LAYER 2: Normal e Raios
+\draw[dashed, thick, traco] (0,-2) -- (0,2) node[above, fill=arFundo, inner sep=1pt] {\textbf{N}};
 
-    \draw[traco, thick] (-0.8,0) arc (180:135:0.8);
-    \node[fill=arFundo, inner sep=1pt] at (-1.1,0.3) {\small $30^\circ$};
-    
-    \draw[traco, thick] (0,-0.8) arc (270:300:0.8);
-    \node[fill=acrilico, inner sep=1pt] at (0.4,-0.9) {\small $30^\circ$};
+% Raio Incidente
+\draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-2,2) -- (0,0);
+% Raio Refratado
+\draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.6 with {\arrow[scale=1.5]{stealth}}}}] (0,0) -- (1.15,-2);
 
-    \node at (-2,1.5) {\textbf{Meio A}};
-    \node at (-2,-1.5) {\textbf{Meio B}};
+% LAYER 3: Ângulos e Máscaras
+\draw[traco, thick] (-0.8,0) arc (180:135:0.8);
+\node[fill=arFundo, inner sep=1pt] at (-1.1,0.3) {$30^\circ$};
+
+\draw[traco, thick] (0,-0.8) arc (270:300:0.8);
+\node[fill=vidroL, inner sep=1pt] at (0.4,-0.9) {$30^\circ$};
+
+\node[fill=arFundo, inner sep=1pt] at (-2,1.5) {\textbf{Ar}};
+\node[fill=vidroL, inner sep=1pt] at (-2,-1.5) {\textbf{Vidro}};
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-Sabendo que a velocidade da luz no vácuo e no ar vale $c = 3{,}0 \cdot 10^8\text{ m/s}$, calcule a velocidade de propagação desse feixe de luz no interior do bloco de acrílico. Apresente o desenvolvimento algébrico utilizando a Lei de Snell-Descartes.
+Sabendo que a velocidade da luz no ar é constante e o índice de refração do ar é \textbf{1}, aplique a Lei de Snell-Descartes e determine matematicamente o índice de refração absoluto desse bloco de vidro. Considere que $ \text{sen}(60^\circ) = \mfrac{\sqrt{3}}{2} $.
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{2.} Um nadador de resgate está submerso no oceano à procura de uma embarcação naufragada. Durante o mergulho noturno, ele aponta uma potente lanterna diretamente para a superfície livre da água. O feixe luminoso cônico atinge a interface água-ar formando um círculo iluminado de raio máximo \textbf{R} na superfície, além do qual a luz sofre reflexão total de volta para o fundo. Considere os índices de refração absoluto da água como $\mfrac{4}{3}$ e do ar como $1$. Se a profundidade do nadador no momento da emissão é de $12\text{ m}$, determine matematicamente o raio \textbf{R} do disco iluminado.
+\subsubsection*{2.} Um biólogo marinho instala um refletor pontual subaquático no fundo perfeitamente plano de um tanque de pesquisa, exatamente a uma profundidade de \textbf{4,0 m}. O tanque está preenchido com um líquido transparente cujo índice de refração absoluto é $ \mfrac{5}{4} $. Considerando o índice de refração do ar igual a \textbf{1}, os raios luminosos emergem e formam um círculo iluminado na superfície livre do tanque, além do qual a luz passa a sofrer reflexão total interna. Calcule o raio métrico desse círculo iluminado.
 \par\vspace{\espacoQuestao}
 
-\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{3.} Durante uma avaliação de Física, o estudante Marcos foi desafiado a descobrir se um raio de luz proveniente do ar (índice $1{,}0$) poderia sofrer reflexão total ao incidir sobre a superfície de um lago (índice $1{,}5$). Marcos escreveu a seguinte resolução em sua prova:
+\subsubsection*{3.} Durante uma prova discursiva de óptica, a estudante Camila tentou provar que um feixe de luz, ao passar do ar atmosférico (índice $ \textbf{1,0} $) para o interior de um lago profundo (índice $ \textbf{1,5} $), poderia sofrer reflexão total na superfície da água. Ela registrou o seguinte cálculo e conclusão:
 
-\textit{"Para haver reflexão total, devemos calcular o ângulo limite \textbf{L}. Pela fórmula, $\text{sen}(L) = \mfrac{n_{ar}}{n_{agua}}$. Substituindo os valores, temos $\text{sen}(L) = \mfrac{1{,}0}{1{,}5} = 0{,}66$. Como $0{,}66$ é um valor possível para o seno, concluo que o raio sofrerá reflexão total para ângulos maiores que o limite correspondente."}
+\textit{"Para calcular o ângulo limite \textbf{L} da reflexão total, devemos dividir o índice menor pelo maior. Assim, $ \text{sen}(L) = \mfrac{1,0}{1,5} = \textbf{0,66} $. Como existe um ângulo cujo seno vale \textbf{0,66}, a luz sofrerá reflexão total caso o ângulo de incidência seja superior a \textbf{L}."}
 \begin{boxresponda}
-\textbf{Responda:} A conclusão de Marcos está incorreta. Identifique qual é a falha conceitual grave cometida pelo estudante quanto às condições fundamentais de ocorrência do fenômeno da Reflexão Total e corrija a resposta dele.
+\textbf{Responda:} O raciocínio matemático da divisão montada por Camila está correto, mas a sua conclusão física possui uma falha conceitual grave. Qual condição obrigatória para a ocorrência da reflexão total ela ignorou solenemente ao analisar a trajetória do raio de luz?
 \end{boxresponda}
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{4.} Um observador analisa a refração da luz entre dois meios transparentes distintos. Quatro colegas tentaram justificar matematicamente a relação entre os ângulos e as velocidades de propagação. Analise as afirmativas a seguir:
+\subsubsection*{4.} Um pássaro sobrevoa verticalmente um rio de águas calmas e observa um peixe. Para o pássaro, devido ao fenômeno da refração geométrica no dioptro plano formado pela interface, o peixe aparenta estar a uma profundidade de \textbf{1,5 m}. Sabendo que o índice de refração absoluto da água é $ \mfrac{4}{3} $ e o do ar é \textbf{1}, analise as alternativas abaixo referentes à posição real do peixe.
 \begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
-\item O índice de refração absoluto de um meio material pode assumir valores inferiores a $1$ caso a frequência da radiação incidente seja ultravioleta.
-\item Quando um feixe luminoso passa de um meio menos refringente para um mais refringente, sua velocidade aumenta proporcionalmente ao seno do ângulo de incidência.
-\item O quociente entre os senos dos ângulos de incidência e refração é sempre constante para um mesmo par de meios e igual à razão inversa entre os respectivos índices absolutos.
-\item A frequência da onda eletromagnética sofre alteração expressiva ao atravessar a interface plana entre o vidro e o ar.
+\item O peixe encontra-se a \textbf{2,0 m} de profundidade real, pois a luz desvia afastando-se da normal ao passar da água para o ar, reduzindo a percepção espacial do observador.
+\item A profundidade real do peixe é de \textbf{1,12 m}, devido à ampliação aparente imposta pela razão direta dos índices relativos.
+\item A posição real independe do meio material, visto que na incidência perfeitamente perpendicular não ocorre desvio angular nem alteração de profundidade aparente.
+\item O peixe está a exatos \textbf{2,0 m} da superfície, pois a refração aproxima a luz da normal ao passar da água para o ar atmosférico.
 \end{enumerate}
 \begin{boxresponda}
-\textbf{Responda:} Indique a alternativa correta e apresente a refutação detalhada (prova analítica) demonstrando por que cada uma das outras três alternativas restantes é falsa.
+\textbf{Responda:} Assinale a alternativa correta e apresente a resolução algébrica que comprova matematicamente por que o valor numérico fornecido na alternativa (b) está equivocado.
 \end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} A relação intrínseca entre a velocidade de propagação da luz em um material e a aproximação (ou afastamento) do feixe luminoso em relação à reta normal é a base estrutural da refringência. Elabore um fluxograma conceitual (em tópicos sequenciais textuais) que oriente passo a passo um aluno a descobrir se a luz deve "abrir" ou "fechar" o ângulo de refração ao transitar de um meio material \textbf{A} para um meio material \textbf{B}, conhecendo-se apenas que a velocidade limite $ \textbf{v}_A $ é menor que $ \textbf{v}_B $.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} (Estilo VUNESP) No estudo de confinamento óptico em cabos de telecomunicação, um núcleo cilíndrico transparente é revestido por uma casca isolante. O pulso de laser trafega através de múltiplas reflexões sucessivas na fronteira entre esses materiais. Observe o diagrama vetorial em corte longitudinal.
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- PALETAS E CORES ---
+\definecolor{nucleo}{HTML}{FAD7A1}
+\definecolor{casca}{HTML}{D5D8DC}
+\definecolor{laser}{HTML}{E74C3C}
+
+% LAYER 1: Casca e Núcleo
+% --- APLICANDO DROP SHADOW ---
+\fill[casca, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=1pt] (-4,-1.5) rectangle (4,1.5);
+\fill[nucleo] (-4,-0.8) rectangle (4,0.8);
+
+\draw[thick, black] (-4,0.8) -- (4,0.8);
+\draw[thick, black] (-4,-0.8) -- (4,-0.8);
+
+\node[font=\bfseries, fill=casca, inner sep=1pt] at (2, 1.15) {Casca};
+\node[font=\bfseries, fill=casca, inner sep=1pt] at (2, -1.15) {Casca};
+\node[font=\bfseries, fill=nucleo, inner sep=1pt] at (2, 0) {Núcleo};
+
+% LAYER 2: Raio de Luz em Zig-Zag
+\draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-4,-0.5) -- (-1.5,0.8);
+\draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-1.5,0.8) -- (1,-0.8);
+\draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (1,-0.8) -- (3.5,0.8);
+
+% LAYER 3: Normais e Ângulos
+\draw[dashed, thick] (-1.5,0) -- (-1.5,1.5);
+\draw[black, thick] (-1.5,0.3) arc (270:225:0.5);
+\node[fill=nucleo, inner sep=1pt] at (-1.85, 0.25) {$\theta_i$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Baseando-se estritamente na condição física para que a reflexão total exista e persista no ponto de contato interno, deduza algebricamente a relação de desigualdade exigida entre o índice de refração do núcleo ($ \textbf{n}_{nuc} $) e o índice de refração da casca ($ \textbf{n}_{cas} $). Em seguida, equacione o limite mínimo exigido para o ângulo de incidência $ \theta_i $ em função desses mesmos índices materiais.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Durante a aula prática experimental de óptica, o professor solicitou à turma que traçasse o perfil de desvio de um líquido desconhecido, alojado em um reservatório em contato direto com o ar atmosférico (índice $ \textbf{1,0} $). O aluno Rodrigo posicionou o transferidor, aferiu o feixe de laser atravessando o ar e penetrando na superfície livre do líquido. Ao preencher o relatório, Rodrigo escreveu a seguinte constatação:
+
+\textit{"O raio incidente originário do ar formou um ângulo de \textbf{45}$^\circ$ em relação à reta normal. Após atravessar a fronteira e refratar para dentro do líquido, medi exatamente \textbf{60}$^\circ$ de inclinação no transferidor submerso."}
+\begin{boxresponda}
+\textbf{Responda:} Sem precisar efetuar qualquer cálculo de seno ou consultar tabelas, diagnostique logicamente a inconsistência laboratorial cometida por Rodrigo utilizando exclusivamente a premissa de velocidade e refringência ao transitar de um meio gasoso para um meio líquido.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} (Estilo FUVEST) Em instrumentos como periscópios de submarinos e binóculos de alta resolução espacial, prismas maciços de reflexão total são amplamente preferidos aos espelhos prateados, mitigando as perdas progressivas de energia luminosa por absorção. Um feixe de luz monocromática entra rasante, com incidência perfeitamente normal, no cateto menor de um prisma de vidro cujo formato geométrico de perfil é um triângulo retângulo isósceles. O índice de refração absoluto do vidro na frequência do feixe é $ \textbf{1,5} $ e o prisma encontra-se repousando no ar atmosférico (índice $ \textbf{1,0} $).
+Levantando o esquema geométrico do traçado desse raio de luz, demonstre matematicamente que esse feixe sofrerá, de fato, reflexão total ao atingir a face correspondente à hipotenusa do prisma. \textit{Adote $ \text{sen}(45^\circ) = \textbf{0,71} $}.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} O fenômeno físico da dispersão da luz branca em prismas óticos e gotas de chuva isoladas comprova que o índice de refração absoluto não representa apenas uma propriedade estrutural fixa do meio, configurando-se como uma resposta dinâmica intimamente vinculada à onda incidente. Sobre o desvio espectral da radiação visível, avalie as afirmativas de julgamento a seguir:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item A velocidade vetorial de propagação da luz vermelha no interior do prisma é superior à velocidade assumida pela luz violeta, o que acarreta um menor índice de refração relativo para a frequência do vermelho.
+\item O desvio angular sofrido pela cor violeta é sempre inferior ao desvio da cor vermelha, dado que ondas eletromagnéticas de altíssimas frequências interagem em menor escala com a rede atômica amorfa do vidro.
+\item No vácuo perfeito (ausência de matéria) anterior ao bloco do prisma, todas as componentes de cores da luz branca viajavam rigorosamente na mesma velocidade absoluta $ \textbf{c} $.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Identifique qual afirmativa exposta acima é FALSA no arcabouço conceitual do eletromagnetismo e elabore um parágrafo argumentativo refutando-a diretamente através da teoria de dispersão geométrica e da Lei de Snell generalizada.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} As miragens inferiores, exaustivamente avistadas em rodovias asfaltadas sob condições de calor extremo diurno, consistem na formação de "poças d'água" virtuais à frente da linha de condução dos veículos. A física responsável por esse evento é a variação estratificada do índice de refração do ar perante o gradiente de temperatura local.
+Com base nas leis termodinâmicas da densidade de fluidos gasosos aquecidos e considerando as condições críticas da refração luminosa, elabore um texto explicativo estruturado documentando, etapa por etapa, o trajeto encurvado dos feixes de luz oriundos do céu. Descreva textualmente como a luz altera seu ângulo em relação às retas normais verticais até experimentar a reflexão total que curva a trajetória de volta aos olhos do observador.
+\par\vspace{\espacoQuestao}
+% --- INÍCIO DO LOTE 2 (CAPÍTULO 12) ---
+\subsection*{Lentes e Visão}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{11.} Ao iniciar o estudo sistemático de lentes esféricas delgadas, a classificação geométrica (análise do perfil das bordas) é o primeiro passo para prever o comportamento óptico do componente. Observe os três perfis de lentes esféricas vetoriais desenhados abaixo, construídos com o mesmo bloco de vidro óptico (índice $ \textbf{1,5} $) e imersos no ar atmosférico (índice $ \textbf{1,0} $).
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). 
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- PALETAS E CORES ---
+    \definecolor{vidroL}{HTML}{A9CCE3}
+    \definecolor{fundoLabel}{HTML}{FDFEFE}
+    
+    % --- APLICANDO DROP SHADOW ---
+    
+    % LENTE A (Biconvexa)
+    \fill[vidroL, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (-4,1.5) to[bend left=30] (-4,-1.5) to[bend left=30] (-4,1.5);
+    \node[font=\bfseries, fill=fundoLabel, inner sep=2pt] at (-4,-2.2) {Lente A};
+
+    % LENTE B (Plano-convexa)
+    \fill[vidroL, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0,1.5) -- (0,-1.5) to[bend right=30] (0,1.5);
+    \node[font=\bfseries, fill=fundoLabel, inner sep=2pt] at (0,-2.2) {Lente B};
+
+    % LENTE C (Bicôncava)
+    \fill[vidroL, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (3.5,1.5) to[bend right=30] (3.5,-1.5) -- (4.5,-1.5) to[bend right=30] (4.5,1.5) -- cycle;
+    \node[font=\bfseries, fill=fundoLabel, inner sep=2pt] at (4,-2.2) {Lente C};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que o comportamento (convergente ou divergente) depende intrinsecamente da relação entre o índice de refração da lente e o índice do meio circundante, responda:
+Se submergirmos as três lentes apresentadas em um tanque laboratorial contendo dissulfeto de carbono líquido (índice $ \textbf{1,6} $), como ficará a classificação óptica de comportamento (convergente ou divergente) para cada uma das lentes \textbf{A}, \textbf{B} e \textbf{C} nesse novo meio altamente refringente? Justifique fisicamente sua resposta.
 \par\vspace{\espacoQuestao}
 
 \begin{boxdica}
-Lembre-se: A frequência da onda eletromagnética é uma propriedade intrínseca da fonte emissora e permanece constante em qualquer meio material transparente.
+Lembre-se: O nome geométrico da lente (ex: biconvexa) NUNCA muda independentemente do meio. O que sofre inversão é estritamente o seu COMPORTAMENTO óptico face ao meio exterior.
 \end{boxdica}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{5.} Com o objetivo de organizar mentalmente os critérios de desvio luminoso e refringência, elabore detalhadamente um fluxograma lógico estruturado em passos sequenciais ou um mapa conceitual textual orientado por regras. O fluxograma deve orientar o estudante a decidir, passo a passo, quando um raio luminoso se aproxima ou se afasta da reta normal ao cruzar uma interface plana, relacionando explicitamente os índices absolutos $n_1$ e $n_2$ e as velocidades $v_1$ e $v_2$.
-\par\vspace{\espacoQuestao}
-
-\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
-\par\vspace{\espacoPreQuestao}
-\subsubsection*{6.} (ENEM - Adaptada) Fibras ópticas são largamente utilizadas nas telecomunicações para transmissão de dados em alta velocidade. O princípio de funcionamento físico baseia-se no confinamento da luz no interior de um núcleo cilíndrico transparente, revestido por uma casca cilíndrica de outro material, conforme a figura geométrica da secção longitudinal abaixo.
+\subsubsection*{12.} O estudo analítico da formação de imagens em lentes esféricas baseia-se no traçado rigoroso de raios notáveis. No experimento esquematizado sobre uma malha quadriculada cartesiana, o Eixo Principal está marcado, abrigando o Centro Óptico da lente, os Focos Principais ($ \textbf{F} $ e $ \textbf{F'} $) e os Pontos Antiprincipais ($ \textbf{C} $ e $ \textbf{C'} $). Um objeto linear luminoso ($ \textbf{O} $) repousa sobre o eixo, conforme a figura.
 \begin{center}
 \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
 \begin{tikzpicture}
-    \definecolor{nucleo}{HTML}{FAD7A1}
-    \definecolor{casca}{HTML}{D5D8DC}
-    \definecolor{laser}{HTML}{E74C3C}
+    % --- PALETAS E CORES ---
+    \definecolor{malha}{HTML}{BDC3C7}
+    \definecolor{eixo}{HTML}{2C3E50}
+    \definecolor{objeto}{HTML}{C0392B}
+    \definecolor{lente}{HTML}{2980B9}
+    \definecolor{fundo}{HTML}{FFFFFF}
+
+    % LAYER 1: Malha e Eixo
+    \draw[step=0.5cm, malha, thin] (-5,-2.5) grid (5,2.5);
+    \draw[thick, eixo, ->] (-5,0) -- (5,0) node[above right, fill=fundo, inner sep=1pt] {\textbf{Eixo}};
+
+    % LAYER 2: Lente (Seta dupla = convergente)
+    \draw[ultra thick, lente, <->] (0,-2.5) -- (0,2.5);
     
-    \fill[casca, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-2pt}] (-4,-1.5) rectangle (4,1.5);
-    \fill[nucleo] (-4,-0.8) rectangle (4,0.8);
-    
-    \draw[thick, black] (-4,0.8) -- (4,0.8);
-    \draw[thick, black] (-4,-0.8) -- (4,-0.8);
+    % Pontos notáveis (2cm = 4 quadrinhos para cada F)
+    \fill[lente] (-2,0) circle (2.5pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{F}};
+    \fill[lente] (2,0) circle (2.5pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{F'}};
+    \fill[lente] (-4,0) circle (2.5pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{C}};
+    \fill[lente] (4,0) circle (2.5pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{C'}};
 
-    \node[font=\bfseries] at (2, 1.15) {Casca ($n_{casca}$)};
-    \node[font=\bfseries] at (2, -1.15) {Casca ($n_{casca}$)};
-    \node[font=\bfseries] at (2, 0) {Núcleo ($n_{nucleo}$)};
-
-    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-4,-0.5) -- (-1.5,0.8);
-    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-1.5,0.8) -- (1,-0.8);
-    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (1,-0.8) -- (3.5,0.8);
-
-    \draw[dashed, thick] (-1.5,0) -- (-1.5,1.5);
-    \draw[black, thick] (-1.5,0.3) arc (270:225:0.5);
-    \node[fill=nucleo, inner sep=1pt] at (-1.7, 0.2) {$\theta_i$};
+    % LAYER 3: Objeto O (Entre C e F)
+    \draw[ultra thick, objeto, ->] (-3,0) -- (-3,1) node[above, fill=fundo, inner sep=1.5pt] {\textbf{O}};
 \end{tikzpicture}
 \end{adjustbox}
 \end{center}
-Para que o pulso luminoso carregue a informação por longas distâncias sem perdas para o meio externo, a reflexão na interface núcleo-casca deve ser total. Matematicamente, para que a fibra óptica funcione perfeitamente, é obrigatório que:
+Analisando exclusivamente as posições modulares fornecidas na malha (Teste Cego), realize mentalmente o traçado paramétrico de dois raios notáveis que emergem do topo do objeto \textbf{O} e classifique a imagem conjugada pela lente esférica quanto à sua natureza (Real ou Virtual), orientação (Direita ou Invertida) e tamanho. Informe também em qual coordenada do semi-eixo transmissor (em relação a $ \textbf{F'} $ ou $ \textbf{C'} $) essa imagem será projetada.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} A Óptica da Visão emprega associações de lentes para retificar anomalias da refração do globo ocular. Durante um seminário de física médica, a estudante Letícia tentou explicar o funcionamento anatômico e corretivo da miopia, escrevendo no quadro o seguinte parágrafo:
+
+\textit{"O olho míope é anatomicamente excessivamente alongado, o que faz com que o cristalino projete a imagem antes de chegar na retina. Para corrigir o problema de foco, o paciente deve obrigatoriamente utilizar óculos com lentes CONVERGENTES (de bordas finas), pois essas lentes vão adiantar ainda mais os raios de luz periféricos, empurrando a imagem com força para o fundo do olho e restaurando a visão nítida."}
+\begin{boxresponda}
+\textbf{Responda:} A explicação apresentada por Letícia contém uma grave inversão física na prescrição da lente corretiva. Identifique a falha conceitual letal na escolha da lente e explique cientificamente o verdadeiro mecanismo óptico que a lente correta executa sobre o feixe de luz para alongar o foco até a retina.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} O estudante Guilherme posicionou um pequeno boneco luminoso de altura $ \textbf{y} = \textbf{4,0 cm} $ frontalmente a uma lente esférica delgada posicionada em um banco óptico. O boneco repousa sobre o eixo principal a uma distância de \textbf{30 cm} do centro óptico da lente. Guilherme notou na câmara escura que a lente formou uma imagem nítida direita e menor do que o objeto, posicionada a exatamente \textbf{10 cm} do centro óptico. 
+Aplicando a Equação dos Pontos Conjugados de Gauss ($ \mfrac{1}{f} = \mfrac{1}{p} + \mfrac{1}{p'} $) e observando estritamente a convenção analítica de sinais, calcule a distância focal \textbf{f} da lente (em centímetros) e determine a sua Vergência ($ \textbf{V} $) expressa em dioptrias (di).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} (FUVEST - Adaptada) A hipermetropia é um defeito visual comum caracterizado pela dificuldade em focalizar objetos próximos. Fisicamente, o sistema córnea-cristalino do hipermétrope apresenta uma convergência insuficiente para o tamanho do seu globo ocular. Sobre as características ópticas e os métodos de correção associados a esse defeito, analise as afirmativas:
 \begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
-\item $n_{nucleo} < n_{casca}$ e que o ângulo de incidência $\theta_i$ seja menor que o ângulo limite da fronteira.
-\item $n_{nucleo} > n_{casca}$ e que o ângulo de incidência $\theta_i$ seja maior que o ângulo limite da fronteira.
-\item A velocidade da luz no núcleo seja maior que na casca protetora, forçando o confinamento por difração.
-\item $n_{nucleo} = n_{casca}$, e a luz sofra espalhamento elástico nas bordas cilíndricas do revestimento.
+\item O globo ocular do hipermétrope costuma ser achatado, conjugando imagens de objetos próximos virtualmente atrás da retina. A correção exige lentes divergentes.
+\item Como a imagem se forma atrás da retina, a anomalia é retificada pela interposição de lentes convergentes, que somam sua vergência positiva à do olho, antecipando a focalização.
+\item O ponto próximo de visão distinta de um hipermétrope adulto encontra-se a exatos \textbf{25 cm}, dispensando correção para a leitura de livros.
+\item A correção da hipermetropia requer lentes de faces perfeitamente planas, que operam via difração, deslocando linearmente a imagem sem curvar os raios.
 \end{enumerate}
 \begin{boxresponda}
-\textbf{Responda:} Escolha a alternativa correta e equacione literalmente o valor do seno do ângulo limite mínimo ($\text{sen}(L)$) para essa fibra em função de $n_{nucleo}$ e $n_{casca}$.
+\textbf{Responda:} Assinale a alternativa que apresenta a base teórica correta. Em seguida, elabore um curto parágrafo refutando analiticamente a afirmação distratora exposta na alternativa (a).
 \end{boxresponda}
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{7.} Um estudante de física analisou um gráfico cartesiano que relacionava o seno do ângulo de refração ($\text{sen}(\theta_2)$) em função do seno do ângulo de incidência ($\text{sen}(\theta_1)$) para um raio de luz cruzando a interface entre o ar e um líquido desconhecido. Contudo, ao transcrever os dados para o relatório, o gráfico impresso apresentou uma distorção linear e o aluno calculou incorretamente que o índice de refração do líquido seria igual a $0{,}80$.
-\begin{boxresponda}
-\textbf{Responda:} Identifique o erro conceitual físico imediato nessa leitura gráfica e demonstre por que um valor de índice de refração igual a $0{,}80$ viola os princípios fundamentais da Eletrodinâmica Clássica e da Relatividade Especial.
-\end{boxresponda}
+\subsubsection*{16.} (Aprofundamento) A Equação dos Fabricantes de Lentes (também conhecida como Fórmula de Halley) permite determinar a vergência de uma lente baseando-se nos seus raios de curvatura geométricos ($ \textbf{R}_1 $ e $ \textbf{R}_2 $) e nos índices de refração envolvidos. Considere que uma indústria projeta uma lente plano-convexa feita de um acrílico de altíssima refringência, cujo índice vale \textbf{1,5}. A lente destina-se a operar no ar (índice \textbf{1,0}). A face plana ostenta um raio de curvatura matemático tendendo ao infinito ($ R_1 \rightarrow \infty $), enquanto a face esférica convexa apresenta raio de curvatura modular igual a \textbf{0,5 m}.
+Tomando como base o equacionamento matricial:
+$ V = \left( \mfrac{n_{lente}}{n_{meio}} - 1 \right) \cdot \left( \mfrac{1}{R_1} + \mfrac{1}{R_2} \right) $
+Calcule o valor numérico preciso da vergência \textbf{V} dessa lente e afirme se o produto final se comportará como um componente óptico convergente ou divergente.
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{8.} (Estilo FUVEST) Um raio de luz monocromático, propagando-se inicialmente no ar (índice de refração absoluto igual a $1$), atinge a face lateral de um prisma óptico de vidro de base triangular equilátera (ângulos internos de $60^\circ$). O feixe incide perpendicularmente (normalmente) à primeira face do prisma e prossegue sua propagação até atingir a segunda face interna. Considere que o índice de refração do vidro é $1{,}5$. 
-A partir dessa descrição, construa a argumentação geométrica e responda: o raio conseguirá emergir pela segunda face (refratando de volta para o ar) ou sofrerá reflexão total no interior do prisma? 
-\textit{Dado auxiliar: $\text{sen}(41^\circ) \approx 0{,}66$}.
+\subsubsection*{17.} Na óptica fisiológica, o cristalino funciona como uma notável lente biconvexa natural de distância focal ajustável. Esse ajuste, comandado pelos músculos ciliares, permite projetar na retina (localizada a uma distância fixa do cristalino) imagens nítidas de objetos posicionados a distâncias amplamente variadas. 
+Em termos de grandezas físicas e aplicando a equação fundamental das lentes esféricas, diagnostique textualmente: O que ocorre de forma exata com a vergência e com a curvatura do cristalino humano no instante em que o indivíduo desvia seu olhar de uma montanha distante e passa a ler uma pequena mensagem no visor do celular próximo ao seu rosto?
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{9.} No estudo da dispersão luminosa, a separação da luz branca em seu espectro de cores ao atravessar um prisma ocorre porque cada frequência de cor possui uma velocidade de propagação ligeiramente distinta dentro do material (o fenômeno da refringência dispersiva). Julgue as afirmativas a seguir como Verdadeiras (V) ou Falsas (F), justificando cada julgamento:
+\subsubsection*{18.} Em um laboratório experimental de instrumentação, o professor montou um banco óptico constituído de uma fonte de luz pontual, uma lente delgada montada num suporte deslizante e um anteparo plano (tela). O objetivo é encontrar posições matemáticas que projetem uma imagem perfeitamente focada.
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- PALETAS E CORES ---
+    \definecolor{trilho}{HTML}{95A5A6}
+    \definecolor{suporte}{HTML}{7F8C8D}
+    \definecolor{lente}{HTML}{3498DB}
+    \definecolor{anteparo}{HTML}{2C3E50}
+    \definecolor{vela}{HTML}{E67E22}
+    \definecolor{fundo}{HTML}{FFFFFF}
+
+    % Trilho óptico
+    \fill[trilho, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}] (-5,0) rectangle (5,0.3);
+    
+    % Fonte de Luz (Objeto)
+    \fill[suporte] (-4,0.3) rectangle (-3.7,1.5);
+    \draw[ultra thick, vela, ->] (-3.85,1.5) -- (-3.85,2.5) node[above, fill=fundo, inner sep=1pt] {\textbf{Objeto}};
+
+    % Lente no suporte deslizante
+    \fill[suporte] (0,0.3) rectangle (0.3,1.2);
+    \draw[ultra thick, lente, <->] (0.15,1.2) -- (0.15,3.2);
+    \node[above, fill=fundo, inner sep=1pt] at (0.15,3.3) {\textbf{Lente}};
+
+    % Anteparo (Tela)
+    \fill[anteparo, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (4,0.3) rectangle (4.2,3.5);
+    \node[above, fill=fundo, inner sep=1pt] at (4.1,3.6) {\textbf{Tela}};
+
+    % Cotas de distância
+    \draw[<->, thick] (-3.85,-0.3) -- (0.15,-0.3) node[midway, fill=fundo, inner sep=2pt] {$p$};
+    \draw[<->, thick] (0.15,-0.3) -- (4.1,-0.3) node[midway, fill=fundo, inner sep=2pt] {$p'$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Com o anteparo fixado a uma distância imutável $ \textbf{D} $ do objeto luminoso ($ D = p + p' $), observa-se que, para uma lente convergente de distância focal $ \textbf{f} $, podem existir até duas posições distintas da lente no trilho que geram uma imagem nítida. Sabendo que o aumento linear transversal é $ A = \mfrac{-p'}{p} $, analise a configuração geométrica e comprove textualmente por que as imagens reais captadas por telas físicas são obrigatoriamente invertidas em relação ao objeto.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} A associação de lentes delgadas justapostas (encostadas) constitui o mecanismo primário no design de binóculos e oculares de microscópios, atuando sob o Teorema das Vergências. Duas lentes esféricas delgadas, uma biconvexa de distância focal $ \textbf{+20 cm} $ e uma bicôncava de distância focal $ \textbf{-50 cm} $, são coladas co-axialmente para montar um único sistema óptico.
+A respeito do resultado conjugado desse par de componentes submetido a um feixe de luz paralelo, classifique as sentenças abaixo como Verdadeiras (V) ou Falsas (F).
 \begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
-\item O arco-íris primário é formado pelo conjunto sequencial de refração, reflexão total interna e nova refração da luz solar nas gotas de chuva esféricas em suspensão.
-\item No vácuo perfeito, a luz violeta (maior frequência) viaja mais rapidamente que a luz vermelha (menor frequência), o que explica a base teórica da dispersão geométrica.
-\item Para qualquer meio material transparente, como o vidro ou a água, o índice de refração absoluto assumido pela luz violeta é sempre maior que o índice de refração assumido pela luz vermelha.
+\item A vergência total da associação justaposta é computada pelo produto algébrico das vergências individuais, gerando um dispositivo afocal complexo.
+\item Como a lente convergente possui distância focal modularmente inferior à divergente, ela ostenta maior poder de refração (maior vergência em módulo). Logo, o sistema resultante preservará o comportamento convergente.
+\item O conjunto colado equivalerá perfeitamente a uma lente única cuja vergência total é igual a \textbf{+3,0 dioptrias}.
 \end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Qual é o grande equívoco operacional narrado na afirmativa I quanto ao princípio fundamental de cálculo em sistemas de lentes encostadas?
+\end{boxresponda}
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{10.} Nos dias muito quentes e sem ventos, é comum observarmos "poças d'água" ilusórias nas rodovias asfaltadas à frente dos veículos. Esse fenômeno, conhecido como miragem, não é uma ilusão psíquica, mas um evento óptico real resultante do comportamento da luz ao cruzar camadas de ar em diferentes condições termodinâmicas. 
-Com base nos conceitos de gradiente de temperatura, variação contínua da densidade do ar, dependência do índice de refração e reflexão total, elabore um texto explicativo estruturado ou um modelo conceitual aberto que detalhe rigorosamente a trajetória convexa do raio luminoso desde a atmosfera superior até o ponto de incidência nos olhos do observador.
+\subsubsection*{20.} Um professor de cursinho lança um problema desafiador de instrumentação astronômica: "Imaginem que dispomos de uma lente objetiva gigantesca usada em um telescópio amador. A lente está perfeita em toda a sua periferia, mas infelizmente sofreu um dano grave no transporte e exatamente a sua metade inferior teve de ser coberta por um anteparo adesivo perfeitamente opaco."
+Considerando os princípios do espalhamento dos infinitos raios notáveis em um componente esférico para a formação da imagem e a equação de Gauss, o que acontecerá com a imagem de uma estrela distante projetada no fundo focal do telescópio?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item A imagem desaparecerá por completo, visto que o centro óptico da lente foi inutilizado pelo anteparo.
+\item Apenas a metade superior da imagem da estrela será efetivamente formada, originando um borrão cortado transversalmente no anteparo.
+\item A imagem inteira da estrela continuará sendo projetada exatamente na mesma posição focal, sofrendo apenas uma diminuição modular do seu brilho luminoso (intensidade).
+\item A estrela será refratada, porém, a interrupção parcial dos raios notáveis mudará radicalmente o módulo da distância focal original da objetiva astronômica.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Assinale a única alternativa que contempla a verdade geométrica inegável e forneça o respaldo argumentativo de por que tapar metade de uma lente NÃO corta metade da imagem.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+% --- INÍCIO DO LOTE 3 (CAPÍTULO 13 - DESAFIOS E APLICAÇÕES HÍBRIDAS) ---
+\subsection*{Desafios Híbridos e Vestibulares}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{21.} (FUVEST - Adaptada) Um arranjo óptico é montado com uma lente plano-convexa e um espelho plano. O espelho é posicionado exatamente no plano focal imagem da lente convergente. Um objeto pontual luminoso é colocado no eixo principal, a uma distância \textbf{p} do centro óptico, sendo $ p = 2f $ (sobre o ponto antiprincipal objeto).
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo).
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- PALETAS E CORES ---
+    \definecolor{eixo}{HTML}{2C3E50}
+    \definecolor{lente}{HTML}{2980B9}
+    \definecolor{espelho}{HTML}{7F8C8D}
+    \definecolor{fundo}{HTML}{FFFFFF}
+
+    % Eixo e Fundo
+    \draw[thick, eixo, ->] (-5,0) -- (4,0) node[right, fill=fundo, inner sep=1pt] {\textbf{Eixo}};
+
+    % Lente Plano-convexa (desenho esquemático)
+    \fill[lente, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (0,1.5) -- (0,-1.5) to[bend right=25] (0,1.5);
+    \node[above, fill=fundo, inner sep=1pt] at (0,1.7) {\textbf{Lente}};
+
+    % Espelho Plano no Foco (p' = f = 2.5cm no desenho)
+    \fill[espelho, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (2.5,1.5) rectangle (2.7,-1.5);
+    \foreach \y in {-1.4,-1.1,...,1.4} {
+        \draw[thick, espelho] (2.7,\y) -- (2.9,\y-0.2);
+    }
+    \node[above, fill=fundo, inner sep=1pt] at (2.6,1.7) {\textbf{Espelho (F')}};
+
+    % Pontos
+    \fill[eixo] (-2.5,0) circle (2pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{F}};
+    \fill[eixo] (-5,0) circle (2pt) node[below=2pt, fill=fundo, inner sep=1.5pt] {\textbf{C = O}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+O feixe de luz emerge do objeto, atravessa a lente, reflete no espelho e atravessa a lente novamente no sentido inverso. Prove analiticamente, usando a Equação de Gauss e as propriedades de reversibilidade da luz, em qual coordenada exata do eixo principal a imagem final e definitiva (após o retorno pela lente) será conjugada.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} (ENEM) A projeção de filmes em uma sala de cinema exige que o projetor posicionado no fundo da sala exiba imagens nítidas na tela localizada à frente dos espectadores. A película original (objeto) passa iluminada por uma forte lâmpada no interior do equipamento, e uma lente esférica é responsável pela conjugação da imagem projetada.
+Considerando as restrições da Óptica Geométrica para formação de imagens projetadas (capturadas em anteparos), a lente do projetor cinematográfico deve ser, obrigatoriamente:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Divergente, conjugando uma imagem virtual, direita e ampliada, sendo a película inserida de cabeça para cima.
+\item Convergente, conjugando uma imagem real, invertida e ampliada, exigindo que a película transite de cabeça para baixo no projetor.
+\item Convergente, conjugando uma imagem virtual, invertida e reduzida, para que caiba nos limites físicos da tela.
+\item Cilíndrica, conjugando uma imagem real, direita e simétrica, corrigindo o astigmatismo das bordas da tela.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Assinale a alternativa correta e explique rigorosamente o axioma físico que PROÍBE o uso da lente citada na alternativa (a) para qualquer aparelho de projeção de imagens em telas ou paredes.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} A respeito das anomalias da visão humana e de suas correções ópticas, um médico oftalmologista depara-se com um paciente de \textbf{55 anos} que apresenta extrema dificuldade em ler a bula de um remédio (objeto muito próximo), mas consegue reconhecer o rosto de um conhecido a \textbf{40 m} de distância sem qualquer esforço. 
+O estudante de medicina residente anotou no prontuário: \textit{"Paciente apresenta quadro severo de Miopia devido ao enrijecimento do cristalino pela idade. Prescrevo lentes esféricas divergentes para restabelecer a focalização na retina."}
+\begin{boxresponda}
+\textbf{Responda:} O diagnóstico do médico residente contém dois erros conceituais (um anatômico/nomenclatura e um corretivo). Identifique o verdadeiro nome da anomalia ligada à idade descrita no texto e corrija a classe de lente que deveria ser prescrita para a leitura de perto.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} Um dioptro esférico constitui a interface curva que separa dois meios refringentes distintos, modelando perfeitamente o comportamento da córnea humana em contato com o ar. Considere que a luz proveniente de uma estrela (objeto no infinito) incide sobre uma superfície convexa de vidro esférico maciço de raio \textbf{R}. Sabendo que feixes paralelos paraxiais incidem sobre essa calota e convergem para um único ponto no interior do vidro, desenhe mentalmente o traçado dos raios e julgue:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item A reta normal no ponto de incidência de um dioptro esférico sempre passa pelo centro de curvatura da face esférica.
+\item O foco da superfície será virtual, visto que o raio atravessa o vidro, meio mais denso que o ar atmosférico.
+\item Se mergulharmos esse bloco de vidro em um tanque com líquido de índice de refração superior ao do vidro, a face convexa passará a exibir comportamento óptico divergente.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Qual(is) afirmativa(s) está(ão) plenamente correta(s) sob a luz das leis da refração?
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} Uma lente divergente e uma lente convergente possuem, em módulo, distâncias focais rigorosamente iguais a \textbf{20 cm}. Um estudante decide posicioná-las no mesmo eixo principal, separadas por uma distância geométrica exata de \textbf{40 cm} (que equivale a \textbf{2f}). Um feixe de raios paralelos ao eixo principal incide primeiro na lente divergente. 
+Após sofrer divergência na primeira lente e atingir a segunda lente (convergente), qual será o comportamento final definitivo do feixe luminoso emergente? Mostre o passo a passo da trajetória: onde o feixe divergiu e como incidiu no foco da segunda lente.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} (UNICAMP - Adaptada) A velocidade de propagação de um pulso de laser no interior de um líquido é de \textbf{2,4 $\cdot$ 10$^8$ m/s}. O pulso atinge a interface de separação com o ar atmosférico (\textbf{c = 3,0 $\cdot$ 10$^8$ m/s}).
+Considerando a relação dos índices de refração absolutos, monte a equação para calcular o seno do ângulo limite dessa interface, $ \text{sen}(L) $, puramente através das velocidades da luz nos meios, provando que $ \text{sen}(L) = \mfrac{v_{menor}}{v_{maior}} $. Após a prova literal, calcule o valor numérico desse seno.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} A magnificação visual ou Aumento Linear Transversal (\textbf{A}) define quantas vezes a imagem é maior ou menor que o objeto original, trazendo um sinal algébrico que denuncia a sua orientação. Ao utilizar uma lupa (lente de aumento convergente) para observar uma formiga, um biólogo posiciona o inseto a uma distância \textbf{p} inferior à distância focal \textbf{f} da lente.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O aumento transversal será negativo, indicando que a imagem observada pelo biólogo estará invertida.
+\item O aumento transversal será nulo, pois na lupa a imagem se forma no infinito, gerando uma visão turva.
+\item O aumento transversal será positivo e modularmente maior que \textbf{1}, garantindo a formação de uma imagem virtual, direita e ampliada.
+\item O aumento linear transversal só tem sentido para espelhos esféricos, não se aplicando às lentes delgadas submetidas ao ar.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Assinale a alternativa correta e fundamente por que, na formação de imagens virtuais em lentes, o aumento transversal é matematicamente positivo (utilize a convenção de sinais para \textbf{p} e \textbf{p'}).
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} Para a confecção de lentes de contato gelatinosas, o polímero utilizado possui um índice de refração de \textbf{1,4}. Se um paciente hipermétrope precisa de uma correção de Vergência \textbf{V = +5,0 di}, e a lente possui um desenho menisco-convergente em que a face côncava adaptada à córnea tem raio de curvatura de \textbf{8,0 mm} (\textbf{0,008 m}), utilize a Equação de Halley para calcular o raio de curvatura da face frontal convexa que o laboratório deverá usinar. \textit{(Lembrete: Na equação de Halley, faces côncavas inserem raios de curvatura negativos).}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} Um paciente submeteu-se a um teste optométrico e descobriu que seu "Ponto Remoto" (maior distância de visão nítida) situa-se a apenas \textbf{50 cm} (\textbf{0,5 m}) de seus olhos. O médico oftalmologista afirma que o paciente sofre de miopia e prescreve óculos. 
+Para calcular a lente corretiva da miopia, sabemos que o óculos deve pegar objetos situados no infinito visual ($ p = \infty $) e conjugar uma imagem virtual exatamente no Ponto Remoto do paciente ($ p' = -0,5 $ \textbf{m}). 
+\begin{boxresponda}
+\textbf{Responda:} Aplicando a equação $ V = \mfrac{1}{p} + \mfrac{1}{p'} $, com $ \mfrac{1}{\infty} = 0 $, descubra a vergência \textbf{V} dessa lente corretiva (o famoso "grau" do óculos) e informe se a lente receitada foi divergente ou convergente.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} (Desafio Final) Imagine um bloco de vidro retangular transparente de grandes dimensões. Em seu interior, há uma falha de fabricação fabril: uma bolha de ar esférica, oca, perfeitamente simétrica. Um feixe de luz colimado e paralelo incide no vidro e atinge essa bolha de ar (a luz passa do vidro para o ar e, do outro lado da bolha, do ar de volta para o vidro).
+Sabendo que as faces esféricas da bolha funcionam como um par de dioptros curvos (uma lente biconvexa de ar mergulhada no vidro), analise: A bolha de ar agirá concentrando os raios luminosos (comportamento convergente) ou espalhando os raios luminosos (comportamento divergente) no interior do bloco maciço? Justifique fisicamente apoiando-se na refringência relativa lente-meio.
 \par\vspace{\espacoQuestao}
 
 \end{multicols*}
