@@ -1,0 +1,254 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} REFRAÇÃO E LENTES}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc, decorations.markings, patterns}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: REFRAÇÃO E LENTES}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} FÍSICA \hfill \textbf{NÍVEL:} 2ª SÉRIE DO ENSINO MÉDIO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+% --- CAPÍTULO 11 ---
+\noindent{\large\bfseries Capítulo 11: Refração Luminosa}
+\vspace{-0.1cm}\noindent\rule{\linewidth}{1.2pt} 
+\par\vspace{0.2cm}
+
+\subsubsection*{1.} Considere o feixe de luz monocromático propagando-se a partir do meio \textbf{A} (ar atmosférico) e incidindo sobre a superfície plana de um bloco de acrílico, designado como meio \textbf{B}, conforme ilustrado no esquema a seguir. 
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    \definecolor{arFundo}{HTML}{FDFEFE}
+    \definecolor{acrilico}{HTML}{AED6F1}
+    \definecolor{laser}{HTML}{E74C3C}
+    \definecolor{traco}{HTML}{34495E}
+
+    \fill[acrilico, drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=2pt] (-3,-2.5) rectangle (3,0);
+    \fill[arFundo] (-3,0) rectangle (3,2.5);
+    \draw[thick, traco] (-3,0) -- (3,0);
+
+    \draw[dashed, thick, traco] (0,-2) -- (0,2) node[above] {\textbf{N}};
+    
+    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-2,2) -- (0,0);
+    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.6 with {\arrow[scale=1.5]{stealth}}}}] (0,0) -- (1.15,-2);
+
+    \draw[traco, thick] (-0.8,0) arc (180:135:0.8);
+    \node[fill=arFundo, inner sep=1pt] at (-1.1,0.3) {\small $30^\circ$};
+    
+    \draw[traco, thick] (0,-0.8) arc (270:300:0.8);
+    \node[fill=acrilico, inner sep=1pt] at (0.4,-0.9) {\small $30^\circ$};
+
+    \node at (-2,1.5) {\textbf{Meio A}};
+    \node at (-2,-1.5) {\textbf{Meio B}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Sabendo que a velocidade da luz no vácuo e no ar vale $c = 3{,}0 \cdot 10^8\text{ m/s}$, calcule a velocidade de propagação desse feixe de luz no interior do bloco de acrílico. Apresente o desenvolvimento algébrico utilizando a Lei de Snell-Descartes.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} Um nadador de resgate está submerso no oceano à procura de uma embarcação naufragada. Durante o mergulho noturno, ele aponta uma potente lanterna diretamente para a superfície livre da água. O feixe luminoso cônico atinge a interface água-ar formando um círculo iluminado de raio máximo \textbf{R} na superfície, além do qual a luz sofre reflexão total de volta para o fundo. Considere os índices de refração absoluto da água como $\mfrac{4}{3}$ e do ar como $1$. Se a profundidade do nadador no momento da emissão é de $12\text{ m}$, determine matematicamente o raio \textbf{R} do disco iluminado.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Durante uma avaliação de Física, o estudante Marcos foi desafiado a descobrir se um raio de luz proveniente do ar (índice $1{,}0$) poderia sofrer reflexão total ao incidir sobre a superfície de um lago (índice $1{,}5$). Marcos escreveu a seguinte resolução em sua prova:
+
+\textit{"Para haver reflexão total, devemos calcular o ângulo limite \textbf{L}. Pela fórmula, $\text{sen}(L) = \mfrac{n_{ar}}{n_{agua}}$. Substituindo os valores, temos $\text{sen}(L) = \mfrac{1{,}0}{1{,}5} = 0{,}66$. Como $0{,}66$ é um valor possível para o seno, concluo que o raio sofrerá reflexão total para ângulos maiores que o limite correspondente."}
+\begin{boxresponda}
+\textbf{Responda:} A conclusão de Marcos está incorreta. Identifique qual é a falha conceitual grave cometida pelo estudante quanto às condições fundamentais de ocorrência do fenômeno da Reflexão Total e corrija a resposta dele.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Um observador analisa a refração da luz entre dois meios transparentes distintos. Quatro colegas tentaram justificar matematicamente a relação entre os ângulos e as velocidades de propagação. Analise as afirmativas a seguir:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O índice de refração absoluto de um meio material pode assumir valores inferiores a $1$ caso a frequência da radiação incidente seja ultravioleta.
+\item Quando um feixe luminoso passa de um meio menos refringente para um mais refringente, sua velocidade aumenta proporcionalmente ao seno do ângulo de incidência.
+\item O quociente entre os senos dos ângulos de incidência e refração é sempre constante para um mesmo par de meios e igual à razão inversa entre os respectivos índices absolutos.
+\item A frequência da onda eletromagnética sofre alteração expressiva ao atravessar a interface plana entre o vidro e o ar.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Indique a alternativa correta e apresente a refutação detalhada (prova analítica) demonstrando por que cada uma das outras três alternativas restantes é falsa.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\begin{boxdica}
+Lembre-se: A frequência da onda eletromagnética é uma propriedade intrínseca da fonte emissora e permanece constante em qualquer meio material transparente.
+\end{boxdica}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Com o objetivo de organizar mentalmente os critérios de desvio luminoso e refringência, elabore detalhadamente um fluxograma lógico estruturado em passos sequenciais ou um mapa conceitual textual orientado por regras. O fluxograma deve orientar o estudante a decidir, passo a passo, quando um raio luminoso se aproxima ou se afasta da reta normal ao cruzar uma interface plana, relacionando explicitamente os índices absolutos $n_1$ e $n_2$ e as velocidades $v_1$ e $v_2$.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} (ENEM - Adaptada) Fibras ópticas são largamente utilizadas nas telecomunicações para transmissão de dados em alta velocidade. O princípio de funcionamento físico baseia-se no confinamento da luz no interior de um núcleo cilíndrico transparente, revestido por uma casca cilíndrica de outro material, conforme a figura geométrica da secção longitudinal abaixo.
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    \definecolor{nucleo}{HTML}{FAD7A1}
+    \definecolor{casca}{HTML}{D5D8DC}
+    \definecolor{laser}{HTML}{E74C3C}
+    
+    \fill[casca, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-2pt}] (-4,-1.5) rectangle (4,1.5);
+    \fill[nucleo] (-4,-0.8) rectangle (4,0.8);
+    
+    \draw[thick, black] (-4,0.8) -- (4,0.8);
+    \draw[thick, black] (-4,-0.8) -- (4,-0.8);
+
+    \node[font=\bfseries] at (2, 1.15) {Casca ($n_{casca}$)};
+    \node[font=\bfseries] at (2, -1.15) {Casca ($n_{casca}$)};
+    \node[font=\bfseries] at (2, 0) {Núcleo ($n_{nucleo}$)};
+
+    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-4,-0.5) -- (-1.5,0.8);
+    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (-1.5,0.8) -- (1,-0.8);
+    \draw[thick, laser, postaction={decorate,decoration={markings,mark=at position 0.5 with {\arrow[scale=1.5]{stealth}}}}] (1,-0.8) -- (3.5,0.8);
+
+    \draw[dashed, thick] (-1.5,0) -- (-1.5,1.5);
+    \draw[black, thick] (-1.5,0.3) arc (270:225:0.5);
+    \node[fill=nucleo, inner sep=1pt] at (-1.7, 0.2) {$\theta_i$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+Para que o pulso luminoso carregue a informação por longas distâncias sem perdas para o meio externo, a reflexão na interface núcleo-casca deve ser total. Matematicamente, para que a fibra óptica funcione perfeitamente, é obrigatório que:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $n_{nucleo} < n_{casca}$ e que o ângulo de incidência $\theta_i$ seja menor que o ângulo limite da fronteira.
+\item $n_{nucleo} > n_{casca}$ e que o ângulo de incidência $\theta_i$ seja maior que o ângulo limite da fronteira.
+\item A velocidade da luz no núcleo seja maior que na casca protetora, forçando o confinamento por difração.
+\item $n_{nucleo} = n_{casca}$, e a luz sofra espalhamento elástico nas bordas cilíndricas do revestimento.
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Escolha a alternativa correta e equacione literalmente o valor do seno do ângulo limite mínimo ($\text{sen}(L)$) para essa fibra em função de $n_{nucleo}$ e $n_{casca}$.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Um estudante de física analisou um gráfico cartesiano que relacionava o seno do ângulo de refração ($\text{sen}(\theta_2)$) em função do seno do ângulo de incidência ($\text{sen}(\theta_1)$) para um raio de luz cruzando a interface entre o ar e um líquido desconhecido. Contudo, ao transcrever os dados para o relatório, o gráfico impresso apresentou uma distorção linear e o aluno calculou incorretamente que o índice de refração do líquido seria igual a $0{,}80$.
+\begin{boxresponda}
+\textbf{Responda:} Identifique o erro conceitual físico imediato nessa leitura gráfica e demonstre por que um valor de índice de refração igual a $0{,}80$ viola os princípios fundamentais da Eletrodinâmica Clássica e da Relatividade Especial.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} (Estilo FUVEST) Um raio de luz monocromático, propagando-se inicialmente no ar (índice de refração absoluto igual a $1$), atinge a face lateral de um prisma óptico de vidro de base triangular equilátera (ângulos internos de $60^\circ$). O feixe incide perpendicularmente (normalmente) à primeira face do prisma e prossegue sua propagação até atingir a segunda face interna. Considere que o índice de refração do vidro é $1{,}5$. 
+A partir dessa descrição, construa a argumentação geométrica e responda: o raio conseguirá emergir pela segunda face (refratando de volta para o ar) ou sofrerá reflexão total no interior do prisma? 
+\textit{Dado auxiliar: $\text{sen}(41^\circ) \approx 0{,}66$}.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} No estudo da dispersão luminosa, a separação da luz branca em seu espectro de cores ao atravessar um prisma ocorre porque cada frequência de cor possui uma velocidade de propagação ligeiramente distinta dentro do material (o fenômeno da refringência dispersiva). Julgue as afirmativas a seguir como Verdadeiras (V) ou Falsas (F), justificando cada julgamento:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item O arco-íris primário é formado pelo conjunto sequencial de refração, reflexão total interna e nova refração da luz solar nas gotas de chuva esféricas em suspensão.
+\item No vácuo perfeito, a luz violeta (maior frequência) viaja mais rapidamente que a luz vermelha (menor frequência), o que explica a base teórica da dispersão geométrica.
+\item Para qualquer meio material transparente, como o vidro ou a água, o índice de refração absoluto assumido pela luz violeta é sempre maior que o índice de refração assumido pela luz vermelha.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} Nos dias muito quentes e sem ventos, é comum observarmos "poças d'água" ilusórias nas rodovias asfaltadas à frente dos veículos. Esse fenômeno, conhecido como miragem, não é uma ilusão psíquica, mas um evento óptico real resultante do comportamento da luz ao cruzar camadas de ar em diferentes condições termodinâmicas. 
+Com base nos conceitos de gradiente de temperatura, variação contínua da densidade do ar, dependência do índice de refração e reflexão total, elabore um texto explicativo estruturado ou um modelo conceitual aberto que detalhe rigorosamente a trajetória convexa do raio luminoso desde a atmosfera superior até o ponto de incidência nos olhos do observador.
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
