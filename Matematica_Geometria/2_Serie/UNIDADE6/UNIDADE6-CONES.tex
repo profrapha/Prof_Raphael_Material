@@ -1,0 +1,721 @@
+\documentclass[twoside, 10pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newlength{\larguraTikz}
+\setlength{\larguraTikz}{0.85\linewidth}
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} CONES: ELEMENTOS E CLASSIFICAÇÃO}
+\fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc, arrows.meta}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.70\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: CONES - ELEMENTOS E VOLUMES}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.30\linewidth}
+        \raggedleft
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA / GEOMETRIA \hfill \textbf{NÍVEL:} EM (2ª SÉRIE)}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Elementos e Classificação}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Determine a medida da geratriz e da área da base do sólido gerado pela rotação completa do polígono plano ilustrado abaixo em torno do eixo \textbf{e}. 
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.8\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO PALETA E SOMBRAS ---
+\definecolor{fundo}{HTML}{F8F9FA}
+\definecolor{poligono}{HTML}{E74C3C}
+\definecolor{eixo}{HTML}{2C3E50}
+% LAYER 1: Fundo
+\fill[fundo, rounded corners=4pt] (-2,-1) rectangle (4,5);
+% LAYER 2: Eixo de rotação
+\draw[thick, eixo, dashed, {Stealth}-{Stealth}] (0,-0.5) -- (0,4.5) node[above] {\textbf{e}};
+% LAYER 3: Polígono com Drop Shadow
+\filldraw[fill=poligono!30, draw=poligono, thick, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) -- (3,0) -- (0,4) -- cycle;
+% LAYER 4: Medidas com fundo branco (Trava de Sobreposição)
+\node[fill=fundo, inner sep=1pt] at (1.5,-0.3) {\textbf{6 cm}};
+\node[fill=fundo, inner sep=1pt] at (-0.6,2) {\textbf{8 cm}};
+% Indicador de ângulo reto
+\draw[eixo, thick] (0.3,0) -- (0.3,0.3) -- (0,0.3);
+\fill[eixo] (0.15,0.15) circle (1pt);
+% Indicador de rotação
+\draw[->, thick, eixo] (0,3.5) arc (90:-90:0.5 and 1.75);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} O projeto de um reservatório cônico exige que sua secção meridiana seja um triângulo equilátero perfeito. Se a altura projetada para esse reservatório é de \textbf{12 m}, modele algebricamente o raio da base deste cone, deixando a resposta na forma de radical simplificado.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Durante uma prova prática de desenho técnico geométrico, um estudante recebeu a representação de um cone e precisou calcular sua geratriz. O aluno apresentou o seguinte raciocínio no quadro de respostas:
+
+"Para encontrar a geratriz, basta aplicar o Teorema de Pitágoras no triângulo formado pela altura, o raio e a geratriz. Logo, $ g^2 = 15^2 + 8^2 $, resultando em $ g^2 = 225 + 64 $. Assim, $ g = 17 $."
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.8\larguraTikz}
+\begin{tikzpicture}
+\definecolor{cone}{HTML}{9B59B6}
+\definecolor{base}{HTML}{ECF0F1}
+% Base elíptica
+\filldraw[fill=base, draw=black, thick] (0,0) circle [x radius=3, y radius=0.8];
+% Centro e Raio
+\fill (0,0) circle (2pt) node[below right] {\textbf{C}};
+\draw[thick, dashed] (0,0) -- (3,0) node[midway, below, fill=base, inner sep=1pt] {\textbf{8}};
+% Altura (fora do centro)
+\draw[thick, dashed] (-1.5,4) -- (-1.5,0);
+\draw[thick, -{Stealth}] (-1.5,4) -- (-2,4);
+\draw[thick, -{Stealth}] (-1.5,0) -- (-2,0);
+\draw[thick, <->] (-1.8,0) -- (-1.8,4) node[midway, fill=white, inner sep=1pt] {\textbf{15}};
+% Geratrizes
+\draw[thick, cone] (-3,0) -- (-1.5,4) node[above, black] {\textbf{V}};
+\draw[thick, cone] (3,0) -- (-1.5,4);
+% Vértice
+\fill (-1.5,4) circle (2pt);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+\begin{boxresponda}
+\textbf{Responda:} O raciocínio matemático do estudante está correto? Caso haja uma falha conceitual, diagnostique exatamente em qual etapa ela ocorreu e explique por que a modelagem $ g^2 = h^2 + r^2 $ não se aplica da forma como foi feita a este sólido específico.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} (Estilo VUNESP) Para montar um funil de papel, um professor utiliza um setor circular cujo ângulo central mede \textbf{216°} e possui um raio de \textbf{10 cm}. Ao unir perfeitamente os raios desse setor sem sobreposição, ele forma um cone circular reto. Demonstre o cálculo matemático necessário e determine o raio da base deste novo cone formado.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item \textbf{4 cm}
+\item \textbf{5 cm}
+\item \textbf{6 cm}
+\item \textbf{8 cm}
+\item \textbf{10 cm}
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Considere a disposição geométrica dos três cones sólidos (A, B e C) posicionados sobre um plano cartesiano demarcado. Todos possuem bases perfeitamente circulares apoiadas no plano.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\linewidth}
+\begin{tikzpicture}
+\definecolor{gridcol}{HTML}{BDC3C7}
+\definecolor{coneA}{HTML}{27AE60}
+\definecolor{coneB}{HTML}{2980B9}
+\definecolor{coneC}{HTML}{E67E22}
+
+% Malha obrigatória para extração visual
+\draw[step=1cm, gridcol, very thin] (0,0) grid (9,5);
+\foreach \x in {0,1,2,3,4,5,6,7,8,9} \node[below, text=gridcol] at (\x,0) {\x};
+\foreach \y in {0,1,2,3,4,5} \node[left, text=gridcol] at (0,\y) {\y};
+
+% Cone A (Reto)
+\filldraw[fill=coneA!40, draw=coneA, thick, drop shadow] (2,1) ellipse (1.5cm and 0.4cm);
+\draw[thick, coneA] (0.5,1) -- (2,4) -- (3.5,1);
+\node[fill=white, inner sep=1pt] at (2,0.3) {\textbf{A}};
+
+% Cone B (Oblíquo)
+\filldraw[fill=coneB!40, draw=coneB, thick, drop shadow] (6,1) ellipse (1.5cm and 0.4cm);
+\draw[thick, coneB] (4.5,1) -- (7.5,4) -- (7.5,1);
+\node[fill=white, inner sep=1pt] at (6,0.3) {\textbf{B}};
+
+% Cone C (Equilátero menor)
+\filldraw[fill=coneC!40, draw=coneC, thick, drop shadow] (8,3) ellipse (0.8cm and 0.2cm);
+\draw[thick, coneC] (7.2,3) -- (8,4.38) -- (8.8,3);
+\node[fill=white, inner sep=1pt] at (8,2.5) {\textbf{C}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base estritamente nos dados extraíveis da malha geométrica, julgue as afirmativas a seguir em V ou F, apresentando os cálculos que sustentam sua decisão para cada uma.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item O cone \textbf{A} é classificado como cone circular reto e possui uma geratriz de comprimento $\sqrt{11}$ unidades de medida.
+\item A secção meridiana do cone \textbf{A} forma um triângulo isósceles de área igual a \textbf{4,5} unidades de área.
+\item O cone \textbf{B} é oblíquo, e sua altura real corresponde à medida extraída do vértice até o centro de sua base.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Uma peça decorativa maciça foi desenhada de forma que um cone circular reto ficasse perfeitamente inscrito no interior de um cubo de vidro transparente, cujas arestas medem \textbf{12 cm}. A base do cone está inscrita na face inferior do cubo, e o seu vértice toca o centro da face superior. Calcule a medida exata da geratriz do cone inscrito.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\larguraTikz}
+\begin{tikzpicture}
+\definecolor{vidro}{HTML}{85C1E9}
+\definecolor{aresta}{HTML}{1A5276}
+\definecolor{cone}{HTML}{F39C12}
+
+% Desenho isométrico do cubo (Faces traseiras invisíveis para focar no cone)
+\draw[aresta, dashed, thick] (0,3) -- (1.5,4.5) -- (4.5,4.5);
+\draw[aresta, dashed, thick] (1.5,4.5) -- (1.5,1.5);
+\draw[aresta, thick] (0,3) -- (3,3) -- (4.5,4.5);
+\draw[aresta, thick] (3,3) -- (3,0);
+\draw[aresta, thick] (0,3) -- (0,0) -- (3,0);
+\draw[aresta, thick] (0,0) -- (1.5,1.5) -- (4.5,1.5) -- (3,0);
+\draw[aresta, thick] (4.5,1.5) -- (4.5,4.5);
+
+% Base do cone inscrita
+\draw[cone, thick, fill=cone!20, opacity=0.7] (2.25, 0.75) ellipse (1.5cm and 0.6cm);
+
+% Vértice na face superior
+\filldraw[cone] (2.25, 3.75) circle (1.5pt);
+
+% Geratrizes do cone
+\draw[cone, thick, drop shadow={opacity=0.3}] (0.75, 0.75) -- (2.25, 3.75) -- (3.75, 0.75);
+
+% Indicação de aresta
+\draw[<->, thick] (0,-0.3) -- (3,-0.3) node[midway, fill=white, inner sep=1pt] {\textbf{12 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} (ENEM - Adaptada) Um silo de grãos possui um teto no formato de um cone circular reto. Para realizar uma manutenção no ápice, um funcionário apoia uma escada linear exatamente sobre a superfície externa do teto, cobrindo toda a extensão desde a borda da base até o vértice. 
+
+A planta técnica do silo omite a altura do teto, mas garante as proporções exibidas no esquema. Para dimensionar o material de vedação do eixo central, a equipe precisa descobrir a altura \textbf{h} do teto.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.8\larguraTikz}
+\begin{tikzpicture}
+\definecolor{silo}{HTML}{BDC3C7}
+\definecolor{chao}{HTML}{95A5A6}
+\definecolor{escada}{HTML}{E74C3C}
+\definecolor{linha}{HTML}{2C3E50}
+
+% Teto cônico
+\filldraw[fill=silo!50, draw=linha, thick, drop shadow] (-3,0) -- (0,3.5) -- (3,0) -- cycle;
+\draw[linha, thick, dashed] (0,0) ellipse (3cm and 0.5cm);
+\draw[linha, thick] (-3,0) arc (180:360:3cm and 0.5cm);
+
+% Eixo e Raio
+\draw[linha, dashed, thick] (0,0) -- (0,3.5) node[midway, left] {\textbf{h}};
+\draw[linha, dashed, thick] (0,0) -- (3,0) node[midway, below, fill=white, inner sep=1pt] {\textbf{4 m}};
+\draw[linha, thick] (0.2,0) -- (0.2,0.2) -- (0,0.2);
+
+% Escada (Geratriz esquerda)
+\draw[escada, ultra thick] (-3,0) -- (0,3.5);
+
+% Ângulo
+\draw[linha, thick] (-2.2,0) arc (0:50:0.8);
+\node[fill=white, inner sep=1pt] at (-1.8,0.3) {\textbf{60°}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a altura \textbf{h} do teto cônico e analise as alternativas. Assinale a correta, mas você deve, obrigatoriamente, demonstrar matematicamente o erro conceitual presente em pelo menos duas das alternativas falsas.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ \textbf{h} = 4\sqrt{2} $ \textbf{m}
+\item $ \textbf{h} = 4\sqrt{3} $ \textbf{m}
+\item $ \textbf{h} = 8 $ \textbf{m}
+\item $ \textbf{h} = 2\sqrt{3} $ \textbf{m}
+\item $ \textbf{h} = 6 $ \textbf{m}
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Uma turma do 2º ano do Ensino Médio foi incumbida de definir características geométricas de cones para um trabalho de exposição. Um dos grupos fixou no mural a seguinte afirmativa em destaque:
+
+"Todo cone possui uma secção meridiana. Como a secção meridiana é obtida cortando o cone com um plano que passa pelo seu vértice e pelo centro de sua base, a figura plana resultante será sempre, obrigatoriamente, um triângulo isósceles, não importando a inclinação do eixo."
+\begin{boxresponda}
+\textbf{Responda:} Construa um argumento refutando ou confirmando a tese do grupo. Se for falsa, apresente qual é a exceção geométrica e que tipo de triângulo é formado nessa situação específica.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} Um designer de embalagens está desenvolvendo um copo de papel cônico de secção meridiana perfeitamente equivalente a um triângulo equilátero. Se ele deseja que o perímetro dessa secção meridiana seja exatamente \textbf{24 cm}, calcule a área da base do cone que será montado e a medida de sua geratriz.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} Avalie a construção geométrica de um cone oblíquo de base circular cujo raio é \textbf{R}. O eixo do cone possui uma inclinação tal que a projeção ortogonal do vértice sobre o plano da base recai exatamente sobre um ponto pertencente à circunferência da base. 
+
+Se a altura deste cone é \textbf{h} e o raio é \textbf{R}, estabeleça a expressão algébrica que define a medida da **maior geratriz** possível e a **menor geratriz** possível deste sólido em função de \textbf{h} e \textbf{R}. (Construa mentalmente a visão da projeção no plano).
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 2: Áreas, Volumes e Tronco de Cone}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} Um fabricante de peças de acrílico desenhou um enfeite onde um cone maciço de metal está perfeitamente inscrito no interior de um cilindro circular reto transparente, de modo que ambos compartilham a mesma base e a mesma altura. O cilindro é completamente preenchido por um líquido conservante que ocupa o espaço vazio deixado pelo cone.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\larguraTikz}
+\begin{tikzpicture}
+\definecolor{liquido}{HTML}{3498DB}
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{borda}{HTML}{2C3E50}
+
+% Fundo/Líquido (Cilindro)
+\filldraw[fill=liquido!30, draw=borda, thick, drop shadow] (0,0) ellipse (2cm and 0.6cm);
+\filldraw[fill=liquido!15, draw=borda, thick] (-2,0) -- (-2,4) arc (180:360:2cm and 0.6cm) -- (2,0) arc (360:180:2cm and 0.6cm);
+\draw[borda, thick] (0,4) ellipse (2cm and 0.6cm);
+
+% Cone de Metal interno
+\filldraw[fill=metal!60, draw=borda, thick, opacity=0.85] (2,0) arc (360:180:2cm and 0.6cm) -- (0,4) -- cycle;
+\draw[borda, dashed, thick] (2,0) arc (0:180:2cm and 0.6cm);
+
+% Indicações de medidas
+\draw[dashed, thick] (0,0) -- (2,0) node[midway, below, fill=liquido!15, inner sep=1pt] {\textbf{R}};
+\draw[<->, thick] (2.5,0) -- (2.5,4) node[midway, right, fill=white, inner sep=1pt] {\textbf{H}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se o volume do cone de metal é de \textbf{150 cm³}, calcule o volume exato do líquido conservante necessário para preencher o cilindro. Demonstre a relação algébrica entre os volumes dos dois sólidos.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} Durante uma aula de geometria de sólidos, o professor apresenta um cone circular reto cuja área lateral é exatamente o dobro da área de sua base. Sendo \textbf{r} o raio da base, modele a expressão algébrica da altura \textbf{h} deste cone em função de \textbf{r}. A partir desta relação, determine qual é a medida do ângulo do vértice da secção meridiana deste cone.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} Uma estudante foi desafiada a calcular a área lateral de uma cúpula de abajur que possui o formato exato de um tronco de cone circular reto, com raio da base maior \textbf{R}, raio da base menor \textbf{r} e altura ortogonal \textbf{h}. No seu memorial de cálculo, ela escreveu:
+
+"A área lateral de um cilindro é o perímetro da base vezes a altura. Como o tronco de cone está no meio do caminho entre um cilindro e um cone, basta fazer a média aritmética dos perímetros das duas bases e multiplicar pela altura \textbf{h} do tronco. Logo, a área lateral é $ A_L = \mfrac{2\pi R + 2\pi r}{2} \cdot h $."
+
+\begin{boxresponda}
+\textbf{Responda:} O diagnóstico geométrico dessa aluna está incorreto. Identifique e explique qual grandeza geométrica ela confundiu na fórmula ao usar a altura \textbf{h} em vez do elemento correto, e reescreva a modelagem algébrica correta da Área Lateral deste tronco de cone.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} (Estilo UNESP) Um reservatório cônico \textbf{A} possui altura \textbf{H} e raio da base \textbf{R}, comportando um volume total \textbf{V}. O engenheiro responsável decide projetar um novo reservatório \textbf{B}, também cônico, dobrando a medida do raio da base e reduzindo a altura pela metade, a fim de diminuir o impacto visual do projeto sem perder muita capacidade de armazenamento.
+
+Qual será o volume do novo reservatório \textbf{B} em relação ao volume \textbf{V} original? 
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ \textbf{V} $ (O volume permanece inalterado).
+\item $ \textbf{1,5V} $
+\item $ \textbf{2V} $
+\item $ \textbf{4V} $
+\item $ \textbf{0,5V} $
+\end{enumerate}
+\begin{boxdica}
+Lembre-se da Trava Pedagógica: Você deve justificar algebricamente por que pelo menos DUAS das alternativas incorretas apresentam erros comuns de dedução na modelagem do raio.
+\end{boxdica}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} É possível deduzir o volume de um tronco de cone sem a necessidade de decorar sua fórmula longa. Considere um tronco de cone de raios \textbf{R} e \textbf{r} e altura \textbf{h}. Para encontrar seu volume, construímos mentalmente o "cone original completo" prolongando as geratrizes do tronco até um vértice \textbf{V}.
+\begin{boxresponda}
+\textbf{Responda:} Crie um fluxograma textual (passo a passo lógico) de como um estudante deve utilizar o conceito de Semelhança de Triângulos para descobrir a altura do "cone menor removido" e, em seguida, descreva a operação final necessária para achar o volume do tronco apenas utilizando a fórmula básica de volume de cone ($ \mfrac{1}{3}\pi r^2 h $).
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} Uma indústria de cerâmica produz um vaso que tem o formato de um tronco de cone reto maciço, onde um furo cilíndrico central foi escavado. Analise a vista em corte transversal apresentada a seguir, que contém as medidas externas do vaso e o vão central.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\larguraTikz}
+\begin{tikzpicture}
+\definecolor{ceramica}{HTML}{D35400}
+\definecolor{vazio}{HTML}{FDFEFE}
+\definecolor{linha}{HTML}{2C3E50}
+
+% Tronco de Cone (Fundo / Exterior)
+\filldraw[fill=ceramica!40, draw=linha, thick, drop shadow] (-3,0) -- (3,0) -- (1.5,4) -- (-1.5,4) -- cycle;
+
+% Vão cilíndrico interno
+\filldraw[fill=vazio, draw=linha, thick, dashed] (-0.8,4) -- (-0.8,0.5) -- (0.8,0.5) -- (0.8,4);
+\draw[linha, thick, dashed] (0,0.5) ellipse (0.8cm and 0.2cm);
+
+% Cotas horizontais
+\draw[<->, thick] (-1.5,4.3) -- (1.5,4.3) node[midway, above, fill=white, inner sep=1pt] {\textbf{12 cm}};
+\draw[<->, thick] (-3,-0.4) -- (3,-0.4) node[midway, below, fill=white, inner sep=1pt] {\textbf{24 cm}};
+
+% Cotas do Furo e Altura
+\draw[<->, thick] (-0.8,3.5) -- (0.8,3.5) node[midway, fill=white, inner sep=1pt] {\textbf{4 cm}};
+\draw[<->, thick] (3.5,0) -- (3.5,4) node[midway, fill=white, inner sep=1pt] {\textbf{8 cm}};
+\draw[<->, thick] (1,4) -- (1,0.5) node[midway, left, fill=ceramica!40, inner sep=1pt] {\textbf{7 cm}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o volume exato da argila (material cerâmico) utilizada para confeccionar um único vaso. (Use $ \pi \approx 3 $).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} (ENEM - Adaptada) Um tanque de retenção de águas pluviais subterrâneo possui a forma de um cone circular reto invertido. A capacidade máxima deste tanque é de \textbf{27.000 Litros}. O medidor eletrônico de profundidade indicou que o nível atual da água atingiu exatamente a terça parte ($ \mfrac{1}{3} $) da altura total do tanque.
+
+O zelador afirma que, como a água preencheu um terço da altura, o tanque possui atualmente \textbf{9.000 Litros} (um terço da capacidade total).
+
+Identifique a falha matemática na justificativa do zelador e determine rigorosamente o volume real, em litros, contido no tanque neste momento.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} O conceito de "Sólidos de Revolução" é fundamental para a modelagem industrial. Considere o trapézio retângulo \textbf{ABCD} demarcado no plano cartesiano a seguir. O eixo das ordenadas (\textbf{y}) será utilizado como eixo de rotação para varrer um ângulo de \textbf{360°}.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\larguraTikz}
+\begin{tikzpicture}
+\definecolor{malha}{HTML}{BDC3C7}
+\definecolor{figura}{HTML}{8E44AD}
+\definecolor{eixo}{HTML}{2C3E50}
+
+% Malha obrigatória
+\draw[step=1cm, malha, very thin] (-1,-1) grid (7,6);
+\foreach \x in {1,2,3,4,5,6} \node[below, text=malha] at (\x,0) {\x};
+\foreach \y in {1,2,3,4,5} \node[left, text=malha] at (0,\y) {\y};
+
+% Eixos
+\draw[->, thick, eixo] (-1,0) -- (7.5,0) node[right] {\textbf{x}};
+\draw[->, thick, eixo] (0,-1) -- (0,6.5) node[above] {\textbf{y}};
+\node[below left] at (0,0) {\textbf{0}};
+
+% Eixo de Rotação (Seta)
+\draw[->, thick, eixo] (0,5.5) arc (90:270:0.4 and 1);
+
+% Trapézio
+\filldraw[fill=figura!30, draw=figura, ultra thick, drop shadow] (0,1) -- (4,1) -- (1,5) -- (0,5) -- cycle;
+
+% Vértices
+\node[fill=malha!20, inner sep=1pt] at (0,0.7) {\textbf{A}};
+\node[fill=malha!20, inner sep=1pt] at (4,0.7) {\textbf{B}};
+\node[fill=malha!20, inner sep=1pt] at (1.3,5.2) {\textbf{C}};
+\node[fill=malha!20, inner sep=1pt] at (-0.3,5) {\textbf{D}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Julgue as afirmativas a seguir sobre o sólido gerado pela rotação do polígono, apresentando a modelagem algébrica e os cálculos correspondentes para verificar cada tese.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item O sólido gerado é um tronco de cone invertido, cujo raio da base maior é extraído como \textbf{4} unidades, o raio menor é \textbf{1} unidade e a altura geométrica é \textbf{4} unidades.
+\item A geratriz do tronco gerado por esta revolução mede exatamente \textbf{5} unidades de comprimento, originada pelo segmento de reta \textbf{BC}.
+\item Se rotacionássemos a mesma figura em torno do eixo \textbf{x} em vez do eixo \textbf{y}, o sólido resultante seria um cone reto puro (sem secções).
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} Uma taça possui a geometria de um cone circular reto de altura \textbf{12 cm} e raio da boca medindo \textbf{5 cm}. Um barman inventou uma técnica onde ele deposita uma esfera de gelo perfeitamente esférica que afunda na taça até encostar lateralmente nas paredes do cone, de modo que o topo da esfera fique perfeitamente tangenciando (alinhado) com o plano da boca da taça, sem transbordar. Determine, utilizando propriedades de secção e semelhança, a medida algébrica do raio desta esfera de gelo.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} (FUVEST - Adaptada) A demonstração clássica do volume da esfera via Princípio de Cavalieri é uma modelagem híbrida poderosa. Considere três sólidos perfeitamente apoiados num mesmo plano horizontal: um Cilindro circular reto, uma Semiesfera e um Cone circular reto. Sabe-se que todos os três sólidos possuem raio da base \textbf{R} e altura exata também igual a \textbf{R}. Um plano paralelo à base os secciona a uma altura \textbf{h}. Prove algebricamente a relação de que a área da secção plana do Cilindro é exatamente igual à soma das áreas das secções do Cone e da Semiesfera geradas naquela exata altura \textbf{h}.
+\par\vspace{\espacoQuestao}
+\subsubsection*{21.} Um estúdio de design projetou uma luminária pendente de teto cujo formato é a justaposição de dois sólidos geométricos: um cilindro circular reto e um cone circular reto. Ambos possuem exatamente o mesmo raio da base e estão perfeitamente alinhados pelo eixo central. O cabo de energia passa pelo vértice do cone.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\larguraTikz}
+\begin{tikzpicture}
+\definecolor{luminaria}{HTML}{F1C40F}
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{luz}{HTML}{FFF59D}
+\definecolor{linha}{HTML}{2C3E50}
+
+% Cabo
+\draw[ultra thick, metal] (0,6) -- (0,4.5);
+
+% Cone superior
+\filldraw[fill=luminaria!80, draw=linha, thick, drop shadow] (2,3) arc (360:180:2cm and 0.4cm) -- (0,4.5) -- cycle;
+
+% Cilindro inferior
+\filldraw[fill=luminaria!40, draw=linha, thick, drop shadow={shadow yshift=-3pt}] (-2,0) -- (-2,3) arc (180:360:2cm and 0.4cm) -- (2,0) arc (360:180:2cm and 0.4cm);
+\draw[linha, dashed, thick] (2,3) arc (0:180:2cm and 0.4cm);
+
+% Base do cilindro (abertura da luz)
+\filldraw[fill=luz, draw=linha, thick] (0,0) ellipse (2cm and 0.4cm);
+\draw[linha, dashed, thick] (0,0) ellipse (2cm and 0.4cm);
+
+% Cotas verticais
+\draw[<->, thick] (-2.5,0) -- (-2.5,3) node[midway, fill=white, inner sep=1pt] {\textbf{15 cm}};
+\draw[<->, thick] (-2.5,3) -- (-2.5,4.5) node[midway, fill=white, inner sep=1pt] {\textbf{8 cm}};
+
+% Cota horizontal
+\draw[<->, thick] (0,-0.6) -- (2,-0.6) node[midway, fill=white, inner sep=1pt] {\textbf{12 cm}};
+\draw[linha, dashed] (0,0) -- (0,-0.7);
+\draw[linha, dashed] (2,0) -- (2,-0.7);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Extraindo os dados do esboço técnico, determine o volume total delimitado pela casca dessa luminária. (Deixe a resposta em função de $ \pi $).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} (ENEM - Adaptada) Uma taça em formato de cone circular reto, com o vértice apontado para baixo, está sendo preenchida com água por uma torneira que apresenta uma vazão estritamente constante. Sabe-se que a altura total da taça é \textbf{H} e que a altura do nível da água num determinado instante é \textbf{h}.
+
+Considerando $ \textbf{V}(t) $ como o volume de água na taça em função do tempo, e $ \textbf{h}(t) $ como a altura da água em função do tempo, analise o comportamento físico do preenchimento.
+
+Qual das alternativas abaixo descreve corretamente o comportamento do crescimento da altura \textbf{h} da água com o passar do tempo? (É OBRIGATÓRIO apresentar a justificativa algébrica refutando as alternativas falsas).
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item A altura cresce linearmente, pois a vazão da torneira é constante.
+\item A altura cresce exponencialmente, pois a base do cone aumenta a cada segundo.
+\item A altura cresce cada vez mais devagar, pois a área da superfície da água (secção transversal) aumenta à medida que a taça enche.
+\item A altura cresce cada vez mais rápido, pois o peso da água comprime o fluido no fundo do cone.
+\item A altura permanece constante até que o volume atinja a metade da capacidade, momento em que começa a subir.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} Um projeto de robótica propõe a montagem de um chassi usando um tronco de cone circular reto impresso em 3D. A peça possui um raio menor de \textbf{3 cm}, raio maior de \textbf{6 cm} e altura geométrica de \textbf{4 cm}. Para evitar superaquecimento, o engenheiro de materiais afirma que toda a área da superfície externa lateral do tronco deverá ser revestida com uma fita térmica.
+
+O estagiário calcula a área de fita necessária usando o seguinte raciocínio:
+"A área lateral do tronco é dada pela fórmula $ A_L = \pi (R + r) h $. Portanto, substituindo os valores, temos $ A_L = \pi (6 + 3) \cdot 4 = 36\pi \text{ cm}^2 $."
+
+\begin{boxresponda}
+\textbf{Responda:} O raciocínio do estagiário causará falta de material. Diagnostique exatamente qual variável ele inseriu erroneamente na fórmula da área lateral do tronco, mostre o cálculo correto dessa variável faltante e determine a verdadeira área lateral que deverá ser revestida.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} O chapeleiro de uma companhia de teatro precisa criar um chapéu de mago perfeitamente cônico. Ele recorta em uma cartolina rígida um setor circular cujo raio mede \textbf{30 cm} e o ângulo central possui exatamente \textbf{288°}. 
+
+Ao unir as bordas retas desse setor (geratrizes), ele forma a superfície lateral do chapéu. Modele a situação e calcule o volume da região espacial delimitada por esse chapéu, supondo que a base aberta seja planificada. (Utilize a aproximação $ \sqrt{11} \approx 3,3 $ e $ \pi \approx 3 $).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} Considere o polígono \textbf{ABC} desenhado sobre o plano cartesiano. O eixo das abscissas (\textbf{x}) será utilizado como eixo de revolução, girando a figura em \textbf{360°} para gerar um sólido maciço.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\larguraTikz}
+\begin{tikzpicture}
+\definecolor{malha}{HTML}{BDC3C7}
+\definecolor{figura}{HTML}{27AE60}
+\definecolor{eixo}{HTML}{2C3E50}
+
+% Malha obrigatória
+\draw[step=1cm, malha, very thin] (-1,-1) grid (7,5);
+\foreach \x in {1,2,3,4,5,6} \node[below, text=malha] at (\x,0) {\x};
+\foreach \y in {1,2,3,4} \node[left, text=malha] at (0,\y) {\y};
+
+% Eixos
+\draw[->, thick, eixo] (-1,0) -- (7.5,0) node[right] {\textbf{x}};
+\draw[->, thick, eixo] (0,-1) -- (0,5.5) node[above] {\textbf{y}};
+\node[below left] at (0,0) {\textbf{0}};
+
+% Seta de Rotação (eixo x)
+\draw[->, thick, eixo] (6,0.3) arc (90:-90:0.4 and 0.3);
+
+% Triângulo
+\filldraw[fill=figura!30, draw=figura, ultra thick, drop shadow] (1,3) -- (5,3) -- (5,0) -- cycle;
+
+% Vértices
+\node[fill=malha!20, inner sep=1pt] at (0.7,3.3) {\textbf{A}};
+\node[fill=malha!20, inner sep=1pt] at (5.3,3.3) {\textbf{B}};
+\node[fill=malha!20, inner sep=1pt] at (5.3,0.3) {\textbf{C}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Avaliando a cinemática geométrica dessa rotação, julgue as afirmativas a seguir como Verdadeiras (V) ou Falsas (F), apresentando a dedução algébrica que sustenta sua resposta.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item O sólido gerado pela rotação do triângulo \textbf{ABC} em torno do eixo \textbf{x} é, estritamente, um cone circular reto puro, sem cavidades internas.
+\item O volume do sólido gerado resulta da subtração entre o volume de um cilindro circular reto e o volume de um cone circular reto invertido em seu interior.
+\item A medida da superfície lateral cônica gerada pela hipotenusa \textbf{AC} é de $ 15\pi $ unidades de área.
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} Uma ampulheta artesanal de vidro é composta por dois cones circulares retos idênticos, unidos pelos vértices. A areia em seu interior inicialmente ocupa toda a capacidade do cone superior. Após exatos \textbf{14 minutos}, observa-se que a altura do nível de areia no cone superior caiu para exatamente a metade de sua altura original. 
+
+Supondo que a vazão de areia pelo vértice seja constante, calcule, utilizando relações de semelhança entre sólidos, quantos minutos \textbf{adicionais} serão necessários para que o restante da areia escoe completamente para o cone inferior.
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} (FUVEST - Adaptada) Uma fábrica produz taças de sobremesa maciças de chocolate em forma de cone circular reto invertido. Para criar um modelo econômico da sobremesa, o setor de engenharia sugere realizar um corte na taça original, paralelo à sua base circular, removendo exatamente a porção superior e comercializando apenas o tronco de cone resultante. 
+
+O corte foi planejado para ocorrer a uma altura \textbf{h'} correspondente a um quarto ($ \mfrac{1}{4} $) da altura total \textbf{H}, medida a partir do vértice do cone (o fundo da taça).
+
+Se o volume da taça cônica original inteira é \textbf{V}, qual é o volume de chocolate contido APENAS na porção removida (o tronco de cone)?
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ \mfrac{1}{64} \textbf{V} $
+\item $ \mfrac{15}{16} \textbf{V} $
+\item $ \mfrac{63}{64} \textbf{V} $
+\item $ \mfrac{3}{4} \textbf{V} $
+\item $ \mfrac{1}{4} \textbf{V} $
+\end{enumerate}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} Para a construção de um palco circular para um festival de rock, utilizou-se uma grande lona tensionada sustentada por um poste central, formando a estrutura exata de um tronco de cone circular reto aberto na base.
+
+\begin{center}
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\larguraTikz}
+\begin{tikzpicture}
+\definecolor{lona}{HTML}{9B59B6}
+\definecolor{poste}{HTML}{7F8C8D}
+\definecolor{linha}{HTML}{2C3E50}
+
+% Tronco de Cone (Lona)
+\filldraw[fill=lona!30, draw=linha, thick, drop shadow] (-4,0) -- (4,0) -- (1,3) -- (-1,3) -- cycle;
+\draw[linha, dashed, thick] (0,3) ellipse (1cm and 0.25cm);
+\draw[linha, dashed, thick] (0,0) ellipse (4cm and 0.8cm);
+
+% Poste central
+\draw[ultra thick, poste] (0,0) -- (0,3);
+
+% Cotas
+\draw[<->, thick] (-1,3.4) -- (1,3.4) node[midway, fill=white, inner sep=1pt] {\textbf{4 m}};
+\draw[<->, thick] (-4,-1) -- (4,-1) node[midway, fill=white, inner sep=1pt] {\textbf{20 m}};
+\draw[<->, thick] (4.5,0) -- (4.5,3) node[midway, right, fill=white, inner sep=1pt] {\textbf{6 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se toda a lona custa \textbf{R\$ 45,00} por metro quadrado, elabore o cálculo algébrico que define a área lateral da lona utilizada e determine o custo total do tecido (Utilize $ \pi \approx 3,1 $).
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} Considere a planificação da superfície lateral de dois cones distintos, \textbf{C1} e \textbf{C2}. A superfície de \textbf{C1} foi formada a partir de um semicírculo (ângulo central de \textbf{180°}) de raio \textbf{R}. Já a superfície lateral de \textbf{C2} foi formada por um setor circular de ângulo central \textbf{120°}, cortado da mesma cartolina, portanto também possuindo o mesmo raio \textbf{R} do setor.
+\begin{boxresponda}
+\textbf{Responda:} Sem calcular volumes numéricos específicos, deduza algebricamente a razão geométrica entre o raio da base do cone \textbf{C1} e o raio da base do cone \textbf{C2}. Demonstre matematicamente qual dos dois cones apresentará a maior altura \textbf{h}.
+\end{boxresponda}
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} (Otimização e Modelagem ENEM) Um agricultor estoca cereais formando montes cônicos perfeitos no solo plano de um galpão. Ele sabe por experiência empírica que, independentemente da quantidade de grãos despejados, o "ângulo de repouso" do cereal (o ângulo de inclinação que a geratriz do cone forma com o plano do chão) se mantém rigorosamente constante e igual a \textbf{45°} devido ao atrito dos grãos.
+
+Certo dia, o agricultor despeja uma nova carga formando um monte de volume \textbf{V}. Dias depois, ele recebe uma carga gigantesca e o novo monte formado, sob as mesmas condições de repouso físico, passou a ter o quádruplo do diâmetro basal original. 
+
+Modele esta relação geométrica tridimensional e determine, em função de \textbf{V}, qual é o volume exato desta nova montanha de grãos. Demonstre todo o percurso da Lei de Semelhança de Sólidos aplicado a este fenômeno de fricção.
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
