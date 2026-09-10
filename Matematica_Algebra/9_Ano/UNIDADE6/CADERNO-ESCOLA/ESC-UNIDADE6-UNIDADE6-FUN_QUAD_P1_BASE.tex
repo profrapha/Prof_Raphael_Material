@@ -1,0 +1,1059 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=24pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ ESCOLA (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+\fancyhead[LE]{\makebox[\textwidth][l]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{MATEMÁTICA} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}}
+\ifgabarito
+    \fancyhead[RO]{\makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\bfseries\textcolor{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}}
+\else
+    \fancyhead[RO]{\makebox[\textwidth][r]{\fontfamily{phv}\selectfont\fontsize{8}{9}\selectfont\mdseries\textcolor{gray!80}{\MakeUppercase{MATEMÁTICA} $\vert$ Bloco 2 $\vert$ 3º BIMESTRE}}}
+\fi
+\fancyfoot[C]{\footnotesize Página \thepage} 
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc, arrows.meta}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\color{Cinzablack}
+\vspace*{-1.7cm}
+
+% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
+\noindent
+\begin{minipage}[t]{0.09\linewidth}
+    \vspace{8pt}
+    \includegraphics[width=\linewidth, height=1.77cm, keepaspectratio]{../../../../Modelos_Templates/Elv_novo_logo.png} 
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.90\linewidth} 
+    \vspace{0pt}
+    \fontfamily{phv}\selectfont
+    \begin{tcolorbox}[nobeforeafter, height=1.3cm, valign=center, colback=white, colframe=Cinzablack, arc=10pt, sharp corners=southwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \begin{minipage}[c]{0.84\linewidth}
+            \Large\bfseries\textcolor{Cinzablack}{CADERNO DE ATIVIDADES SUPLEMENTARES}
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.15\linewidth}
+            \raggedleft\normalsize\bfseries\textcolor{CinzaEscuro}{\MakeUppercase{MATEMÁTICA}}
+        \end{minipage}%
+    \end{tcolorbox}
+    \par\vspace{0.18cm} 
+    \begin{tcolorbox}[nobeforeafter, height=0.83cm, valign=center, colback=white, colframe=CinzaEscuro, arc=6pt, sharp corners=northwest, boxrule=0.8pt, left=10pt, right=10pt]
+        \small\bfseries\textcolor{CinzaMedio}{Ano/Série:} \textcolor{Cinzablack}{9º ANO} \hspace{0.2cm} \textcolor{CinzaMedio}{Bloco:} \textcolor{Cinzablack}{2}
+        \ifgabarito
+            \hfill\small\bfseries\textcolor{CorTitUm}{[LIVRO DO PROFESSOR]}
+        \fi
+    \end{tcolorbox}
+\end{minipage}%
+
+\par\vspace{0.2cm} 
+\noindent\rule{\linewidth}{1.5pt} 
+\vspace{-0.7cm}
+% --- FIM DO CABEÇALHO ---
+
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Definição e gráfico da função quadrática}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Para compreender a estrutura de uma função polinomial do 2º grau, precisamos organizar seus conceitos fundamentais. Considere a lista com dez termos a seguir: \textit{função quadrática, coeficiente a, coeficiente b, coeficiente c, concavidade, parábola, domínio, interseção com o eixo y, vértice e discriminante}. 
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Descubra quais dois termos dessa lista \textbf{não} são exclusivos da função quadrática e descarte-os.
+\item Construa um mapa conceitual no seu caderno conectando os oito termos restantes por meio de linhas, escrevendo uma palavra ou pequena frase sobre cada linha para explicar a relação entre eles.
+\item Explique por que o coeficiente \textbf{a} deve se ligar diretamente ao conceito de concavidade, enquanto a interseção com o eixo \textbf{y} se conecta ao coeficiente \textbf{c}.
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor (com Mapa Conceitual Ilustrativo):}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) Os termos descartados são \textbf{domínio} e \textbf{interseção com o eixo y}, pois são propriedades gerais aplicáveis a qualquer tipo de função, e não exclusivas do 2º grau. \\
+    (b) \textbf{Esquema visual do mapa conceitual para mostrar aos alunos:}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}[node distance=1.2cm and 1.5cm, every node/.style={fill=gray!10, draw=CinzaEscuro, rounded corners=3pt, inner sep=4pt, font=\small}]
+        \node (funcao) {Função Quadrática};
+        \node[above right=of funcao] (parabola) {Parábola} edge [<-] node[above, font=\footnotesize, draw=none, fill=none] {possui gráfico} (funcao);
+        \node[below right=of funcao] (disc) {Discriminante ($\Delta$)} edge [<-] node[below, font=\footnotesize, draw=none, fill=none] {possui} (funcao);
+        
+        \node[right=of parabola] (vertice) {Vértice} edge [<-] node[above, font=\footnotesize, draw=none, fill=none] {possui ponto} (parabola);
+        \node[above=of parabola] (conc) {Concavidade} edge [<-] node[left, font=\footnotesize, draw=none, fill=none] {define} (parabola);
+        
+        \node[above=of conc] (a) {Coeficiente $a$} edge [<-] node[right, font=\footnotesize, draw=none, fill=none] {determina sinal} (conc);
+        \node[left=of parabola] (b) {Coeficiente $b$} edge [->] node[above, font=\footnotesize, draw=none, fill=none] {desloca eixo} (parabola);
+        \node[below=of funcao] (c) {Coeficiente $c$} edge [->] node[left, font=\footnotesize, draw=none, fill=none] {corta eixo $y$} (funcao);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    (c) O coeficiente \textit{a} liga-se à concavidade porque define se a curva abre para cima ou para baixo. Já o coeficiente \textit{c} define o valor exato onde o gráfico intercepta o eixo vertical.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} O gráfico a seguir ilustra uma função quadrática completa no plano cartesiano, destacando seu ponto de mínimo e os cruzamentos com os eixos.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{Asfalto}{HTML}{2F3640}
+\definecolor{LaranjaCurva}{HTML}{E67E22}
+\definecolor{CianoRaiz}{HTML}{1ABC9C}
+
+\begin{axis}[
+    axis lines=middle,
+    axis line style={Asfalto, thick, -{Stealth[scale=1.2]}},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    xmin=-1.5, xmax=5.5,
+    ymin=-5.5, ymax=4.5,
+    xtick={-1,1,2,3,4,5},
+    ytick={-4,4},
+    tick label style={font=\footnotesize, text=Asfalto, fill=white, inner sep=1pt},
+    xlabel={$x$}, ylabel={$y$},
+    xlabel style={anchor=north},
+    ylabel style={anchor=east},
+    width=8cm, height=9cm,
+    samples=100
+]
+\addplot[domain=-0.8:4.8, color=LaranjaCurva, line width=1.5pt] {x^2 - 4*x};
+\node[circle, fill=Asfalto, inner sep=2pt, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}] at (axis cs:2,-4) {};
+\node[circle, fill=CianoRaiz, inner sep=2pt, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}] at (axis cs:0,0) {};
+\node[circle, fill=CianoRaiz, inner sep=2pt, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}] at (axis cs:4,0) {};
+\node[fill=white, inner sep=2pt, text=Asfalto, font=\footnotesize] at (axis cs:2,-4.8) {$(2, -4)$};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O coeficiente \textbf{a} é positivo ou negativo? Justifique com base na forma da curva.
+\item Qual é o valor numérico do coeficiente \textbf{c} e em qual ponto do gráfico você consegue visualizá-lo diretamente?
+\item Identifique as raízes reais da função exibidas no desenho.
+\item Utilizando a forma fatorada $f(x) = a(x - r_1)(x - r_2)$, substitua as raízes encontradas e descubra o valor de \textbf{a} usando as coordenadas do vértice. O polinômio resultante bate com os coeficientes esperados?
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) O coeficiente \textit{a} é positivo, pois a parábola possui concavidade voltada para cima. \\
+    (b) O coeficiente \textit{c} vale $0$, visualizado no ponto de cruzamento com o eixo vertical $(0,0)$. \\
+    (c) As raízes são $r_1 = 0$ e $r_2 = 4$ (onde a curva toca o eixo horizontal). \\
+    (d) Montando a estrutura: $f(x) = a(x - 0)(x - 4) = ax(x-4)$. Usando o vértice $(2, -4)$: $-4 = a(2)(2-4) \Rightarrow -4 = -8a \Rightarrow a = 1$. Desenvolvendo: $f(x) = 1 \cdot (x^2 - 4x) = x^2 - 4x$, confirmando os valores.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Imagine que você dispõe de exatamente $20\text{ cm}$ de fio maleável para cercar um canteiro retangular. Conforme você altera a largura do retângulo, a área interna cultivável muda de tamanho.
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Construa uma tabela com valores inteiros para a base (de $1$ a $9\text{ cm}$), calculando a altura correspondente (sabendo que o perímetro é fixo em $20\text{ cm}$, logo a soma de base e altura é sempre $10\text{ cm}$) e a respectiva área de cada retângulo.
+\item O que acontece com o valor da área à medida que a base cresce de $1$ até $9$?
+\item Por que essa relação de crescimento e queda da área \textbf{não} pode ser representada por uma linha reta (função afim)?
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor (com Tabela Completa):}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) \textbf{Tabela estruturada para exibição na lousa:}
+    \begin{center}
+    \small
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Base ($x$)} & \textbf{Altura ($10 - x$)} & \textbf{Área ($x \cdot (10 - x)$)} \\ \hline
+    1 cm & 9 cm & 9 cm² \\ \hline
+    2 cm & 8 cm & 16 cm² \\ \hline
+    3 cm & 7 cm & 21 cm² \\ \hline
+    4 cm & 6 cm & 24 cm² \\ \hline
+    \textbf{5 cm} & \textbf{5 cm} & \textbf{25 cm² (Máxima)} \\ \hline
+    6 cm & 4 cm & 24 cm² \\ \hline
+    7 cm & 3 cm & 21 cm² \\ \hline
+    8 cm & 2 cm & 16 cm² \\ \hline
+    9 cm & 1 cm & 9 cm² \\ \hline
+    \end{tabular}
+    \end{center}
+    (b) A área aumenta progressivamente até atingir o ápice de $25\text{ cm}^2$ quando a base mede $5\text{ cm}$, e depois decresce simetricamente. \\
+    (c) Não é uma reta porque a taxa de variação não é constante; a lei matemática que rege essa área é $A(x) = x(10-x) = -x^2 + 10x$, que possui um termo quadrático característico de uma parábola.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Um aluno analisou a função $f(x) = -2x^2 + 8x$ e escreveu a seguinte justificativa em sua avaliação:
+\begin{quote}
+\textit{``Como o coeficiente c é zero, a parábola passa obrigatoriamente pela origem. Além disso, o fato de c ser zero também obriga a concavidade a ser para baixo, pois sem um termo independente positivo a curva não consegue subir.''}
+\end{quote}
+
+\begin{boxresponda}
+\textbf{Responda:} A conclusão final do aluno sobre a concavidade está correta, mas o argumento dele contém um erro conceitual grave. Aponte qual coeficiente realmente define a orientação da concavidade e utilize a função $g(x) = 2x^2 + 8x$ (que também possui $c = 0$) para provar por que o argumento do estudante é falso.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O estudante confunde o papel dos coeficientes. Quem determina se a concavidade aponta para cima ou para baixo é exclusivamente o coeficiente \textit{a}. No caso da função original, ela aponta para baixo porque $a = -2$ (negativo). O contraexemplo $g(x) = 2x^2 + 8x$ demonstra o erro do aluno: ela também possui $c = 0$, mas sua concavidade é voltada para cima porque o seu coeficiente \textit{a} vale $2$ (positivo).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Redija um pequeno verbete técnico (de até cinco linhas) para ajudar um colega que faltou à aula a entender como descobrir rapidamente se o gráfico de uma função quadrática abre para cima ou para baixo. Utilize obrigatoriamente os termos: \textit{coeficiente quadrático, concavidade} e \textit{sinal}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para identificar a orientação gráfica sem desenhar, basta olhar para o sinal do coeficiente quadrático (o valor que multiplica $x^2$). Se esse sinal for positivo, a concavidade será voltada para cima; se for negativo, a parábola abrirá para baixo, independentemente dos valores dos outros coeficientes.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Um empreendedor modelou o lucro $L$ de sua barraca de limonada em função do preço de venda $p$ de cada copo usando duas propostas matemáticas diferentes:
+\begin{center}
+Modelo A (Quadrático): $L(p) = -10p^2 + 120p$ \quad versus \quad Modelo B (Linear): $L(p) = 120p$
+\end{center}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O que cada um dos dois modelos prevê para o lucro caso o preço do copo dispare e suba indefinidamente?
+\item Qual dos dois modelos é mais realista para descrever o comércio real e qual é mais simples de calcular?
+\item Explique por que o modelo linear (Modelo B) pode ser considerado conveniente para contas rápidas, mas ao mesmo tempo falso do ponto de vista econômico.
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) O modelo linear prevê que o lucro cresce infinitamente se o preço subir sem limite. O modelo quadrático prevê que o lucro atinge um ponto ótimo e depois despenca para o prejuízo se o preço ficar caro demais. \\
+    (b) O modelo quadrático é infinitamente mais realista; o linear é mais simples para cálculos algébricos básicos. \\
+    (c) O modelo B é conveniente pela simplicidade da conta, mas é falso porque ignora a lei da oferta e da procura: na prática, se o preço for abusivo, ninguém compra e as vendas caem a zero, o que a função quadrática retrata fielmente com sua curva descendente.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Dada a função quadrática $f(x) = 3x^2 - 5x + 6$, analise as alternativas abaixo sobre a interseção do gráfico com o eixo vertical y.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O gráfico cruza o eixo y no ponto $(0,6)$, pois o termo independente representa a ordenada exata desse ponto.
+\item O gráfico cruza o eixo y no ponto $(6,0)$, pois o valor do coeficiente c vale 6.
+\item O gráfico cruza o eixo y na altura $y = -5$, porque o coeficiente b indica o deslocamento vertical da parábola.
+\item O gráfico cruza o eixo y em $y = 3$, porque o coeficiente a determina a altura de partida da curva.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Qual é a alternativa correta e, para cada uma das outras três opções falsas, explique detalhadamente o motivo do erro conceitual.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. Fazendo $x=0$, temos $f(0) = 6$, gerando o par ordenado $(0,6)$. \\
+    \textbf{Refutação das falsas:} \\
+    (b) Inverte a ordem do par ordenado; o ponto $(6,0)$ estaria sobre o eixo horizontal. \\
+    (c) Confunde o papel do coeficiente $b$ (que influencia a inclinação da curva no intercepto) com a altura do corte. \\
+    (d) Atribui ao coeficiente $a$ a responsabilidade pelo intercepto, quando sua função real é controlar a abertura da parábola.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Analise as afirmações abaixo referentes à concavidade de uma parábola genérica e aponte a única correta.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item A parábola abre sempre para cima quando $a > 0$, independentemente dos sinais de b e de c.
+\item A parábola abre para cima quando $c > 0$, pois o termo independente ergue a curva inteira.
+\item A parábola abre para cima quando $b > 0$, já que o termo do 1º grau impõe a inclinação positiva.
+\item A parábola abre para cima apenas quando todos os três coeficientes são positivos.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Identifique a correta e prove a falsidade das demais testando-as na função $f(x) = x^2 - 5x - 6$, que possui b e c negativos mas ainda assim abre para cima.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. A concavidade é ditada exclusivamente pelo sinal do coeficiente $a$. \\
+    \textbf{Refutação via teste em $f(x) = x^2 - 5x - 6$:} A função tem $a=1$ ($>0$), logo abre para cima, mesmo com $b=-5$ e $c=-6$. Isso derruba a alternativa (b) (pois $c$ é negativo e abre para cima), a alternativa (c) (pois $b$ é negativo e abre para cima) e a alternativa (d) (pois nem todos os coeficientes são positivos).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\subsection*{Vértice e eixo de simetria}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Um estudante tentou encontrar o vértice da função $f(x) = 2x^2 - 8x + 3$ e registrou os seguintes passos:
+\begin{center}
+$x_v = -\frac{b}{a} = -\frac{-8}{2} = 4$. Depois, $y_v = f(4) = 2(16) - 32 + 3 = 3$, logo o vértice é $(4,3)$.
+\end{center}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Qual foi o erro algébrico que o estudante cometeu na fórmula da abscissa do vértice? Calcule o valor correto de $x_v$ e de $y_v$.
+\item Por que a ordenada $y_v$ encontrada por ele acabou coincidindo exatamente com o valor do coeficiente $c$ ($3$), e por que essa coincidência não significa que o cálculo estava certo?
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) O aluno esqueceu o fator $2$ no denominador (o correto é $2a$). O cálculo certo é $x_v = -\frac{-8}{2(2)} = 2$. Substituindo na função: $y_v = f(2) = 2(4) - 8(2) + 3 = 8 - 16 + 3 = -5$. O vértice correto é $(2, -5)$. \\
+    (b) A coincidência com o $c=3$ ocorreu devido à simetria: o eixo real está em $x=2$, logo os pontos $x=0$ (onde $y=3$) e $x=4$ estão equidistantes do centro e possuem a mesma altura, mas o vértice real fica lá embaixo, em $-5$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} O gráfico a seguir apresenta duas parábolas de mesma abertura, com eixos de simetria tracejados em posições diferentes.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{Asfalto}{HTML}{2F3640}
+\definecolor{AzulCurva}{HTML}{3498DB}
+\definecolor{LaranjaCurva}{HTML}{E67E22}
+\definecolor{VerdeEixo}{HTML}{27AE60}
+
+\begin{axis}[
+    axis lines=middle,
+    axis line style={Asfalto, thick, -{Stealth[scale=1.2]}},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    xmin=-3.5, xmax=5.5,
+    ymin=-0.5, ymax=6.5,
+    xtick={-2,-1,1,2,3,4},
+    ytick={2,4,6},
+    tick label style={font=\footnotesize, text=Asfalto, fill=white, inner sep=1pt},
+    xlabel={$x$}, ylabel={$y$},
+    xlabel style={anchor=north},
+    ylabel style={anchor=east},
+    width=8cm, height=7cm,
+    samples=100
+]
+\draw[VerdeEixo, thick, dashed] (axis cs:0,-0.5) -- (axis cs:0,6.5);
+\draw[VerdeEixo, thick, dashed] (axis cs:2,-0.5) -- (axis cs:2,6.5) node[pos=0.88, right, font=\footnotesize, fill=white, inner sep=2pt, text=VerdeEixo] {$x=2$};
+\addplot[domain=-2.5:2.5, color=AzulCurva, line width=1.5pt] {x^2};
+\addplot[domain=-0.5:4.5, color=LaranjaCurva, line width=1.5pt] {(x-2)^2};
+\node[font=\footnotesize\bfseries, text=white, fill=AzulCurva, rounded corners=2pt, inner sep=2pt] at (axis cs:-1.5,5.5) {função $f$};
+\node[font=\footnotesize\bfseries, text=white, fill=LaranjaCurva, rounded corners=2pt, inner sep=2pt] at (axis cs:4.5,5.5) {função $g$};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Qual das duas funções tem o coeficiente linear $b = 0$, e como a posição do eixo de simetria revela isso de forma imediata?
+\item Sabendo que ambas possuem $a = 1$, calcule qual deve ser o valor exato do coeficiente $b$ da função $g$.
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) A função $f$ tem $b=0$ porque seu eixo de simetria coincide com o eixo vertical ($x_v = 0$). Como $x_v = -\frac{b}{2a}$, para o resultado dar zero, o numerador $b$ precisa ser nulo. \\
+    (b) Para a função $g$, o eixo está em $x_v = 2$. Com $a=1$: $2 = -\frac{b}{2(1)} \Rightarrow 2 = -\frac{b}{2} \Rightarrow b = -4$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Teste a regra comum \textit{``o vértice é sempre o ponto mais baixo da parábola''} aplicando-a às seguintes funções: $f(x) = x^2 - 6x + 5$, $g(x) = -x^2 + 4x$ e $h(x) = 3x^2$.
+
+\begin{boxresponda}
+\textbf{Responda:} Em qual das três funções essa regra falha? Por que isso acontece e como o enunciado dessa regra precisa ser corrigido para se tornar universalmente verdadeiro?
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A regra falha na função $g(x) = -x^2 + 4x$. Como $a = -1$ (negativo), a concavidade aponta para baixo, fazendo do vértice um ponto de máximo (o ponto mais alto, e não o mais baixo). \\
+    Correção da regra: \textit{``O vértice é o ponto extremo da parábola, sendo o ponto mais baixo se $a > 0$, ou o ponto mais alto se $a < 0$.''}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Sabe-se que uma função quadrática tem coeficiente $a = 2$ e que uma de suas raízes é $x = 1$. 
+
+\begin{boxresponda}
+\textbf{Responda:} É possível determinar as coordenadas exatas do vértice com apenas essas informações? Explique o que já é possível afirmar, o que falta descobrir e por que conhecer a segunda raiz resolveria o problema mesmo sem saber os valores de $b$ e $c$.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Não é possível achar o vértice apenas com isso. Sabemos que a curva abre para cima e passa por $(1,0)$, mas faltam dados para achar o $b$. Se conhecêssemos a segunda raiz, poderíamos calcular a média aritmética entre elas para achar o $x_v$ exato imediatamente, sem precisar dos coeficientes $b$ e $c$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Em um mapa conceitual interligando os conceitos de função do 2º grau, relacione os seguintes nove termos: \textit{vértice, $x_v$, $y_v$, eixo de simetria, valor máximo, valor mínimo, sinal de a, raízes} e \textit{ponto médio das raízes}.
+
+\begin{boxresponda}
+\textbf{Responda:} Por que o conceito de \textit{ponto médio das raízes} se conecta diretamente ao $x_v$, e em qual situação específica essa conexão não pode ser aplicada?
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor (com Esquema do Mapa Conceitual):}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O ponto médio das raízes liga-se a $x_v$ porque a parábola é simétrica, situando o eixo central exatamente na metade da distância entre as duas raízes reais. Essa relação falha se a função não possuir raízes reais ($\Delta < 0$), pois a curva não toca o eixo horizontal.\\
+    \textbf{Esquema visual do mapa conceitual correspondente:}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}[node distance=1.2cm and 1cm, every node/.style={fill=gray!10, draw=CinzaEscuro, rounded corners=3pt, inner sep=3pt, font=\scriptsize}]
+        \node (xv) {$x_v$ (Abscissa do Vértice)};
+        \node[above=of xv] (eixo) {Eixo de Simetria} edge [<-] node[right, draw=none, fill=none] {coincide com} (xv);
+        \node[left=of xv] (medio) {Ponto Médio das Raízes} edge [->] node[above, draw=none, fill=none] {iguala-se a} (xv);
+        \node[left=of medio] (raizes) {Raízes ($r_1, r_2$)} edge [->] node[above, draw=none, fill=none] {geram} (medio);
+        \node[right=of xv] (yv) {$y_v$ (Valor Máx./Mín.)} edge [<-] node[above, draw=none, fill=none] {forma par com} (xv);
+        \node[below=of yv] (sinal) {Sinal de $a$} edge [->] node[right, draw=none, fill=none] {define se é} (yv);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Construa em uma malha quadriculada o gráfico da função $f(x) = x^2 - 4x + 3$ calculando os pontos para $x$ variando de $1$ até $5$.
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Quais pares de pontos na sua tabela possuem exatamente a mesma altura (ordenada)? O que isso confirma sobre a simetria?
+\item Em qual coordenada exata ficou o vértice da sua parábola desenhada?
+\end{enumerate}
+\end{boxresponda}
+
+\begin{boxdica}
+Calcule o $x_v$ pela fórmula algébrica e confira se ele bate com o eixo de simetria do seu desenho.
+\end{boxdica}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor (com Tabela de Pontos):}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) \textbf{Tabela de pontos calculados de $x=0$ a $x=5$:}
+    \begin{center}
+    \small
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{$x$} & \textbf{Cálculo: $f(x) = x^2 - 4x + 3$} & \textbf{Ponto $(x, y)$} \\ \hline
+    0 & $0^2 - 4(0) + 3$ & $(0, 3)$ \\ \hline
+    1 & $1^2 - 4(1) + 3$ & $(1, 0)$ \\ \hline
+    2 & $2^2 - 4(2) + 3$ & $(2, -1)$ \\ \hline
+    3 & $3^2 - 4(3) + 3$ & $(3, 0)$ \\ \hline
+    4 & $4^2 - 4(4) + 3$ & $(4, 3)$ \\ \hline
+    5 & $5^2 - 4(5) + 3$ & $(5, 8)$ \\ \hline
+    \end{tabular}
+    \end{center}
+    Os pontos $(1,0)$ e $(3,0)$ têm a mesma altura, assim como $(0,3)$ e $(4,3)$, confirmando que o eixo de simetria passa exatamente no meio, em $x=2$. \\
+    (b) O vértice fica no ponto mínimo $(2, -1)$, o que confere com a fórmula $x_v = -\frac{-4}{2(1)} = 2$ e $f(2)=-1$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Analise as quatro opções de cálculo para a abscissa do vértice de $f(x) = 2x^2 - 8x + 3$:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $x_v = -\frac{b}{2a} = -\frac{-8}{4} = 2$
+\item $x_v = -\frac{b}{a} = -\frac{-8}{2} = 4$
+\item $x_v = \frac{b}{2a} = \frac{-8}{4} = -2$
+\item $x_v = -\frac{c}{2a} = -\frac{3}{4}$
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Assinale a correta e explique detalhadamente o erro operacional cometido em cada uma das três alternativas falsas.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. Aplicação correta de $-\frac{b}{2a} = -\frac{-8}{2(2)} = 2$. \\
+    Refutação das falsas: (b) esqueceu o fator 2 no denominador; (c) errou o sinal externo da fórmula; (d) trocou o coeficiente $b$ pelo termo independente $c$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Assinale a alternativa que esclarece corretamente a diferença conceitual entre as \textit{raízes} e o \textit{vértice} de uma função quadrática:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item A raiz indica o cruzamento com o eixo x e o vértice aponta o ponto extremo; ambos podem eventualmente coincidir.
+\item Raiz e vértice representam sempre o mesmo ponto geométrico, pois usam os coeficientes.
+\item O vértice é sempre uma das raízes, pois a curva toca o eixo horizontal no seu ponto mínimo.
+\item A raiz só existe se o vértice estiver posicionado exatamente sobre o eixo x.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Aponte a correta e justifique refutando as falsas com base nas funções $f(x) = x^2 + 1$ e $g(x) = x^2$.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. São conceitos diferentes que podem coincidir (como em $g(x)=x^2$, onde a raiz e o vértice são a origem). As outras caem por terra ao testarmos $f(x)=x^2+1$, que possui vértice em $(0,1)$ mas nenhuma raiz real.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\subsection*{Discriminante e construção de gráficos}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Analise a relação entre o discriminante ($\Delta$) e o comportamento gráfico de uma função quadrática. 
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O que acontece geometricamente com o gráfico de $f(x) = ax^2 + bx + c$ quando o discriminante $\Delta$ é positivo, zero ou negativo?
+\item Construa um fluxograma visual em formato de blocos que permita a um aluno decidir o número de interseções com o eixo $x$ a partir do cálculo prévio de $\Delta$.
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor (com Fluxograma Ilustrativo):}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) Se $\Delta > 0$, a parábola cruza o eixo horizontal em dois pontos distintos; se $\Delta = 0$, a curva tangencia o eixo horizontal exatamente em um único ponto (o vértice); se $\Delta < 0$, a parábola não toca nem intercepta o eixo $x$ em nenhum ponto real. \\
+    (b) \textbf{Esquema visual do fluxograma para exibição na lousa:}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}[node distance=1.5cm and 1cm, every node/.style={fill=gray!10, draw=CinzaEscuro, rounded corners=3pt, inner sep=4pt, font=\small, align=center}]
+        \node (calc) {Calcular $\Delta = b^2 - 4ac$};
+        \node[below=of calc] (cond) {Analisar o sinal de $\Delta$} edge [<-] (calc);
+        
+        \node[left=of cond, xshift=-0.5cm] (neg) {$\Delta < 0$ \\ 0 raízes reais \\ Gráfico flutuante} edge [<-] node[above, font=\footnotesize, draw=none, fill=none] {negativo} (cond);
+        \node[below=of cond] (zero) {$\Delta = 0$ \\ 1 raiz real dupla \\ Toca o eixo $x$} edge [<-] node[right, font=\footnotesize, draw=none, fill=none] {igual a zero} (cond);
+        \node[right=of cond, xshift=0.5cm] (pos) {$\Delta > 0$ \\ 2 raízes reais \\ Cruza o eixo $x$} edge [<-] node[above, font=\footnotesize, draw=none, fill=none] {positivo} (cond);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} O gráfico a seguir representa uma função quadrática cujo discriminante tem um sinal específico.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{Asfalto}{HTML}{2F3640}
+\definecolor{AzulCurva}{HTML}{3498DB}
+
+\begin{axis}[
+    axis lines=middle,
+    axis line style={Asfalto, thick, -{Stealth[scale=1.2]}},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    xmin=-2.5, xmax=2.5,
+    ymin=-1.0, ymax=5.0,
+    xtick={-2,-1,1,2},
+    ytick={1,2,3,4},
+    tick label style={font=\footnotesize, text=Asfalto, fill=white, inner sep=1pt},
+    xlabel={$x$}, ylabel={$y$},
+    xlabel style={anchor=north},
+    ylabel style={anchor=east},
+    width=8cm, height=8cm,
+    samples=100
+]
+\addplot[domain=-1.8:1.8, color=AzulCurva, line width=1.5pt] {x^2 + 1};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O discriminante $\Delta$ desta função é positivo, zero ou negativo? Justifique com base na posição da curva em relação ao eixo horizontal.
+\item Tente calcular as raízes reais dessa função usando a fórmula de Bhaskara e explique o que o resultado algébrico revela sobre o desenho.
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) O discriminante é estritamente negativo ($\Delta < 0$), pois a parábola inteira flutua acima do eixo $x$, não possuindo nenhum ponto de interseção real. \\
+    (b) Tentando resolver $x^2 + 1 = 0 \Rightarrow x^2 = -1 \Rightarrow x = \pm\sqrt{-1}$. Como não existe raiz quadrada real de número negativo no conjunto dos números reais, a álgebra confirma a ausência de cruzamentos gráficos.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Organize o passo a passo definitivo para construir o esboço de qualquer gráfico de função quadrática no papel.
+
+\begin{boxresponda}
+\textbf{Responda:} Monte uma lista estruturada com os quatro passos essenciais que uma pessoa deve seguir para desenhar uma parábola perfeitamente orientada sem chutar pontos aleatórios.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Passo 1: Analisar o sinal do coeficiente $a$ para definir a concavidade (para cima se $a>0$, para baixo se $a<0$). \\
+    Passo 2: Calcular o intercepto vertical $(0, c)$ observando o termo independente. \\
+    Passo 3: Determinar as raízes reais calculando o discriminante $\Delta$ e aplicando Bhaskara. \\
+    Passo 4: Encontrar as coordenadas do vértice $(x_v, y_v)$ para balizar a extremidade da curva e traçar o esboço simétrico.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Um estudante tentou esboçar o gráfico de $f(x) = x^2 - 2x + 5$ e marcou duas raízes reais no eixo horizontal em $x = 1 \pm 2i$.
+
+\begin{boxresponda}
+\textbf{Responda:} Qual foi o erro conceitual grave do estudante ao tentar marcar raízes complexas no plano cartesiano real? Onde a parábola realmente se posiciona no plano?
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O plano cartesiano tradicional comporta apenas números reais. Raízes complexas não possuem representação física como pontos de corte no eixo horizontal real. Calculando o discriminante dessa função: $\Delta = (-2)^2 - 4(1)(5) = 4 - 20 = -16$. Como $\Delta < 0$, a parábola inteira flutua acima do eixo $x$ (com vértice no ponto $(1,4)$), sem tocar o eixo em nenhum momento.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Redija um verbete explicativo de até cinco linhas detalhando o que o discriminante $\Delta$ informa sobre a simetria e a posição da parábola em relação ao eixo horizontal.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O discriminante $\Delta$ mede a variação vertical da parábola em relação ao eixo das abscissas. Se for positivo, garante que a curva atravessa o eixo gerando duas raízes reais simétricas ao eixo de simetria. Se for zero, o vértice repousa exatamente sobre o eixo. Se for negativo, afasta a curva inteira para cima ou para baixo do eixo horizontal.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Determine o valor do parâmetro real $m$ para que a função $f(x) = x^2 - 4x + m$ tenha exatamente uma única raiz real (ou seja, toque o eixo $x$ em um único ponto).
+
+\begin{boxresponda}
+\textbf{Responda:} Qual condição matemática o discriminante deve satisfazer para que haja apenas um ponto de toque? Monte a equação e resolva para $m$.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para que a função tenha exatamente uma raiz real (raiz dupla), o discriminante deve ser igual a zero ($\Delta = 0$). \\
+    Calculando: $\Delta = b^2 - 4ac = (-4)^2 - 4(1)(m) = 16 - 4m$. \\
+    Igualando a zero: $16 - 4m = 0 \Rightarrow 4m = 16 \Rightarrow m = 4$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Analise as alternativas abaixo referentes ao comportamento do gráfico de $f(x) = -x^2 + 6x - 9$:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O gráfico cruza o eixo x em dois pontos distintos, pois o discriminante é positivo.
+\item O gráfico tangencia o eixo x em um único ponto, pois o discriminante vale zero.
+\item O gráfico não toca o eixo x em nenhum momento, pois o discriminante é negativo.
+\item O gráfico cruza o eixo vertical na parte inferior, em $y = -9$.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Aponte a alternativa correta e explique por que cada uma das outras três opções está incorreta.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{b}. Calculando o discriminante: $\Delta = 6^2 - 4(-1)(-9) = 36 - 36 = 0$. Como $\Delta = 0$, a parábola possui uma raiz real dupla e tangencia o eixo horizontal exatamente no vértice $(3,0)$. \\
+    \textbf{Refutação das falsas:} \\
+    (a) Incorreta porque o discriminante não é positivo, é zero. \\
+    (c) Incorreta pois o discriminante não é negativo; a curva toca sim o eixo no ponto de tangência. \\
+    (d) Incorreta na interpretação do corte: o gráfico corta o eixo vertical em $y = -9$ (o que está correto pelo termo independente), mas o enunciado da alternativa tenta descrever o comportamento do eixo $x$, tornando-se um distrator conceitual sobre as raízes.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Assinale a alternativa correta que relaciona o sinal do discriminante $\Delta$ com o esboço gráfico de uma função quadrática:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Se $\Delta > 0$, a parábola intercepta o eixo x em dois pontos distintos.
+\item Se $\Delta = 0$, a parábola cruza o eixo x atravessando-o diagonalmente de um lado ao outro em duas partes.
+\item Se $\Delta < 0$, a parábola obrigatoriamente corta o eixo y na parte negativa.
+\item O discriminante define exclusivamente a altura máxima do vértice, não tendo relação com os eixos.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Identifique a correta e justifique brevemente o erro conceitual das demais.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. Definição clássica e exata da relação entre $\Delta$ positivo e o número de raízes reais. \\
+    \textbf{Refutação das falsas:} \\
+    (b) Quando $\Delta = 0$, a curva apenas toca (tangencia) o eixo, sem cruzá-lo ou atravessá-lo. \\
+    (c) O sinal de $\Delta$ não define o sinal do intercepto vertical $c$, que é independente. \\
+    (d) O discriminante governa as raízes e a posição em relação ao eixo horizontal, enquanto a altura do vértice depende de $y_v = -\frac{\Delta}{4a}$.
+    \end{tcolorbox}
+\fi
+\subsection*{Aplicações e problemas de otimização}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} Analise um problema clássico de otimização de lucro e resolva-o estruturadamente.
+
+Uma pequena fábrica de calçados percebeu que o lucro mensal $L$ (em milhares de reais) depende do preço de venda $p$ de cada par de sapatos, modelado pela função $L(p) = -p^2 + 10p - 9$.
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Quais são os dois preços de venda que levam a fábrica a dar empate (lucro zero)?
+\item Qual deve ser o preço de venda exato para que a fábrica atinja o lucro máximo mensal?
+\item Qual é o valor desse lucro máximo?
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) Para achar o empate, igualamos $L(p) = 0 \Rightarrow -p^2 + 10p - 9 = 0$. Resolvendo por Bhaskara: $\Delta = 100 - 4(-1)(-9) = 100 - 36 = 64$. Raízes: $p = \frac{-10 \pm 8}{-2}$, resultando em $p_1 = 1$ e $p_2 = 9$ (mil reais ou reais, dependendo da unidade do enunciado; aqui os preços de empate são $1$ e $9$). \\
+    (b) O preço para o lucro máximo é dado pela abscissa do vértice: $p_v = -\frac{b}{2a} = -\frac{10}{2(-1)} = 5$. \\
+    (c) O lucro máximo é a ordenada do vértice: $L(5) = -(5)^2 + 10(5) - 9 = -25 + 50 - 9 = 16$ (ou seja, R\$ 16.000,00).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} O gráfico a seguir ilustra a trajetória parabólica de uma bola de futebol chutada para o alto até atingir o solo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{Asfalto}{HTML}{2F3640}
+\definecolor{LaranjaCurva}{HTML}{E67E22}
+
+\begin{axis}[
+    axis lines=middle,
+    axis line style={Asfalto, thick, -{Stealth[scale=1.2]}},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt,draw=gray!40},
+    xmin=-1.0, xmax=7.0,
+    ymin=-1.0, ymax=6.0,
+    xtick={1,2,3,4,5,6},
+    ytick={1,2,3,4,5},
+    tick label style={font=\footnotesize, text=Asfalto, fill=white, inner sep=1pt},
+    xlabel={$x$ (m)}, ylabel={$y$ (m)},
+    xlabel style={anchor=north},
+    ylabel style={anchor=east},
+    width=8cm, height=8cm,
+    samples=100
+]
+\addplot[domain=0:6, color=LaranjaCurva, line width=1.5pt] {-x^2 + 6*x};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+A altura $h$ em metros em função do tempo $t$ em segundos é dada por $h(t) = -t^2 + 6t$.
+\begin{boxresponda}
+\textbf{Responda:} 
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item Em que instante $t$ a bola atinge a sua altura máxima, e qual é essa altura?
+\item Em qual instante a bola retorna ao solo ($h = 0$)?
+\end{enumerate}
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    (a) O tempo da altura máxima corresponde ao vértice da parábola: $t_v = -\frac{6}{2(-1)} = 3$ segundos. A altura máxima é $h(3) = -(3)^2 + 6(3) = -9 + 18 = 9$ metros. \\
+    (b) O retorno ao solo ocorre quando $h(t) = 0 \Rightarrow -t^2 + 6t = 0 \Rightarrow t(-t + 6) = 0$. Como $t=0$ é o chute inicial, o retorno ao solo acontece em $t = 6$ segundos.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Monte a função quadrática que descreve a área máxima de um cercado retangular aproveitando um muro linear já existente.
+
+Você tem $40\text{ metros}$ de tela metálica para fechar três lados de um galinheiro retangular, usando um muro reto como o quarto lado.
+\begin{boxresponda}
+\textbf{Responda:} Escreva a função que representa a área em função da largura $x$ perpendicular ao muro, determine as dimensões que maximizam essa área e calcule o valor da área máxima.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Sejam as duas larguras perpendiculares ao muro iguais a $x$. O comprimento paralelo ao muro será o restante da tela: $40 - 2x$. \\
+    A função área é $A(x) = x(40 - 2x) = -2x^2 + 40x$. \\
+    Para achar a largura que maximiza a área, calculamos o vértice: $x_v = -\frac{40}{2(-2)} = \frac{-40}{-4} = 10\text{ m}$. \\
+    O comprimento será $40 - 2(10) = 20\text{ m}$. \\
+    A área máxima é $A(10) = 10 \times 20 = 200\text{ m}^2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} Diagnostique o erro de raciocínio de um aluno ao resolver um problema de otimização de custos.
+
+Um aluno leu que o custo de produção de $q$ unidades era $C(q) = q^2 - 20q + 150$ e escreveu: \textit{``Para gastar o mínimo possível, preciso calcular o lucro máximo achando o vértice com sinal trocado.''}
+\begin{boxresponda}
+\textbf{Responda:} Aponte por que a frase do aluno mistura conceitos econômicos distintos e calcule corretamente a quantidade $q$ que minimiza esse custo e o valor do custo mínimo.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O aluno confunde custo com lucro e assume incorretamente que o vértice muda de sentido sem justificativa matemática. Como o coeficiente quadrático da função de custo é positivo ($a = 1 > 0$), a parábola tem concavidade para cima, o que significa que o vértice representa naturalmente o valor \textbf{mínimo} da função de custo. \\
+    Cálculo da quantidade ideal: $q_v = -\frac{-20}{2(1)} = 10$ unidades. \\
+    Custo mínimo: $C(10) = (10)^2 - 20(10) + 150 = 100 - 200 + 150 = 50$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Redija um guia prático de até cinco linhas explicando como transformar um problema prático de palavras em uma função quadrática pronta para otimização.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Primeiro, defina claramente a variável incógnita (como $x$) que representa a quantidade a ser otimizada. Segundo, escreva a expressão algébrica da grandeza desejada (como área ou lucro) relacionando-a com as restrições dadas pelo texto. Terceiro, desenvolva a multiplicação para obter o formato polinomial $ax^2 + bx + c$. Por fim, aplique as fórmulas do vértice para encontrar o ponto ótimo solicitado.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} Uma empresa de transporte observa que o custo operacional diário $C$ (em dezenas de reais) para operar uma frota de ônibus está associado ao número de veículos $n$ em circulação por meio da lei $C(n) = 2n^2 - 28n + 120$.
+
+\begin{boxresponda}
+\textbf{Responda:} Quantos ônibus a empresa deve colocar em circulação diária para minimizar o seu custo operacional, e qual será o valor desse custo mínimo?
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Como $a = 2 > 0$, o vértice da função de custo representa o ponto mínimo. \\
+    Quantidade de ônibus: $n_v = -\frac{-28}{2(2)} = \frac{28}{4} = 7$ veículos. \\
+    Custo mínimo diário: $C(7) = 2(7)^2 - 28(7) + 120 = 2(49) - 196 + 120 = 98 - 196 + 120 = 22$ (ou seja, R\$ 220,00).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} Analise as alternativas abaixo sobre o problema de maximização da área de um cercado com perímetro fixo:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item A área máxima de um retângulo de perímetro fixo é sempre obtida quando ele se transforma em um quadrado.
+\item O formato que maximiza a área com cercado completo é um retângulo com lados totalmente desiguais e compridos.
+\item A função que modela a área é do 1º grau, crescendo de forma linear sem limites.
+\item O vértice da função área representa o ponto de prejuízo mínimo.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Indique a alternativa correta e refute o erro conceitual das demais.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. Geometricamente e algebricamente, para um perímetro fixo, a área máxima de um retângulo ocorre quando a base e a altura se igualam, formando um quadrado. \\
+    \textbf{Refutação das falsas:} \\
+    (b) Lados muito desiguais geram áreas muito pequenas (próximas de zero). \\
+    (c) A área é uma função quadrática (2º grau), regida por uma parábola, e não linear. \\
+    (d) O vértice na otimização de cercados representa a área máxima, não tendo relação com prejuízo.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} Assinale a alternativa correta que descreve o significado prático do vértice em problemas de aplicação da função quadrática:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item O vértice indica sempre o valor máximo ou o valor mínimo de uma grandeza modelada (como lucro máximo ou custo mínimo).
+\item O vértice indica unicamente o ponto onde a função corta o eixo vertical y.
+\item O vértice representa sempre o momento em que a função cruza o eixo horizontal resultando em zero.
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Aponte a correta e justifique brevemente o motivo pelo qual as outras duas estão erradas.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Alternativa correta: \textbf{a}. O vértice é o ponto de inflexão extrema da parábola, traduzindo-se na prática como o ápice de otimização (máximo ou mínimo). \\
+    \textbf{Refutação das falsas:} \\
+    (b) O corte no eixo vertical é dado exclusivamente pelo coeficiente $c$. \\
+    (c) Cruzar o eixo horizontal dando zero é a definição exata das raízes da função, não do vértice.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}

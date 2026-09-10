@@ -1,0 +1,499 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{asfalto}{HTML}{2F3640}
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+\definecolor{CorVerdeFundo}{HTML}{F2F9F4}
+\definecolor{CorVerdeBorda}{HTML}{27AE60}
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} Geometria Plana III: Polígonos e Inscrição}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+\newtcolorbox{boxpedagogica}{
+    colback=CorVerdeFundo, 
+    colframe=CorVerdeBorda, 
+    boxrule=0.8pt, 
+    arc=4pt, 
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    fontupper=\small
+}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Geometria Plana III}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} Matemática \hfill \textbf{NÍVEL:} 3º Ano / Ensino Médio}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Semana 11: Polígonos Regulares e Inscrição/Circunscrição}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+
+\subsubsection*{1.} Em um projeto de design industrial avançado, uma peça metálica possui o formato de uma chapa circular onde se deseja recortar simultaneamente o maior quadrado possível e o maior hexágono regular possível, ambos centrados no mesmo ponto e com vértices posicionados sobre a mesma circunferência de raio $R = \mathbf{10\sqrt{2}\text{ cm}}$. Com base nas relações métricas dos polígonos regulares, determine a razão exata entre o apótema do quadrado inscrito e o apótema do hexágono regular inscrito nessa mesma circunferência.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O apótema do quadrado inscrito é dado por $a_4 = \mfrac{R\sqrt{2}}{2}$. Substituindo $R = 10\sqrt{2}$:
+    \[ a_4 = \mfrac{10\sqrt{2} \cdot \sqrt{2}}{2} = \mfrac{20}{2} = 10 \text{ cm} \]
+    O apótema do hexágono regular inscrito é dado por $a_6 = \mfrac{R\sqrt{3}}{2}$. Substituindo $R$:
+    \[ a_6 = \mfrac{10\sqrt{2} \cdot \sqrt{3}}{2} = 5\sqrt{6} \text{ cm} \]
+    A razão solicitada é:
+    \[ \text{Razão} = \mfrac{a_4}{a_6} = \mfrac{10}{5\sqrt{6}} = \mfrac{2}{\sqrt{6}} = \mfrac{2\sqrt{6}}{6} = \mfrac{\sqrt{6}}{3} \]
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{O que é o Apótema?} É o segmento perpendicular traçado do centro da circunferência até o ponto médio de qualquer lado do polígono. Ele sempre forma um \textbf{triângulo retângulo fundamental} com a metade do lado e o raio ($R^2 = a^2 + (l/2)^2$). Mostre ao aluno que cada polígono regular possui fórmulas de apótema deduzidas por trigonometria básica ou Teorema de Pitágoras aplicadas nesse triângulo interno.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{2.} (Estilo FUVEST) Um triângulo equilátero está perfeitamente inscrito em uma circunferência de raio $R$. Sabe-se que a distância ortogonal do centro da circunferência a qualquer um dos lados do triângulo (seu apótema) mede $\mathbf{6\text{ cm}}$. Com base nessa propriedade métrica estrutural, determine o perímetro desse triângulo equilátero e a área exata da região interna à circunferência que se encontra situada do lado de fora do polígono.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    No triângulo equilátero inscrito, o apótema $a_3$ corresponde à metade do raio ($a_3 = \mfrac{R}{2}$). Como $a_3 = 6$, temos:
+    \[ 6 = \mfrac{R}{2} \implies R = 12 \text{ cm} \]
+    O lado do triângulo equilátero inscrito é $l_3 = R\sqrt{3} = 12\sqrt{3}$ cm. O perímetro é:
+    \[ P = 3 \cdot 12\sqrt{3} = 36\sqrt{3} \text{ cm} \]
+    A área da região externa ao triângulo e interna ao círculo é a diferença entre a área do círculo e a área do triângulo:
+    \[ A_{circ} = \pi R^2 = \pi (12)^2 = 144\pi \text{ cm}^2 \]
+    \[ A_{tri} = \mfrac{l_3^2\sqrt{3}}{4} = \mfrac{(12\sqrt{3})^2\sqrt{3}}{4} = \mfrac{432\sqrt{3}}{4} = 108\sqrt{3} \text{ cm}^2 \]
+    \[ A_{ext} = 144\pi - 108\sqrt{3} \text{ cm}^2 \]
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Por que o apótema do triângulo equilátero é a metade do raio ($a_3 = R/2$)?} 
+    Se ligarmos o centro da circunferência aos vértices do triângulo equilátero, dividimos o círculo em 3 ângulos centrais de $360^\circ/3 = 120^\circ$. Ao traçar o apótema, ele divide esse ângulo ao meio ($60^\circ$) e corta o lado do triângulo ao meio. No triângulo retângulo formado, o cateto adjacente ao ângulo de $60^\circ$ é o apótema ($a_3$), e a hipotenusa é o raio ($R$). Logo, pela trigonometria: $\cos(60^\circ) = \mfrac{a_3}{R} \implies \mfrac{1}{2} = \mfrac{a_3}{R} \implies a_3 = \mfrac{R}{2}$.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{3.} Um estudante de engenharia calculou a área total de um hexágono regular de lado $l = \mathbf{8\text{ cm}}$ da seguinte forma: \textit{"Como o hexágono regular é decomposto em $6$ triângulos equiláteros idênticos de lado $8$, a área de cada triângulo é $\mfrac{8^2\sqrt{3}}{4} = 16\sqrt{3}$. Para achar o apótema do hexágono, basta usar a altura do triângulo equilátero considerando-a igual ao lado, logo o apótema vale $8$."}
+
+\begin{boxresponda}
+\textbf{Responda:} Identifique o erro conceitual grave cometido pelo estudante na determinação do apótema do hexágono regular. Em seguida, apresente o cálculo correto do apótema e determine a área exata da superfície do hexágono.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Diagnóstico:} O estudante confundiu a altura do triângulo equilátero (que forma o apótema do hexágono) com o próprio lado do polígono. O apótema divide o lado ao meio e altura do triângulo equilátero é $\mfrac{l\sqrt{3}}{2}$, nunca igual ao lado.
+    \\[0.1cm]
+    \textbf{Correção:} $a_6 = \mfrac{8\sqrt{3}}{2} = 4\sqrt{3}$ cm. A área correta do hexágono é $A_6 = 6 \cdot 16\sqrt{3} = 96\sqrt{3}$ cm².
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{A anatomia do Hexágono Regular:} No hexágono regular inscrito, o raio é numericamente igual ao lado ($R = l$). O apótema ($a_6$) é exatamente a altura de um dos 6 triângulos equiláteros internos. Como a altura de qualquer triângulo equilátero de lado $l$ é $\mfrac{l\sqrt{3}}{2}$, o apótema do hexágono herda essa mesma expressão. Jamais confunda o apótema (altura interna) com o lado do polígono!
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{4.} (FUVEST -- Adaptada) Considere um círculo de raio $R$ perfeitamente circunscrito a um quadrado, e esse mesmo quadrado perfeitamente circunscrito a uma nova circunferência menor (inscrita em seu interior). A razão exata entre a área do círculo maior e a área do círculo menor é igual a:
+
+\begin{enumerate}[label=\alph*)]
+    \item $2$
+    \item $\sqrt{2}$
+    \item $4$
+    \item $2\sqrt{2}$
+    \item $8$
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O círculo maior tem raio $R_1 = R$. Como o quadrado está inscrito nele, sua diagonal é $D = 2R$, logo o lado do quadrado é $l = \mfrac{2R}{\sqrt{2}} = R\sqrt{2}$. 
+    \\[0.1cm]
+    Esse quadrado está circunscrito ao círculo menor, o que significa que o diâmetro do círculo menor é igual ao lado do quadrado ($2r = l = R\sqrt{2} \implies r = \mfrac{R\sqrt{2}}{2}$).
+    \\[0.1cm]
+    A razão entre as áreas é:
+    \[ \text{Razão} = \mfrac{A_{maior}}{A_{menor}} = \mfrac{\pi R^2}{\pi r^2} = \mfrac{R^2}{\left(\mfrac{R\sqrt{2}}{2}\right)^2} = \mfrac{R^2}{\mfrac{2R^2}{4}} = \mfrac{R^2}{\mfrac{R^2}{2}} = 2 \]
+    Gabarito: \textbf{(a)}.
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{A ponte entre figuras (Inscrição e Circunscrição simultâneas):} Mostre ao aluno que o quadrado funciona como um elo. O círculo de fora determina a diagonal do quadrado. Já o quadrado, por sua vez, determina o diâmetro do círculo de dentro. Escrever as fórmulas passo a passo conectando a diagonal do quadrado ao raio externo, e o lado do quadrado ao diâmetro interno, evita qualquer confusão mental.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{5.} (Estilo ENEM) Em uma praça pública urbana com formato de hexágono regular, um escritório de arquitetura planejou canteiros ornamentais delimitados por cabos de aço esticados a partir do centro geométrico até as arestas estruturais, conforme o projeto esquematizado abaixo.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{asfalto}{HTML}{2F3640}
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{trilha}{HTML}{BDC3C7}
+
+% LAYER 1: Fundo sombreado circular da praça
+\fill[drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, trilha] (0,0) circle (2.8cm);
+
+% LAYER 2: Hexágono regular dividido em 6 triângulos (Canteiros)
+\fill[grama] (0:2.5) -- (60:2.5) -- (0,0) -- cycle;
+\fill[grama!90!black] (60:2.5) -- (120:2.5) -- (0,0) -- cycle;
+\fill[grama] (120:2.5) -- (180:2.5) -- (0,0) -- cycle;
+\fill[grama!90!black] (180:2.5) -- (240:2.5) -- (0,0) -- cycle;
+\fill[grama] (240:2.5) -- (300:2.5) -- (0,0) -- cycle;
+\fill[grama!90!black] (300:2.5) -- (360:2.5) -- (0,0) -- cycle;
+
+% Contornos do hexágono
+\draw[thick, asfalto] (0:2.5) -- (60:2.5) -- (120:2.5) -- (180:2.5) -- (240:2.5) -- (300:2.5) -- cycle;
+\draw[dashed, thick, asfalto] (0,0) -- (0:2.5);
+\draw[dashed, thick, asfalto] (0,0) -- (60:2.5);
+
+% Apótema indicador
+\draw[red, thick] (30:2.165) -- (0,0);
+\node[fill=white, inner sep=1pt] at (30:1.1) {\small\textbf{a}};
+
+% Vértices e centro
+\fill[asfalto] (0,0) circle (2pt);
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que a distância ortogonal do centro da praça até o ponto central de cada um dos lados é de $\mathbf{5\sqrt{3}\text{ m}}$, determine a área total da praça destinada aos canteiros e o comprimento total de cabos utilizados para contornar o perímetro externo da praça.
+
+\begin{enumerate}[label=\alph*)]
+    \item $150\sqrt{3}\text{ m}^2$ e $60\text{ m}$
+    \item $300\sqrt{3}\text{ m}^2$ e $60\text{ m}$
+    \item $150\sqrt{3}\text{ m}^2$ e $30\text{ m}$
+    \item $300\sqrt{3}\text{ m}^2$ e $120\text{ m}$
+    \item $75\sqrt{3}\text{ m}^2$ e $60\text{ m}$
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    No hexágono regular, o apótema é $a_6 = \mfrac{l\sqrt{3}}{2} = 5\sqrt{3} \implies l = 10$ m. 
+    \\[0.1cm]
+    O perímetro externo é $P = 6 \cdot 10 = 60$ m. O raio do hexágono regular inscrito é igual ao lado ($R = l = 10$ m).
+    \\[0.1cm]
+    A área total da praça é $A = 6 \cdot \mfrac{l^2\sqrt{3}}{4} = 6 \cdot \mfrac{100\sqrt{3}}{4} = 150\sqrt{3}$ m².
+    \\[0.1cm]
+    Gabarito: \textbf{(a)}.
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Linguagem contextual do ENEM:} O termo "distância ortogonal do centro até o ponto central do lado" é apenas um sinônimo formal para \textbf{apótema}. O ENEM adora utilizar descrições físicas e técnicas para testar se o aluno reconhece o conceito geométrico por trás do texto. Reforce essa leitura interpretativa.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{6.} (FUVEST -- Adaptada) Deseja-se construir uma pista de testes circular onde três pontos específicos de monitoramento $A$, $B$ e $C$ formam um triângulo equilátero de lado $\mathbf{12\text{ m}}$ inscrito exatamente na pista. Determine o raio da pista circular e a distância mínima em linha reta entre o ponto $A$ e o ponto médio do arco $BC$.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Como o triângulo é equilátero inscrito, seu lado é dado por $l_3 = R\sqrt{3}$. 
+    \[ 12 = R\sqrt{3} \implies R = \mfrac{12}{\sqrt{3}} = 4\sqrt{3} \text{ m} \]
+    A distância entre o vértice $A$ e o ponto médio do arco oposto $BC$ corresponde ao diâmetro mais o apótema, ou seja, raio mais a flecha do arco ($R + \mfrac{R}{2} = \mfrac{3R}{2}$).
+    \[ \text{Distância} = \mfrac{3(4\sqrt{3})}{2} = 6\sqrt{3} \text{ m} \]
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Geometria da Circunferência e Simetria:} O ponto médio de um arco subtendido por um lado de um polígono regular inscrito em uma circunferência sempre se alinha com o vértice oposto passando pelo centro da circunferência. Essa soma de segmentos (o raio que vai do centro ao topo + o raio que vai do centro à base + o apótema) forma o alinhamento linear perfeito exigido em questões da FUVEST.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{7.} Julgue as afirmativas a seguir relativas às propriedades geométricas de polígonos regulares inscritos em uma mesma circunferência fixa de raio $R$:
+
+\begin{enumerate}[label=\Roman*.]
+    \item O lado do quadrado inscrito é sempre maior que o lado do hexágono regular inscrito na mesma circunferência.
+    \item O apótema do triângulo equilátero inscrito é igual à metade do raio da circunferência circunscrita.
+    \item O perímetro de qualquer polígono regular inscrito é estritamente menor que o comprimento da circunferência que o circunscreve.
+\end{enumerate}
+
+Assinale a alternativa correta quanto à veracidade das afirmativas.
+
+\begin{enumerate}[label=\alph*)]
+    \item Apenas I e II são verdadeiras.
+    \item Apenas II e III são verdadeiras.
+    \item Apenas I e III são verdadeiras.
+    \item Todas são verdadeiras.
+    \item Todas são falsas.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Verdadeira:} $l_4 = R\sqrt{2} \approx 1,41R$ e $l_6 = R$. Logo, $l_4 > l_6$.
+    \\[0.1cm]
+    \textbf{II. Verdadeira:} O apótema do triângulo equilátero é $a_3 = \mfrac{R}{2}$.
+    \\[0.1cm]
+    \textbf{III. Verdadeira:} O perímetro do polígono inscrito representa uma aproximação poligonal por falta do comprimento da circunferência ($2\pi R$).
+    \\[0.1cm]
+    Gabarito: \textbf{(d)}.
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Compreensão conceitual (V ou F):} Questões teóricas exigem domínio rápido dos valores comparativos ($l_3 = R\sqrt{3}$, $l_4 = R\sqrt{2}$, $l_6 = R$). Se o aluno lembrar que o hexágono tem cordas iguais ao raio, fica fácil perceber que um polígono com menos lados (como o quadrado ou o triângulo) precisa se estender mais para fechar a volta, tendo assim lados maiores.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{8.} (Estilo FUVEST) A figura a seguir representa um sistema estrutural em corte transversal, onde um quadrado e um hexágono regular compartilham o mesmo centro geométrico e encontram-se perfeitamente inscritos em circunferências concêntricas cujos raios guardam proporção métrica direta.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{concreto}{HTML}{95A5A6}
+
+% --- APLICANDO CAMADAS E SOMBRAS ---
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, concreto, rounded corners=3pt] (-3,-3) rectangle (3,3);
+
+% Círculo externo (Quadrado) e Círculo interno (Hexágono)
+\draw[thick, metal, fill=white] (0,0) circle (2.6cm);
+\draw[thick, metal, fill=vidro!20] (0,0) circle (1.3cm);
+
+% Quadrado inscrito externo rotacionado/alinhado
+\draw[thick, asfalto] (-1.838,-1.838) rectangle (1.838,1.838);
+
+% Hexágono inscrito interno
+\draw[thick, asfalto] (1.3,0) -- (0.65,1.125) -- (-0.65,1.125) -- (-1.3,0) -- (-0.65,-1.125) -- (0.65,-1.125) -- cycle;
+
+\fill[asfalto] (0,0) circle (2pt);
+\node[fill=white, inner sep=1.5pt] at (0,0.3) {\small\textbf{Centro}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que a diferença entre as áreas das regiões delimitadas pelas circunferências circunscritas ao quadrado e ao hexágono é de $\mathbf{20\pi\text{ cm}^2}$ e que o raio da circunferência do quadrado é o dobro do raio do hexágono ($R_4 = 2R_6$), determine a área exata do hexágono regular.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Sejam $R_4$ e $R_6$ os raios. Do enunciado, $R_4 = 2R_6$. A diferença entre as áreas das circunferências é:
+    \[ \pi R_4^2 - \pi R_6^2 = 20\pi \implies (2R_6)^2 - R_6^2 = 20 \implies 4R_6^2 - R_6^2 = 20 \]
+    \[ 3R_6^2 = 20 \implies R_6^2 = \mfrac{20}{3} \]
+    No hexágono regular inscrito, o lado é igual ao raio ($l_6 = R_6$). A área do hexágono é:
+    \[ A_6 = 6 \cdot \mfrac{l_6^2\sqrt{3}}{4} = \mfrac{3\sqrt{3}}{2} R_6^2 = \mfrac{3\sqrt{3}}{2} \cdot \mfrac{20}{3} = 10\sqrt{3} \text{ cm}^2 \]
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Manipulação algébrica de áreas e proporções:} Quando o problema traz uma relação de raios ($R_4 = 2R_6$) e pede diferença de áreas, o aluno deve lembrar que o raio está ao quadrado na fórmula da área ($A = \pi R^2$). Logo, se o raio dobra, a área quadruplica ($R_4^2 = 4R_6^2$). Essa substituição direta transforma uma equação com duas variáveis em uma equação simples de uma incógnita só.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{9.} (UNICAMP -- Adaptada) Em um teste de laboratório mecânico, uma placa metálica homogênea possui o formato de um polígono regular de $n$ lados cujo apótema mede $\mathbf{10\sqrt{3}\text{ cm}}$ e o raio da circunferência circunscrita mede $\mathbf{20\text{ cm}}$. Determine o número de lados $n$ desse polígono regular e o seu perímetro total.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Utilizando a relação métrica fundamental no triângulo retângulo formado pelo apótema $a$, a metade do lado $\mfrac{l}{2}$ e o raio $R$:
+    \[ a^2 + \left(\mfrac{l}{2}\right)^2 = R^2 \implies (10\sqrt{3})^2 + \left(\mfrac{l}{2}\right)^2 = (20)^2 \]
+    \[ 300 + \mfrac{l^2}{4} = 400 \implies \mfrac{l^2}{4} = 100 \implies l^2 = 400 \implies l = 20 \text{ cm} \]
+    Como o lado é igual ao raio ($l = R = 20$ cm), trata-se de um \textbf{hexágono regular} ($n = 6$). 
+    \[ \text{Perímetro} = 6 \cdot 20 = 120 \text{ cm} \]
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Identificação do polígono pelo lado:} A relação de Pitágoras no triângulo retângulo fundamental ($a^2 + (l/2)^2 = R^2$) permite descobrir o lado $l$ de qualquer polígono regular sem precisar decorar todas as fórmulas de apótema de cor. Uma vez descoberto o lado, basta compará-lo com o raio $R$: se $l = R$, é hexágono; se $l = R\sqrt{2}$, é quadrado; se $l = R\sqrt{3}$, é triângulo equilátero.
+    \end{boxpedagogica}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+
+\subsubsection*{10.} (ENEM -- Adaptada) Uma empresa de embalagens deseja criar uma caixa prismática cuja base seja um polígono regular inscrito em uma tampa circular de diâmetro $\mathbf{40\text{ cm}}$. Entre um triângulo equilátero, um quadrado e um hexágono regular, qual deles aproveitará melhor a área da tampa circular (deixando a menor sobra de material) e qual é o valor aproximado dessa área aproveitada? (Use $\sqrt{3} \approx 1,7$).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O raio da tampa circular é $R = 20$ cm. Calculamos as áreas dos polígonos inscritos:
+    \\[0.1cm]
+    1. Triângulo Equilátero ($l_3 = 20\sqrt{3}$): 
+    \[ A_3 = \mfrac{(20\sqrt{3})^2\sqrt{3}}{4} = 300\sqrt{3} \approx 300 \cdot 1,7 = 510 \text{ cm}^2 \]
+    2. Quadrado ($l_4 = 20\sqrt{2}$): 
+    \[ A_4 = (20\sqrt{2})^2 = 800 \text{ cm}^2 \]
+    3. Hexágono Regular ($l_6 = 20$): 
+    \[ A_6 = 6 \cdot \mfrac{20^2\sqrt{3}}{4} = 6 \cdot 100\sqrt{3} \approx 600 \cdot 1,7 = 1020 \text{ cm}^2 \]
+    \textbf{Conclusão:} O hexágono regular é o que melhor aproveita a área da base ($1020$ cm²), cobrindo a maior superfície do círculo.
+    \end{tcolorbox}
+    
+    \begin{boxpedagogica}
+    \textbf{\textcolor{CorVerdeBorda}{Nota Pedagógica -- O que explicar ao aluno:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Aproximação geométrica do círculo:} Mostre ao aluno uma intuição geométrica poderosa: quanto maior o número de lados ($n$) de um polígono regular inscrito, mais ele se aproxima da área do círculo que o circunscreve. Como o hexágono tem mais lados que o quadrado e o triângulo, ele preenche de forma mais eficiente a área circular, deixando menos vazios nas bordas.
+    \end{boxpedagogica}
+\fi
+
+\end{multicols*}
+\end{document}
