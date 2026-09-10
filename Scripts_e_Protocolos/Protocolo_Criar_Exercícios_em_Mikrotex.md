@@ -205,6 +205,10 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
   * **VARIÁVEIS SIMPLES E UNIDADES (Anti-Markdown):** Letras isoladas que representam pontos, retas ou variáveis simples DEVEM usar o comando `\textbf{}` (Ex: A reta \textbf{s}, o ponto \textbf{P}, o valor \textbf{x}). É **ESTRITAMENTE PROIBIDO** usar asteriscos (`**texto**`) ou acionar o renderizador de fórmulas LaTeX (`$$`) para unidades de medida acompanhadas de números simples. Escreva os valores em negrito: \textbf{30 m/s}, \textbf{10 m/s²}, \textbf{150 m}.
   * **FRAÇÕES INLINE:** Para frações no meio do texto, use SEMPRE cifrão simples para não quebrar a linha (Ex: `$ \frac{3}{8} $`). É PROIBIDO usar barras oblíquas (Ex: 3/8).
   * **LÁTEX DISPLAY (`$$...$$`):** Use duplo cifrão APENAS para equações complexas e isoladas.
+  :
+
+  * **Proibição de Formatação Aninhada em Frações:** É ESTRITAMENTE PROIBIDO envolver comandos de frações (como \mfrac) em comandos de formatação de texto ou negrito (como \textbf{...} ou \mathbf{...}). Deixe a macro de fração sempre pura dentro do ambiente matemático (ex: $ \mfrac{num}{den} $ ou em bloco), aplicando estilos de texto apenas fora dela.
+
 3.7. **(TRAVA DE QUEBRA) Itens de Julgamento:** É ESTRITAMENTE PROIBIDO agrupar itens de análise no mesmo parágrafo. Você DEVE usar obrigatoriamente os ambientes automáticos (`\begin{enumerate}` e `\item`) para cada sentença/alternativa. Não force quebras manuais com `\\` em nenhuma hipótese.
 
 **Seção 4: Regras Universais de Renderização TikZ (Anti-Falhas e Alta Performance)**
@@ -233,11 +237,6 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 **SE A ESCOLHA FOR (A) MATERIAL AUTORAL, INICIE O LOTE 1 COM ESTE CÓDIGO EXATO:**
 
 ```latex
-% =================================================================
-% TRAVA DE SEGURANÇA PARA O VS CODE (ARQUIVO BASE)
-% =================================================================
-\ifdefined\ifgabarito\else\newif\ifgabarito\gabaritofalse\fi
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
@@ -362,11 +361,6 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 **SE A ESCOLHA FOR (B) MATERIAL DA ESCOLA, INICIE O LOTE 1 COM ESTE CÓDIGO EXATO:**
 
 ```latex
-% =================================================================
-% TRAVA DE SEGURANÇA PARA O VS CODE (ARQUIVO BASE)
-% =================================================================
-\ifdefined\ifgabarito\else\newif\ifgabarito\gabaritofalse\fi
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
