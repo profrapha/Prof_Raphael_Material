@@ -1,0 +1,1729 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} NÚMEROS RACIONAIS E OPERAÇÕES}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Números Racionais e Operações}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{LIVRO DO PROFESSOR}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA \hfill \textbf{NÍVEL:} 6º ANO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+\subsection*{Capítulo 1: Representação Decimal}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} A leitura de instrumentos de precisão, como escalas em maquinários industriais, exige a correta interpretação das subdivisões decimais. O esquema ilustra a ampliação do mostrador de uma máquina de corte a laser, onde o marcador \textbf{P} indica a espessura exata da chapa de aço a ser utilizada.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{azulprincipal}{HTML}{2980B9}
+\definecolor{fundocaixa}{HTML}{ECF0F1}
+\definecolor{sombracaixa}{HTML}{BDC3C7}
+\definecolor{destaque}{HTML}{E74C3C}
+
+% LAYER 1: Sombra e Fundo expandidos (Margens Seguras)
+\fill[sombracaixa, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -0.5) rectangle (11, 2.5);
+\fill[fundocaixa, rounded corners=4pt] (-1, -0.5) rectangle (11, 2.5);
+
+% LAYER 2: Eixo Numérico
+\draw[thick, -latex, azulprincipal] (0.5, 1) -- (9.5, 1);
+
+% Marcas principais e secundárias
+\foreach \x in {1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9} {
+    \draw[thick, azulprincipal] (\x, 0.8) -- (\x, 1.2);
+}
+
+% Rótulos com fill=fundocaixa e inner sep para não cruzar linhas
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (1, 0.7) {1,20};
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (5, 0.7) {1,24};
+\node[below, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (9, 0.7) {1,28};
+
+% Marcador P
+\fill[destaque] (7.5, 1) circle (0.15);
+\node[above, text=destaque, fill=fundocaixa, inner sep=2pt, font=\bfseries] at (7.5, 1.4) {P};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o valor decimal exato correspondente ao ponto \textbf{P} e, em seguida, converta esse valor para a forma de fração irredutível. Justifique seu raciocínio demonstrando a escala adotada no eixo.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A escala numérica entre \textbf{1,20} e \textbf{1,24} está dividida em exatas 4 partes (intervalos). Logo, cada subdivisão corresponde a $0,04 \div 4 = \textbf{0,01}$. O marcador \textbf{P} encontra-se exatamente no ponto médio entre os marcadores de \textbf{1,26} e \textbf{1,27}. Portanto, \textbf{P = 1,265}. 
+    
+    Convertendo para fração decimal: $1,265 = \mfrac{1265}{1000}$. Simplificando o numerador e o denominador por 5, obtemos a fração irredutível $\mfrac{253}{200}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} A transformação entre frações e números decimais obedece a regras de equivalência de base. Analise as afirmativas a seguir sobre a equivalência e a leitura geométrica dessas representações.
+
+Escreva V para verdadeiro ou F para falso em cada item e justifique matematicamente as afirmativas que julgar falsas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O número decimal correspondente à fração $ \mfrac{15}{4} $ é exatamente \textbf{3,75}, que representa a soma de três inteiros com três quartos.
+    \item A leitura correta do número \textbf{0,045} é "quarenta e cinco centésimos".
+    \item Transformando o número \textbf{2,8} em fração irredutível, obtemos $ \mfrac{14}{5} $.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Verdadeira.} Realizando a divisão $15 \div 4 = 3,75$. Isso corresponde a $3 + \mfrac{3}{4}$.
+    
+    \textbf{II. Falsa.} O número \textbf{0,045} possui três casas decimais (décimo, centésimo, milésimo). A leitura correta é "quarenta e cinco \textbf{milésimos}".
+    
+    \textbf{III. Verdadeira.} $2,8 = \mfrac{28}{10}$. Simplificando o numerador e o denominador por 2, obtemos a fração irredutível $\mfrac{14}{5}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} Na final olímpica dos 100 metros rasos masculinos, a precisão eletrônica é fundamental para definir as medalhas. O placar oficial registrou os seguintes tempos (em segundos) para os quatro primeiros colocados: Atleta A (\textbf{9,805}), Atleta B (\textbf{9,85}), Atleta C (\textbf{9,089}) e Atleta D (\textbf{9,8}).
+
+Organize os atletas do primeiro ao quarto lugar e calcule a diferença de tempo, em milésimos de segundo, entre o vencedor da prova e o medalhista de bronze.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para comparar com precisão, devemos igualar as casas decimais de todos os tempos: A (\textbf{9,805}); B (\textbf{9,850}); C (\textbf{9,089}); D (\textbf{9,800}).
+    
+    Ordenando do menor tempo (mais rápido) para o maior:
+    
+    1º lugar: C (9,089 s)
+    
+    2º lugar: D (9,800 s)
+    
+    3º lugar: A (9,805 s)
+    
+    4º lugar: B (9,850 s)
+    
+    A diferença entre o 1º colocado (C) e o medalhista de bronze (A) é de: $9,805 - 9,089 = \textbf{0,716 s}$. Isso equivale a \textbf{716 milésimos de segundo}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} No projeto de um motor de combustão, as peças importadas geralmente possuem medidas em polegadas fracionárias, enquanto o sistema nacional exige a conversão para o sistema decimal. Um engenheiro precisa ajustar uma porca com especificação de $ \mfrac{7}{16} $ de polegada e uma arruela de $ \mfrac{3}{8} $ de polegada.
+
+Determine o valor decimal exato correspondente a cada uma das peças. Qual delas possui o maior diâmetro interno? Demonstre o cálculo da divisão.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Efetuando as divisões para encontrar a equivalência decimal:
+    
+    Porca: $7 \div 16 = \textbf{0,4375}$ polegadas.
+    
+    Arruela: $3 \div 8 = \textbf{0,375}$ polegadas (ou 0,3750).
+    
+    Comparando os valores obtidos ($0,4375 > 0,3750$), concluímos que a \textbf{porca} possui o maior diâmetro interno.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} Laboratórios químicos utilizam beckers de precisão para preparar soluções. A graduação lateral do recipiente cilíndrico ilustra o volume ocupado por um reagente azul. A marcação superior máxima corresponde exatamente a \textbf{1 L} (um litro).
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{vidro}{HTML}{7F8C8D}
+\definecolor{liquido}{HTML}{3498DB}
+\definecolor{marcadores}{HTML}{2C3E50}
+
+% LAYER 1: Fundo expandido e Sombra (Margens Seguras para não cortar os textos)
+\fill[black!10, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-0.5, -0.5) rectangle (6.5, 7.0);
+\fill[white, rounded corners=4pt] (-0.5, -0.5) rectangle (6.5, 7.0);
+
+% LAYER 2: Líquido
+\fill[liquido, opacity=0.85, rounded corners=2pt] (1.1, 0.1) rectangle (3.9, 4.3);
+
+% LAYER 3: Vidro e Borda
+\draw[ultra thick, vidro, rounded corners=4pt] (1, 6) -- (1, 0) -- (4, 0) -- (4, 6);
+\draw[thick, vidro] (1, 6) ellipse (1.5 and 0.3);
+
+% LAYER 4: Marcadores de Escala (10 divisões totais)
+\foreach \y in {0.6, 1.2, 1.8, 2.4, 3.0, 3.6, 4.2, 4.8, 5.4, 6.0} {
+    \draw[thick, marcadores] (4, \y) -- (3.6, \y);
+}
+% Textos com máscara fill=white para leitura limpa
+\node[right, fill=white, inner sep=2pt, font=\bfseries] at (4.2, 6.0) {1 L};
+\node[right, fill=white, inner sep=2pt, font=\bfseries] at (4.2, 3.0) {0,5 L};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na distribuição proporcional da escala visual, identifique o volume decimal de reagente contido no recipiente e converta esse valor para uma fração irredutível.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A marcação de $1 \text{ L}$ está fracionada geometricamente em 10 intervalos idênticos. Logo, cada risco da escala equivale a $1 \div 10 = \textbf{0,1 L}$.
+    
+    A linha do reagente azul atinge exatamente o sétimo traço (contando de baixo para cima). Portanto, o volume contido é de \textbf{0,7 L}. 
+    
+    Convertendo para fração irredutível: $0,7 = \mfrac{7}{10}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\subsection*{Capítulo 2: Transformações e Comparações}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{6.} A reta numérica é o modelo geométrico perfeito para compreender as desigualdades no conjunto dos Números Racionais. Julgue as afirmativas a seguir em relação à ordenação estrutural desses números, assinalando V para verdadeiro ou F para falso.
+
+Apresente a correção matemática para as sentenças falsas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Na reta numérica, o número \textbf{-2,54} está posicionado à direita do número \textbf{-2,5}, portanto, é maior.
+    \item O número decimal \textbf{0,35} está exatamente no ponto médio entre os números \textbf{0,3} e \textbf{0,4}.
+    \item Não existe nenhum número decimal exato (com duas casas decimais) compreendido entre \textbf{3,14} e \textbf{3,15}.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Falsa.} Tratando-se de números negativos, quanto maior o valor absoluto, mais distante do zero e mais à \textbf{esquerda} ele fica. Portanto, o \textbf{-2,54} está posicionado à esquerda do \textbf{-2,50} e é matematicamente \textbf{menor}.
+    
+    \textbf{II. Verdadeira.} Igualando as casas ($0,30$ e $0,40$), é fácil ver que $0,35$ é o ponto médio exato.
+    
+    \textbf{III. Verdadeira.} Para expressar valores entre $3,14$ e $3,15$ necessitamos da terceira ordem decimal (milésimos), como $3,141$ ou $3,145$. Nenhum número com exatas duas casas decimais existe neste intervalo.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} O Índice de Massa Corporal (IMC) é uma relação que pode gerar números decimais não exatos. Suponha que, para determinar um "Fator de Risco" cardíaco, um hospital faça a divisão da massa do paciente (em kg) pela sua idade (em anos). O paciente Marcos tem \textbf{87 kg} e \textbf{40} anos de idade.
+
+Calcule o valor decimal exato do "Fator de Risco" de Marcos. Em seguida, represente como você explicaria a posição desse número na reta numérica, dizendo entre quais inteiros ele se encontra e de qual deles está mais próximo.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Realizando a divisão para encontrar o Fator de Risco: $87 \div 40 = \textbf{2,175}$.
+    
+    Na reta numérica, o número \textbf{2,175} encontra-se compreendido entre os números inteiros \textbf{2} e \textbf{3}. 
+    
+    Como a parte decimal ($0,175$) é menor que $0,500$ (que seria a metade exata do percurso), este valor encontra-se geometricamente muito mais próximo do inteiro \textbf{2}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8. (Estilo VUNESP)} - Em um projeto arquitetônico corporativo, um grande salão retangular será dividido paralelamente em duas salas de reuniões menores. A planta baixa abaixo contém a distribuição estrutural da obra. A equipe de engenharia precisa conhecer a cota transversal da Sala B para instalar o forro acústico.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{parede}{HTML}{2C3E50}
+\definecolor{pisoA}{HTML}{D5DBDB}
+\definecolor{pisoB}{HTML}{EAEDED}
+
+% Sombra e Fundo projetados e BEM expandidos (Evita cortes nas cotas)
+\fill[black!20, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=4pt, shadow yshift=-4pt}] (-1.5, -2.0) rectangle (10.5, 6.5);
+\fill[white, rounded corners=4pt] (-1.5, -2.0) rectangle (10.5, 6.5);
+
+% Pisos
+\fill[pisoA] (0, 0) rectangle (5, 5);
+\fill[pisoB] (5, 0) rectangle (8, 5);
+
+% Paredes
+\draw[line width=5pt, parede] (0,0) rectangle (8,5);
+\draw[line width=5pt, parede] (5,0) -- (5,5);
+
+% Cotas com textos interrompendo a linha (fill=white)
+\draw[|<->|, thick] (0, -1.0) -- (5, -1.0) node[midway, fill=white, inner sep=3pt] {\textbf{5,45 m}};
+\draw[|<->|, thick] (5, -1.0) -- (8, -1.0) node[midway, fill=white, inner sep=3pt] {\textbf{x m}};
+\draw[|<->|, thick] (9.0, 0) -- (9.0, 5) node[midway, fill=white, inner sep=3pt] {\textbf{4,80 m}};
+
+% Textos internos protegidos com fill na cor do piso
+\node[font=\bfseries, fill=pisoA, inner sep=2pt] at (2.5, 2.5) {SALA A};
+\node[font=\bfseries, fill=pisoB, inner sep=2pt] at (6.5, 2.5) {SALA B};
+\node[font=\bfseries, text=parede, fill=pisoA, inner sep=2pt] at (2.5, 4.3) {Área Total = 41,76 m$^2$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o valor da medida \textbf{x}, correspondente à largura da Sala B. Expresse a resposta final na forma de um número misto (parte inteira e fração irredutível).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Sabemos que a $\text{Área do Retângulo} = \text{Base} \times \text{Altura}$. 
+    
+    No gráfico, a $\text{Área Total} = 41,76 \text{ m}^2$ e a $\text{Altura} = 4,80 \text{ m}$.
+    
+    A Base Total da planta será: $\text{Base} = 41,76 \div 4,80 = \textbf{8,70 m}$.
+    
+    Como a Base Total é a soma das larguras das salas (Sala A + Sala B):
+    
+    $5,45 + x = 8,70 \Rightarrow x = 8,70 - 5,45 \Rightarrow \textbf{x = 3,25 m}$.
+    
+    Transformando $3,25$ em número misto: $3,25 = 3 + 0,25 = 3 + \mfrac{25}{100}$. Simplificando a fração por 25, temos a forma final: $3\mfrac{1}{4}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9. (ENEM - Adaptada)} - Em uma prova de automobilismo, os tempos de volta dos pilotos são registrados com precisão de milésimos de segundo para evitar empates técnicos. Durante a volta classificatória, o sistema de telemetria registrou os seguintes dados das parciais de um setor da pista para quatro carros:
+
+Carro W: \textbf{22,093} s
+
+Carro X: \textbf{22,30} s
+
+Carro Y: \textbf{22,039} s
+
+Carro Z: \textbf{22,1} s
+
+O diretor de prova solicitou que o engenheiro organizasse o grid de largada desse setor em ordem crescente de tempos (do mais rápido para o mais lento). Qual deve ser a sequência correta repassada aos pilotos?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Y, W, Z, X
+    \item Y, Z, W, X
+    \item Z, W, Y, X
+    \item W, Y, Z, X
+    \item X, Z, W, Y
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: a)}\\
+    O erro comum é focar apenas nos últimos dígitos. Para não errar, igualamos as casas decimais de todos os tempos: W (\textbf{22,093}), X (\textbf{22,300}), Y (\textbf{22,039}) e Z (\textbf{22,100}).
+    
+    Analisando a parte decimal: $039 < 093 < 100 < 300$.
+    
+    A ordem correta do menor para o maior é: \textbf{Y, W, Z, X}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10. (Estilo FUVEST)} - No estudo analítico dos conjuntos numéricos, a relação de ordem inverte-se em determinados intervalos. Considere as variáveis algébricas $ a = 0,16 $ e $ b = 0,2 $.
+
+Um estudante constrói as razões $ K_1 = \mfrac{a}{b} $ e $ K_2 = \mfrac{b}{a} $. Realize os cálculos necessários e responda: qual das duas grandezas ($ K_1 $ ou $ K_2 $) assumirá a posição mais à direita em uma reta numérica padrão? Justifique, apresentando a transformação dos valores decimais para suas respectivas frações irredutíveis.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A posição "mais à direita" indica qual número é o maior. Vamos calcular as razões:
+    
+    $K_1 = \mfrac{0,16}{0,20} = \mfrac{16}{20} = \textbf{0,8}$. Na forma fracionária: $\mfrac{8}{10} = \mfrac{4}{5}$.
+    
+    $K_2 = \mfrac{0,20}{0,16} = \mfrac{20}{16} = \textbf{1,25}$. Na forma fracionária: $\mfrac{125}{100} = \mfrac{5}{4}$.
+    
+    Como \textbf{1,25} é matematicamente maior que \textbf{0,8}, a razão \textbf{$K_2$} assume a posição mais à direita na reta.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\subsection*{Capítulo 3: Operações com Decimais}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} Uma transação bancária internacional envolve tarifas e conversões precisas. Um cliente possui um saldo de \textbf{R\$ 450,75} em sua conta corrente. Em um único dia, ele realizou as seguintes operações:
+\begin{enumerate}[label=\arabic*., itemsep=\espacoAlt]
+    \item Pagou uma fatura de cartão de crédito no valor de \textbf{R\$ 189,90}.
+    \item Recebeu uma transferência (PIX) no valor de \textbf{R\$ 34,50}.
+    \item Teve debitada uma tarifa de manutenção de conta de \textbf{R\$ 12,85}.
+\end{enumerate}
+
+Modele matematicamente a expressão numérica que representa o fluxo de caixa do cliente e calcule o saldo final exato disponível ao final do dia.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A expressão numérica do saldo (onde pagamentos e tarifas são negativos, e recebimentos são positivos) é:
+    
+    $450,75 - 189,90 + 34,50 - 12,85$
+    
+    Resolvendo passo a passo:
+    
+    $450,75 - 189,90 = 260,85$
+    
+    $260,85 + 34,50 = 295,35$
+    
+    $295,35 - 12,85 = \textbf{282,50}$
+    
+    O saldo final exato na conta do cliente é de \textbf{R\$ 282,50}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} Na auditoria das notas fiscais de um restaurante, o gerente encontrou um cupom fiscal danificado, onde a impressora falhou e ocultou dois valores importantes (identificados pelas letras \textbf{Y} e \textbf{Z}).
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES HEX ---
+\definecolor{papel}{HTML}{F9E79F} 
+\definecolor{texto}{HTML}{34495E}
+\definecolor{faixa}{HTML}{F5B041}
+
+% LAYER 1: Sombra Expandida e Corpo do Cupom
+\fill[black!20, rounded corners=4pt, drop shadow={opacity=0.3, shadow xshift=4pt, shadow yshift=-4pt}] (-0.5, -0.5) rectangle (7.5, 6.0);
+\fill[papel, rounded corners=4pt] (-0.5, -0.5) rectangle (7.5, 6.0);
+\fill[faixa, rounded corners=4pt] (-0.5, 4.8) rectangle (7.5, 6.0);
+
+% LAYER 2: Textos protegidos com máscara de cor de fundo
+\node[texto, font=\bfseries, fill=faixa, inner sep=2pt] at (3.5, 5.4) {CUPOM FISCAL ELETRÔNICO};
+
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 4.2) {01. Carne Bovina (2,5 kg) ........ R\$ 92,25};
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 3.4) {02. Azeite de Oliva (1 L) ........... R\$ 45,90};
+\node[texto, right, fill=papel, inner sep=2pt] at (0.2, 2.6) {03. Arroz Branco (5 kg) ............ R\$ \textbf{Y}};
+
+\draw[dashed, thick, texto] (0.2, 2.0) -- (6.8, 2.0);
+
+\node[texto, right, font=\bfseries, fill=papel, inner sep=2pt] at (0.2, 1.2) {SUBTOTAL .............................. R\$ 168,00};
+\node[texto, right, font=\bfseries, fill=papel, inner sep=2pt] at (0.2, 0.4) {TROCO (Pgto R\$ 200) ............ R\$ \textbf{Z}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+O auditor financeiro precisa reconstruir o documento para o balanço mensal. Analisando as relações matemáticas de soma e subtração implícitas no documento, os valores exatos de \textbf{Y} (preço do arroz) e \textbf{Z} (valor do troco entregue ao cliente) são, respectivamente:
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Y = 29,85 e Z = 32,00
+    \item Y = 30,85 e Z = 32,00
+    \item Y = 29,85 e Z = 42,00
+    \item Y = 31,15 e Z = 31,00
+    \item Y = 29,85 e Z = 31,00
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: a)}\\
+    O Subtotal é a soma dos três produtos. Logo:
+    
+    $92,25 + 45,90 + Y = 168,00$
+    
+    $138,15 + Y = 168,00 \Rightarrow Y = 168,00 - 138,15 = \textbf{29,85}$. (Valor do Arroz)
+    
+    O Troco é o valor pago subtraído do Subtotal:
+    
+    $Z = 200,00 - 168,00 = \textbf{32,00}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} Na representação de números de grande magnitude ou alta precisão com potências de base dez, a conversão decimal exige deslocamentos rigorosos da vírgula. Um laboratório de física nuclear calculou que uma partícula subatômica possui uma massa equivalente a $ 1000 \times 0,45 $ miligramas.
+
+Determine o valor decimal exato dessa massa em miligramas e explique a regra prática de deslocamento da vírgula quando multiplicamos um número decimal por potências de dez.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Efetuando a multiplicação: $1000 \times 0,45 = \textbf{450}$ miligramas.
+    
+    Regra prática: Quando multiplicamos um número decimal por uma potência de dez ($10, 100, 1000$), deslocamos a vírgula para a \textbf{direita} tantas casas quanto forem os zeros da potência. No caso de 1000 (três zeros), deslocamos a vírgula três casas: $0,45 \rightarrow 4,5 \rightarrow 45 \rightarrow \textbf{450}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} Durante uma aula de laboratório de matemática, o aluno Carlos afirmou categoricamente: \textit{"Dividir um número qualquer por um decimal menor que 1 (por exemplo, 0,5) faz com que o resultado final seja sempre menor do que o número original, afinal, divisão sempre diminui as quantidades."}
+\begin{boxresponda}
+\textbf{Responda:} Carlos cometeu um grave erro conceitual sobre a divisão de racionais. Utilizando o número \textbf{4,8} dividido por \textbf{0,5}, prove que a afirmação de Carlos é falsa e explique a lógica geométrica e algébrica por trás da divisão por um número decimal menor que a unidade.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A afirmação de Carlos é falsa. Dividir por um número menor que 1 (como 0,5) significa indagar "quantas metades cabem no número", o que resulta em um valor \textbf{maior}.
+    
+    Calculando: $4,8 \div 0,5 = \mfrac{4,8}{0,5} = \mfrac{48}{5} = \textbf{9,6}$.
+    
+    O resultado ($9,6$) é o dobro do número original ($4,8$). Dividir por $0,5$ equivale algebricamente a multiplicar por $2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} Em uma marcenaria industrial, uma prancha de madeira maciça com comprimento total de \textbf{2,55 metros} precisa ser fatiada em pedaços idênticos, cada um medindo exatamente \textbf{0,85 metros} para a montagem de prateleiras suspensas.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.2) rectangle (9, 2.5);
+\fill[fundo, rounded corners=4pt] (-1, -1.2) rectangle (9, 2.5);
+
+% Prancha de Madeira
+\fill[madeira, rounded corners=2pt] (0.5, 0.5) rectangle (8.5, 1.5);
+\draw[thick, black!80, rounded corners=2pt] (0.5, 0.5) rectangle (8.5, 1.5);
+
+% Linhas de corte pontilhadas
+\draw[dashed, thick, white] (3.16, 0.5) -- (3.16, 1.5);
+\draw[dashed, thick, white] (5.83, 0.5) -- (5.83, 1.5);
+
+% Cotas
+\draw[|<->|, thick] (0.5, -0.4) -- (8.5, -0.4) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {Comprimento Total = 2,55 m};
+\draw[|<->|, thick] (0.5, 2.0) -- (3.16, 2.0) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {0,85 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Realize a divisão decimal e determine quantas prateleiras completas de 0,85 m o marceneiro conseguirá cortar a partir da prancha inteira, sem sobras perdidas.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Dividindo o comprimento total pela medida de cada peça:
+    $2,55 \div 0,85$
+    
+    Igualando as casas decimais (ambas têm duas casas): $255 \div 85 = \textbf{3}$.
+    
+    O marceneiro conseguirá cortar exatamente \textbf{3 prateleiras} idênticas, sem nenhuma sobra.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} Na instalação de painéis acústicos em um estúdio de gravação, o técnico precisa fixar tiras de isolamento verticalmente. O pé-direito (altura total livre até o teto) do estúdio mede \textbf{2,10 metros}. O esquema técnico detalha a montagem com perfis de alumínio.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{perfil}{HTML}{7F8C8D}
+\definecolor{parede}{HTML}{34495E}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -0.5) rectangle (7, 6.5);
+\fill[fundo, rounded corners=4pt] (-1, -0.5) rectangle (6, 6.5);
+
+% Parede de fundo
+\draw[ultra thick, parede] (1, 0) -- (1, 5.5) -- (4, 5.5) -- (4, 0);
+
+% Perfil de alumínio (subdividido)
+\fill[perfil] (2, 0) rectangle (3, 5.25);
+\draw[thick, black] (2, 0) rectangle (3, 5.25);
+
+% Divisões internas do perfil
+\draw[thick, white] (2, 0.375) -- (3, 0.375);
+\draw[thick, white] (2, 1.975) -- (3, 1.975);
+\draw[thick, white] (2, 3.350) -- (3, 3.350);
+
+% Cotas verticais à esquerda
+\draw[|<->|, thick] (0.3, 0) -- (0.3, 0.375) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {0,15};
+\draw[|<->|, thick] (0.3, 0.375) -- (0.3, 1.975) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {0,65};
+\draw[|<->|, thick] (0.3, 1.975) -- (0.3, 3.350) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {0,55};
+\draw[|<->|, thick] (0.3, 3.350) -- (0.3, 5.250) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {x};
+
+% Cota total à direita
+\draw[|<->|, thick] (4.7, 0) -- (4.7, 5.25) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {2,10 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na soma das partes parciais indicadas na estrutura vertical, calcule o valor da medida desconhecida \textbf{x} em metros.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A altura total é a soma das partes parceladas:
+    $0,15 + 0,65 + 0,55 + x = 2,10$
+    
+    Somando as parcelas conhecidas:
+    $0,15 + 0,65 = 0,80$
+    $0,80 + 0,55 = 1,35$
+    
+    Substituindo na equação:
+    $1,35 + x = 2,10 \Rightarrow x = 2,10 - 1,35 = \textbf{0,75 m}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17. (ENEM - Adaptada)} - No cálculo de tarifas bancárias e impostos de circulação, a omissão de taxas fixas gera erros comuns. Um cliente realizou um TED (Transferência Eletrônica Disponível) onde foi cobrada uma tarifa básica de serviço de \textbf{R\$ 8,50} somada a um imposto (IOF) de \textbf{0,0041} por real transferido.
+
+Se o cliente transferiu a quantia exata de \textbf{R\$ 5.000,00}, qual foi o valor total descontado da conta corrente (Tarifa + IOF)?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item R\$ 12,50
+    \item R\$ 20,50
+    \item R\$ 29,00
+    \item R\$ 33,50
+    \item R\$ 41,00
+\end{enumerate}
+\begin{boxresponda}
+\textbf{Responda:} Assinale a alternativa correta apresentando o cálculo detalhado de cada componente da cobrança e explique por que a alternativa \textbf{a)} é o principal distrator da questão.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: c)}\\
+    1) Cálculo do IOF proporcional ao valor transferido:
+    $5000 \times 0,0041 = \text{R\$} 20,50$.
+    
+    2) Soma com a tarifa fixa de serviço:
+    $\text{Tarifa Total} = 8,50 + 20,50 = \textbf{R\$ 29,00}$.
+    
+    Refutação do distrator \textbf{a):} O valor de R\$ 12,50 corresponde apenas a uma conta mal feita de subtração ou de esquecer de multiplicar o IOF pela base correta, enquanto o distrator \textbf{b) (R\$ 20,50)} pega o aluno que calculou apenas o IOF e esqueceu de somar a tarifa fixa de R\$ 8,50.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} Em um projeto de cartografia digital, uma estrada linear em linha reta foi representada em escala de alta resolução. Cada centímetro impresso no mapa equivale a exatos \textbf{12,4 quilômetros} reais no terreno. A distância medida com régua de precisão entre duas cidades no mapa foi de \textbf{45,5 centímetros}.
+
+Calcule a distância real total, em quilômetros, entre essas duas cidades.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Multiplicando a medida do mapa pelo fator de escala:
+    $45,5 \times 12,4$
+    
+    Cálculo passo a passo:
+    $45,5 \times 12 = 546,0$
+    $45,5 \times 0,4 = 18,2$
+    $546,0 + 18,2 = \textbf{564,20 km}$.
+    
+    A distância real entre as cidades é de \textbf{564,2 km}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} O controle de qualidade de chapas metálicas automotivas exige a medição de espessura em quatro pontos distintos da peça. O gráfico de colunas exibe as quatro leituras (em milímetros) registradas pelo paquímetro digital do operador.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{barra}{HTML}{2980B9}
+\definecolor{fundo}{HTML}{FFFFFF}
+\definecolor{corlinhaixo}{HTML}{34495E}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.5) rectangle (7.5, 5.5);
+\fill[fundo, rounded corners=4pt] (-1, -1.5) rectangle (7.5, 5.5);
+
+\begin{axis}[
+    width=7cm, height=5.2cm,
+    axis lines=left,
+    axis line style={ultra thick, color=corlinhaixo},
+    ymin=0, ymax=15,
+    xmin=0, xmax=5,
+    xtick={1,2,3,4},
+    xticklabels={Pto 1, Pto 2, Pto 3, Pto 4},
+    ytick={0, 3, 6, 9, 12, 15},
+    ymajorgrids=true,
+    grid style={dashed, gray!40},
+    bar width=18pt,
+    enlarge x limits=0.25,
+    nodes near coords,
+    every node near coord/.append style={fill=white, inner sep=1pt, font=\bfseries},
+    ylabel={Espessura (mm)},
+    ylabel style={font=\bfseries, fill=white, inner sep=2pt},
+    tick label style={font=\bfseries}
+]
+
+\addplot[ybar, fill=barra!80!white, draw=barra, ultra thick, rounded corners=2pt] coordinates {
+    (1, 12.4)
+    (2, 8.5)
+    (3, 10.25)
+    (4, 5.8)
+};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nas leituras extraídas do gráfico, determine a espessura média aritmética dessas quatro medições efetuadas na chapa metálica.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Extraindo os valores do gráfico: $12,4$; $8,5$; $10,25$ e $5,8$.
+    
+    Calculando a soma total das quatro leituras:
+    $12,40 + 8,50 + 10,25 + 5,80 = \textbf{36,95 mm}$.
+    
+    Calculando a média aritmética (dividindo por 4):
+    $36,95 \div 4 = \textbf{9,2375 mm}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} Uma rede de supermercados adquiriu um lote fechado contendo \textbf{4 caixas} de óleo de soja por um custo total absoluto de \textbf{R\$ 36,80}. Cada caixa fechada continha exatamente \textbf{5 litros} do produto.
+
+O gerente precisa calcular o preço de custo unitário de cada litro de óleo comercializado. Faça o cálculo demonstrando duas vias diferentes de raciocínio (dividindo o total pelo volume geral ou encontrando o preço por caixa primeiro).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Caminho 1 (Volume Total Geral):}
+    Volume total = $4 \text{ caixas} \times 5 \text{ litros} = 20 \text{ litros}$.
+    Preço por litro = $\text{R\$} 36,80 \div 20 = \textbf{R\$ 1,84}$.
+    
+    \textbf{Caminho 2 (Preço por Caixa Primeiro):}
+    Preço por caixa = $\text{R\$} 36,80 \div 4 = \text{R\$} 9,20$.
+    Preço por litro (dividindo por 5 litros da caixa) = $9,20 \div 5 = \textbf{R\$ 1,84}$.
+    Ambos os métodos confirmam o custo unitário exato.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} A conversão universal entre frações centesimais, porcentagens e números decimais é fundamental para a interpretação de dados estatísticos. O painel visual abaixo representa uma malha quadriculada com \textbf{100 quadradinhos} idênticos ao todo, onde uma parte foi preenchida com resina escura.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{preenchido}{HTML}{E74C3C}
+\definecolor{vazio}{HTML}{ECF0F1}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-0.5, -0.5) rectangle (5.5, 5.5);
+\fill[fundo, rounded corners=4pt] (-0.5, -0.5) rectangle (5.5, 5.5);
+
+% Grade ilustrativa 10x10 compacta
+\foreach \i in {0,1,2,3,4} {
+    \foreach \j in {0,1,2,3,4,5,6,7,8,9} {
+        \fill[preenchido] (\j*0.4, \i*0.4) rectangle (\j*0.4+0.35, \i*0.4+0.35);
+    }
+}
+% Linha superior parcial (7 quadradinhos preenchidos)
+\foreach \j in {0,1,2,3,4,5,6} {
+    \fill[preenchido] (\j*0.4, 5*0.4) rectangle (\j*0.4+0.35, 5*0.4+0.35);
+}
+% Restante vazio
+\foreach \j in {7,8,9} {
+    \fill[vazio] (\j*0.4, 5*0.4) rectangle (\j*0.4+0.35, 5*0.4+0.35);
+}
+\node[anchor=south, font=\bfseries] at (2, 2.5) {Malha de Análise (37/100)};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na proporção visual sombreada em relação ao todo de 100 unidades, expresse essa proporção sob três formas distintas: na forma de fração irredutível (ou centesimal), na forma percentual (\%) e na forma de número decimal.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Analisando a malha, temos 37 quadradinhos preenchidos em um total de 100.
+    
+    1) Forma fracionária: $\mfrac{37}{100}$ (já irredutível).
+    
+    2) Forma percentual: $37\%$.
+    
+    3) Forma decimal: $0,37$.
+    \end{tcolorbox}
+\fi
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Analise as proposições matemáticas a seguir relativas à conversão e equivalência de frações e decimais. Escreva V para verdadeiro ou F para falso em cada uma das afirmações.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A fração ordinária $\mfrac{3}{8}$ possui uma expansão decimal finita e exata igual a \textbf{0,375}.
+    \item O número racional escrito na forma decimal \textbf{0,6} é equivalente à fração irredutível $\mfrac{3}{5}$.
+    \item Multiplicar um número decimal por \textbf{0,1} é equivalente geométrico e algébrico a dividi-lo por \textbf{10}.
+\end{enumerate}
+Justifique matematicamente a afirmativa que você considerar falsa (se houver) ou prove a validade das sentenças.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Verdadeira.} Efetuando $3 \div 8 = 0,375$.
+    
+    \textbf{II. Verdadeira.} $0,6 = \mfrac{6}{10}$. Simplificando numerador e denominador por 2, obtemos $\mfrac{3}{5}$.
+    
+    \textbf{III. Verdadeira.} Multiplicar por $0,1$ ($\mfrac{1}{10}$) é exatamente o mesmo que dividir por 10. Todas as três afirmativas são verdadeiras.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} Em uma loja de departamentos, uma jaqueta de inverno sofreu duas alterações sucessivas em sua etiqueta de preço durante uma liquidação de mudança de estação: primeiro, um desconto de \textbf{20\%} e, logo em seguida, devido a uma queima de estoque relâmpago, um novo desconto adicional de \textbf{10\%} sobre o valor já promocional.
+
+O gerente afirmou que o desconto total acumulado foi de \textbf{30\%}. Prove matematicamente se a afirmação do gerente está correta ou incorreta, aplicando os valores a um preço fictício inicial de \textbf{R\$ 100,00}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A afirmação do gerente está incorreta. Descontos sucessivos não se somam de forma linear.
+    
+    Simulando com R\$ 100,00:
+    1) 1st Desconto de 20%: R\$ 100,00 cai para $\text{R\$} 80,00$.
+    2) 2nd Desconto de 10% (incide sobre os novos R\$ 80,00): $10\%$ de $80 = \text{R\$} 8,00$.
+    Preço final da jaqueta: $80 - 8 = \textbf{R\$ 72,00}$.
+    
+    Como o preço caiu de R\$ 100 para R\$ 72, o desconto real acumulado foi de \textbf{28\%} (e não 30\%).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} O painel de status de um smartphone de última geração indica que a capacidade máxima total da bateria é de \textbf{4500 mAh} (Miliampères-hora). O indicador gráfico exibe que restam exatamente \textbf{68\%} de carga armazenada para uso do usuário.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{bateriacor}{HTML}{27AE60}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.2) rectangle (8, 2.5);
+\fill[fundo, rounded corners=4pt] (-1, -1.2) rectangle (8, 2.5);
+
+% Corpo da Bateria
+\draw[ultra thick, black] (0.5, 0) rectangle (6.5, 1.5);
+\fill[black] (6.5, 0.4) rectangle (6.8, 1.1); % Pólo positivo
+
+% Carga Preenchida (68% de largura 6 = 4.08)
+\fill[bateriacor, rounded corners=1pt] (0.6, 0.1) rectangle (4.68, 1.4);
+
+% Texto central
+\node[font=\bfseries, text=white] at (2.64, 0.75) {68\% Restante};
+\node[font=\bfseries, text=black] at (3.5, 2.0) {Capacidade Total: 4500 mAh};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nestes dados, calcule o valor absoluto (em mAh) da carga elétrica que \textbf{já foi consumida} pelo aparelho desde a última carga completa.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Se restam 68% de carga, a porcentagem de bateria \textbf{já consumida} é a diferença para 100%:
+    $100\% - 68\% = \textbf{32\%}$.
+    
+    Calculando 32% da capacidade total de 4500 mAh:
+    $0,32 \times 4500 = \textbf{1440 mAh}$.
+    
+    Já foram consumidos 1440 mAh de energia.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25. (Estilo ENEM)} - Uma papelaria lançou uma campanha promocional em formato de combo para cadernos universitários: \textit{"Leve 5 cadernos idênticos e pague apenas o preço equivalente a 4 unidades"}. 
+
+Um estudante desatento afirmou que essa promoção equivale a um desconto de \textbf{25\%} no valor de cada caderno. Refute a afirmação do estudante demonstrando matematicamente qual é a taxa percentual exata de desconto real oferecida por essa promoção por unidade.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A afirmação do estudante está incorreta. O estudante calculou $1 \div 4 = 25\%$, usando uma base errada.
+    
+    Analisando a promoção: O cliente leva 5 cadernos, mas paga 4. 
+    Isso significa que o desconto gratuito corresponde a 1 caderno "grátis" em um total de 5 cadernos levados.
+    
+    Calculando a taxa real de desconto (Desconto sobre a Base Total):
+    $\mfrac{1}{5} = 0,20 = \textbf{20\%}$.
+    O desconto real oferecido pelo combo é de 20%, e não 25%.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} Em uma pesquisa de opinião realizada com \textbf{400 estudantes} do ensino fundamental sobre a preferência por disciplinas exatas, \textbf{65\%} afirmaram preferir a Matemática. 
+
+Determine o número absoluto exato de alunos que preferem Matemática e expresse esse total na forma de fração irredutível em relação ao total de entrevistados.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Calculando 65% de 400 alunos:
+    $0,65 \times 400 = \textbf{260 alunos}$.
+    
+    Convertendo para fração irredutível em relação ao total de 400:
+    $\mfrac{260}{400}$. 
+    
+    Simplificando dividindo numerador e denominador por 20, temos a fração irredutível: $\mathbf{\mfrac{13}{20}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27. (Estilo UNICAMP)} - No estudo algébrico dos números racionais, a conversão de frações geratrizes em dízimas periódicas exige o domínio da divisão infinita. Considere a dízima periódica simples $ x = 0,444... $ e a dízima periódica composta $ y = 0,1333... $.
+
+Determine as frações irredutíveis exatas geradoras correspondentes a \textbf{x} e \textbf{y}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1) Para a dízima simples $x = 0,444...$:}
+    Utilizando o método algébrico:
+    $x = 0,444...$ (Eq. 1)
+    $10x = 4,444...$ (Eq. 2)
+    Subtraindo a Eq. 1 da Eq. 2: $9x = 4 \Rightarrow \mathbf{x = \mfrac{4}{9}}$.
+    
+    \textbf{2) Para a dízima composta $y = 0,1333...$:}
+    $y = 0,1333...$
+    $10y = 1,333...$
+    $100y = 13,333...$
+    Subtraindo as equações ($100y - 10y$):
+    $90y = 13 - 1 = 12 \Rightarrow y = \mfrac{12}{90}$.
+    Simplificando numerador e denominador por 6, obtemos a fração irredutível: $\mathbf{y = \mfrac{2}{15}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} Na manutenção preventiva de um sistema hidráulico residencial, um cano de cobre com comprimento total de \textbf{5,6 metros} precisa ser cortado em três pedaços proporcionais para substituição de conexões danificadas. O esquema técnico detalha as medidas parciais.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+\definecolor{tubo}{HTML}{D35400}
+\definecolor{fundo}{HTML}{FFFFFF}
+
+% Sombra e Fundo
+\fill[black!15, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (-1, -1.2) rectangle (9, 2.5);
+\fill[fundo, rounded corners=4pt] (-1, -1.2) rectangle (9, 2.5);
+
+% Cano de Cobre
+\fill[tubo, rounded corners=2pt] (0.5, 0.5) rectangle (8.5, 1.5);
+\draw[thick, black!80, rounded corners=2pt] (0.5, 0.5) rectangle (8.5, 1.5);
+
+% Divisões internas
+\draw[dashed, thick, white] (3.0, 0.5) -- (3.0, 1.5);
+\draw[dashed, thick, white] (6.0, 0.5) -- (6.0, 1.5);
+
+% Cotas
+\draw[|<->|, thick] (0.5, -0.4) -- (3.0, -0.4) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {1,45 m};
+\draw[|<->|, thick] (3.0, -0.4) -- (6.0, -0.4) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {2,10 m};
+\draw[|<->|, thick] (6.0, -0.4) -- (8.5, -0.4) node[midway, fill=fundo, inner sep=1pt, font=\bfseries] {x};
+\draw[|<->|, thick] (0.5, 2.0) -- (8.5, 2.0) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {Comprimento Total = 5,60 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o valor exato da medida desconhecida \textbf{x} do terceiro pedaço de cano.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A soma das partes deve igualar o comprimento total do cano:
+    $1,45 + 2,10 + x = 5,60$
+    
+    Somando os trechos conhecidos:
+    $1,45 + 2,10 = 3,55$
+    
+    Isolando o $x$:
+    $x = 5,60 - 3,55 = \mathbf{2,05\text{ m}}$.
+    
+    O terceiro pedaço de cano mede exatamente \textbf{2,05 metros}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} Um motorista de aplicativo abasteceu o tanque de seu veículo com \textbf{42,5 litros} de gasolina aditivada. O preço cobrado por litro no posto de combustíveis era de \textbf{R\$ 5,80}. No caixa, o motorista utilizou um cupom de desconto promocional de \textbf{R\$ 15,00} no valor total da compra.
+
+Calcule o valor final efetivamente pago pelo motorista após a aplicação do desconto.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando o valor bruto sem o desconto:
+    $42,5 \times 5,80 = \text{R\$ } 246,50$.
+    
+    2) Subtraindo o valor do cupom promocional:
+    $246,50 - 15,00 = \mathbf{\text{R\$ } 231,50}$.
+    
+    O motorista pagou efetivamente \textbf{R\$ 231,50}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30. (ENEM - Adaptada)} - Uma caixa d'água cilíndrica residencial possui capacidade máxima total de armazenamento de \textbf{1.500 litros}. Devido a um período de estiagem, o registro de controle indica que o reservatório se encontra preenchido com apenas \textbf{42\%} da sua capacidade total.
+
+Para retornar ao nível de segurança recomendado pela concessionária (que corresponde a \textbf{80\%} da capacidade total), quantos litros de água ainda precisam ser bombeados para dentro do reservatório?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item 420 litros
+    \item 570 litros
+    \item 630 litros
+    \item 720 litros
+    \item 850 litros
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: c)}\\
+    A diferença percentual necessária para atingir a meta de segurança é:
+    $80\% - 42\% = \textbf{38\%}$.
+    
+    Calculando 38% da capacidade total de 1.500 litros:
+    $0,38 \times 1500 = \mathbf{570\text{ litros}}$.
+    
+    Portanto, ainda precisam ser bombeados 570 litros.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{31.} Em um laboratório de biomecânica, o desempenho de atletas de alto rendimento é avaliado através de testes de salto vertical. O sensor digital registrou as seguintes marcas (em metros) para quatro atletas finalistas: Atleta A (\textbf{1,25}), Atleta B (\textbf{1,185}), Atleta C (\textbf{1,3} m) e Atleta D (\textbf{1,248}).
+
+Organize os atletas do primeiro ao quarto lugar (do maior salto para o menor) e calcule a diferença exata, em centímetros, entre o primeiro e o último colocado dessa fase.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para comparar com precisão, igualamos as casas decimais das marcas de salto: A (\textbf{1,250}), B (\textbf{1,185}), C (\textbf{1,300}) e D (\textbf{1,248}).
+    
+    Ordenando do maior para o menor salto (1º ao 4º lugar):
+    1º lugar: C ($1,300\text{ m}$)
+    2º lugar: A ($1,250\text{ m}$)
+    3º lugar: D ($1,248\text{ m}$)
+    4º lugar: B ($1,185\text{ m}$)
+    
+    A diferença entre o 1º colocado (C) e o último (B) é:
+    $1,300 - 1,185 = \mathbf{0,115\text{ metros}}$.
+    
+    Convertendo para centímetros (multiplicando por 100): $0,115 \times 100 = \mathbf{11,5\text{ cm}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{32.} A conversão de unidades monetárias e a divisão proporcional são rotinas em transações comerciais internacionais. Um investidor adquiriu \textbf{250 dólares americanos (USD)} quando a cotação oficial da moeda estrangeira estava fixada em \textbf{R\$ 4,92} por dólar. Na mesma transação, a corretora cobrou uma taxa de serviço operacional fixa de \textbf{R\$ 18,00}.
+
+Calcule o valor total em reais desembolsado pelo investidor nessa operação financeira.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando o valor correspondente aos dólares adquiridos:
+    $250 \times 4,92 = \text{R\$ } 1230,00$.
+    
+    2) Somando a taxa de serviço operacional fixa da corretora:
+    $1230,00 + 18,00 = \mathbf{\text{R\$ } 1248,00}$.
+    
+    O valor total desembolsado foi de \textbf{R\$ 1.248,00}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{33.} Analise as afirmativas a seguir sobre as operações fundamentais com números racionais na forma decimal e fracionária. Escreva V para verdadeiro ou F para falso:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Ao multiplicar dois números decimais que possuem, respectivamente, duas e três casas decimais, o produto resultante terá sempre exatamente cinco casas decimais.
+    \item A divisão de um número decimal por \textbf{0,01} equivale algebraicamente a multiplicar esse mesmo número por \textbf{100}.
+    \item O quadrado de um número decimal compreendido entre 0 e 1 (por exemplo, $0,4^2$) resulta em um número menor que ele próprio.
+\end{enumerate}
+Justifique detalhadamente a afirmativa falsa identificada.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Falsa.} O produto terá no \textit{máximo} cinco casas decimais, mas pode ter menos caso ocorram zeros finais após a multiplicação (por exemplo: $0,2 \times 0,5 = 0,10$, que simplifica para $0,1$, reduzindo o número de casas decimais efetivas).
+    
+    \textbf{II. Verdadeira.} Dividir por $0,01$ ($\mfrac{1}{100}$) equivale a multiplicar por 100.
+    
+    \textbf{III. Verdadeira.} $0,4^2 = 0,4 \times 0,4 = 0,16$, e $0,16 < 0,4$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{34. (Estilo ENEM)} - Uma fábrica de tintas comercializa solventes químicos em duas opções de embalagem cilíndrica com diferentes capacidades e preços promocionais para o setor industrial:
+\begin{itemize}[itemsep=\espacoAlt]
+    \item \textbf{Lata Tipo I:} Contém \textbf{1,5 litros} de solvente ao preço de \textbf{R\$ 24,00}.
+    \item \textbf{Lata Tipo II:} Contém \textbf{2,4 litros} de solvente ao preço de \textbf{R\$ 36,00}.
+    \end{itemize}
+
+O setor de compras precisa definir qual das duas embalagens oferece o menor preço unitário por litro de solvente. Realize os cálculos necessários e aponte qual lata apresenta maior economia real por litro.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Calculando o preço unitário por litro ($Custo \div Volume$) para cada opção:
+    
+    1) \textbf{Lata Tipo I:}
+    $\text{Preço por litro} = 24,00 \div 1,5 = \mathbf{\text{R\$ } 16,00\text{ por litro}}$.
+    
+    2) \textbf{Lata Tipo II:}
+    $\text{Preço por litro} = 36,00 \div 2,4 = \mathbf{\text{R\$ } 15,00\text{ por litro}}$.
+    
+    Comparando os custos unitários ($\text{R\$ } 15,00 < \text{R\$ } 16,00$), conclui-se que a \textbf{Lata Tipo II} apresenta maior economia real por litro.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{35.} Em um teste de frenagem automotiva realizado em pista seca, a distância total de parada de um veículo é composta pela soma de duas parcelas: a distância percorrida durante o tempo de reação do motorista e a distância efetiva de frenagem após o acionamento dos pedais. 
+
+Para um automóvel a 80 km/h, a distância de reação calculada foi de \textbf{16,8 metros} e a distância de frenagem mecânica medida foi de \textbf{24,25 metros}. O engenheiro de tráfego precisa somar essas grandezas e expressar a distância total de parada em quilômetros, além de convertê-la para a forma de fração irredutível (em metros).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando a distância total de parada em metros:
+    $16,80 + 24,25 = \mathbf{41,05\text{ metros}}$.
+    
+    2) Convertendo para quilômetros (dividindo por 1000):
+    $41,05 \div 1000 = \mathbf{0,04105\text{ km}}$.
+    
+    3) Representando os metros na forma de fração irredutível:
+    $41,05 = \mfrac{4105}{100}$. Simplificando numerador e denominador por 5, obtemos a fração irredutível $\mathbf{\mfrac{821}{20}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{36.} Em um projeto estrutural de um galpão logístico, o engenheiro civil precisa calcular a carga total suportada por uma viga de sustentação. A viga possui uma massa base própria de \textbf{345,8 kg} e suportará quatro vigas menores acopladas, cujas massas individuais medem exatamente \textbf{78,25 kg} cada uma.
+
+Determine a massa total acumulada sobre a estrutura principal e expresse esse valor final na forma de um número misto (parte inteira e fração irredutível).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando a massa total das quatro vigas menores acopladas:
+    $4 \times 78,25 = 313,00\text{ kg}$.
+    
+    2) Somando com a massa base da viga principal:
+    $345,80 + 313,00 = \mathbf{658,80\text{ kg}}$.
+    
+    3) Convertendo a parte decimal para fração irredutível ($0,80 = \mfrac{80}{100} = \mfrac{4}{5}$), obtemos o número misto: $\mathbf{658\mfrac{4}{5}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{37. (Estilo FUVEST)} - O volume de um paralelepípedo retângulo é determinado pelo produto triplo de suas dimensões lineares (Comprimento $\times$ Largura $\times$ Altura). Uma caixa de embalagem comercial possui as seguintes medidas internas exatas: Comprimento igual a \textbf{2,5 dm}, Largura igual a \textbf{1,6 dm} e Altura igual a \textbf{0,75 dm}.
+
+Calcule o volume interno total da caixa em decímetro cúbico ($\text{dm}^3$) e converta o resultado para a forma de fração irredutível.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Multiplicando as três dimensões lineares:
+    $\text{Volume} = 2,5 \times 1,6 \times 0,75$
+    
+    Calculando passo a passo:
+    $2,5 \times 1,6 = 4,0$
+    $4,0 \times 0,75 = \mathbf{3,00\text{ dm}^3}$.
+    
+    2) Convertendo o valor decimal para fração irredutível:
+    $3,00 = \mfrac{3}{1}$ (ou $\mathbf{3}$).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{38.} Em uma central de distribuição de gás natural, um reservatório esférico continha inicialmente um volume de \textbf{485,25 metros cúbicos} do produto. Durante o turno de trabalho, foram retirados dois carregamentos sucessivos: o primeiro de \textbf{142,8 metros cúbicos} e o segundo de \textbf{189,45 metros cúbicos}.
+
+Calcule o volume exato de gás natural que permaneceu armazenado no reservatório ao término das operações do turno.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Subtraindo progressivamente os volumes retirados do total inicial:
+    
+    1) Após a primeira retirada:
+    $485,25 - 142,80 = 342,45\text{ m}^3$.
+    
+    2) Após a segunda retirada:
+    $342,45 - 189,45 = \mathbf{153,00\text{ m}^3}$.
+    
+    O volume remanescente exato no reservatório é de \textbf{153 metros cúbicos}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{39.} Analise as afirmativas a seguir sobre as propriedades algébricas e operacionais dos números racionais na reta numérica. Escreva V para verdadeiro ou F para falso:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Entre dois números racionais distintos quaisquer, existe sempre pelo menos mais um número racional (propriedade da densidade).
+    \item O inverso multiplicativo (ou recíproco) de um número decimal exato menor que 1 (como $0,2$) é sempre um número inteiro.
+    \item A raiz quadrada de um número racional decimal entre 0 e 1 (por exemplo, $\sqrt{0,25}$) pode ser menor ou igual ao número original.
+\end{enumerate}
+Justifique detalhadamente a afirmativa falsa identificada.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Verdadeira.} O conjunto $\mathbb{Q}$ é denso.
+    
+    \textbf{II. Falsa.} O inverso multiplicativo de $0,2$ é $\mfrac{1}{0,2} = \mfrac{10}{2} = 5$ (que é inteiro neste caso específico), mas se pegarmos $0,3$, seu inverso é $\mfrac{10}{3} = 3,333...$, que \textit{não} é um número inteiro. Logo, a afirmação é falsa por não valer para todos os decimais menores que 1.
+    
+    \textbf{III. Falsa.} $\sqrt{0,25} = 0,5$, e $0,5$ é \textit{maior} que $0,25$ (a raiz quadrada de números entre 0 e 1 é sempre maior que o próprio número). Portanto, a afirmação está incorreta ao propor que a raiz pode ser menor ou igual.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{40. (ENEM - Adaptada)} - Uma concessionária de rodovias estaduais registrou o fluxo de veículos em uma praça de pedágio durante um feriado prolongado. O relatório técnico informou que \textbf{45\% dos 12.000 veículos} que passaram pelo local eram automóveis de passeio, \textbf{30\%} eram caminhonetes utilitárias e o restante do lote correspondia a caminhões de carga pesada.
+
+Calcule o número absoluto de caminhões de carga pesada que trafegaram pela rodovia durante o período avaliado.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item 1.800 veículos
+    \item 2.400 veículos
+    \item 3.000 veículos
+    \item 3.600 veículos
+    \item 5.400 veículos
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: c)}
+    
+    1) Somando as porcentagens conhecidas (Automóveis + Caminhonetes):
+    $45\% + 30\% = 75\%$.
+    
+    2) Calculando a porcentagem restante correspondente aos caminhões de carga pesada:
+    $100\% - 75\% = \textbf{25\%}$.
+    
+    3) Calculando 25% do total de 12.000 veículos:
+    $0,25 \times 12000 = \mathbf{3.000\text{ veículos}}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{41.} Na elaboração de um orçamento doméstico mensal, uma família registrou que \textbf{35\%} de sua renda total são destinados ao pagamento do aluguel da residência, \textbf{25\%} são gastos com alimentação e supermercado, e \textbf{15\%} são aplicados em despesas com saúde e educação. O restante do orçamento é integralmente guardado em uma caderneta de poupança.
+
+Sabendo que a renda familiar mensal total é de \textbf{R\$ 6.000,00}, calcule o valor absoluto exato (em reais) que é poupado mensalmente pela família.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Somando as porcentagens dos gastos conhecidos:
+    $35\% + 25\% + 15\% = 75\%$.
+    
+    2) Determinando a porcentagem destinada à poupança (o restante):
+    $100\% - 75\% = \textbf{25\%}$.
+    
+    3) Calculando 25\% da renda total de R\$ 6.000,00:
+    $0,25 \times 6000 = \text{R\$ } 1.500,00$.
+    
+    A família poupa mensalmente a quantia exata de \textbf{R\$ 1.500,00}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{42. (Estilo UNICAMP)} - No estudo analítico dos números racionais, a conversão de frações geratrizes em dízimas periódicas exige rigor algébrico. Considere o número racional expresso pela dízima periódica composta $ z = 0,2777... $.
+
+Aplique o método das equações simultâneas para determinar a fração irredutível exata correspondente ao valor de \textbf{z}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Definimos a equação base:
+    $z = 0,2777...$ (Eq. 1)
+    
+    Multiplicando por 10 para deslocar a parte não periódica:
+    $10z = 2,777...$ (Eq. 2)
+    
+    Multiplicando por 100 para deslocar o primeiro período completo:
+    $100z = 27,777...$ (Eq. 3)
+    
+    Subtraindo a Eq. 2 da Eq. 3 ($100z - 10z$):
+    $90z = 27,777... - 2,777...$
+    $90z = 25 \Rightarrow z = \mfrac{25}{90}$.
+    
+    Simplificando numerador e denominador por 5, obtemos a fração irredutível: $z = \mfrac{5}{18}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{43.} Em uma maratona de programação voltada para escolas de ensino fundamental, os competidores precisavam calcular a velocidade escalar média de um robô autônomo. O robô percorreu uma pista linear com comprimento total de \textbf{18,75 metros} em um intervalo de tempo exato de \textbf{12,5 segundos}.
+
+Calcule a velocidade escalar média do robô em metros por segundo ($\text{m/s}$) e converta o resultado para a forma de fração irredutível.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Dividindo a distância pelo tempo para obter a velocidade média:
+    $\text{Velocidade} = 18,75 \div 12,5$
+    
+    Igualando as casas decimais ($18,75 \div 12,50$):
+    $1875 \div 1250 = 1,5\text{ m/s}$.
+    
+    2) Convertendo o valor decimal para fração irredutível:
+    $1,5 = \mfrac{15}{10}$. Simplificando numerador e denominador por 5, obtemos a fração irredutível $\mfrac{3}{2}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{44.} Uma metalúrgica recebeu uma placa de aço retangular com dimensões lineares de comprimento igual a \textbf{3,4 metros} e largura igual a \textbf{1,85 metros}. Durante o processo de corte para fabricação de peças, foi retirada uma seção retangular menor com área de \textbf{1,28 metros quadrados}.
+
+Calcule a área superficial restante da placa de aço após o corte.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando a área total inicial da placa retangular:
+    $\text{Área Total} = 3,4 \times 1,85 = 6,29\text{ m}^2$.
+    
+    2) Subtraindo a área da seção retirada:
+    $\text{Área Restante} = 6,29 - 1,28 = 5,01\text{ m}^2$.
+    
+    A área superficial restante da placa de aço é de \textbf{5,01 metros quadrados}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{45. (ENEM - Adaptada)} - No controle de qualidade de uma indústria de laticínios, um lote de leite integral apresentou densidade e teor de gordura analisados por espectroscopia. O relatório técnico informou que \textbf{12\% do volume total de um tanque com 5.000 litros} apresentavam inconformidade leve, e \textbf{3\% do volume total} apresentavam inconformidade grave, exigindo descarte completo.
+
+Quantos litros de leite foram descartados devido à inconformidade grave?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item 150 litros
+    \item 300 litros
+    \item 450 litros
+    \item 600 litros
+    \item 750 litros
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: a)}
+    
+    A questão pede especificamente o volume correspondente à inconformidade grave, que atinge \textbf{3\% do volume total} do tanque.
+    
+    Calculando 3\% de 5.000 litros:
+    $0,03 \times 5000 = 150\text{ litros}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{46.} Em uma feira orgânica, um cliente comprou \textbf{1,75 kg} de tomates ao preço de \textbf{R\$ 6,40} o quilo e \textbf{2,5 kg} de batatas ao preço de \textbf{R\$ 4,20} o quilo.
+
+Calcule o valor total desembolsado pelo cliente nessa compra na feira.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando o custo dos tomates:
+    $1,75 \times 6,40 = \text{R\$ } 11,20$.
+    
+    2) Calculando o custo das batatas:
+    $2,50 \times 4,20 = \text{R\$ } 10,50$.
+    
+    3) Somando os valores para obter o total da compra:
+    $11,20 + 10,50 = \text{R\$ } 21,70$.
+    
+    O valor total gasto pelo cliente foi de \textbf{R\$ 21,70}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{47.} Analise as afirmativas a seguir sobre as propriedades fundamentais dos números racionais na forma decimal. Escreva V para verdadeiro ou F para falso em cada item:
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Adicionar um ou mais zeros à direita da parte decimal de um número (por exemplo, transformar $1,5$ em $1,500$) altera o seu valor numérico real.
+    \item O quociente da divisão de um número decimal por si mesmo (diferente de zero) é sempre igual a 1.
+    \item Multiplicar um número decimal por $0,001$ equivale geometricamente a deslocar a vírgula três casas para a esquerda.
+\end{enumerate}
+Justifique detalhadamente a afirmativa falsa identificada.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{I. Falsa.} Acrescentar zeros à direita da parte decimal (ordens inferiores vazias) não altera o valor do número racional ($1,5 = 1,500$).
+    
+    \textbf{II. Verdadeira.} Qualquer número dividido por ele próprio resulta em 1 (desde que o divisor seja não nulo).
+    
+    \textbf{III. Verdadeira.} Multiplicar por $0,001$ ($\mfrac{1}{1000}$) recua a vírgula três casas para a esquerda.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{48. (Estilo ENEM)} - Uma loja de eletrodomésticos anunciou uma televisão smart por \textbf{R\$ 2.400,00} para pagamento à vista. Para compras parceladas no cartão de crédito da loja, há um acréscimo de juros simples de \textbf{12\%} sobre o valor à vista.
+
+Se o cliente optar pelo parcelamento no cartão, qual será o preço total final pago pelo produto?
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item R\$ 2.412,00
+    \item R\$ 2.550,00
+    \item R\$ 2.688,00
+    \item R\$ 2.720,00
+    \item R\$ 2.880,00
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Gabarito: c)}
+    
+    1) Calculando o valor do acréscimo de 12\% sobre os R\$ 2.400,00:
+    $0,12 \times 2400 = \text{R\$ } 288,00$.
+    
+    2) Somando o acréscimo ao preço à vista:
+    $2400,00 + 288,00 = \text{R\$ } 2.688,00$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{49.} Em um laboratório de manutenção elétrica, um técnico precisa cortar \textbf{4 pedaços idênticos} de um fio condutor a partir de um rolo que contém \textbf{15,8 metros} de comprimento total. Sabendo que cada um dos quatro pedaços medirá exatamente \textbf{3,45 metros}, quantos metros de fio sobrarão inteiros no rolo após a execução dos cortes?
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Calculando o comprimento total consumido pelos quatro pedaços cortados:
+    $4 \times 3,45 = 13,80\text{ metros}$.
+    
+    2) Subtraindo o comprimento consumido do total inicial do rolo:
+    $15,80 - 13,80 = 2,00\text{ metros}$.
+    
+    Sobrarão exatamente \textbf{2 metros} de fio no rolo.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{50.} Um reservatório prismático industrial armazena um volume total de \textbf{345,6 metros cúbicos} de óleo lubrificante. A base retangular de sustentação possui uma área interna fixa de \textbf{48 metros quadrados}.
+
+Calcule a altura exata em metros do nível atingido pelo óleo dentro do reservatório.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Sabemos que o volume de um prisma é dado por: $\text{Volume} = \text{Área da Base} \times \text{Altura}$.
+    
+    Substituindo os valores conhecidos:
+    $345,6 = 48 \times \text{Altura}$
+    
+    Isolando a altura:
+    $\text{Altura} = 345,6 \div 48 = 7,2\text{ metros}$.
+    
+    A altura do nível do óleo é de \textbf{7,2 metros}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{51.} No projeto de pavimentação de uma ciclovia urbana, a equipe de engenharia civil precisa estender uma camada asfáltica linear de comprimento total igual a \textbf{7,25 quilômetros}. O cronograma de obras estipula que essa extensão total seja dividida em \textbf{5 etapas operacionais} idênticas em comprimento.
+
+Calcule a extensão exata (em quilômetros) de cada uma das cinco etapas da obra e converta esse valor para a forma de fração irredutível.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Dividindo a extensão total pelo número de etapas:
+    $7,25 \div 5 = 1,45\text{ quilômetros}$.
+    
+    2) Convertendo o valor decimal para fração irredutível:
+    $1,45 = \mfrac{145}{100}$. Simplificando numerador e denominador por 5, obtemos a fração irredutível $\mfrac{29}{20}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{52. (Estilo FUVEST)} - O cálculo da média ponderada é fundamental na apuração de notas escolares onde diferentes avaliações possuem pesos distintos. Um estudante obteve as seguintes notas em matemática: nota \textbf{6,5} com peso 2; nota \textbf{7,8} com peso 3; e nota \textbf{8,2} com peso 5.
+
+Calcule a média ponderada final obtida pelo estudante nessa unidade letiva.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1) Aplicando a fórmula da média ponderada ($\frac{\sum (\text{Nota} \times \text{Peso})}{\sum \text{Pesos}}$):
+    
+    Numerator: $(6,5 \times 2) + (7,8 \times 3) + (8,2 \times 5)$
+    $= 13,0 + 23,4 + 41,0 = 77,4$.
+    
+    2) Soma dos pesos:
+    $2 + 3 + 5 = 10$.
+    
+    3) Calculando a média final:
+    $77,4 \div 10 = 7,74$.
+    
+    A média ponderada final do estudante é \textbf{7,74}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\end{multicols*}
+\end{document}
