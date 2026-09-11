@@ -1,0 +1,1892 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} EQUAÇÕES DO 2º GRAU INCOMPLETAS}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Equações do 2º Grau Incompletas}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA \hfill \textbf{NÍVEL:} 8º ANO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+%\section{UNIDADE 6: EQUAÇÕES DO 2º GRAU INCOMPLETAS}
+
+\subsection*{Capítulo 1: Introdução às Equações do 2º Grau}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{01.} A equação do 2º grau na sua forma reduzida é escrita como $ ax^2 + bx + c = 0 $. Avalie as sentenças abaixo sobre os coeficientes e classifique cada uma com V (Verdadeiro) ou F (Falso). Justifique as falsas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O coeficiente \textbf{a} pode assumir qualquer valor real, incluindo o zero.
+    \item Uma equação é classificada como incompleta se \textbf{b} ou \textbf{c} forem iguais a zero.
+    \item A equação $ 3x^2 - 5 = 0 $ é incompleta porque o coeficiente \textbf{b} é nulo.
+    \item A equação $ -x^2 + 4x - 1 = 0 $ tem coeficientes $ a = -1 $, $ b = 4 $ e $ c = 1 $.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    I) \textbf{Falso.} O coeficiente $a$ deve ser estritamente diferente de zero ($a \neq 0$). Caso $a=0$, o termo quadrático se anula e a equação passa a ser do 1º grau.\\
+    II) \textbf{Verdadeiro.} A ausência de $b$, $c$ ou ambos configura a equação incompleta.\\
+    III) \textbf{Verdadeiro.} Aqui $a=3$ e $c=-5$. Como não há termo em $x$, $b=0$.\\
+    IV) \textbf{Falso.} O termo numérico é $-1$, portanto $c = -1$, e não $+1$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{02.} Escreva as equações a seguir na forma reduzida $ ax^2 + bx + c = 0 $, caso não estejam, e identifique os valores dos coeficientes \textbf{a}, \textbf{b} e \textbf{c}. Em seguida, classifique-as em completas ou incompletas.
+\begin{boxdica}
+Lembre-se: A forma reduzida exige que todos os termos algébricos estejam de um único lado da igualdade, igualando a equação a zero antes de extrair os coeficientes.
+\end{boxdica}
+\begin{enumerate}[label=\Alph*), itemsep=\espacoAlt]
+    \item $ 2x^2 - 7x + 3 = 0 $
+    \item $ x^2 = 9 $
+    \item $ 5x^2 - 2x = x^2 + 4x $
+    \item $ -3x^2 = 0 $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Organização dos cálculos de redução e extração dos coeficientes:
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|l|}
+    \hline
+    \textbf{Item} & \textbf{Forma Reduzida} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{Classificação} \\
+    \hline
+    A & $2x^2 - 7x + 3 = 0$ & 2 & -7 & 3 & Completa \\
+    \hline
+    B & $x^2 - 9 = 0$ & 1 & 0 & -9 & Incompleta \\
+    \hline
+    C & $4x^2 - 6x = 0$ & 4 & -6 & 0 & Incompleta \\
+    \hline
+    D & $-3x^2 = 0$ & -3 & 0 & 0 & Incompleta \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\subsubsection*{03.} Um aluno desenvolveu a expressão $ (x + 2)^2 = 4x + 9 $ e afirmou que, após organizá-la, obteria uma equação do 1º grau, pois os termos com \textbf{x} se cancelariam.
+\begin{boxresponda}
+\textbf{Responda:} Desenvolva o produto notável, reduza a equação e diagnostique matematicamente se a afirmação do estudante fictício está correta. Onde está a falha conceitual (caso exista)?
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Desenvolvendo: $x^2 + 4x + 4 = 4x + 9$.\\
+    Isolando: $x^2 + 4x - 4x + 4 - 9 = 0 \rightarrow x^2 - 5 = 0$.\\
+    \textbf{Diagnóstico:} A afirmação está errada. Embora o termo de grau 1 ($4x$) de fato se cancele, o termo de grau 2 ($x^2$) permanece inalterado. A equação resultante é do 2º grau incompleta ($b=0$), e não do 1º grau.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{04.} Um escritório de arquitetura projetou um painel retangular decorativo para a recepção de um edifício corporativo. O projeto indica que as medidas dos lados, em metros, são dadas por expressões algébricas em função de uma medida \textbf{x}.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CANTOS ARREDONDADOS ---
+\definecolor{painel}{HTML}{2C3E50}
+\definecolor{detalhe}{HTML}{E67E22}
+\definecolor{fundo}{HTML}{ECF0F1}
+
+% LAYER 1: Sombra e Painel Principal
+\fill[drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}, painel, rounded corners=4pt] (0,0) rectangle (6,3.5);
+
+% LAYER 2: Detalhes internos
+\fill[detalhe, rounded corners=2pt] (0.2,0.2) rectangle (1.5,3.3);
+\fill[fundo, rounded corners=2pt] (1.7,0.2) rectangle (5.8,3.3);
+
+% LAYER 3: Linhas de cota e medidas (Teste Cego)
+\draw[|<->|, thick, white] (0,-0.5) -- (6,-0.5) node[midway, fill=white, text=black, inner sep=2pt] {\textbf{2x}};
+\draw[|<->|, thick, white] (6.5,0) -- (6.5,3.5) node[midway, fill=white, text=black, inner sep=2pt] {\textbf{x + 3}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que a área total desse painel deve ser exatamente \textbf{54 m²}, determine a equação do 2º grau que modela esse problema na forma $ ax^2 + bx + c = 0 $ e indique seus coeficientes.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A área do retângulo é a multiplicação das dimensões da base pela altura visíveis no esquema projetado.\\
+    $2x \cdot (x + 3) = 54$\\
+    Distribuindo: $2x^2 + 6x = 54$\\
+    Igualando a zero: $2x^2 + 6x - 54 = 0$\\
+    Coeficientes resultantes: $a = 2$, $b = 6$ e $c = -54$. (Poderia ser simplificada para $x^2+3x-27=0$, gerando $a=1, b=3, c=-27$).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{05.} Explique com suas próprias palavras o motivo algébrico pelo qual o coeficiente \textbf{a} em uma equação do tipo $ ax^2 + bx + c = 0 $ não pode ser nulo. O que aconteceria com a representação matemática caso \textbf{a} fosse zero?
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Na matemática, qualquer número multiplicado por zero é igual a zero. Se assumirmos $a = 0$, o termo algébrico inteiro $ax^2$ seria destruído ($0 \cdot x^2 = 0$). Consequentemente, a equação seria rebaixada, restando apenas $bx + c = 0$, que é a estrutura clássica de uma equação do 1º grau.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{06.} (Estilo VUNESP) O lucro $ L $, em milhares de reais, de uma fábrica de componentes eletrônicos é dado pela expressão $ L = -x^2 + 10x - 16 $, onde \textbf{x} é a quantidade de lotes vendidos. A diretoria deseja saber em quais momentos o lucro é nulo. Sem resolver a equação, escreva a igualdade que modela essa situação de lucro zero e classifique a equação gerada quanto aos seus coeficientes.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para que o lucro seja nulo, devemos igualar $L$ a $0$:\\
+    $-x^2 + 10x - 16 = 0$.\\
+    Classificação: Trata-se de uma equação do 2º grau \textbf{completa}, visto que possui $a = -1$, $b = 10$ e $c = -16$ (nenhum coeficiente é nulo).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{07.} A figura ilustra uma balança digital de precisão em perfeito equilíbrio. Em um dos pratos há blocos cujas massas dependem de um valor desconhecido \textbf{x}, e no outro, massas aferidas em gramas.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES MODERNAS E CAMADAS ---
+\definecolor{base}{HTML}{BDC3C7}
+\definecolor{prato}{HTML}{7F8C8D}
+\definecolor{blocoX}{HTML}{3498DB}
+\definecolor{blocoP}{HTML}{E74C3C}
+\definecolor{visor}{HTML}{27AE60}
+
+% Sombra geral da balança
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, base, rounded corners=3pt] (1,0) rectangle (7,1);
+\fill[visor, rounded corners=1pt] (3.2,0.2) rectangle (4.8,0.8);
+\node[text=white, font=\bfseries] at (4,0.5) {EQUILÍBRIO};
+
+% Hastes e pratos
+\fill[prato] (2,1) rectangle (2.2,1.5);
+\fill[prato, rounded corners=2pt] (1,1.5) rectangle (3.2,1.7);
+
+\fill[prato] (6,1) rectangle (6.2,1.5);
+\fill[prato, rounded corners=2pt] (4.8,1.5) rectangle (7,1.7);
+
+% Blocos no prato esquerdo (3x² + 5x)
+\fill[drop shadow={opacity=0.2}, blocoX, rounded corners=2pt] (1.2,1.7) rectangle (2.2,2.7) node[midway, text=white, font=\bfseries] {3x²};
+\fill[drop shadow={opacity=0.2}, blocoX, rounded corners=2pt] (2.3,1.7) rectangle (3.0,2.4) node[midway, text=white, font=\bfseries] {5x};
+
+% Blocos no prato direito (x² + 12x)
+\fill[drop shadow={opacity=0.2}, blocoP, rounded corners=2pt] (5.0,1.7) rectangle (5.8,2.5) node[midway, text=white, font=\bfseries] {x²};
+\fill[drop shadow={opacity=0.2}, blocoP, rounded corners=2pt] (5.9,1.7) rectangle (6.8,2.7) node[midway, text=white, font=\bfseries] {12x};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base no princípio da igualdade demonstrado pela balança, construa a equação reduzida do 2º grau e responda se ela se configura como uma equação completa ou incompleta.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Igualando os pratos extraídos do modelo TikZ: $3x^2 + 5x = x^2 + 12x$\\
+    Reduzindo os termos algébricos semelhantes:\\
+    $3x^2 - x^2 + 5x - 12x = 0 \rightarrow 2x^2 - 7x = 0$\\
+    Configura-se como uma equação \textbf{incompleta}, pois não há termo independente ($c=0$).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{08.} (ENEM - Adaptada) Uma empresa de engenharia recebeu o projeto para reformar uma praça. A planta original previa um canteiro quadrado de lado \textbf{x}. Devido a mudanças no paisagismo, o canteiro teve seu comprimento aumentado em 4 metros e sua largura reduzida em 4 metros. Sabendo que o arquiteto afirmou que a nova área será de 84 m², modele a equação do 2º grau resultante. Após a redução dos termos semelhantes, qual coeficiente (a, b ou c) torna essa equação incompleta?
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Nova área: base vezes altura.\\
+    $(x + 4)(x - 4) = 84$\\
+    Pelo produto notável (soma pela diferença): $x^2 - 16 = 84$\\
+    $x^2 - 100 = 0$\\
+    A equação carece do termo de grau 1. Logo, o \textbf{coeficiente b} (que é igual a zero) torna a equação incompleta.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{09.} Uma equação do 2º grau está expressa por $ (k - 3)x^2 + (m + 2)x + 5 = 0 $. Para que essa expressão represente uma equação matemática estritamente do 2º grau e que seja \textbf{incompleta} em \textbf{x}, quais devem ser as condições matemáticas impostas para os valores numéricos de \textbf{k} e \textbf{m}?
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    1ª Condição (ser do 2º grau): O coeficiente \textbf{a} não pode zerar.\\
+    $k - 3 \neq 0 \rightarrow k \neq 3$.\\
+    2ª Condição (ser incompleta em \textbf{x}): O coeficiente \textbf{b} obrigatoriamente deve ser nulo, pois \textbf{c} já vale 5.\\
+    $m + 2 = 0 \rightarrow m = -2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} O esquema ilustra a planta baixa de uma piscina retangular e sua calçada externa de contorno (área em azul). A calçada possui largura uniforme igual a \textbf{x} metros em toda a sua extensão. 
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- CORES, SOMBRAS E CAMADAS (Planta Baixa) ---
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{calcada}{HTML}{BDC3C7}
+\definecolor{agua}{HTML}{3498DB}
+
+% Fundo (Terreno/Grama)
+\fill[grama, rounded corners=2pt] (-1,-1) rectangle (7,5);
+
+% Layer Calçada (com sombra)
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, calcada, rounded corners=2pt] (0,0) rectangle (6,4);
+
+% Layer Piscina
+\fill[agua, rounded corners=1pt] (1.5,1) rectangle (4.5,3);
+\draw[white, thick, dashed] (1.5,1) rectangle (4.5,3);
+
+% Cotas (Piscina)
+\node[fill=agua, text=white, font=\bfseries] at (3,2) {8 m $\times$ 4 m};
+
+% Cota da largura da calçada
+\draw[|<->|, thick, white] (0, 0.5) -- (1.5, 0.5) node[midway, fill=calcada, text=black, inner sep=2pt] {\textbf{x}};
+\draw[|<->|, thick, white] (4.5, 3.5) -- (6, 3.5) node[midway, fill=calcada, text=black, inner sep=2pt] {\textbf{x}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a equação reduzida do 2º grau que representa exclusivamente a área total ocupada pela piscina e pela calçada em função da medida \textbf{x}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    As dimensões totais (piscina + calçada) são acrescidas de $x$ em ambos os lados de cada eixo.\\
+    Base total: $8 + 2x$\\
+    Altura total: $4 + 2x$\\
+    Área $A(x) = (8 + 2x)(4 + 2x) = 32 + 16x + 8x + 4x^2$\\
+    Equação da área total: $A(x) = 4x^2 + 24x + 32$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\subsection*{Capítulo 2: Equações do Tipo ax² = 0}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} Considere as equações do 2º grau estritamente do tipo $ ax^2 = 0 $. Sem utilizar fórmulas resolutivas complexas, determine o conjunto solução para cada uma das equações abaixo e explique o padrão observado:
+\begin{enumerate}[label=\Alph*), itemsep=\espacoAlt]
+    \item $ 4x^2 = 0 $
+    \item $ -9x^2 = 0 $
+    \item $ \mfrac{3}{5}x^2 = 0 $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Em A, dividimos por 4. Em B, por -9. Em C, multiplicamos pelo inverso. Em todas as manipulações, resulta:\\
+    $x^2 = 0 \rightarrow x = 0$.\\
+    \textbf{Padrão:} Qualquer equação incompleta do modelo literal $ax^2 = 0$ terá sempre, e de forma exclusiva, a solução $x = 0$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} (Estilo ENEM) Em testes de segurança automotiva, sabe-se que a energia cinética (\textbf{E}) de um veículo em movimento é diretamente proporcional ao quadrado de sua velocidade (\textbf{v}), modelada de forma simplificada por uma equação da forma $ E = k \cdot v^2 $, onde \textbf{k} é uma constante que depende da massa.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- DESIGN PREMIUM DE FÍSICA APLICADA ---
+\definecolor{asfalto}{HTML}{34495E}
+\definecolor{carro}{HTML}{E74C3C}
+\definecolor{vidro}{HTML}{BDC3C7}
+
+% Asfalto
+\fill[asfalto] (-1,0) rectangle (7,1);
+\draw[white, dashed, thick] (-1,0.5) -- (7,0.5);
+
+% Carro
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, carro, rounded corners=3pt] (1.5, 1) rectangle (4.5, 2.2);
+\fill[vidro, rounded corners=2pt] (2.2, 2.2) rectangle (3.8, 2.8);
+\fill[black, rounded corners=4pt] (2, 0.8) rectangle (2.6, 1.2);
+\fill[black, rounded corners=4pt] (3.4, 0.8) rectangle (4, 1.2);
+\fill[gray!50] (2.3,1) circle (0.1);
+\fill[gray!50] (3.7,1) circle (0.1);
+
+% Indicador
+\node[fill=white, draw=carro, thick, rounded corners=2pt, inner sep=4pt] at (3, 3.5) {\textbf{E = 0 Joules}};
+\draw[->, thick, carro] (3, 3.2) -- (3, 2.8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se, após o acionamento total dos freios, a energia cinética do veículo for igual a zero ($ k \cdot v^2 = 0 $), justifique, utilizando o princípio da equação incompleta, por que a velocidade do veículo deve ser estritamente nula, independente do valor de \textbf{k} (com $ k > 0 $).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Temos a equação $k \cdot v^2 = 0$. Como o veículo existe, sua massa existe e é constante ($k > 0$). Para que um produto resulte em zero sem que $k$ seja zero, o termo multiplicativo $v^2$ tem de ser zero. A única solução matemática para a equação incompleta $v^2 = 0$ é $v = 0$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} Um quadrado possui uma área modelada matematicamente pela expressão $ A(x) = (x - 2)^2 - x^2 + 4x $. Reduza a expressão geométrica dada, iguale a área a zero e determine o valor de \textbf{x}. Qual o significado geométrico dessa solução para a existência do quadrado?
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Expandindo: $A(x) = (x^2 - 4x + 4) - x^2 + 4x$\\
+    Simplificando: os $x^2$ e os $4x$ se anulam, resultando em $A(x) = 4$.\\
+    Igualando a zero: $4 = 0$ (Falso/Impossível).\\
+    Significado geométrico: Essa área será estruturalmente fixa em 4 unidades de área, independente de $x$. Ela jamais será nula, portanto um quadrado real com área igual a zero com esse modelo não pode existir.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} Resolva a equação $ 3x^2 = 2x^2 + x^2 $. Demonstre detalhadamente o processo de agrupamento dos termos e conclua qual é a raiz real possível para essa igualdade matemática.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Agrupando: $3x^2 - 2x^2 - x^2 = 0$\\
+    $3x^2 - 3x^2 = 0 \rightarrow 0 = 0$.\\
+    Isso não é uma equação regular do segundo grau com 2 raízes, mas sim uma \textbf{Identidade Matemática}. Qualquer valor real testado no lugar de $x$ tornará a igualdade verdadeira.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} Considere o produto algébrico $ (2x) \cdot (4x) = 0 $. 
+\begin{boxresponda}
+\textbf{Responda:} Utilizando o princípio do anulamento do produto (se $ A \cdot B = 0 $, então $ A = 0 $ ou $ B = 0 $), prove analiticamente que a resolução dessa equação leva ao mesmo resultado que multiplicá-la previamente obtendo uma equação do tipo $ ax^2 = 0 $.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A demonstração exige provar que os dois caminhos chegam à mesma raiz. Veja o mapeamento lógico:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    % Fluxograma visual lógico (Regras Premium: Sombras, Cantos arredondados, Cores da paleta)
+    \node[rectangle, rounded corners=3pt, fill=CorTitUm, text=white, inner sep=6pt, font=\bfseries, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (inicio) at (3.5,2.5) {Equação: $(2x) \cdot (4x) = 0$};
+    
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (A) at (0,0) {Caminho 1: Produto Nulo};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, align=center, drop shadow={opacity=0.2}] (A1) at (0,-1.5) {$2x = 0 \rightarrow x = 0$\\ou\\$4x = 0 \rightarrow x = 0$};
+    
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (B) at (7,0) {Caminho 2: Multiplicação};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, align=center, drop shadow={opacity=0.2}] (B1) at (7,-1.5) {$8x^2 = 0$\\$x^2 = 0 \rightarrow x = 0$};
+    
+    % Setas de fluxo
+    \draw[->, thick, gray!80, >=stealth] (inicio) -- (A);
+    \draw[->, thick, gray!80, >=stealth] (inicio) -- (B);
+    \draw[->, thick, gray!80, >=stealth] (A) -- (A1);
+    \draw[->, thick, gray!80, >=stealth] (B) -- (B1);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    Como o diagrama demonstra, ambos os caminhos levam à mesma solução ($x=0$), provando a validade conceitual da propriedade algébrica.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+% --- LOTE 2 (QUESTÕES 16 a 30) ---
+\subsection*{Capítulo 3: Equações do Tipo ax² + c = 0}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{16.} Analise as sentenças abaixo sobre o conjunto solução de equações da forma $ ax^2 + c = 0 $ no universo dos números reais. Classifique cada afirmação com V (Verdadeiro) ou F (Falso).
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A equação $ x^2 + 36 = 0 $ possui duas raízes reais e simétricas, representadas por -6 e 6.
+    \item O conjunto solução da equação $ 2x^2 - 50 = 0 $ é composto estritamente pelos números -5 e 5.
+    \item Equações incompletas do tipo $ ax^2 + c = 0 $ sempre possuirão raízes reais se os coeficientes \textbf{a} e \textbf{c} tiverem sinais matemáticos opostos.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    I) \textbf{Falso.} Isolando $x^2$, temos $x^2 = -36$. Não existe raiz quadrada de número negativo no conjunto dos Reais.\\
+    II) \textbf{Verdadeiro.} $2x^2 = 50 \rightarrow x^2 = 25 \rightarrow x = \pm 5$.\\
+    III) \textbf{Verdadeiro.} Sinais opostos garantem que, ao isolar a incógnita, o valor numérico do outro lado da igualdade será positivo, viabilizando a extração da raiz quadrada real.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} Utilizando o princípio de isolamento da incógnita e a extração de raízes quadradas, determine o conjunto solução real para cada uma das equações abaixo. Demonstre o passo a passo algébrico.
+\begin{enumerate}[label=\Alph*), itemsep=\espacoAlt]
+    \item $ 3x^2 - 108 = 0 $
+    \item $ -2x^2 + 32 = 0 $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A) $3x^2 = 108 \rightarrow x^2 = \mfrac{108}{3} \rightarrow x^2 = 36 \rightarrow x = \pm 6$. $S = \{-6, 6\}$.\\
+    B) $-2x^2 = -32 \rightarrow x^2 = \mfrac{-32}{-2} \rightarrow x^2 = 16 \rightarrow x = \pm 4$. $S = \{-4, 4\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} Resolva a equação fracionária $ \mfrac{x^2}{4} - 16 = 0 $. 
+\begin{boxdica}
+Dica estratégica: Isole o termo quadrático antes de multiplicar os membros da equação pelo denominador.
+\end{boxdica}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Isolando a fração geométrica: $\mfrac{x^2}{4} = 16$\\
+    Multiplicando em cruz: $x^2 = 16 \cdot 4 \rightarrow x^2 = 64$\\
+    Extraindo a raiz: $x = \pm 8$. Conjunto Solução: $S = \{-8, 8\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} Um aluno tentou resolver a equação $ 5x^2 + 45 = 0 $ e concluiu que as raízes seriam -3 e 3. 
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique o erro fundamental cometido pelo estudante fictício e explique por que essa equação não possui solução no conjunto dos números reais.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Erro fundamental:} O aluno provavelmente ignorou a regra de sinais ao mudar o número de lado, calculando $5x^2 = 45$. O correto é subtrair 45 de ambos os lados: $5x^2 = -45 \rightarrow x^2 = -9$. Como nenhum número real multiplicado por si mesmo resulta em um valor negativo, a equação não possui raízes reais ($S = \emptyset$).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} Observe a resolução passo a passo de uma equação do 2º grau feita no quadro de uma sala de aula:
+Passo 1: $ 4x^2 - 100 = 0 $ \\
+Passo 2: $ 4x^2 = 100 $ \\
+Passo 3: $ x^2 = 25 $ \\
+Passo 4: $ x = 5 $
+\begin{boxresponda}
+\textbf{Responda:} Identifique qual foi a omissão matemática grave cometida na transição do Passo 3 para o Passo 4 e reescreva a resposta correta completa.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Omissão:} Ao extrair a raiz quadrada, a pessoa esqueceu que $(-5)^2$ também resulta em 25, perdendo a raiz simétrica negativa. O correto é extrair o módulo:\\
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    % Fluxograma visual lógico exigido
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries] (A) at (0,0) {Passo 3: $x^2 = 25$};
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries] (B) at (3.5,0) {$\sqrt{x^2} = \sqrt{25}$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries] (C) at (7,0) {$|x| = 5 \rightarrow x = \pm 5$};
+    \draw[->, thick, gray!80] (A) -- (B);
+    \draw[->, thick, gray!80] (B) -- (C);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    A resposta correta completa deve ser: $S = \{-5, 5\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} O mosaico decorativo abaixo é composto por 4 quadrados perfeitamente idênticos, alinhados horizontalmente. O projeto técnico informa que a área total ocupada por esse conjunto é de \textbf{400 cm²}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES MODERNAS ---
+\definecolor{azulejo}{HTML}{2980B9}
+\definecolor{fundo}{HTML}{ECF0F1}
+
+% LAYER 1: Sombra unificada
+\fill[drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}, azulejo, rounded corners=2pt] (0,0) rectangle (8,2);
+
+% LAYER 2: Desenho dos 4 quadrados
+\fill[azulejo, rounded corners=2pt] (0,0) rectangle (2,2);
+\fill[azulejo, rounded corners=2pt] (2,0) rectangle (4,2);
+\fill[azulejo, rounded corners=2pt] (4,0) rectangle (6,2);
+\fill[azulejo, rounded corners=2pt] (6,0) rectangle (8,2);
+
+% LAYER 3: Divisórias brancas para separar os azulejos
+\draw[white, thick] (2,0) -- (2,2);
+\draw[white, thick] (4,0) -- (4,2);
+\draw[white, thick] (6,0) -- (6,2);
+
+% LAYER 4: Cotas geométricas
+\draw[|<->|, thick, white] (0, 0.2) -- (2, 0.2) node[midway, fill=azulejo, text=white, inner sep=2pt, font=\bfseries] {x};
+\draw[|<->|, thick, white] (0.2, 0) -- (0.2, 2) node[midway, fill=azulejo, text=white, inner sep=2pt, font=\bfseries] {x};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Modele a equação do 2º grau que relaciona a área total com a medida do lado \textbf{x} de cada quadrado. Resolva a equação e determine a medida exata do lado.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Cada quadrado tem área igual a $x \cdot x = x^2$. Como são 4 azulejos:\\
+    $4x^2 = 400$\\
+    $x^2 = 100 \rightarrow x = \pm 10$\\
+    Por se tratar de uma dimensão física de comprimento (geometria real), rejeitamos a raiz negativa. Portanto, o lado do quadrado mede exatos \textbf{10 cm}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} Desenvolva o produto notável presente na equação $ (x - 4)(x + 4) = 9 $. Após a simplificação, resolva a equação incompleta gerada e encontre suas raízes.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Pelo produto da soma pela diferença de dois termos ($a^2 - b^2$):\\
+    $x^2 - 16 = 9$\\
+    $x^2 = 9 + 16$\\
+    $x^2 = 25 \rightarrow x = \pm 5$. $S = \{-5, 5\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} O gráfico abaixo representa o comportamento visual da equação $ y = x^2 - 4 $. As raízes reais dessa equação são exatamente os pontos onde a curva intercepta a malha horizontal do eixo \textbf{x} (quando $ y = 0 $).
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- EIXOS LIMPOS E PGFPLOTS COM SINTAXE ESTRITA ---
+\begin{axis}[
+    axis lines=middle,
+    axis on top,
+    grid=both,
+    grid style={dashed, gray!30},
+    xmin=-4, xmax=4,
+    ymin=-5, ymax=5,
+    xlabel=\textbf{x},
+    ylabel=\textbf{y},
+    ticklabel style={font=\bfseries, fill=white, inner sep=1pt},
+    samples=100,
+    domain=-3:3,
+    width=8cm, height=6cm
+]
+% LAYER 1: Parábola premium
+\addplot[color=red!80!black, ultra thick, drop shadow={opacity=0.1}] {x^2 - 4};
+
+% LAYER 2: Pontos de destaque
+\node[circle, fill=blue!80!black, inner sep=1.5pt] at (axis cs:-2,0) {};
+\node[circle, fill=blue!80!black, inner sep=1.5pt] at (axis cs:2,0) {};
+\node[circle, fill=blue!80!black, inner sep=1.5pt] at (axis cs:0,-4) {};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Extraia visualmente as duas raízes diretamente do gráfico e, em seguida, demonstre algebricamente que a resolução da equação $ x^2 - 4 = 0 $ leva exatamente aos mesmos valores geométricos.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Leitura Visual:} Observando os pontos azuis demarcados no eixo $x$, o gráfico corta a linha horizontal em $x = -2$ e $x = 2$.\\
+    \textbf{Prova Algébrica:}
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Situação Analítica} & \textbf{Cálculo} & \textbf{Coordenada Gerada} \\
+    \hline
+    $y = 0$ (Raízes) & $x^2 - 4 = 0 \rightarrow x^2 = 4 \rightarrow x = \pm 2$ & $(-2, 0)$ e $(2, 0)$ \\
+    \hline
+    \end{tabular}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    A tabela comprova que os cálculos algébricos batem perfeitamente com os pontos demarcados no gráfico de raízes simétricas.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} Aplique a propriedade distributiva e reduza os termos semelhantes para resolver a igualdade algébrica $ 3(x^2 - 2) = 2x^2 + 10 $.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Distribuindo: $3x^2 - 6 = 2x^2 + 10$\\
+    Isolando os termos de incógnita na esquerda e numéricos na direita:\\
+    $3x^2 - 2x^2 = 10 + 6$\\
+    $x^2 = 16 \rightarrow x = \pm 4$. Conjunto Solução: $S = \{-4, 4\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} Resolva a equação fracionária $ \mfrac{5x^2}{2} - 40 = 0 $. Justifique matematicamente cada etapa do processo de isolamento da incógnita.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Etapa 1 (Mover o termo independente): $\mfrac{5x^2}{2} = 40$\\
+    Etapa 2 (Multiplicar ambos os lados por 2 para eliminar o denominador): $5x^2 = 40 \cdot 2 \rightarrow 5x^2 = 80$\\
+    Etapa 3 (Dividir ambos os lados por 5): $x^2 = \mfrac{80}{5} \rightarrow x^2 = 16$\\
+    Etapa 4 (Extração de raízes): $x = \pm 4$. $S = \{-4, 4\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} Na física clássica, a distância \textbf{d}, em metros, percorrida por um objeto em queda livre a partir do repouso é dada pela fórmula simplificada $ d = 5t^2 $, sendo \textbf{t} o tempo de queda em segundos.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- CENÁRIO FÍSICO COM REALISMO EDITORIAL ---
+\definecolor{predio}{HTML}{2C3E50}
+\definecolor{janela}{HTML}{F1C40F}
+\definecolor{ceu}{HTML}{3498DB}
+\definecolor{bola}{HTML}{E74C3C}
+
+% LAYER 1: Fundo (Céu)
+\fill[ceu!20, rounded corners=2pt] (-2,0) rectangle (6,6);
+
+% LAYER 2: Prédio (com sombra e textura)
+\fill[drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-2pt}, predio] (0,0) rectangle (4,5);
+
+% Janelas
+\foreach \x in {0.5, 1.5, 2.5}
+    \foreach \y in {1, 2, 3, 4}
+        \fill[janela, rounded corners=1pt] (\x,\y) rectangle (\x+0.5,\y+0.5);
+
+% Chão
+\draw[ultra thick, black] (-2,0) -- (6,0);
+
+% LAYER 3: Objeto em queda e indicativos
+\fill[bola, drop shadow={opacity=0.4}] (4.5, 4.8) circle (0.2);
+\draw[->, dashed, ultra thick, bola] (4.5, 4.5) -- (4.5, 1);
+
+% Cotas
+\draw[|<->|, thick, black] (-0.5, 0) -- (-0.5, 5) node[midway, fill=ceu!20, font=\bfseries] {80 m};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se um pesquisador soltar uma esfera do alto de um prédio de exatos \textbf{80 m} de altura, determine a equação do 2º grau que modela essa queda e calcule em quantos segundos a esfera atingirá o solo.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Substituindo a distância $d = 80$ metros na função horária da queda $d = 5t^2$:\\
+    $5t^2 = 80$\\
+    $t^2 = \mfrac{80}{5} \rightarrow t^2 = 16$\\
+    $t = \pm 4$. Como o tempo físico não pode ser negativo, excluímos $t = -4$.\\
+    A esfera atingirá o solo em \textbf{4 segundos}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} (Estilo VUNESP) Uma indústria de embalagens projeta uma caixa retangular sem tampa cujo comprimento é exatamente o triplo da sua largura. A altura da caixa é padronizada e fixa em \textbf{2 metros}. A base possui largura \textbf{x} e comprimento \textbf{3x}. Sabendo que o volume total dessa caixa (dado pelo produto entre comprimento, largura e altura) precisa ser estritamente igual a \textbf{216 m³}, modele e resolva a equação incompleta do 2º grau para descobrir as dimensões \textbf{x} e \textbf{3x} da base dessa embalagem.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A fórmula de volume é $V = Comprimento \times Largura \times Altura$.\\
+    Substituindo: $(3x) \cdot (x) \cdot 2 = 216$\\
+    $6x^2 = 216$\\
+    $x^2 = 36 \rightarrow x = 6$ metros (geometria exige valores estritamente positivos).\\
+    \textbf{Dimensões reais da base:} Largura ($x$) = 6 metros, e Comprimento ($3x$) = 18 metros.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} A figura abaixo mostra o projeto de uma praça formada por cinco quadrados idênticos de lado \textbf{x} justapostos, formando uma estrutura em cruz. Um levantamento topográfico determinou que a área total disponível para a construção dessa praça é de \textbf{180 m²}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- DESIGN PREMIUM: ESTRUTURA EM CRUZ ---
+\definecolor{praca}{HTML}{27AE60}
+\definecolor{grama}{HTML}{E8F8F5}
+
+% Fundo
+\fill[grama, rounded corners=2pt] (-1,-1) rectangle (5,5);
+
+% Cruz central (com sombra)
+\begin{scope}[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}]
+    \fill[praca, rounded corners=2pt] (1.5,1.5) rectangle (2.5,2.5);
+    \fill[praca, rounded corners=2pt] (1.5,2.5) rectangle (2.5,3.5);
+    \fill[praca, rounded corners=2pt] (1.5,0.5) rectangle (2.5,1.5);
+    \fill[praca, rounded corners=2pt] (0.5,1.5) rectangle (1.5,2.5);
+    \fill[praca, rounded corners=2pt] (2.5,1.5) rectangle (3.5,2.5);
+\end{scope}
+
+% Linhas divisórias internas
+\draw[white, thick] (1.5, 0.5) -- (1.5, 3.5);
+\draw[white, thick] (2.5, 0.5) -- (2.5, 3.5);
+\draw[white, thick] (0.5, 1.5) -- (3.5, 1.5);
+\draw[white, thick] (0.5, 2.5) -- (3.5, 2.5);
+
+% Cotas
+\draw[|<->|, thick, black] (0.5, 1.3) -- (1.5, 1.3) node[midway, fill=praca, text=white, inner sep=1pt, font=\bfseries] {x};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o valor geométrico de \textbf{x}. Em seguida, calcule quantos metros de cerca (perímetro) serão necessários para contornar todo o limite exterior dessa praça em formato de cruz.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Cada quadrado (de lado $x$) possui área $x^2$. São 5 quadrados, então:\\
+    $5x^2 = 180 \rightarrow x^2 = 36 \rightarrow x = 6$ metros.\\
+    Contornando a figura, notamos que o perímetro externo da cruz é formado por 12 segmentos de tamanho $x$. Assim:\\
+    Perímetro $= 12 \cdot x = 12 \cdot 6 = \textbf{72 metros de cerca}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} (Estilo ENEM) Para garantir a estabilidade de uma ponte, engenheiros calculam a tensão mecânica \textbf{T} em um dos cabos de sustentação através da relação $ T - 4x^2 = 1200 $, onde \textbf{x} é a espessura do cabo em polegadas. Durante uma revisão, constatou-se que a tensão ideal de projeto é de $ T = 4800 $ Newtons. Substitua esse valor na relação algébrica e descubra qual deve ser a espessura exata \textbf{x} do cabo para manter o padrão de segurança. Considere apenas a raiz com significado físico para a espessura.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Substituindo a Tensão por 4800:\\
+    $4800 - 4x^2 = 1200$\\
+    Isolando: $-4x^2 = 1200 - 4800$\\
+    $-4x^2 = -3600$\\
+    $x^2 = \mfrac{-3600}{-4} \rightarrow x^2 = 900$\\
+    $x = \pm 30$. Como espessura é medida real absoluta, descartamos a negativa. O cabo tem exatas \textbf{30 polegadas}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} (ENEM - Adaptada) Um produtor rural adquiriu dois terrenos perfeitamente quadrados, mas de tamanhos diferentes. O lado do terreno maior tem o triplo da medida do lado do terreno menor. Sabendo que a soma das áreas dos dois terrenos totaliza \textbf{4000 m²}, assinale a alternativa que indica o comprimento do lado do terreno menor.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item \textbf{10 m}
+    \item \textbf{20 m}
+    \item \textbf{30 m}
+    \item \textbf{40 m}
+    \item \textbf{60 m}
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Lado menor $= x \implies$ Área $= x^2$.\\
+    Lado maior $= 3x \implies$ Área $= (3x)^2 = 9x^2$.\\
+    Somando: $x^2 + 9x^2 = 4000$\\
+    $10x^2 = 4000 \rightarrow x^2 = 400 \rightarrow x = 20$ metros.\\
+    Logo, o lado do terreno menor mede 20m. \textbf{Gabarito: b).}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+% --- LOTE 3 (QUESTÕES 31 a 45) ---
+\subsection*{Capítulo 4: Equações do Tipo ax² + bx = 0}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{31.} (ENEM - Adaptada) Um designer de interiores está projetando um espelho circular com uma moldura de madeira. O projeto especifica que a área total da peça (espelho mais moldura) deve ser de \textbf{1200 cm²}. Sabe-se que a área de um círculo é calculada pela expressão $ A = \pi R^2 $. Para facilitar a marcenaria, o designer adotou o valor aproximado de $ \pi = 3 $. Monte a equação do 2º grau que representa essa área e determine a medida exata do raio \textbf{R} da peça completa.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Organizando os dados numéricos do projeto:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Parâmetro Geométrico} & \textbf{Valor Atribuído} \\
+    \hline
+    Área Total ($A$) & 1200 \\
+    \hline
+    Constante ($\pi$) & 3 \\
+    \hline
+    Raio da Peça ($R$) & Incógnita \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Substituindo na fórmula: $3 \cdot R^2 = 1200$\\
+    Resolvendo a equação incompleta: $R^2 = \mfrac{1200}{3} \rightarrow R^2 = 400$\\
+    Raízes matemáticas: $R = \pm 20$. Como trata-se de raio (comprimento físico), descartamos a negativa. O raio exato mede \textbf{20 cm}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{32.} (Estilo UNICAMP) Um laboratório de testes balísticos analisa a energia cinética de um projétil disparado contra um bloco de gelo balístico. A fórmula física que relaciona a energia cinética (\textbf{E}), a massa (\textbf{m}) e a velocidade (\textbf{v}) é $ E = \mfrac{m \cdot v^2}{2} $. Em um ensaio específico, um projétil de massa \textbf{10 g} (\textbf{0,01 kg}) atingiu o alvo com uma energia de \textbf{500 J}. Substitua os valores na fórmula, modele a equação incompleta gerada e calcule a velocidade de impacto \textbf{v} do projétil, desconsiderando a raiz matemática negativa por não ter sentido físico neste contexto.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Extração e padronização dos dados do ensaio:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Energia (E)} & \textbf{Massa (m) em kg} & \textbf{Velocidade (v)} \\
+    \hline
+    500 J & 0,01 kg & Incógnita \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Substituindo na fórmula física: $500 = \mfrac{0,01 \cdot v^2}{2}$\\
+    Multiplicando em cruz: $1000 = 0,01 \cdot v^2$\\
+    Isolando a incógnita: $v^2 = \mfrac{1000}{0,01} \rightarrow v^2 = 100000$\\
+    Extraindo a raiz positiva: $v = \sqrt{100000} \rightarrow v \approx \textbf{316,22 m/s}$ (ou $100\sqrt{10}$ m/s).
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{33.} A figura ilustra um painel publicitário em formato de triângulo retângulo que será instalado na fachada de um shopping. A legislação municipal determina que a área máxima de exposição para esse tipo de painel é de exatos \textbf{27 m²}. A área de um triângulo é dada pela metade do produto da sua base pela sua altura.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES HEX E CAMADAS ---
+\definecolor{painel}{HTML}{F39C12}
+\definecolor{moldura}{HTML}{2C3E50}
+\definecolor{parede}{HTML}{ECF0F1}
+
+% LAYER 1: Parede de fundo (Shopping)
+\fill[parede, rounded corners=2pt] (-1,-1) rectangle (7,5);
+
+% LAYER 2: Sombra do painel e moldura
+\fill[drop shadow={opacity=0.25, shadow xshift=3pt, shadow yshift=-3pt}, moldura] (0,0) -- (6,0) -- (0,4) -- cycle;
+
+% LAYER 3: Área útil do painel publicitário
+\fill[painel] (0.2,0.2) -- (5.4,0.2) -- (0.2,3.6) -- cycle;
+
+% LAYER 4: Indicador de ângulo reto e cotas (Teste Cego: cotas literais na imagem)
+\draw[white, thick] (0.2,0.6) -- (0.6,0.6) -- (0.6,0.2);
+\fill[white] (0.4,0.4) circle (0.05);
+
+\draw[|<->|, thick, moldura] (0, -0.5) -- (6, -0.5) node[midway, fill=parede, inner sep=2pt, font=\bfseries] {3x};
+\draw[|<->|, thick, moldura] (-0.5, 0) -- (-0.5, 4) node[midway, fill=parede, inner sep=2pt, font=\bfseries] {x};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nas medidas literais extraídas do projeto arquitetônico, construa a equação algébrica da área, resolva-a e determine as dimensões reais (base e altura) desse painel.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Tabela de leitura geométrica da imagem:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Base ($b$)} & \textbf{Altura ($h$)} & \textbf{Área Limite} \\
+    \hline
+    $3x$ & $x$ & 27 \\
+    \hline
+    \end{tabular}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    Fórmula do triângulo: $\mfrac{b \cdot h}{2} = \text{Área}$\\
+    $\mfrac{3x \cdot x}{2} = 27 \rightarrow 3x^2 = 54 \rightarrow x^2 = 18$\\
+    $x = \sqrt{18} = 3\sqrt{2}$ metros (descartamos a raiz negativa).\\
+    \textbf{Dimensões reais:} Altura $= 3\sqrt{2}$ m e Base $= 3 \cdot (3\sqrt{2}) = 9\sqrt{2}$ m.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{34.} As equações incompletas da forma $ ax^2 + bx = 0 $ apresentam uma característica única no seu conjunto solução, resultante da fatoração por evidência algébrica. Analise as afirmações abaixo e assinale V para as verdadeiras e F para as falsas, justificando o motivo das falsas.
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O termo comum que pode ser colocado em evidência nesse formato de equação é sempre a incógnita \textbf{x}.
+    \item Uma das raízes de uma equação do tipo $ ax^2 + bx = 0 $ será obrigatoriamente igual a zero.
+    \item A equação $ 2x^2 + 8x = 0 $ possui raízes simétricas (como -4 e +4), assim como ocorre no modelo $ ax^2 + c = 0 $.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Análise estrutural da fatoração:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|l|}
+    \hline
+    \textbf{Item} & \textbf{V/F} & \textbf{Justificativa / Comprovação} \\
+    \hline
+    I & \textbf{V} & Como não há termo independente $c$, o termo $x$ existe em ambos os blocos. \\
+    \hline
+    II & \textbf{V} & Pela fatoração $x(ax + b) = 0$, o fator externo impõe que $x = 0$. \\
+    \hline
+    III & \textbf{F} & Raízes simétricas são exclusivas do modelo $ax^2+c=0$. Aqui a fatoração gera $2x(x+4)=0$, cujas raízes são $0$ e $-4$. \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{35.} O método principal para resolver equações que não possuem o coeficiente \textbf{c} é a fatoração, reescrevendo a soma algébrica como um produto, ou seja, $ x(ax + b) = 0 $. Aplique essa técnica, colocando o fator comum em evidência, e determine o conjunto solução para as seguintes equações:
+\begin{enumerate}[label=\Alph*), itemsep=\espacoAlt]
+    \item $ x^2 - 9x = 0 $
+    \item $ 4x^2 + 20x = 0 $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Demonstração lógica do processo de fatoração:
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    % Fluxograma visual lógico
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (A1) at (0,2) {A) $x^2 - 9x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (A2) at (4,2) {$x(x - 9) = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (A3) at (8,2.5) {$x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (A4) at (8,1.5) {$x = 9$};
+    \draw[->, thick, gray!80] (A1) -- (A2);
+    \draw[->, thick, gray!80] (A2) -- (A3);
+    \draw[->, thick, gray!80] (A2) -- (A4);
+
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (B1) at (0,-0.5) {B) $4x^2 + 20x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (B2) at (4,-0.5) {$x(4x + 20) = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (B3) at (8,0) {$x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (B4) at (8,-1) {$4x = -20 \rightarrow x = -5$};
+    \draw[->, thick, gray!80] (B1) -- (B2);
+    \draw[->, thick, gray!80] (B2) -- (B3);
+    \draw[->, thick, gray!80] (B2) -- (B4);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    Conjunto Solução: A) $S = \{0, 9\}$. B) $S = \{-5, 0\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{36.} (Estilo VUNESP) Durante uma avaliação de nivelamento, um estudante do 8º ano precisava encontrar a raiz não nula da equação $ 7x^2 - 21x = 0 $. 
+\begin{boxresponda}
+\textbf{Responda:} Demonstre o passo a passo da resolução algébrica correta e indique qual é o valor numérico exato dessa raiz não nula procurada pela banca.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Tabela de processamento algébrico:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Etapa} & \textbf{Equacionamento} \\
+    \hline
+    Fatoração Inicial & $x(7x - 21) = 0$ \\
+    \hline
+    Produto Nulo 1 & $x = 0$ (Raiz nula, descartada pela banca) \\
+    \hline
+    Produto Nulo 2 & $7x - 21 = 0 \rightarrow 7x = 21$ \\
+    \hline
+    Solução Final & $x = \mfrac{21}{7} \rightarrow x = 3$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    A raiz não nula procurada é exatamente \textbf{3}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{37.} Um professor propôs a seguinte resolução para a equação $ 5x^2 = 30x $:
+Passo 1: $ 5x^2 = 30x $ \\
+Passo 2: "Corta-se" um \textbf{x} de cada lado, ficando $ 5x = 30 $ \\
+Passo 3: $ x = \mfrac{30}{5} $ \\
+Passo 4: $ x = 6 $
+\begin{boxresponda}
+\textbf{Responda:} Essa resolução está conceitualmente equivocada. Explique qual propriedade algébrica foi violada e qual raiz real do conjunto solução o professor "perdeu" ao realizar o cancelamento direto no Passo 2.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A violação ocorre porque "cortar o x" é o equivalente a dividir ambos os lados por $x$. Na matemática, a divisão por zero é indeterminada. Como não sabemos o valor de $x$, ele pode ser zero.
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (E) at (0,0) {Erro: Cancelar o x};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, align=center, drop shadow={opacity=0.2}] (E1) at (0,-1.5) {$5x = 30 \rightarrow x = 6$\\ (Perdeu a raiz $x=0$)};
+    
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (C) at (6,0) {Correto: Fatorar};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, align=center, drop shadow={opacity=0.2}] (C1) at (6,-1.5) {$5x^2 - 30x = 0$\\$x(5x - 30) = 0$};
+    
+    \draw[->, thick, gray!80] (E) -- (E1);
+    \draw[->, thick, gray!80] (C) -- (C1);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    O conjunto solução correto é $S = \{0, 6\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{38.} Resolva a igualdade fracionária $ \mfrac{x^2}{3} + 4x = 0 $. 
+\begin{boxdica}
+Dica estratégica: Multiplique toda a equação pelo MMC dos denominadores antes de aplicar a técnica de colocar a incógnita em evidência.
+\end{boxdica}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Organizando o fluxo de manipulação:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Passo} & \textbf{Equação} \\
+    \hline
+    Multiplicar por 3 (MMC) & $x^2 + 12x = 0$ \\
+    \hline
+    Fatoração por evidência & $x(x + 12) = 0$ \\
+    \hline
+    Raiz 1 (Fator isolado) & $x = 0$ \\
+    \hline
+    Raiz 2 (Termo interno) & $x + 12 = 0 \rightarrow x = -12$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Conjunto Solução final: $S = \{-12, 0\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{39.} Reduza as expressões abaixo, aplique a propriedade distributiva se necessário, agrupe todos os termos no primeiro membro e encontre as raízes das equações do 2º grau formadas:
+\begin{enumerate}[label=\Alph*), itemsep=\espacoAlt]
+    \item $ x(x - 5) = -4x $
+    \item $ 2x^2 + 8x = 5x^2 - x $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Item} & \textbf{Expansão/Agrupamento} & \textbf{Fatoração} & \textbf{Raízes} \\
+    \hline
+    A & $x^2 - 5x + 4x = 0 \rightarrow x^2 - x = 0$ & $x(x - 1) = 0$ & $S = \{0, 1\}$ \\
+    \hline
+    B & $2x^2 - 5x^2 + 8x + x = 0 \rightarrow -3x^2 + 9x = 0$ & $x(-3x + 9) = 0$ & $S = \{0, 3\}$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{40.} Um condomínio reservou duas áreas para lazer: um quadrado perfeito destinado a um salão de festas e um retângulo comprido para a construção de uma quadra de bocha. Os projetos mostram que, curiosamente, ambas as formas geométricas possuem exatamente a mesma área total em metros quadrados.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES HEX E CAMADAS ---
+\definecolor{salao}{HTML}{8E44AD}
+\definecolor{quadra}{HTML}{D35400}
+\definecolor{fundo}{HTML}{FDFEFE}
+
+\fill[fundo] (-1, -1) rectangle (8, 4);
+
+% LAYER 1: Salão (Quadrado) com sombra
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, salao, rounded corners=2pt] (0,0) rectangle (3,3);
+\node[fill=salao, text=white, font=\bfseries] at (1.5,1.5) {SALÃO};
+
+% LAYER 2: Quadra (Retângulo) com sombra
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, quadra, rounded corners=2pt] (4,0) rectangle (7.5,1.5);
+\node[fill=quadra, text=white, font=\bfseries] at (5.75,0.75) {QUADRA};
+
+% LAYER 3: Cotas (Teste Cego)
+\draw[|<->|, thick, black] (0, 3.3) -- (3, 3.3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {x};
+\draw[|<->|, thick, black] (-0.3, 0) -- (-0.3, 3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {x};
+
+\draw[|<->|, thick, black] (4, 1.8) -- (7.5, 1.8) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {x};
+\draw[|<->|, thick, black] (3.7, 0) -- (3.7, 1.5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {4};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Modele matematicamente a igualdade entre as duas áreas, construa uma equação do tipo $ ax^2 + bx = 0 $ e descubra a dimensão \textbf{x}. Diga, ainda, qual é a área (em m²) da quadra de bocha.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Sistematizando os dados visuais:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Forma Geométrica} & \textbf{Cálculo da Área} & \textbf{Expressão Alvo} \\
+    \hline
+    Salão (Quadrado) & $x \cdot x$ & $x^2$ \\
+    \hline
+    Quadra (Retângulo) & $4 \cdot x$ & $4x$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Igualando: $x^2 = 4x \rightarrow x^2 - 4x = 0$.\\
+    Fatorando: $x(x - 4) = 0 \rightarrow x = 0$ (descartado) ou $x = 4$ metros.\\
+    A área da quadra é $4 \cdot 4 = \textbf{16 m²}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{41.} Traduza a sentença matemática escrita em português para a linguagem algébrica e, em seguida, determine os números reais que a satisfazem: "O quadrado de um número real desconhecido é estritamente igual ao sêxtuplo desse mesmo número".
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Quadrado do número} & \textbf{Operador Lógico} & \textbf{Sêxtuplo do número} \\
+    \hline
+    $x^2$ & $=$ & $6x$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    $x^2 - 6x = 0 \rightarrow x(x - 6) = 0$.\\
+    Soluções matemáticas puras: \textbf{0} ou \textbf{6}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{42.} Desenvolva o produto notável na equação $ (x - 3)^2 = 9 - 5x $ utilizando a regra de expansão dos produtos notáveis. Após o desenvolvimento algébrico, reduza os termos independentes e resolva a equação incompleta resultante.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Comando} & \textbf{Equação} \\
+    \hline
+    Expansão do Quadrado & $x^2 - 6x + 9 = 9 - 5x$ \\
+    \hline
+    Cancelamento Numérico & $x^2 - 6x = -5x$ (os '9' se anulam) \\
+    \hline
+    Agrupamento do 1º Grau & $x^2 - 6x + 5x = 0 \rightarrow x^2 - x = 0$ \\
+    \hline
+    Fatoração Evidência & $x(x - 1) = 0$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Conjunto Solução Final: $S = \{0, 1\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{43.} A parábola abaixo representa graficamente o comportamento da função $ y = -x^2 + 5x $. Na geometria analítica, as raízes de uma equação correspondem exatamente às abscissas (valores do eixo \textbf{x}) nos pontos em que a curva intercepta a malha horizontal (onde a altura \textbf{y} é nula).
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- PGFPLOTS COM SINTAXE ESTRITA, SOMBRAS E MÁSCARA ---
+\begin{axis}[
+    axis lines=middle,
+    axis on top,
+    grid=both,
+    grid style={dashed, gray!40},
+    xmin=-1, xmax=6,
+    ymin=-2, ymax=7,
+    xlabel=\textbf{x},
+    ylabel=\textbf{y},
+    ticklabel style={font=\bfseries, fill=white, inner sep=1pt},
+    samples=100,
+    domain=-0.5:5.5,
+    width=8cm, height=6.5cm
+]
+% Curva parabólica (Drop Shadow)
+\addplot[color=purple!80!black, ultra thick, drop shadow={opacity=0.15}] {-x^2 + 5*x};
+
+% Pontos de interseção (Raízes)
+\node[circle, fill=black, inner sep=1.8pt] at (axis cs:0,0) {};
+\node[circle, fill=black, inner sep=1.8pt] at (axis cs:5,0) {};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem realizar nenhum cálculo algébrico, extraia visualmente as raízes reais da equação $ -x^2 + 5x = 0 $ a partir do gráfico. Em seguida, prove matematicamente, pela técnica de fatoração, que os valores geométricos observados estão rigorosamente corretos.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{Leitura Visual:} A parábola intercepta o eixo horizontal ($y=0$) nos pontos marcados em $x = 0$ e $x = 5$.\\
+    \textbf{Prova Algébrica:}
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Igualdade} & \textbf{Fatoração} & \textbf{Raízes Encontradas} \\
+    \hline
+    $-x^2 + 5x = 0$ & $x(-x + 5) = 0$ & $x=0$ e $-x = -5 \rightarrow x=5$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Os dados da tabela coincidem plenamente com as coordenadas geométricas $(0,0)$ e $(5,0)$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{44.} Determine as raízes da equação $ \mfrac{3x^2 - 12x}{4} = 0 $ utilizando a técnica do produto nulo e indique qual alternativa contém o conjunto solução correto.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ \{0, 12\} $
+    \item $ \{0, 3\} $
+    \item $ \{-4, 4\} $
+    \item $ \{0, 4\} $
+    \item $ \{3, 4\} $
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Passando o 4 multiplicando: $3x^2 - 12x = 0 \cdot 4 \rightarrow 3x^2 - 12x = 0$.\\
+    Colocando o fator comum ($3x$) em evidência:\\
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Base) at (0,0) {$3x(x - 4) = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (R1) at (4,0.6) {$3x = 0 \rightarrow x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (R2) at (4,-0.6) {$x - 4 = 0 \rightarrow x = 4$};
+    \draw[->, thick, gray!80] (Base) -- (R1);
+    \draw[->, thick, gray!80] (Base) -- (R2);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    Conjunto Solução: $S = \{0, 4\}$. \textbf{Gabarito: d).}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{45.} (ENEM - Adaptada) Uma empresa de loteamentos vende terrenos onde o preço de cada metro quadrado diminui proporcionalmente conforme o comprador aumenta a largura do lote, seguindo uma norma de descontos progressivos da prefeitura. Um corretor modelou a relação de custo zero (quando as deduções se igualam ao valor bruto) através da expressão matemática $ 5x^2 - 250x = 0 $, sendo \textbf{x} a largura do terreno em metros. Qual deve ser a largura exata escolhida pelo comprador para que o custo do lote caia nessa condição hipotética extrema de custo nulo? Assuma que o terreno de custo zero deve ter uma largura fisicamente real (diferente de zero).
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Organizando o fluxo algébrico:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Etapa de Resolução} & \textbf{Equacionamento Analítico} \\
+    \hline
+    Equação Original & $5x^2 - 250x = 0$ \\
+    \hline
+    Fatoração (Fator Comum) & $5x(x - 50) = 0$ \\
+    \hline
+    Caminho Nulo 1 (Rejeitado) & $5x = 0 \rightarrow x = 0$ (Não há lote sem largura) \\
+    \hline
+    Caminho Nulo 2 (Válido) & $x - 50 = 0 \rightarrow x = 50$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    O comprador deve escolher uma largura de exatamente \textbf{50 metros} para que a equação atinja o custo nulo.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+% --- LOTE 4 (QUESTÕES 46 a 52) ---
+\subsection*{Capítulo 4: Equações do Tipo ax² + bx = 0 (Continuação)}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{46.} Um arquiteto paisagista apresentou duas propostas para o gramado central de um parque urbano. O memorial descritivo exige rigorosamente que, independentemente da escolha estética, a área total destinada ao plantio de grama seja matematicamente equivalente em ambos os projetos.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES HEX E CAMADAS ---
+\definecolor{gramaA}{HTML}{27AE60}
+\definecolor{gramaB}{HTML}{2ECC71}
+\definecolor{fundo}{HTML}{ECF0F1}
+
+\fill[fundo, rounded corners=2pt] (-1,-1) rectangle (8,4);
+
+% LAYER 1: Projeto A (Quadrado) com sombra
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, gramaA, rounded corners=2pt] (0,0.5) rectangle (2.5,3);
+\node[fill=gramaA, text=white, font=\bfseries] at (1.25, 1.75) {PROJETO A};
+
+% LAYER 2: Projeto B (Retângulo) com sombra
+\fill[drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, gramaB, rounded corners=2pt] (4,1) rectangle (7.5,2.5);
+\node[fill=gramaB, text=white, font=\bfseries] at (5.75, 1.75) {PROJETO B};
+
+% LAYER 3: Cotas Geométricas (Teste Cego Ativo)
+\draw[|<->|, thick, black] (0, 3.3) -- (2.5, 3.3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {2x};
+\draw[|<->|, thick, black] (-0.3, 0.5) -- (-0.3, 3) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {2x};
+
+\draw[|<->|, thick, black] (4, 2.8) -- (7.5, 2.8) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {10};
+\draw[|<->|, thick, black] (3.7, 1) -- (3.7, 2.5) node[midway, fill=fundo, inner sep=2pt, font=\bfseries] {x};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base nas dimensões literais apresentadas na planta, modele a equação do 2º grau que iguala as duas áreas e determine a medida de \textbf{x} (em metros) que viabiliza o projeto, descartando a solução que não possui significado geométrico.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Organizando o modelamento das áreas de plantio:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Projeto} & \textbf{Cálculo da Área} & \textbf{Expressão} \\
+    \hline
+    A (Quadrado) & $2x \cdot 2x$ & $4x^2$ \\
+    \hline
+    B (Retângulo) & $10 \cdot x$ & $10x$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Igualando: $4x^2 = 10x \rightarrow 4x^2 - 10x = 0$\\
+    Fatorando: $2x(2x - 5) = 0 \rightarrow 2x = 0$ (Logo $x = 0$, que não serve para geometria) ou $2x - 5 = 0 \rightarrow 2x = 5 \rightarrow x = 2,5$.\\
+    A medida viável é \textbf{2,5 metros}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{47.} (Estilo VUNESP) O lançamento de um sinalizador de emergência a partir do solo segue uma trajetória parabólica perfeitamente descrita pela função horária $ h = -3t^2 + 15t $, sendo \textbf{h} a altura atingida em metros e \textbf{t} o tempo de voo decorrido em segundos. Determine em quais instantes exatos o sinalizador encontra-se no nível do solo (altura nula) e explique o significado físico de cada uma das duas raízes encontradas.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Nível do solo significa $h = 0$. Substituindo na função:\\
+    $-3t^2 + 15t = 0 \rightarrow 3t(-t + 5) = 0$.\\
+    Raízes matemáticas: $t = 0$ ou $t = 5$.
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|l|}
+    \hline
+    \textbf{Raiz Encontrada} & \textbf{Altura (m)} & \textbf{Significado Físico} \\
+    \hline
+    $t = 0$ s & $0$ & Momento do lançamento a partir do solo. \\
+    \hline
+    $t = 5$ s & $0$ & Momento em que o sinalizador retorna e cai no solo. \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{48.} Desenvolva a expressão algébrica $ (x - 4)^2 = 16 - 2x $. Após a aplicação do produto notável e a redução dos termos semelhantes, resolva a equação incompleta gerada utilizando o método da fatoração em evidência e apresente seu conjunto solução.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Mapeamento lógico do desenvolvimento da equação:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Passo1) at (0,1.5) {$x^2 - 8x + 16 = 16 - 2x$};
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Passo2) at (0,0) {$x^2 - 8x + 2x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Passo3) at (0,-1.5) {$x(x - 6) = 0 \implies x = 0$ ou $x = 6$};
+    
+    \draw[->, thick, gray!80] (Passo1) -- (Passo2) node[midway, right, text=black] {\footnotesize Cancelamento de 16};
+    \draw[->, thick, gray!80] (Passo2) -- (Passo3) node[midway, right, text=black] {\footnotesize Fatoração Evidência};
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    Conjunto Solução: $S = \{0, 6\}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{49.} A engenharia civil frequentemente utiliza curvas parabólicas para modelar estruturas de sustentação. A ponte ilustrada abaixo possui um arco cuja altura em relação ao nível da água é descrita pela equação $ y = -x^2 + 8x $.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- PGFPLOTS COM CONTROLE DE CAMADAS E EIXO NA FRENTE ---
+\begin{axis}[
+    axis lines=middle,
+    axis on top,
+    grid=none,
+    xmin=-1, xmax=9,
+    ymin=-1, ymax=18,
+    xlabel=\textbf{x (m)},
+    ylabel=\textbf{y (m)},
+    ticklabel style={font=\bfseries, fill=white, inner sep=1pt},
+    samples=100,
+    domain=0:8,
+    width=8cm, height=6.5cm
+]
+% LAYER 1: Água (Fundo preenchido abaixo do eixo x)
+\fill[cyan!20] (axis cs:-1, -1) rectangle (axis cs:9, 0);
+
+% LAYER 2: Arco da Ponte (Drop Shadow e Preenchimento)
+\addplot[color=gray!30, fill=gray!30] {-x^2 + 8*x} \closedcycle;
+\addplot[color=black!70, ultra thick, drop shadow={opacity=0.2, shadow xshift=2pt}] {-x^2 + 8*x};
+
+% LAYER 3: Pontos de apoio na margem (Raízes)
+\node[circle, fill=black, inner sep=2pt] at (axis cs:0,0) {};
+\node[circle, fill=black, inner sep=2pt] at (axis cs:8,0) {};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que os apoios estruturais da ponte estão situados exatamente no nível da água (onde $ y = 0 $), demonstre o cálculo algébrico que comprova a distância exata em metros entre os dois pontos de fixação do arco.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Determinando as raízes ($y = 0$) para encontrar as posições dos apoios no eixo $x$:
+    $-x^2 + 8x = 0 \rightarrow x(-x + 8) = 0$.
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Ponto Estrutural} & \textbf{Coordenada ($x, y$)} & \textbf{Posição Física} \\
+    \hline
+    Apoio Inicial & (0, 0) & Margem Esquerda \\
+    \hline
+    Apoio Final & (8, 0) & Margem Direita \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    A distância geométrica entre a marca 0 e a marca 8 é de exatos \textbf{8 metros}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{50.} (ENEM - Adaptada) O departamento financeiro de uma multinacional modelou a curva de lucratividade diária de um novo produto através da expressão matemática $ L(x) = 120x - 4x^2 $, em que \textbf{L} representa o lucro (em milhares de reais) e \textbf{x} é o volume de lotes vendidos. A empresa atinge o ponto de "lucro zero" tanto quando não vende nenhum lote, quanto quando ocorre um excesso de produção que satura os custos operacionais. Assinale a alternativa que indica corretamente o número exato de lotes que leva a esse segundo momento de lucro nulo.
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item \textbf{20 lotes}
+    \item \textbf{30 lotes}
+    \item \textbf{40 lotes}
+    \item \textbf{60 lotes}
+    \item \textbf{120 lotes}
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Etapa Financeira} & \textbf{Processo Algébrico} \\
+    \hline
+    Meta de Lucro Zero & $120x - 4x^2 = 0$ \\
+    \hline
+    Fatoração (Evidência) & $4x(30 - x) = 0$ \\
+    \hline
+    Condição 1 (Sem vendas) & $4x = 0 \rightarrow x = 0$ (trivial) \\
+    \hline
+    Condição 2 (Saturação) & $30 - x = 0 \rightarrow x = 30$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    O ponto crítico secundário ocorre na produção de 30 lotes. \textbf{Gabarito: b).}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{51.} Um estudante de matemática analisou a equação gráfica do 2º grau e percebeu uma regra fundamental: "Toda equação quadrática da forma $ ax^2 + bx = 0 $ sempre terá uma de suas raízes cruzando exatamente a origem do plano cartesiano, ou seja, o ponto (0, 0)". 
+\begin{boxresponda}
+\textbf{Responda:} Utilizando a técnica de colocar o fator comum em evidência, justifique de forma algébrica por que essa afirmação do estudante é uma verdade matemática inquestionável para esse tipo específico de equação.
+\end{boxresponda}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Demonstração visual pelo Princípio do Fator Nulo:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{adjustbox}{max width=\linewidth}
+    \begin{tikzpicture}
+    \node[rectangle, rounded corners=2pt, fill=CorTitUm, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Base) at (0,0) {$x \cdot (ax + b) = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CorTitTres, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Fixa) at (-2,-1.5) {Fator isolado: $x = 0$};
+    \node[rectangle, rounded corners=2pt, fill=CinzaEscuro, text=white, inner sep=4pt, font=\bfseries, drop shadow={opacity=0.2}] (Variavel) at (2,-1.5) {Equação: $ax + b = 0$};
+    
+    \draw[->, thick, gray!80] (Base) -- (Fixa);
+    \draw[->, thick, gray!80] (Base) -- (Variavel);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \vspace{0.1cm}
+    A estrutura da fatoração $x(ax + b) = 0$ força, incondicionalmente, que $x = 0$ seja sempre uma das soluções matemáticas. Graficamente, isso garante que a curva intercepta a origem $(0,0)$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{52.} (Estilo UNICAMP) Um software de segurança bancária utiliza um algoritmo matemático de verificação (diagrama de blocos) para liberar o acesso a um cofre digital. O sistema só destrava a porta se o resultado final de todo o processamento for estritamente igual a \textbf{0}.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- FLUXOGRAMA PREMIUM COM SHADOWS E ALINHAMENTO LÓGICO ---
+\definecolor{inputC}{HTML}{3498DB}
+\definecolor{processC}{HTML}{9B59B6}
+\definecolor{outputC}{HTML}{E74C3C}
+\definecolor{linhaC}{HTML}{7F8C8D}
+
+\tikzset{
+    bloco/.style={
+        rectangle, rounded corners=3pt, text=white, font=\bfseries\small, align=center,
+        inner sep=6pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}
+    },
+    seta/.style={
+        ->, thick, linhaC, >=stealth
+    }
+}
+
+\node[bloco, fill=inputC] (in) at (0,0) {INSERIR\\VALOR (x)};
+\node[bloco, fill=processC] (p1) at (2.8,0) {ELEVAR AO\\QUADRADO};
+\node[bloco, fill=processC] (p2) at (5.6,0) {MULTIPLICAR\\POR 5};
+\node[bloco, fill=processC] (p3) at (5.6,-2) {SUBTRAIR\\20x};
+\node[bloco, fill=outputC] (out) at (2.8,-2) {RESULTADO\\FINAL};
+
+\draw[seta] (in) -- (p1);
+\draw[seta] (p1) -- (p2);
+\draw[seta] (p2) -- (p3);
+\draw[seta] (p3) -- (out);
+
+\node[font=\bfseries, text=outputC] at (0,-2) {(= 0) PARA DESTRAVAR};
+\draw[seta, dashed, outputC] (out) -- (1.5,-2);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na lógica sequencial apresentada no diagrama, escreva a equação matemática que representa o processamento interno do software e descubra quais são as duas senhas (valores numéricos de \textbf{x}) que o gerente pode digitar para conseguir abrir o cofre.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Modelando passo a passo a instrução do diagrama:
+    \vspace{0.1cm}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Bloco do Algoritmo} & \textbf{Construção Algébrica} \\
+    \hline
+    Inserir (x) e Elevar ao Quadrado & $x^2$ \\
+    \hline
+    Multiplicar por 5 & $5 \cdot x^2$ \\
+    \hline
+    Subtrair $20x$ e Igualar a Zero & $5x^2 - 20x = 0$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{0.1cm}
+    Resolvendo: $5x(x - 4) = 0 \rightarrow 5x=0 \rightarrow x=0$ ou $x-4=0 \rightarrow x=4$.\\
+    As senhas válidas são \textbf{0} ou \textbf{4}.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
