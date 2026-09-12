@@ -1,9 +1,18 @@
-# Ignorar arquivos auxiliares do LaTeX
+# Arquivos de compilação e resíduos do LaTeX
 *.aux
-*.log
-*.out
-*.gz
-*.toc
-*.fls
 *.fdb_latexmk
+*.fls
+*.log
 *.synctex.gz
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+
+# Arquivos do sistema operacional e do VS Code
+.vscode/
+Thumbs.db
+Desktop.ini
