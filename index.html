@@ -3,147 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Aulas e Recursos Didáticos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400,500,600,700&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
-</head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+    <title>Portal Pedagógico - Prof. Raphael Paulino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
-    <!-- Cabeçalho -->
-    <header class="bg-slate-900 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold tracking-tight">Portal de Material Didático</h1>
-                <p class="text-slate-400 text-sm mt-1">Ensino Fundamental e Médio • Acesso Rápido para Sala de Aula</p>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --border-card: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-blue-hover: #0ea5e9;
+            --accent-emerald: #10b981;
+            --accent-emerald-hover: #059669;
+            --accent-amber: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation Header */
+        header {
+            background-color: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-card);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-icon {
+            background: linear-gradient(135deg, var(--accent-blue), #6366f1);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .brand-title h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-title p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-status-prof {
+            background-color: #334155;
+            color: var(--text-muted);
+            border: 1px solid #475569;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-status-prof.active {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* Breadcrumb / Navigation Bar */
+        .nav-container {
+            max-width: 1200px;
+            margin: 1.5rem auto 0;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            background-color: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-card);
+        }
+
+        .nav-btn {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn.active {
+            background-color: var(--accent-blue);
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        /* Main Catalog Content */
+        main {
+            max-width: 1200px;
+            margin: 1.5rem auto 3rem;
+            padding: 0 1.5rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .unit-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .unit-card:hover {
+            border-color: #475569;
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            padding: 1.25rem 1.25rem 0.75rem;
+        }
+
+        .unit-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .unit-badge.adaptado {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--accent-amber);
+        }
+
+        .card-header h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .card-body {
+            padding: 0 1.25rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-pdf {
+            flex: 1;
+            min-width: 140px;
+            background-color: var(--accent-blue);
+            color: #0f172a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-pdf:hover {
+            background-color: var(--accent-blue-hover);
+        }
+
+        .btn-prof {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-prof:hover {
+            background-color: rgba(16, 185, 129, 0.25);
+            border-color: #10b981;
+        }
+
+        /* Section of Videos Accordion */
+        .videos-section {
+            margin-top: 1rem;
+            border-top: 1px solid #334155;
+            padding-top: 0.75rem;
+        }
+
+        details {
+            margin-bottom: 0.5rem;
+        }
+
+        summary {
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            cursor: pointer;
+            user-select: none;
+            padding: 0.25rem 0;
+            font-weight: 500;
+        }
+
+        summary:hover {
+            text-decoration: underline;
+        }
+
+        .video-list {
+            list-style: none;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .video-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            display: block;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.02);
+            transition: all 0.2s;
+        }
+
+        .video-item a:hover {
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Modal Key Prompt */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-box p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.4;
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-card);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+
+        .modal-box input:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .btn-confirm {
+            background-color: var(--accent-emerald);
+            color: #0f172a;
+            font-weight: 600;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-card);
+            background-color: var(--bg-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand">
+            <div class="brand-icon">RP</div>
+            <div class="brand-title">
+                <h1>Prof. Raphael Paulino</h1>
+                <p>Repositório de Estudos e Materiais Didáticos</p>
             </div>
-            <div class="mt-4 sm:mt-0 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 text-sm flex items-center">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>Online
-            </div>
+        </a>
+
+        <div class="header-actions">
+            <button id="btnProfToggle" class="btn-status-prof" onclick="abrirModalChave()">
+                🔒 Modo Professor
+            </button>
         </div>
     </header>
 
-    <!-- Conteúdo Principal -->
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="nav-container">
+        <!-- Navegação por Matéria e Frente -->
+        <div class="filter-bar" id="filtroMateria"></div>
+        <div class="filter-bar" style="margin-top: 0.5rem;" id="filtroAno"></div>
+    </div>
 
-        <!-- Navegação / Breadcrumbs Dinâmico e Totalmente Clicável -->
-        <nav id="breadcrumbs" class="mb-8 hidden items-center text-sm text-slate-500 space-x-2">
-            <button onclick="resetarPortal()" class="hover:text-indigo-600 font-medium transition-colors">Início</button>
-            <span>/</span>
-            <button id="bc-disciplina" onclick="navegarParaDisciplina()" class="hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
-            <span id="bc-frente-sep" class="hidden">/</span>
-            <button id="bc-frente" onclick="navegarParaFrente()" class="hidden hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
-            <span id="bc-ano-sep" class="hidden">/</span>
-            <button id="bc-ano" onclick="navegarParaAno()" class="hidden hover:text-indigo-600 font-semibold text-slate-800 transition-colors"></button>
-            <span id="bc-unidade-sep" class="hidden">/</span>
-            <span id="bc-unidade" class="font-semibold text-slate-900 cursor-default"></span>
-        </nav>
-
-        <!-- ETAPA 1: PILARES PRINCIPAIS (FÍSICA E MATEMÁTICA) -->
-        <div id="view-disciplinas" class="space-y-6">
-            <h2 class="text-xl font-bold text-slate-900 border-b pb-3">Selecione a Área do Conhecimento</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <!-- Física -->
-                <div onclick="selecionarDisciplina('Fisica')" class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-amber-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-slate-900">Física</h3>
-                    <p class="text-sm text-slate-500 mt-2">Mecânica, Termodinâmica, Ondulatória e Astronomia para Fundamental II e Ensino Médio.</p>
-                </div>
-
-                <!-- Matemática -->
-                <div onclick="selecionarDisciplina('Matematica')" class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-slate-900">Matemática</h3>
-                    <p class="text-sm text-slate-500 mt-2">Álgebra, Geometria Espacial e Plana, Educação Financeira e Treinamento para Vestibulares.</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ETAPA 1.5: FRENTES DE MATEMÁTICA -->
-        <div id="view-frentes" class="space-y-6 hidden">
-            <div class="flex items-center justify-between border-b pb-3">
-                <h2 class="text-xl font-bold text-slate-900">Selecione a Frente de Matemática</h2>
-                <button onclick="resetarPortal()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às áreas</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <!-- Álgebra -->
-                <div onclick="selecionarFrente('Algebra')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Álgebra</h3>
-                    <p class="text-sm text-slate-500 mt-1">Operações, Equações, Funções e Turma Intensiva (Terceirão).</p>
-                </div>
-
-                <!-- Geometria -->
-                <div onclick="selecionarFrente('Geometria')" class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-emerald-500 hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Geometria</h3>
-                    <p class="text-sm text-slate-500 mt-1">Geometria Plana, Espacial, Áreas, Perímetros e Cones.</p>
-                </div>
-
-                <!-- Matemática Financeira (Futura) -->
-                <div class="bg-slate-50 p-6 rounded-xl border border-dashed border-slate-300 opacity-60 cursor-not-allowed">
-                    <div class="w-12 h-12 bg-slate-200 text-slate-400 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-500">Matemática Financeira</h3>
-                    <p class="text-sm text-slate-400 mt-1">Juros, Porcentagem e Finanças • Em Breve</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ETAPA 2: ESCOLHER O ANO / SÉRIE -->
-        <div id="view-anos" class="space-y-6 hidden">
-            <div class="flex items-center justify-between border-b pb-3">
-                <h2 class="text-xl font-bold text-slate-900">Selecione o Ano ou Série</h2>
-                <button onclick="voltarParaNivelAnteriorDosAnos()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar</button>
-            </div>
-            <div id="grid-anos" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Preenchido via JavaScript -->
-            </div>
-        </div>
-
-        <!-- ETAPA 2.5: ESCOLHER A UNIDADE -->
-        <div id="view-unidades" class="space-y-6 hidden">
-            <div class="flex items-center justify-between border-b pb-3">
-                <h2 class="text-xl font-bold text-slate-900">Selecione a Unidade de Estudo</h2>
-                <button onclick="navegarParaAno()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar aos anos</button>
-            </div>
-            <div id="grid-unidades" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Preenchido via JavaScript -->
-            </div>
-        </div>
-
-        <!-- ETAPA 3: CONTEÚDOS DA UNIDADE -->
-        <div id="view-conteudos" class="space-y-6 hidden">
-            <div class="flex items-center justify-between border-b pb-3">
-                <h2 id="titulo-pagina-unidade" class="text-xl font-bold text-slate-900">Conteúdos da Unidade</h2>
-                <button onclick="navegarParaUnidades()" class="text-sm text-indigo-600 hover:underline font-medium">← Voltar às unidades</button>
-            </div>
-            <div id="container-conteudos" class="space-y-6">
-                <!-- Preenchido dinamicamente via JavaScript -->
-            </div>
-        </div>
-
+    <main>
+        <div class="cards-grid" id="gridCards"></div>
     </main>
 
-    <!-- Rodapé -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-sm text-slate-500 mt-auto">
-        <p>Portal de Aulas • Professor Raphael Paulino</p>
+    <footer>
+        <p>Desenvolvido para apoio escolar e preparação acadêmica &bull; Atualizado automaticamente</p>
     </footer>
 
-    <!-- SCRIPT DE GERENCIAMENTO E NAVEGAÇÃO -->
+    <!-- Modal para Chave do Professor -->
+    <div class="modal-overlay" id="modalChave">
+        <div class="modal-box">
+            <h3>Área do Professor</h3>
+            <p>Digite sua palavra-chave mestra configurada no Nginx para liberar os links com autodestruição:</p>
+            <input type="password" id="inputChave" placeholder="Digite a chave..." onkeydown="if(event.key==='Enter') confirmarChave()">
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-confirm" onclick="confirmarChave()">Desbloquear</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const bancoDados = {
             "Fisica": {
@@ -156,94 +472,75 @@
                             titulo: "Estrutura da Terra", 
                             desc: "Estudo das camadas internas da Terra, atmosfera, rochas, minerais e fósseis.", 
                             pdf: "Fisica/6_Ano/UNIDADE6/publica/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida nas Camadas Internas da Terra?", titulo: "As Camadas Internas da Terra", autor: "Com Ciência", url: "https://www.youtube.com/embed/hSsCSz03Svo" },
-                                { duvida: "precisando relembrar as Camadas da Terra?", titulo: "Camadas da Terra", autor: "Brasil Escola", url: "https://www.youtube.com/embed/yM1Bn5wvFwc" },
-                                { duvida: "com dificuldade em entender as 5 camadas da atmosfera terrestre?", titulo: "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!", autor: "Geo Ilustrada", url: "https://www.youtube.com/embed/435_RueBRkY" },
-                                { duvida: "querendo ver os Tipos de rochas para o 6º ano?", titulo: "Tipos de rochas – Ciências – 6º ano", autor: "Canal Futura", url: "https://www.youtube.com/embed/zq54OCjKRN4" },
-                                { duvida: "com dúvida em um resumo sobre os Tipos de Rochas?", titulo: "Tipos de Rochas - Resumo", autor: "Com Ciência", url: "https://www.youtube.com/embed/cwSOj4KGdmU" },
-                                { duvida: "precisando entender sobre Tipos de Rochas e Fósseis?", titulo: "Tipos de Rochas e Fósseis", autor: "Com Ciência", url: "https://www.youtube.com/embed/Za8WmDI4iXA" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "As Camadas Internas da Terra", url: "https://www.youtube.com/watch?v=hSsCSz03Svo" },
+                                { titulo: "Camadas da Terra", url: "https://www.youtube.com/watch?v=yM1Bn5wvFwc" },
+                                { titulo: "As 5 camadas da atmosfera terrestre", url: "https://www.youtube.com/watch?v=435_RueBRkY" }
+                            ]
                         }
                     ]},
                     "7_Ano": { nome: "7º Ano", unidades: [
                         { 
                             id: "UNIDADE 6", 
                             titulo: "Máquinas Simples e Trabalho", 
-                            desc: "Estudo das máquinas simples, aplicações cotidianas, alavancas, polias e planos inclinados.", 
+                            desc: "Estudo das máquinas simples, alavancas, polias e planos inclinados.", 
                             pdf: "Fisica/7_Ano/UNIDADE6/publica/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida nas aplicações de Máquinas simples para o 7º ano?", titulo: "Máquinas simples – Ciências – 7º ano", autor: "Canal Futura", url: "https://www.youtube.com/embed/1cLd3zoe5WQ" },
-                                { duvida: "precisando ver as Principais informações sobre Máquinas Simples?", titulo: "MÁQUINAS SIMPLES - Principais informações", autor: "Com Ciência", url: "https://www.youtube.com/embed/tvIk729n_rI" },
-                                { duvida: "com dificuldade em entender o funcionamento de Alavancas?", titulo: "MABA FÍSICA - ALAVANCAS", autor: "Marcos Aba / Prof. Giovanelli", url: "https://www.youtube.com/embed/EcJK51nMzl8" },
-                                { duvida: "querendo ver como funcionam as Polias e roldanas fixas e móveis?", titulo: "Polias e roldanas fixas e móveis", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/DVh5zU9tUwk" },
-                                { duvida: "com dúvida sobre Plano inclinado sem atrito?", titulo: "Plano inclinado sem atrito", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/mAegzrG1Ofs" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "Máquinas simples", url: "https://www.youtube.com/watch?v=1cLd3zoe5WQ" },
+                                { titulo: "Alavancas e Roldanas", url: "https://www.youtube.com/watch?v=EcJK51nMzl8" }
+                            ]
                         }
                     ]},
                     "8_Ano": { nome: "8º Ano", unidades: [
                         { 
                             id: "UNIDADE 6", 
                             titulo: "Sol, Terra e Lua", 
-                            desc: "Estudo do sistema Sol-Terra-Lua, distâncias reais, movimentos da Terra (rotação, translação, solstício e equinócio), fases da lua e eclipses.", 
+                            desc: "Sistema Sol-Terra-Lua, rotação, translação, solstício, equinócio e eclipses.", 
                             pdf: "Fisica/8_Ano/UNIDADE6/publica/FIS_8EF_AUT_U06-SOL_TERRA_LUA_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida sobre a verdadeira distância entre a Terra e a Lua?", titulo: "essa é a VERDADEIRA distância entre a TERRA e a LUA", autor: "Ciência Todo Dia", url: "https://www.youtube.com/embed/anFl3WcsDFo" },
-                                { duvida: "precisando entender os movimentos de Rotação, Translação, Solstício e Equinócio?", titulo: "Os movimentos da Terra: Rotação e Translação; Solstício e Equinócio", autor: "Geo Ilustrada", url: "https://www.youtube.com/embed/B3fBDGR1G1Y" },
-                                { duvida: "com dificuldade em compreender Solstício e Equinócio?", titulo: "SOLSTÍCIO E EQUINÓCIO, MUITO FÁCIL DE APRENDER", autor: "Geobrasil", url: "https://www.youtube.com/embed/Lj_VQXzIeyE" },
-                                { duvida: "querendo ver como funcionam As fases da lua para o 8º ano?", titulo: "A lua e suas fases – Ciências – 8º ano", autor: "Canal Futura", url: "https://www.youtube.com/embed/3Wefx4Vpx1M" },
-                                { duvida: "com dúvida sobre Fases da Lua e Eclipses na Óptica Geométrica?", titulo: "Fases da Lua e Eclipse | ÓPTICA GEOMÉTRICA", autor: "Chama o Físico", url: "https://www.youtube.com/embed/CZPpi5Q9O_0" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "A verdadeira distância Terra-Lua", url: "https://www.youtube.com/watch?v=anFl3WcsDFo" },
+                                { titulo: "Fases da Lua e Eclipses", url: "https://www.youtube.com/watch?v=CZPpi5Q9O_0" }
+                            ]
                         }
                     ]},
                     "9_Ano": { nome: "9º Ano", unidades: [
                         { 
                             id: "UNIDADE 6", 
                             titulo: "Energia Mecânica e Potência", 
-                            desc: "Estudo da energia cinética, energia potencial, teorema do trabalho e energia, conservação de energia mecânica, forças dissipativas, potência e rendimento.", 
+                            desc: "Energia cinética, potencial, conservação da energia e rendimento.", 
                             pdf: "Fisica/9_Ano/UNIDADE6/publica/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida sobre o Teorema da energia cinética, trabalho e variação de energia?", titulo: "Teorema da energia cinética - Trabalho e variação de energia cinética", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/g7OfZUyiexQ" },
-                                { duvida: "precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?", titulo: "Teorema da Energia Cinética - Exercícios", autor: "Davi Oliveira - Física 2.0", url: "https://www.youtube.com/embed/NLKS7AqHv0Y" },
-                                { duvida: "com dificuldade em diferenciar Energia Cinética e Potencial Gravitacional?", titulo: "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL", autor: "Eureka Matemática", url: "https://www.youtube.com/embed/CQFnmOIuxi8" },
-                                { duvida: "querendo revisar o princípio da Conservação da Energia Mecânica?", titulo: "CONSERVAÇÃO DA ENERGIA MECÂNICA", autor: "Felipe Sampaio - Física", url: "https://www.youtube.com/embed/pV7KvsH_yEA" },
-                                { duvida: "com dúvida sobre Energia Mecânica e Sistemas Conservativos?", titulo: "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I", autor: "Professor Boaro", url: "https://www.youtube.com/embed/cyRn0Hla-TM" },
-                                { duvida: "precisando entender os conceitos de Potência Mecânica, Consumo e Rendimento?", titulo: "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO", autor: "Curso Enem Gratuito", url: "https://www.youtube.com/embed/objIr0eQIWQ" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "Teorema do Trabalho e Energia", url: "https://www.youtube.com/watch?v=g7OfZUyiexQ" },
+                                { titulo: "Conservação da Energia Mecânica", url: "https://www.youtube.com/watch?v=pV7KvsH_yEA" }
+                            ]
                         }
                     ]},
                     "1_Serie": { nome: "1ª Série (EM)", unidades: [
                         { 
                             id: "UNIDADE 6", 
                             titulo: "Aplicações da Dinâmica", 
-                            desc: "Estudo avançado de forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.", 
+                            desc: "Forças de atrito em planos inclinados e dinâmica curvilínea centrípeta.", 
                             pdf: "Fisica/1_Serie/UNIDADE6/publica/FIS_1EM_AUT_U06-DINAMICA_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida em resolver problemas de Plano inclinado com atrito?", titulo: "Plano inclinado com atrito", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/FtpCPAbptbE" },
-                                { duvida: "precisando ver exercícios resolvidos sobre Planos Inclinados?", titulo: "PLANOS INCLINADOS - EXERCÍCIOS RESOLVIDOS", autor: "Curso Enem Gratuito", url: "https://www.youtube.com/embed/RkBpyCQu--I" },
-                                { duvida: "com dificuldade em entender a Força Resultante Centrípeta no movimento circular?", titulo: "FORÇA RESULTANTE CENTRÍPETA - Dinâmica do Movimento Circular", autor: "Felipe Sampaio - Física", url: "https://www.youtube.com/embed/JDuFDGMqdCk" },
-                                { duvida: "querendo revisar a Força Centrípeta aplicada às Leis de Newton?", titulo: "Força Centrípeta | LEIS DE NEWTON", autor: "Chama o Físico", url: "https://www.youtube.com/embed/WNcU_aPuwWc" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "Plano inclinado com atrito", url: "https://www.youtube.com/watch?v=FtpCPAbptbE" }
+                            ]
                         }
                     ]},
                     "2_Serie": { nome: "2ª Série (EM)", unidades: [
                         { 
                             id: "UNIDADE 6", 
                             titulo: "Refração e Lentes", 
-                            desc: "Estudo da refração luminosa, Lei de Snell, ângulo limite, reflexão total, lentes esféricas, equação de Gauss e dos fabricantes.", 
+                            desc: "Lei de Snell, ângulo limite, lentes esféricas e equação de Gauss.", 
                             pdf: "Fisica/2_Serie/UNIDADE6/publica/FIS_2EM_AUT_U06-REFRACAO_LENTES_ALUNO.pdf", 
+                            pdfProf: null,
                             videos: [
-                                { duvida: "com dúvida em como usar a Lei de Snell na resolução de exercícios?", titulo: "Lei de Snell - Como usar na resolução de exercícios", autor: "Maurício Física", url: "https://www.youtube.com/embed/8eoC6frYFsU" },
-                                { duvida: "precisando entender a Refração da luz, Ângulo limite e reflexão total?", titulo: "Refração da luz: Ângulo limite e reflexão total", autor: "Pedro Grossi - Física", url: "https://www.youtube.com/embed/ObEp8eFLGT4" },
-                                { duvida: "com dificuldade no Estudo Analítico e Equação dos Fabricantes de Lentes?", titulo: "LENTES ESFÉRICAS III - ESTUDO ANALÍTICO E EQUAÇÃO DOS FABRICANTES", autor: "Professor Boaro", url: "https://www.youtube.com/embed/_O7mg70DWHU" },
-                                { duvida: "querendo revisar o uso da Equação de Gauss para Lentes Esféricas?", titulo: "LENTES ESFÉRICAS | AULA 04 | EQUAÇÃO DE GAUSS", autor: "Davi Oliveira - Física 2.0", url: "https://www.youtube.com/embed/x0w9mony8Q0" }
-                            ], 
-                            temTeoria: false 
+                                { titulo: "Lei de Snell aplicada", url: "https://www.youtube.com/watch?v=8eoC6frYFsU" }
+                            ]
                         }
                     ]}
                 }
@@ -255,141 +552,99 @@
                     "Algebra": {
                         nome: "Álgebra",
                         anos: {
-                            "6_Ano": { 
-                                nome: "6º Ano", 
-                                unidades: [
-                                    { 
-                                        id: "UNIDADE 6", 
-                                        titulo: "Números Racionais: Decimais e Porcentagem", 
-                                        desc: "Frações, representação decimal, operações com vírgula e introdução à porcentagem.", 
-                                        pdf: "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf", 
-                                        videos: [
-                                            { duvida: "com dúvida em Leitura e Escrita de Números Decimais?", titulo: "Leitura e Escrita de Números Decimais", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/EMAoOklEA5w" },
-                                            { duvida: "precisando relembrar o conceito geral de Números Decimais?", titulo: "Números Decimais", autor: "Prof.ª Vilma Ribeiro", url: "https://www.youtube.com/embed/ijhusRH1P7M" },
-                                            { duvida: "com dificuldade em Como Transformar Fração em Número Decimal?", titulo: "Como Transformar Fração em Número Decimal", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/excWklaEb_E" },
-                                            { duvida: "querendo ver uma explicação lúdica sobre Números Decimais para Crianças?", titulo: "Números Decimais para Crianças", autor: "Smile and Learn", url: "https://www.youtube.com/embed/TKO9ZsGAnMA" },
-                                            { duvida: "com dúvida em Adição e Subtração com Vírgula?", titulo: "Adição e Subtração com Vírgula", autor: "Sandro Curió", url: "https://www.youtube.com/embed/UXs1R5mDY6o" },
-                                            { duvida: "precisando praticar as Operações com Números Decimais?", titulo: "Números Decimais: Operações", autor: "Prof. Demóclis Rocha", url: "https://www.youtube.com/embed/BMufUaLtFQ0" },
-                                            { duvida: "com dúvida em Porcentagem | Como Calcular?", titulo: "Porcentagem | Como Calcular", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/OjOyNmTt7Mw" },
-                                            { duvida: "querendo dominar o conteúdo com Aprenda Porcentagem em 8 Minutos?", titulo: "Aprenda Porcentagem em 8 Minutos", autor: "Sandro Curió", url: "https://www.youtube.com/embed/azedx0uou64" }
-                                        ], 
-                                        temTeoria: false 
-                                    }
-                                ]
-                            },
-                            "7_Ano": { 
-                                nome: "7º Ano", 
-                                unidades: [
-                                    { 
-                                        id: "UNIDADE 6", 
-                                        titulo: "Decimais, Potenciação e Radiciação de Racionais", 
-                                        desc: "Operações com números decimais, potenciação de racionais, raiz quadrada e introdução a razão e proporção.", 
-                                        pdf: "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf", 
-                                        videos: [
-                                            { duvida: "com dúvida em Operações com Números Decimais?", titulo: "Operações com Números Decimais", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/19ksgzttJ_4" },
-                                            { duvida: "precisando praticar as Operações com Números Decimais?", titulo: "Números Decimais: Operações", autor: "Prof. Demóclis Rocha", url: "https://www.youtube.com/embed/BMufUaLtFQ0" },
-                                            { duvida: "com dificuldade em Potenciação com Fração e Decimal?", titulo: "Potenciação com Fração e Decimal", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/4f57_lJg3zQ" },
-                                            { duvida: "precisando entender Potência com Expoente Negativo?", titulo: "Potência com Expoente Negativo", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/ols5_MRupOA" },
-                                            { duvida: "com dúvida em Raiz Quadrada de Fração e Número Decimal?", titulo: "Raiz Quadrada de Fração e Número Decimal", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/81mla_b6BnU" },
-                                            { duvida: "querendo ver Como Resolver Raiz Quadrada de Frações?", titulo: "Como Resolver Raiz Quadrada de Frações", autor: "Sandro Curió", url: "https://www.youtube.com/embed/AD4jyE4bseM" },
-                                            { duvida: "com dúvida em Razão e Proporção?", titulo: "Razão e Proporção", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/Kf_YzZ0CnIs" },
-                                            { duvida: "precisando aprender Regra de Três Simples?", titulo: "Regra de Três Simples", autor: "Sandro Curió", url: "https://www.youtube.com/embed/q846Qdi-od8" }
-                                        ], 
-                                        temTeoria: false 
-                                    }
-                                ]
-                            },
-                            "8_Ano": { 
-                                nome: "8º Ano", 
-                                unidades: [
-                                    { 
-                                        id: "UNIDADE 6", 
-                                        titulo: "Equações Quadráticas Incompletas", 
-                                        desc: "Resolução e modelagem de equações do 2º grau incompletas e estudo dos coeficientes.", 
-                                        pdf: "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf", 
-                                        videos: [
-                                            { duvida: "com dúvida em Equação do Segundo 2º Grau Completa e Incompleta?", titulo: "Equação do Segundo 2º Grau Completa e Incompleta", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/HCslGzCAA9E" },
-                                            { duvida: "precisando identificar os Coeficientes de uma Equação do 2º Grau?", titulo: "Coeficientes de uma Equação do 2º Grau", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/KaR77ImkmN8" },
-                                            { duvida: "com dificuldade em Equação do 2º Grau Incompleta Sem Fórmula?", titulo: "Equação do 2º Grau Incompleta Sem Fórmula", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/GX2qKdb5ATE" },
-                                            { duvida: "querendo aprender Equação do 2º Grau Incompleta de forma Rápida e Fácil?", titulo: "Equação do 2º Grau Incompleta | Rápido e Fácil", autor: "Sandro Curió", url: "https://www.youtube.com/embed/6PHQDKnO-Mw" }
-                                        ], 
-                                        temTeoria: false 
-                                    }
-                                ]
-                            },
+                            "6_Ano": { nome: "6º Ano", unidades: [
+                                { 
+                                    id: "UNIDADE 6", 
+                                    titulo: "Números Racionais: Decimais e Porcentagem", 
+                                    desc: "Frações decimais, operações com vírgula e introdução a porcentagens.", 
+                                    pdf: "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf", 
+                                    pdfProf: "Matematica_Algebra/6_Ano/UNIDADE6/restrita/ALG_6EF_AUT_U06-NUM_RACIONAIS_PROF.pdf",
+                                    videos: [
+                                        { titulo: "Números Decimais e Leitura", url: "https://www.youtube.com/watch?v=EMAoOklEA5w" },
+                                        { titulo: "Porcentagem Básica", url: "https://www.youtube.com/watch?v=OjOyNmTt7Mw" }
+                                    ]
+                                }
+                            ]},
+                            "7_Ano": { nome: "7º Ano", unidades: [
+                                { 
+                                    id: "UNIDADE 6", 
+                                    titulo: "Decimais, Potenciação e Radiciação", 
+                                    desc: "Potenciação de racionais, raiz quadrada e introdução à proporção.", 
+                                    pdf: "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf", 
+                                    pdfProf: "Matematica_Algebra/7_Ano/UNIDADE6/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
+                                    videos: [
+                                        { titulo: "Potenciação com Frações", url: "https://www.youtube.com/watch?v=4f57_lJg3zQ" }
+                                    ]
+                                }
+                            ]},
+                            "8_Ano": { nome: "8º Ano", unidades: [
+                                { 
+                                    id: "UNIDADE 6", 
+                                    titulo: "Equações Quadráticas Incompletas", 
+                                    desc: "Resolução e modelagem de equações do 2º grau incompletas.", 
+                                    pdf: "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf", 
+                                    pdfProf: "Matematica_Algebra/8_Ano/UNIDADE6/restrita/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_PROF.pdf",
+                                    videos: [
+                                        { titulo: "Equações Incompletas Sem Fórmula", url: "https://www.youtube.com/watch?v=GX2qKdb5ATE" }
+                                    ]
+                                }
+                            ]},
                             "9_Ano": { nome: "9º Ano", unidades: [
                                 { 
                                     id: "UNIDADE 6 (Autoral)", 
                                     titulo: "Função Quadrática (Parte 1)", 
-                                    desc: "Estudo da definição, lei de formação, construção de parábolas, vértices e raízes da função quadrática.", 
+                                    desc: "Estudo da definição, lei de formação, vértices e raízes.", 
                                     pdf: "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_AUT_U06-FUN_QUAD_P1_ALUNO.pdf", 
+                                    pdfProf: "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_AUT_U06-FUN_QUAD_P1_PROF.pdf",
                                     videos: [
-                                        { duvida: "com dúvida na Definição e Lei de Formação da Função do Segundo Grau?", titulo: "Aula 01 - Função do Segundo Grau: Definição da Função Quadrática", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/mzEGFoEenh8" },
-                                        { duvida: "precisando entender melhor a Função do 2º Grau - Função Quadrática?", titulo: "Função do 2º Grau - Função Quadrática", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/mX3Xeq4QEyQ" },
-                                        { duvida: "com dificuldade em Construir uma Parábola e ver o Gráfico do 2º Grau?", titulo: "4 Passos para Construir uma Parábola | Gráfico do 2º Grau", autor: "Sandro Curió", url: "https://www.youtube.com/embed/rHal93QAGyo" },
-                                        { duvida: "querendo revisar o Gráfico da Função Quadrática e a Parábola?", titulo: "Gráfico da Função Quadrática | Parábola", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/aIOKZ0rFzS4" },
-                                        { duvida: "com dúvida nas Coordenadas do Vértice da Parábola?", titulo: "Coordenadas do Vértice da Parábola", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/DCT9jRSAwfs" },
-                                        { duvida: "precisando entender Vértice da Parábola - Ponto de Máximo e Mínimo?", titulo: "Vértice da Parábola - Ponto de Máximo e Ponto de Mínimo", autor: "Prof.ª Angela Matemática", url: "https://www.youtube.com/embed/fjSWmSPtfww" },
-                                        { duvida: "com dúvida na Análise do Discriminante da Equação do 2º Grau?", titulo: "Equação do 2º Grau | Análise do Discriminante", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/bDzwyFUqPHw" },
-                                        { duvida: "querendo conferir a Condição para o Número de Raízes?", titulo: "Equação do 2º Grau | Condição para o Número de Raízes", autor: "Sandro Curió", url: "https://www.youtube.com/embed/xu_38JKujn0" }
-                                    ], 
-                                    temTeoria: false 
+                                        { titulo: "Gráfico da Parábola e Vértice", url: "https://www.youtube.com/watch?v=rHal93QAGyo" }
+                                    ]
                                 },
                                 { 
                                     id: "UNIDADE 6 (Escola)", 
-                                    titulo: "Caderno Adaptado da Escola - Função Quadrática", 
-                                    desc: "Exercícios complementares adaptados e organizados a partir do material da escola.", 
+                                    titulo: "Caderno Adaptado - Função Quadrática", 
+                                    desc: "Exercícios selecionados e adaptados da apostila escolar.", 
                                     pdf: "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf", 
-                                    videos: [], 
-                                    temTeoria: false 
+                                    pdfProf: "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
+                                    videos: []
                                 }
                             ]},
                             "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                               { 
+                                { 
                                     id: "UNIDADE 6", 
-                                    titulo: "Inequações", 
-                                    desc: "Estudo de inequações do 1º e 2º grau, resolução de sistemas, inequações produto e quociente.", 
+                                    titulo: "Inequações de 1º e 2º Graus", 
+                                    desc: "Sistemas de inequações, inequação produto e quociente.", 
                                     pdf: "Matematica_Algebra/1_Serie/UNIDADE6/publica/ALG_1EM_AUT_U06-INEQUACOES_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em Inequações de 1° e 2° Graus no Ensino Médio?", titulo: "MATEMÁTICA do ENSINO MÉDIO 💡 INEQUAÇÕES de 1° e 2° GRAUS", autor: "Professor Sérgio Mendes", url: "https://www.youtube.com/embed/6gmieH_OVZA" },
-                                        { duvida: "precisando ver Questões Comentadas sobre Inequação do Primeiro Grau?", titulo: "Questões Comentadas: Inequação do Primeiro Grau", autor: "Professor Ferretto", url: "https://www.youtube.com/embed/0SiUrWOSL1U" },
-                                        { duvida: "com dificuldade em entender Como resolver Inequação Produto e Quociente?", titulo: "INEQUAÇÃO PRODUTO E QUOCIENTE: Como resolver?", autor: "Prof. Gui / Matemática em Exercícios", url: "https://www.youtube.com/embed/Bka1sg21k1c" },
-                                        { duvida: "querendo revisar o conteúdo de Inequação Produto?", titulo: "INEQUAÇÃO PRODUTO GIS COM GIZ", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/57EjMwJ88s8" }
-                                    ], 
-                                    temTeoria: false 
+                                    pdfProf: null,
+                                    videos: []
                                 }
                             ]},
                             "2_Serie": { nome: "2ª Série (EM)", unidades: [
                                 { 
                                     id: "UNIDADE 6", 
-                                    titulo: "Polinômios", 
-                                    desc: "Estudo dos conceitos fundamentais de polinômios, operações de soma, subtração, multiplicação, divisão pelo método da chave e dispositivo de Briot-Ruffini.", 
+                                    titulo: "Polinômios e Operações", 
+                                    desc: "Conceitos fundamentais, divisão por Briot-Ruffini e método da chave.", 
                                     pdf: "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em como Somar, Subtrair e Multiplicar Polinômios Passo a Passo?", titulo: "Polinômios do Zero! Aprenda a Somar, Subtrair e Multiplicar Passo a Passo", autor: "Matemática Boa", url: "https://www.youtube.com/embed/tRi7d0tnMzs" },
-                                        { duvida: "precisando entender Polinômios e o Teorema Fundamental da Álgebra?", titulo: "Polinômios e Teorema Fundamental da Álgebra", autor: "Me Salva! / Aulas Híbridas", url: "https://www.youtube.com/embed/6FgkC0bmMPw" },
-                                        { duvida: "com dificuldade em realizar Operações com polinômios usando a divisão pelo método da chave?", titulo: "Operações com polinômios: divisão pelo método da chave", autor: "Me Salva!", url: "https://www.youtube.com/embed/1w3AAcLwuOE" },
-                                        { duvida: "querendo revisar a divisão por meio do Dispositivo Briot-Ruffini?", titulo: "POLINÔMIOS - Exercício - Dispositivo Briot-Ruffini", autor: "Matemática Rio com Prof. Rafael Procopio", url: "https://www.youtube.com/embed/LpjWG7koTBE" }
-                                    ], 
-                                    temTeoria: false 
+                                    pdfProf: null,
+                                    videos: []
                                 }
                             ]},
-                            "3_Serie": { nome: "3ª Série (Intensivo / Terceirão)", unidades: [
+                            "3_Serie": { nome: "3ª Série (Intensivo)", unidades: [
                                 { 
                                     id: "SEMANA 10", 
-                                    titulo: "Revisão e Aprofundamento para Vestibulares", 
-                                    desc: "Caderno intensivo com resolução e foco em bancas oficiais.", 
+                                    titulo: "Revisão Geral e Vestibulares", 
+                                    desc: "Caderno intensivo com foco em bancas oficiais.", 
                                     pdf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/publica/ALG_3EM_AUT_S10-REVISAO_VEST_ALUNO.pdf", 
-                                    videos: [], 
-                                    temTeoria: false 
+                                    pdfProf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/restrita/ALG_3EM_AUT_S10-REVISAO_VEST_PROF.pdf",
+                                    videos: []
                                 },
                                 { 
                                     id: "SEMANA 11", 
                                     titulo: "Geometria Plana e Sólidos", 
-                                    desc: "Caderno intensivo com foco em geometria plana e sólidos geométricos.", 
-                                    pdf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf",
-                                    videos: [], 
-                                    temTeoria: false 
+                                    desc: "Revisão intensiva de geometria para exames.", 
+                                    pdf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf", 
+                                    pdfProf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/restrita/ALG_3EM_AUT_S11-PLANA_SOLIDOS_PROF.pdf",
+                                    videos: []
                                 }
                             ]}
                         }
@@ -398,100 +653,22 @@
                         nome: "Geometria",
                         anos: {
                             "6_Ano": { nome: "6º Ano", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Área de Figuras Planas", 
-                                    desc: "Conceito de área, cálculo de superfícies para retângulos, quadrados, triângulos, paralelogramos e trapézios.", 
-                                    pdf: "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em Área e Perímetro e Resolução de Problemas?", titulo: "Área e Perímetro | Resolução de Problemas", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/dArATPsuLjM" },
-                                        { duvida: "precisando praticar com Área e Perímetro | Resolução de Exercícios?", titulo: "Área e Perímetro | Resolução de Exercícios", autor: "Sandro Curió", url: "https://www.youtube.com/embed/P_oB6jR8LiQ" },
-                                        { duvida: "com dificuldade em calcular a Área das Principais Figuras Planas?", titulo: "Área das Principais Figuras Planas | Geometria Plana", autor: "Sandro Curió", url: "https://www.youtube.com/embed/th5k6bzSDTA" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Área de Figuras Planas", desc: "Superfície de retângulos, triângulos e paralelogramos.", pdf: "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]},
                             "7_Ano": { nome: "7º Ano", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Área e Perímetro", 
-                                    desc: "Conceitos fundamentais de contorno e superfície, cálculo de áreas de quadriláteros, triângulos, círculos e figuras compostas.", 
-                                    pdf: "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em Como Calcular o Perímetro?", titulo: "Perímetro | Como Calcular o Perímetro", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/9wJcIcqw8Q0" },
-                                        { duvida: "precisando ver Área e Perímetro | Resolução de Problemas?", titulo: "Área e Perímetro | Resolução de Problemas", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/dArATPsuLjM" },
-                                        { duvida: "com dificuldade em calcular Áreas das Figuras Planas (Quadrado, Retângulo, Trapézio, Losango e Paralelogramo)?", titulo: "Áreas das Figuras Planas | Quadrado, Retângulo, Trapézio, Losango e Paralelogramo", autor: "Sandro Curió", url: "https://www.youtube.com/embed/chhhYlk9520" },
-                                        { duvida: "com dúvida na Área do Losango?", titulo: "Área do Losango", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/wkyLfHIYP9w" },
-                                        { duvida: "precisando entender a Área do Triângulo?", titulo: "Área do Triângulo | Área de Figuras Planas", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/UXoBHQBT5OE" },
-                                        { duvida: "com dúvida na Área do Círculo e Setor Circular?", titulo: "Área do Círculo | Setor Circular", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/R-sjOtYdmHs" },
-                                        { duvida: "querendo ver Área de Figuras Planas envolvendo Polígonos e Círculo?", titulo: "Área de Figuras Planas | Polígonos e Círculo", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/oQtjuoApc7c" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Área e Perímetro", desc: "Perímetro de contorno e cálculo de superfícies diversas.", pdf: "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]},
                             "8_Ano": { nome: "8º Ano", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Áreas de Figuras Planas", 
-                                    desc: "Cálculo de áreas de quadriláteros, triângulos, métodos de composição e decomposição de figuras e resolução de problemas.", 
-                                    pdf: "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em calcular a Área das Principais Figuras Planas?", titulo: "Área das Principais Figuras Planas | Geometria Plana", autor: "Sandro Curió", url: "https://www.youtube.com/embed/th5k6bzSDTA" },
-                                        { duvida: "querendo ver Área de Figuras Planas envolvendo Polígonos e Círculo?", titulo: "Área de Figuras Planas | Polígonos e Círculo", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/oQtjuoApc7c" },
-                                        { duvida: "precisando entender melhor a Área do Triângulo?", titulo: "Área do Triângulo | Área de Figuras Planas", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/UXoBHQBT5OE" },
-                                        { duvida: "com dúvida no Cálculo de Área por Composição ou Decomposição de Figuras Planas?", titulo: "Cálculo de Área por Composição ou Decomposição de Figuras Planas", autor: "Prof.ª Gisele Ramos", url: "https://www.youtube.com/embed/zDRdTOw-38k" },
-                                        { duvida: "precisando praticar com Áreas | Geometria Plana | Aprenda na Prática?", titulo: "Áreas | Geometria Plana | Aprenda na Prática", autor: "Marcemática", url: "https://www.youtube.com/embed/k3nn04tnInA" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Áreas Planas e Decomposição", desc: "Cálculo por composição e decomposição de figuras.", pdf: "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]},
                             "9_Ano": { nome: "9º Ano", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Geometria Espacial e Representações", 
-                                    desc: "Noções básicas de geometria espacial, poliedros, relação de Euler, vistas ortogonais e sistema de medidas digitais.", 
-                                    pdf: "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida na Relação de Euler em Poliedros?", titulo: "Poliedros - Relação de Euler", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/5P_Gx4PP2hw" },
-                                        { duvida: "precisando ver Poliedros | Geometria Espacial?", titulo: "Poliedros | Geometria Espacial", autor: "Sandro Curió", url: "https://www.youtube.com/embed/TnbP-oYFMXI" },
-                                        { duvida: "com dificuldade em Projeção e Vistas Ortogonais?", titulo: "9º Ano | Matemática | Aula 136 - Projeção e Vistas Ortogonais", autor: "Aula Paraná", url: "https://www.youtube.com/embed/5nBvW0AGEHU" },
-                                        { duvida: "querendo ver Projeção Ortogonal para o ENEM?", titulo: "Projeção Ortogonal: Tudo o que cai no ENEM", autor: "Xequemat", url: "https://www.youtube.com/embed/qDQG_AqBxww" },
-                                        { duvida: "com dúvida em Vistas Ortogonais e Projeções Técnicas?", titulo: "Vistas Ortogonais - Projeção Ortogonal", autor: "Matflix Matemática", url: "https://www.youtube.com/embed/iKCK7vlql2s" },
-                                        { duvida: "precisando entender Medidas de capacidade de armazenamento de computadores?", titulo: "Medidas de capacidade de armazenamento de computadores - 9° ano", autor: "Descomplicando a matemática", url: "https://www.youtube.com/embed/Y9sdRja8eqw" },
-                                        { duvida: "com dúvida sobre Unidades de Dados (Bytes, KB, MB, GB e TB)?", titulo: "Unidades de Dados | Bytes, KB, MB, GB e TB", autor: "Reducática", url: "https://www.youtube.com/embed/w1zaBTXxd-Y" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Geometria Espacial e Vistas", desc: "Poliedros, Relação de Euler e Projeção Ortogonal.", pdf: "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]},
                             "1_Serie": { nome: "1ª Série (EM)", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Áreas de Figuras Planas", 
-                                    desc: "Cálculo de áreas de triângulos, quadriláteros, polígonos regulares inscritos, apótemas, círculo e suas partes.", 
-                                    pdf: "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida em calcular a Área das Principais Figuras Planas?", titulo: "Área das Principais Figuras Planas | Geometria Plana", autor: "Sandro Curió", url: "https://www.youtube.com/embed/th5k6bzSDTA" },
-                                        { duvida: "precisando entender melhor a Área do Triângulo?", titulo: "Área do Triângulo | Área de Figuras Planas", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/UXoBHQBT5OE" },
-                                        { duvida: "com dificuldade em Polígonos Regulares Inscritos envolvendo Apótema e Lado?", titulo: "Polígonos Regulares (Parte 2) Inscritos - Apótema e Lado", autor: "Equaciona com Paulo Pereira", url: "https://www.youtube.com/embed/Z6E1d5O75ek" },
-                                        { duvida: "com dúvida na Área do Círculo, Coroa Circular, Setor e Segmento?", titulo: "Área do Círculo | Coroa Circular | Setor e Segmento", autor: "Sandro Curió", url: "https://www.youtube.com/embed/h1H1yjMRazg" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Polígonos e Círculos", desc: "Apótemas, setores circulares e coroas circulares.", pdf: "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]},
                             "2_Serie": { nome: "2ª Série (EM)", unidades: [
-                                { 
-                                    id: "UNIDADE 6", 
-                                    titulo: "Cones", 
-                                    desc: "Estudo dos elementos, classificação, áreas, volumes e tronco de cone na geometria espacial.", 
-                                    pdf: "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf", 
-                                    videos: [
-                                        { duvida: "com dúvida nos conceitos gerais do Cone na Geometria Espacial?", titulo: "CONE | GEOMETRIA ESPACIAL | RÁPIDO E FÁCIL", autor: "Sandro Curió", url: "https://www.youtube.com/embed/67IM72aHevg" },
-                                        { duvida: "precisando de um Resumão Completo de Área e Volume do Cone?", titulo: "CONE: RESUMÃO COMPLETO de ÁREA e VOLUME", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/kSuPous5WPU" },
-                                        { duvida: "com dificuldade em calcular o Tronco de Cone?", titulo: "TRONCO DE CONE", autor: "Equaciona com Paulo Pereira", url: "https://www.youtube.com/embed/QD3I7FbFCPo" },
-                                        { duvida: "querendo revisar Tronco de Cone com foco no ENEM?", titulo: "TRONCO DE CONE: como calcular | RESUMO DE MATEMÁTICA ENEM", autor: "Curso Enem Gratuito", url: "https://www.youtube.com/embed/uzSoDde8l7g" }
-                                    ], 
-                                    temTeoria: false 
-                                }
+                                { id: "UNIDADE 6", titulo: "Cones e Troncos", desc: "Áreas totais, volumes e seções cônicas.", pdf: "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf", pdfProf: null, videos: [] }
                             ]}
                         }
                     }
@@ -499,327 +676,236 @@
             }
         };
 
-        // Estado Global da Aplicação
-        let disciplinaAtual = null;
-        let frenteAtual = null;
-        let anoAtual = null;
-        let nomeAnoGlobal = null;
-        let unidadeAtualIndex = null;
+        // Estado da Seleção Atual
+        let estado = {
+            materia: "Matematica",
+            frente: "Algebra",
+            ano: "9_Ano"
+        };
 
-        function selecionarDisciplina(chave) {
-            disciplinaAtual = chave;
-            const obj = bancoDados[chave];
+        function iniciar() {
+            renderFiltroMateria();
+            renderFiltroAno();
+            renderCards();
+            atualizarBotaoProf();
+        }
 
-            document.getElementById('bc-disciplina').innerText = obj.nome;
-            document.getElementById('breadcrumbs').classList.remove('hidden');
-            document.getElementById('breadcrumbs').classList.add('flex');
+        function renderFiltroMateria() {
+            const container = document.getElementById("filtroMateria");
+            container.innerHTML = "";
 
-            document.getElementById('view-disciplinas').classList.add('hidden');
+            // Botão Física
+            const btnFisica = document.createElement("button");
+            btnFisica.className = `nav-btn ${estado.materia === 'Fisica' ? 'active' : ''}`;
+            btnFisica.innerText = "Física";
+            btnFisica.onclick = () => {
+                estado.materia = "Fisica";
+                estado.frente = null;
+                estado.ano = "9_Ano";
+                renderFiltroMateria();
+                renderFiltroAno();
+                renderCards();
+            };
+            container.appendChild(btnFisica);
 
-            if (obj.tipo === 'frentes') {
-                document.getElementById('view-frentes').classList.remove('hidden');
+            // Botão Matemática - Álgebra
+            const btnAlg = document.createElement("button");
+            btnAlg.className = `nav-btn ${estado.materia === 'Matematica' && estado.frente === 'Algebra' ? 'active' : ''}`;
+            btnAlg.innerText = "Matemática: Álgebra";
+            btnAlg.onclick = () => {
+                estado.materia = "Matematica";
+                estado.frente = "Algebra";
+                estado.ano = "9_Ano";
+                renderFiltroMateria();
+                renderFiltroAno();
+                renderCards();
+            };
+            container.appendChild(btnAlg);
+
+            // Botão Matemática - Geometria
+            const btnGeo = document.createElement("button");
+            btnGeo.className = `nav-btn ${estado.materia === 'Matematica' && estado.frente === 'Geometria' ? 'active' : ''}`;
+            btnGeo.innerText = "Matemática: Geometria";
+            btnGeo.onclick = () => {
+                estado.materia = "Matematica";
+                estado.frente = "Geometria";
+                estado.ano = "9_Ano";
+                renderFiltroMateria();
+                renderFiltroAno();
+                renderCards();
+            };
+            container.appendChild(btnGeo);
+        }
+
+        function renderFiltroAno() {
+            const container = document.getElementById("filtroAno");
+            container.innerHTML = "";
+
+            let anosDisponiveis = {};
+            if (estado.materia === "Fisica") {
+                anosDisponiveis = bancoDados.Fisica.anos;
             } else {
-                renderizarAnos(obj.anos);
+                anosDisponiveis = bancoDados.Matematica.frentes[estado.frente].anos;
+            }
+
+            for (const chave in anosDisponiveis) {
+                const btn = document.createElement("button");
+                btn.className = `nav-btn ${estado.ano === chave ? 'active' : ''}`;
+                btn.innerText = anosDisponiveis[chave].nome;
+                btn.onclick = () => {
+                    estado.ano = chave;
+                    renderFiltroAno();
+                    renderCards();
+                };
+                container.appendChild(btn);
             }
         }
 
-        function selecionarFrente(chaveFrente) {
-            frenteAtual = chaveFrente;
-            const objFrente = bancoDados[disciplinaAtual].frentes[chaveFrente];
-
-            document.getElementById('bc-frente-sep').classList.remove('hidden');
-            document.getElementById('bc-frente').classList.remove('hidden');
-            document.getElementById('bc-frente').innerText = objFrente.nome;
-
-            document.getElementById('view-frentes').classList.add('hidden');
-            renderizarAnos(objFrente.anos);
-        }
-
-        function renderizarAnos(anosObj) {
-            document.getElementById('view-anos').classList.remove('hidden');
-            const gridAnos = document.getElementById('grid-anos');
-            gridAnos.innerHTML = '';
-
-            for (let anoKey in anosObj) {
-                let anoData = anosObj[anoKey];
-                let card = document.createElement('div');
-                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex items-center justify-between group";
-                card.innerHTML = `
-                    <span class="font-bold text-slate-800 text-lg group-hover:text-indigo-600 transition-colors">${anoData.nome}</span>
-                    <span class="text-indigo-600 font-medium text-sm">Acessar Unidades →</span>
-                `;
-                card.onclick = () => selecionarAno(anoKey, anoData.nome);
-                gridAnos.appendChild(card);
-            }
-        }
-
-        function selecionarAno(chaveAno, nomeAno) {
-            anoAtual = chaveAno;
-            nomeAnoGlobal = nomeAno;
-
-            // Atualiza Breadcrumb com segurança
-            document.getElementById('bc-ano-sep').classList.remove('hidden');
-            document.getElementById('bc-ano').classList.remove('hidden');
-            document.getElementById('bc-ano').innerText = nomeAno;
-
-            // Limpa o rastro de unidade se houver
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
-
-            // Oculta as outras telas e exibe a view de unidades
-            document.getElementById('view-frentes').classList.add('hidden');
-            document.getElementById('view-anos').classList.add('hidden');
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.remove('hidden');
-
-            const gridUnidades = document.getElementById('grid-unidades');
-            gridUnidades.innerHTML = '';
+        function renderCards() {
+            const grid = document.getElementById("gridCards");
+            grid.innerHTML = "";
 
             let unidades = [];
-            if (frenteAtual && bancoDados[disciplinaAtual].frentes[frenteAtual]) {
-                unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[chaveAno].unidades;
-            } else if (bancoDados[disciplinaAtual].anos) {
-                unidades = bancoDados[disciplinaAtual].anos[chaveAno].unidades;
+            if (estado.materia === "Fisica") {
+                unidades = bancoDados.Fisica.anos[estado.ano]?.unidades || [];
+            } else {
+                unidades = bancoDados.Matematica.frentes[estado.frente]?.anos[estado.ano]?.unidades || [];
             }
 
-            unidades.forEach((uni, idx) => {
-                let card = document.createElement('div');
-                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group";
+            unidades.forEach(unidade => {
+                const card = document.createElement("div");
+                card.className = "unit-card";
+
+                const isEscola = unidade.id.includes("Escola");
+
+                let videosHtml = "";
+                if (unidade.videos && unidade.videos.length > 0) {
+                    videosHtml = `
+                        <div class="videos-section">
+                            <details>
+                                <summary>▶ Videoaulas Recomendadas (${unidade.videos.length})</summary>
+                                <ul class="video-list">
+                                    ${unidade.videos.map(v => `
+                                        <li class="video-item">
+                                            <a href="${v.url}" target="_blank">📺 ${v.titulo}</a>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </details>
+                        </div>
+                    `;
+                }
+
+                let btnProfHtml = "";
+                if (unidade.pdfProf) {
+                    btnProfHtml = `
+                        <button class="btn-prof" onclick="acessarGabarito('${unidade.pdfProf}')">
+                            🔒 Gabarito
+                        </button>
+                    `;
+                }
+
                 card.innerHTML = `
-                    <div>
-                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-3 inline-block">${uni.id}</span>
-                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">${uni.titulo}</h3>
-                        <p class="text-sm text-slate-600 mb-4">${uni.desc}</p>
+                    <div class="card-header">
+                        <span class="unit-badge ${isEscola ? 'adaptado' : ''}">${unidade.id}</span>
+                        <h2>${unidade.titulo}</h2>
                     </div>
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-xs text-slate-400 font-medium">${uni.videos ? uni.videos.length : 0} vídeo(s) • Material PDF</span>
-                        <span class="text-indigo-600 font-semibold text-sm">Entrar na Unidade →</span>
+                    <div class="card-body">
+                        <p class="card-desc">${unidade.desc}</p>
+                        
+                        <div class="card-actions">
+                            <a href="${unidade.pdf}" target="_blank" class="btn-pdf">
+                                📄 Lista do Aluno
+                            </a>
+                            ${btnProfHtml}
+                        </div>
+
+                        ${videosHtml}
                     </div>
                 `;
-                card.onclick = () => abrirUnidade(idx);
-                gridUnidades.appendChild(card);
+
+                grid.appendChild(card);
             });
         }
 
-        function abrirUnidade(index) {
-            unidadeAtualIndex = index;
-
-            let unidades = [];
-            if (frenteAtual) {
-                unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[anoAtual].unidades;
-            } else {
-                unidades = bancoDados[disciplinaAtual].anos[anoAtual].unidades;
-            }
-
-            let uni = unidades[index];
-
-            document.getElementById('bc-unidade-sep').classList.remove('hidden');
-            document.getElementById('bc-unidade').innerText = uni.id;
-            document.getElementById('titulo-pagina-unidade').innerText = `${uni.id}: ${uni.titulo}`;
-
-            document.getElementById('view-unidades').classList.add('hidden');
-            document.getElementById('view-conteudos').classList.remove('hidden');
-
-            const container = document.getElementById('container-conteudos');
-            container.innerHTML = '';
-
-            let botaoPdf = uni.pdf ? 
-                `<a href="${uni.pdf}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center shadow-sm">📄 Baixar Lista de Exercícios (PDF)</a>` :
-                `<span class="bg-slate-100 text-slate-400 text-sm px-5 py-2.5 rounded-lg cursor-not-allowed">📄 PDF em construção</span>`;
-
-            let botaoProf = uni.pdfProf ? 
-                `<a href="${uni.pdfProf}" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center shadow-sm">🔒 Gabarito do Professor (PDF)</a>` : '';
-
-            let teoriaHtml = uni.temTeoria ? 
-                `<a href="#" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-5 py-2.5 rounded-lg transition-colors flex items-center">📖 Resumo Teórico</a>` : '';
-
-            let topoMateriais = document.createElement('div');
-            topoMateriais.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4";
-            topoMateriais.innerHTML = `
-                <div>
-                    <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-2 inline-block">${uni.id}</span>
-                    <h3 class="text-2xl font-bold text-slate-900">${uni.titulo}</h3>
-                    <p class="text-slate-600 mt-1">${uni.desc}</p>
-                </div>
-                <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-3 items-center">
-                    ${botaoPdf}
-                    ${botaoProf}
-                    ${teoriaHtml}
-                </div>
-            `;
-            container.appendChild(topoMateriais);
-
-            if (uni.videos && uni.videos.length > 0) {
-                let tituloSecaoVideos = document.createElement('div');
-                tituloSecaoVideos.className = "pt-4";
-                tituloSecaoVideos.innerHTML = `<h3 class="text-lg font-bold text-slate-900">🎥 Videoaulas Explicativas</h3><p class="text-sm text-slate-500">Assista aos vídeos abaixo conforme sua necessidade de estudo:</p>`;
-                container.appendChild(tituloSecaoVideos);
-
-                uni.videos.forEach(v => {
-                    let cardVideo = document.createElement('div');
-                    cardVideo.className = "bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden p-6 space-y-3";
-                    cardVideo.innerHTML = `
-                        <div class="bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-lg text-sm text-amber-900">
-                            💡 Está <span class="font-semibold">${v.duvida}</span> Veja o vídeo abaixo para te ajudar:
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-base">${v.titulo} <span class="text-xs font-normal text-slate-500">(${v.autor})</span></h4>
-                        </div>
-                        <div class="aspect-video bg-slate-900 rounded-lg overflow-hidden shadow-inner">
-                            <iframe class="w-full h-full" src="${v.url}" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    `;
-                    container.appendChild(cardVideo);
-                });
-            } else {
-                let semVideo = document.createElement('div');
-                semVideo.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center text-slate-400";
-                semVideo.innerHTML = `<p>📹 Videoaulas para esta unidade estão em fase de gravação e organização.</p>`;
-                container.appendChild(semVideo);
-            }
-        }
-
         // ==========================================
-        // ROTAS DE VOLTA RÁPIDA (BREADCRUMBS CLICÁVEIS)
+        // MOTOR DE GABARITO TEMPORÁRIO (SECURE LINK)
         // ==========================================
-        function navegarParaDisciplina() {
-            if (!disciplinaAtual) return;
-            const obj = bancoDados[disciplinaAtual];
+        let urlGabaritoPendente = null;
 
-            frenteAtual = null;
-            anoAtual = null;
-            unidadeAtualIndex = null;
+        function abrirModalChave(url = null) {
+            urlGabaritoPendente = url;
+            document.getElementById("modalChave").classList.add("open");
+            document.getElementById("inputChave").focus();
+        }
 
-            document.getElementById('bc-frente-sep').classList.add('hidden');
-            document.getElementById('bc-frente').classList.add('hidden');
-            document.getElementById('bc-ano-sep').classList.add('hidden');
-            document.getElementById('bc-ano').classList.add('hidden');
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
+        function fecharModal() {
+            document.getElementById("modalChave").classList.remove("open");
+            document.getElementById("inputChave").value = "";
+            urlGabaritoPendente = null;
+        }
 
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.add('hidden');
-            document.getElementById('view-anos').classList.add('hidden');
+        function confirmarChave() {
+            const chave = document.getElementById("inputChave").value.trim();
+            if (!chave) return;
 
-            if (obj.tipo === 'frentes') {
-                document.getElementById('view-frentes').classList.remove('hidden');
+            sessionStorage.setItem("prof_secret_key", chave);
+            fecharModal();
+            atualizarBotaoProf();
+
+            if (urlGabaritoPendente) {
+                gerarLinkEAbrir(urlGabaritoPendente, chave);
+            }
+        }
+
+        function atualizarBotaoProf() {
+            const btn = document.getElementById("btnProfToggle");
+            if (sessionStorage.getItem("prof_secret_key")) {
+                btn.className = "btn-status-prof active";
+                btn.innerHTML = "🔓 Professor Ativo";
+                btn.onclick = () => {
+                    sessionStorage.removeItem("prof_secret_key");
+                    atualizarBotaoProf();
+                };
             } else {
-                renderizarAnos(obj.anos);
+                btn.className = "btn-status-prof";
+                btn.innerHTML = "🔒 Modo Professor";
+                btn.onclick = () => abrirModalChave();
             }
         }
 
-        function navegarParaFrente() {
-            if (frenteAtual) {
-                anoAtual = null;
-                unidadeAtualIndex = null;
-
-                document.getElementById('bc-ano-sep').classList.add('hidden');
-                document.getElementById('bc-ano').classList.add('hidden');
-                document.getElementById('bc-unidade-sep').classList.add('hidden');
-                document.getElementById('bc-unidade').innerText = '';
-
-                document.getElementById('view-conteudos').classList.add('hidden');
-                document.getElementById('view-unidades').classList.add('hidden');
-                renderizarAnos(bancoDados[disciplinaAtual].frentes[frenteAtual].anos);
-            } else if (disciplinaAtual) {
-                navegarParaDisciplina();
-            }
-        }
-
-        function navegarParaAno() {
-    if (!anoAtual) return;
-    
-    // Reseta o estado da unidade mas mantém a série ativa
-    unidadeAtualIndex = null;
-
-    // Oculta a view de conteúdos e exibe a view de unidades
-    document.getElementById('bc-unidade-sep').classList.add('hidden');
-    document.getElementById('bc-unidade').innerText = '';
-
-    document.getElementById('view-conteudos').classList.add('hidden');
-    document.getElementById('view-unidades').classList.remove('hidden');
-
-    // Reconstrói a grade de unidades chamando diretamente a renderização
-    const gridUnidades = document.getElementById('grid-unidades');
-    gridUnidades.innerHTML = '';
-
-    let unidades = [];
-    if (frenteAtual && bancoDados[disciplinaAtual].frentes[frenteAtual]) {
-        unidades = bancoDados[disciplinaAtual].frentes[frenteAtual].anos[anoAtual].unidades;
-    } else if (bancoDados[disciplinaAtual].anos) {
-        unidades = bancoDados[disciplinaAtual].anos[anoAtual].unidades;
-    }
-
-    unidades.forEach((uni, idx) => {
-        let card = document.createElement('div');
-        card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group";
-        card.innerHTML = `
-            <div>
-                <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-200 mb-3 inline-block">${uni.id}</span>
-                <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-2">${uni.titulo}</h3>
-                <p class="text-sm text-slate-600 mb-4">${uni.desc}</p>
-            </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span class="text-xs text-slate-400 font-medium">${uni.videos ? uni.videos.length : 0} vídeo(s) • Material PDF</span>
-                <span class="text-indigo-600 font-semibold text-sm">Entrar na Unidade →</span>
-            </div>
-        `;
-        card.onclick = () => abrirUnidade(idx);
-        gridUnidades.appendChild(card);
-    });
-}
-
-        function navegarParaUnidades() {
-            if (!anoAtual || !nomeAnoGlobal) return;
-            unidadeAtualIndex = null;
-
-            // Limpa o breadcrumb da unidade
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
-
-            // Oculta a view de conteúdos e exibe a view de unidades
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.remove('hidden');
-
-            // Reconstrói a grade de unidades
-            selecionarAno(anoAtual, nomeAnoGlobal);
-        }
-
-        function voltarParaNivelAnteriorDosAnos() {
-            if (frenteAtual) {
-                frenteAtual = null;
-                anoAtual = null;
-                document.getElementById('bc-frente-sep').classList.add('hidden');
-                document.getElementById('bc-frente').classList.add('hidden');
-                document.getElementById('view-anos').classList.add('hidden');
-                document.getElementById('view-frentes').classList.remove('hidden');
+        function acessarGabarito(caminhoPdf) {
+            const chaveSalva = sessionStorage.getItem("prof_secret_key");
+            if (!chaveSalva) {
+                abrirModalChave(caminhoPdf);
             } else {
-                resetarPortal();
+                gerarLinkEAbrir(caminhoPdf, chaveSalva);
             }
         }
 
-        function resetarPortal() {
-            disciplinaAtual = null;
-            frenteAtual = null;
-            anoAtual = null;
-            nomeAnoGlobal = null;
-            unidadeAtualIndex = null;
-            
-            document.getElementById('breadcrumbs').classList.remove('flex');
-            document.getElementById('breadcrumbs').classList.add('hidden');
-            document.getElementById('bc-frente-sep').classList.add('hidden');
-            document.getElementById('bc-frente').classList.add('hidden');
-            document.getElementById('bc-ano-sep').classList.add('hidden');
-            document.getElementById('bc-ano').classList.add('hidden');
-            document.getElementById('bc-unidade-sep').classList.add('hidden');
-            document.getElementById('bc-unidade').innerText = '';
+        function gerarLinkEAbrir(caminhoRelativo, chaveMestra) {
+            // Expiração em 3 minutos (180 segundos)
+            const agoraUnix = Math.floor(Date.now() / 1000);
+            const expiraEm = agoraUnix + 180;
 
-            document.getElementById('view-conteudos').classList.add('hidden');
-            document.getElementById('view-unidades').classList.add('hidden');
-            document.getElementById('view-anos').classList.add('hidden');
-            document.getElementById('view-frentes').classList.add('hidden');
-            document.getElementById('view-disciplinas').classList.remove('hidden');
+            const uri = caminhoRelativo.startsWith('/') ? caminhoRelativo : '/' + caminhoRelativo;
+
+            // Formato validado pelo Nginx: "$arg_e$uri Segredo"
+            const stringParaAssinar = `${expiraEm}${uri} ${chaveMestra}`;
+
+            // Hash MD5 Base64 URL-Safe (padrão secure_link)
+            const hash = CryptoJS.MD5(stringParaAssinar);
+            let base64Hash = CryptoJS.enc.Base64.stringify(hash)
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=/g, '');
+
+            const urlFinal = `${uri}?st=${base64Hash}&e=${expiraEm}`;
+            window.open(urlFinal, '_blank');
         }
+
+        // Inicia a aplicação
+        iniciar();
     </script>
 </body>
 </html>
