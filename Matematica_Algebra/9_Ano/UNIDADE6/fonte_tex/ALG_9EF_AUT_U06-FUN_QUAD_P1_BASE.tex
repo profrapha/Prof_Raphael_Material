@@ -1,0 +1,438 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} FUNÇÃO QUADRÁTICA}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- NOVA CAIXA PEDAGÓGICA E CORES (NOTA VERDE) ---
+\definecolor{CorNotaBorda}{HTML}{10B981} 
+\definecolor{CorNotaFundo}{HTML}{F0FDF4} 
+\newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Função Quadrática}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA \hfill \textbf{NÍVEL:} 9º ANO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Definição e Lei de Formação}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{01.} Considere a expressão algébrica que define uma relação de dependência entre duas grandezas, dada por $f(x) = 3x(x - 2) + 5 - x^2$. Para que esta função seja classificada corretamente e seus parâmetros identificados, ela deve ser escrita na forma canônica $f(x) = ax^2 + bx + c$.
+
+A partir da expansão algébrica, determine os valores numéricos dos coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Desenvolvendo a expressão:
+    $f(x) = 3x(x - 2) + 5 - x^2$
+    $f(x) = 3x^2 - 6x + 5 - x^2$
+    $f(x) = (3x^2 - x^2) - 6x + 5$
+    $f(x) = 2x^2 - 6x + 5$
+    
+    Os coeficientes são: $a = 2$, $b = -6$, $c = 5$.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental revisar a propriedade distributiva e o agrupamento de termos semelhantes. Alunos frequentemente erram os sinais ao agrupar.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{02.} O projeto arquitetônico de uma praça prevê a construção de um espelho d'água retangular envolto por uma calçada de concreto. As dimensões do espelho d'água dependem de uma variável \textbf{x} (medida em \textbf{metros}), conforme ilustrado no esquema da planta baixa.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS HEXADECIMAIS ---
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{agua}{HTML}{3498DB}
+
+% LAYER 1: Fundo Sombra e Calçada (Concreto)
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, concreto, rounded corners=4pt] (0,0) rectangle (6,4);
+
+% LAYER 2: Espelho D'água
+\fill[agua!80!white, rounded corners=2pt] (1,0.8) rectangle (5,3.2);
+
+% LAYER 3: Cotas e Textos
+\draw[thick, <->, >=stealth] (1, 0.4) -- (5, 0.4) node[midway, fill=concreto, inner sep=2pt] {\textbf{2x + 4}};
+\draw[thick, <->, >=stealth] (5.4, 0.8) -- (5.4, 3.2) node[midway, fill=concreto, inner sep=2pt, rotate=-90] {\textbf{x - 1}};
+
+\node[fill=agua!80!white, inner sep=2pt, text=white] at (3, 2) {\textbf{Espelho d'água}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Expresse a área do espelho d'água por meio de uma função polinomial do 2º grau $A(x)$. Em seguida, justifique o que o termo independente dessa função representa, sabendo que a medida \textbf{x} deve ser estritamente maior que \textbf{1}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    A área de um retângulo é dada por base vezes altura.
+    $A(x) = (2x + 4)(x - 1)$
+    $A(x) = 2x^2 - 2x + 4x - 4$
+    $A(x) = 2x^2 + 2x - 4$
+    
+    O termo independente $c = -4$ por si só representaria a área quando $x=0$, mas o contexto diz que $x > 1$. Ele ajusta o modelo ao domínio físico.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta é uma ótima questão para testar a álgebra espacial. O Teste Cego garante que o aluno precisa decodificar as dimensões a partir da figura.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{03.} Na matemática, a validade de uma função quadrática está atrelada à preservação de seu termo de maior grau. Considere a lei de formação $g(x) = (3m - 12)x^2 + 5x - 7$, em que \textbf{m} é uma constante real.
+
+Para que $g(x)$ seja de fato uma função do 2º grau, determine a condição de existência que deve ser rigorosamente respeitada para o valor de \textbf{m}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para ser do 2º grau, o coeficiente $a$ deve ser não-nulo ($a \neq 0$).
+    $3m - 12 \neq 0$
+    $3m \neq 12$
+    $m \neq \mfrac{12}{3}$
+    $m \neq 4$
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Trabalhar restrições paramétricas ajuda o aluno a ver a função como uma estrutura, e não apenas números fixos.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{04.} A lei de formação de uma função determina como cada valor de entrada se transforma em um valor de saída. Seja a função $h(x) = -2x^2 + 4x - 1$.
+
+Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F), apresentando o cálculo comprobatório para cada caso:
+
+\begin{enumerate}[label=\Roman*.]
+    \item O valor numérico da função para \textbf{x = -2} é igual a \textbf{-17}.
+    \item Se \textbf{x = 0}, a função atinge exatamente o valor do seu coeficiente independente.
+    \item O coeficiente quadrático dessa função indica que, ao dobrarmos o valor de \textbf{x}, o resultado final também dobrará.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    I) (V) $h(-2) = -2(-2)^2 + 4(-2) - 1 = -2(4) - 8 - 1 = -8 - 8 - 1 = -17$.
+    II) (V) $h(0) = -2(0)^2 + 4(0) - 1 = -1$, que é $c$.
+    III) (F) O quadrado significa que dobrar $x$ quadruplica esse termo, mas a soma muda tudo. (Ex: $h(1)=1$, $h(2)=-1 \neq 2$).
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O erro mais comum no item I é o aluno fazer $-2(-2)^2 = (-4)^2$. Reforce a precedência da potência.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{05.} Um engenheiro civil projeta o pilar central de uma estrutura metálica e define que a capacidade de carga $C$, em \textbf{toneladas}, em função da espessura \textbf{x} do pilar, em \textbf{centímetros}, é regida por uma função do tipo $C(x) = ax^2 + c$. Ele sabe que, se a espessura for nula, a carga suportada é zero e que, para um pilar de \textbf{10 cm} de espessura, a capacidade é de \textbf{150 toneladas}.
+
+Determine os coeficientes \textbf{a} e \textbf{c} dessa função.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Espessura nula = Carga zero: $C(0) = a(0)^2 + c = 0 \Rightarrow c = 0$.
+    Pilar 10cm = 150 ton: $C(10) = 150$.
+    $a(10)^2 + 0 = 150$
+    $100a = 150 \Rightarrow a = \mfrac{150}{100} = 1.5$.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Construir o modelo a partir de dados nominais é o primeiro passo para o letramento algébrico em ciências aplicadas.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{06.} (Estilo VUNESP) O setor financeiro de uma pequena fábrica de calçados modelou o seu lucro mensal $L$, em milhares de reais, em função do número \textbf{x} de lotes produzidos. A relação foi validada algébricamente pela lei $L(x) = -x^2 + 40x - 300$.
+
+Considerando as propriedades fundamentais dessa função, julgue os itens a seguir com Verdadeiro (V) ou Falso (F):
+
+\begin{enumerate}[label=\Roman*.]
+    \item Se a fábrica não produzir nenhum lote, o prejuízo será de \textbf{300 mil reais}.
+    \item O coeficiente \textbf{a} negativo indica uma limitação física ou de mercado, sugerindo que o aumento infinito da produção não gerará aumento infinito de lucro.
+    \item A produção de exatamente \textbf{10 lotes} garante lucro positivo para a empresa.
+\end{enumerate}
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    I) (V) Se $x = 0$, $L(0) = -300$.
+    II) (V) Um "a" negativo desenha uma parábola côncava para baixo (limite de teto).
+    III) (F) Para $x = 10$, $L(10) = -(10)^2 + 40(10) - 300 = -100 + 400 - 300 = 0$ (lucro neutro, raiz).
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Aborda a modelagem matemática na economia. Interpretar o prejuízo (y-intercept) é um conceito-chave.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{07.} Em uma montadora de veículos, uma peça plana de aço precisa ser recortada por uma máquina a laser. O modelo da peça tem formato retangular, e, para aliviar peso, um retângulo central menor será removido, conforme a vista frontal abaixo. O recorte interno e as margens da peça dependem do parâmetro \textbf{x}, medido em \textbf{milímetros}.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E LAYERS ---
+\definecolor{aco}{HTML}{7F8C8D}
+\definecolor{furo}{HTML}{ECF0F1}
+
+% LAYER 1: Peça de Aço (Fundo)
+\fill[drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, aco, rounded corners=3pt] (0,0) rectangle (6,5);
+
+% LAYER 2: Recorte interno
+\fill[furo, rounded corners=2pt] (1.5, 1.5) rectangle (4.5, 3.5);
+
+% LAYER 3: Cotas
+\draw[thick, <->, >=stealth] (0, -0.4) -- (6, -0.4) node[midway, fill=white, inner sep=2pt] {\textbf{3x + 10}};
+\draw[thick, <->, >=stealth] (-0.4, 0) -- (-0.4, 5) node[midway, fill=white, inner sep=2pt, rotate=90] {\textbf{2x + 5}};
+
+\draw[thick, <->, >=stealth] (1.5, 1.1) -- (4.5, 1.1) node[midway, fill=aco, text=white, inner sep=2pt] {\textbf{x + 2}};
+\draw[thick, <->, >=stealth] (4.9, 1.5) -- (4.9, 3.5) node[midway, fill=aco, text=white, inner sep=2pt, rotate=-90] {\textbf{x}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a lei de formação da função polinomial do 2º grau que descreve a área útil de aço restante $A(x)$ após o recorte. Simplifique ao máximo os termos semelhantes e indique claramente os coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Área Peça Maior: $A_1 = (3x + 10)(2x + 5) = 6x^2 + 15x + 20x + 50 = 6x^2 + 35x + 50$
+    Área Recorte: $A_2 = (x + 2)(x) = x^2 + 2x$
+    Área Restante: $A(x) = A_1 - A_2 = (6x^2 + 35x + 50) - (x^2 + 2x)$
+    $A(x) = 5x^2 + 33x + 50$.
+    Coeficientes: $a = 5$, $b = 33$, $c = 50$.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Uma clássica subtração de áreas. Avalie se os alunos não esquecem de subtrair o $2x$ também (erro de sinal distributivo).
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{08.} (ENEM - Adaptada) Um foguete de sinalização marítima é lançado de um navio durante um treinamento de resgate. A altura \textbf{h}, em \textbf{metros}, atingida pelo foguete em relação ao nível do mar, é descrita em função do tempo \textbf{t}, em \textbf{segundos}, por meio da equação termodinâmica simplificada $h(t) = 10 + 40t - 5t^2$.
+
+A partir da lei de formação apresentada, determine a altura inicial da qual o foguete foi lançado (no instante \textbf{t = 0}) e justifique fisicamente a presença do coeficiente negativo acompanhando o termo quadrático.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Para $t = 0$, $h(0) = 10$. A altura inicial é de 10 metros. O coeficiente quadrático ($a = -5$) é negativo porque fisicamente ele espelha a aceleração da gravidade, que atua "puxando" o corpo para baixo (aceleração contrária à velocidade de lançamento).
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Conexão vital com Cinemática (Física). O $a = -5$ é metade da aceleração da gravidade ($-g/2$).
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{09.} Para que a equação $y = (k^2 - 16)x^2 + (k + 4)x - 8$ represente verdadeiramente o modelo matemático de uma função quadrática, o coeficiente que multiplica $x^2$ deve obedecer a uma restrição vital de não-nulidade. 
+
+Determine os valores reais que a constante \textbf{k} está estritamente proibida de assumir. 
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    O coeficiente de $x^2$ deve ser $\neq 0$.
+    $k^2 - 16 \neq 0$
+    $k^2 \neq 16$
+    $k \neq \pm \sqrt{16}$
+    $k \neq \pm 4$.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Um erro constante é o aluno lembrar apenas do $k \neq 4$ e esquecer do $k \neq -4$ na extração da raiz.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} Em um laboratório de física aplicada, um projétil é disparado horizontalmente, e seu movimento descendente forma um arco perfeitamente modelado por uma função do 2º grau do tipo $f(x) = ax^2 + bx + c$.
+
+A câmera de alta velocidade registrou três posições chave num plano cartesiano, sendo \textbf{x} e \textbf{f(x)} em \textbf{metros}. As posições são: $(0, 20)$, $(1, 18)$ e $(-1, 18)$. 
+
+Escreva a lei de formação que descreve a trajetória do projétil neste sistema de referência.
+
+\ifgabarito
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    Do ponto $(0, 20)$, sabemos que $c = 20$.
+    Do ponto $(1, 18)$: $a(1)^2 + b(1) + 20 = 18 \Rightarrow a + b = -2$.
+    Do ponto $(-1, 18)$: $a(-1)^2 + b(-1) + 20 = 18 \Rightarrow a - b = -2$.
+    Somando o sistema: $2a = -4 \Rightarrow a = -2$.
+    Como $a + b = -2 \Rightarrow -2 + b = -2 \Rightarrow b = 0$.
+    Função: $f(x) = -2x^2 + 20$.
+    
+    \vspace{0.2cm}
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Demonstração pura de sistemas simétricos. O $b=0$ aponta o vértice sobre o eixo Y.
+    \end{boxexplicacao}
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+\end{multicols*}
+\end{document}
