@@ -4,17 +4,44 @@
     "BACKUP DE CONFIGURACAO: ROTEAMENTO AUTOMATICO DE PDFS LATEX (ALUNO -> PUBLICA / PROF -> RESTRITA)",
     "==========================================================================================",
     "COMO RESTAURAR CASO FORMATE O COMPUTADOR OU TROQUE DE MAQUINA:",
+    "",
+    "PASSO 1: RESTAURAR O SCRIPT BATCH ROTEADOR",
+    "- Certifique-se de que o arquivo 'compilar_roteador.bat' exista no caminho:",
+    "  C:\\Prof_Raphael_Material\\compilar_roteador.bat",
+    "- O conteudo obrigatorio desse .bat deve ser:",
+    "",
+    "  @echo off",
+    "  set \"ARQUIVO=%~nx1\"",
+    "  set \"CAMINHO_COMPLETO=%~1\"",
+    "  set OPENOUT_ANY=a",
+    "  if not exist \"..\\publica\" mkdir \"..\\publica\"",
+    "  if not exist \"..\\restrita\" mkdir \"..\\restrita\"",
+    "  echo %ARQUIVO% | findstr /I \"_ALUNO\" >nul",
+    "  if %errorlevel% equ 0 (",
+    "      echo [ROTEADOR] Compilando versao ALUNO para ../publica...",
+    "      pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../publica \"%CAMINHO_COMPLETO%\"",
+    "      exit /b 0",
+    "  )",
+    "  echo %ARQUIVO% | findstr /I \"_PROF\" >nul",
+    "  if %errorlevel% equ 0 (",
+    "      echo [ROTEADOR] Compilando versao PROFESSOR para ../restrita...",
+    "      pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../restrita \"%CAMINHO_COMPLETO%\"",
+    "      exit /b 0",
+    "  )",
+    "  echo [ROTEADOR] Arquivo ignorado (nao e casca _ALUNO nem _PROF).",
+    "  exit /b 0",
+    "",
+    "PASSO 2: RESTAURAR A CONFIGURACAO DO VS CODE",
     "1. Abra o VS Code com a extensao 'LaTeX Workshop' instalada.",
     "2. Pressione 'Ctrl + Shift + P' e digite: Preferences: Open User Settings (JSON).",
-    "3. Copie as chaves contidas na propriedade 'configuracao_vscode' abaixo e cole no seu settings.json.",
+    "3. Copie as chaves do objeto 'configuracao_vscode' abaixo e cole no seu settings.json.",
     "4. Reinicie o VS Code.",
     "",
     "COMO FUNCIONA O MECANISMO:",
-    "- O roteador le o NOME DO ARQUIVO que esta aberto quando voce salva (Ctrl + S).",
-    "- Se o arquivo tiver '_ALUNO' no nome, compila e joga o PDF e os temps em '../publica'.",
-    "- Se o arquivo tiver '_PROF' no nome, compila e joga o PDF e os temps em '../restrita'.",
-    "- O comando ja cria as pastas automaticamente caso elas ainda nao existam.",
-    "- Ignora a compilacao cega de arquivos que nao sejam cascas, evitando sujar a pasta.",
+    "- Toda vez que voce salvar (Ctrl + S) uma casca contendo '_ALUNO' no nome, o PDF vai para '../publica'.",
+    "- Toda vez que voce salvar (Ctrl + S) uma casca contendo '_PROF' no nome, o PDF vai para '../restrita'.",
+    "- Arquivos base ou auxiliares sao ignorados automaticamente pelo script, impedindo sujeira.",
+    "- As pastas 'publica' e 'restrita' sao criadas dinamicamente caso ainda nao existam.",
     "=========================================================================================="
   ],
   "configuracao_vscode": {
@@ -29,21 +56,19 @@
       {
         "name": "Compilador_Inteligente",
         "tools": [
-          "roteador_de_pasta"
+          "roteador_bat"
         ]
       }
     ],
     "latex-workshop.latex.tools": [
       {
-        "name": "roteador_de_pasta",
+        "name": "roteador_bat",
         "command": "cmd",
         "args": [
           "/c",
-          "if not exist ..\\publica mkdir ..\\publica && if not exist ..\\restrita mkdir ..\\restrita && if not \"%DOCFILE%\"==\"%DOCFILE:_ALUNO=%\" (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../publica %DOCFILE%) else if not \"%DOCFILE%\"==\"%DOCFILE:_PROF=%\" (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../restrita %DOCFILE%) else (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %DOCFILE%)"
-        ],
-        "env": {
-          "OPENOUT_ANY": "a"
-        }
+          "C:\\Prof_Raphael_Material\\compilar_roteador.bat",
+          "%DOC%"
+        ]
       }
     ]
   }
