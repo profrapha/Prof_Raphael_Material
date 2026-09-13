@@ -1,0 +1,2340 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+% --- TAG SEMÂNTICA PARA LEITURA DE IA (INVISÍVEL NO PDF) ---
+\newenvironment{enunciadoLiteral}{}{}
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} PRODUTOS NOTÁVEIS E FATORAÇÃO}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- NOVA CAIXA PEDAGÓGICA E CORES (NOTA VERDE) ---
+% --- CAIXA VERDE (Nota Pedagógica) ---
+        \definecolor{CorNotaBorda}{HTML}{10B981} 
+        \definecolor{CorNotaFundo}{HTML}{F0FDF4} 
+        \newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt, fontupper=\small}
+        
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: Produtos Notáveis e Fatoração}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} Matemática - Álgebra \hfill \textbf{NÍVEL:} 8º Ano}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Produtos Notáveis}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} 
+\begin{enunciadoLiteral}
+O quadrado da soma de dois termos é uma ferramenta poderosa para simplificar cálculos geométricos e algébricos sem a necessidade de aplicar a propriedade distributiva termo a termo repetidas vezes. 
+
+Desenvolva algebricamente a expressão $ (3x + 5y)^2 $ e determine qual será o coeficiente numérico do termo central (aquele que contém o produto das variáveis \textbf{x} e \textbf{y}).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Qual é a regra prática que recitamos para o quadrado da soma? "O quadrado do primeiro... mais o quê?"\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Aplicando a regra $ (a + b)^2 = a^2 + 2ab + b^2 $, onde $ a = 3x $ e $ b = 5y $:
+    
+    $ (3x + 5y)^2 = (3x)^2 + 2 \cdot (3x) \cdot (5y) + (5y)^2 $
+    
+    Resolvendo cada parte:
+    - O quadrado do primeiro termo: $ (3x)^2 = 9x^2 $
+    - Duas vezes o produto do primeiro pelo segundo: $ 2 \cdot 3x \cdot 5y = 30xy $
+    - O quadrado do segundo termo: $ (5y)^2 = 25y^2 $
+    
+    Expressão final: $ 9x^2 + 30xy + 25y^2 $.
+    
+    O coeficiente numérico do termo central (que acompanha \textbf{xy}) é \textbf{30}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O objetivo desta questão é a alfabetização algébrica bruta. Muitos alunos esquecem de elevar o coeficiente numérico ao quadrado (escrevendo $3x^2$ em vez de $9x^2$). A identificação do "coeficiente do termo central" obriga o aluno a ler a expressão resultante criticamente, e não apenas calculá-la de forma mecânica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} 
+\begin{enunciadoLiteral}
+Um escritório de design projetou um salão quadrado, cuja planta baixa foi dividida em quatro regiões distintas para acomodar uma recepção, duas salas de reuniões iguais e um jardim de inverno, conforme o esboço a seguir.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E ROUNDED CORNERS ---
+\definecolor{fundoAzul}{HTML}{E3F2FD}
+\definecolor{bordaAzul}{HTML}{1976D2}
+\definecolor{fundoLaranja}{HTML}{FFF3E0}
+\definecolor{bordaLaranja}{HTML}{F57C00}
+\definecolor{fundoVerde}{HTML}{E8F5E9}
+\definecolor{bordaVerde}{HTML}{388E3C}
+
+% LAYER 1: Sombra e Base do grande quadrado
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fill=white, rounded corners=2pt] (0,0) rectangle (6,6);
+
+% LAYER 2: Regiões Internas (Retângulos e Quadrados)
+% Região inferior esquerda (x por x)
+\draw[thick, fill=fundoAzul, draw=bordaAzul] (0,0) rectangle (4,4);
+\node[font=\bfseries\Large, text=bordaAzul] at (2,2) {Recepção};
+
+% Região inferior direita (2 por x)
+\draw[thick, fill=fundoLaranja, draw=bordaLaranja] (4,0) rectangle (6,4);
+\node[font=\bfseries, text=bordaLaranja, rotate=-90] at (5,2) {Reunião 1};
+
+% Região superior esquerda (x por 2)
+\draw[thick, fill=fundoLaranja, draw=bordaLaranja] (0,4) rectangle (4,6);
+\node[font=\bfseries, text=bordaLaranja] at (2,5) {Reunião 2};
+
+% Região superior direita (2 por 2)
+\draw[thick, fill=fundoVerde, draw=bordaVerde] (4,4) rectangle (6,6);
+\node[font=\bfseries, text=bordaVerde, align=center] at (5,5) {Jardim};
+
+% LAYER 3: Cotas e Medidas
+% Cotas inferiores
+\draw[|-|, thick, color=CinzaEscuro] (0,-0.4) -- (4,-0.4) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$x$};
+\draw[|-|, thick, color=CinzaEscuro] (4,-0.4) -- (6,-0.4) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$2$};
+
+% Cotas laterais
+\draw[|-|, thick, color=CinzaEscuro] (-0.4,0) -- (-0.4,4) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$x$};
+\draw[|-|, thick, color=CinzaEscuro] (-0.4,4) -- (-0.4,6) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$2$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na representação visual, escreva a expressão algébrica que representa a área total do salão na forma fatorada (produto notável) e, em seguida, na forma polinomial expandida.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se juntarmos todas as medidas na base e na altura da figura inteira, qual será o tamanho total do lado deste grande quadrado?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A área total do salão pode ser vista de duas formas complementares:
+    
+    \textbf{Forma Fatorada (Área do Quadrado Maior):}
+    O lado total do salão é a soma dos segmentos $ x $ e $ 2 $. Portanto, o lado é $ (x + 2) $.
+    A área de um quadrado é dada pelo lado ao quadrado. Logo:
+    Área $ = (x + 2)^2 $
+    
+    \textbf{Forma Polinomial (Soma das Áreas Menores):}
+    Calculamos a área de cada região interna:
+    - Recepção (Azul): $ x \cdot x = x^2 $
+    - Reunião 1 (Laranja): $ 2 \cdot x = 2x $
+    - Reunião 2 (Laranja): $ x \cdot 2 = 2x $
+    - Jardim (Verde): $ 2 \cdot 2 = 4 $
+    
+    Somando tudo: $ x^2 + 2x + 2x + 4 = x^2 + 4x + 4 $.
+    
+    Isso prova visualmente a regra do produto notável: $ (x + 2)^2 = x^2 + 4x + 4 $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Aplicação do "Teste Cego". Sem a imagem, o aluno não sabe as medidas das salas menores. Essa questão tangibiliza o motivo da existência do termo central $2ab$ (as duas salas de reuniões idênticas), destruindo o erro comum do aluno que acha que $(a+b)^2$ é apenas $a^2 + b^2$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} 
+\begin{enunciadoLiteral}
+Durante uma prova de álgebra, o estudante Marcos deparou-se com o seguinte cálculo para resolver: desenvolver o quadrado da diferença $ (4x - 3)^2 $. Rapidamente, ele entregou a seguinte resolução em sua folha:
+
+\textit{"O quadrado do primeiro termo é $16x^2$. O quadrado do segundo termo é $-9$. Portanto, a resposta é $ 16x^2 - 9 $."}
+
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique os \textbf{dois} erros matemáticos graves que Marcos cometeu em seu raciocínio lógico e apresente o cálculo e a resposta correta para a expressão.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Marcos achou que a potência distributiva funciona na subtração, igual funciona na multiplicação. Além disso, o que acontece com qualquer número negativo quando elevado ao quadrado?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Diagnóstico dos erros:
+    - \textbf{Erro 1 (Omissão do termo central):} Ele aplicou a falsa regra de que $ (a - b)^2 = a^2 - b^2 $. Ele esqueceu completamente do termo central "menos duas vezes o primeiro pelo segundo" ($ -2ab $).
+    - \textbf{Erro 2 (Sinal da potência):} Ele calculou o quadrado de $ (-3) $ como sendo $ -9 $. O quadrado de qualquer número real é sempre positivo, então $ (-3)^2 = +9 $.
+    
+    Correção matemática do desenvolvimento:
+    $ (4x - 3)^2 = (4x)^2 - 2 \cdot (4x) \cdot (3) + (3)^2 $
+    $ (4x - 3)^2 = 16x^2 - 24x + 9 $
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão metacognitiva. Quando o aluno identifica o erro de um terceiro, ele fortalece a própria memória para não cometer a mesma falha. O "Erro 1" aborda o termo esquecido, enquanto o "Erro 2" trabalha a defasagem comum de regras de sinais de séries anteriores.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} 
+\begin{enunciadoLiteral}
+O \textit{produto da soma pela diferença} de dois termos, expresso por $ (a + b)(a - b) $, resulta sempre na diferença de dois quadrados: $ a^2 - b^2 $. Esta propriedade é frequentemente útil para realizar cálculos mentais rápidos envolvendo números grandes.
+
+Aplique essa propriedade algébrica para calcular o valor numérico exato da expressão $ (105) \cdot (95) $, modelando os números para que se encaixem no formato $ (a + b)(a - b) $.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Qual é o número "redondo" (fácil de calcular) que está exatamente no meio, entre 105 e 95?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O número que está a mesma distância de 105 e 95 é o \textbf{100}.
+    Podemos reescrever os fatores da seguinte forma:
+    $ 105 = 100 + 5 $
+    $ 95 = 100 - 5 $
+    
+    Substituindo na expressão original, temos:
+    $ (100 + 5) \cdot (100 - 5) $
+    
+    Isso é exatamente o produto da soma pela diferença, onde $ a = 100 $ e $ b = 5 $. Aplicando a regra $ a^2 - b^2 $:
+    $ (100)^2 - (5)^2 $
+    $ 10000 - 25 = 9975 $
+    
+    Portanto, $ 105 \cdot 95 = 9975 $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Conectar álgebra à aritmética básica (cálculo mental) mostra ao aluno que letras na álgebra não são símbolos abstratos desconectados, mas sim generalizações de comportamentos numéricos reais. Isso aumenta o engajamento e o sentido da disciplina.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} 
+\begin{enunciadoLiteral}
+Em competições de robótica, frequentemente os algoritmos de trajetória utilizam simplificações polinomiais para economizar processamento. Um engenheiro de software precisa simplificar ao máximo o bloco de código representado pela expressão algébrica $ P = (x + 8)^2 - (x - 8)^2 $. 
+
+Analisando a expressão, assinale a alternativa que apresenta a forma final simplificada e prove o erro da alternativa \textbf{a}.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ P = 0 $
+    \item $ P = 16x $
+    \item $ P = 32x $
+    \item $ P = 2x^2 + 128 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se expandirmos os dois parênteses isoladamente, o que acontecerá com os sinais do segundo polinômio por causa do sinal negativo que o antecede?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Vamos expandir os dois produtos notáveis separadamente e depois realizar a subtração.
+    Primeiro termo (quadrado da soma): $ (x + 8)^2 = x^2 + 16x + 64 $
+    Segundo termo (quadrado da diferença): $ (x - 8)^2 = x^2 - 16x + 64 $
+    
+    Montando a expressão completa, mantendo os parênteses pelo risco do sinal negativo:
+    $ P = (x^2 + 16x + 64) - (x^2 - 16x + 64) $
+    
+    Distribuindo o sinal negativo no segundo parêntese:
+    $ P = x^2 + 16x + 64 - x^2 + 16x - 64 $
+    
+    Cancelando os termos opostos ($x^2$ com $-x^2$ e $64$ com $-64$):
+    $ P = 16x + 16x = 32x $
+    
+    \textbf{Alternativa correta: c}.
+    
+    \textbf{Refutação da alternativa a:} O distrator afirma que a resposta é 0. Um aluno chegaria a esse erro fatal se achasse que $ (x + 8)^2 $ e $ (x - 8)^2 $ expandem apenas para $ x^2 + 64 $ e $ x^2 - 64 $, ignorando os termos centrais $16x$ e $-16x$. Se ele fizer isso, faria $ x^2 + 64 - x^2 - 64 = 0 $, comprovando um duplo erro conceitual de produto notável e regra de sinais.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão de múltipla escolha com Trava Metacognitiva. Ao forçar a refutação de um distrator altamente convidativo ($P=0$), garantimos que o aluno reflita sobre as armadilhas comuns (como esquecer o termo 2ab e a distribuição do sinal negativo) antes de apenas marcar o gabarito.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} 
+\begin{enunciadoLiteral}
+A presença de coeficientes fracionários muitas vezes causa apreensão, mas as regras dos produtos notáveis permanecem inalteradas, independentemente da natureza dos números reais envolvidos.
+
+Aplique corretamente o desenvolvimento do quadrado da soma para a expressão $ (y + \mfrac{1}{4})^2 $ e apresente o polinômio resultante, simplificando os termos sempre que possível.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Quando multiplicamos um número inteiro pela fração, o que multiplicamos? E como calculamos o quadrado de uma fração inteira?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Regra do quadrado da soma: $ a^2 + 2ab + b^2 $.
+    Aqui, temos $ a = y $ e $ b = \mfrac{1}{4} $.
+    
+    Substituindo na fórmula:
+    $ (y)^2 + 2 \cdot (y) \cdot (\mfrac{1}{4}) + (\mfrac{1}{4})^2 $
+    
+    Resolvendo cada parte com cuidado nas frações:
+    - O quadrado do primeiro termo: $ y^2 $
+    - Termo central: $ 2 \cdot y \cdot \mfrac{1}{4} = \mfrac{2y}{4} $. Simplificando a fração por 2, obtemos $ \mfrac{y}{2} $.
+    - O quadrado do segundo termo: elevar tanto o numerador quanto o denominador ao quadrado: $ \mfrac{1^2}{4^2} = \mfrac{1}{16} $.
+    
+    Polinômio final resultante:
+    $ y^2 + \mfrac{y}{2} + \mfrac{1}{16} $
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O Procedimental com Variação (usando frações) trabalha a alfabetização matemática profunda. Ele une duas competências: a fixação da estrutura do trinômio e a revisão de operações fracionárias (multiplicação e potência de frações), que costumam ser gargalos nesta série.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} 
+\begin{enunciadoLiteral}
+Um arquiteto está reformando uma praça e deseja expandir o espaço central, que atualmente é um piso quadrado de granito, transformando-o em um novo formato retangular de concreto. O projeto indica que as medidas originais (de lado \textbf{m}) serão alteradas: uma das dimensões será aumentada em 3 metros, e a outra, diminuída em 3 metros, gerando o novo layout.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E ROUNDED CORNERS ---
+\definecolor{pedra}{HTML}{7F8C8D}
+\definecolor{pedraBorda}{HTML}{2C3E50}
+\definecolor{concretoClaro}{HTML}{BDC3C7}
+\definecolor{concretoBorda}{HTML}{7F8C8D}
+\definecolor{linhaCota}{HTML}{34495E}
+
+% LAYER 1: Quadrado Original (Granito) - tracejado para referência
+\draw[dashed, thick, color=pedraBorda] (0,0) rectangle (4,4);
+\node[font=\bfseries, color=pedraBorda] at (2,2) {Piso Original};
+
+% LAYER 2: Novo Retângulo (Concreto) com Drop Shadow
+\fill[drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}, fill=concretoClaro, rounded corners=1pt] (0,0) rectangle (6,2.5);
+\draw[thick, draw=concretoBorda, rounded corners=1pt] (0,0) rectangle (6,2.5);
+\node[font=\bfseries, color=pedraBorda] at (3,1.25) {Novo Piso};
+
+% LAYER 3: Cotas Geométricas
+% Cota Inferior (Base Nova) = m + 3
+\draw[|-|, thick, color=linhaCota] (0,-0.6) -- (6,-0.6) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$m + 3$};
+
+% Cota Lateral Esquerda (Altura Nova) = m - 3
+\draw[|-|, thick, color=linhaCota] (-0.6,0) -- (-0.6,2.5) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$m - 3$};
+
+% Cota Lateral Direita (Ref original)
+\draw[|-|, dashed, color=pedraBorda] (4.4,0) -- (4.4,4) node[midway, fill=white, inner sep=2pt, font=\small] {$m$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a expressão algébrica reduzida que representa a nova área da praça. Em seguida, responda: a área aumentou, diminuiu ou permaneceu exatamente a mesma em relação ao piso original de granito? Justifique matematicamente.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para calcular a área do novo retângulo, qual operação matemática devemos fazer entre a nova base e a nova altura?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O piso original tinha lado $ m $, logo sua área inicial era $ m^2 $.
+    O novo piso tem dimensões $ (m + 3) $ e $ (m - 3) $.
+    
+    Para encontrar a nova área, multiplicamos a base pela altura:
+    Área $ = (m + 3)(m - 3) $
+    
+    Esta expressão é exatamente o notável "produto da soma pela diferença de dois termos", cujo resultado é o quadrado do primeiro menos o quadrado do segundo:
+    Área $ = m^2 - 3^2 $
+    Área $ = m^2 - 9 $
+    
+    Comparando com a área original ($m^2$), notamos que a nova área possui o termo negativo "$- 9$". 
+    Portanto, a área \textbf{diminuiu} em exatamente 9 metros quadrados. Mesmo somando 3 de um lado e tirando 3 do outro, o equilíbrio de área não se mantém perfeito na geometria.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta é uma Modelagem Aplicada lindíssima que destrói a intuição errada do aluno. Muitos acham que "se aumenta 3 de um lado e diminui 3 do outro, fica igual". O produto notável ($m^2 - b^2$) prova o contrário de forma cabal. O apoio do TikZ cria a ponte viso-matemática.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} 
+\begin{enunciadoLiteral}
+Analise a sentença descrita a seguir e marque V para Verdadeiro ou F para Falso em cada uma das afirmações sobre as regras estruturais dos Produtos Notáveis.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A expansão algébrica de $ (a - b)^2 $ é rigorosamente igual a $ a^2 - b^2 $.
+    \item O resultado numérico ou algébrico de $ (-x - y)^2 $ é idêntico ao resultado de $ (x + y)^2 $, pois o quadrado anula o sinal negativo global.
+    \item A expressão $ (2k + 1)(2k - 1) $ resulta em um polinômio de dois termos (um binômio).
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para validar a segunda afirmação, tente fatorar o sinal negativo para fora do parêntese e depois eleve o conjunto todo ao quadrado.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Análise item a item:
+    \textbf{I. Falso (F).} O correto é o quadrado da diferença, cujo desenvolvimento possui o termo central: $ (a - b)^2 = a^2 - 2ab + b^2 $.
+    
+    \textbf{II. Verdadeiro (V).} Se colocarmos o sinal negativo em evidência, temos: $ (-x - y) = -(x + y) $. Elevando ao quadrado, o sinal negativo some pois $(-1)^2 = 1$. Assim: $ [-(x + y)]^2 = (x + y)^2 $. Matematicamente estão perfeitos.
+    
+    \textbf{III. Verdadeiro (V).} A expressão é o produto da soma pela diferença, que resulta em $ (2k)^2 - (1)^2 = 4k^2 - 1 $. Essa resposta é um polinômio contendo exatamente dois termos, caracterizando-o como um binômio.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O uso de sentenças (V/F) engaja uma leitura teórica do cálculo. O item II, em especial, testa a capacidade de abstração do aluno em perceber que sinais negativos simultâneos sob um expoente par comportam-se como termos estritamente positivos.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} 
+\begin{enunciadoLiteral}
+Expressões algébricas mais densas costumam esconder produtos notáveis em meio a outros termos. A capacidade de identificar e expandir corretamente os parênteses antes de operar com o restante da equação é fundamental para o sucesso.
+
+Reduza a seguinte expressão algébrica combinada ao seu menor grau e formato possível, unindo todos os termos semelhantes:
+$ E = (2x - 3)^2 + (x + 4)(x - 4) - 5x^2 $
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Temos três "blocos" de peças nessa expressão. Expanda os dois primeiros blocos (os produtos notáveis) separadamente antes de tentar somar ou subtrair o $5x^2$.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Vamos resolver a expressão em partes (blocos).
+    
+    \textbf{Bloco 1 (Quadrado da Diferença):}
+    $ (2x - 3)^2 = (2x)^2 - 2 \cdot (2x) \cdot (3) + (3)^2 $
+    $ (2x - 3)^2 = 4x^2 - 12x + 9 $
+    
+    \textbf{Bloco 2 (Produto da Soma pela Diferença):}
+    $ (x + 4)(x - 4) = (x)^2 - (4)^2 $
+    $ (x + 4)(x - 4) = x^2 - 16 $
+    
+    \textbf{Juntando as peças na Expressão Geral:}
+    $ E = (4x^2 - 12x + 9) + (x^2 - 16) - 5x^2 $
+    
+    Agrupando os termos semelhantes (aqueles com mesma parte literal):
+    Termos de $x^2$: $ 4x^2 + 1x^2 - 5x^2 = 0x^2 $ (cancelam-se completamente).
+    Termos de $x$: $ -12x $.
+    Termos independentes: $ 9 - 16 = -7 $.
+    
+    Expressão reduzida final:
+    $ E = -12x - 7 $
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão de Procedimental Avançado, típica de prova bimestral. O aluno precisa manipular duas regras simultâneas. A "mágica" de sumir com o $x^2$ no final é proposital, construindo a percepção de que grandes expressões do 2º grau podem esconder, na verdade, funções retas do 1º grau.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} 
+\begin{enunciadoLiteral}
+Ao desenhar o esboço de uma placa metálica, um operário precisou de uma chapa que consistia na soma das áreas de dois quadrados distintos, cujas arestas medem respectivamente \textbf{a} e \textbf{b}. Para baratear o custo, o dono sugeriu comprar direto uma placa única, quadrada, de lado medindo $ (a + b) $.
+
+\begin{boxresponda}
+\textbf{Responda:} Em termos de matéria-prima, o operário terá a mesma área comprando a placa única de lado $ (a + b) $ ou ela conterá um excesso (ou falta) de metal? Justifique utilizando a teoria dos Produtos Notáveis, demonstrando a diferença algébrica entre os dois casos.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} A soma de dois quadrados isolados ($ a^2 + b^2 $) é algebraicamente igual ao quadrado da soma de dois termos, dado por $ (a+b)^2 $?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Primeiro Caso (O projeto do operário):
+    Área das duas chapas separadas: $ A_1 = a^2 $ e $ A_2 = b^2 $.
+    Área total pedida: $ A_{operario} = a^2 + b^2 $.
+    
+    Segundo Caso (A sugestão do dono):
+    Área da placa única: $ A_{dono} = (a + b)^2 $.
+    Ao desenvolvermos esse produto notável, obtemos:
+    $ A_{dono} = a^2 + 2ab + b^2 $.
+    
+    Conclusão e Diferença:
+    Comparando as duas áreas, vemos que a placa do dono é MAIOR, pois além de conter o $ a^2 $ e o $ b^2 $, ela possui o termo extra $ + 2ab $. 
+    Portanto, a sugestão do dono resultará em um \textbf{excesso de metal} igual à área de $ 2ab $ (dois retângulos de dimensões a e b).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta questão aborda o erro mais clássico do tema (achar que a soma das áreas é igual à área da soma). A roupagem "contexto real de fábrica" evita a abstração pura, dando um significado tátil para o excedente fantasma representado pelo termo "+2ab".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{11.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) Um investidor comprou um terreno perfeitamente quadrado de lado \textbf{x} metros. Após negociações com a prefeitura para o alargamento da rua, o terreno sofreu uma desapropriação de 4 metros em sua profundidade, mas a prefeitura compensou o proprietário adicionando 4 metros de largura à frente do lote, tornando-o retangular.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E ROUNDED CORNERS ---
+\definecolor{terrenoAntigo}{HTML}{BDC3C7}
+\definecolor{bordaAntigo}{HTML}{7F8C8D}
+\definecolor{terrenoNovo}{HTML}{A3E4D7}
+\definecolor{bordaNovo}{HTML}{1ABC9C}
+\definecolor{rua}{HTML}{34495E}
+
+% LAYER 1: Rua (Referência)
+\fill[rua] (-1,-1) rectangle (6,0);
+\node[font=\bfseries, color=white] at (2.5,-0.5) {Rua Principal};
+
+% LAYER 2: Terreno Original (Tracejado)
+\draw[dashed, thick, draw=bordaAntigo] (0,0) rectangle (4,4);
+\node[font=\bfseries, color=bordaAntigo] at (2,2) {Projeto Original};
+
+% LAYER 3: Terreno Novo (Com Sombra e Cores)
+\fill[drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}, fill=terrenoNovo, rounded corners=1pt, opacity=0.85] (0,0) rectangle (5,3);
+\draw[thick, draw=bordaNovo, rounded corners=1pt] (0,0) rectangle (5,3);
+\node[font=\bfseries, color=bordaNovo] at (2.5,1.5) {Lote Aprovado};
+
+% LAYER 4: Cotas Geométricas
+% Frente (Nova)
+\draw[|-|, thick, color=rua] (0,3.2) -- (5,3.2) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$x + 4$};
+% Profundidade (Nova)
+\draw[|-|, thick, color=rua] (5.2,0) -- (5.2,3) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$x - 4$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando as medidas informadas, assinale a alternativa que descreve corretamente o que aconteceu com a área útil do terreno do investidor após o acordo, provando matematicamente o erro da alternativa \textbf{c}.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A área do terreno permaneceu rigorosamente a mesma.
+    \item O investidor perdeu exatos 8 metros quadrados de área.
+    \item O investidor ganhou exatos 16 metros quadrados de área.
+    \item O investidor perdeu exatos 16 metros quadrados de área.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se a área original era base vezes altura ($x \cdot x$), como expressamos a multiplicação da base pela altura do novo formato retangular?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Área Original (Quadrado): $ x \cdot x = x^2 $.
+    
+    Área Nova (Retângulo Aprovado):
+    Base $ = x + 4 $
+    Altura $ = x - 4 $
+    Área $ = (x + 4)(x - 4) $
+    
+    Aplicando o produto notável da soma pela diferença, obtemos o quadrado do primeiro menos o quadrado do segundo:
+    Área Nova $ = x^2 - 4^2 $
+    Área Nova $ = x^2 - 16 $
+    
+    Comparando as duas áreas, vemos que a nova possui o fator $ -16 $. Isso significa que o terreno sofreu uma redução de 16 metros quadrados.
+    \textbf{Alternativa correta: d}.
+    
+    \textbf{Refutação da alternativa c:} Um aluno marcaria ganho de 16 metros quadrados se cometesse um erro de sinal estrutural, imaginando que o produto notável resultaria em $ x^2 + 16 $, o que matematicamente impossível, pois $ (+4) \cdot (-4) $ gera obrigatoriamente um termo negativo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão focada na destruição da intuição leiga de que "compensar a mesma medida mantém a área constante". Essa roupagem de vestibular consolida a modelagem, forçando o aluno a traduzir um texto jurídico/arquitetônico para um binômio matemático.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} 
+\begin{enunciadoLiteral}
+(Estilo FUVEST) No desenvolvimento de teorias computacionais de criptografia, as relações entre somas e produtos de duas variáveis são frequentemente utilizadas. Considere dois números reais positivos, \textbf{x} e \textbf{y}, que representam chaves de segurança. 
+
+Sabe-se que a soma dessas chaves é $ x + y = 14 $, e que a soma de seus quadrados resulta em $ x^2 + y^2 = 100 $. Utilizando o desenvolvimento do quadrado da soma, determine o valor do produto dessas duas chaves ($ x \cdot y $), sem precisar descobrir o valor isolado de cada uma.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se pegarmos a equação $ x + y = 14 $ e elevarmos os dois lados ao quadrado simultaneamente, qual produto notável surgirá no lado esquerdo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Partimos da informação inicial:
+    $ x + y = 14 $
+    
+    Elevamos ambos os membros da igualdade ao quadrado para forçar o aparecimento do termo $ x \cdot y $:
+    $ (x + y)^2 = 14^2 $
+    
+    Desenvolvemos o produto notável no lado esquerdo:
+    $ x^2 + 2xy + y^2 = 196 $
+    
+    Reorganizamos a expressão para agrupar $ x^2 + y^2 $:
+    $ (x^2 + y^2) + 2xy = 196 $
+    
+    Substituímos o valor conhecido, pois o enunciado afirma que $ x^2 + y^2 = 100 $:
+    $ 100 + 2xy = 196 $
+    
+    Isolamos o termo com o produto:
+    $ 2xy = 196 - 100 $
+    $ 2xy = 96 $
+    $ xy = 48 $
+    
+    O produto das duas chaves de segurança é \textbf{48}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Um dos problemas mais belos e clássicos da álgebra. Ele impede a força bruta e a "tentativa e erro" por sistemas isolados. Ensina ao aluno que um polinômio não precisa ser sempre fatorado ou expandido para achar "x"; as expressões em bloco (como $x \cdot y$) podem ser a própria resposta.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Uma indústria de embalagens precisa produzir uma caixa sem tampa a partir de um pedaço quadrado de papelão, cujo lado original mede \textbf{L} centímetros. Para isso, recorta-se um quadrado de 3 cm de lado em cada um dos quatro cantos, e em seguida dobram-se as abas para cima.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E ROUNDED CORNERS ---
+\definecolor{papelao}{HTML}{D4AC0D}
+\definecolor{corte}{HTML}{FDFEFE}
+\definecolor{linhaDobra}{HTML}{9A7D0A}
+
+% LAYER 1: Papelão Inteiro (Sombra projetada)
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fill=papelao] (0,0) rectangle (6,6);
+
+% LAYER 2: Cantos Cortados (Preenchimento branco)
+\fill[corte] (0,0) rectangle (1.2,1.2);
+\fill[corte] (4.8,0) rectangle (6,1.2);
+\fill[corte] (0,4.8) rectangle (1.2,6);
+\fill[corte] (4.8,4.8) rectangle (6,6);
+
+% Borda externa total para demarcar o papelão
+\draw[thick, draw=linhaDobra] (1.2,0) -- (4.8,0) -- (4.8,1.2) -- (6,1.2) -- (6,4.8) -- (4.8,4.8) -- (4.8,6) -- (1.2,6) -- (1.2,4.8) -- (0,4.8) -- (0,1.2) -- (1.2,1.2) -- cycle;
+
+% LAYER 3: Linhas de Dobra (Tracejadas)
+\draw[dashed, thick, draw=linhaDobra] (1.2,1.2) rectangle (4.8,4.8);
+
+% LAYER 4: Textos e Cotas
+\node[font=\bfseries, color=linhaDobra] at (3,3) {Fundo da Caixa};
+\node[font=\small, color=linhaDobra] at (0.6,0.6) {Cortado};
+
+\draw[|-|, thick] (0,-0.5) -- (6,-0.5) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$L$};
+\draw[|-|, thick] (-0.5,4.8) -- (-0.5,6) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$3$};
+\draw[|-|, thick] (0,6.5) -- (1.2,6.5) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$3$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o polinômio reduzido que expressa a área do fundo da caixa (região tracejada central) após a remoção dos cantos.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se o comprimento original é $L$, e cortamos 3 cm da esquerda e 3 cm da direita, quanto mede o lado do quadrado que forma o fundo da caixa?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A medida do lado do papelão é $ L $.
+    Ao recortarmos os quatro cantos, removemos 3 cm de cada extremidade do lado. 
+    Portanto, o novo lado da base da caixa será: $ L - 3 - 3 = L - 6 $.
+    
+    Como a base é um quadrado (fundo da caixa tracejado), a área será o lado elevado ao quadrado:
+    Área $ = (L - 6)^2 $
+    
+    Desenvolvendo este produto notável (quadrado da diferença):
+    Área $ = L^2 - 2 \cdot (L) \cdot (6) + 6^2 $
+    Área $ = L^2 - 12L + 36 $.
+    
+    O polinômio reduzido que representa a área do fundo é \textbf{$ L^2 - 12L + 36 $}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno costuma cometer o erro clássico de subtrair apenas o número 3 do lado (fazendo $L - 3$). O recurso visual do TikZ força-o a notar que existem dois recortes por lado (um em cada ponta), exigindo a modelagem correta $L - 6$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} 
+\begin{enunciadoLiteral}
+Avalie as afirmações matemáticas sobre operações avançadas com produtos notáveis, julgando-as com V para Verdadeiro ou F para Falso. Apresente, obrigatoriamente, a prova algébrica que valide sua resposta.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A expressão $ (2x + 1)^2 - (2x - 1)^2 $ resultará em um polinômio do primeiro grau equivalente a $ 8x $.
+    \item O produto $ (k^2 + 5)(k^2 - 5) $ resulta no binômio $ k^4 - 25 $.
+    \item Se $ A = 3m $ e $ B = 2n $, então a expressão $ (A - B)^2 $ terá como termo independente de sinais o valor numérico de $ 6mn $.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para validar a última alternativa, substitua A e B na expressão e monte a fórmula. Quem será o termo 2ab?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    \textbf{I. Verdadeiro (V).}
+    Prova: $ (4x^2 + 4x + 1) - (4x^2 - 4x + 1) $
+    Distribuindo o sinal: $ 4x^2 + 4x + 1 - 4x^2 + 4x - 1 $.
+    Cancelando os termos quadráticos e independentes, sobra $ 4x + 4x = 8x $.
+    
+    \textbf{II. Verdadeiro (V).}
+    Prova: Produto da soma pela diferença de dois termos é o quadrado do primeiro menos o quadrado do segundo:
+    $ (k^2)^2 - (5)^2 $
+    Pela propriedade de potência de potência: $ k^4 - 25 $.
+    
+    \textbf{III. Falso (F).}
+    Prova: Substituindo os valores em $ (A - B)^2 $:
+    $ (3m - 2n)^2 = (3m)^2 - 2 \cdot (3m) \cdot (2n) + (2n)^2 $
+    O termo central calculado será $ -12mn $, e não $ 6mn $. O autor da sentença esqueceu de multiplicar por 2, o erro mais comum em produtos notáveis.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Exigir a "prova" em um V/F elimina a chance de chute. O item III testa diretamente a lembrança do coeficiente "2" embutido na regra do quadrado da diferença ($ -2ab $).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} 
+\begin{enunciadoLiteral}
+Em um laboratório de engenharia civil, a resistência de uma liga de materiais segue o comportamento polinomial da fórmula $ R = (a + b)^2 + (a - b)^2 $. Uma estudante chamada Carolina analisou a fórmula e fez o seguinte relatório ao seu orientador:
+
+\textit{"Professor, desenvolvi a fórmula reduzindo os produtos notáveis. Os termos do meio e as extremidades se anularam quase todos. Portanto, a resistência simplificada deste material será dada apenas por $ 2a^2 - 2b^2 $."}
+
+\begin{boxresponda}
+\textbf{Responda:} Carolina cometeu um erro grave ao manipular o desenvolvimento algébrico. Qual foi o erro de cálculo? Reescreva a afirmação consertando a fórmula final da Resistência ($R$).
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Faça a expansão calma de cada parêntese. Existe um sinal de soma ligando os dois produtos notáveis. Esse sinal altera o valor do $b^2$ do segundo parêntese?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Vamos refazer a expansão algébrica passo a passo:
+    $ R = (a^2 + 2ab + b^2) + (a^2 - 2ab + b^2) $
+    
+    Ao remover os parênteses (já que o sinal de mais não altera nada no segundo termo):
+    $ R = a^2 + 2ab + b^2 + a^2 - 2ab + b^2 $
+    
+    Agrupando termos semelhantes:
+    - O termo central anula: $ +2ab $ com $ -2ab = 0 $.
+    - Somamos os primeiros termos: $ a^2 + a^2 = 2a^2 $.
+    - Somamos os últimos termos: $ b^2 + b^2 = 2b^2 $.
+    
+    Erro de Carolina: Ela assumiu que o quadrado de \textbf{-b} geraria um número negativo, e que, na soma, o $b^2$ se anularia também. No entanto, o quadrado do segundo termo é sempre positivo.
+    
+    Fórmula corrigida: $ R = 2a^2 + 2b^2 $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Este diagnóstico reforça uma sutileza muito esquecida: a soma de dois quadrados isolados (que os alunos costumam detestar) é exatamente o que sobra quando somamos um quadrado da soma com um quadrado da diferença. É a síntese da simetria algébrica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\subsection*{Capítulo 2: Princípios de Fatoração}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{16.} 
+\begin{enunciadoLiteral}
+Fatorar uma expressão significa transformá-la de volta em uma multiplicação, evidenciando aquilo que as partes têm em comum. Esse princípio será essencial em resoluções futuras de equações onde a regra do produto nulo precisar ser aplicada.
+
+Extraia o maior fator comum das expressões abaixo, apresentando a sua forma fatorada equivalente:
+a) $ 15x^3 - 25x^2 + 10x $
+b) $ 4a^2b + 12ab^2 - 8ab $
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Olhe para os coeficientes numéricos e depois para as letras. Qual é o maior divisor possível de todos os números e qual a letra com menor expoente que repete em todos os blocos?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    \textbf{Alternativa a):} $ 15x^3 - 25x^2 + 10x $
+    - Fator numérico comum (MDC entre 15, 25 e 10) = 5.
+    - Fator literal comum (letra presente em todos com menor expoente) = $ x^1 $ (ou apenas $ x $).
+    Fator comum = $ 5x $.
+    Dividindo cada termo pelo fator comum:
+    $ \mfrac{15x^3}{5x} = 3x^2 $ | $ \mfrac{-25x^2}{5x} = -5x $ | $ \mfrac{10x}{5x} = 2 $
+    Forma fatorada final: $ 5x(3x^2 - 5x + 2) $.
+    
+    \textbf{Alternativa b):} $ 4a^2b + 12ab^2 - 8ab $
+    - Fator numérico comum (MDC entre 4, 12 e 8) = 4.
+    - Fatores literais comuns = $ a $ e $ b $.
+    Fator comum = $ 4ab $.
+    Dividindo cada termo pelo fator comum:
+    $ \mfrac{4a^2b}{4ab} = a $ | $ \mfrac{12ab^2}{4ab} = 3b $ | $ \mfrac{-8ab}{4ab} = -2 $
+    Forma fatorada final: $ 4ab(a + 3b - 2) $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Treino procedimental e chão de fábrica puro. A construção correta do fator em evidência com múltiplas variáveis (item b) e a identificação do expoente 1 (item a) são cruciais para a transição para as fases subsequentes.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} 
+\begin{enunciadoLiteral}
+A geometria plana pode ser uma excelente tradutora visual de operações algébricas complexas. A área de um retângulo que foi fatiado em pedaços menores representa perfeitamente a lógica de extração do "fator comum" e do processo de "agrupamento".
+
+Considere a representação esquemática do grande retângulo abaixo, subdividido em quatro retângulos menores que foram formados por partições longitudinais.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CORES E ROUNDED CORNERS ---
+\definecolor{blocoA}{HTML}{D6EAF8}
+\definecolor{bordaA}{HTML}{2E86C1}
+\definecolor{blocoB}{HTML}{FCF3CF}
+\definecolor{bordaB}{HTML}{F1C40F}
+\definecolor{blocoC}{HTML}{E8DAEF}
+\definecolor{bordaC}{HTML}{8E44AD}
+\definecolor{blocoD}{HTML}{FADBD8}
+\definecolor{bordaD}{HTML}{E74C3C}
+\definecolor{linhaCota}{HTML}{5D6D7E}
+
+% LAYER 1: Sombra base
+\fill[drop shadow={opacity=0.15, shadow xshift=3pt, shadow yshift=-3pt}, fill=white, rounded corners=1pt] (0,0) rectangle (7,5);
+
+% LAYER 2: Blocos Geométricos
+% Top-left (ax)
+\draw[thick, fill=blocoA, draw=bordaA] (0,2) rectangle (4,5);
+\node[font=\bfseries\large, color=bordaA] at (2,3.5) {$ax$};
+
+% Top-right (ay)
+\draw[thick, fill=blocoB, draw=bordaB] (4,2) rectangle (7,5);
+\node[font=\bfseries\large, color=bordaB] at (5.5,3.5) {$ay$};
+
+% Bottom-left (bx)
+\draw[thick, fill=blocoC, draw=bordaC] (0,0) rectangle (4,2);
+\node[font=\bfseries\large, color=bordaC] at (2,1) {$bx$};
+
+% Bottom-right (by)
+\draw[thick, fill=blocoD, draw=bordaD] (4,0) rectangle (7,2);
+\node[font=\bfseries\large, color=bordaD] at (5.5,1) {$by$};
+
+% LAYER 3: Cotas 
+% Bases Superiores
+\draw[|-|, thick, color=linhaCota] (0,5.3) -- (4,5.3) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$x$};
+\draw[|-|, thick, color=linhaCota] (4,5.3) -- (7,5.3) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$y$};
+
+% Alturas Laterais
+\draw[|-|, thick, color=linhaCota] (-0.3,2) -- (-0.3,5) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$a$};
+\draw[|-|, thick, color=linhaCota] (-0.3,0) -- (-0.3,2) node[midway, fill=white, inner sep=2pt, font=\bfseries] {$b$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na imagem, represente a área total do grande retângulo como um polinômio somando as suas quatro partes. Em seguida, utilize o processo de \textbf{Fatoração por Agrupamento} para transformar essa soma em um produto de dois binômios, mostrando que isso equivale a multiplicar diretamente a base total pela altura total.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Ao olhar para os blocos horizontais de cima, qual letra eles têm em comum? E nos de baixo? Pense nessas duas "famílias" para iniciar seu agrupamento.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Polinômio (Soma das partes): Área $ = ax + ay + bx + by $.
+    
+    Realizando o agrupamento, primeiro dividimos o polinômio em duplas:
+    Dupla 1: $ ax + ay $ $\rightarrow$ Fator comum: $ a $ $\rightarrow$ $ a(x + y) $.
+    Dupla 2: $ bx + by $ $\rightarrow$ Fator comum: $ b $ $\rightarrow$ $ b(x + y) $.
+    
+    Temos agora a expressão intermediária:
+    $ a(x + y) + b(x + y) $
+    
+    Note que o bloco inteiro $ (x + y) $ agora atua como um "novo fator comum". Colocando ele em evidência, sobra o que multiplicava eles:
+    $ (x + y)(a + b) $.
+    
+    Verificação visual: O comprimento total da base da imagem é, de fato, a soma $ (x + y) $, e a altura total é $ (a + b) $. Logo, $ (x + y) \cdot (a + b) $ é a exata prova algébrica de que a conta retrata um cálculo de área.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno que aprende fatoração por agrupamento puramente pelas letras tende a considerar o método um "truque decorado". Ao ver o diagrama TikZ de ladrilhamento, o insight de que ele está apenas calculando a área de um retângulo unificado fixa o conceito com solidez inabalável.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} 
+\begin{enunciadoLiteral}
+Em uma avaliação, o professor pediu para que os alunos fatorassem completamente o polinômio: $ 3m^2n - 12mn + 6m $. 
+
+Um dos alunos entregou a seguinte linha final como resposta do exercício: $ m(3mn - 12n + 6) $. O professor deu "Meio Certo", indicando que a resolução não estava terminada.
+
+\begin{boxresponda}
+\textbf{Responda:} Qual etapa o aluno esqueceu de executar para garantir que a fatoração fosse total e estivesse "plenamente" fatorada? Corrija apresentando a resolução matemática completa até o final.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} O aluno extraiu brilhantemente a letra \textbf{m}. Mas dê uma olhada profunda nos números que sobraram dentro do parênteses. Eles têm algo em comum?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O aluno identificou a parte literal (a letra \textbf{m}) como fator comum, o que está correto em parte. No entanto, o polinômio possui coeficientes numéricos (3, -12 e 6) que também compartilham um fator comum, o qual ele negligenciou.
+    
+    Passo corretivo: 
+    O maior divisor numérico comum entre 3, 12 e 6 é o próprio número \textbf{3}. 
+    Portanto, o fator completo a ser colocado em evidência é $ 3m $.
+    
+    Recalculando:
+    Polinômio: $ 3m^2n - 12mn + 6m $
+    Colocando $ 3m $ em evidência:
+    $ \mfrac{3m^2n}{3m} = mn $
+    $ \mfrac{-12mn}{3m} = -4n $
+    $ \mfrac{6m}{3m} = 2 $
+    
+    Fatoração total e correta:
+    $ 3m(mn - 4n + 2) $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fatoração parcial é o erro mais subdiagnosticado no 8º ano. Os alunos viciam em olhar apenas para as letras. Este exercício de "Diagnóstico Lógico" exige que o aluno varra os coeficientes numéricos criticamente e reconheça que a evidência só finaliza quando os itens do parêntese são primos entre si.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} 
+\begin{enunciadoLiteral}
+A fatoração por agrupamento demanda atenção especial aos sinais dos termos. Se o arranjo não for feito perfeitamente, os parênteses intermediários ficarão diferentes, impedindo a finalização do processo. 
+
+Fatore o polinômio $ 2xy - 6y - 5x + 15 $ aplicando o método de agrupamento e demonstrando os dois passos da operação.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Divida o polinômio na metade. No segundo par de termos, ao colocar o -5 em evidência, preste muita atenção na troca do sinal do número 15. O que acontecerá?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Formamos dois grupos: $ (2xy - 6y) $ e $ (- 5x + 15) $.
+    
+    No primeiro grupo: O fator comum é $ 2y $.
+    $ 2y(x - 3) $
+    
+    No segundo grupo: Para garantir que fique $ (x - 3) $ dentro do parêntese (que é a chave do agrupamento), somos obrigados a colocar o sinal de menos junto com o fator. O fator comum numérico é \textbf{-5}.
+    -5 em evidência: $ -5(x - 3) $. (Note que $+15$ dividido por $-5$ é $-3$).
+    
+    Juntando as partes intermediárias:
+    $ 2y(x - 3) - 5(x - 3) $
+    
+    Agora o parêntese $ (x - 3) $ é o novo fator comum, originando os dois blocos multiplicativos finais:
+    $ (x - 3)(2y - 5) $
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Procedimental Direto com "veneno". O aluno inevitavelmente vai cair na armadilha do agrupamento negativo e escrever $+5(x + 3)$. Isso quebra a simetria da técnica, ensinando que a fatoração é subserviente à lógica de preservação do polinômio original.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} 
+\begin{enunciadoLiteral}
+Em algumas situações avançadas, um polinômio não apresenta um número par de termos para formar duplas perfeitas de imediato, ou, alternativamente, ele apresenta os termos agrupáveis logo na abertura da equação e em formato fracionário.
+
+Encontre o fator comum e fature a expressão a seguir o máximo que for possível, reduzindo seus coeficientes de frações à forma irredutível:
+$ \mfrac{4x^5}{7} + \mfrac{8x^4}{21} - \mfrac{12x^3}{14} $
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} O fator comum precisa lidar com numeradores e denominadores de forma independente. Qual é o maior divisor possível de todos os números de cima e o maior para os de baixo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Análise do Fator Comum Literal:
+    A menor potência de x nas três parcelas é o $ x^3 $.
+    
+    Análise do Fator Comum Numérico:
+    Numeradores: 4, 8, 12 $\rightarrow$ o MDC (maior divisor comum) é 4.
+    Denominadores: 7, 21, 14 $\rightarrow$ o MDC é 7.
+    Logo, a fração em evidência será $ \mfrac{4}{7} $.
+    
+    Agrupando o fator completo, temos: $ \mfrac{4x^3}{7} $.
+    
+    Dividindo cada termo por este fator (invertendo a fração e multiplicando, ou direto dividindo topo com topo e base com base):
+    - Primeiro termo: $ \left( \mfrac{4x^5}{7} \right) \div \left( \mfrac{4x^3}{7} \right) = x^2 $.
+    - Segundo termo: $ \left( \mfrac{8x^4}{21} \right) \div \left( \mfrac{4x^3}{7} \right) = \left( \mfrac{8}{4} \right)x \cdot \left( \mfrac{7}{21} \right) = 2x \cdot \mfrac{1}{3} = \mfrac{2x}{3} $.
+    - Terceiro termo: $ \left( \mfrac{-12x^3}{14} \right) \div \left( \mfrac{4x^3}{7} \right) = \left( \mfrac{-12}{4} \right) \cdot \left( \mfrac{7}{14} \right) = -3 \cdot \mfrac{1}{2} = -\mfrac{3}{2} $.
+    
+    A resposta fatorada integral será:
+    $ \mfrac{4x^3}{7} \left( x^2 + \mfrac{2x}{3} - \mfrac{3}{2} \right) $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esse é um exercício de barreira. Frações dentro da fatoração causam grande desgaste cognitivo inicial, mas ao desmembrar o pensamento em "quem é o chefe de cima" e "quem é o chefe de baixo", o aluno internaliza que polinômios avançados são resolvidos como blocos de lego isolados.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+% --- INÍCIO DO LOTE 3 ---
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} 
+\begin{enunciadoLiteral}
+\textbf{Fator Comum em Evidência:} Fatore a expressão algébrica $15x^3y^2 - 20x^2y^3 + 5x^2y^2$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Peça aos alunos para identificarem qual é o maior número que divide simultaneamente 15, 20 e 5, e qual é a menor quantidade das variáveis $x$ e $y$ presentes em todos os termos.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O maior divisor comum dos coeficientes (15, 20, 5) é 5.\\
+    A menor potência de $x$ é $x^2$ e de $y$ é $y^2$.\\
+    O fator comum em evidência é $5x^2y^2$.\\
+    Dividindo cada termo pelo fator comum: $5x^2y^2(3x - 4y + 1)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Atenção ao termo $+1$ no final. Muitos alunos esquecem de colocá-lo ao dividir $5x^2y^2$ por ele mesmo, achando que o termo simplesmente "desaparece".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} 
+\begin{enunciadoLiteral}
+\textbf{Agrupamento:} Aplique a fatoração por agrupamento na expressão $am + an + bm + bn$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Indague: "Existe alguma letra que aparece nos quatro termos ao mesmo tempo? Se não, podemos separar a expressão em duas duplas para encontrar fatores comuns menores?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Agrupando os dois primeiros e os dois últimos termos:\\
+    $a(m + n) + b(m + n)$\\
+    Colocando o parêntese comum em evidência:\\
+    $(m + n)(a + b)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Reforce que a ordem dos parênteses na resposta final não altera o resultado, devido à propriedade comutativa da multiplicação.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} 
+\begin{enunciadoLiteral}
+Fatore completamente a expressão $2ax - 4ay + 3bx - 6by$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Peça aos alunos para identificarem os fatores numéricos comuns nos primeiros e nos últimos dois termos antes de olharem para as letras.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Agrupamento das duas primeiras partes: $2a(x - 2y)$\\
+    Agrupamento das duas últimas partes: $3b(x - 2y)$\\
+    Juntando as partes: $2a(x - 2y) + 3b(x - 2y) = (x - 2y)(2a + 3b)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Uma armadilha comum é errar o sinal do segundo agrupamento. Estimule os alunos a sempre aplicarem a distributiva mentalmente para conferir se voltam à expressão original.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} 
+\begin{enunciadoLiteral}
+\textbf{Trinômio Quadrado Perfeito:} Verifique se a expressão $4x^2 - 12xy + 9y^2$ é um trinômio quadrado perfeito. Caso seja, apresente sua forma fatorada.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte quais são as raízes quadradas exatas do primeiro e do último termo e como testar o termo do meio.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Raiz do 1º termo: $\sqrt{4x^2} = 2x$\\
+    Raiz do 3º termo: $\sqrt{9y^2} = 3y$\\
+    Teste do dobro do produto: $2 \cdot (2x) \cdot (3y) = 12xy$.\\
+    Como corresponde ao termo central (com sinal negativo), é um TQP.\\
+    Forma fatorada: $(2x - 3y)^2$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Muitos alunos pulam a etapa da "prova real" do termo do meio. Frise que nem todo trinômio com pontas que possuem raízes exatas é automaticamente um quadrado perfeito.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} 
+\begin{enunciadoLiteral}
+Fatore completamente o polinômio $x^2 + 16x + 64$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Aponte para o 64 e pergunte: "Qual número multiplicado por ele mesmo resulta em 64? E o dobro dele é 16?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    É um Trinômio Quadrado Perfeito (TQP).\\
+    Raízes das extremidades: $\sqrt{x^2} = x$ e $\sqrt{64} = 8$.\\
+    Termo central testado: $2 \cdot x \cdot 8 = 16x$.\\
+    Forma fatorada direta: $(x + 8)^2$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Exercício clássico e limpo para gerar memória de procedimento (alfabetização algébrica) em TQP.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} 
+\begin{enunciadoLiteral}
+\textbf{Diferença de Quadrados:} Fatore a expressão $25a^2 - 49b^2$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Lembre aos alunos sobre o formato $A^2 - B^2 = (A + B)(A - B)$. Peça que descubram quem são "A" e "B" neste caso.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Raiz do 1º termo: $\sqrt{25a^2} = 5a$\\
+    Raiz do 2º termo: $\sqrt{49b^2} = 7b$\\
+    Produto da soma pela diferença: $(5a + 7b)(5a - 7b)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental exigir a raiz completa (do número numérico e da letra). O erro típico é escrever $(25a + 49b)(25a - 49b)$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} 
+\begin{enunciadoLiteral}
+Calcule mentalmente o valor numérico exato de $101^2 - 99^2$ utilizando o conceito de produtos notáveis. Apresente o seu raciocínio.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Desafie a turma: "Alguém consegue calcular isso em menos de 10 segundos sem montar a conta de multiplicação?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Trata-se de uma diferença de dois quadrados.\\
+    $(101)^2 - (99)^2 = (101 + 99)(101 - 99)$\\
+    Somando o primeiro parêntese: $200$\\
+    Subtraindo o segundo parêntese: $2$\\
+    Multiplicando: $200 \cdot 2 = 400$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Este é o momento onde a álgebra prova seu valor prático. Conecta a manipulação de letras à otimização aritmética da vida real.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} 
+\begin{enunciadoLiteral}
+\textbf{Fatoração Sucessiva:} Fatore completamente a expressão algébrica $3x^3 - 27x$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte: "Antes de procurar quadrados perfeitos, sempre devemos checar algo básico. O que o número 3 e o 27, e o $x^3$ e $x$, têm em comum?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Passo 1 (Fator comum em evidência): $3x(x^2 - 9)$\\
+    Passo 2 (Observando o parêntese): $x^2 - 9$ é uma diferença de quadrados.\\
+    Fatoração final: $3x(x + 3)(x - 3)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} É o tipo de questão que testa a "visão além do alcance". O aluno precisa entender que a fatoração só termina quando a expressão estiver em seus fatores primos.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} 
+\begin{enunciadoLiteral}
+Simplifique a fração algébrica $ \mfrac{x^2 - 25}{x^2 + 10x + 25} $, sabendo que $x \neq -5$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Indique que não se pode cortar "x ao quadrado com x ao quadrado" numa soma. Qual operação transforma somas em multiplicações para permitir o corte?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Numerador (Diferença de Quadrados): $(x + 5)(x - 5)$\\
+    Denominador (TQP): $(x + 5)^2 = (x + 5)(x + 5)$\\
+    Fração fatorada: $ \mfrac{(x + 5)(x - 5)}{(x + 5)(x + 5)} $\\
+    Simplificando os termos comuns: $ \mfrac{x - 5}{x + 5} $.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} A restrição $x \neq -5$ é colocada para garantir que o denominador nunca zere (condição de existência matemática).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} 
+\begin{enunciadoLiteral}
+\textbf{Aplicação Geométrica:} A área total de um terreno retangular é dada pelo polinômio $A = x^2 + 8x + 16$. Sabendo que, na verdade, esse terreno possui o formato de um quadrado perfeito, escreva a expressão que representa a medida do comprimento do seu lado.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte aos alunos: "Se a área de um quadrado é calculada elevando seu lado à potência 2, como podemos compactar esse polinômio longo em uma única expressão elevada ao quadrado?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Fatorando o Trinômio Quadrado Perfeito da área:\\
+    $x^2 + 8x + 16 = (x + 4)^2$.\\
+    Como a área de um quadrado é dada por $L^2$, comparamos:\\
+    $L^2 = (x + 4)^2$.\\
+    Portanto, a medida do lado é o binômio $(x + 4)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental para modelagem geométrica em álgebra. Transforma a abstração da fatoração numa representação bidimensional palpável.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{31.} 
+\begin{enunciadoLiteral}
+Analise a figura geométrica plana, que foi composta através da justaposição de quatro retângulos menores. 
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW, CORES E CANTOS ARREDONDADOS (REGRA PREMIUM) ---
+    \definecolor{fundoRet}{HTML}{F0FDF4}
+    \definecolor{bordaRet}{HTML}{10B981}
+    
+    % Fundo geral com sombra
+    \filldraw[fill=fundoRet, draw=bordaRet, thick, rounded corners=3pt, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (6,4);
+    
+    % Divisões internas
+    \draw[thick, bordaRet] (4,0) -- (4,4);
+    \draw[thick, bordaRet] (0,3) -- (6,3);
+    
+    % Áreas
+    \node at (2, 3.5) {\large $ac$};
+    \node at (5, 3.5) {\large $bc$};
+    \node at (2, 1.5) {\large $ad$};
+    \node at (5, 1.5) {\large $bd$};
+    
+    % Medidas das bordas
+    \node[below, font=\bfseries, text=CinzaEscuro] at (2,-0.1) {$a$};
+    \node[below, font=\bfseries, text=CinzaEscuro] at (5,-0.1) {$b$};
+    \node[left, font=\bfseries, text=CinzaEscuro] at (-0.1,1.5) {$d$};
+    \node[left, font=\bfseries, text=CinzaEscuro] at (-0.1,3.5) {$c$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Escreva a expressão polinomial pura para a área total da figura somando as partes. Em seguida, demonstre aritmeticamente como essa expressão pode ser escrita na forma fatorada, provando a sua ligação com as medidas originais da base e da altura.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Oriente o aluno a primeiro escrever a soma crua de tudo que está no interior. Depois, questione: "Qual técnica de fatoração ajuda quando temos quatro termos?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A área total, por soma de partes, é: $ac + bc + ad + bd$.\\
+    Aplicando a fatoração por agrupamento:\\
+    $c(a + b) + d(a + b) = (a + b)(c + d)$.\\
+    A forma fatorada $(a + b)(c + d)$ descreve perfeitamente o formato da base inteira $(a+b)$ multiplicada pela altura inteira $(c+d)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} A representação visual de áreas é a prova definitiva para o aluno de que o agrupamento não é um truque vazio, mas sim a composição geométrica de áreas adjacentes.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{32.} 
+\begin{enunciadoLiteral}
+O professor Raphael apresentou o seguinte polinômio na lousa e pediu a sua fatoração completa:
+$$x^4 - 1$$
+Um estudante realizou a primeira passagem, escrevendo $(x^2 + 1)(x^2 - 1)$ e disse que a fatoração havia terminado.
+
+\begin{boxresponda}
+\textbf{Responda:} Diagnostique se o raciocínio do estudante procedimentalmente chegou ao seu limite. Caso contrário, aponte onde ele errou a análise, apresente a fatoração completa final e explique por que um dos termos não pôde mais ser simplificado.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte: "Um dos dois parênteses gerados pelo aluno ainda é, disfarçadamente, uma nova diferença de quadrados. Qual deles?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O estudante errou a análise ao assumir que a fatoração havia terminado.\\
+    O segundo fator resultante, $(x^2 - 1)$, ainda é uma diferença de quadrados cujas raízes são $x$ e $1$.\\
+    Desenvolvendo este fator: $(x^2 - 1) = (x + 1)(x - 1)$.\\
+    A fatoração completa correta é: $(x^2 + 1)(x + 1)(x - 1)$.\\
+    A justificativa é que o termo $(x^2 + 1)$ é uma soma de quadrados e não possui raízes reais, portanto, não pode ser fatorado no conjunto dos números Reais.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental pontuar que a soma de quadrados não fatora em $\mathbb{R}$. Isso prepara o terreno cognitivo para o futuro estudo dos números complexos e evita invenções erradas, como escrever $(x+1)^2$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+% --- FIM DO LOTE 3 ---
+% --- INÍCIO DO LOTE 4 ---
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{33.} 
+\begin{enunciadoLiteral}
+Uma fábrica de peças metálicas produz chapas quadradas de aço. Para um projeto específico, um robô de corte a laser remove um quadrado menor do centro de uma chapa maior, conforme ilustrado no esquema geométrico.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW, CORES E CANTOS ARREDONDADOS (REGRA PREMIUM) ---
+    \definecolor{chapa}{HTML}{7F8C8D} % metal
+    \definecolor{furo}{HTML}{FFFFFF}
+    
+    % Chapa maior com sombra
+    \filldraw[fill=chapa!60, draw=chapa!80!black, thick, rounded corners=3pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (5,5);
+    
+    % Furo menor (branco)
+    \filldraw[fill=furo, draw=chapa!80!black, thick, rounded corners=2pt] (1.5,1.5) rectangle (3.5,3.5);
+    
+    % Cotas (linhas de chamada)
+    \draw[<->, >=stealth, thick, CinzaEscuro] (0,-0.4) -- (5,-0.4) node[midway, below] {\textbf{X}};
+    \draw[<->, >=stealth, thick, CinzaEscuro] (-0.4,0) -- (-0.4,5) node[midway, left] {\textbf{X}};
+    
+    \draw[<->, >=stealth, thick, CinzaEscuro] (1.5,1.1) -- (3.5,1.1) node[midway, below] {\textbf{Y}};
+    \draw[<->, >=stealth, thick, CinzaEscuro] (1.1,1.5) -- (1.1,3.5) node[midway, left] {\textbf{Y}};
+    
+    \node[align=center, font=\small\bfseries, text=CinzaEscuro] at (2.5,2.5) {Área\\Removida};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Escreva a expressão algébrica que representa a área da parte metálica restante (região cinza) e, em seguida, apresente essa mesma expressão em sua forma completamente fatorada.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Leve o aluno a pensar na lógica de subtração: "Como calculamos o que sobra quando tiramos um pedaço de algo maior?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Área da chapa inteira (quadrado maior): $X \cdot X = X^2$.\\
+    Área do furo (quadrado menor): $Y \cdot Y = Y^2$.\\
+    Área restante (região cinza): $X^2 - Y^2$.\\
+    A expressão obtida é uma diferença de dois quadrados. Fatorando:\\
+    $X^2 - Y^2 = (X + Y)(X - Y)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta é a modelagem geométrica definitiva para a diferença de quadrados. A visualização do "vazado" justifica a existência do sinal negativo no polinômio original.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{34.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP -- Refutação de Distratores) A simplificação completa da fração algébrica $ \mfrac{a^3 - ab^2}{a^2 + ab} $, sabendo que $a \neq 0$ e $a \neq -b$, resulta em:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $a - b$
+    \item $a + b$
+    \item $a^2 - b$
+    \item $1 - b^2$
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Além de assinalar a alternativa correta apresentando os cálculos da simplificação, você deve escolher UMA das alternativas incorretas e explicar matematicamente o erro lógico que levaria um aluno a marcá-la (qual "corte proibido" ele fez?).
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Alerte a turma de que o numerador exige duas etapas de fatoração (fator comum seguido de diferença de quadrados).\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Numerador: Fator comum $a \rightarrow a(a^2 - b^2)$. Depois, diferença de quadrados $\rightarrow a(a + b)(a - b)$.\\
+    Denominador: Fator comum $a \rightarrow a(a + b)$.\\
+    Montando a fração: $ \mfrac{a(a + b)(a - b)}{a(a + b)} $.\\
+    Cancelando os fatores $a$ e $(a + b)$ em comum, sobra apenas $(a - b)$. Alternativa A.\\
+    \textbf{Refutação (Exemplo):} Um aluno marcaria a alternativa D se, ignorando as somas e subtrações, ele "cortasse" o $a^3$ com o $a^2$ (sobrando $a$) e o $a$ com o $ab$ de forma isolada, quebrando a regra fundamental de que não se simplifica parcelas de adição/subtração.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Obrigar o aluno a explicar o erro do distrator trava a metacognição. Ele passa a entender como a banca formula a prova para capturar quem domina apenas parte do conceito.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{35.} 
+\begin{enunciadoLiteral}
+O polinômio $x^2 + 2xy + y^2 - z^2$ possui quatro termos, mas não pode ser fatorado pelo método de agrupamento clássico (2 a 2), pois os fatores não geram parênteses idênticos. No entanto, os três primeiros termos formam uma estrutura conhecida. Identifique essa estrutura e fatore o polinômio completo em duas etapas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Isole os três primeiros termos para a turma e pergunte: "Isso se parece com a expansão de qual produto notável?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Etapa 1: Reconhecer o Trinômio Quadrado Perfeito nos três primeiros termos:\\
+    $x^2 + 2xy + y^2 = (x + y)^2$.\\
+    Reescrevendo o polinômio: $(x + y)^2 - z^2$.\\
+    Etapa 2: A nova estrutura é uma diferença de dois quadrados, onde o primeiro termo inteiro é $(x+y)$ e o segundo é $z$.\\
+    Aplicando a regra da soma pela diferença:\\
+    $((x + y) + z)((x + y) - z) = (x + y + z)(x + y - z)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão clássica de transição de nível. Rompe a visão engessada de que agrupamentos ocorrem sempre de 2 em 2 e exige que o aluno veja blocos como variáveis únicas.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{36.} 
+\begin{enunciadoLiteral}
+(ENEM -- Adaptada) O professor Raphael organizou uma gincana de matemática e lançou o seguinte desafio no quadro: "Calcule a diferença entre a área de um quadrado de lado \textbf{2026 cm} e a área de um quadrado de lado \textbf{2025 cm}". 
+O aluno que usasse a calculadora seria desclassificado. Mostre como resolver este problema utilizando conhecimentos algébricos sem armar multiplicações pesadas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Ajude-os a modelar o texto em equação: "Como se escreve 'a diferença entre a área de um quadrado de lado 2026 e outro de lado 2025' na linguagem da matemática?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Modelagem: $2026^2 - 2025^2$.\\
+    Aplicando a diferença de quadrados ($A^2 - B^2 = (A+B)(A-B)$):\\
+    $(2026 + 2025)(2026 - 2025)$.\\
+    Calculando os parênteses: $(4051)(1)$.\\
+    Resultado final: \textbf{4051 cm²}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Incluí o seu nome no enunciado como acordado. Esta questão consolida a competência do ENEM de utilizar a álgebra como ferramenta de otimização de cálculo aritmético.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{37.} 
+\begin{enunciadoLiteral}
+Durante a prova, uma aluna desenvolveu o produto notável $(2m - 3n)^2$ da seguinte maneira:
+$$ (2m - 3n)^2 = 4m^2 - 9n^2 $$
+
+\begin{boxresponda}
+\textbf{Responda:} O desenvolvimento da aluna está correto? Caso não esteja, explique qual foi a falha no raciocínio dela, cite a regra verdadeira e apresente a resolução matematicamente correta.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Provoque a turma: "É permitido simplesmente distribuir o expoente 2 para os números dentro do parêntese quando há um sinal de menos no meio?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A resolução está incorreta. A aluna distribuiu o expoente como se fosse uma multiplicação $(2m \cdot 3n)^2$, esquecendo que o quadrado da diferença possui três termos.\\
+    A regra correta determina que: o quadrado do primeiro termo, \textbf{menos duas vezes} o primeiro pelo segundo, \textbf{mais} o quadrado do segundo.\\
+    Desenvolvimento correto:\\
+    $(2m)^2 - 2 \cdot (2m) \cdot (3n) + (3n)^2 = 4m^2 - 12mn + 9n^2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{38.} 
+\begin{enunciadoLiteral}
+Analise as três afirmativas abaixo sobre fatoração e produtos notáveis.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item A expressão $x^2 + 25$ pode ser fatorada como $(x + 5)(x + 5)$.
+    \item O polinômio $a^2 - 2ab + b^2$ é equivalente à forma fatorada $(a - b)^2$.
+    \item A expressão $10x^3 - 5x^2$ fatorada por evidência resulta em $5x^2(2x - 1)$.
+\end{enumerate}
+
+Identifique quais são verdadeiras e refaça a(s) falsa(s) para que se torne(m) correta(s).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Peça para que testem a afirmação I fazendo a distributiva (chuveirinho) de $(x+5)(x+5)$ para ver se volta no original.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I. Falsa. O produto $(x + 5)(x + 5)$ gera $x^2 + 10x + 25$, e não $x^2 + 25$. A soma de quadrados puros ($x^2 + 25$) não é fatorável nos Reais.\\
+    II. Verdadeira. É a definição exata do Trinômio Quadrado Perfeito da diferença.\\
+    III. Verdadeira. Distribuindo $5x^2(2x - 1)$, retornamos a $10x^3 - 5x^2$.\\
+    A única falsa é a I.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{39.} 
+\begin{enunciadoLiteral}
+Em um teste em laboratório, uma bola foi arremessada e sua altura (em centímetros) em relação a um sensor no solo foi registrada de acordo com o polinômio $h = t^2 - 14t + 49$, onde \textbf{t} representa o tempo em segundos. 
+A equipe precisa descobrir o exato segundo em que a bola tocou o sensor (ou seja, quando $h = 0$). Utilize a fatoração para encontrar esse tempo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Mostre que resolver $t^2 - 14t + 49 = 0$ sem fatorar é difícil, mas se o trinômio for condensado num quadrado perfeito, a solução fica óbvia.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Igualando a altura a zero: $t^2 - 14t + 49 = 0$.\\
+    O polinômio é um TQP, cujas pontas são $t$ e $7$, e o meio testa correto ($2 \cdot t \cdot 7 = 14t$).\\
+    Fatorando: $(t - 7)^2 = 0$.\\
+    Para que um número ao quadrado dê zero, a base deve ser zero.\\
+    Logo: $t - 7 = 0 \rightarrow t = 7$ segundos.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Introduz sorrateiramente a resolução de equações de 2º grau por fatoração, antes mesmo deles aprenderem a fórmula de Bhaskara.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{40.} 
+\begin{enunciadoLiteral}
+Em matemática, frequentemente usamos os termos "Fatorar" e "Desenvolver (ou Expandir)". 
+
+\begin{boxresponda}
+\textbf{Responda:} Explique, com suas palavras, qual é a diferença entre essas duas ações. Dê um exemplo de um produto notável sendo expandido e o caminho reverso, sendo fatorado.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Faça o paralelo com montar e desmontar peças de Lego. Qual processo cria blocos isolados (somas) e qual processo os encaixa de volta (multiplicação)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Expectativa de resposta: Expandir (ou desenvolver) é pegar uma multiplicação e aplicar a propriedade distributiva, transformando-a em uma soma ou subtração de termos isolados.\\
+    Fatorar é o caminho reverso: pegar uma soma/subtração e transformá-la num produto (multiplicação) de fatores menores.\\
+    Exemplo Expandindo: $(x+3)^2 \rightarrow x^2 + 6x + 9$.\\
+    Exemplo Fatorando: $x^2 + 6x + 9 \rightarrow (x+3)^2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{41.} 
+\begin{enunciadoLiteral}
+Observe o diagrama a seguir, que representa as áreas seccionadas de um galpão industrial retangular.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW, CORES E CANTOS ARREDONDADOS (REGRA PREMIUM) ---
+    \definecolor{piso1}{HTML}{F1C40F} % ouro/amarelo
+    \definecolor{piso2}{HTML}{E67E22} % laranja
+    \definecolor{piso3}{HTML}{D35400} % madeira escurecida
+    
+    % Fundo
+    \filldraw[fill=white, draw=black, thick, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (6,4);
+    
+    % Quadrantes
+    \filldraw[fill=piso1!40, draw=black, thick] (0,1.5) rectangle (4.5,4); % Maior X*X
+    \filldraw[fill=piso2!40, draw=black, thick] (4.5,1.5) rectangle (6,4); % Lateral
+    \filldraw[fill=piso2!40, draw=black, thick] (0,0) rectangle (4.5,1.5); % Inferior
+    \filldraw[fill=piso3!60, draw=black, thick] (4.5,0) rectangle (6,1.5); % Menor
+    
+    % Áreas
+    \node[font=\large\bfseries, text=CinzaEscuro] at (2.25, 2.75) {$x^2$};
+    \node[font=\large\bfseries, text=CinzaEscuro] at (5.25, 2.75) {$3x$};
+    \node[font=\large\bfseries, text=CinzaEscuro] at (2.25, 0.75) {$5x$};
+    \node[font=\large\bfseries, text=CinzaEscuro] at (5.25, 0.75) {$15$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se juntarmos todos os pedaços, obteremos a área total na forma de um polinômio de quatro termos. Escreva essa soma total e, utilizando a fatoração por agrupamento, descubra quais são as medidas dos lados $x$ e $y$ (base e altura) que originaram esse galpão.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte: "Para aplicar o agrupamento em $x^2 + 3x + 5x + 15$, quem devemos parear com quem na primeira rodada?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Área somada: $x^2 + 3x + 5x + 15$.\\
+    Agrupando a primeira dupla (fator comum $x$): $x(x + 3)$.\\
+    Agrupando a segunda dupla (fator comum $5$): $5(x + 3)$.\\
+    Juntando: $x(x + 3) + 5(x + 3) = (x + 3)(x + 5)$.\\
+    Conclusão: O galpão tem dimensões $(x + 5)$ em um lado e $(x + 3)$ no outro.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta visualização consolida a transição para fatorar polinômios de grau 2 do tipo $x^2 + Sx + P$, servindo de ponte direta para o método de soma e produto que verão no 9º ano.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{42.} 
+\begin{enunciadoLiteral}
+\textbf{Desafio Literal:} Demonstre algebricamente como a fração $ \mfrac{m^2 - 2mn + n^2}{m^2 - n^2} $ pode ser simplificada até se tornar $ \mfrac{m - n}{m + n} $. Exiba o passo a passo demonstrando qual regra de fatoração foi aplicada no numerador e qual foi aplicada no denominador.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Avise-os para resolverem como dois exercícios isolados: primeiro resolvam o polinômio de cima, e depois o de baixo. Só depois montem a fração novamente.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Numerador: $m^2 - 2mn + n^2$ é um Trinômio Quadrado Perfeito, que fatora para $(m - n)^2$, ou seja, $(m - n)(m - n)$.\\
+    Denominador: $m^2 - n^2$ é uma diferença de quadrados, que fatora para $(m + n)(m - n)$.\\
+    Remontando a fração:\\
+    $ \mfrac{(m - n)(m - n)}{(m + n)(m - n)} $\\
+    Simplificando os fatores iguais $(m - n)$ do numerador e denominador, sobra:\\
+    $ \mfrac{m - n}{m + n} $.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+% --- FIM DO LOTE 4 ---
+% --- INÍCIO DO LOTE 5 ---
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{43.} 
+\begin{enunciadoLiteral}
+(Estilo UNICAMP) Considere dois números reais não nulos, $a$ e $b$. Sabendo que a diferença entre eles é $a - b = 5$ e que o produto entre eles é $ab = 24$, determine, por meio de produtos notáveis, o valor numérico exato da soma de seus quadrados ($a^2 + b^2$).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Lembre os alunos de que não precisamos descobrir quem são $a$ e $b$ separadamente. Qual produto notável contém, ao mesmo tempo, $(a-b)$, $ab$ e $(a^2+b^2)$?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Partimos do quadrado da diferença:\\
+    $(a - b)^2 = a^2 - 2ab + b^2$\\
+    Substituindo os valores dados ($a - b = 5$ e $ab = 24$):\\
+    $(5)^2 = a^2 - 2(24) + b^2$\\
+    $25 = a^2 - 48 + b^2$\\
+    Isolando a soma dos quadrados:\\
+    $25 + 48 = a^2 + b^2$\\
+    $a^2 + b^2 = 73$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Exercício clássico de vestibulares paulistas. Força o aluno a parar de tentar "adivinhar" os números por tentativa e erro e a confiar cegamente na modelagem algébrica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{44.} 
+\begin{enunciadoLiteral}
+Fatore completamente o polinômio $x^3 - 2x^2 + x$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Questione: "Qual é a regra número 1 antes de tentar qualquer técnica avançada de fatoração? Tem algo que se repete em todos os termos?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Passo 1: Fator comum em evidência ($x$).\\
+    $x(x^2 - 2x + 1)$.\\
+    Passo 2: Observamos que o parêntese formou um Trinômio Quadrado Perfeito.\\
+    Raiz de $x^2 = x$, raiz de $1 = 1$, termo central $-2 \cdot x \cdot 1 = -2x$.\\
+    Fatoração completa: $x(x - 1)^2$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} A fatoração sucessiva é o verdadeiro teste de fluência algébrica, pois exige a combinação de duas técnicas distintas na mesma expressão.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{45.} 
+\begin{enunciadoLiteral}
+O esquema abaixo representa o projeto paisagístico de uma praça. A área total gramada (em verde) possui um espelho d'água quadrilátero no centro.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW, CORES E CANTOS ARREDONDADOS (REGRA PREMIUM) ---
+    \definecolor{grama}{HTML}{27AE60}
+    \definecolor{agua}{HTML}{2980B9}
+    
+    % Praça Maior
+    \filldraw[fill=grama!60, draw=grama!80!black, thick, rounded corners=4pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (6,4);
+    
+    % Espelho d'água
+    \filldraw[fill=agua!70, draw=agua!80!black, thick, rounded corners=2pt] (2.5,1.5) rectangle (3.5,2.5);
+    
+    % Cotas
+    \draw[<->, >=stealth, thick, CinzaEscuro] (0,-0.4) -- (6,-0.4) node[midway, below] {$(x + 5)$};
+    \draw[<->, >=stealth, thick, CinzaEscuro] (-0.4,0) -- (-0.4,4) node[midway, left] {$(x - 5)$};
+    
+    \node[font=\bfseries, text=white] at (3,2) {$3$};
+    \node[font=\small\bfseries, text=white, align=center] at (1,2) {Área\\Livre};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Escreva a expressão simplificada da área livre gramada. Demonstre todas as passagens algébricas envolvidas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Como escrevemos a área de um retângulo que possui a soma e a diferença das mesmas medidas em seus lados?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Área total do retângulo: $(x + 5)(x - 5)$.\\
+    Aplicando o produto notável (soma pela diferença): $x^2 - 25$.\\
+    Área do espelho d'água quadrado: $3^2 = 9$.\\
+    Área gramada restante: $(x^2 - 25) - 9$.\\
+    Simplificando os termos numéricos: $x^2 - 34$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Excelente aplicação de "Teste Cego". Os alunos são forçados a extrair as medidas da imagem e lidar com polinômios e constantes numéricas simultaneamente, evitando a confusão de achar que $x^2 - 25 - 9$ é fatorável.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{46.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP -- Refutação de Distratores) A expressão algébrica $(2a + b)^2 - (2a - b)^2$, após ser desenvolvida e completamente simplificada, é equivalente a:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $0$
+    \item $2b^2$
+    \item $4a^2 + 2b^2$
+    \item $8ab$
+\end{enumerate}
+
+\begin{boxresponda}
+\textbf{Responda:} Assinale a alternativa correta apresentando a resolução. Em seguida, prove matematicamente por que um aluno desatento chegaria ao resultado da alternativa (a), explicando qual erro conceitual de sinal ele cometeu.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Alerte a turma sobre o perigo do sinal negativo no meio de dois grandes blocos. O que ele faz com o polinômio que vem logo após ele?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Desenvolvendo o 1º bloco: $4a^2 + 4ab + b^2$.\\
+    Desenvolvendo o 2º bloco: $4a^2 - 4ab + b^2$.\\
+    Montando a subtração (com parênteses no segundo!):\\
+    $(4a^2 + 4ab + b^2) - (4a^2 - 4ab + b^2)$.\\
+    Invertendo os sinais do 2º bloco:\\
+    $4a^2 + 4ab + b^2 - 4a^2 + 4ab - b^2$.\\
+    Cancelando $4a^2$ com $-4a^2$, e $b^2$ com $-b^2$, sobra: $4ab + 4ab = 8ab$. Alternativa D.\\
+    \textbf{Refutação:} O aluno marcaria zero (A) se esquecesse de colocar o segundo bloco entre parênteses. Ao fazer $4a^2 + 4ab + b^2 - 4a^2 - 4ab + b^2$ sem a inversão de sinais da subtração, ele anularia o termo central incorretamente.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{47.} 
+\begin{enunciadoLiteral}
+Simplifique a fração algébrica $ \mfrac{a^4 - 16}{a^2 + 4} $.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Pergunte qual é a raiz quadrada de $a^4$. Mostrar que a diferença de quadrados não se limita a expoentes 2.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O numerador $a^4 - 16$ é uma diferença de quadrados cujas raízes são $a^2$ e $4$.\\
+    Fatorando: $(a^2 + 4)(a^2 - 4)$.\\
+    Montando a fração: $ \mfrac{(a^2 + 4)(a^2 - 4)}{a^2 + 4} $.\\
+    Simplificando os termos idênticos: $a^2 - 4$.\\
+    Se exigido fatoração até os primos: $(a + 2)(a - 2)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental para o Ensino Médio, ao introduzir a ideia de que expoentes pares (4, 6, 8) são quadrados disfarçados.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{48.} 
+\begin{enunciadoLiteral}
+A área de um retângulo é dada pelo polinômio de três termos $x^2 + 7x + 10$. Utilizando uma quebra estratégica do termo central ($7x = 2x + 5x$), fatore o polinômio por agrupamento e determine as duas expressões que representam a base e a altura do retângulo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Mostre que $x^2 + 7x + 10$ não é Trinômio Quadrado Perfeito, pois 10 não tem raiz exata. Como a quebra sugerida permite o agrupamento?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Reescrevendo a expressão: $x^2 + 2x + 5x + 10$.\\
+    Agrupando a primeira dupla: $x(x + 2)$.\\
+    Agrupando a segunda dupla: $5(x + 2)$.\\
+    Juntando as partes: $x(x + 2) + 5(x + 2) = (x + 2)(x + 5)$.\\
+    Base e altura do retângulo são, respectivamente, $(x + 5)$ e $(x + 2)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} É o "pulo do gato" que conecta fatoração clássica ao Teorema de Stevin (Soma e Produto).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{49.} 
+\begin{enunciadoLiteral}
+\textbf{Diagnóstico de Erro Intencional:} Durante a aula, um aluno foi à lousa aplicar o quadrado da soma na expressão $(x + \mfrac{1}{2})^2$. Ele escreveu:
+$$(x + \mfrac{1}{2})^2 = x^2 + \mfrac{1}{4}$$
+
+\begin{boxresponda}
+\textbf{Responda:} Qual componente essencial do produto notável o aluno omitiu? Faça o desenvolvimento correto da expressão evidenciando todos os passos.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Indague: "Quando trabalhamos com frações, a regra do 'dobro do primeiro pelo segundo' desaparece?".\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O aluno omitiu o termo central (dobro do produto das raízes), assumindo erroneamente que $(A+B)^2 = A^2 + B^2$.\\
+    Desenvolvimento correto:\\
+    Quadrado do 1º: $x^2$.\\
+    Dobro do produto: $2 \cdot x \cdot ( \mfrac{1}{2} ) = \mfrac{2x}{2} = x$.\\
+    Quadrado do 2º: $( \mfrac{1}{2} )^2 = \mfrac{1}{4}$.\\
+    Resposta final correta: $x^2 + x + \mfrac{1}{4}$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{50.} 
+\begin{enunciadoLiteral}
+Uma praça circular possui um canteiro central cercado por uma pista de caminhada em formato de coroa circular. 
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW, CORES E CAMADAS (REGRA PREMIUM) ---
+    \definecolor{pista}{HTML}{BDC3C7} % asfalto claro
+    \definecolor{canteiro}{HTML}{27AE60} % verde
+    
+    % Coroa circular (pista) com sombra
+    \filldraw[fill=pista, draw=CinzaEscuro, thick, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) circle (2.8);
+    
+    % Círculo interno (canteiro verde)
+    \filldraw[fill=canteiro!80, draw=CinzaEscuro, thick] (0,0) circle (1.5);
+    
+    % Marcação de centro e raios
+    \filldraw[black] (0,0) circle (2pt);
+    
+    % Raio menor
+    \draw[->, >=stealth, thick, white] (0,0) -- (1.5, 0) node[midway, below] {\textbf{r}};
+    
+    % Raio maior (inclinado para leitura paralela)
+    \draw[->, >=stealth, thick, CinzaEscuro] (0,0) -- (1.98, 1.98) node[midway, above left, fill=pista, inner sep=1pt] {\textbf{R}};
+    
+    \node[font=\bfseries, text=CinzaEscuro] at (0, 2.2) {Pista};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+A área da pista (coroa circular) é calculada pela diferença das áreas dos círculos: $A = \pi R^2 - \pi r^2$.
+Fatore completamente essa expressão matemática da área e, em seguida, utilize a forma fatorada para calcular a área exata da pista sabendo que $\pi = 3$, $R = \textbf{25 m}$ e $r = \textbf{15 m}$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Mostre que a fórmula tem dois fatores comuns (o $\pi$). O que sobra no parêntese é um produto notável famoso.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Colocando o fator comum em evidência: $\pi(R^2 - r^2)$.\\
+    Aplicando a diferença de quadrados no parêntese: $\pi(R + r)(R - r)$. (Forma Fatorada).\\
+    Substituindo os valores dados:\\
+    $A = 3 \cdot (25 + 15) \cdot (25 - 15)$.\\
+    $A = 3 \cdot (40) \cdot (10)$.\\
+    $A = 3 \cdot 400 = 1200$.\\
+    A área da pista é \textbf{1200 m²}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Demonstra na prática como a fatoração agiliza contas. Fazer $25^2 - 15^2$ é muito mais custoso mentalmente do que multiplicar as somas e subtrações $(40 \cdot 10)$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{51.} 
+\begin{enunciadoLiteral}
+Em Matemática Financeira, o montante $M$ de um investimento a juros compostos após 2 anos é dado pela fórmula $M = C(1 + i)^2$, onde $C$ é o capital inicial e $i$ é a taxa de juros anual. 
+Expanda algébrica e completamente essa expressão para eliminar os parênteses.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Oriente que o expoente 2 afeta apenas o parêntese. Portanto, resolve-se o produto notável primeiro e, depois, aplica-se o fator $C$.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Desenvolvendo o produto notável $(1 + i)^2$:\\
+    $1^2 + 2(1)(i) + i^2 = 1 + 2i + i^2$.\\
+    Multiplicando o polinômio resultante pelo Capital $C$ (distributiva):\\
+    $M = C(1 + 2i + i^2)$.\\
+    $M = C + 2Ci + Ci^2$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{52.} 
+\begin{enunciadoLiteral}
+\textbf{Desafio de Otimização:} Um professor de física precisa calcular a resistência de um material que obedece à equação de comportamento estrutural $E = x^3y - xy^3$. Fatore completamente essa expressão e indique quantos fatores primários irredutíveis o compõem no final do processo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Peça aos alunos que executem duas camadas de fatoração: primeiro a evidência das letras $x$ e $y$, seguida da análise do que sobrar.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Fator comum em evidência ($xy$):\\
+    $xy(x^2 - y^2)$.\\
+    O parêntese resultante é uma diferença de dois quadrados. Fatorando-o:\\
+    $xy(x + y)(x - y)$.\\
+    O polinômio é composto por 4 fatores primários isolados: $x$, $y$, $(x+y)$ e $(x-y)$.
+    \end{tcolorbox}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
+% --- FIM DO LOTE 5 ---
