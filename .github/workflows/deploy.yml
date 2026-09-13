@@ -31,4 +31,4 @@ jobs:
           script: |
             cd /root/portal/prod
             git fetch origin main
-            git reset --hard origin/prod
+            git reset --hard origin/main
