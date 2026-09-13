@@ -1,0 +1,50 @@
+{
+  "_LEIA_ME_INSTRUCOES_DE_RECUPERACAO": [
+    "==========================================================================================",
+    "BACKUP DE CONFIGURACAO: ROTEAMENTO AUTOMATICO DE PDFS LATEX (ALUNO -> PUBLICA / PROF -> RESTRITA)",
+    "==========================================================================================",
+    "COMO RESTAURAR CASO FORMATE O COMPUTADOR OU TROQUE DE MAQUINA:",
+    "1. Abra o VS Code com a extensao 'LaTeX Workshop' instalada.",
+    "2. Pressione 'Ctrl + Shift + P' e digite: Preferences: Open User Settings (JSON).",
+    "3. Copie as chaves contidas na propriedade 'configuracao_vscode' abaixo e cole no seu settings.json.",
+    "4. Reinicie o VS Code.",
+    "",
+    "COMO FUNCIONA O MECANISMO:",
+    "- O roteador le o NOME DO ARQUIVO que esta aberto quando voce salva (Ctrl + S).",
+    "- Se o arquivo tiver '_ALUNO' no nome, compila e joga o PDF e os temps em '../publica'.",
+    "- Se o arquivo tiver '_PROF' no nome, compila e joga o PDF e os temps em '../restrita'.",
+    "- O comando ja cria as pastas automaticamente caso elas ainda nao existam.",
+    "- Ignora a compilacao cega de arquivos que nao sejam cascas, evitando sujar a pasta.",
+    "=========================================================================================="
+  ],
+  "configuracao_vscode": {
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.environmentChangesRelaunch": false,
+    "git.autofetch": true,
+    "github.copilot.chat.localeOverride": "pt-br",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.rootFile.doNotVerify": true,
+    "latex-workshop.latex.recipes": [
+      {
+        "name": "Compilador_Inteligente",
+        "tools": [
+          "roteador_de_pasta"
+        ]
+      }
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "roteador_de_pasta",
+        "command": "cmd",
+        "args": [
+          "/c",
+          "if not exist ..\\publica mkdir ..\\publica && if not exist ..\\restrita mkdir ..\\restrita && if not \"%DOCFILE%\"==\"%DOCFILE:_ALUNO=%\" (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../publica %DOCFILE%) else if not \"%DOCFILE%\"==\"%DOCFILE:_PROF=%\" (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=../restrita %DOCFILE%) else (pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %DOCFILE%)"
+        ],
+        "env": {
+          "OPENOUT_ANY": "a"
+        }
+      }
+    ]
+  }
+}
