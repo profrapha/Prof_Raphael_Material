@@ -1,0 +1,23 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "8_Ano",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Equações Quadráticas Incompletas",
+  "desc": "Resolução e modelagem de equações do 2º grau incompletas e coeficientes.",
+  "videos": [
+    {
+      "duvida": "com dúvida em Equação do 2º Grau Incompleta?",
+      "titulo": "Equação do 2º Grau Incompleta",
+      "autor": "Prof.ª Gis",
+      "url": "https://www.youtube.com/embed/GX2qKdb5ATE"
+    },
+    {
+      "duvida": "querendo aprender de forma Rápida e Fácil?",
+      "titulo": "Equação Incompleta Rápida",
+      "autor": "Sandro Curió",
+      "url": "https://www.youtube.com/embed/6PHQDKnO-Mw"
+    }
+  ]
+}

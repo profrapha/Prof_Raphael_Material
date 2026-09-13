@@ -1,0 +1,17 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "2_Serie",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Polinômios e Operações",
+  "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
+  "videos": [
+    {
+      "duvida": "com dificuldade no Dispositivo Briot-Ruffini?",
+      "titulo": "Dispositivo Briot-Ruffini",
+      "autor": "Matemática Rio",
+      "url": "https://www.youtube.com/embed/LpjWG7koTBE"
+    }
+  ]
+}

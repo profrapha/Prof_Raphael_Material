@@ -1,0 +1,29 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "9_Ano",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Função Quadrática (Parte 1)",
+  "desc": "Estudo da definição, lei de formação, construção de parábolas, vértices e raízes.",
+  "videos": [
+    {
+      "duvida": "com dúvida na Definição da Função Quadrática?",
+      "titulo": "Definição da Função Quadrática",
+      "autor": "Matemática no Papel",
+      "url": "https://www.youtube.com/embed/mzEGFoEenh8"
+    },
+    {
+      "duvida": "com dificuldade em Construir uma Parábola?",
+      "titulo": "4 Passos para Construir uma Parábola",
+      "autor": "Sandro Curió",
+      "url": "https://www.youtube.com/embed/rHal93QAGyo"
+    },
+    {
+      "duvida": "com dúvida nas Coordenadas do Vértice da Parábola?",
+      "titulo": "Coordenadas do Vértice",
+      "autor": "Prof.ª Gis",
+      "url": "https://www.youtube.com/embed/DCT9jRSAwfs"
+    }
+  ]
+}

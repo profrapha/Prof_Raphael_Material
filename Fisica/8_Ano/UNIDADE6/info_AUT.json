@@ -1,0 +1,41 @@
+{
+  "disciplina": "Fisica",
+  "ano": "8_Ano",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Sol, Terra e Lua",
+  "desc": "Sistema Sol-Terra-Lua, distâncias reais, translação, solstício, equinócio e eclipses.",
+  "videos": [
+    {
+      "duvida": "com dúvida sobre a verdadeira distância entre a Terra e a Lua?",
+      "titulo": "essa é a VERDADEIRA distância entre a TERRA e a LUA",
+      "autor": "Ciência Todo Dia",
+      "url": "https://www.youtube.com/embed/anFl3WcsDFo"
+    },
+    {
+      "duvida": "precisando entender os movimentos de Rotação e Translação?",
+      "titulo": "Os movimentos da Terra",
+      "autor": "Geo Ilustrada",
+      "url": "https://www.youtube.com/embed/B3fBDGR1G1Y"
+    },
+    {
+      "duvida": "com dificuldade em compreender Solstício e Equinócio?",
+      "titulo": "SOLSTÍCIO E EQUINÓCIO",
+      "autor": "Geobrasil",
+      "url": "https://www.youtube.com/embed/Lj_VQXzIeyE"
+    },
+    {
+      "duvida": "querendo ver como funcionam As fases da lua?",
+      "titulo": "A lua e suas fases",
+      "autor": "Canal Futura",
+      "url": "https://www.youtube.com/embed/3Wefx4Vpx1M"
+    },
+    {
+      "duvida": "com dúvida sobre Fases da Lua e Eclipses na Óptica Geométrica?",
+      "titulo": "Fases da Lua e Eclipse",
+      "autor": "Chama o Físico",
+      "url": "https://www.youtube.com/embed/CZPpi5Q9O_0"
+    }
+  ]
+}

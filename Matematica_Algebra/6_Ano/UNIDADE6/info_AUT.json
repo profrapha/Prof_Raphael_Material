@@ -1,0 +1,29 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "6_Ano",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Números Racionais: Decimais e Porcentagem",
+  "desc": "Frações, representação decimal, operações com vírgula e porcentagem.",
+  "videos": [
+    {
+      "duvida": "com dúvida em Leitura e Escrita de Números Decimais?",
+      "titulo": "Leitura e Escrita de Números Decimais",
+      "autor": "Prof.ª Gis",
+      "url": "https://www.youtube.com/embed/EMAoOklEA5w"
+    },
+    {
+      "duvida": "com dúvida em Adição e Subtração com Vírgula?",
+      "titulo": "Adição e Subtração com Vírgula",
+      "autor": "Sandro Curió",
+      "url": "https://www.youtube.com/embed/UXs1R5mDY6o"
+    },
+    {
+      "duvida": "com dúvida em Porcentagem | Como Calcular?",
+      "titulo": "Porcentagem | Como Calcular",
+      "autor": "Prof.ª Gis",
+      "url": "https://www.youtube.com/embed/OjOyNmTt7Mw"
+    }
+  ]
+}

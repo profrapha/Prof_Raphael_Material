@@ -1,0 +1,23 @@
+{
+  "disciplina": "Fisica",
+  "ano": "1_Serie",
+  "unidade": "UNIDADE6",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Aplicações da Dinâmica",
+  "desc": "Forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.",
+  "videos": [
+    {
+      "duvida": "com dúvida em resolver problemas de Plano inclinado com atrito?",
+      "titulo": "Plano inclinado com atrito",
+      "autor": "Matemática no Papel",
+      "url": "https://www.youtube.com/embed/FtpCPAbptbE"
+    },
+    {
+      "duvida": "com dificuldade na Força Resultante Centrípeta?",
+      "titulo": "FORÇA RESULTANTE CENTRÍPETA",
+      "autor": "Felipe Sampaio",
+      "url": "https://www.youtube.com/embed/JDuFDGMqdCk"
+    }
+  ]
+}
