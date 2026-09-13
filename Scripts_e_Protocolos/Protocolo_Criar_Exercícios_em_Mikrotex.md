@@ -613,6 +613,27 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
     }
   ]
 }
+```
+#### Se Silo 2 (Escola) -> Salvar como info_ESC.json na raiz da unidade:
+```json
+{
+  "disciplina": "Fisica / Matematica_Algebra / Matematica_Geometria",
+  "ano": "6_Ano / 7_Ano / 8_Ano / 9_Ano / 1_Serie / 2_Serie / 3_Serie",
+  "unidade": "UNIDADE6 / SEMANA10",
+  "tipo": "Escola",
+  "rotulo": "Caderno de Atividades",
+  "titulo": "Nome da Unidade Curricular",
+  "desc": "Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.",
+  "videos": []
+}
+```
+#### Critérios para vídeos no Silo 1:
+Os links devem ser estritamente strings no formato de incorporação: https://www.youtube.com/embed/ID_DO_VIDEO.
+
+Não envolver os links em markdown dentro do JSON.
+
+Selecionar aulas focadas nas dúvidas procedimentais mais frequentes dos exercícios da lista.
+
 --- FIM DO PROTOCOLO MESTRE ---
 
 ```
