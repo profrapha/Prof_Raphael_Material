@@ -718,418 +718,634 @@
     </div>
 
     <script>
+        /* === CATALOGO_INICIO === */
         const catalogo = {
             "Fisica": {
-                nome: "Física",
-                tipo: "direto",
-                anos: {
-                    "6_Ano": { 
-                        nome: "6º Ano", 
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Estrutura da Terra",
-                                desc: "Estudo das camadas internas da Terra, atmosfera, rochas, minerais e fósseis.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/6_Ano/UNIDADE6/publica/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida nas Camadas Internas da Terra?", titulo: "As Camadas Internas da Terra", autor: "Com Ciência", url: "https://www.youtube.com/embed/hSsCSz03Svo" },
-                                            { duvida: "precisando relembrar as Camadas da Terra?", titulo: "Camadas da Terra", autor: "Brasil Escola", url: "https://www.youtube.com/embed/yM1Bn5wvFwc" },
-                                            { duvida: "com dificuldade em entender as 5 camadas da atmosfera terrestre?", titulo: "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!", autor: "Geo Ilustrada", url: "https://www.youtube.com/embed/435_RueBRkY" },
-                                            { duvida: "querendo ver os Tipos de rochas para o 6º ano?", titulo: "Tipos de rochas – Ciências – 6º ano", autor: "Canal Futura", url: "https://www.youtube.com/embed/zq54OCjKRN4" },
-                                            { duvida: "com dúvida em um resumo sobre os Tipos de Rochas?", titulo: "Tipos de Rochas - Resumo", autor: "Com Ciência", url: "https://www.youtube.com/embed/cwSOj4KGdmU" },
-                                            { duvida: "precisando entender sobre Tipos de Rochas e Fósseis?", titulo: "Tipos de Rochas e Fósseis", autor: "Com Ciência", url: "https://www.youtube.com/embed/Za8WmDI4iXA" }
-                                        ]
+                        "nome": "Física",
+                        "tipo": "direto",
+                        "anos": {
+                                    "1_Serie": {
+                                                "nome": "1ª Série (EM)",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Aplicações da Dinâmica",
+                                                                        "desc": "Forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/1_Serie/UNIDADE6/publica/FIS_1EM_AUT_U06-DINAMICA_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida em resolver problemas de Plano inclinado com atrito?",
+                                                                                                                        "titulo": "Plano inclinado com atrito",
+                                                                                                                        "autor": "Matemática no Papel",
+                                                                                                                        "url": "https://www.youtube.com/embed/FtpCPAbptbE"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dificuldade na Força Resultante Centrípeta?",
+                                                                                                                        "titulo": "FORÇA RESULTANTE CENTRÍPETA",
+                                                                                                                        "autor": "Felipe Sampaio",
+                                                                                                                        "url": "https://www.youtube.com/embed/JDuFDGMqdCk"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
+                                    },
+                                    "2_Serie": {
+                                                "nome": "2ª Série (EM)",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Refração e Lentes",
+                                                                        "desc": "Refração luminosa, Lei de Snell, ângulo limite, reflexão total e equação de Gauss.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/2_Serie/UNIDADE6/publica/FIS_2EM_AUT_U06-REFRACAO_LENTES_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida em como usar a Lei de Snell?",
+                                                                                                                        "titulo": "Lei de Snell - Exercícios",
+                                                                                                                        "autor": "Maurício Física",
+                                                                                                                        "url": "https://www.youtube.com/embed/8eoC6frYFsU"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando entender Ângulo limite e reflexão total?",
+                                                                                                                        "titulo": "Refração: Ângulo limite",
+                                                                                                                        "autor": "Pedro Grossi",
+                                                                                                                        "url": "https://www.youtube.com/embed/ObEp8eFLGT4"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
+                                    },
+                                    "6_Ano": {
+                                                "nome": "6º Ano",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Estrutura da Terra",
+                                                                        "desc": "Estudo das camadas internas da Terra, atmosfera, rochas, minerais e fósseis.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/6_Ano/UNIDADE6/publica/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida nas Camadas Internas da Terra?",
+                                                                                                                        "titulo": "As Camadas Internas da Terra",
+                                                                                                                        "autor": "Com Ciência",
+                                                                                                                        "url": "https://www.youtube.com/embed/hSsCSz03Svo"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando relembrar as Camadas da Terra?",
+                                                                                                                        "titulo": "Camadas da Terra",
+                                                                                                                        "autor": "Brasil Escola",
+                                                                                                                        "url": "https://www.youtube.com/embed/yM1Bn5wvFwc"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dificuldade em entender as 5 camadas da atmosfera terrestre?",
+                                                                                                                        "titulo": "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!",
+                                                                                                                        "autor": "Geo Ilustrada",
+                                                                                                                        "url": "https://www.youtube.com/embed/435_RueBRkY"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "querendo ver os Tipos de rochas para o 6º ano?",
+                                                                                                                        "titulo": "Tipos de rochas – Ciências – 6º ano",
+                                                                                                                        "autor": "Canal Futura",
+                                                                                                                        "url": "https://www.youtube.com/embed/zq54OCjKRN4"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida em um resumo sobre os Tipos de Rochas?",
+                                                                                                                        "titulo": "Tipos de Rochas - Resumo",
+                                                                                                                        "autor": "Com Ciência",
+                                                                                                                        "url": "https://www.youtube.com/embed/cwSOj4KGdmU"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando entender sobre Tipos de Rochas e Fósseis?",
+                                                                                                                        "titulo": "Tipos de Rochas e Fósseis",
+                                                                                                                        "autor": "Com Ciência",
+                                                                                                                        "url": "https://www.youtube.com/embed/Za8WmDI4iXA"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
+                                    },
+                                    "7_Ano": {
+                                                "nome": "7º Ano",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Máquinas Simples e Trabalho",
+                                                                        "desc": "Estudo das máquinas simples, aplicações cotidianas, alavancas, polias e planos inclinados.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/7_Ano/UNIDADE6/publica/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida nas aplicações de Máquinas simples para o 7º ano?",
+                                                                                                                        "titulo": "Máquinas simples – Ciências – 7º ano",
+                                                                                                                        "autor": "Canal Futura",
+                                                                                                                        "url": "https://www.youtube.com/embed/1cLd3zoe5WQ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando ver as Principais informações sobre Máquinas Simples?",
+                                                                                                                        "titulo": "MÁQUINAS SIMPLES - Principais informações",
+                                                                                                                        "autor": "Com Ciência",
+                                                                                                                        "url": "https://www.youtube.com/embed/tvIk729n_rI"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dificuldade em entender o funcionamento de Alavancas?",
+                                                                                                                        "titulo": "MABA FÍSICA - ALAVANCAS",
+                                                                                                                        "autor": "Marcos Aba / Prof. Giovanelli",
+                                                                                                                        "url": "https://www.youtube.com/embed/EcJK51nMzl8"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "querendo ver como funcionam as Polias e roldanas fixas e móveis?",
+                                                                                                                        "titulo": "Polias e roldanas fixas e móveis",
+                                                                                                                        "autor": "Matemática no Papel",
+                                                                                                                        "url": "https://www.youtube.com/embed/DVh5zU9tUwk"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida sobre Plano inclinado sem atrito?",
+                                                                                                                        "titulo": "Plano inclinado sem atrito",
+                                                                                                                        "autor": "Matemática no Papel",
+                                                                                                                        "url": "https://www.youtube.com/embed/mAegzrG1Ofs"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
+                                    },
+                                    "8_Ano": {
+                                                "nome": "8º Ano",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Sol, Terra e Lua",
+                                                                        "desc": "Sistema Sol-Terra-Lua, distâncias reais, translação, solstício, equinócio e eclipses.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/8_Ano/UNIDADE6/publica/FIS_8EF_AUT_U06-SOL_TERRA_LUA_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida sobre a verdadeira distância entre a Terra e a Lua?",
+                                                                                                                        "titulo": "essa é a VERDADEIRA distância entre a TERRA e a LUA",
+                                                                                                                        "autor": "Ciência Todo Dia",
+                                                                                                                        "url": "https://www.youtube.com/embed/anFl3WcsDFo"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando entender os movimentos de Rotação e Translação?",
+                                                                                                                        "titulo": "Os movimentos da Terra",
+                                                                                                                        "autor": "Geo Ilustrada",
+                                                                                                                        "url": "https://www.youtube.com/embed/B3fBDGR1G1Y"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dificuldade em compreender Solstício e Equinócio?",
+                                                                                                                        "titulo": "SOLSTÍCIO E EQUINÓCIO",
+                                                                                                                        "autor": "Geobrasil",
+                                                                                                                        "url": "https://www.youtube.com/embed/Lj_VQXzIeyE"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "querendo ver como funcionam As fases da lua?",
+                                                                                                                        "titulo": "A lua e suas fases",
+                                                                                                                        "autor": "Canal Futura",
+                                                                                                                        "url": "https://www.youtube.com/embed/3Wefx4Vpx1M"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida sobre Fases da Lua e Eclipses na Óptica Geométrica?",
+                                                                                                                        "titulo": "Fases da Lua e Eclipse",
+                                                                                                                        "autor": "Chama o Físico",
+                                                                                                                        "url": "https://www.youtube.com/embed/CZPpi5Q9O_0"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
+                                    },
+                                    "9_Ano": {
+                                                "nome": "9º Ano",
+                                                "unidades": {
+                                                            "UNIDADE 6": {
+                                                                        "titulo": "Energia Mecânica e Potência",
+                                                                        "desc": "Energia cinética, potencial, teorema do trabalho e energia, conservação mecânica e rendimento.",
+                                                                        "materiais": [
+                                                                                    {
+                                                                                                "tipo": "Autoral",
+                                                                                                "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                "pdf": "Fisica/9_Ano/UNIDADE6/publica/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_ALUNO.pdf",
+                                                                                                "pdfProf": null,
+                                                                                                "videos": [
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida sobre o Teorema da energia cinética?",
+                                                                                                                        "titulo": "Teorema da energia cinética",
+                                                                                                                        "autor": "Matemática no Papel",
+                                                                                                                        "url": "https://www.youtube.com/embed/g7OfZUyiexQ"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?",
+                                                                                                                        "titulo": "Teorema da Energia Cinética - Exercícios",
+                                                                                                                        "autor": "Davi Oliveira",
+                                                                                                                        "url": "https://www.youtube.com/embed/NLKS7AqHv0Y"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dificuldade em diferenciar Energia Cinética e Potencial?",
+                                                                                                                        "titulo": "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL",
+                                                                                                                        "autor": "Eureka Matemática",
+                                                                                                                        "url": "https://www.youtube.com/embed/CQFnmOIuxi8"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "querendo revisar a Conservação da Energia Mecânica?",
+                                                                                                                        "titulo": "CONSERVAÇÃO DA ENERGIA MECÂNICA",
+                                                                                                                        "autor": "Felipe Sampaio",
+                                                                                                                        "url": "https://www.youtube.com/embed/pV7KvsH_yEA"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "com dúvida sobre Sistemas Conservativos?",
+                                                                                                                        "titulo": "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I",
+                                                                                                                        "autor": "Professor Boaro",
+                                                                                                                        "url": "https://www.youtube.com/embed/cyRn0Hla-TM"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "duvida": "precisando entender Potência Mecânica e Consumo?",
+                                                                                                                        "titulo": "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO",
+                                                                                                                        "autor": "Curso Enem Gratuito",
+                                                                                                                        "url": "https://www.youtube.com/embed/objIr0eQIWQ"
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        ]
+                                                            }
+                                                }
                                     }
-                                ]
-                            }
                         }
-                    },
-                    "7_Ano": {
-                        nome: "7º Ano",
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Máquinas Simples e Trabalho",
-                                desc: "Estudo das máquinas simples, aplicações cotidianas, alavancas, polias e planos inclinados.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/7_Ano/UNIDADE6/publica/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida nas aplicações de Máquinas simples para o 7º ano?", titulo: "Máquinas simples – Ciências – 7º ano", autor: "Canal Futura", url: "https://www.youtube.com/embed/1cLd3zoe5WQ" },
-                                            { duvida: "precisando ver as Principais informações sobre Máquinas Simples?", titulo: "MÁQUINAS SIMPLES - Principais informações", autor: "Com Ciência", url: "https://www.youtube.com/embed/tvIk729n_rI" },
-                                            { duvida: "com dificuldade em entender o funcionamento de Alavancas?", titulo: "MABA FÍSICA - ALAVANCAS", autor: "Marcos Aba / Prof. Giovanelli", url: "https://www.youtube.com/embed/EcJK51nMzl8" },
-                                            { duvida: "querendo ver como funcionam as Polias e roldanas fixas e móveis?", titulo: "Polias e roldanas fixas e móveis", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/DVh5zU9tUwk" },
-                                            { duvida: "com dúvida sobre Plano inclinado sem atrito?", titulo: "Plano inclinado sem atrito", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/mAegzrG1Ofs" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "8_Ano": {
-                        nome: "8º Ano",
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Sol, Terra e Lua",
-                                desc: "Sistema Sol-Terra-Lua, distâncias reais, translação, solstício, equinócio e eclipses.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/8_Ano/UNIDADE6/publica/FIS_8EF_AUT_U06-SOL_TERRA_LUA_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida sobre a verdadeira distância entre a Terra e a Lua?", titulo: "essa é a VERDADEIRA distância entre a TERRA e a LUA", autor: "Ciência Todo Dia", url: "https://www.youtube.com/embed/anFl3WcsDFo" },
-                                            { duvida: "precisando entender os movimentos de Rotação e Translação?", titulo: "Os movimentos da Terra", autor: "Geo Ilustrada", url: "https://www.youtube.com/embed/B3fBDGR1G1Y" },
-                                            { duvida: "com dificuldade em compreender Solstício e Equinócio?", titulo: "SOLSTÍCIO E EQUINÓCIO", autor: "Geobrasil", url: "https://www.youtube.com/embed/Lj_VQXzIeyE" },
-                                            { duvida: "querendo ver como funcionam As fases da lua?", titulo: "A lua e suas fases", autor: "Canal Futura", url: "https://www.youtube.com/embed/3Wefx4Vpx1M" },
-                                            { duvida: "com dúvida sobre Fases da Lua e Eclipses na Óptica Geométrica?", titulo: "Fases da Lua e Eclipse", autor: "Chama o Físico", url: "https://www.youtube.com/embed/CZPpi5Q9O_0" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "9_Ano": {
-                        nome: "9º Ano",
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Energia Mecânica e Potência",
-                                desc: "Energia cinética, potencial, teorema do trabalho e energia, conservação mecânica e rendimento.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/9_Ano/UNIDADE6/publica/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida sobre o Teorema da energia cinética?", titulo: "Teorema da energia cinética", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/g7OfZUyiexQ" },
-                                            { duvida: "precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?", titulo: "Teorema da Energia Cinética - Exercícios", autor: "Davi Oliveira", url: "https://www.youtube.com/embed/NLKS7AqHv0Y" },
-                                            { duvida: "com dificuldade em diferenciar Energia Cinética e Potencial?", titulo: "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL", autor: "Eureka Matemática", url: "https://www.youtube.com/embed/CQFnmOIuxi8" },
-                                            { duvida: "querendo revisar a Conservação da Energia Mecânica?", titulo: "CONSERVAÇÃO DA ENERGIA MECÂNICA", autor: "Felipe Sampaio", url: "https://www.youtube.com/embed/pV7KvsH_yEA" },
-                                            { duvida: "com dúvida sobre Sistemas Conservativos?", titulo: "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I", autor: "Professor Boaro", url: "https://www.youtube.com/embed/cyRn0Hla-TM" },
-                                            { duvida: "precisando entender Potência Mecânica e Consumo?", titulo: "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO", autor: "Curso Enem Gratuito", url: "https://www.youtube.com/embed/objIr0eQIWQ" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "1_Serie": {
-                        nome: "1ª Série (EM)",
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Aplicações da Dinâmica",
-                                desc: "Forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/1_Serie/UNIDADE6/publica/FIS_1EM_AUT_U06-DINAMICA_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida em resolver problemas de Plano inclinado com atrito?", titulo: "Plano inclinado com atrito", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/FtpCPAbptbE" },
-                                            { duvida: "com dificuldade na Força Resultante Centrípeta?", titulo: "FORÇA RESULTANTE CENTRÍPETA", autor: "Felipe Sampaio", url: "https://www.youtube.com/embed/JDuFDGMqdCk" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    },
-                    "2_Serie": {
-                        nome: "2ª Série (EM)",
-                        unidades: {
-                            "UNIDADE 6": {
-                                titulo: "Refração e Lentes",
-                                desc: "Refração luminosa, Lei de Snell, ângulo limite, reflexão total e equação de Gauss.",
-                                materiais: [
-                                    {
-                                        tipo: "Autoral",
-                                        rotulo: "Caderno de Atividades Suplementar",
-                                        pdf: "Fisica/2_Serie/UNIDADE6/publica/FIS_2EM_AUT_U06-REFRACAO_LENTES_ALUNO.pdf",
-                                        pdfProf: null,
-                                        videos: [
-                                            { duvida: "com dúvida em como usar a Lei de Snell?", titulo: "Lei de Snell - Exercícios", autor: "Maurício Física", url: "https://www.youtube.com/embed/8eoC6frYFsU" },
-                                            { duvida: "precisando entender Ângulo limite e reflexão total?", titulo: "Refração: Ângulo limite", autor: "Pedro Grossi", url: "https://www.youtube.com/embed/ObEp8eFLGT4" }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                }
             },
             "Matematica": {
-                nome: "Matemática",
-                tipo: "frentes",
-                frentes: {
-                    "Algebra": {
-                        nome: "Álgebra",
-                        anos: {
-                            "6_Ano": {
-                                nome: "6º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Números Racionais: Decimais e Porcentagem",
-                                        desc: "Frações, representação decimal, operações com vírgula e porcentagem.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/6_Ano/UNIDADE6/restrita/ALG_6EF_AUT_U06-NUM_RACIONAIS_PROF.pdf",
-                                                videos: [
-                                                    { duvida: "com dúvida em Leitura e Escrita de Números Decimais?", titulo: "Leitura e Escrita de Números Decimais", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/EMAoOklEA5w" },
-                                                    { duvida: "com dúvida em Adição e Subtração com Vírgula?", titulo: "Adição e Subtração com Vírgula", autor: "Sandro Curió", url: "https://www.youtube.com/embed/UXs1R5mDY6o" },
-                                                    { duvida: "com dúvida em Porcentagem | Como Calcular?", titulo: "Porcentagem | Como Calcular", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/OjOyNmTt7Mw" }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "7_Ano": {
-                                nome: "7º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Decimais, Potenciação e Radiciação",
-                                        desc: "Operações com números decimais, potenciação de racionais, raiz quadrada e proporções.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/7_Ano/UNIDADE6/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
-                                                videos: [
-                                                    { duvida: "com dificuldade em Potenciação com Fração e Decimal?", titulo: "Potenciação com Fração e Decimal", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/4f57_lJg3zQ" },
-                                                    { duvida: "com dúvida em Razão e Proporção?", titulo: "Razão e Proporção", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/Kf_YzZ0CnIs" }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "8_Ano": {
-                                nome: "8º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Equações Quadráticas Incompletas",
-                                        desc: "Resolução e modelagem de equações do 2º grau incompletas e coeficientes.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/8_Ano/UNIDADE6/restrita/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_PROF.pdf",
-                                                videos: [
-                                                    { duvida: "com dúvida em Equação do 2º Grau Incompleta?", titulo: "Equação do 2º Grau Incompleta", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/GX2qKdb5ATE" },
-                                                    { duvida: "querendo aprender de forma Rápida e Fácil?", titulo: "Equação Incompleta Rápida", autor: "Sandro Curió", url: "https://www.youtube.com/embed/6PHQDKnO-Mw" }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "9_Ano": {
-                                nome: "9º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Função Quadrática (Parte 1)",
-                                        desc: "Estudo da definição, lei de formação, construção de parábolas, vértices e raízes.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_AUT_U06-FUN_QUAD_P1_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_AUT_U06-FUN_QUAD_P1_PROF.pdf",
-                                                videos: [
-                                                    { duvida: "com dúvida na Definição da Função Quadrática?", titulo: "Definição da Função Quadrática", autor: "Matemática no Papel", url: "https://www.youtube.com/embed/mzEGFoEenh8" },
-                                                    { duvida: "com dificuldade em Construir uma Parábola?", titulo: "4 Passos para Construir uma Parábola", autor: "Sandro Curió", url: "https://www.youtube.com/embed/rHal93QAGyo" },
-                                                    { duvida: "com dúvida nas Coordenadas do Vértice da Parábola?", titulo: "Coordenadas do Vértice", autor: "Prof.ª Gis", url: "https://www.youtube.com/embed/DCT9jRSAwfs" }
-                                                ]
-                                            },
-                                            {
-                                                tipo: "Escola",
-                                                rotulo: "Caderno de Atividades",
-                                                pdf: "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
-                                                videos: []
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "1_Serie": {
-                                nome: "1ª Série (EM)",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Inequações",
-                                        desc: "Inequações do 1º e 2º grau, resolução de sistemas, produto e quociente.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/1_Serie/UNIDADE6/publica/ALG_1EM_AUT_U06-INEQUACOES_ALUNO.pdf",
-                                                pdfProf: null,
-                                                videos: [
-                                                    { duvida: "com dúvida em Inequações de 1° e 2° Graus?", titulo: "INEQUAÇÕES de 1° e 2° GRAUS", autor: "Prof. Sérgio Mendes", url: "https://www.youtube.com/embed/6gmieH_OVZA" }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "2_Serie": {
-                                nome: "2ª Série (EM)",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Polinômios e Operações",
-                                        desc: "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf",
-                                                pdfProf: null,
-                                                videos: [
-                                                    { duvida: "com dificuldade no Dispositivo Briot-Ruffini?", titulo: "Dispositivo Briot-Ruffini", autor: "Matemática Rio", url: "https://www.youtube.com/embed/LpjWG7koTBE" }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            },
-                            "3_Serie": {
-                                nome: "3ª Série (Intensivo)",
-                                unidades: {
-                                    "SEMANA 10": {
-                                        titulo: "Revisão e Aprofundamento para Vestibulares",
-                                        desc: "Caderno intensivo focado nas bancas oficiais.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/publica/ALG_3EM_AUT_S10-REVISAO_VEST_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/restrita/ALG_3EM_AUT_S10-REVISAO_VEST_PROF.pdf",
-                                                videos: []
-                                            }
-                                        ]
+                        "nome": "Matemática",
+                        "tipo": "frentes",
+                        "frentes": {
+                                    "Algebra": {
+                                                "nome": "Álgebra",
+                                                "anos": {
+                                                            "1_Serie": {
+                                                                        "nome": "1ª Série (EM)",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Inequações",
+                                                                                                "desc": "Inequações do 1º e 2º grau, resolução de sistemas, produto e quociente.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/1_Serie/UNIDADE6/publica/ALG_1EM_AUT_U06-INEQUACOES_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Inequações de 1° e 2° Graus?",
+                                                                                                                                                "titulo": "INEQUAÇÕES de 1° e 2° GRAUS",
+                                                                                                                                                "autor": "Prof. Sérgio Mendes",
+                                                                                                                                                "url": "https://www.youtube.com/embed/6gmieH_OVZA"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "2_Serie": {
+                                                                        "nome": "2ª Série (EM)",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Polinômios e Operações",
+                                                                                                "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dificuldade no Dispositivo Briot-Ruffini?",
+                                                                                                                                                "titulo": "Dispositivo Briot-Ruffini",
+                                                                                                                                                "autor": "Matemática Rio",
+                                                                                                                                                "url": "https://www.youtube.com/embed/LpjWG7koTBE"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "3_Serie": {
+                                                                        "nome": "3ª Série (Intensivo)",
+                                                                        "unidades": {
+                                                                                    "SEMANA 10": {
+                                                                                                "titulo": "Revisão e Aprofundamento para Vestibulares",
+                                                                                                "desc": "Caderno intensivo focado nas bancas oficiais.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/publica/ALG_3EM_AUT_S10-REVISAO_VEST_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/restrita/ALG_3EM_AUT_S10-REVISAO_VEST_PROF.pdf",
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    },
+                                                                                    "SEMANA 11": {
+                                                                                                "titulo": "Geometria Plana e Sólidos",
+                                                                                                "desc": "Caderno intensivo com foco em geometria plana e sólidos geométricos.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/restrita/ALG_3EM_AUT_S11-PLANA_SOLIDOS_PROF.pdf",
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "6_Ano": {
+                                                                        "nome": "6º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Números Racionais: Decimais e Porcentagem",
+                                                                                                "desc": "Frações, representação decimal, operações com vírgula e porcentagem.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/6_Ano/UNIDADE6/restrita/ALG_6EF_AUT_U06-NUM_RACIONAIS_PROF.pdf",
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Leitura e Escrita de Números Decimais?",
+                                                                                                                                                "titulo": "Leitura e Escrita de Números Decimais",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/EMAoOklEA5w"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Adição e Subtração com Vírgula?",
+                                                                                                                                                "titulo": "Adição e Subtração com Vírgula",
+                                                                                                                                                "autor": "Sandro Curió",
+                                                                                                                                                "url": "https://www.youtube.com/embed/UXs1R5mDY6o"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Porcentagem | Como Calcular?",
+                                                                                                                                                "titulo": "Porcentagem | Como Calcular",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/OjOyNmTt7Mw"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "7_Ano": {
+                                                                        "nome": "7º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Decimais, Potenciação e Radiciação",
+                                                                                                "desc": "Operações com números decimais, potenciação de racionais, raiz quadrada e proporções.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE6/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dificuldade em Potenciação com Fração e Decimal?",
+                                                                                                                                                "titulo": "Potenciação com Fração e Decimal",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/4f57_lJg3zQ"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Razão e Proporção?",
+                                                                                                                                                "titulo": "Razão e Proporção",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/Kf_YzZ0CnIs"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "8_Ano": {
+                                                                        "nome": "8º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Equações Quadráticas Incompletas",
+                                                                                                "desc": "Resolução e modelagem de equações do 2º grau incompletas e coeficientes.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/8_Ano/UNIDADE6/restrita/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_PROF.pdf",
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida em Equação do 2º Grau Incompleta?",
+                                                                                                                                                "titulo": "Equação do 2º Grau Incompleta",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/GX2qKdb5ATE"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "querendo aprender de forma Rápida e Fácil?",
+                                                                                                                                                "titulo": "Equação Incompleta Rápida",
+                                                                                                                                                "autor": "Sandro Curió",
+                                                                                                                                                "url": "https://www.youtube.com/embed/6PHQDKnO-Mw"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "9_Ano": {
+                                                                        "nome": "9º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Função Quadrática (Parte 1)",
+                                                                                                "desc": "Estudo da definição, lei de formação, construção de parábolas, vértices e raízes.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_AUT_U06-FUN_QUAD_P1_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_AUT_U06-FUN_QUAD_P1_PROF.pdf",
+                                                                                                                        "videos": [
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida na Definição da Função Quadrática?",
+                                                                                                                                                "titulo": "Definição da Função Quadrática",
+                                                                                                                                                "autor": "Matemática no Papel",
+                                                                                                                                                "url": "https://www.youtube.com/embed/mzEGFoEenh8"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dificuldade em Construir uma Parábola?",
+                                                                                                                                                "titulo": "4 Passos para Construir uma Parábola",
+                                                                                                                                                "autor": "Sandro Curió",
+                                                                                                                                                "url": "https://www.youtube.com/embed/rHal93QAGyo"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "duvida": "com dúvida nas Coordenadas do Vértice da Parábola?",
+                                                                                                                                                "titulo": "Coordenadas do Vértice",
+                                                                                                                                                "autor": "Prof.ª Gis",
+                                                                                                                                                "url": "https://www.youtube.com/embed/DCT9jRSAwfs"
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                        "tipo": "Escola",
+                                                                                                                        "rotulo": "Caderno de Atividades",
+                                                                                                                        "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            }
+                                                }
                                     },
-                                    "SEMANA 11": {
-                                        titulo: "Geometria Plana e Sólidos",
-                                        desc: "Caderno intensivo com foco em geometria plana e sólidos geométricos.",
-                                        materiais: [
-                                            {
-                                                tipo: "Autoral",
-                                                rotulo: "Caderno de Atividades Suplementar",
-                                                pdf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf",
-                                                pdfProf: "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/restrita/ALG_3EM_AUT_S11-PLANA_SOLIDOS_PROF.pdf",
-                                                videos: []
-                                            }
-                                        ]
+                                    "Geometria": {
+                                                "nome": "Geometria",
+                                                "anos": {
+                                                            "1_Serie": {
+                                                                        "nome": "1ª Série (EM)",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Polígonos e Círculos",
+                                                                                                "desc": "Apótemas, setores circulares, coroa circular e figuras inscritas.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "2_Serie": {
+                                                                        "nome": "2ª Série (EM)",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Cones e Troncos",
+                                                                                                "desc": "Áreas totais, volumes e seções cônicas na geometria espacial.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "6_Ano": {
+                                                                        "nome": "6º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Área de Figuras Planas",
+                                                                                                "desc": "Superfície de retângulos, quadrados, triângulos e paralelogramos.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "7_Ano": {
+                                                                        "nome": "7º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Área e Perímetro",
+                                                                                                "desc": "Conceitos fundamentais de contorno e superfície, cálculo de áreas compostas.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "8_Ano": {
+                                                                        "nome": "8º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Áreas Planas e Decomposição",
+                                                                                                "desc": "Cálculo de áreas por métodos de composição e decomposição.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            },
+                                                            "9_Ano": {
+                                                                        "nome": "9º Ano",
+                                                                        "unidades": {
+                                                                                    "UNIDADE 6": {
+                                                                                                "titulo": "Geometria Espacial e Vistas",
+                                                                                                "desc": "Poliedros, relação de Euler, vistas ortogonais e projeções técnicas.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "pdf": "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf",
+                                                                                                                        "pdfProf": null,
+                                                                                                                        "videos": []
+                                                                                                            }
+                                                                                                ]
+                                                                                    }
+                                                                        }
+                                                            }
+                                                }
                                     }
-                                }
-                            }
                         }
-                    },
-                    "Geometria": {
-                        nome: "Geometria",
-                        anos: {
-                            "6_Ano": {
-                                nome: "6º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Área de Figuras Planas",
-                                        desc: "Superfície de retângulos, quadrados, triângulos e paralelogramos.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            },
-                            "7_Ano": {
-                                nome: "7º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Área e Perímetro",
-                                        desc: "Conceitos fundamentais de contorno e superfície, cálculo de áreas compostas.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            },
-                            "8_Ano": {
-                                nome: "8º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Áreas Planas e Decomposição",
-                                        desc: "Cálculo de áreas por métodos de composição e decomposição.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            },
-                            "9_Ano": {
-                                nome: "9º Ano",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Geometria Espacial e Vistas",
-                                        desc: "Poliedros, relação de Euler, vistas ortogonais e projeções técnicas.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            },
-                            "1_Serie": {
-                                nome: "1ª Série (EM)",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Polígonos e Círculos",
-                                        desc: "Apótemas, setores circulares, coroa circular e figuras inscritas.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            },
-                            "2_Serie": {
-                                nome: "2ª Série (EM)",
-                                unidades: {
-                                    "UNIDADE 6": {
-                                        titulo: "Cones e Troncos",
-                                        desc: "Áreas totais, volumes e seções cônicas na geometria espacial.",
-                                        materiais: [{
-                                            tipo: "Autoral", rotulo: "Caderno de Atividades Suplementar",
-                                            pdf: "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf",
-                                            pdfProf: null, videos: []
-                                        }]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
-        };
+};
+        /* === CATALOGO_FIM === */
 
         // Estado da Navegação em 5 Níveis:
         // 'home' -> 'frentes' -> 'anos' -> 'unidades' -> 'selecao_caderno' -> 'detalhe_caderno'
