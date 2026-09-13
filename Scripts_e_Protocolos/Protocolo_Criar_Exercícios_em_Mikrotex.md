@@ -642,12 +642,13 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
 
 ```
 
-#### Critérios para vídeos no Silo 1:
+#### Critérios Estritos e Blindagem Anti-Alucinação para Vídeos no Silo 1:
 
-* Os links devem ser estritamente strings no formato de incorporação: `https://www.youtube.com/embed/ID_DO_VIDEO`.
-* Não envolver os links em markdown dentro do JSON.
-* Selecionar aulas focadas nas dúvidas procedimentais mais frequentes dos exercícios da lista.
-
+* **PROIBIÇÃO TOTAL DE INVENÇÃO DE URLs / IDs:** É expressamente proibido prever, deduzir ou inventar IDs do YouTube (como combinações aleatórias de 11 caracteres). Todo vídeo sugerido DEVE ser validado via ferramenta de busca ativa na web (Google/YouTube).
+* **COMPORTAMENTO EM CASO DE AUSÊNCIA DE BUSCA WEB:** Se o ambiente de execução da IA não tiver acesso à busca ativa na web no momento da geração, a chave `"videos"` DEVE ser entregue obrigatoriamente vazia (`"videos": []`), acompanhada de um aviso ao usuário: *"Vídeos não preenchidos automaticamente para evitar links inexistentes. Por favor, adicione os IDs manualmente."*
+* **FORMATO DA URL:** Os links devem ser strings limpas no formato de incorporação: `"https://www.youtube.com/embed/ID_REAL"`. Nunca envolva a URL em tags Markdown (`[link](url)`) dentro do JSON.
+* **CANAIS PRIORITÁRIOS:** Priorizar canais de didática comprovada para o Ensino Fundamental e Médio (ex.: *Gis com Giz*, *Professor Ferretto*, *Equaciona com Paulo Pereira*, *Professora Angela Matemática*, *Matemática no Papel*).
+* **FOCO DIDÁTICO:** As aulas devem cobrir as dúvidas procedimentais diretas dos exercícios presentes no material (ex.: fator comum, agrupamento, trinômio do quadrado perfeito).
 ---
 
 ### 3. Sugestão de Commit Seguro (Pós-Geração do JSON)
