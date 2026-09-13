@@ -146,9 +146,9 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
         \vspace{0.15cm}
         
         % --- CAIXA VERDE (Nota Pedagógica) ---
-        \begin{boxexplicacao}
-        \textbf{Nota Pedagógica (Bastidores do Conceito):} [Explicação detalhada dos motivos, armadilhas comuns dos alunos e dicas de abordagem em sala].
-        \end{boxexplicacao}
+        \definecolor{CorNotaBorda}{HTML}{10B981} 
+        \definecolor{CorNotaFundo}{HTML}{F0FDF4} 
+        \newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt, fontupper=\small}
     \fi
     
     \par\vspace{\espacoQuestao}
@@ -261,6 +261,10 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     * **Proibição de Formatação Aninhada em Frações:** É ESTRITAMENTE PROIBIDO envolver comandos de frações (como \mfrac) em comandos de formatação de texto ou negrito (como \textbf{...} ou \mathbf{...}). Deixe a macro de fração sempre pura dentro do ambiente matemático (ex: $ \mfrac{num}{den} $ ou em bloco), aplicando estilos de texto apenas fora dela.
 
 3.7. **(TRAVA DE QUEBRA) Itens de Julgamento:** É ESTRITAMENTE PROIBIDO agrupar itens de análise no mesmo parágrafo. Você DEVE usar obrigatoriamente os ambientes automáticos (`\begin{enumerate}` e `\item`) para cada sentença/alternativa. Não force quebras manuais com `\\` em nenhuma hipótese.
+
+* **3.8. (TRAVA DE MODO MATEMÁTICO):** É ESTRITAMENTE PROIBIDO inserir palavras acentuadas, cedilha ou texto corrido sem formatação dentro do ambiente matemático (entre `$ ... $` ou `$$ ... $$`). A palavra deve ficar do lado de fora (Ex: Correto: Área $= x+y$. Incorreto: $ Área = x+y $) ou encapsulada em `\text{}` se estiver dentro da equação.
+
+* **3.9. (TRAVA DE AMBIENTES):** É ESTRITAMENTE PROIBIDO abrir um ambiente estrutural (como `\begin{enumerate}`) e omitir o fechamento. Para todo `\begin{...}`, a IA é OBRIGADA a gerar o correspondente `\end{...}` no mesmo escopo da questão antes de avançar.
 
 **Seção 4: Regras Universais de Renderização TikZ (Anti-Falhas e Alta Performance)**
 4.1. **Limpeza Didática e Malha Obrigatória:** Se a questão exigir extração de coordenadas ou proporções, o uso de malha geométrica/cartesiana (`grid`) é ESTRITAMENTE OBRIGATÓRIO. É proibido gerar gráficos flutuando no vazio.
@@ -568,6 +572,9 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     3) **TRAVA DE LISTAS:** Você respeitou a proibição estrita de usar `\\` ou `\\[0.3cm]` no final das alternativas (`\item`)?
     4) **DESIGN TIKZ:** As 4 regras Premium (Sombras, Cores, Cantos Arredondados, Camadas) foram aplicadas?
     *(PARE AQUI E PEÇA PERMISSÃO).*
+    5) **FECHAMENTO:** Você conferiu de forma minuciosa se absolutamente todos os `\begin{enumerate}` e demais ambientes possuem o seu respectivo `\end{...}`?
+    6) **MODO MATEMÁTICO:** Você realizou a varredura buscando por palavras acentuadas (como "Área") indevidamente presas dentro de cifrões `$ ... $`?
+
 5.5. **Consolidação e Reemissão (Economia de Tokens):** Após aprovação de todas as etapas, se houve correção, reemita o lote COMPLETO no código LaTeX. Se não houve, apenas pergunte se pode avançar para o próximo bloco.
 
 ---
@@ -640,3 +647,5 @@ Selecionar aulas focadas nas dúvidas procedimentais mais frequentes dos exercí
 
 ```
 ```
+
+
