@@ -561,7 +561,7 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     * **Sincronia TikZ:** Os números citados na resolução batem milimetricamente com o código TikZ gerado? (N/A ou Sim/Não).
     * **Tutor IA:** O texto base foi devidamente encapsulado em `\begin{enunciadoLiteral}` e a caixa laranja possui o item "1. Ancoragem:"? (Sim/Não).
     * **Status:** [Aprovada / Requer Correção].
-    
+
   * **Etapa Beta (Robofobia e Sintaxe LaTeX):** Verifique rigorosamente a estrutura do lote:
     1) **ROBOFOBIA:** Há frases artificiais (ex: "extraia da imagem", "veja a figura abaixo")? O Teste Cego foi respeitado?
     2) **SINTAXE GABARITO:** O bloco `\ifgabarito` foi aberto e fechado (`\fi`) corretamente OBRIGATORIAMENTE antes do `\vspace` final em todas as questões?
@@ -570,6 +570,49 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
     *(PARE AQUI E PEÇA PERMISSÃO).*
 5.5. **Consolidação e Reemissão (Economia de Tokens):** Após aprovação de todas as etapas, se houve correção, reemita o lote COMPLETO no código LaTeX. Se não houve, apenas pergunte se pode avançar para o próximo bloco.
 
+---
+
+---
+
+---
+
+# FASE 6: CHECKPOINT DE FINALIZAÇÃO E METADADOS DO PORTAL
+
+Após concluir o código LaTeX, a tabela de auditoria matemática e fechar o ambiente `\end{document}`, você NÃO deve gerar o arquivo JSON imediatamente. Sua resposta deve ser interrompida com um pedido de confirmação ao usuário.
+
+### 1. Mensagem de Checkpoint Obrigatória
+Finalize a sua resposta imprimindo exatamente a seguinte estrutura:
+
+> **Material LaTeX auditado e concluído com sucesso.**
+> Deseja gerar o arquivo de metadados para o Portal Pedagógico? 
+> Por favor, confirme o modo da lista:
+> - **[1] Silo 1 (Autoral):** Gera `info_AUT.json` com curadoria de 2 a 5 videoaulas no YouTube.
+> - **[2] Silo 2 (Escola):** Gera `info_ESC.json` sem vídeos (`"videos": []`).
+
+---
+
+### 2. Ação após a Confirmação do Usuário
+Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado seguindo o padrão correspondente com o cabeçalho estrutural no topo:
+
+#### Se Silo 1 (Autoral) -> Salvar como `info_AUT.json` na raiz da unidade:
+```json
+{
+  "disciplina": "Fisica / Matematica_Algebra / Matematica_Geometria",
+  "ano": "6_Ano / 7_Ano / 8_Ano / 9_Ano / 1_Serie / 2_Serie / 3_Serie",
+  "unidade": "UNIDADE6 / SEMANA10",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Nome da Unidade Curricular",
+  "desc": "Resumo de 1 a 2 linhas dos tópicos e habilidades cobradas.",
+  "videos": [
+    {
+      "duvida": "com dúvida em [Tópico]?",
+      "titulo": "Título da Aula",
+      "autor": "Canal / Professor",
+      "url": "[https://www.youtube.com/embed/ID_DO_VIDEO](https://www.youtube.com/embed/ID_DO_VIDEO)"
+    }
+  ]
+}
 --- FIM DO PROTOCOLO MESTRE ---
 
 ```
