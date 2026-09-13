@@ -18,7 +18,8 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd /root/portal/dev
-            git pull origin dev
+            git fetch origin dev
+            git reset --hard origin/dev
       - name: Deploy Ambiente Oficial (Producao)
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@v1.0.3
@@ -29,4 +30,5 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd /root/portal/prod
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/prod
