@@ -1,11 +1,9 @@
 name: Deploy Automatico VPS
-
 on:
   push:
     branches:
       - dev
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,7 +19,6 @@ jobs:
           script: |
             cd /root/portal/dev
             git pull origin dev
-
       - name: Deploy Ambiente Oficial (Producao)
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@v1.0.3
