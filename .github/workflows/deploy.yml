@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /root/portal-dev/html
+            cd /root/portal/dev
             git pull origin dev
 
       - name: Deploy Ambiente Oficial (Producao)
@@ -31,5 +31,5 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /root/portal/html
+            cd /root/portal/prod
             git pull origin main
