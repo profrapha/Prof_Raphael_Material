@@ -3421,7 +3421,7 @@
                 tutorState.capituloIndice = capObj.indice || 1;
                 tutorState.numeroQuestao = selQuestao ? selQuestao.value : "1";
                 
-                // Monta o caminho do TeX completo
+                // Monta o caminho completo do TeX na VPS
                 const texPath = matAtual.tex || tutorState.caminhoTex;
                 tutorState.arquivoFinalTex = texPath ? `/root/portal/${tutorState.ambiente}/${texPath}` : "";
 
@@ -3447,9 +3447,9 @@
                     messagesArea.scrollTop = messagesArea.scrollHeight;
                 }
 
+                // Disparo sem bloco de headers para não ativar preflight OPTIONS
                 const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         ...tutorState,
                         chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
@@ -3471,6 +3471,14 @@
             }
         }
 
+        function fecharSetupTutor() {
+            document.getElementById("modalSetupTutor").classList.remove("open");
+        }
+
+        function fecharTutorDrawer() {
+            document.getElementById("tutor-drawer").classList.remove("open");
+        }
+
         async function enviarMensagemTutor() {
             const input = document.getElementById("inputDuvidaTutor");
             const duvida = input.value.trim();
@@ -3489,9 +3497,9 @@
             area.scrollTop = area.scrollHeight;
 
             try {
+                // Disparo sem bloco de headers para envio direto
                 const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         ...tutorState,
                         chatInput: duvida
