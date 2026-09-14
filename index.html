@@ -2296,6 +2296,22 @@ function atualizarAlunosTutor() {
         selAluno.appendChild(opt);
     });
 }
+function atualizarAlunosTutor() {
+    const selTurma = document.getElementById("selectTurmaTutor");
+    const selAluno = document.getElementById("selectNomeAlunoTutor");
+    if (!selTurma || !selAluno) return;
+
+    const turmaSelecionada = selTurma.value;
+    const alunos = listaAlunos[turmaSelecionada] || [];
+
+    selAluno.innerHTML = "";
+    alunos.forEach(nome => {
+        const opt = document.createElement("option");
+        opt.value = nome;
+        opt.innerText = nome;
+        selAluno.appendChild(opt);
+    });
+}
 function iniciarSessaoTutor() {
     const blocoCompleto = document.getElementById("tutor-setup-completo");
 
@@ -2331,6 +2347,9 @@ function iniciarSessaoTutor() {
     document.getElementById("inputDuvidaTutor").focus();
     renderizarKaTeX(messagesArea);
 }
+        function fecharSetupTutor() {
+            document.getElementById("modalSetupTutor").classList.remove("open");
+        }
 
         function fecharTutorDrawer() {
             document.getElementById("tutor-drawer").classList.remove("open");
