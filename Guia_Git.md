@@ -96,8 +96,10 @@ git push origin dev
 *(O GitHub Actions atualizará automaticamente o site `dev.profraphaelpaulino.com.br`)*.
 * **Passo 2 (Publicar alterações aprovadas na Produção):**
 git checkout main
+git pull origin main
 git merge dev
 git push origin main
+git checkout dev
 *(O GitHub Actions atualizará automaticamente o site oficial `profraphaelpaulino.com.br`)*.
 
 **14. Prevenção Definitiva no GitHub Actions (`deploy.yml`)**
