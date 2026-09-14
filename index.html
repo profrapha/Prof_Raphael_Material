@@ -2215,7 +2215,7 @@
                         <a href="${mat.pdf}" target="_blank" class="btn-pdf">
                             📄 Baixar Lista do Aluno (PDF)
                         </a>
-                        <button class="btn-tutor" onclick="abrirSetupTutor('${disciplinaCod}', ${anoNumero}, ${numeroUnidade}, '${mat.tex || ''}')">
+                        <button class="btn-tutor" onclick="acionarTutorCaderno()">
     🤖 Tutor Socrático IA
 </button>
                         ${btnProfHtml}
@@ -2229,7 +2229,21 @@
         // ==========================================
         // MOTOR DO TUTOR SOCRÁTICO
         // ==========================================
-        function abrirSetupTutor(disc = null, ano = null, un = null, texPath = null) {
+        function acionarTutorCaderno() {
+    let uni = (nav.materia === "Fisica") 
+        ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] 
+        : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
+    
+    let mat = uni.materiais[nav.cadernoIndex];
+    
+    const disciplinaCod = nav.frente ? `${nav.materia}_${nav.frente}` : nav.materia;
+    const numeroUnidade = parseInt(nav.unidadeId.replace(/\D/g, '')) || 1;
+    const anoNumero = parseInt(nav.ano.replace(/\D/g, '')) || 8;
+    const caminhoTex = mat.tex || null;
+
+    abrirSetupTutor(disciplinaCod, anoNumero, numeroUnidade, caminhoTex);
+}
+function abrirSetupTutor(disc = null, ano = null, un = null, texPath = null) {
     const blocoCompleto = document.getElementById("tutor-setup-completo");
 
     if (disc && ano && un) {
