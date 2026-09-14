@@ -3447,8 +3447,8 @@
                     messagesArea.scrollTop = messagesArea.scrollHeight;
                 }
 
-                // Disparo sem bloco de headers para não ativar preflight OPTIONS
-                const res = await fetch("/api-tutor/tutor-virtual-chat", {
+                // Disparo sem cabeçalhos customizados para evitar o preflight OPTIONS do navegador
+                const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
                         ...tutorState,
@@ -3471,14 +3471,6 @@
             }
         }
 
-        function fecharSetupTutor() {
-            document.getElementById("modalSetupTutor").classList.remove("open");
-        }
-
-        function fecharTutorDrawer() {
-            document.getElementById("tutor-drawer").classList.remove("open");
-        }
-
         async function enviarMensagemTutor() {
             const input = document.getElementById("inputDuvidaTutor");
             const duvida = input.value.trim();
@@ -3497,8 +3489,8 @@
             area.scrollTop = area.scrollHeight;
 
             try {
-                // Disparo sem bloco de headers para envio direto
-                const response = await fetch("/api-tutor/tutor-virtual-chat", {
+                // Disparo sem cabeçalhos customizados para envio direto
+                const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
                         ...tutorState,
