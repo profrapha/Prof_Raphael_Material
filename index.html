@@ -718,6 +718,284 @@
     </div>
 
     <script>
+        /* === ALUNOS_INICIO === */
+        const listaAlunos = {
+            "6º Ano A": [
+                        "Alice de Freitas Alvarenga Souza",
+                        "Alice de Souza Paschoal Silva",
+                        "Alice Oliveira",
+                        "Antonio Gumerato Bianco",
+                        "Arthur de Almeida Silva",
+                        "Arthur Pelissari Baldin",
+                        "Beatriz Martin de Almeida",
+                        "Caio Carlos Rodrigues de Oliveira",
+                        "Caio Santana Barbosa",
+                        "Cauan Gramani Marques",
+                        "Daniel Pamplona de Oliveira",
+                        "Davi Aparecido dos Reis Pereira Junior",
+                        "Davi Luiz dos Santos Melo",
+                        "Enrico Meda D'Ascenção",
+                        "Giovanna Camaran Rodrigues",
+                        "Gustavo Urbinatti Grisotto",
+                        "Helena Cruz Bocci",
+                        "João Arthur Medeiros de Souza",
+                        "Livia Fernandes Izaias",
+                        "Livia Rodrigues Floriano",
+                        "Livia Rubião Selenguini",
+                        "Maria Eduarda Torre dos Santos",
+                        "Miguel Ferreira Afonso",
+                        "Pedro Almeida Lopes",
+                        "Rafaela Azevedo de Araujo",
+                        "Sarah Viana de Almeida",
+                        "Sophia de Jorge Raguazzi Guimarães"
+            ],
+            "6º Ano B": [
+                        "Amanda Inouye Cavalieri",
+                        "Bernardo Pilatti Taveiros",
+                        "Cauã Previatto Giorgetti",
+                        "Davi Contin Quirino",
+                        "Enzo Teixeira Mendonça",
+                        "Gabriel Rodrigues Viana",
+                        "Guilherme Escobar Bleinroth",
+                        "Gustavo Cabral Gonçalves",
+                        "Heitor Moreira Sampaio",
+                        "Lara Rafaela Reis",
+                        "Lavinia de Souza Mesquita",
+                        "Levi Assis Ferreira",
+                        "Luís Otávio Garcia Leandro Rocha",
+                        "Luisa Magro Vieira",
+                        "Luiza Maris Ferreira Rodrigues",
+                        "Luiza Scatralhe Buetto",
+                        "Maria Eduarda Siquinato Ventavoli",
+                        "Mariane Maio Felix",
+                        "Miguel Capuzzo Fonzar",
+                        "Murilo Scatralhe Buetto",
+                        "Nathan Fernandes Ishimoto",
+                        "Nicolas Fernandes Ishimoto",
+                        "Saulo Rafael Penaforte dos Santos Lapa",
+                        "Sophia Gunello Pereira",
+                        "Sophia Pereira",
+                        "Theo Ferreira Jaime"
+            ],
+            "7º Ano A": [
+                        "Ana Luiza Francisco dos Reis dos Santos",
+                        "Andre Luiz Antolini Alves",
+                        "Arthur Borsato Miguel",
+                        "Bruna Baroni Carnot",
+                        "Caua Carlos Rodrigues de Oliveira",
+                        "Cauã Mini Mendes",
+                        "Davi Evangelista Bochio",
+                        "Davi Ferreira Belarmino",
+                        "Felipe Bueno de Almeida",
+                        "Giovanna Malavolta",
+                        "Helena Pizani Froes",
+                        "Heloisa Ghiraldini Castaldelli de Faria",
+                        "Isaac de Oliveira Silva",
+                        "João Gabriel Lucarini Rosa Almeida",
+                        "João Lucca Gironi Fonseca Galdino",
+                        "Lorenzo Spadella",
+                        "Lúcio Mendes Freitas",
+                        "Manuella Ferreira Caetano",
+                        "Marcella Mulari Tortorelli Heidrich",
+                        "Maria Beatriz de Morais Gimenes",
+                        "Maria Eduarda Rodrigues de Oliveira",
+                        "Maria Julia Pool Rosa",
+                        "Miguel dos Santos",
+                        "Thais Egídio Moura"
+            ],
+            "7º Ano B": [
+                        "Ana Alice Santos Candido",
+                        "Artur Oliveira de Siqueira",
+                        "Benjamin Alves de Jesus",
+                        "Davi Lima Sandoval",
+                        "Davi Lucca Veiga Andreucci",
+                        "Davi Petean Paris",
+                        "Emanuelly de Oliveira Ferreira Sampaio",
+                        "Emily Franceschini de Sousa",
+                        "Esther Maira Lopes de Carvalho",
+                        "Giovana da Silva Grespan",
+                        "Giovanna Camargo Rosa",
+                        "Heitor Labaki Chinaglia",
+                        "Henry Teixeira Buzzo",
+                        "Isabella Mello Reis",
+                        "Julia Porto Hall",
+                        "Lorena Cortijo Haddad",
+                        "Lorenzo Rocha Ribeiro",
+                        "Nathan Siqueira da Silva",
+                        "Rafhael Guimarães Oliveira",
+                        "Samuel Resolen Vallim",
+                        "Thales Yan dos Reis Alves",
+                        "Victor Henrique Rosa de Sousa"
+            ],
+            "8º Ano A": [
+                        "Beatrice Ishikawa Ricci",
+                        "Caua Henrique Pagliotto Silva",
+                        "Davi Andrade Bessa",
+                        "Davi Francisco de Nicola",
+                        "Diego Ribeiro",
+                        "Diogo Peres Spengler",
+                        "Elisa Otsuki Neves",
+                        "Enzo Rizzo França",
+                        "Felipe Casalicchio Antonelli",
+                        "Karen de Souza Araujo dos Santos",
+                        "Leandra Lima de Andrade",
+                        "Lorena Silverio Amor",
+                        "Lorena Stabile",
+                        "Luiza Posca Ferreira",
+                        "Manuela Fontellas Taveira",
+                        "Maria Beatriz Pinato Barbosa",
+                        "Mateus Nunes Pacheco de Oliveira",
+                        "Miguel Francisco Malheiro Andrade Amaral",
+                        "Otávio Molina Bittencourt Rodrigues",
+                        "Rafael Augusto Pereira Lima Filho",
+                        "Rebeca Assis Ferreira",
+                        "Samuel Andrade Clagnan"
+            ],
+            "8º Ano B": [
+                        "Alice Bezerra Freire",
+                        "Alice Santos Calil Moreira",
+                        "Alicia Crispim Baetta",
+                        "Alicya Laureen Fernandes de Souza",
+                        "Ana Beatriz Macedo de Faria",
+                        "Ana Júlia de Mattos Lara",
+                        "Caique Figueiredo Sibilhano",
+                        "Enzo Parra Fernandes",
+                        "Guilherme Fabbris Franco",
+                        "Isabelle Stefano Fluvel",
+                        "Joao Victor Silva Costa",
+                        "Julia Novaes Renzi",
+                        "Laura Beatriz Azenari da Silva",
+                        "Laura Calil Dayrell Martins Lopes Baratto",
+                        "Lucca Romero Rosa",
+                        "Maria Eduarda Oliveira Hermes",
+                        "Matheus França dos Santos",
+                        "Miguel Della Vecchia Santana",
+                        "Sophia Alves Bonomi",
+                        "Valentina Silva Furquim"
+            ],
+            "9º Ano A": [
+                        "Alana Buzzato Gutierrez",
+                        "Alice Aneli Abdala",
+                        "Alice Aparecida Silva",
+                        "Amanda Guimarães Zanon",
+                        "Antônio de Angelis de Sousa",
+                        "Arthur Alexandre",
+                        "Benicio Meda D' Ascenção",
+                        "Cauê Junio Joaquim Guedes Chaves",
+                        "Davi Henrique Alves da Silva",
+                        "Gabriel Pereira Rocha Leite",
+                        "Igor Ruivo Nascimento",
+                        "João Pedro de Oliveira Germano de Miranda",
+                        "Joao Pedro Mariano Felix",
+                        "Juana Carolina Gomes da Silva",
+                        "Julia de Barros Camolez",
+                        "Larissa Queiroz Teixeira",
+                        "Laura Ambrósio Elias",
+                        "Lorenzo Fabricio Momesso dos Santos",
+                        "Ludmyla Vilela Lima",
+                        "Manuela Ferreira Jaime",
+                        "Manuella Medeiros Secundino dos Santos",
+                        "Matheus Israel Hardt Dionizio",
+                        "Matheus Sanchez Paulino",
+                        "Miguel Batista Fernandes",
+                        "Miguel de Oliveira Cintra",
+                        "Miguel Ferreira Caritá",
+                        "Miguel Lisbôa de Souza",
+                        "Murilo Matias Abreu",
+                        "Pedro Henrique Martin de Almeida",
+                        "Ryan Gabriel Pereira Lima",
+                        "Sophia Ambrósio Elias"
+            ],
+            "1ª Série A": [
+                        "Anna Clara Araujo Basso",
+                        "Anny Sophie Alcantara Rezende",
+                        "Brayan Henrique Dias Romagnoli",
+                        "Breno Ribeiro de Paula Eduardo",
+                        "Carlos Rodrigues de Oliveira Júnior",
+                        "Cauã Lisboa Monteiro",
+                        "Davi Araujo de Oliveira",
+                        "Emanuel Davi Silva Forti",
+                        "Enzo Baratella dos Reis",
+                        "Gabriel Ramos Sousa",
+                        "Gabriela Menezes Nicoletti",
+                        "Guilherme Henrique Rodrigues Paim",
+                        "Henrique Lisboa Monteiro",
+                        "Isaac Rafael Rodrigues de Oliveira",
+                        "Júlia Batiston de Souza",
+                        "Julia de Brito Moroti",
+                        "Laura Lima Sandoval",
+                        "Lorenzo Ricci Aparicio de Carvalho",
+                        "Luan Gabriel Vieira Damasceno",
+                        "Luan Nahas Lima",
+                        "Luara Aparecida Gonçalves Risso",
+                        "Luiz Almeida Salermo",
+                        "Manuela de Souza Beda",
+                        "Maria Clara Araujo Ruiz",
+                        "Maria Clara Gil",
+                        "Mariana Ildefonso Gon",
+                        "Matteo Moretto Ferreira",
+                        "Nicolas Menezes Nicoletti",
+                        "Pedro Henrique Martins",
+                        "Pedro Henrique Souza Soares",
+                        "Pietra Silverio Amor",
+                        "Sarah Joveliano Zanutto",
+                        "Thais Gonçalves Beccari",
+                        "Valentina Caroline Santana Souza",
+                        "Vitor Novaes Teixeira Lima",
+                        "Yasmin Michaliszyn Alves Ferreira"
+            ],
+            "2ª Série A": [
+                        "Alycia da Silva Marchezi Mora",
+                        "Amanda Victória Hardt Dionizio",
+                        "Ana Carolina Vallejos Silva",
+                        "Ana Clara Domingos Faleiros",
+                        "Ana Laura Furquim Gallo",
+                        "Ana Vitória Guimarães Zanon",
+                        "Arthur Cesar Corrêa",
+                        "Arthur Putti Martins",
+                        "Beatriz Andrade dos Santos",
+                        "Bianca Maciel Colmanetti",
+                        "Bruno da Silva Martins",
+                        "Bruno Ghiraldini Castaldelli de Faria",
+                        "Camilli Vitória Filippin",
+                        "Caroline Rosa de Sousa",
+                        "Davi Alves Morales",
+                        "Enzo Reis Lopes",
+                        "Fábio Henrique Ferreira Belarmino",
+                        "Giovanna Silva Fernandez",
+                        "Gustavo da Silva Grespan",
+                        "Higor Santiago Pioto Junior",
+                        "João Pedro Gumerato Rosa",
+                        "João Vitor Calderoni de Oliveira",
+                        "Julia Martins Durães",
+                        "Júlia Santos Carvalho",
+                        "Lara Aymi Nakahara",
+                        "Lívia Maris Ferreira Rodrigues",
+                        "Luiza Nicolino Parada",
+                        "Lundy Vilela Lima",
+                        "Manuella Facci Carpi Silvério",
+                        "Manuella Faleiros Menezes Silva",
+                        "Maria Eduarda Silva Guidoni Nascimento",
+                        "Maria Júlia Rodovalho de Melo",
+                        "Maria Luísa Pinato Barbosa",
+                        "Maria Vitória Souza Merlo da Silva",
+                        "Mateus Resolen Vallim",
+                        "Melissa Emy Nakahara",
+                        "Othávio Santos Gonçalves",
+                        "Pedro Henrique Della Vecchia Santana",
+                        "Rafael Antloga Lopes Rodovalho",
+                        "Rafael Nabruzzi Cambra",
+                        "Samuel Caetano Bonini Frojoni",
+                        "Sofhia de Oliveira Macedo",
+                        "Victor Hugo Alvarenga Lopes",
+                        "Vinicius Paixão Borges de Lima"
+            ],
+            "3ª Série A": [
+                        "Kauan Cezar Siffoni Previato",
+                        "Pietro de Faria Guimarães"
+            ]
+};
+        /* === ALUNOS_FIM === */
         /* === CATALOGO_INICIO === */
         const catalogo = {
             "Fisica": {
@@ -736,6 +1014,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/1_Serie/UNIDADE6/publica/FIS_1EM_AUT_U06-DINAMICA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/1_Serie/UNIDADE6/fonte_tex/FIS_1EM_AUT_U06-DINAMICA_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida em resolver problemas de Plano inclinado com atrito?",
@@ -767,6 +1046,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/2_Serie/UNIDADE6/publica/FIS_2EM_AUT_U06-REFRACAO_LENTES_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/2_Serie/UNIDADE6/fonte_tex/FIS_2EM_AUT_U06-REFRACAO_LENTES_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida em como usar a Lei de Snell?",
@@ -798,6 +1078,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/6_Ano/UNIDADE6/publica/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/6_Ano/UNIDADE6/fonte_tex/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida nas Camadas Internas da Terra?",
@@ -853,6 +1134,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/7_Ano/UNIDADE6/publica/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/7_Ano/UNIDADE6/fonte_tex/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida nas aplicações de Máquinas simples para o 7º ano?",
@@ -902,6 +1184,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/8_Ano/UNIDADE6/publica/FIS_8EF_AUT_U06-SOL_TERRA_LUA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/8_Ano/UNIDADE6/fonte_tex/FIS_8EF_AUT_U06-SOL_TERRA_LUA_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida sobre a verdadeira distância entre a Terra e a Lua?",
@@ -951,6 +1234,7 @@
                                                                                                 "rotulo": "Caderno de Atividades Suplementar",
                                                                                                 "pdf": "Fisica/9_Ano/UNIDADE6/publica/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
+                                                                                                "tex": "Fisica/9_Ano/UNIDADE6/fonte_tex/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_BASE.tex",
                                                                                                 "videos": [
                                                                                                             {
                                                                                                                         "duvida": "com dúvida sobre o Teorema da energia cinética?",
@@ -1015,6 +1299,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/1_Serie/UNIDADE6/publica/ALG_1EM_AUT_U06-INEQUACOES_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Algebra/1_Serie/UNIDADE6/fonte_tex/ALG_1EM_AUT_U06-INEQUACOES_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dúvida em Inequações de 1° e 2° Graus?",
@@ -1040,6 +1325,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Algebra/2_Serie/UNIDADE6/fonte_tex/ALG_2EM_AUT_U06-POLINOMIOS_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dificuldade no Dispositivo Briot-Ruffini?",
@@ -1065,6 +1351,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/publica/ALG_3EM_AUT_S10-REVISAO_VEST_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/restrita/ALG_3EM_AUT_S10-REVISAO_VEST_PROF.pdf",
+                                                                                                                        "tex": null,
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1078,6 +1365,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/restrita/ALG_3EM_AUT_S11-PLANA_SOLIDOS_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/fonte_tex/ALG_3EM_AUT_S11-PLANA_SOLIDOS_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1096,6 +1384,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/6_Ano/UNIDADE6/restrita/ALG_6EF_AUT_U06-NUM_RACIONAIS_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/6_Ano/UNIDADE6/fonte_tex/ALG_6EF_AUT_U06-NUM_RACIONAIS_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dúvida em Leitura e Escrita de Números Decimais?",
@@ -1133,6 +1422,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE6/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/7_Ano/UNIDADE6/fonte_tex/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dificuldade em Potenciação com Fração e Decimal?",
@@ -1164,6 +1454,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/8_Ano/UNIDADE6/restrita/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/8_Ano/UNIDADE6/fonte_tex/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dúvida em Equação do 2º Grau Incompleta?",
@@ -1190,6 +1481,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/8_Ano/UNIDADE8/publica/ALG_8EF_AUT_U08-PROD_NOTAVEIS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/8_Ano/UNIDADE8/restrita/ALG_8EF_AUT_U08-PROD_NOTAVEIS_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/8_Ano/UNIDADE8/fonte_tex/ALG_8EF_AUT_U08-PROD_NOTAVEIS_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dúvida em Fator Comum?",
@@ -1233,6 +1525,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_AUT_U06-FUN_QUAD_P1_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_AUT_U06-FUN_QUAD_P1_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/9_Ano/UNIDADE6/fonte_tex/ALG_9EF_AUT_U06-FUN_QUAD_P1_BASE.tex",
                                                                                                                         "videos": [
                                                                                                                                     {
                                                                                                                                                 "duvida": "com dúvida na Definição da Função Quadrática?",
@@ -1259,6 +1552,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades",
                                                                                                                         "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/9_Ano/UNIDADE6/fonte_tex/ALG_9EF_ESC_U06-FUN_QUAD_P1_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1282,6 +1576,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/1_Serie/UNIDADE6/fonte_tex/GEO_1EM_AUT_U06-FIGURAS_PLANAS_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1300,6 +1595,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/2_Serie/UNIDADE6/fonte_tex/GEO_2EM_AUT_U06-CONES_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1318,6 +1614,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/6_Ano/UNIDADE6/fonte_tex/GEO_6EF_AUT_U06-AREA_PLANAS_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1336,6 +1633,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/7_Ano/UNIDADE6/fonte_tex/GEO_7EF_AUT_U06-AREA_PERIMETRO_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1354,6 +1652,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/8_Ano/UNIDADE6/fonte_tex/GEO_8EF_AUT_U06-FIGURAS_PLANAS_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
@@ -1372,6 +1671,7 @@
                                                                                                                         "rotulo": "Caderno de Atividades Suplementar",
                                                                                                                         "pdf": "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
+                                                                                                                        "tex": "Matematica_Geometria/9_Ano/UNIDADE6/fonte_tex/GEO_9EF_AUT_U06-GEOM_ESPACIAL_BASE.tex",
                                                                                                                         "videos": []
                                                                                                             }
                                                                                                 ]
