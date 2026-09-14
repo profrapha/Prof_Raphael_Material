@@ -2280,7 +2280,22 @@ function abrirSetupTutor(disc = null, ano = null, un = null, texPath = null) {
     atualizarAlunosTutor();
     document.getElementById("modalSetupTutor").classList.add("open");
 }
+function atualizarAlunosTutor() {
+    const selTurma = document.getElementById("selectTurmaTutor");
+    const selAluno = document.getElementById("selectNomeAlunoTutor");
+    if (!selTurma || !selAluno) return;
 
+    const turmaSelecionada = selTurma.value;
+    const alunos = listaAlunos[turmaSelecionada] || [];
+
+    selAluno.innerHTML = "";
+    alunos.forEach(nome => {
+        const opt = document.createElement("option");
+        opt.value = nome;
+        opt.innerText = nome;
+        selAluno.appendChild(opt);
+    });
+}
 function iniciarSessaoTutor() {
     const blocoCompleto = document.getElementById("tutor-setup-completo");
 
