@@ -4,6 +4,7 @@ import re
 
 raiz = os.path.dirname(os.path.abspath(__file__))
 arquivo_html = os.path.join(raiz, "index.html")
+arquivo_alunos = os.path.join(raiz, "alunos.json")
 
 MAPA_ANOS = {
     "6_Ano": "6º Ano",
@@ -16,14 +17,12 @@ MAPA_ANOS = {
 }
 
 def formatar_id_unidade(pasta_unidade):
-    # Converte 'UNIDADE6' -> 'UNIDADE 6' e 'SEMANA10' -> 'SEMANA 10'
     m = re.match(r"([A-Za-z]+)(\d+)", pasta_unidade)
     if m:
         return f"{m.group(1).upper()} {m.group(2)}"
     return pasta_unidade
 
 def encontrar_pdf(pasta_unidade_completa, tipo, destino):
-    # destino: 'publica' ou 'restrita'
     pasta_alvo = os.path.join(pasta_unidade_completa, destino)
     if not os.path.exists(pasta_alvo):
         return None
@@ -34,6 +33,25 @@ def encontrar_pdf(pasta_unidade_completa, tipo, destino):
             caminho_rel = os.path.relpath(os.path.join(pasta_alvo, arq), raiz)
             return caminho_rel.replace(os.sep, "/")
     return None
+
+def encontrar_tex(pasta_unidade_completa, tipo):
+    pasta_fonte = os.path.join(pasta_unidade_completa, "fonte_tex")
+    if not os.path.exists(pasta_fonte):
+        return None
+
+    tag = "_AUT_" if tipo == "Autoral" else "_ESC_"
+    for arq in os.listdir(pasta_fonte):
+        if arq.endswith("_BASE.tex") and tag in arq:
+            caminho_rel = os.path.relpath(os.path.join(pasta_fonte, arq), raiz)
+            return caminho_rel.replace(os.sep, "/")
+    return None
+
+def carregar_alunos():
+    if not os.path.exists(arquivo_alunos):
+        print(f"[AVISO] Arquivo alunos.json não encontrado em {arquivo_alunos}")
+        return {}
+    with open(arquivo_alunos, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 def construir_catalogo():
     catalogo = {
@@ -58,7 +76,6 @@ def construir_catalogo():
         }
     }
 
-    # Varre as pastas das três disciplinas
     pastas_disciplinas = ["Fisica", "Matematica_Algebra", "Matematica_Geometria"]
 
     for disc in pastas_disciplinas:
@@ -67,7 +84,6 @@ def construir_catalogo():
             continue
 
         for raiz_atual, _, arquivos in os.walk(caminho_disc):
-            # Procura pastas que tenham info_AUT.json ou info_ESC.json
             jsons = [f for f in arquivos if f in ["info_AUT.json", "info_ESC.json"]]
             if not jsons:
                 continue
@@ -75,9 +91,6 @@ def construir_catalogo():
             rel = os.path.relpath(raiz_atual, raiz)
             partes = rel.split(os.sep)
 
-            # Estruturas suportadas:
-            # Disciplina / Ano / Unidade
-            # Disciplina / Ano / Subpasta / Unidade (ex: Matematica_Algebra/3_Serie/Intensivo/SEMANA10)
             disciplina_pasta = partes[0]
             ano_pasta = partes[1]
             unidade_pasta = partes[-1]
@@ -85,7 +98,6 @@ def construir_catalogo():
             id_unidade_formatada = formatar_id_unidade(unidade_pasta)
             nome_ano = MAPA_ANOS.get(ano_pasta, ano_pasta)
 
-            # Posiciona no nó de dados correto do catálogo
             if disciplina_pasta == "Fisica":
                 anos_dict = catalogo["Fisica"]["anos"]
             elif "Algebra" in disciplina_pasta:
@@ -101,12 +113,10 @@ def construir_catalogo():
                     "unidades": {}
                 }
 
-            # Lê os JSONs disponíveis na unidade
             materiais = []
             titulo_unidade = ""
             desc_unidade = ""
 
-            # Garante ordem: Autoral primeiro, Escola depois
             jsons_ordenados = sorted(jsons, key=lambda x: 0 if "AUT" in x else 1)
 
             for j_nome in jsons_ordenados:
@@ -122,12 +132,14 @@ def construir_catalogo():
                 tipo_mat = d.get("tipo", "Autoral")
                 pdf_aluno = encontrar_pdf(raiz_atual, tipo_mat, "publica")
                 pdf_prof = encontrar_pdf(raiz_atual, tipo_mat, "restrita")
+                caminho_tex = encontrar_tex(raiz_atual, tipo_mat)
 
                 materiais.append({
                     "tipo": tipo_mat,
                     "rotulo": d.get("rotulo", "Caderno de Atividades Suplementar" if tipo_mat == "Autoral" else "Caderno de Atividades"),
                     "pdf": pdf_aluno,
                     "pdfProf": pdf_prof,
+                    "tex": caminho_tex,
                     "videos": d.get("videos", [])
                 })
 
@@ -144,28 +156,39 @@ def atualizar_html():
         print(f"[ERRO] Arquivo index.html não encontrado em {raiz}")
         return
 
-    catalogo = construir_catalogo()
-    json_catalogo = json.dumps(catalogo, ensure_ascii=False, indent=12)
-
     with open(arquivo_html, "r", encoding="utf-8") as f:
         conteudo = f.read()
 
-    tag_inicio = "/* === CATALOGO_INICIO === */"
-    tag_fim = "/* === CATALOGO_FIM === */"
+    # 1. Injeção do Catálogo de Materiais
+    catalogo = construir_catalogo()
+    json_catalogo = json.dumps(catalogo, ensure_ascii=False, indent=12)
 
-    if tag_inicio not in conteudo or tag_fim not in conteudo:
-        print("[ERRO] Marcadores /* === CATALOGO_INICIO === */ e /* === CATALOGO_FIM === */ não encontrados no index.html.")
+    tag_inicio_cat = "/* === CATALOGO_INICIO === */"
+    tag_fim_cat = "/* === CATALOGO_FIM === */"
+
+    if tag_inicio_cat not in conteudo or tag_fim_cat not in conteudo:
+        print("[ERRO] Marcadores de catálogo não encontrados no index.html.")
         return
 
-    padrao = re.compile(f"{re.escape(tag_inicio)}.*?{re.escape(tag_fim)}", re.DOTALL)
-    novo_bloco = f"{tag_inicio}\n        const catalogo = {json_catalogo};\n        {tag_fim}"
+    padrao_cat = re.compile(f"{re.escape(tag_inicio_cat)}.*?{re.escape(tag_fim_cat)}", re.DOTALL)
+    bloco_cat = f"{tag_inicio_cat}\n        const catalogo = {json_catalogo};\n        {tag_fim_cat}"
+    conteudo = padrao_cat.sub(bloco_cat, conteudo)
 
-    conteudo_atualizado = padrao.sub(novo_bloco, conteudo)
+    # 2. Injeção da Lista de Alunos (se marcadores existirem)
+    tag_inicio_alu = "/* === ALUNOS_INICIO === */"
+    tag_fim_alu = "/* === ALUNOS_FIM === */"
+
+    if tag_inicio_alu in conteudo and tag_fim_alu in conteudo:
+        alunos = carregar_alunos()
+        json_alunos = json.dumps(alunos, ensure_ascii=False, indent=12)
+        padrao_alu = re.compile(f"{re.escape(tag_inicio_alu)}.*?{re.escape(tag_fim_alu)}", re.DOTALL)
+        bloco_alu = f"{tag_inicio_alu}\n        const listaAlunos = {json_alunos};\n        {tag_fim_alu}"
+        conteudo = padrao_alu.sub(bloco_alu, conteudo)
 
     with open(arquivo_html, "w", encoding="utf-8") as f:
-        f.write(conteudo_atualizado)
+        f.write(conteudo)
 
-    print("[SUCESSO] index.html atualizado dinamicamente a partir dos JSONs!")
+    print("[SUCESSO] index.html atualizado dinamicamente com catálogo (PDFs + TeX) e alunos!")
 
 if __name__ == "__main__":
     atualizar_html()
