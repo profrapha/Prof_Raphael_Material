@@ -2215,9 +2215,9 @@
                         <a href="${mat.pdf}" target="_blank" class="btn-pdf">
                             📄 Baixar Lista do Aluno (PDF)
                         </a>
-                        <button class="btn-tutor" onclick="abrirSetupTutor('${disciplinaCod}', ${anoNumero}, ${numeroUnidade})">
-                            🤖 Tutor Socrático IA
-                        </button>
+                        <button class="btn-tutor" onclick="abrirSetupTutor('${disciplinaCod}', ${anoNumero}, ${numeroUnidade}, '${mat.tex || ''}')">
+    🤖 Tutor Socrático IA
+</button>
                         ${btnProfHtml}
                     </div>
 
@@ -2229,153 +2229,146 @@
         // ==========================================
         // MOTOR DO TUTOR SOCRÁTICO
         // ==========================================
-        function abrirSetupTutor(disc = null, ano = null, un = null) {
-            const blocoCompleto = document.getElementById("tutor-setup-completo");
+        function abrirSetupTutor(disc = null, ano = null, un = null, texPath = null) {
+    const blocoCompleto = document.getElementById("tutor-setup-completo");
 
-            if (disc && ano && un) {
-                // Veio direto do caderno de exercícios: contexto já preenchido
-                tutorState.disciplina = disc;
-                tutorState.ano = ano;
-                tutorState.unidade = un;
-                blocoCompleto.style.display = "none";
-            } else {
-                // Veio da Home: exibe os seletores de matéria, série e unidade
-                blocoCompleto.style.display = "block";
-            }
+    if (disc && ano && un) {
+        // Veio direto do caderno: contexto e arquivo .tex já definidos
+        tutorState.disciplina = disc;
+        tutorState.ano = ano;
+        tutorState.unidade = un;
+        tutorState.caminhoTex = texPath;
+        blocoCompleto.style.display = "none";
+    } else {
+        // Veio da Home: aluno escolhe pelos selects
+        blocoCompleto.style.display = "block";
+        tutorState.caminhoTex = null; 
+    }
 
-            const selTurma = document.getElementById("selectTurmaTutor");
-            selTurma.innerHTML = "";
-            for (const t in listaAlunos) {
-                const opt = document.createElement("option");
-                opt.value = t;
-                opt.innerText = t;
-                selTurma.appendChild(opt);
-            }
+    const selTurma = document.getElementById("selectTurmaTutor");
+    selTurma.innerHTML = "";
+    for (const t in listaAlunos) {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.innerText = t;
+        selTurma.appendChild(opt);
+    }
 
-            if (ano) {
-                for (let i = 0; i < selTurma.options.length; i++) {
-                    if (selTurma.options[i].value.includes(`${ano}º`)) {
-                        selTurma.selectedIndex = i;
-                        break;
-                    }
-                }
-            }
-
-            atualizarAlunosTutor();
-            document.getElementById("modalSetupTutor").classList.add("open");
-        }
-
-        function fecharSetupTutor() {
-            document.getElementById("modalSetupTutor").classList.remove("open");
-        }
-
-        function atualizarAlunosTutor() {
-            const turmaEscolhida = document.getElementById("selectTurmaTutor").value;
-            const selAlunos = document.getElementById("selectNomeAlunoTutor");
-            selAlunos.innerHTML = "";
-
-            if (listaAlunos[turmaEscolhida]) {
-                listaAlunos[turmaEscolhida].forEach(aluno => {
-                    const opt = document.createElement("option");
-                    opt.value = aluno;
-                    opt.innerText = aluno;
-                    selAlunos.appendChild(opt);
-                });
+    if (ano) {
+        for (let i = 0; i < selTurma.options.length; i++) {
+            if (selTurma.options[i].value.includes(`${ano}º`)) {
+                selTurma.selectedIndex = i;
+                break;
             }
         }
+    }
 
-        function iniciarSessaoTutor() {
-            const blocoCompleto = document.getElementById("tutor-setup-completo");
+    atualizarAlunosTutor();
+    document.getElementById("modalSetupTutor").classList.add("open");
+}
 
-            if (blocoCompleto.style.display === "block") {
-                tutorState.disciplina = document.getElementById("selectMateriaTutor").value;
-                tutorState.ano = parseInt(document.getElementById("selectAnoTutor").value);
-                tutorState.unidade = parseInt(document.getElementById("selectUnidadeTutor").value);
-            }
+function iniciarSessaoTutor() {
+    const blocoCompleto = document.getElementById("tutor-setup-completo");
 
-            tutorState.turma = document.getElementById("selectTurmaTutor").value;
-            tutorState.aluno = document.getElementById("selectNomeAlunoTutor").value;
-            tutorState.numeroQuestao = parseInt(document.getElementById("inputQuestaoTutor").value) || 1;
+    if (blocoCompleto.style.display === "block") {
+        tutorState.disciplina = document.getElementById("selectMateriaTutor").value;
+        tutorState.ano = parseInt(document.getElementById("selectAnoTutor").value);
+        tutorState.unidade = parseInt(document.getElementById("selectUnidadeTutor").value);
+        // Se veio da Home, o caminho do tex será resolvido pelo backend ou selecionado
+        tutorState.caminhoTex = null;
+    }
 
-            const alunoSlug = tutorState.aluno.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_');
-            tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_${tutorState.ano}_u${tutorState.unidade}_q${tutorState.numeroQuestao}_${alunoSlug}`;
+    tutorState.turma = document.getElementById("selectTurmaTutor").value;
+    tutorState.aluno = document.getElementById("selectNomeAlunoTutor").value;
+    tutorState.numeroQuestao = parseInt(document.getElementById("inputQuestaoTutor").value) || 1;
 
-            fecharSetupTutor();
+    const alunoSlug = tutorState.aluno.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_');
+    tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_${tutorState.ano}_u${tutorState.unidade}_q${tutorState.numeroQuestao}_${alunoSlug}`;
 
-            const discFormatada = tutorState.disciplina.replace('_', ' ');
-            document.getElementById("tutor-badge-contexto").innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${discFormatada} - ${tutorState.ano}º Ano)`;
+    fecharSetupTutor();
 
-            const messagesArea = document.getElementById("tutorMessages");
-            messagesArea.innerHTML = `
-                <div class="msg-tutor">
-                    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para te acompanhar na resolução da <strong>Questão ${tutorState.numeroQuestao}</strong>.<br><br>
-                    Qual foi o seu primeiro passo ou onde exatamente você travou?
-                </div>
-            `;
+    const discFormatada = tutorState.disciplina.replace('_', ' ');
+    document.getElementById("tutor-badge-contexto").innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${discFormatada} - ${tutorState.ano}º Ano)`;
 
-            document.getElementById("tutor-drawer").classList.add("open");
-            document.getElementById("inputDuvidaTutor").focus();
-            renderizarKaTeX(messagesArea);
-        }
+    const messagesArea = document.getElementById("tutorMessages");
+    messagesArea.innerHTML = `
+        <div class="msg-tutor">
+            Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para te acompanhar na resolução da <strong>Questão ${tutorState.numeroQuestao}</strong>.<br><br>
+            Qual foi o seu primeiro passo ou onde exatamente você travou?
+        </div>
+    `;
+
+    document.getElementById("tutor-drawer").classList.add("open");
+    document.getElementById("inputDuvidaTutor").focus();
+    renderizarKaTeX(messagesArea);
+}
 
         function fecharTutorDrawer() {
             document.getElementById("tutor-drawer").classList.remove("open");
         }
 
         async function enviarMensagemTutor() {
-            const input = document.getElementById("inputDuvidaTutor");
-            const duvida = input.value.trim();
-            if (!duvida) return;
+    const input = document.getElementById("inputDuvidaTutor");
+    const duvida = input.value.trim();
+    if (!duvida) return;
 
-            const area = document.getElementById("tutorMessages");
-            const btn = document.getElementById("btnEnviarTutor");
+    const area = document.getElementById("tutorMessages");
+    const btn = document.getElementById("btnEnviarTutor");
 
-            area.innerHTML += `<div class="msg-aluno">${duvida}</div>`;
-            input.value = "";
-            btn.disabled = true;
-            area.scrollTop = area.scrollHeight;
+    area.innerHTML += `<div class="msg-aluno">${duvida}</div>`;
+    input.value = "";
+    btn.disabled = true;
+    area.scrollTop = area.scrollHeight;
 
-            const tempId = "loading-" + Date.now();
-            area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Analisando seu cálculo...</div>`;
-            area.scrollTop = area.scrollHeight;
+    const tempId = "loading-" + Date.now();
+    area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Analisando seu raciocínio...</div>`;
+    area.scrollTop = area.scrollHeight;
 
-            try {
-                const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-matematica", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        ambiente: tutorState.ambiente,
-                        disciplina: tutorState.disciplina,
-                        ano: tutorState.ano,
-                        unidade: tutorState.unidade,
-                        numeroQuestao: tutorState.numeroQuestao,
-                        aluno: tutorState.aluno,
-                        turma: tutorState.turma,
-                        sessionId: tutorState.sessionId,
-                        duvidaAluno: duvida
-                    })
-                });
+    try {
+        const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-matematica", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                ambiente: tutorState.ambiente,
+                disciplina: tutorState.disciplina,
+                ano: tutorState.ano,
+                unidade: tutorState.unidade,
+                numeroQuestao: tutorState.numeroQuestao,
+                caminhoTex: tutorState.caminhoTex, // Envia o caminho exato!
+                aluno: tutorState.aluno,
+                turma: tutorState.turma,
+                sessionId: tutorState.sessionId,
+                duvidaAluno: duvida
+            })
+        });
 
-                const data = await response.json();
-                const loadEl = document.getElementById(tempId);
-                if (loadEl) loadEl.remove();
+        const data = await response.json();
+        const loadEl = document.getElementById(tempId);
+        if (loadEl) loadEl.remove();
 
-                if (data.sucesso) {
-                    if (data.sessionId) tutorState.sessionId = data.sessionId;
-                    area.innerHTML += `<div class="msg-tutor">${data.respostaTutor.replace(/\n/g, '<br>')}</div>`;
-                    renderizarKaTeX(area);
-                } else {
-                    area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
-                }
-            } catch (err) {
-                const loadEl = document.getElementById(tempId);
-                if (loadEl) loadEl.remove();
-                area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Erro de conexão com o tutor virtual.</div>`;
-            } finally {
-                btn.disabled = false;
-                area.scrollTop = area.scrollHeight;
-            }
+        if (data.sucesso) {
+            if (data.sessionId) tutorState.sessionId = data.sessionId;
+            
+            // Converte **negrito** e *itálico* antes de renderizar
+            let textoFormatado = data.respostaTutor
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+
+            area.innerHTML += `<div class="msg-tutor">${textoFormatado}</div>`;
+            renderizarKaTeX(area);
+        } else {
+            area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
         }
+    } catch (err) {
+        const loadEl = document.getElementById(tempId);
+        if (loadEl) loadEl.remove();
+        area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Erro de conexão com o tutor virtual.</div>`;
+    } finally {
+        btn.disabled = false;
+        area.scrollTop = area.scrollHeight;
+    }
+}
 
         function renderizarKaTeX(elem) {
             if (window.renderMathInElement) {
