@@ -3448,7 +3448,7 @@
                 }
 
                 // Disparo sem bloco de headers para não ativar preflight OPTIONS
-                const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
+                const res = await fetch("/api-tutor/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
                         ...tutorState,
@@ -3498,7 +3498,7 @@
 
             try {
                 // Disparo sem bloco de headers para envio direto
-                const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
+                const response = await fetch("/api-tutor/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
                         ...tutorState,
