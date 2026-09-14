@@ -2312,40 +2312,68 @@ function atualizarAlunosTutor() {
         selAluno.appendChild(opt);
     });
 }
-function iniciarSessaoTutor() {
-    const blocoCompleto = document.getElementById("tutor-setup-completo");
+async function iniciarSessaoTutor() {
+    const alunoSelect = document.getElementById("tutorAlunoSelect");
+    const questaoInput = document.getElementById("tutorQuestaoInput");
 
-    if (blocoCompleto.style.display === "block") {
-        tutorState.disciplina = document.getElementById("selectMateriaTutor").value;
-        tutorState.ano = parseInt(document.getElementById("selectAnoTutor").value);
-        tutorState.unidade = parseInt(document.getElementById("selectUnidadeTutor").value);
-        // Se veio da Home, o caminho do tex será resolvido pelo backend ou selecionado
-        tutorState.caminhoTex = null;
+    if (!alunoSelect.value) {
+        alert("Por favor, selecione seu nome.");
+        return;
     }
 
-    tutorState.turma = document.getElementById("selectTurmaTutor").value;
-    tutorState.aluno = document.getElementById("selectNomeAlunoTutor").value;
-    tutorState.numeroQuestao = parseInt(document.getElementById("inputQuestaoTutor").value) || 1;
+    tutorState.aluno = alunoSelect.value;
+    tutorState.turma = tutorState.turma || "8º Ano A";
+    tutorState.numeroQuestao = questaoInput.value || "1";
 
-    const alunoSlug = tutorState.aluno.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_');
-    tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_${tutorState.ano}_u${tutorState.unidade}_q${tutorState.numeroQuestao}_${alunoSlug}`;
+    // Cria um identificador único para a sessão
+    tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_${tutorState.ano}_u${tutorState.unidade}_q${tutorState.numeroQuestao}_${tutorState.aluno.toLowerCase().replace(/\s+/g, '_')}`;
+
+    // Atualiza o subtítulo da gaveta
+    document.getElementById("tutorDrawerSub").innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.disciplina} - ${tutorState.ano}º Ano)`;
 
     fecharSetupTutor();
+    document.getElementById("tutor-drawer").classList.add("open");
 
-    const discFormatada = tutorState.disciplina.replace('_', ' ');
-    document.getElementById("tutor-badge-contexto").innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${discFormatada} - ${tutorState.ano}º Ano)`;
-
+    // Exibe indicador de carregando enquanto busca o enunciado oficial
     const messagesArea = document.getElementById("tutorMessages");
     messagesArea.innerHTML = `
-        <div class="msg-tutor">
-            Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para te acompanhar na resolução da <strong>Questão ${tutorState.numeroQuestao}</strong>.<br><br>
-            Qual foi o seu primeiro passo ou onde exatamente você travou?
+        <div class="msg-tutor" id="msg-abertura-carregando">
+            <em>Localizando a Questão ${tutorState.numeroQuestao} no caderno oficial...</em>
         </div>
     `;
 
-    document.getElementById("tutor-drawer").classList.add("open");
-    document.getElementById("inputDuvidaTutor").focus();
-    renderizarKaTeX(messagesArea);
+    // Dispara a requisição inicial para o n8n trazer o enunciado
+    try {
+        const payload = {
+            ...tutorState,
+            chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
+        };
+
+        const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        
+        if (data && data.output) {
+            messagesArea.innerHTML = `<div class="msg-tutor">${formatarTextoTutor(data.output)}</div>`;
+            if (window.renderMathInElement) {
+                renderMathInElement(messagesArea, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+        } else {
+            messagesArea.innerHTML = `<div class="msg-tutor">Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para a Questão ${tutorState.numeroQuestao}. O que você já tentou fazer nela?</div>`;
+        }
+    } catch (err) {
+        messagesArea.innerHTML = `<div class="msg-tutor">Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para a Questão ${tutorState.numeroQuestao}. O que você já tentou fazer nela?</div>`;
+    }
 }
         function fecharSetupTutor() {
             document.getElementById("modalSetupTutor").classList.remove("open");
