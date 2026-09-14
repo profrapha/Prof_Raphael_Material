@@ -2315,34 +2315,45 @@ function atualizarAlunosTutor() {
 async function iniciarSessaoTutor() {
     const alunoSelect = document.getElementById("tutorAlunoSelect");
     const questaoInput = document.getElementById("tutorQuestaoInput");
+    const turmaSelect = document.getElementById("tutorTurmaSelect");
 
-    if (!alunoSelect.value) {
+    if (!alunoSelect || !alunoSelect.value) {
         alert("Por favor, selecione seu nome.");
         return;
     }
 
     tutorState.aluno = alunoSelect.value;
-    tutorState.turma = tutorState.turma || "8º Ano A";
-    tutorState.numeroQuestao = questaoInput.value || "1";
+    tutorState.turma = (turmaSelect && turmaSelect.value) ? turmaSelect.value : (tutorState.turma || "8º Ano A");
+    tutorState.numeroQuestao = questaoInput ? (questaoInput.value || "1") : "1";
 
-    // Cria um identificador único para a sessão
-    tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_${tutorState.ano}_u${tutorState.unidade}_q${tutorState.numeroQuestao}_${tutorState.aluno.toLowerCase().replace(/\s+/g, '_')}`;
+    // Cria o identificador único da sessão
+    tutorState.sessionId = `${tutorState.ambiente || 'dev'}_${tutorState.disciplina || 'Matematica_Algebra'}_${tutorState.ano || '8'}_u${tutorState.unidade || '8'}_q${tutorState.numeroQuestao}_${tutorState.aluno.toLowerCase().replace(/\s+/g, '_')}`;
 
-    // Atualiza o subtítulo da gaveta
-    document.getElementById("tutorDrawerSub").innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.disciplina} - ${tutorState.ano}º Ano)`;
+    // Fecha o modal e abre o chat imediatamente na tela
+    const modalSetup = document.getElementById("modalSetupTutor");
+    if (modalSetup) modalSetup.classList.remove("open");
 
-    fecharSetupTutor();
-    document.getElementById("tutor-drawer").classList.add("open");
+    const drawer = document.getElementById("tutor-drawer");
+    if (drawer) drawer.classList.add("open");
 
-    // Exibe indicador de carregando enquanto busca o enunciado oficial
+    // Atualiza subtítulo do chat
+    const subTitle = document.getElementById("tutorDrawerSub");
+    if (subTitle) {
+        subTitle.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.disciplina || ''} - ${tutorState.ano || ''}º Ano)`;
+    }
+
+    // Coloca mensagem inicial de carregamento
     const messagesArea = document.getElementById("tutorMessages");
-    messagesArea.innerHTML = `
-        <div class="msg-tutor" id="msg-abertura-carregando">
-            <em>Localizando a Questão ${tutorState.numeroQuestao} no caderno oficial...</em>
-        </div>
-    `;
+    if (messagesArea) {
+        messagesArea.innerHTML = `
+            <div class="msg-tutor" id="msg-tutor-abertura">
+                Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou consultando a <strong>Questão ${tutorState.numeroQuestao}</strong> no caderno oficial...
+            </div>
+        `;
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
 
-    // Dispara a requisição inicial para o n8n trazer o enunciado
+    // Dispara a requisição em background para o n8n carregar o enunciado
     try {
         const payload = {
             ...tutorState,
@@ -2356,9 +2367,12 @@ async function iniciarSessaoTutor() {
         });
 
         const data = await res.json();
-        
-        if (data && data.output) {
-            messagesArea.innerHTML = `<div class="msg-tutor">${formatarTextoTutor(data.output)}</div>`;
+        const msgAbertura = document.getElementById("msg-tutor-abertura");
+
+        if (data && data.output && msgAbertura) {
+            // Converte quebras e exibe a resposta oficial da IA
+            msgAbertura.innerHTML = data.output.replace(/\n/g, "<br>");
+            
             if (window.renderMathInElement) {
                 renderMathInElement(messagesArea, {
                     delimiters: [
@@ -2368,11 +2382,9 @@ async function iniciarSessaoTutor() {
                     throwOnError: false
                 });
             }
-        } else {
-            messagesArea.innerHTML = `<div class="msg-tutor">Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para a Questão ${tutorState.numeroQuestao}. O que você já tentou fazer nela?</div>`;
         }
     } catch (err) {
-        messagesArea.innerHTML = `<div class="msg-tutor">Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou pronto para a Questão ${tutorState.numeroQuestao}. O que você já tentou fazer nela?</div>`;
+        console.warn("Erro ao buscar abertura automática:", err);
     }
 }
         function fecharSetupTutor() {
