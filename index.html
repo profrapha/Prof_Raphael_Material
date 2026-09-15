@@ -2961,15 +2961,12 @@
 
         let tutorState = {
             ambiente: window.location.hostname.includes("dev") ? "dev" : "prod",
-            disciplina: "Matematica_Algebra",
-            ano: 8,
-            unidade: 8,
+            id_questao: "",
+            aluno: "",
+            turma: "",
             capituloNome: "",
             capituloIndice: 1,
             numeroQuestao: 1,
-            caminhoTex: "",
-            aluno: "",
-            turma: "",
             sessionId: null
         };
 
@@ -3311,20 +3308,6 @@
         // ==========================================
         // MOTOR DO TUTOR SOCRÁTICO
         // ==========================================
-        // ==========================================
-        // MOTOR DO TUTOR SOCRÁTICO
-        // ==========================================
-        let tutorState = {
-            ambiente: window.location.hostname.includes("dev") ? "dev" : "prod",
-            id_questao: "",
-            aluno: "",
-            turma: "",
-            capituloNome: "",
-            capituloIndice: 1,
-            numeroQuestao: 1,
-            sessionId: null
-        };
-
         function obterMaterialAtual() {
             if (!nav.ano || !nav.unidadeId) return null;
             let uni = (nav.materia === "Fisica") 
