@@ -3311,6 +3311,20 @@
         // ==========================================
         // MOTOR DO TUTOR SOCRÁTICO
         // ==========================================
+        // ==========================================
+        // MOTOR DO TUTOR SOCRÁTICO
+        // ==========================================
+        let tutorState = {
+            ambiente: window.location.hostname.includes("dev") ? "dev" : "prod",
+            id_questao: "",
+            aluno: "",
+            turma: "",
+            capituloNome: "",
+            capituloIndice: 1,
+            numeroQuestao: 1,
+            sessionId: null
+        };
+
         function obterMaterialAtual() {
             if (!nav.ano || !nav.unidadeId) return null;
             let uni = (nav.materia === "Fisica") 
@@ -3320,21 +3334,10 @@
         }
 
         function acionarTutorCaderno() {
-            const mat = obterMaterialAtual();
-            const disciplinaCod = nav.frente ? `${nav.materia}_${nav.frente}` : nav.materia;
-            const numeroUnidade = parseInt(nav.unidadeId.replace(/\D/g, '')) || 1;
-            const anoNumero = parseInt(nav.ano.replace(/\D/g, '')) || 8;
-            const caminhoTex = mat ? (mat.tex || null) : null;
-
-            abrirSetupTutor(disciplinaCod, anoNumero, numeroUnidade, caminhoTex);
+            abrirSetupTutor();
         }
 
-        function abrirSetupTutor(disc = null, ano = null, un = null, texPath = null) {
-            tutorState.disciplina = disc || "Matematica_Algebra";
-            tutorState.ano = ano || 8;
-            tutorState.unidade = un || 8;
-            tutorState.caminhoTex = texPath || "";
-
+        function abrirSetupTutor() {
             // Popula as turmas do alunos.json
             const selTurma = document.getElementById("selectTurmaTutor");
             selTurma.innerHTML = "";
@@ -3345,9 +3348,11 @@
                 selTurma.appendChild(opt);
             }
 
-            if (ano) {
+            // Pré-seleciona a turma com base no ano que o aluno está navegando
+            if (nav.ano) {
+                const numAno = nav.ano.replace(/\D/g, '');
                 for (let i = 0; i < selTurma.options.length; i++) {
-                    if (selTurma.options[i].value.includes(`${ano}º`)) {
+                    if (selTurma.options[i].value.includes(`${numAno}º`)) {
                         selTurma.selectedIndex = i;
                         break;
                     }
@@ -3356,7 +3361,7 @@
 
             atualizarAlunosTutor();
 
-            // Carrega a estrutura de capítulos da unidade atual
+            // Carrega os capítulos do caderno que está aberto na tela
             const capituloSelect = document.getElementById("selectCapituloTutor");
             const matAtual = obterMaterialAtual();
 
@@ -3407,7 +3412,6 @@
                 }
             }
 
-            // Fallback se não tiver estrutura indexada
             let opts = "";
             for (let i = 1; i <= 40; i++) opts += `<option value="${i}">Questão ${i}</option>`;
             questaoSelect.innerHTML = opts;
@@ -3438,17 +3442,19 @@
                 const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
 
                 tutorState.aluno = selAluno.value;
-                tutorState.turma = selTurma ? selTurma.value : "8º Ano A";
+                tutorState.turma = selTurma ? selTurma.value : "";
                 tutorState.capituloNome = capObj.titulo || "Capítulo 1";
                 tutorState.capituloIndice = capObj.indice || 1;
-                tutorState.numeroQuestao = selQuestao ? selQuestao.value : "1";
+                tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
                 
-                // Monta o caminho completo do TeX na VPS
-                const texPath = matAtual.tex || tutorState.caminhoTex;
-                tutorState.arquivoFinalTex = texPath ? `/root/portal/${tutorState.ambiente}/${texPath}` : "";
+                // Geração automática do ID Canônico (100% alinhado ao banco)
+                const prefixo = matAtual.id_prefixo || "Matematica_Algebra__8_Ano__UNIDADE8__Autoral";
+                const capStr = String(tutorState.capituloIndice).padStart(2, '0');
+                const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
+                tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
 
                 const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
-                tutorState.sessionId = `${tutorState.ambiente}_${tutorState.disciplina}_u${tutorState.unidade}_c${tutorState.capituloIndice}_q${tutorState.numeroQuestao}_${nomeClean}`;
+                tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
 
                 fecharSetupTutor();
                 const drawer = document.getElementById("tutor-drawer");
@@ -3469,11 +3475,14 @@
                     messagesArea.scrollTop = messagesArea.scrollHeight;
                 }
 
-                // Disparo sem cabeçalhos customizados para evitar o preflight OPTIONS do navegador
                 const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
-                        ...tutorState,
+                        ambiente: tutorState.ambiente,
+                        id_questao: tutorState.id_questao,
+                        aluno: tutorState.aluno,
+                        turma: tutorState.turma,
+                        sessionId: tutorState.sessionId,
                         chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
                     })
                 });
@@ -3511,11 +3520,14 @@
             area.scrollTop = area.scrollHeight;
 
             try {
-                // Disparo sem cabeçalhos customizados para envio direto
                 const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
                     body: JSON.stringify({
-                        ...tutorState,
+                        ambiente: tutorState.ambiente,
+                        id_questao: tutorState.id_questao,
+                        aluno: tutorState.aluno,
+                        turma: tutorState.turma,
+                        sessionId: tutorState.sessionId,
                         chatInput: duvida
                     })
                 });
@@ -3542,20 +3554,6 @@
             } finally {
                 btn.disabled = false;
                 area.scrollTop = area.scrollHeight;
-            }
-        }
-
-        function renderizarKaTeX(elem) {
-            if (window.renderMathInElement) {
-                renderMathInElement(elem, {
-                    delimiters: [
-                        { left: "$$", right: "$$", display: true },
-                        { left: "$", right: "$", display: false },
-                        { left: "\\[", right: "\\]", display: true },
-                        { left: "\\(", right: "\\)", display: false }
-                    ],
-                    throwOnError: false
-                });
             }
         }
 
