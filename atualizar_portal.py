@@ -7,6 +7,7 @@ raiz = os.path.dirname(os.path.abspath(__file__))
 arquivo_html = os.path.join(raiz, "index.html")
 arquivo_alunos = os.path.join(raiz, "alunos.json")
 arquivo_banco = os.path.join(raiz, "questoes.db")
+arquivo_dados_json = os.path.join(raiz, "questoes_dados.json")
 
 MAPA_ANOS = {
     "6_Ano": "6º Ano",
@@ -21,7 +22,6 @@ MAPA_ANOS = {
 def inicializar_banco():
     conn = sqlite3.connect(arquivo_banco)
     cur = conn.cursor()
-    # Recria para garantir que remoções no TeX sejam refletidas e colunas fiquem atualizadas
     cur.execute("DROP TABLE IF EXISTS questoes;")
     cur.execute("""
         CREATE TABLE questoes (
@@ -78,7 +78,7 @@ def encontrar_tex(pasta_unidade_completa, tipo):
             return caminho_rel.replace(os.sep, "/"), caminho_abs
     return None, None
 
-def indexar_questoes_no_banco(caminho_abs_tex, disciplina, ano, unidade, tipo_caderno, cur):
+def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano, unidade, tipo_caderno, cur):
     if not caminho_abs_tex or not os.path.exists(caminho_abs_tex):
         return
 
@@ -113,8 +113,8 @@ def indexar_questoes_no_banco(caminho_abs_tex, disciplina, ano, unidade, tipo_ca
         if nota_pedagogica:
             contexto += f"\n--- ORIENTAÇÃO PEDAGÓGICA AO TUTOR ---\n{nota_pedagogica}\n"
 
-        # ID canônico agora inclui o capítulo (__C01__, __C02__), evitando sobreposições
-        id_unico = f"{disciplina}__{ano}__{unidade.replace(' ', '')}__{tipo_caderno}__C{idx_cap:02d}__Q{num_q:02d}"
+        # ID canônico derivado diretamente do prefixo oficial do caderno
+        id_unico = f"{prefixo_material}__C{idx_cap:02d}__Q{num_q:02d}"
 
         cur.execute("""
             INSERT OR REPLACE INTO questoes 
@@ -123,7 +123,6 @@ def indexar_questoes_no_banco(caminho_abs_tex, disciplina, ano, unidade, tipo_ca
         """, (id_unico, disciplina, ano, unidade, tipo_caderno, idx_cap, capitulo_nome, num_q, enunciado, tikz, resolucao, nota_pedagogica, contexto))
 
     idx_cap = 1
-    # Questões antes do primeiro \subsection* (se houver)
     if len(secoes) > 0 and secoes[0]:
         partes_iniciais = re.split(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', secoes[0])
         if len(partes_iniciais) > 1:
@@ -131,7 +130,6 @@ def indexar_questoes_no_banco(caminho_abs_tex, disciplina, ano, unidade, tipo_ca
                 salvar_bloco(int(partes_iniciais[j]), partes_iniciais[j+1], "Lista Principal", idx_cap)
             idx_cap += 1
 
-    # Questões dentro de cada \subsection*
     for i in range(1, len(secoes), 2):
         cap_titulo = re.sub(r'\\[a-zA-Z]+', '', secoes[i]).replace('{', '').replace('}', '').strip()
         corpo_cap = secoes[i + 1]
@@ -195,23 +193,13 @@ def carregar_alunos():
 
 def construir_catalogo(cur_banco):
     catalogo = {
-        "Fisica": {
-            "nome": "Física",
-            "tipo": "direto",
-            "anos": {}
-        },
+        "Fisica": {"nome": "Física", "tipo": "direto", "anos": {}},
         "Matematica": {
             "nome": "Matemática",
             "tipo": "frentes",
             "frentes": {
-                "Algebra": {
-                    "nome": "Álgebra",
-                    "anos": {}
-                },
-                "Geometria": {
-                    "nome": "Geometria",
-                    "anos": {}
-                }
+                "Algebra": {"nome": "Álgebra", "anos": {}},
+                "Geometria": {"nome": "Geometria", "anos": {}}
             }
         }
     }
@@ -276,12 +264,16 @@ def construir_catalogo(cur_banco):
                 
                 estrutura_capitulos = extrair_estrutura_tex(caminho_abs_tex)
 
+                # Prefixo oficial da fonte de verdade (sem abreviações artificiais)
+                prefixo_material = f"{disciplina_pasta}__{ano_pasta}__{unidade_pasta}__{tipo_mat}"
+
                 if caminho_abs_tex:
-                    indexar_questoes_no_banco(caminho_abs_tex, disciplina_pasta, ano_pasta, id_unidade_formatada, tipo_mat, cur_banco)
+                    indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina_pasta, ano_pasta, id_unidade_formatada, tipo_mat, cur_banco)
 
                 materiais.append({
                     "tipo": tipo_mat,
                     "rotulo": d.get("rotulo", "Caderno de Atividades Suplementar" if tipo_mat == "Autoral" else "Caderno de Atividades"),
+                    "id_prefixo": prefixo_material,  # Carimbo oficial injetado no HTML
                     "pdf": pdf_aluno,
                     "pdfProf": pdf_prof,
                     "tex": caminho_tex,
@@ -297,6 +289,24 @@ def construir_catalogo(cur_banco):
 
     return catalogo
 
+def exportar_indice_n8n():
+    conn = sqlite3.connect(arquivo_banco)
+    cur = conn.cursor()
+    cur.execute("SELECT id, capitulo, numero_questao, contexto_pronto FROM questoes")
+    dados = {
+        linha[0]: {
+            "capitulo": linha[1],
+            "numero": linha[2],
+            "contexto": linha[3]
+        }
+        for linha in cur.fetchall()
+    }
+    conn.close()
+
+    with open(arquivo_dados_json, "w", encoding="utf-8") as f:
+        json.dump(dados, f, ensure_ascii=False)
+    print(f"[SUCESSO] questoes_dados.json gerado ({len(dados)} questões prontas).")
+
 def atualizar_html():
     if not os.path.exists(arquivo_html):
         print(f"[ERRO] Arquivo index.html não encontrado em {raiz}")
@@ -311,6 +321,8 @@ def atualizar_html():
     catalogo = construir_catalogo(cur_banco)
     conn_banco.commit()
     conn_banco.close()
+
+    exportar_indice_n8n()
 
     json_catalogo = json.dumps(catalogo, ensure_ascii=False, indent=12)
 
@@ -338,7 +350,7 @@ def atualizar_html():
     with open(arquivo_html, "w", encoding="utf-8") as f:
         f.write(conteudo)
 
-    print("[SUCESSO] index.html e banco questoes.db atualizados com sucesso!")
+    print("[SUCESSO] index.html, questoes.db e questoes_dados.json atualizados em sincronia!")
 
 if __name__ == "__main__":
     atualizar_html()
