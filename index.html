@@ -3712,8 +3712,10 @@ async function enviarMensagemTutor() {
                 input.disabled = true;
                 input.placeholder = "Sessão finalizada com sucesso! 🏆";
                 btn.innerText = "Fechar";
+                btn.disabled = false; // <--- ADICIONE ESTA LINHA AQUI
                 btn.onclick = fecharTutorDrawer;
-            }
+
+                            }
 
         } else {
             area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
