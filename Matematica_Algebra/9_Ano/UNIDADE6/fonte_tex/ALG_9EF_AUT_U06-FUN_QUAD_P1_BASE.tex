@@ -23,6 +23,8 @@
 \usepackage{enumitem}
 \setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
 \newcommand{\larguraTikz}{0.85\linewidth} 
+% --- TAG SEMÂNTICA PARA LEITURA DE IA (INVISÍVEL NO PDF) ---
+\newenvironment{enunciadoLiteral}{}{}
 
 % --- MATEMÁTICA E CORES ---
 \usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
@@ -66,7 +68,7 @@
 % --- NOVA CAIXA PEDAGÓGICA E CORES (NOTA VERDE) ---
 \definecolor{CorNotaBorda}{HTML}{10B981} 
 \definecolor{CorNotaFundo}{HTML}{F0FDF4} 
-\newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, fontupper=\small}
+\newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt, fontupper=\small}
 
 % --- TÍTULOS ---
 \usepackage{titlesec}
@@ -123,34 +125,44 @@
 \subsection*{Capítulo 1: Definição e Lei de Formação}
 \vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
 \par\vspace{\espacoPosTitulo}
-\subsubsection*{01.} Considere a expressão algébrica que define uma relação de dependência entre duas grandezas, dada por $f(x) = 3x(x - 2) + 5 - x^2$. Para que esta função seja classificada corretamente e seus parâmetros identificados, ela deve ser escrita na forma canônica $f(x) = ax^2 + bx + c$.
+\subsubsection*{01.} 
+\begin{enunciadoLiteral}
+Considere a expressão algébrica que define uma relação de dependência entre duas grandezas, dada por $f(x) = 3x(x - 2) + 5 - x^2$. Para que esta função seja classificada corretamente e seus parâmetros identificados, ela deve ser escrita na forma canônica $f(x) = ax^2 + bx + c$.
 
 A partir da expansão algébrica, determine os valores numéricos dos coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Como podemos eliminar os parênteses aplicando a propriedade distributiva antes de agrupar os termos com o mesmo grau?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
     Desenvolvendo a expressão:
     $f(x) = 3x(x - 2) + 5 - x^2$
     $f(x) = 3x^2 - 6x + 5 - x^2$
+    Agrupando os termos semelhantes:
     $f(x) = (3x^2 - x^2) - 6x + 5$
     $f(x) = 2x^2 - 6x + 5$
     
-    Os coeficientes são: $a = 2$, $b = -6$, $c = 5$.
+    Identificando os coeficientes: $a = 2$, $b = -6$, $c = 5$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
     
-    \vspace{0.2cm}
+    % --- CAIXA VERDE (Nota Pedagógica) ---
     \begin{boxexplicacao}
     \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental revisar a propriedade distributiva e o agrupamento de termos semelhantes. Alunos frequentemente erram os sinais ao agrupar.
     \end{boxexplicacao}
-    \end{tcolorbox}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{02.} O projeto arquitetônico de uma praça prevê a construção de um espelho d'água retangular envolto por uma calçada de concreto. As dimensões do espelho d'água dependem de uma variável \textbf{x} (medida em \textbf{metros}), conforme ilustrado no esquema da planta baixa.
+\subsubsection*{02.} 
+\begin{enunciadoLiteral}
+O projeto arquitetônico de uma praça prevê a construção de um espelho d'água retangular envolto por uma calçada de concreto. As dimensões do espelho d'água dependem de uma variável \textbf{x} (medida em \textbf{metros}), conforme ilustrado no esquema da planta baixa.
 
 \begin{center}
 % ==========================================
@@ -180,55 +192,69 @@ A partir da expansão algébrica, determine os valores numéricos dos coeficient
 \end{center}
 
 Expresse a área do espelho d'água por meio de uma função polinomial do 2º grau $A(x)$. Em seguida, justifique o que o termo independente dessa função representa, sabendo que a medida \textbf{x} deve ser estritamente maior que \textbf{1}.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Qual é a fórmula geométrica que utilizamos para calcular a área de um retângulo a partir das suas dimensões (base e altura)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
     A área de um retângulo é dada por base vezes altura.
     $A(x) = (2x + 4)(x - 1)$
     $A(x) = 2x^2 - 2x + 4x - 4$
     $A(x) = 2x^2 + 2x - 4$
     
-    O termo independente $c = -4$ por si só representaria a área quando $x=0$, mas o contexto diz que $x > 1$. Ele ajusta o modelo ao domínio físico.
-    
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta é uma ótima questão para testar a álgebra espacial. O Teste Cego garante que o aluno precisa decodificar as dimensões a partir da figura.
-    \end{boxexplicacao}
+    O termo independente é $c = -4$. Por si só, ele representaria a área quando $x=0$, mas o contexto determina que $x > 1$ para que a medida geométrica "x - 1" exista. Logo, ele apenas ajusta o modelo algébrico ao domínio físico real da praça.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta é uma ótima questão para testar a álgebra espacial. O Teste Cego garante que o aluno precisa decodificar as dimensões a partir da figura, e a restrição de domínio evita a concepção de áreas negativas.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{03.} Na matemática, a validade de uma função quadrática está atrelada à preservação de seu termo de maior grau. Considere a lei de formação $g(x) = (3m - 12)x^2 + 5x - 7$, em que \textbf{m} é uma constante real.
+\subsubsection*{03.} 
+\begin{enunciadoLiteral}
+Na matemática, a validade de uma função quadrática está atrelada à preservação de seu termo de maior grau. Considere a lei de formação $g(x) = (3m - 12)x^2 + 5x - 7$, em que \textbf{m} é uma constante real.
 
 Para que $g(x)$ seja de fato uma função do 2º grau, determine a condição de existência que deve ser rigorosamente respeitada para o valor de \textbf{m}.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} O que aconteceria com a função se o coeficiente numérico que multiplica $x^2$ fosse igual a zero?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
     Para ser do 2º grau, o coeficiente $a$ deve ser não-nulo ($a \neq 0$).
     $3m - 12 \neq 0$
     $3m \neq 12$
     $m \neq \mfrac{12}{3}$
     $m \neq 4$
-    
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Trabalhar restrições paramétricas ajuda o aluno a ver a função como uma estrutura, e não apenas números fixos.
-    \end{boxexplicacao}
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Trabalhar restrições paramétricas ajuda o aluno a ver a função como uma estrutura maleável condicionada por leis (condição de existência), e não apenas números fixos estáticos.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{04.} A lei de formação de uma função determina como cada valor de entrada se transforma em um valor de saída. Seja a função $h(x) = -2x^2 + 4x - 1$.
+\subsubsection*{04.} 
+\begin{enunciadoLiteral}
+A lei de formação de uma função determina como cada valor de entrada se transforma em um valor de saída. Seja a função $h(x) = -2x^2 + 4x - 1$.
 
 Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F), apresentando o cálculo comprobatório para cada caso:
 
@@ -237,51 +263,80 @@ Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F)
     \item Se \textbf{x = 0}, a função atinge exatamente o valor do seu coeficiente independente.
     \item O coeficiente quadrático dessa função indica que, ao dobrarmos o valor de \textbf{x}, o resultado final também dobrará.
 \end{enumerate}
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    I) (V) $h(-2) = -2(-2)^2 + 4(-2) - 1 = -2(4) - 8 - 1 = -8 - 8 - 1 = -17$.
-    II) (V) $h(0) = -2(0)^2 + 4(0) - 1 = -1$, que é $c$.
-    III) (F) O quadrado significa que dobrar $x$ quadruplica esse termo, mas a soma muda tudo. (Ex: $h(1)=1$, $h(2)=-1 \neq 2$).
+    \textbf{1. Ancoragem:} Quando substituímos um valor negativo em uma incógnita elevada ao quadrado, qual cuidado devemos ter com o sinal da base?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Verdadeiro (V). Substituindo na lei:
+    $h(-2) = -2(-2)^2 + 4(-2) - 1$
+    $h(-2) = -2(4) - 8 - 1$
+    $h(-2) = -8 - 8 - 1 = -17$.
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} O erro mais comum no item I é o aluno fazer $-2(-2)^2 = (-4)^2$. Reforce a precedência da potência.
-    \end{boxexplicacao}
+    II) Verdadeiro (V). Substituindo $x=0$:
+    $h(0) = -2(0)^2 + 4(0) - 1 = -1$, que é exatamente o valor de $c$.
+    
+    III) Falso (F). A relação não é uma proporção linear simples devido ao quadrado e às somas. Por exemplo:
+    $h(1) = -2(1)^2 + 4(1) - 1 = 1$.
+    Se dobrarmos o valor para $x=2$:
+    $h(2) = -2(2)^2 + 4(2) - 1 = -8 + 8 - 1 = -1$.
+    A imagem não dobrou, provando que é falso.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O erro mais comum no item I é o aluno fazer a operação de forma linear: $-2(-2)^2 = (-4)^2$. Reforce a precedência da potência. No item III, combatemos o vício da "regra de três" para tudo.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{05.} Um engenheiro civil projeta o pilar central de uma estrutura metálica e define que a capacidade de carga $C$, em \textbf{toneladas}, em função da espessura \textbf{x} do pilar, em \textbf{centímetros}, é regida por uma função do tipo $C(x) = ax^2 + c$. Ele sabe que, se a espessura for nula, a carga suportada é zero e que, para um pilar de \textbf{10 cm} de espessura, a capacidade é de \textbf{150 toneladas}.
+\subsubsection*{05.} 
+\begin{enunciadoLiteral}
+Um engenheiro civil projeta o pilar central de uma estrutura metálica e define que a capacidade de carga $C$, em \textbf{toneladas}, em função da espessura \textbf{x} do pilar, em \textbf{centímetros}, é regida por uma função do tipo $C(x) = ax^2 + c$. Ele sabe que, se a espessura for nula, a carga suportada é zero e que, para um pilar de \textbf{10 cm} de espessura, a capacidade é de \textbf{150 toneladas}.
 
 Determine os coeficientes \textbf{a} e \textbf{c} dessa função.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    Espessura nula = Carga zero: $C(0) = a(0)^2 + c = 0 \Rightarrow c = 0$.
-    Pilar 10cm = 150 ton: $C(10) = 150$.
+    \textbf{1. Ancoragem:} Se a espessura é nula, significa que $x=0$. O que a função nos informa sobre o resultado $C(0)$?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Espessura nula = Carga zero: 
+    $C(0) = a(0)^2 + c = 0 \Rightarrow c = 0$.
+    
+    Pilar 10 cm = 150 ton (sabendo agora que $c=0$): 
+    $C(10) = 150$
     $a(10)^2 + 0 = 150$
     $100a = 150 \Rightarrow a = \mfrac{150}{100} = 1.5$.
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Construir o modelo a partir de dados nominais é o primeiro passo para o letramento algébrico em ciências aplicadas.
-    \end{boxexplicacao}
+    Os coeficientes são $a = 1.5$ e $c = 0$.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Construir o modelo algébrico a partir de dados nominais descritos no texto é o primeiro passo para o letramento algébrico em ciências aplicadas.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{06.} (Estilo VUNESP) O setor financeiro de uma pequena fábrica de calçados modelou o seu lucro mensal $L$, em milhares de reais, em função do número \textbf{x} de lotes produzidos. A relação foi validada algébricamente pela lei $L(x) = -x^2 + 40x - 300$.
+\subsubsection*{06.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) O setor financeiro de uma pequena fábrica de calçados modelou o seu lucro mensal $L$, em milhares de reais, em função do número \textbf{x} de lotes produzidos. A relação foi validada algébricamente pela lei $L(x) = -x^2 + 40x - 300$.
 
 Considerando as propriedades fundamentais dessa função, julgue os itens a seguir com Verdadeiro (V) ou Falso (F):
 
@@ -290,27 +345,40 @@ Considerando as propriedades fundamentais dessa função, julgue os itens a segu
     \item O coeficiente \textbf{a} negativo indica uma limitação física ou de mercado, sugerindo que o aumento infinito da produção não gerará aumento infinito de lucro.
     \item A produção de exatamente \textbf{10 lotes} garante lucro positivo para a empresa.
 \end{enumerate}
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    I) (V) Se $x = 0$, $L(0) = -300$.
-    II) (V) Um "a" negativo desenha uma parábola côncava para baixo (limite de teto).
-    III) (F) Para $x = 10$, $L(10) = -(10)^2 + 40(10) - 300 = -100 + 400 - 300 = 0$ (lucro neutro, raiz).
+    \textbf{1. Ancoragem:} Se substituirmos $x=10$ na função, o resultado final terá sinal positivo (lucro) ou será nulo/negativo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Verdadeiro (V). A não produção implica em $x = 0$.
+    $L(0) = -300$. O valor negativo representa um prejuízo de 300 (milhares).
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Aborda a modelagem matemática na economia. Interpretar o prejuízo (y-intercept) é um conceito-chave.
-    \end{boxexplicacao}
+    II) Verdadeiro (V). Um coeficiente $a = -1$ desenha uma parábola com a concavidade voltada para baixo. Geometricamente, isso representa a existência de um ponto de máximo absoluto (um teto de lucro).
+    
+    III) Falso (F). Vamos testar $x = 10$:
+    $L(10) = -(10)^2 + 40(10) - 300$
+    $L(10) = -100 + 400 - 300 = 0$.
+    O resultado é zero (uma raiz da função). Isso significa empate de fluxo, e não um lucro positivo.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Aborda perfeitamente a modelagem matemática na economia. Interpretar o prejuízo como o intercepto no eixo y (o custo fixo) é um conceito chave cobrado em vestibulares.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{07.} Em uma montadora de veículos, uma peça plana de aço precisa ser recortada por uma máquina a laser. O modelo da peça tem formato retangular, e, para aliviar peso, um retângulo central menor será removido, conforme a vista frontal abaixo. O recorte interno e as margens da peça dependem do parâmetro \textbf{x}, medido em \textbf{milímetros}.
+\subsubsection*{07.} 
+\begin{enunciadoLiteral}
+Em uma montadora de veículos, uma peça plana de aço precisa ser recortada por uma máquina a laser. O modelo da peça tem formato retangular, e, para aliviar peso, um retângulo central menor será removido, conforme a vista frontal abaixo. O recorte interno e as margens da peça dependem do parâmetro \textbf{x}, medido em \textbf{milímetros}.
 
 \begin{center}
 % ==========================================
@@ -341,98 +409,2072 @@ Considerando as propriedades fundamentais dessa função, julgue os itens a segu
 \end{center}
 
 Determine a lei de formação da função polinomial do 2º grau que descreve a área útil de aço restante $A(x)$ após o recorte. Simplifique ao máximo os termos semelhantes e indique claramente os coeficientes \textbf{a}, \textbf{b} e \textbf{c}.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    Área Peça Maior: $A_1 = (3x + 10)(2x + 5) = 6x^2 + 15x + 20x + 50 = 6x^2 + 35x + 50$
-    Área Recorte: $A_2 = (x + 2)(x) = x^2 + 2x$
-    Área Restante: $A(x) = A_1 - A_2 = (6x^2 + 35x + 50) - (x^2 + 2x)$
-    $A(x) = 5x^2 + 33x + 50$.
-    Coeficientes: $a = 5$, $b = 33$, $c = 50$.
+    \textbf{1. Ancoragem:} Se calcularmos a área do retângulo grande e a área do retângulo pequeno, que operação matemática nos dará a área da parte escura que sobrou?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Área do retângulo externo (Peça Maior): 
+    $A_1 = (3x + 10)(2x + 5) = 6x^2 + 15x + 20x + 50 = 6x^2 + 35x + 50$
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Uma clássica subtração de áreas. Avalie se os alunos não esquecem de subtrair o $2x$ também (erro de sinal distributivo).
-    \end{boxexplicacao}
+    Área do retângulo interno (Recorte): 
+    $A_2 = (x + 2)(x) = x^2 + 2x$
+    
+    Área útil restante será a subtração $A_1 - A_2$:
+    $A(x) = (6x^2 + 35x + 50) - (x^2 + 2x)$
+    $A(x) = 6x^2 + 35x + 50 - x^2 - 2x$
+    $A(x) = 5x^2 + 33x + 50$.
+    
+    Os coeficientes indicados são: $a = 5$, $b = 33$, $c = 50$.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Uma clássica subtração de áreas. Avalie se os alunos não esquecem de inverter o sinal do segundo monômio ao subtrair, um erro comum é fazer $-x^2 + 2x$ em vez do correto $-x^2 - 2x$.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{08.} (ENEM - Adaptada) Um foguete de sinalização marítima é lançado de um navio durante um treinamento de resgate. A altura \textbf{h}, em \textbf{metros}, atingida pelo foguete em relação ao nível do mar, é descrita em função do tempo \textbf{t}, em \textbf{segundos}, por meio da equação termodinâmica simplificada $h(t) = 10 + 40t - 5t^2$.
+\subsubsection*{08.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Um foguete de sinalização marítima é lançado de um navio durante um treinamento de resgate. A altura \textbf{h}, em \textbf{metros}, atingida pelo foguete em relação ao nível do mar, é descrita em função do tempo \textbf{t}, em \textbf{segundos}, por meio da equação termodinâmica simplificada $h(t) = 10 + 40t - 5t^2$.
 
 A partir da lei de formação apresentada, determine a altura inicial da qual o foguete foi lançado (no instante \textbf{t = 0}) e justifique fisicamente a presença do coeficiente negativo acompanhando o termo quadrático.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    Para $t = 0$, $h(0) = 10$. A altura inicial é de 10 metros. O coeficiente quadrático ($a = -5$) é negativo porque fisicamente ele espelha a aceleração da gravidade, que atua "puxando" o corpo para baixo (aceleração contrária à velocidade de lançamento).
+    \textbf{1. Ancoragem:} Se o instante de lançamento representa o momento inicial no cronômetro, o que devemos substituir na variável do tempo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Calculando a altura inicial para $t = 0$:
+    $h(0) = 10 + 40(0) - 5(0)^2$
+    $h(0) = 10$ metros.
+    A altura inicial do foguete (convés do navio) é de 10 metros acima do nível do mar.
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Conexão vital com Cinemática (Física). O $a = -5$ é metade da aceleração da gravidade ($-g/2$).
-    \end{boxexplicacao}
+    Justificativa física: O coeficiente quadrático ($a = -5$) é negativo porque ele reflete a força da gravidade que atua como uma aceleração constante, "puxando" o projétil em sentido contrário ao seu movimento ascendente, obrigando a parábola a ter a concavidade voltada para baixo até o retorno ao solo.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Conexão vital de interdisciplinaridade com a Cinemática na Física. O $a = -5$ surge diretamente da equação de movimento $s = s_0 + v_0 t - (g/2) t^2$, considerando $g \approx 10$.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{09.} Para que a equação $y = (k^2 - 16)x^2 + (k + 4)x - 8$ represente verdadeiramente o modelo matemático de uma função quadrática, o coeficiente que multiplica $x^2$ deve obedecer a uma restrição vital de não-nulidade. 
+\subsubsection*{09.} 
+\begin{enunciadoLiteral}
+Para que a equação $y = (k^2 - 16)x^2 + (k + 4)x - 8$ represente verdadeiramente o modelo matemático de uma função quadrática, o coeficiente que multiplica $x^2$ deve obedecer a uma restrição vital de não-nulidade. 
 
 Determine os valores reais que a constante \textbf{k} está estritamente proibida de assumir. 
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    O coeficiente de $x^2$ deve ser $\neq 0$.
+    \textbf{1. Ancoragem:} Se o termo que multiplica $x^2$ for igual a zero, a função "cai" para o 1º grau. Qual a inequação que o bloco $(k^2 - 16)$ deve satisfazer?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O coeficiente de $x^2$ deve ser estritamente diferente de zero ($a \neq 0$).
     $k^2 - 16 \neq 0$
     $k^2 \neq 16$
+    Extraindo a raiz de ambos os lados:
     $k \neq \pm \sqrt{16}$
     $k \neq \pm 4$.
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Um erro constante é o aluno lembrar apenas do $k \neq 4$ e esquecer do $k \neq -4$ na extração da raiz.
-    \end{boxexplicacao}
+    A constante $k$ está proibida de assumir os valores $4$ e $-4$.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Um erro constante na resolução de equações incompletas do 2º grau é o aluno isolar $k = 4$ e se esquecer de espelhar o módulo na extração da raiz, omitindo o $k = -4$.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
 
 \noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
 \par\vspace{\espacoPreQuestao}
-\subsubsection*{10.} Em um laboratório de física aplicada, um projétil é disparado horizontalmente, e seu movimento descendente forma um arco perfeitamente modelado por uma função do 2º grau do tipo $f(x) = ax^2 + bx + c$.
+\subsubsection*{10.} 
+\begin{enunciadoLiteral}
+Em um laboratório de física aplicada, um projétil é disparado horizontalmente, e seu movimento descendente forma um arco perfeitamente modelado por uma função do 2º grau do tipo $f(x) = ax^2 + bx + c$.
 
 A câmera de alta velocidade registrou três posições chave num plano cartesiano, sendo \textbf{x} e \textbf{f(x)} em \textbf{metros}. As posições são: $(0, 20)$, $(1, 18)$ e $(-1, 18)$. 
 
 Escreva a lei de formação que descreve a trajetória do projétil neste sistema de referência.
+\end{enunciadoLiteral}
 
 \ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
     \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
-    \small\textbf{\textcolor{CorTitUm}{Resolução do Professor:}}\par\vspace{0.1cm}
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
     \color{CinzaEscuro}
-    Do ponto $(0, 20)$, sabemos que $c = 20$.
-    Do ponto $(1, 18)$: $a(1)^2 + b(1) + 20 = 18 \Rightarrow a + b = -2$.
-    Do ponto $(-1, 18)$: $a(-1)^2 + b(-1) + 20 = 18 \Rightarrow a - b = -2$.
-    Somando o sistema: $2a = -4 \Rightarrow a = -2$.
-    Como $a + b = -2 \Rightarrow -2 + b = -2 \Rightarrow b = 0$.
-    Função: $f(x) = -2x^2 + 20$.
+    \textbf{1. Ancoragem:} O ponto que possui a coordenada $x=0$ é a "chave mestra" para descobrir qual dos três coeficientes (a, b ou c)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Do ponto $(0, 20)$, sabemos que ao substituir $x=0$, a função resulta em 20. Logo, $c = 20$. A função toma a forma: $f(x) = ax^2 + bx + 20$.
     
-    \vspace{0.2cm}
-    \begin{boxexplicacao}
-    \textbf{Nota Pedagógica (Bastidores do Conceito):} Demonstração pura de sistemas simétricos. O $b=0$ aponta o vértice sobre o eixo Y.
-    \end{boxexplicacao}
+    Usando o ponto $(1, 18)$: 
+    $a(1)^2 + b(1) + 20 = 18 \Rightarrow a + b = -2$. (Equação I)
+    
+    Usando o ponto $(-1, 18)$: 
+    $a(-1)^2 + b(-1) + 20 = 18 \Rightarrow a - b = -2$. (Equação II)
+    
+    Somando o sistema linear das Equações I e II:
+    $(a + b) + (a - b) = -2 + (-2)$
+    $2a = -4 \Rightarrow a = -2$.
+    
+    Substituindo $a$ na Equação I:
+    $-2 + b = -2 \Rightarrow b = 0$.
+    
+    A lei de formação é $f(x) = -2x^2 + 20$.
     \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Demonstração pura de sistemas simétricos. O resultado de $b=0$ aponta que o vértice está alinhado diretamente sobre o eixo Y.
+    \end{boxexplicacao}
 \fi
 
 \par\vspace{\espacoQuestao}
+\subsection*{Capítulo 2: Gráfico - Parábola}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} 
+\begin{enunciadoLiteral}
+A representação gráfica de uma função quadrática é uma curva chamada parábola, que possui características visuais diretamente ligadas aos seus coeficientes. Observe o gráfico de uma função $f(x) = ax^2 + bx + c$ desenhado no plano cartesiano abaixo.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS ---
+\definecolor{eixo}{HTML}{2C3E50}
+\definecolor{curva}{HTML}{E74C3C}
+\definecolor{fundo}{HTML}{ECF0F1}
+
+% LAYER 1: Fundo com grid leve
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-3) rectangle (5,5);
+\draw[step=1cm, gray!40, thin] (-1.9,-2.9) grid (4.9,4.9);
+
+% LAYER 2: Eixos
+\draw[thick, ->, eixo] (-2,0) -- (5,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-3) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Parábola (y = x^2 - 4x + 3)
+\draw[ultra thick, curva, smooth, samples=50, domain=-0.2:4.2] plot (\x, {\x*\x - 4*\x + 3});
+
+% LAYER 4: Pontos de destaque
+\filldraw[eixo] (0,3) circle (2.5pt) node[right, fill=fundo, inner sep=1.5pt] {\textbf{3}};
+\filldraw[eixo] (1,0) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{1}};
+\filldraw[eixo] (3,0) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{3}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base estritamente na análise visual da figura, determine o sinal do coeficiente quadrático \textbf{a} (positivo ou negativo) e o valor exato do coeficiente independente \textbf{c}. Justifique ambas as respostas com base no comportamento da curva geométrica.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para onde a "boca" (concavidade) da parábola está apontando? E em qual coordenada exata a curva azul corta a linha vertical do eixo y?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1) O coeficiente $a$ é \textbf{positivo} ($a > 0$), pois a concavidade da parábola está voltada para cima.
+    
+    2) O coeficiente independente é $c = 3$. 
+    Justificativa: A parábola intercepta o eixo vertical (eixo y) exatamente no ponto de coordenada $(0, 3)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Avaliação direta de alfabetização gráfica. Muitos alunos confundem o vértice com o ponto c. É importante frisar que o c sempre mora no eixo y, independentemente de onde esteja a curva.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} 
+\begin{enunciadoLiteral}
+O coeficiente independente de uma função do 2º grau é o grande responsável por revelar onde a parábola "corta" o eixo vertical das ordenadas. Dada a função $g(x) = -5x^2 + 12x - 18$.
+
+Determine as coordenadas exatas do ponto de intersecção do gráfico de $g(x)$ com o eixo \textbf{y}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Qualquer ponto localizado em cima do eixo y obrigatoriamente possui qual valor para a coordenada x?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O ponto de intersecção com o eixo y ocorre quando $x = 0$.
+    Substituindo na lei de formação:
+    $g(0) = -5(0)^2 + 12(0) - 18$
+    $g(0) = -18$
+    
+    Como o exercício exige as "coordenadas exatas", a resposta deve ser formatada como um par ordenado: $(0, -18)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão focada na formalidade notacional. Exigir que o aluno entregue o par ordenado $(x, y)$ previne o erro comum de simplesmente responder "-18" sem contextualizar geometricamente.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} 
+\begin{enunciadoLiteral}
+O estudo do esboço de parábolas permite prever o comportamento da função sem a necessidade de desenhá-la ponto a ponto. Considere a função real definida por $h(x) = 2x^2 - 8x$.
+
+Analise as sentenças abaixo e classifique-as como Verdadeiras (V) ou Falsas (F), apresentando o cálculo ou a justificativa teórica para cada caso:
+
+\begin{enumerate}[label=\Roman*.]
+    \item A concavidade desta parábola é voltada para baixo, pois possui um coeficiente linear negativo.
+    \item O gráfico desta função intercepta o eixo vertical exatamente na origem do sistema cartesiano, no ponto $(0, 0)$.
+    \item A função possui duas intersecções distintas com o eixo horizontal das abscissas.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Quem é o verdadeiro "dono" da regra da concavidade: o coeficiente a, o b ou o c? Tente isolar o x na equação para avaliar as raízes.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Falso (F). A concavidade é definida estritamente pelo coeficiente $a$. Como $a=2$ (positivo), a concavidade é voltada para cima. O coeficiente linear $b=-8$ não afeta essa característica.
+    
+    II) Verdadeiro (V). A função não apresenta o termo $c$ escrito, logo $c=0$. Isso garante que a parábola corta o eixo y no ponto $(0,0)$.
+    
+    III) Verdadeiro (V). Igualando a função a zero para achar as raízes:
+    $2x^2 - 8x = 0$
+    Fatorando (colocando 2x em evidência):
+    $2x(x - 4) = 0$
+    Logo, $x = 0$ ou $x = 4$. Possui duas raízes reais distintas, então intercepta o eixo horizontal em dois pontos.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O item I é uma distração clássica para pegar alunos que confundem a com b. O item III introduz a ideia de discriminação de raízes através da fatoração rápida, sem exigir a montagem completa da Fórmula de Bhaskara.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} 
+\begin{enunciadoLiteral}
+A engenharia civil utiliza amplamente o formato parabólico na construção de pontes suspensas para distribuir o peso de forma otimizada. A vista lateral do cabo principal de sustentação de uma ponte é projetada sobre um plano cartesiano.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E CORES ---
+\definecolor{pilar}{HTML}{7F8C8D}
+\definecolor{cabo}{HTML}{2980B9}
+\definecolor{pista}{HTML}{34495E}
+
+% LAYER 1: Pista de rolamento (Fundo/Sombra)
+\fill[drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, pista, rounded corners=2pt] (-1,-0.5) rectangle (7,0);
+\node[fill=pista, text=white, inner sep=2pt] at (3, -0.25) {\textbf{Pista (Eixo x)}};
+
+% LAYER 2: Pilares
+\fill[pilar, rounded corners=1pt] (0,0) rectangle (0.4, 4);
+\fill[pilar, rounded corners=1pt] (5.6,0) rectangle (6, 4);
+
+% LAYER 3: Eixo Y fantasma para referência
+\draw[dashed, thick, ->] (0.2, 0) -- (0.2, 4.5) node[above, fill=white, inner sep=1pt] {\textbf{y}};
+
+% LAYER 4: Cabo parabólico
+\draw[ultra thick, cabo, smooth, samples=50, domain=0.2:5.8] plot (\x, {0.4*(\x-3)*(\x-3) + 0.5});
+
+% LAYER 5: Hastes verticais de sustentação
+\foreach \x in {1, 1.8, 2.6, 3.4, 4.2, 5} {
+    \draw[thin, gray!80!black] (\x, {0.4*(\x-3)*(\x-3) + 0.5}) -- (\x, 0);
+}
+
+% LAYER 6: Cota de altura mínima
+\draw[thick, <->, >=stealth] (3, 0) -- (3, 0.5) node[midway, right, fill=white, inner sep=1pt] {\textbf{5 m}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Admitindo que o pilar da esquerda representa o eixo \textbf{y} e a pista representa o eixo \textbf{x}, explique por que a função quadrática que modela este cabo possui coeficiente \textbf{a} positivo e um coeficiente \textbf{c} obrigatoriamente maior que \textbf{5}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Analise a altura do cabo no ponto exato onde ele se prende ao pilar da esquerda (eixo y). Essa altura está acima ou abaixo do ponto mais baixo (vértice) que mede 5 metros?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1) O coeficiente $a$ é positivo ($a > 0$) porque o formato do cabo de suspensão desenha naturalmente uma parábola com concavidade voltada para cima.
+    
+    2) O coeficiente $c$ representa o ponto de intersecção da curva com o eixo vertical (neste caso, a altura em que o cabo se prende ao pilar da esquerda). Como a cota mínima absoluta do cabo (seu vértice) já está a 5 metros do chão, e os pontos de fixação lateral são visivelmente mais altos para suspender a ponte, o valor de $c$ (altura do pilar) tem que ser estritamente maior que 5.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta questão força o aluno a traduzir um layout visual de engenharia (mínimo global) para os coeficientes matemáticos sem precisar de uma única conta braçal. É pura abstração geométrica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} 
+\begin{enunciadoLiteral}
+Os pontos onde a parábola corta o eixo horizontal são conhecidos como raízes ou zeros da função, locais onde a altura (o valor de \textbf{y}) zera.
+
+Determine algebricamente os pontos exatos de intersecção com o eixo das abscissas para a função $p(x) = x^2 - 10x + 21$. Apresente as respostas na forma de pares ordenados $(x, y)$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se estamos procurando as raízes da função, qual valor devemos atribuir ao $p(x)$? Você prefere usar a Fórmula de Bhaskara ou Soma e Produto?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Igualando a função a zero para encontrar as raízes:
+    $x^2 - 10x + 21 = 0$
+    
+    Usando Soma e Produto:
+    Soma $= \mfrac{-b}{a} = 10$
+    Produto $= \mfrac{c}{a} = 21$
+    Os dois números que somados dão 10 e multiplicados dão 21 são $3$ e $7$.
+    
+    Como representam interceptos do eixo horizontal, a coordenada y é obrigatoriamente zero.
+    Pares ordenados finais: $(3, 0)$ e $(7, 0)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Exigir o resultado final em par ordenado garante que o aluno não encerre o raciocínio apenas encontrando o $x$, forçando a memória de que as raízes habitam sobre a reta cartesiana $y=0$.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) O fluxo de caixa diário de uma loja de eletrônicos, medido em centenas de reais, ao longo de um dia de \textbf{12 horas} de funcionamento, é descrito pela função $F(t) = -t^2 + 10t - 16$, onde \textbf{t} representa as horas passadas desde a abertura da loja.
+
+Se $F(t)$ positivo indica lucro e $F(t)$ negativo indica prejuízo, calcule os instantes \textbf{t} em que o fluxo de caixa foi exatamente nulo. Com base nisso, determine durante quantas horas do dia a loja operou com lucro (fluxo acima de zero).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para descobrir as horas em que a loja passou do prejuízo para o lucro (fluxo zero), devemos calcular as raízes da função. Como o sinal negativo em $t^2$ impacta a curva?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Encontrando os instantes de fluxo nulo:
+    $-t^2 + 10t - 16 = 0$
+    Multiplicando a equação por -1 para facilitar:
+    $t^2 - 10t + 16 = 0$
+    
+    Raízes por Soma e Produto (S = 10, P = 16):
+    $t_1 = 2$ e $t_2 = 8$.
+    
+    A concavidade original é para baixo ($a = -1$). Isso significa que entre a hora 2 e a hora 8, a parábola esteve na parte superior do gráfico (positiva).
+    Tempo operando com lucro: $8 - 2 = 6$ horas.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Introduz sutilmente o estudo do sinal da função. O aluno percebe que o intervalo real contido entre as duas raízes tem um significado prático: a duração temporal da operação rentável.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} 
+\begin{enunciadoLiteral}
+Nem toda função do 2º grau é obrigada a possuir intersecções com o eixo \textbf{x}. Considere a função de custo industrial $C(x) = 2x^2 + 4x + 10$.
+
+Demonstre, através do cálculo do discriminante ($\Delta$), por que o gráfico desta função jamais tocará o eixo horizontal. Em seguida, informe se essa parábola está inteiramente acima ou inteiramente abaixo do eixo das abscissas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Como o sinal do discriminante determina a quantidade de cortes no eixo x? E o que a letra $a$ diz sobre a posição da curva se não há corte?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Cálculo do Discriminante ($\Delta$):
+    $\Delta = b^2 - 4ac$
+    $\Delta = (4)^2 - 4(2)(10)$
+    $\Delta = 16 - 80 = -64$.
+    
+    Como o resultado gerou um $\Delta < 0$ (negativo), a equação não possui raízes reais e, consequentemente, o gráfico não intercepta o eixo x. 
+    
+    Análise de posição: Como o coeficiente quadrático $a = 2$ é positivo, a concavidade da parábola está voltada para cima. Sem poder cruzar o chão, ela é forçada a "flutuar" no plano. Portanto, está inteiramente \textbf{acima} do eixo das abscissas.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Este raciocínio previne o aluno de paralisar ao ver o $\Delta$ negativo. Conectar a negatividade do discriminante com o coeficiente $a$ consolida o entendimento espacial da parábola.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Um jardineiro projeta um sistema de irrigação onde o jato de água do aspersor descreve uma trajetória parabólica perfeitamente simétrica. O sistema cartesiano foi posicionado de forma que o aspersor se encontra na origem.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS ---
+\definecolor{gramado}{HTML}{27AE60}
+\definecolor{agua}{HTML}{3498DB}
+\definecolor{aspersor}{HTML}{7F8C8D}
+
+% LAYER 1: Gramado
+\fill[drop shadow={opacity=0.3, shadow xshift=0pt, shadow yshift=-3pt}, gramado, rounded corners=2pt] (-1,-0.5) rectangle (7,0);
+\node[fill=gramado, text=white, inner sep=2pt] at (6, -0.25) {\textbf{Eixo x}};
+
+% LAYER 2: Eixo Y
+\draw[thick, ->, gray!80!black] (0,-0.5) -- (0,4) node[above, fill=white, inner sep=1pt] {\textbf{Altura (y)}};
+
+% LAYER 3: Trajetória da água (y = -0.5x^2 + 2x -> raízes 0 e 4, vértice em 2, max 2)
+\draw[ultra thick, agua, smooth, dashed, samples=50, domain=0:4] plot (\x, {-0.5*\x*\x + 2*\x});
+
+% LAYER 4: Aspersor e impacto
+\fill[aspersor, rounded corners=1pt] (-0.2,0) rectangle (0.2, 0.3);
+\filldraw[agua] (4,0) circle (3pt) node[above right, fill=white, inner sep=2pt] {\textbf{Ponto de Impacto}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que o jato atinge o solo a uma distância de \textbf{4 metros} da origem e que sua altura máxima ocorreu exatamente na metade do caminho, atingindo \textbf{2 metros} de altura, determine a lei de formação da função $h(x)$ que descreve essa trajetória.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Nós conhecemos as duas raízes do solo (0 e 4) e as coordenadas do vértice na altura máxima. Como podemos usar a forma fatorada $a(x - x_1)(x - x_2)$ para desvendar a equação completa?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    As raízes (onde toca o solo) são $x_1=0$ e $x_2=4$. 
+    O vértice ocorre na metade do caminho, logo $x_v = 2$. A altura máxima neste ponto foi dada como $y_v = 2$. Temos o ponto $(2, 2)$.
+    
+    Usando a forma fatorada: 
+    $h(x) = a(x - x_1)(x - x_2)$
+    $h(x) = a(x - 0)(x - 4) \Rightarrow h(x) = ax(x - 4)$.
+    
+    Substituindo o ponto do vértice $(2, 2)$ para encontrar $a$:
+    $2 = a(2)(2 - 4)$
+    $2 = a(2)(-2)$
+    $2 = -4a \Rightarrow a = -\mfrac{2}{4} = -0.5$.
+    
+    Reconstruindo a equação final: 
+    $h(x) = -0.5x(x - 4)$
+    $h(x) = -0.5x^2 + 2x$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O uso da forma fatorada reduz substancialmente o estresse de criar um sistema $3x3$ enorme. Ensinar os alunos a caçarem o "a" substituindo um ponto notável (como o vértice) torna a resolução ultraeficiente.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} 
+\begin{enunciadoLiteral}
+Ao lançar uma bola de basquete, a trajetória descrita no espaço bidimensional obedece à equação $y = -2x^2 + 12x + 14$, onde \textbf{y} é a altura e \textbf{x} é a distância horizontal percorrida, ambas em \textbf{metros}.
+
+Com base na interpretação geométrica dos coeficientes dessa equação, julgue os itens I, II e III com Verdadeiro (V) ou Falso (F):
+
+\begin{enumerate}[label=\Roman*.]
+    \item A bola foi lançada do chão, pois o eixo \textbf{x} representa o solo e a função corta a origem.
+    \item A distância horizontal percorrida pela bola desde a origem até o momento em que ela toca o solo novamente é de \textbf{7 metros}.
+    \item A concavidade da trajetória, orientada para baixo, é uma imposição da gravidade e é representada matematicamente pelo coeficiente $a = -2$.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se você jogar o valor de $x=0$ na equação (o momento em que a bola sai da mão do jogador), a altura $y$ dá zero?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Falso (F). Em $x=0$, a altura é $y = 14$ (o coeficiente independente). A bola não partiu do chão ($y=0$), partiu de uma altura de 14 metros.
+    
+    II) Verdadeiro (V). Quando toca o solo, a altura $y=0$: 
+    $-2x^2 + 12x + 14 = 0$ (dividindo por -2):
+    $x^2 - 6x - 7 = 0$. 
+    Raízes (S=6, P=-7): $x=-1$ e $x=7$. 
+    Como o movimento parte de $x=0$, a trajetória no domínio real encerra no impacto aos 7 metros.
+    
+    III) Verdadeiro (V). O coeficiente $a=-2$ (negativo) atua na modelagem puxando a concavidade para baixo, refletindo vetorialmente a força da gravidade que atua contra o movimento de subida.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno é provocado a perceber que um arremesso raramente se inicia da coordenada vertical nula. O erro mais recorrente é o aluno calcular raízes mecanicamente e esquecer que a função física depende de um domínio válido no plano cartesiano.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} 
+\begin{enunciadoLiteral}
+Em uma simulação computacional, dois foguetes virtuais possuem trajetórias regidas pelas funções $f(x) = x^2 - 6x + 8$ e $g(x) = -x^2 + 6x - 5$.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- DUAS PARÁBOLAS ESTILO PREMIUM ---
+\definecolor{fogueteA}{HTML}{E67E22}
+\definecolor{fogueteB}{HTML}{8E44AD}
+\definecolor{fundo}{HTML}{F8F9F9}
+
+\begin{axis}[
+    axis lines=middle,
+    width=10cm, height=7cm,
+    ymin=-3, ymax=6,
+    xmin=-1, xmax=7,
+    xtick={1,2,4,5},
+    ytick={-5,8},
+    ticklabel style={fill=white, inner sep=2pt},
+    grid=none,
+    axis line style={thick},
+    background/.style={fill=fundo, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}}
+]
+% Foguete A
+\addplot[ultra thick, fogueteA, smooth, domain=0.5:5.5] {x^2 - 6*x + 8} node[right, pos=0.9, fill=white, inner sep=1pt] {\textbf{f(x)}};
+% Foguete B
+\addplot[ultra thick, fogueteB, smooth, domain=0.5:5.5] {-x^2 + 6*x - 5} node[right, pos=0.8, fill=white, inner sep=1pt] {\textbf{g(x)}};
+\end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem calcular o vértice, mas utilizando apenas a intersecção com o eixo \textbf{x} (as raízes), demonstre algebricamente qual dos dois foguetes virtuais intercepta o solo (eixo \textbf{x}) nos pontos mais distantes entre si. Calcule a distância entre os pontos de contato para ambas as funções.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Encontre as duas raízes de cada função. Se você subtrair a menor da maior raiz, achará o "tamanho" da fresta no chão. Vamos comparar?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Analisando a trajetória de $f(x)$:
+    $x^2 - 6x + 8 = 0$. 
+    Soma $= 6$, Produto $= 8$. Raízes em $x_1=2$ e $x_2=4$.
+    Distância entre pontos de contato: $4 - 2 = 2$ unidades.
+    
+    Analisando a trajetória de $g(x)$:
+    $-x^2 + 6x - 5 = 0 \Rightarrow x^2 - 6x + 5 = 0$. 
+    Soma $= 6$, Produto $= 5$. Raízes em $x_1=1$ e $x_2=5$.
+    Distância entre pontos de contato: $5 - 1 = 4$ unidades.
+    
+    Comparação: O foguete que intercepta o solo nos pontos mais distantes é o governado por \textbf{g(x)} (com uma fresta de 4 unidades de distância contra as 2 unidades de f(x)).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno aplica o conceito de distância geométrica atrelada às coordenadas modulares da reta X ($|x_2 - x_1|$). A presença simultânea da concavidade invertida exige maior foco na manipulação dos sinais.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} 
+\begin{enunciadoLiteral}
+Considere a família de funções quadráticas dadas por $y = ax^2 - 3x + c$. Sabe-se que o gráfico dessa função cruza o eixo vertical no ponto $(0, -10)$ e cruza o eixo horizontal em \textbf{x = 5} e em um outro valor desconhecido.
+
+Encontre o valor do coeficiente \textbf{a} e, em seguida, determine qual é a segunda raiz da função.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} O que o cruzamento no eixo vertical nos diz imediatamente sobre o coeficiente independente $c$? E como podemos usar a raiz $x = 5$ para descobrir o valor de $a$?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1º Passo: Se a parábola corta o eixo y em $(0, -10)$, então $c = -10$.
+    A função fica: $y = ax^2 - 3x - 10$.
+    
+    2º Passo: Se $x = 5$ é uma raiz, então $y = 0$ quando $x = 5$.
+    $0 = a(5)^2 - 3(5) - 10$
+    $0 = 25a - 15 - 10$
+    $25a = 25 \Rightarrow a = 1$.
+    A função completa é $y = x^2 - 3x - 10$.
+    
+    3º Passo: Achando a segunda raiz da equação $x^2 - 3x - 10 = 0$.
+    Por Soma e Produto: $S = 3$ e $P = -10$.
+    Os números que satisfazem são $5$ e $-2$. Logo, a segunda raiz é \textbf{x = -2}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Essa questão constrói o conceito de que pontos dados no gráfico são, na verdade, pares ordenados numéricos que satisfazem a equação algébrica quando substituídos nela, conectando álgebra e geometria analítica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) A temperatura no interior de uma estufa de cultivo de orquídeas sofre variações ao longo do dia, controladas por um termostato. A variação da temperatura $T$, em graus Celsius, em função do tempo \textbf{h}, em horas a partir da meia-noite, segue aproximadamente a lei $T(h) = -h^2 + 14h + 15$.
+
+Para não danificar as plantas, um alarme dispara se a temperatura cair abaixo de $0^\circ \text{C}$. Sabendo que o modelo é válido para $0 \le h \le 24$, analise as afirmações:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A temperatura inicial na estufa à meia-noite era igual a \textbf{0$^\circ$ C}.
+    \item O alarme disparará às \textbf{15 horas} (3 da tarde), pois as raízes indicam os momentos em que a temperatura atinge zero.
+    \item A parábola tem concavidade voltada para cima, indicando que a temperatura subirá infinitamente.
+    \item A estufa só atingirá temperatura zero em $h = 15$.
+    \item O alarme disparará à meia-noite, pois $c = 0$.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se o modelo só é válido a partir da meia-noite ($h=0$), o que devemos fazer com raízes matemáticas que resultem em valores de tempo negativos?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Analisando as alternativas:
+    a) Falsa. Em $h=0$ (meia-noite), a temperatura inicial é $T(0) = 15^\circ \text{C}$ (o coeficiente $c$).
+    
+    b) Falsa no rigor do ENEM (há uma afirmação mais precisa). Raízes: $-h^2 + 14h + 15 = 0 \Rightarrow h^2 - 14h - 15 = 0$. Soma = 14, Produto = -15. Raízes: $h = -1$ (descartada pelo domínio temporal) e $h = 15$.
+    
+    c) Falsa. O $a=-1$, logo a concavidade é voltada para baixo.
+    
+    d) Verdadeira. Como a raiz $h = -1$ está fora do domínio de funcionamento da estufa, o único momento dentro do intervalo válido em que ela atinge zero é às 15h.
+    
+    e) Falsa. O coeficiente é $c = 15$, não 0.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno deve descartar matematicamente a raiz $h = -1$ interpretando a restrição de domínio temporal ($0 \le h \le 24$). A diferença entre a alternativa B e a alternativa D é o refinamento de leitura exigido pelo ENEM.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} 
+\begin{enunciadoLiteral}
+O gráfico de uma função quadrática da forma $f(x) = x^2 + bx + c$ é uma parábola que intercepta o eixo \textbf{x} nos pontos de coordenadas $(-3, 0)$ e $(7, 0)$.
+
+A partir exclusivamente dessas informações gráficas, monte a lei de formação da função e determine o ponto exato onde a parábola "cortará" o eixo vertical \textbf{y}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que as raízes são $-3$ e $7$ e o coeficiente $a$ é $1$, como a estrutura da forma fatorada $a(x - x_1)(x - x_2)$ nos permite montar a função rapidamente?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Como o coeficiente $a=1$ foi fornecido sutilmente no enunciado (termo $x^2$), aplicamos a forma fatorada:
+    $f(x) = a(x - x_1)(x - x_2)$
+    $f(x) = 1(x - (-3))(x - 7)$
+    $f(x) = (x + 3)(x - 7)$
+    $f(x) = x^2 - 7x + 3x - 21$
+    $f(x) = x^2 - 4x - 21$.
+    
+    O corte no eixo y sempre ocorre no valor de $c$, que neste caso é $-21$.
+    O ponto exato é o par ordenado $(0, -21)$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Estimule os alunos a usarem a forma fatorada ao invés de montarem um sistema algébrico gigante ($9 - 3b + c = 0$ e $49 + 7b + c = 0$). A forma fatorada poupa tempo precioso em exames.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} 
+\begin{enunciadoLiteral}
+No estudo de física óptica, a seção transversal de um espelho refletor astronômico pode ser modelada por uma parábola no plano cartesiano. A base do espelho repousa sobre a origem, logo o vértice da parábola é $(0,0)$.
+
+Se o espelho possui uma concavidade voltada para cima e passa pelo ponto de coordenadas $(4, 8)$, determine a equação polinomial do 2º grau completa que rege esta curva. 
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Quando o vértice de uma parábola está exatamente na origem do plano cartesiano, o que acontece matematicamente com os coeficientes $b$ e $c$?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Se o vértice está na origem $(0,0)$, a parábola corta os eixos $x$ e $y$ no marco zero. Isso significa obrigatoriamente que $c = 0$ e $b = 0$.
+    A função é do tipo puro: $y = ax^2$.
+    
+    Para encontrar o valor de $a$, substituímos o ponto dado $(4, 8)$ onde $x = 4$ e $y = 8$:
+    $8 = a(4)^2$
+    $8 = 16a \Rightarrow a = \mfrac{8}{16} \Rightarrow a = \mfrac{1}{2}$ (ou $0.5$).
+    
+    Equação completa: $y = \mfrac{1}{2}x^2 + 0x + 0$ (aceita-se $y = 0.5x^2$).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno descobre o atalho analítico de que parábolas centradas na origem pertencem à família simples $y = ax^2$, zerando os coeficientes lineares e independentes de imediato.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} 
+\begin{enunciadoLiteral}
+(FUVEST - Adaptada) A trajetória de uma gota d'água expelida por uma roda d'água em movimento pode ser descrita num referencial cartesiano. Sabe-se que a gota passa pelos pontos $A(-1, 0)$, $B(3, 0)$ e intercepta o eixo vertical no ponto $C(0, 6)$.
+
+A lei de formação polinomial do 2º grau que descreve a trajetória geométrica desta gota d'água no ar é dada por:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $y = -2x^2 + 4x + 6$
+    \item $y = -x^2 + 2x + 6$
+    \item $y = 2x^2 - 4x + 6$
+    \item $y = -2x^2 - 4x + 6$
+    \item $y = x^2 - 2x + 6$
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que os pontos A e B estão sobre o eixo horizontal, eles são as nossas raízes. Qual estrutura algébrica é ideal para injetarmos essas raízes e o ponto C?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Os pontos $A(-1, 0)$ e $B(3, 0)$ são raízes, logo $x_1 = -1$ e $x_2 = 3$.
+    O ponto $C(0, 6)$ nos diz diretamente que o termo independente é $c = 6$.
+    
+    Usando a forma fatorada: $y = a(x - x_1)(x - x_2)$
+    $y = a(x - (-1))(x - 3) \Rightarrow y = a(x + 1)(x - 3)$.
+    
+    Substituindo o ponto $(0, 6)$ para encontrar $a$:
+    $6 = a(0 + 1)(0 - 3)$
+    $6 = a(1)(-3) \Rightarrow -3a = 6 \Rightarrow a = -2$.
+    
+    Retornando à equação e desenvolvendo a distributiva:
+    $y = -2(x + 1)(x - 3) = -2(x^2 - 3x + x - 3)$
+    $y = -2(x^2 - 2x - 3) = -2x^2 + 4x + 6$.
+    
+    Alternativa Correta: \textbf{a}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Consagra a importância de mesclar as raízes (forma fatorada) e o intercepto y para achar o fator "a" rapidamente. É uma técnica vital para ganhar tempo em provas extensas.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\subsection*{Capítulo 3: Vértice e Eixo de Simetria}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{26.} 
+\begin{enunciadoLiteral}
+O vértice de uma parábola representa o ponto de inflexão extrema do gráfico de uma função quadrática, indicando o valor máximo ou mínimo que a relação pode atingir. Considere a função $f(x) = x^2 - 12x + 32$.
+
+Determine algebricamente as coordenadas exatas $(x_v, y_v)$ do vértice desta parábola. Em seguida, justifique se este ponto representa um valor máximo ou mínimo para a função.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} As coordenadas do vértice exigem que encontremos primeiro o seu $x_v$. O que o sinal do coeficiente 'a' diz sobre esse vértice ser um topo ou um fundo de vale?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Coordenada X do vértice:
+    $x_v = \mfrac{-b}{2a} = \mfrac{-(-12)}{2(1)} = \mfrac{12}{2} = 6$.
+    
+    Coordenada Y do vértice (obtida substituindo $x_v$ na função):
+    $y_v = f(6) = (6)^2 - 12(6) + 32$
+    $y_v = 36 - 72 + 32 = -36 + 32 = -4$.
+    (Também poderia ser calculado por $y_v = \mfrac{-\Delta}{4a}$).
+    
+    O vértice é o ponto $(6, -4)$. Como o coeficiente $a = 1 > 0$, a concavidade da parábola é voltada para cima (formato de "U"). Portanto, o vértice fica na base e representa um valor \textbf{mínimo}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Mostrar ao aluno que o cálculo do $y_v$ através de $f(x_v)$ costuma ser mais rápido e intuitivo do que decorar e calcular o $-\Delta/4a$, evitando erros de sinais na fração.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} 
+\begin{enunciadoLiteral}
+O eixo de simetria é uma reta vertical imaginária que divide a parábola em duas metades espelhadas perfeitamente congruentes. O plano cartesiano abaixo exibe o gráfico de uma função do 2º grau e sua malha referencial.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS PREMIUM ---
+\definecolor{fundo}{HTML}{FDFEFE}
+\definecolor{malha}{HTML}{BDC3C7}
+\definecolor{eixo}{HTML}{2C3E50}
+\definecolor{parabola}{HTML}{8E44AD}
+\definecolor{simetria}{HTML}{E67E22}
+
+% LAYER 1: Fundo com Grid
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-5) rectangle (6,5);
+\draw[step=1cm, malha, thin] (-1.9,-4.9) grid (5.9,4.9);
+
+% LAYER 2: Eixos Cartesianos
+\draw[thick, ->, eixo] (-2,0) -- (6,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-5) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Reta do Eixo de Simetria
+\draw[ultra thick, dashed, simetria] (2,-5) -- (2,5);
+\node[fill=fundo, text=simetria, inner sep=2pt] at (3.5, 4.2) {\textbf{Eixo de simetria}};
+
+% LAYER 4: Parábola
+\draw[ultra thick, parabola, smooth, samples=50, domain=-1:5] plot (\x, {\x*\x - 4*\x - 1});
+
+% LAYER 5: Destaque do Vértice
+\filldraw[eixo] (2,-5) circle (2.5pt) node[below right, fill=fundo, inner sep=1.5pt] {\textbf{V}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sem realizar cálculos complexos, extraia da leitura do gráfico a equação matemática da reta que representa o eixo de simetria e indique as coordenadas do vértice \textbf{V}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Siga a reta tracejada até cruzar o eixo horizontal (eixo x). Qual é o número demarcado nela?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Leitura visual do gráfico através do grid cartesiano:
+    A reta tracejada (eixo de simetria) passa perpendicularmente sobre a coordenada $x = 2$ do eixo das abscissas. Como todos os pontos dessa reta têm $x=2$, a sua equação geométrica é exatamente \textbf{x = 2}.
+    
+    O ponto $V$ (vértice) encontra-se na base da parábola, que intercepta a grade vertical na altura $y = -5$.
+    Coordenadas do vértice: \textbf{V(2, -5)}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Exercício contemplativo e visual. O aluno aprende a extrair o $x_v$ (na forma de equação de reta) e o $y_v$ apenas pela contagem dos quadrados, conectando o visual com o algébrico abstrato.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} 
+\begin{enunciadoLiteral}
+As fórmulas do vértice $x_v = \mfrac{-b}{2a}$ e $y_v = \mfrac{-\Delta}{4a}$ são ferramentas fundamentais para a análise de funções sem a necessidade de desenhar o gráfico completo. Considere a função $C(x) = 2x^2 + 8x - 10$.
+
+Julgue as proposições abaixo como Verdadeiras (V) ou Falsas (F), apresentando os cálculos que atestam sua conclusão:
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item O eixo de simetria desta parábola é a reta definida pela equação \textbf{x = -2}.
+    \item A função atinge seu valor mínimo exatamente no ponto de ordenada \textbf{y = -18}.
+    \item A concavidade da função indica que a parábola possui um ponto de máximo, e não de mínimo.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que o valor numérico que define o eixo de simetria é o mesmo do $x_v$, como podemos iniciar o cálculo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Verdadeiro (V). Calculando o eixo de simetria pelo vértice:
+    $x_v = \mfrac{-b}{2a} = \mfrac{-8}{2(2)} = \mfrac{-8}{4} = -2$. O eixo é a reta $x = -2$.
+    
+    II) Verdadeiro (V). Substituindo o $x_v$ na função para achar a altura $y_v$:
+    $C(-2) = 2(-2)^2 + 8(-2) - 10$
+    $C(-2) = 2(4) - 16 - 10 = 8 - 26 = -18$. 
+    O valor mínimo extremo ocorre na ordenada $y = -18$.
+    
+    III) Falso (F). O coeficiente quadrático $a = 2$ é positivo. Parábolas com a concavidade para cima desenvolvem um fundo, logo formam um ponto de \textbf{mínimo} absoluto, e não máximo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Uma consolidação pura das fórmulas de vértice. Exige do aluno a articulação correta entre calcular mecanicamente e compreender que esses números ditam eixos espaciais e limites geométricos.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} 
+\begin{enunciadoLiteral}
+Na indústria, a minimização de custos é uma aplicação direta do estudo de vértices. O custo de produção diário de uma confecção, em reais, é modelado pela equação $C(p) = 4p^2 - 40p + 300$, onde \textbf{p} é a quantidade de lotes de camisas fabricadas no dia.
+
+Determine a quantidade exata de lotes que deve ser produzida para que o custo da fábrica seja o menor possível e informe qual é o valor em reais desse custo mínimo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para minimizar os custos num cenário empresarial modelado por parábola, qual parte geométrica precisamos encontrar: raízes ou o vértice?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A quantidade (eixo x) que minimiza o custo é dada pela coordenada $x_v$ (aqui chamada de $p_v$):
+    $p_v = \mfrac{-(-40)}{2(4)} = \mfrac{40}{8} = 5$ lotes.
+    
+    O custo mínimo é o valor financeiro associado a essa produção, correspondendo à coordenada $y_v$ ($C_{min}$). Substituindo $p=5$ na equação:
+    $C(5) = 4(5)^2 - 40(5) + 300$
+    $C(5) = 4(25) - 200 + 300$
+    $C(5) = 100 - 200 + 300 = 200$.
+    
+    A fábrica deve produzir \textbf{5 lotes} e o custo mínimo gerado será de \textbf{R\$ 200,00}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Problema balizador para associar o componente "x" do vértice como a "quantidade/variável de ajuste", e o "y" do vértice como o "valor monetário limite/resultado de caixa".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} 
+\begin{enunciadoLiteral}
+As coordenadas do vértice podem ajudar a desvendar os coeficientes ocultos de uma função. Sabe-se que a parábola descrita por $g(x) = -3x^2 + bx + 12$ possui o eixo de simetria passando exatamente sobre a reta \textbf{x = 2}.
+
+Com base nessa restrição geométrica, descubra o valor do coeficiente linear \textbf{b} e, em seguida, calcule o valor máximo que a função $g(x)$ pode alcançar.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que a reta $x=2$ é o eixo de simetria, esse valor 2 equivale a qual fórmula do vértice? Use-a de forma inversa.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O eixo de simetria ocupa o mesmo lugar geométrico da coordenada $x_v$. Logo, $x_v = 2$.
+    Aplicando a fórmula $x_v = \mfrac{-b}{2a}$:
+    $2 = \mfrac{-b}{2(-3)}$
+    $2 = \mfrac{-b}{-6}$
+    $-12 = -b \Rightarrow b = 12$.
+    
+    A função completa reconstruída é $g(x) = -3x^2 + 12x + 12$.
+    
+    O valor máximo é ditado pela coordenada $y_v$, que se acha substituindo o $x_v = 2$ na função:
+    $g(2) = -3(2)^2 + 12(2) + 12$
+    $g(2) = -3(4) + 24 + 12$
+    $g(2) = -12 + 36 = 24$.
+    
+    O coeficiente é $b = 12$ e o valor máximo alcançado é \textbf{24}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Prática de engenharia reversa algébrica. O aluno parte da resposta do $x_v$ (extraído da informação do eixo de simetria) e usa a própria equação para descobrir a constante que estava escondida.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{31.} 
+\begin{enunciadoLiteral}
+Em um torneio colegial de basquete, um arremesso perfeito descreve uma trajetória descrita pela função $h(x) = -0.2x^2 + 1.2x + 1.8$, onde \textbf{h} é a altura da bola em \textbf{metros} e \textbf{x} é a distância horizontal percorrida a partir do momento em que a bola deixa a mão do jogador.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, LAYERS E HEX ---
+\definecolor{quadra}{HTML}{D35400}
+\definecolor{parede}{HTML}{34495E}
+\definecolor{bola}{HTML}{E67E22}
+\definecolor{cesta}{HTML}{C0392B}
+
+% LAYER 1: Cenário Fundo e Chão
+\fill[drop shadow={opacity=0.25, shadow xshift=2pt, shadow yshift=-2pt}, parede, rounded corners=2pt] (0,0) rectangle (8,5);
+\fill[quadra] (0,0) rectangle (8,0.5);
+\node[fill=quadra, text=white, inner sep=2pt] at (4, 0.25) {\textbf{Piso da Quadra (Eixo x)}};
+
+% LAYER 2: Eixo Y fantasma e jogador abstrato
+\draw[thick, ->, white] (0.5, 0.5) -- (0.5, 4.5) node[above, fill=parede, inner sep=1pt] {\textbf{Altura (h)}};
+\fill[white, rounded corners=1pt] (0.2, 0.5) rectangle (0.8, 1.8);
+
+% LAYER 3: Cesta e tabela
+\fill[white, drop shadow={opacity=0.2}] (7.2, 2.5) rectangle (7.4, 4);
+\draw[ultra thick, cesta] (6.5, 3) -- (7.2, 3);
+\draw[thick, white] (6.5, 3) -- (6.7, 2.7) -- (7, 2.7) -- (7.2, 3);
+
+% LAYER 4: Trajetória e Bola no topo
+\draw[ultra thick, dashed, bola, smooth, samples=50, domain=0.5:6.8] plot (\x, {-0.2*(\x-3)*(\x-3) + 3.6});
+\filldraw[bola, drop shadow={opacity=0.3}] (3, 3.6) circle (4pt);
+
+% LAYER 5: Cotas e indicações
+\draw[thick, <->, white, >=stealth] (3, 0.5) -- (3, 3.6) node[midway, fill=parede, inner sep=2pt] {\textbf{$h_{max}$}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que a tabela da cesta de basquete exige um arco alto para a entrada perfeita da bola, calcule, em \textbf{metros}, a altura máxima alcançada por este arremesso durante a trajetória.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para calcularmos a altura (eixo y) no topo da trajetória, precisamos primeiro descobrir a que distância horizontal ($x_v$) esse ponto ocorre.\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A altura máxima corresponde à coordenada $y_v$ do vértice.
+    Primeiro, achamos $x_v$:
+    $x_v = \mfrac{-b}{2a} = \mfrac{-1.2}{2(-0.2)} = \mfrac{-1.2}{-0.4} = 3$.
+    
+    Substituindo $x=3$ na função para achar $y_v$:
+    $h(3) = -0.2(3)^2 + 1.2(3) + 1.8$
+    $h(3) = -0.2(9) + 3.6 + 1.8$
+    $h(3) = -1.8 + 3.6 + 1.8 = 3.6$.
+    
+    A altura máxima é de \textbf{3.6 metros}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Mostre que o $1.8$ no final da equação ($c$) indica que a bola saiu a 1,8m do chão (altura da mão do jogador no momento do arremesso), confirmando visualmente a figura e a veracidade da modelagem.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{32.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) O departamento financeiro de uma startup de tecnologia conseguiu estabelecer que o lucro diário $L$, em milhares de reais, proveniente da venda de um software por assinatura é expresso pela função $L(x) = -2x^2 + 120x - 1000$, onde \textbf{x} representa o número de centenas de assinaturas vendidas por dia.
+
+Para maximizar o faturamento da empresa sem sobrecarregar os servidores, determine a quantidade de assinaturas diárias que deve ser comercializada para atingir o lucro máximo. Calcule, também, o valor desse lucro.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se $x$ está em "centenas" e o lucro em "milhares", por quanto devemos multiplicar os resultados do vértice para dar a resposta final real?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A quantidade ideal é o $x_v$:
+    $x_v = \mfrac{-120}{2(-2)} = \mfrac{-120}{-4} = 30$.
+    Como $x$ está em centenas, a quantidade real é $30 \cdot 100 = 3000$ assinaturas.
+    
+    O lucro máximo ($y_v$) é $L(30)$:
+    $L(30) = -2(30)^2 + 120(30) - 1000$
+    $L(30) = -2(900) + 3600 - 1000$
+    $L(30) = -1800 + 3600 - 1000 = 800$.
+    Como $L$ está em milhares, o lucro real é $800 \cdot 1000 = $ \textbf{R\$ 800.000,00}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno precisa estar alerta à ordem de grandeza descrita no texto ("em milhares", "em centenas"). Esta é uma armadilha clássica da VUNESP que testa a leitura atenta além do puro cálculo mecânico.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{33.} 
+\begin{enunciadoLiteral}
+Uma propriedade valiosa da parábola é a simetria de suas raízes em relação ao vértice. Sabendo que a função quadrática $f(x) = x^2 - 10x + 24$ possui raízes que cortam o eixo das abscissas, comprove matematicamente que a coordenada $x_v$ do vértice equivale exatamente à média aritmética das raízes dessa função.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se calcularmos as duas raízes da equação e dividirmos a soma delas por 2 (média), o resultado baterá com qual fórmula da função quadrática?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1º Etapa: Encontrando as raízes.
+    $x^2 - 10x + 24 = 0$
+    Soma $= 10$ e Produto $= 24$. As raízes são $x_1 = 4$ e $x_2 = 6$.
+    Média aritmética das raízes: $\mfrac{4 + 6}{2} = \mfrac{10}{2} = 5$.
+    
+    2º Etapa: Calculando $x_v$ pela fórmula tradicional.
+    $x_v = \mfrac{-b}{2a} = \mfrac{-(-10)}{2(1)} = \mfrac{10}{2} = 5$.
+    
+    Conclusão: Ambos os valores resultam em 5. Isso comprova algebricamente que o eixo de simetria ($x_v$) passa exatamente na metade da distância entre as duas raízes da parábola.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Essa prova constrói a fundação para lidar com problemas complexos (frequentemente de vestibular) de parábolas incompletas, onde conhecemos apenas os cortes no eixo X e precisamos intuir o vértice por simetria.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{34.} 
+\begin{enunciadoLiteral}
+Um fazendeiro deseja construir um curral de confinamento de formato retangular utilizando exatamente \textbf{120 metros} lineares de cerca de arame estruturado. Para economizar material, ele fará o curral aproveitando o muro reto e já existente do celeiro para fechar um dos quatro lados do retângulo.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0.8cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, TEXTURAS E CAMADAS ---
+\definecolor{celeiro}{HTML}{C0392B}
+\definecolor{grama}{HTML}{27AE60}
+\definecolor{cerca}{HTML}{7F8C8D}
+
+% LAYER 1: Grama e Fundo
+\fill[grama, rounded corners=2pt, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (-1,-1) rectangle (7,4);
+
+% LAYER 2: Muro do Celeiro
+\fill[celeiro, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-1,2.5) rectangle (7,3.5);
+\node[fill=celeiro, text=white, inner sep=2pt] at (3, 3) {\textbf{Muro de Alvenaria do Celeiro}};
+
+% LAYER 3: Cerca Metálica
+\draw[ultra thick, cerca, drop shadow={opacity=0.4}] (1,2.5) -- (1,0) -- (5,0) -- (5,2.5);
+\draw[dashed, thick, white] (1,2.5) -- (5,2.5); % Lado sem cerca
+
+% LAYER 4: Cotas de área
+\node[fill=grama, text=white, inner sep=2pt] at (3, 1.25) {\textbf{Área do Curral: A(x)}};
+\draw[thick, <->, white, >=stealth] (0.6, 0) -- (0.6, 2.5) node[midway, fill=grama, inner sep=2pt] {\textbf{x}};
+\draw[thick, <->, white, >=stealth] (5.4, 0) -- (5.4, 2.5) node[midway, fill=grama, inner sep=2pt] {\textbf{x}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se \textbf{x} representa a medida dos lados perpendiculares ao celeiro, monte a função $A(x)$ que representa a área do curral. Com base no cálculo do vértice, qual deve ser o valor de \textbf{x} para garantir a maior área útil de confinamento possível?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se usamos a cerca em apenas 3 lados e gastamos "2x" para fazer as laterais, quanto arame sobrou para fazer o lado da frente (paralelo ao muro)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O curral usará 3 lados de cerca para consumir os 120 metros. 
+    Temos dois lados medindo $x$. O terceiro lado (paralelo ao muro) medirá o que sobrar: $120 - 2x$.
+    
+    A função Área é base vezes altura:
+    $A(x) = x \cdot (120 - 2x) = -2x^2 + 120x$.
+    
+    A maior área útil ocorre no $x$ do vértice ($x_v$):
+    $x_v = \mfrac{-120}{2(-2)} = \mfrac{-120}{-4} = 30$.
+    
+    O valor que garante a maior área possível é \textbf{x = 30 metros}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Problema canônico de otimização isométrica. É fundamental que o aluno entenda, raciocinando, de onde saiu a expressão algébrica "120 - 2x" sem que a imagem a entregue de bandeja.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{35.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Para otimizar a iluminação de uma praça pública, arquitetos desenharam um refletor cujo perfil interno acompanha o arco de uma parábola. Em um projeto no plano cartesiano, os projetistas definiram o vértice exatamente na origem $(0,0)$. O refletor possui \textbf{20 cm} de largura total na sua borda superior.
+
+Sabendo que o arco do refletor é moldado pela função algébrica $y = \mfrac{1}{5}x^2$, onde \textbf{x} e \textbf{y} estão em \textbf{centímetros}, determine a profundidade exata (altura máxima \textbf{y}) desse refletor em seu ponto central.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se o refletor tem 20 cm de largura e seu fundo está centralizado na origem do eixo cartesiano, quais são as coordenadas $x$ nas duas pontas superiores?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Se o vértice está na origem $(0,0)$ e a largura total é 20 cm, a simetria obriga que o refletor vá de $x = -10$ até $x = 10$.
+    
+    Para achar a profundidade total (a altura $y$), basta substituir a extremidade lateral ($x = 10$) na lei de formação:
+    $y = \mfrac{1}{5}(10)^2$
+    $y = \mfrac{100}{5} = 20$.
+    
+    A profundidade exata do refletor em seu ponto central é de \textbf{20 cm}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno frequentemente substitui $x = 20$ direto na fórmula por falta de abstração. O desafio metacognitivo aqui é extrair a metade (o raio/borda da parábola) compreendendo a simetria intrínseca do vértice na origem.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{36.} 
+\begin{enunciadoLiteral}
+A dinâmica dos coeficientes altera profundamente a posição do vértice no plano. Observe o comportamento da função original $P(x) = x^2 - 6x + 10$ e julgue os itens I, II e III como Verdadeiros (V) ou Falsos (F):
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Se aumentarmos o valor do termo independente \textbf{c} de 10 para 20, a coordenada $x_v$ não sofrerá alteração, mas a parábola inteira se moverá para cima.
+    \item A coordenada $x_v$ da função $P(x)$ está localizada do lado esquerdo do eixo vertical (possui valor negativo).
+    \item A menor altura que o gráfico dessa função atinge no eixo \textbf{y} é \textbf{1}.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} O termo $c$ faz parte da fórmula $x_v = -b/2a$? O que acontece graficamente se mudarmos apenas o intercepto vertical?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Verdadeiro (V). O termo independente $c$ não entra na fórmula do eixo de simetria ($x_v = -b/2a$). Ele atua apenas na translação vertical do gráfico, deslizando a parábola para cima se aumentarmos o seu valor.
+    
+    II) Falso (F). Calculando o vértice: $x_v = \mfrac{-(-6)}{2(1)} = 3$. O número $3$ é positivo, então ele está do lado direito do eixo vertical, não do esquerdo.
+    
+    III) Verdadeiro (V). A menor altura (mínimo global) é o $y_v$.
+    $y_v = P(3) = (3)^2 - 6(3) + 10 = 9 - 18 + 10 = 1$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Explorar a "translação de gráficos" de forma puramente teórica e algébrica, uma habilidade que economiza muitos traçados desnecessários em provas de alto rendimento.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{37.} 
+\begin{enunciadoLiteral}
+(Estilo FUVEST) A farmacologia estuda a velocidade de absorção de medicamentos. Um teste clínico determinou que a concentração $C$, em miligramas por litro, de um antitérmico na corrente sanguínea de um paciente infantil é regida pela função $C(t) = -2t^2 + 8t + 10$, onde \textbf{t} é o tempo decorrido, em \textbf{horas}, após a ingestão.
+
+De acordo com essa modelagem terapêutica, após quantas horas o medicamento atingirá a sua concentração máxima no organismo do paciente? Qual será, nesse momento, a quantidade em \textbf{mg/L} de medicamento presente no sangue?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Temos duas perguntas ligadas ao pico do gráfico. Qual delas pede o $x_v$ (tempo) e qual pede o $y_v$ (concentração da substância)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Tempo máximo ($t_v$):
+    $t_v = \mfrac{-8}{2(-2)} = \mfrac{-8}{-4} = 2$.
+    O medicamento atinge a concentração máxima exatamente após \textbf{2 horas}.
+    
+    Concentração máxima ($C_{max}$ ou $y_v$):
+    Substituímos $t = 2$ na lei da função:
+    $C(2) = -2(2)^2 + 8(2) + 10$
+    $C(2) = -2(4) + 16 + 10$
+    $C(2) = -8 + 16 + 10 = 18$.
+    
+    A quantidade atingida no pico será de \textbf{18 mg/L}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Questão clássica. Transporta a interpretação do vértice (muito fixada na cinemática física e na economia) para a modelagem biológica, garantindo repertório diversificado.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{38.} 
+\begin{enunciadoLiteral}
+A posição do eixo de simetria é determinada exclusivamente pelos coeficientes \textbf{a} e \textbf{b}. Considere a função $f(x) = -4x^2 + 20x - 7$.
+
+Determine a equação formal da reta que divide o gráfico desta função em duas metades simétricas. Escreva a equação na forma \textbf{x = valor}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} A reta vertical de simetria passa exatamente pelo vértice. Qual é a fórmula que nos diz o centro espelhado da parábola?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A reta simétrica acompanha o $x_v$.
+    $x_v = \mfrac{-b}{2a}$
+    $x_v = \mfrac{-20}{2(-4)}$
+    $x_v = \mfrac{-20}{-8} = \mfrac{5}{2} = 2.5$.
+    
+    Portanto, a equação formal geométrica é \textbf{x = 2,5}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Solidificar na mente do aluno o conceito de que o eixo de simetria não é apenas um "número de resposta", mas sim a definição de uma "reta" cartesiana geométrica, por isso a notação imperativa "$x =$".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{39.} 
+\begin{enunciadoLiteral}
+A engenharia rodoviária utiliza arcos parabólicos para estruturar túneis sob montanhas com distribuição de carga ideal. Um túnel rochoso foi cravado com formato interno que obedece à equação da parábola no plano cartesiano, sendo o solo o eixo \textbf{x} horizontal.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO LAYERS, TEXTURAS E DROP SHADOW ---
+\definecolor{rocha}{HTML}{5D6D7E}
+\definecolor{asfalto}{HTML}{2C3E50}
+\definecolor{ceu}{HTML}{AED6F1}
+
+% LAYER 1: Céu de fundo
+\fill[ceu, rounded corners=2pt, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (8,5);
+
+% LAYER 2: Maciço rochoso (Montanha com recorte parabólico)
+\begin{scope}
+  \clip (0,0) rectangle (8,5);
+  \fill[rocha, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] 
+        (0,5) -- (8,5) -- (8,0) -- (0,0) -- cycle;
+  % Recorta o túnel (y = -0.5*(x-4)^2 + 4.5 -> raízes 1 e 7, larg 6, alt 4.5)
+  \fill[ceu] (1,0) -- plot[domain=1:7, smooth, samples=50] (\x, {-0.5*(\x-4)*(\x-4) + 4.5}) -- (7,0) -- cycle;
+\end{scope}
+
+% LAYER 3: Asfalto rodovia
+\fill[asfalto] (0,0) rectangle (8,0.4);
+\draw[thick, dashed, white] (0,0.2) -- (8,0.2);
+\node[fill=asfalto, text=white, inner sep=2pt] at (4, -0.2) {\textbf{Rodovia (Nível do Solo)}};
+
+% LAYER 4: Cotas de referência
+\draw[thick, <->, white, >=stealth] (4, 0.4) -- (4, 4.5) node[midway, fill=ceu, text=black, inner sep=2pt] {\textbf{Altura Vértice}};
+\draw[thick, <->, white, >=stealth] (1, 0.6) -- (7, 0.6) node[midway, fill=ceu, text=black, inner sep=2pt] {\textbf{Largura Base = 12 m}};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Sabendo que o túnel tem uma largura na base de \textbf{12 metros} e que as bordas da base estão posicionadas simetricamente nos pontos $(-6, 0)$ e $(6, 0)$ do plano cartesiano, a equação do arco é dada por $y = -0.25x^2 + c$. Calcule a altura máxima no centro exato desse túnel.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que o ponto da parede $(6, 0)$ obrigatoriamente pertence à curva, podemos substituí-lo na equação genérica $y = -0.25x^2 + c$ para encontrar quem é a constante?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Os pontos na base do túnel $(-6, 0)$ e $(6, 0)$ pertencem à parábola (são as raízes do referencial imposto). Basta substituir um deles na função para achar $c$.
+    
+    Para $x = 6$ e $y = 0$:
+    $0 = -0.25(6)^2 + c$
+    $0 = -0.25(36) + c$
+    $0 = -9 + c \Rightarrow c = 9$.
+    
+    A equação completa fica $y = -0.25x^2 + 9$. 
+    Como a função não possui o termo "b", o vértice está exatamente em $x=0$, e a altura máxima coincide com o valor de $c$. 
+    
+    Altura máxima = \textbf{9 metros}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Prática da engenharia de equações. O aluno encontra a constante livre $c$ "obrigando" a equação a passar por uma raiz conhecida, fixando a função no espaço.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{40.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Uma empresa de transporte rodoviário notou que, cobrando \textbf{50 reais} pela passagem, consegue vender \textbf{200 bilhetes} diários. O setor de pesquisa da empresa avaliou o comportamento da clientela e deduziu que a cada \textbf{1 real} aumentado no preço da passagem, a empresa perde exatamente \textbf{2 passageiros}.
+
+O faturamento bruto diário $F$, em \textbf{reais}, é obtido pela multiplicação do preço da passagem pela quantidade de passageiros. Se o aumento for chamado de variável \textbf{x}, a função que rege o faturamento é $F(x) = (50 + x) \cdot (200 - 2x)$.
+
+Qual deve ser o valor exato do aumento \textbf{x} para que a empresa atinja o maior faturamento diário possível, e qual será o valor cobrado pela passagem com esse novo reajuste matemático?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Como podemos expandir esses parênteses fazendo a distributiva para enxergar os coeficientes da parábola e achar o $x$ que dá lucro máximo?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1º Passo: Expandir a função de faturamento:
+    $F(x) = (50 + x)(200 - 2x) = 10000 - 100x + 200x - 2x^2$
+    $F(x) = -2x^2 + 100x + 10000$.
+    
+    2º Passo: Achar o $x_v$ (que representa o valor em reais do aumento de preço para maximizar $F$):
+    $x_v = \mfrac{-100}{2(-2)} = \mfrac{-100}{-4} = 25$.
+    O aumento ideal é de \textbf{25 reais}.
+    
+    3º Passo: O novo valor cobrado pela passagem será o Preço antigo somado ao aumento ($50 + x_v$).
+    Preço = $50 + 25 = $ \textbf{R\$ 75,00}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O clássico problema da demanda inversamente proporcional e elástica do ENEM. Exige forte interpretação na etapa final: entender que o $x_v$ (25) não é o preço, mas sim a parcela de reajuste a ser agregada à base.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 4: Raízes e Discriminante}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{41.} 
+\begin{enunciadoLiteral}
+O discriminante, simbolizado pela letra grega Delta ($\Delta$), é o termo matemático que define a natureza e a quantidade de intersecções que uma parábola terá com o eixo horizontal. Considere a função quadrática $f(x) = 2x^2 - 12x + 18$.
+
+Sem desenhar o gráfico, calcule o valor exato do discriminante dessa função e, a partir desse resultado, justifique quantas vezes a parábola tocará o eixo das abscissas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Qual é a fórmula exata para calcular o discriminante ($\Delta$) usando os coeficientes $a$, $b$ e $c$? E o que acontece se o resultado der zero?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Coeficientes: $a=2$, $b=-12$, $c=18$.
+    $\Delta = b^2 - 4ac$
+    $\Delta = (-12)^2 - 4(2)(18)$
+    $\Delta = 144 - 144 = 0$.
+    
+    Como $\Delta = 0$, a função possui apenas uma raiz real dupla. Portanto, a parábola tocará o eixo das abscissas exatamente \textbf{1 vez} (tangencia o eixo no vértice).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fundamental consolidar a interpretação geométrica do Delta nulo. O aluno deve entender que "tocar uma vez" significa que o vértice está pousado perfeitamente sobre o eixo X.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{42.} 
+\begin{enunciadoLiteral}
+O comportamento visual de uma função quadrática no plano cartesiano permite a leitura imediata dos sinais de seus coeficientes principais e de seu discriminante. Observe a parábola abstrata representada abaixo.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E PALETAS HEXADECIMAIS ---
+\definecolor{fundo}{HTML}{F4F6F7}
+\definecolor{eixo}{HTML}{34495E}
+\definecolor{parabola}{HTML}{2ECC71}
+
+% LAYER 1: Fundo
+\fill[drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, fundo, rounded corners=4pt] (-2,-1) rectangle (5,5);
+
+% LAYER 2: Eixos Cartesianos
+\draw[thick, ->, eixo] (-2,0) -- (5,0) node[right, fill=fundo, inner sep=2pt] {\textbf{x}};
+\draw[thick, ->, eixo] (0,-1) -- (0,5) node[above, fill=fundo, inner sep=2pt] {\textbf{y}};
+
+% LAYER 3: Parábola Flutuante (Nenhuma raiz real)
+\draw[ultra thick, parabola, smooth, samples=50, domain=0.2:3.8] plot (\x, {0.8*(\x-2)*(\x-2) + 1.5});
+
+% LAYER 4: Marcador do Vértice (Apenas referência visual)
+\filldraw[eixo] (2, 1.5) circle (2pt);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base exclusivamente na posição e formato da curva em relação aos eixos cartesianos, determine os sinais algébricos (positivo, negativo ou nulo) do coeficiente quadrático \textbf{a} e do discriminante $\Delta$. Justifique sua resposta matematicamente.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} A boca (concavidade) da parábola aponta para que lado? E quantas vezes a linha verde intercepta (corta) a linha horizontal (eixo x)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1) O coeficiente $a$ é \textbf{positivo} ($a > 0$), pois a concavidade da parábola está voltada para cima.
+    
+    2) O discriminante $\Delta$ é \textbf{negativo} ($\Delta < 0$). 
+    Justificativa: A curva está flutuando inteiramente acima do eixo x, o que significa que não possui raízes reais (não há nenhuma intersecção com o eixo horizontal).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Avaliação visual direta (Teste Cego). O aluno conecta o formato visual às condições algébricas de existência de raízes sem precisar de uma equação ou cálculos braçais.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{43.} 
+\begin{enunciadoLiteral}
+A Fórmula de Bhaskara utiliza a extração da raiz quadrada do discriminante para determinar os zeros da função. Sobre as regras matemáticas que regem essa fórmula no universo dos números reais (estudado no 9º ano), julgue as sentenças como Verdadeiras (V) ou Falsas (F):
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Se $\Delta < 0$, a equação não possui solução, o que geometricamente significa que a parábola não intercepta o eixo \textbf{x}.
+    \item O sinal de $\pm$ presente na Fórmula de Bhaskara é o responsável por garantir que, quando $\Delta > 0$, a parábola cruze o eixo horizontal em dois pontos simétricos em relação ao vértice.
+    \item A ausência do termo linear (quando \textbf{b = 0}) garante automaticamente que o discriminante será negativo.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Analise a fórmula $\Delta = b^2 - 4ac$. Se $b=0$, sobra apenas $-4ac$. O sinal final desse bloco pode ser positivo dependendo dos coeficientes $a$ e $c$?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    I) Verdadeiro (V). No 9º ano, não há raiz quadrada real de número negativo, refletindo a ausência de corte no eixo x (não há raízes reais).
+    
+    II) Verdadeiro (V). O $\pm$ adiciona e subtrai uma mesma distância a partir do eixo de simetria ($-b/2a$), garantindo a localização exata e simétrica das duas raízes.
+    
+    III) Falso (F). Se $b=0$, temos $\Delta = 0^2 - 4ac = -4ac$. Se os coeficientes $a$ e $c$ tiverem sinais opostos (ex: $a=1, c=-5$), $\Delta$ será positivo (ex: $-4(1)(-5) = +20$).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O item II é o pulo do gato que prepara o aluno para a questão 49. O item III exige que o aluno monte a fórmula mentalmente para avaliar o sinal, testando sua fluência algébrica teórica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{44.} 
+\begin{enunciadoLiteral}
+Para projetar as sapatas de fundação de um muro de arrimo, um engenheiro calculou que os pontos de ancoragem no solo coincidem exatamente com as raízes da função estrutural $y = -x^2 + 7x - 10$.
+
+Utilizando o método de resolução de equações completas do 2º grau, determine as coordenadas de intersecção da parábola com o eixo das abscissas e informe a distância, em unidades de medida, entre essas duas sapatas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para achar as raízes (onde toca o solo), devemos igualar a equação a zero. Você prefere aplicar a Fórmula de Bhaskara ou usar Soma e Produto trocando o sinal de todos os termos primeiro?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Igualando a função a zero para achar as raízes:
+    $-x^2 + 7x - 10 = 0$. (Multiplicando por $-1$):
+    $x^2 - 7x + 10 = 0$.
+    
+    Por Soma e Produto:
+    Soma $= 7$, Produto $= 10$. Raízes: $x_1 = 2$ e $x_2 = 5$.
+    Coordenadas das sapatas: $(2, 0)$ e $(5, 0)$.
+    
+    A distância entre elas é o módulo da diferença:
+    Distância = $5 - 2 =$ \textbf{3 unidades}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Cálculo procedimental clássico (chão de fábrica) com uma camada simples de geometria analítica aplicada, conectando o conceito de distância ao cálculo puramente algébrico das raízes.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{45.} 
+\begin{enunciadoLiteral}
+(Estilo Colégios Militares) O estudo paramétrico de funções permite prever o comportamento de um gráfico antes mesmo de seus valores serem totalmente definidos. Considere a função $g(x) = x^2 - 6x + k$, na qual \textbf{k} é uma constante real desconhecida.
+
+Determine o conjunto de valores que a constante \textbf{k} pode assumir para que esta função intercepte o eixo das abscissas em exatamente dois pontos distintos.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Para interceptar o eixo horizontal em dois pontos distintos, o que precisa acontecer com o valor do Discriminante ($\Delta$)?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Para ter dois pontos distintos (duas raízes reais diferentes), a condição obrigatória é $\Delta > 0$.
+    $b^2 - 4ac > 0$
+    $(-6)^2 - 4(1)(k) > 0$
+    $36 - 4k > 0$
+    $36 > 4k \Rightarrow 4k < 36 \Rightarrow k < \mfrac{36}{4} \Rightarrow k < 9$.
+    
+    O conjunto de valores abrange todos os números estritamente menores que nove: \textbf{k < 9}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Introduz o aluno ao pensamento paramétrico e à inequação através da condição de existência do $\Delta$. O erro comum aqui é o aluno resolver como uma equação fechada ($k=9$) em vez de tratar a desigualdade.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{46.} 
+\begin{enunciadoLiteral}
+Um teste de balística militar avalia a eficiência de um morteiro posicionado no topo de uma colina. O projétil é disparado e a sua altura \textbf{h}, em \textbf{metros}, em relação ao solo plano do vale, em função do tempo \textbf{t}, em \textbf{segundos}, obedece à lei física $h(t) = -5t^2 + 10t + 175$.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, TEXTURAS E CAMADAS ---
+\definecolor{solo}{HTML}{27AE60}
+\definecolor{colina}{HTML}{7F8C8D}
+\definecolor{fumaca}{HTML}{BDC3C7}
+\definecolor{trajetoria}{HTML}{E74C3C}
+
+% LAYER 1: Solo plano (Eixo X)
+\fill[solo, drop shadow={opacity=0.3, shadow xshift=0pt, shadow yshift=-2pt}] (-1, -1) rectangle (8, 0);
+\node[fill=solo, text=white, inner sep=2pt] at (3.5, -0.5) {\textbf{Solo do Vale (h = 0)}};
+
+% LAYER 2: Colina de lançamento
+\fill[colina, rounded corners=2pt] (-1, 0) -- (1, 0) -- (1, 3.5) -- (-1, 3.5) -- cycle;
+\node[fill=colina, text=white, inner sep=2pt, rotate=90] at (0, 1.75) {\textbf{Altura Inicial}};
+
+% LAYER 3: Trajetória balística
+\draw[ultra thick, trajetoria, smooth, dashed, samples=50, domain=1:7] plot (\x, {-0.25*(\x-3)*(\x-3) + 4.5});
+\filldraw[trajetoria, drop shadow={opacity=0.4}] (7, 0.5) circle (3pt) node[above right, fill=white, inner sep=1pt] {\textbf{Impacto}};
+
+% LAYER 4: Cotas de tempo
+\draw[thick, ->, >=stealth, gray!80!black] (1, 4.5) -- (2, 4.5) node[right, fill=white, inner sep=2pt] {\textbf{Tempo (t)}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine o instante exato, em \textbf{segundos}, em que o projétil atinge o solo do vale. Apresente o cálculo das raízes e justifique qual delas deve ser descartada no contexto deste problema físico.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} A que altura o projétil se encontra exatamente no momento em que atinge o solo plano do vale? Que valor a variável $h(t)$ assume nesse instante?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Tocar o solo do vale significa que a altura é zero: $h(t) = 0$.
+    $-5t^2 + 10t + 175 = 0$.
+    
+    Simplificando a equação inteira (dividindo por $-5$):
+    $t^2 - 2t - 35 = 0$.
+    
+    Por Soma e Produto: Soma = 2, Produto = -35.
+    As raízes numéricas são $t = 7$ e $t = -5$.
+    
+    O instante exato do impacto é aos \textbf{7 segundos}. 
+    Justificativa para descarte: A raiz matemática $t = -5$ deve ser descartada do conjunto solução porque fisicamente não existe "tempo negativo" (passado) no contexto do cronômetro, que foi disparado em $t=0$ (início do movimento).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno precisa extrair do desenho e do texto a importância de filtrar as raízes numéricas através do domínio prático de uma função modelada, descartando soluções irracionais para a física clássica.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{47.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Uma fábrica de painéis solares estuda a sua receita financeira $R$, em milhares de reais, associada à produção de \textbf{x} dezenas de painéis, dada pela função quadrática $R(x) = -2x^2 + 60x + 100$.
+
+O conselho diretor estabeleceu a meta de alcançar exatamente \textbf{550 mil reais} em receita num único mês. Utilizando a análise do discriminante ($\Delta$), demonstre matematicamente se essa meta é possível de ser alcançada ou se ela ultrapassa o limite máximo da função.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se substituirmos $R(x)$ por 550, obteremos uma nova equação do 2º grau. O que o discriminante ($\Delta$) dessa nova equação precisa ser para garantir que a meta de 550 é possível?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Igualando a receita atual à meta estabelecida de 550:
+    $-2x^2 + 60x + 100 = 550$
+    $-2x^2 + 60x + 100 - 550 = 0$
+    $-2x^2 + 60x - 450 = 0$.
+    
+    Simplificando a equação inteira (dividindo por $-2$):
+    $x^2 - 30x + 225 = 0$.
+    
+    Calculando o discriminante ($\Delta$):
+    $\Delta = (-30)^2 - 4(1)(225)$
+    $\Delta = 900 - 900 = 0$.
+    
+    Como resultou em $\Delta = 0$, a meta de 550 possui raiz real e é matematicamente \textbf{possível}. O fato de ser exatamente zero revela que esse valor é o próprio vértice da parábola (a receita máxima absoluta da empresa).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O aluno poderia calcular o $y_v$ desde o início para ver se o teto passa de 550. Ao obrigá-lo a usar o $\Delta$, forçamos uma flexibilidade cognitiva, atestando o teto através das condições de existência de raiz de uma equação secundária.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{48.} 
+\begin{enunciadoLiteral}
+A arquitetura de pontes frequentemente utiliza o arco parabólico por sua excelência em distribuir tensões estruturais para as fundações nas margens de um rio. No projeto abaixo, a curvatura inferior do vão principal da ponte é modelada pela função $y = -0.5x^2 + 2x + 6$.
+
+\begin{center}
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW, CAMADAS E PALETAS ---
+\definecolor{rio}{HTML}{3498DB}
+\definecolor{margem}{HTML}{27AE60}
+\definecolor{ponte}{HTML}{95A5A6}
+\definecolor{arco}{HTML}{2C3E50}
+
+% LAYER 1: Rio e Margens
+\fill[rio, drop shadow={opacity=0.2, shadow xshift=0pt, shadow yshift=-2pt}] (-3,-1) rectangle (7,0);
+\fill[margem, rounded corners=1pt] (-3,-1) rectangle (-1.5,0.5);
+\fill[margem, rounded corners=1pt] (5.5,-1) rectangle (7,0.5);
+\node[fill=rio, text=white, inner sep=2pt] at (2, -0.5) {\textbf{Nível da Água (Eixo x)}};
+
+% LAYER 2: Pista da ponte
+\fill[ponte, drop shadow={opacity=0.4}] (-3,4) rectangle (7,4.5);
+
+% LAYER 3: Arco parabólico (Raízes: x = -2 e x = 6)
+\draw[ultra thick, arco, smooth, samples=50, domain=-2:6] plot (\x, {-0.5*\x*\x + 2*\x + 6});
+
+% LAYER 4: Fundação (Intersecção)
+\filldraw[arco] (-2,0) circle (3pt);
+\filldraw[arco] (6,0) circle (3pt);
+\draw[thick, <->, black, >=stealth] (-2, 0.2) -- (6, 0.2) node[midway, fill=rio, inner sep=2pt] {\textbf{Vão Livre}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+As fundações do arco repousam exatamente ao nível da água (eixo das abscissas). Determine a largura total do vão livre dessa ponte, em \textbf{metros}, calculando a distância horizontal entre as duas fundações do arco parabólico.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} As fundações, ao tocarem o eixo x, comportam-se matematicamente como as raízes da função. Como medimos a distância total entre uma coordenada negativa e uma positiva na reta horizontal?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Buscando as raízes (fundações no eixo x):
+    $-0.5x^2 + 2x + 6 = 0$. 
+    Multiplicando por $-2$ para facilitar a leitura:
+    $x^2 - 4x - 12 = 0$.
+    
+    Aplicando Soma e Produto:
+    Soma = 4, Produto = -12. 
+    As raízes que satisfazem são: $x_1 = 6$ e $x_2 = -2$.
+    
+    A largura do vão é a distância linear entre a coordenada $-2$ e a coordenada $6$:
+    Distância = $6 - (-2) = 6 + 2 = 8$.
+    
+    O vão livre possui \textbf{8 metros} de largura total.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} É imperativo ressaltar o cálculo modular ($|x_1 - x_2|$). Muitos alunos tendem a fazer erroneamente $6 - 2 = 4$ metros de largura, ignorando que o ponto de partida na margem esquerda possui coordenada negativa e deve ser somado ao total.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{49.} 
+\begin{enunciadoLiteral}
+A compreensão da Fórmula de Bhaskara vai além da memorização mecânica. Considere que, ao resolvermos a equação $-x^2 + 8x - 12 = 0$, encontramos $x_v = 4$ e $\Delta = 16$. 
+
+Explique, utilizando conceitos matemáticos do 9º ano e a própria estrutura da fórmula ($x = \mfrac{-b \pm \sqrt{\Delta}}{2a}$), qual é a relação exata entre a primeira parte da fração ($\mfrac{-b}{2a}$) e a segunda parte ($\mfrac{\pm \sqrt{\Delta}}{2a}$) no que diz respeito ao eixo de simetria e à distância geométrica até as raízes.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Se você separar o numerador da fórmula em duas frações com o mesmo denominador, o que a primeira fração representa? E qual a função do sinal de "mais e menos" nela inserido?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    A fórmula na verdade se divide conceitualmente em duas operações espaciais no plano cartesiano:
+    
+    1) A parte $\mfrac{-b}{2a}$ fornece o eixo de simetria (o centro exato da parábola). No exemplo dado: $-8 / 2(-1) = 4$.
+    
+    2) A parte $\mfrac{\pm \sqrt{\Delta}}{2a}$ calcula o "salto", ou seja, a distância simétrica do centro da curva até o local das raízes. No exemplo: $\sqrt{16} / -2 = 4 / -2 = -2$. 
+    
+    Logo, o $\pm 2$ joga 2 unidades numéricas para a direita e 2 unidades para a esquerda a partir do eixo central $4$, encontrando perfeitamente as raízes da função que são $2$ e $6$. A fórmula é um mapa: parta do centro e caminhe o mesmo tanto para os dois lados.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Esta questão é uma epifania de alfabetização matemática. Ela quebra o puro "decoreba" mecânico da fórmula e eleva Bhaskara a uma leitura totalmente analítica e visuo-espacial do plano cartesiano.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{50.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) O departamento de controle de qualidade de uma indústria química identificou que a taxa de evaporação de um solvente em função do tempo forma uma parábola que intercepta o eixo horizontal exatamente nas horas $t = 2$ e $t = 8$. Sabe-se ainda que a equação é regida por um coeficiente quadrático \textbf{a = -3}.
+
+A lei de formação polinomial completa $y = ax^2 + bx + c$ que descreve essa evaporação possui os coeficientes \textbf{b} e \textbf{c} cujos valores somados totalizam:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $78$
+    \item $48$
+    \item $-18$
+    \item $30$
+    \item $-78$
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo as duas raízes e o coeficiente dominante 'a', qual a maneira mais rápida e direta de reconstruir a lei de formação da função sem montar sistemas de equações?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    Usando a propriedade da forma fatorada da função quadrática: $y = a(x - x_1)(x - x_2)$.
+    Substituímos o coeficiente $a = -3$ e as raízes $t=2$ e $t=8$:
+    $y = -3(x - 2)(x - 8)$
+    
+    Efetuando a propriedade distributiva nos parênteses:
+    $y = -3(x^2 - 8x - 2x + 16)$
+    $y = -3(x^2 - 10x + 16)$
+    
+    Multiplicando todos os termos pelo coeficiente externo $-3$:
+    $y = -3x^2 + 30x - 48$.
+    
+    Logo, os coeficientes ocultos procurados são $b = 30$ e $c = -48$.
+    Somando ambos como pede o exercício: $b + c = 30 + (-48) = -18$.
+    
+    Alternativa Correta: \textbf{c}.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Trata-se de uma prova irrefutável de por que a forma fatorada é uma ferramenta indispensável no ensino da modelagem de funções, promovendo atalhos intelectuais sólidos.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{51.} 
+\begin{enunciadoLiteral}
+A óptica estuda a fabricação de lentes espelhadas que seguem padrões geométricos exatos. Um laser de testes é disparado perfeitamente na horizontal ao longo do eixo das abscissas (reta \textbf{y = 0}). O perfil de uma lente convergente defeituosa foi modelado pela função $f(x) = x^2 - 7x + 10$.
+
+A equipe técnica precisa calcular a espessura da lente no nível exato em que o laser atravessa o equipamento. Sabendo que essa espessura corresponde à distância entre os dois pontos em que a parábola intercepta o eixo \textbf{x}, calcule essa medida geométrica.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Interceptar o eixo x (que é a própria linha do laser, $y=0$) significa encontrar as raízes. Qual o resultado geométrico da diferença absoluta entre elas?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    O laser viaja no próprio eixo x ($y=0$). Precisamos encontrar as raízes de $f(x)$ igualando a função a zero.
+    $x^2 - 7x + 10 = 0$.
+    
+    Resolvendo por Soma e Produto:
+    Soma $= 7$, Produto $= 10$. 
+    As raízes numéricas são: $x_1 = 2$ e $x_2 = 5$.
+    
+    A espessura da lente é ditada pela distância em linha reta entre esses dois pontos de corte.
+    Espessura $= 5 - 2 = 3$.
+    
+    A medida geométrica final da lente é de \textbf{3 unidades} de comprimento.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} Fixação de contexto, provando que o eixo X e suas raízes servem perfeitamente como régua para mapear calibres e comprimentos sólidos de objetos reais (na mecânica e na óptica).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{52.} 
+\begin{enunciadoLiteral}
+A síntese entre o vértice e as raízes define a maestria na resolução de problemas complexos de funções quadráticas. O lucro de uma empresa de logística, em milhares de reais, é determinado pela função $L(x) = -2x^2 + 20x + m$, em que \textbf{x} é o volume diário de entregas (em dezenas) e \textbf{m} é uma constante que representa o repasse de subsídios.
+
+Para que o lucro diário máximo possível atinja o patamar de exatamente \textbf{80 mil reais}, determine primeiro o valor obrigatório que a constante \textbf{m} deve assumir. Em seguida, utilizando o \textbf{m} encontrado, calcule quais são os volumes de entrega \textbf{x} que tornam o lucro da empresa estritamente nulo (raízes da função).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem:} Sabendo que o lucro máximo é o $y_v=80$, podemos descobrir o respectivo valor de $x_v$ (que não depende de $m$). Se substituirmos ambos na equação original, o que encontramos?\par\vspace{0.1cm}
+    \textbf{2. Resolução Matemática:}\\
+    1º Passo (Encontrar a constante $m$ através do vértice): 
+    O lucro máximo nominal fornecido é o $y_v = 80$.
+    Vamos calcular a coordenada de volume $x_v$:
+    $x_v = \mfrac{-20}{2(-2)} = \mfrac{-20}{-4} = 5$.
+    Substituindo $x=5$ na função original para forçar o resultado a ser o limite 80:
+    $-2(5)^2 + 20(5) + m = 80$
+    $-2(25) + 100 + m = 80$
+    $-50 + 100 + m = 80$
+    $50 + m = 80 \Rightarrow m = 30$.
+    A função final estabilizada é: $L(x) = -2x^2 + 20x + 30$.
+    
+    2º Passo (Achar as raízes irracionais igualando a zero):
+    $-2x^2 + 20x + 30 = 0$. Dividindo toda a equação por $-2$:
+    $x^2 - 10x - 15 = 0$.
+    $\Delta = (-10)^2 - 4(1)(-15) = 100 + 60 = 160$.
+    Aplicando a Fórmula de Bhaskara:
+    $x = \mfrac{10 \pm \sqrt{160}}{2} = \mfrac{10 \pm \sqrt{16 \cdot 10}}{2} = \mfrac{10 \pm 4\sqrt{10}}{2}$.
+    Dividindo ambos os blocos do numerador pelo denominador 2:
+    $x = 5 \pm 2\sqrt{10}$.
+    
+    Volumes que zeram o lucro: $5 - 2\sqrt{10}$ e $5 + 2\sqrt{10}$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Nota Pedagógica (Bastidores do Conceito):} O grande *Grand Finale* da lista. Obriga o aluno a transitar pela álgebra paramétrica, decifrar uma incógnita "presa" através das leis do vértice, e, num segundo momento dramático, simplificar radicais irracionais complexos para fornecer o fechamento de caixa analítico exigido.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
 \end{multicols*}
 \end{document}
