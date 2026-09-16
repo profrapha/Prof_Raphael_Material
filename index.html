@@ -2317,7 +2317,7 @@ function gerarLinkEAbrir(caminhoRelativo, chaveMestra) {
     const expiraEm = agoraUnix + 180;
 
     const uri = caminhoRelativo.startsWith('/') ? caminhoRelativo : '/' + caminhoRelativo;
-    const stringParaAssinar = `${chaveMestra}${uri}${expiraEm}`;
+    const stringParaAssinar = `${expiraEm}${uri} PortalCarecudo2`;
 
     const hash = CryptoJS.MD5(stringParaAssinar);
     let base64Hash = CryptoJS.enc.Base64.stringify(hash)
