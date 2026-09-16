@@ -2317,7 +2317,7 @@ function gerarLinkEAbrir(caminhoRelativo, chaveMestra) {
     const expiraEm = agoraUnix + 180;
 
     const uri = caminhoRelativo.startsWith('/') ? caminhoRelativo : '/' + caminhoRelativo;
-    const stringParaAssinar = `${expiraEm}${uri} ${chaveMestra}`;
+    const stringParaAssinar = `${chaveMestra}${uri}${expiraEm}`;
 
     const hash = CryptoJS.MD5(stringParaAssinar);
     let base64Hash = CryptoJS.enc.Base64.stringify(hash)
