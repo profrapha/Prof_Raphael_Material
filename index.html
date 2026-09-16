@@ -1873,13 +1873,14 @@ function renderDetalheCaderno(container) {
     const isAutoral = mat.tipo === "Autoral";
 
     let btnProfHtml = "";
-    if (mat.pdfProf) {
-        btnProfHtml = `
-            <button class="btn-prof" onclick="acessarGabarito('${mat.pdfProf}')">
-                🔒 Gabarito (Professor)
-            </button>
-        `;
-    }
+            if (mat.pdfProf) {
+                const isUnlocked = sessionStorage.getItem("prof_secret_key") !== null;
+                btnProfHtml = `
+                    <button class="btn-prof" style="${isUnlocked ? 'background-color: rgba(16, 185, 129, 0.25);' : ''}" onclick="acessarGabarito('${mat.pdfProf}')">
+                        ${isUnlocked ? '🔓 Gabarito (Desbloqueado)' : '🔒 Gabarito (Professor)'}
+                    </button>
+                `;
+            }
 
     let videosHtml = "";
     if (mat.videos && mat.videos.length > 0) {
@@ -2272,20 +2273,35 @@ function confirmarChave() {
         }
 
 function atualizarBotaoProf() {
-    const btn = document.getElementById("btnProfToggle");
-    if (sessionStorage.getItem("prof_secret_key")) {
-        btn.className = "btn-status-prof active";
-        btn.innerHTML = "🔓 Professor Ativo (Sair)";
-        btn.onclick = () => {
-            sessionStorage.removeItem("prof_secret_key");
-            atualizarBotaoProf();
-        };
-    } else {
-        btn.className = "btn-status-prof";
-        btn.innerHTML = "🔒 Modo Professor";
-        btn.onclick = () => abrirModalChave();
-    }
-}
+            const btn = document.getElementById("btnProfToggle");
+            const isUnlocked = sessionStorage.getItem("prof_secret_key") !== null;
+
+            // Atualiza o botão superior do cabeçalho
+            if (isUnlocked) {
+                btn.className = "btn-status-prof active";
+                btn.innerHTML = "🔓 Professor Ativo (Sair)";
+                btn.onclick = () => {
+                    sessionStorage.removeItem("prof_secret_key");
+                    atualizarBotaoProf(); // Atualiza a tela após sair
+                };
+            } else {
+                btn.className = "btn-status-prof";
+                btn.innerHTML = "🔒 Modo Professor";
+                btn.onclick = () => abrirModalChave();
+            }
+
+            // Procura e atualiza o botão de gabarito dentro da tela (se houver algum aberto)
+            const btnInterno = document.querySelector(".btn-prof");
+            if (btnInterno) {
+                if (isUnlocked) {
+                    btnInterno.innerHTML = "🔓 Gabarito (Desbloqueado)";
+                    btnInterno.style.backgroundColor = "rgba(16, 185, 129, 0.25)";
+                } else {
+                    btnInterno.innerHTML = "🔒 Gabarito (Professor)";
+                    btnInterno.style.backgroundColor = "rgba(16, 185, 129, 0.15)";
+                }
+            }
+        }
 
 function acessarGabarito(caminhoPdf) {
     const chaveSalva = sessionStorage.getItem("prof_secret_key");
