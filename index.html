@@ -3623,9 +3623,9 @@ async function iniciarSessaoTutor() {
         const messagesArea = document.getElementById("tutorMessages");
         if (messagesArea) {
             messagesArea.innerHTML = `
-                <div class="msg-tutor" id="msg-tutor-abertura">
-                    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou consultando a <strong>Questão ${tutorState.numeroQuestao}</strong> no caderno oficial...
-                </div>
+                <div class="msg-tutor" id="msg-tutor-abertura" style="flex-shrink: 0; max-width: 90%; height: auto; word-wrap: break-word; overflow-wrap: break-word;">
+    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou consultando a <strong>Questão ${tutorState.numeroQuestao}</strong> no caderno oficial...
+</div>
             `;
             messagesArea.scrollTop = messagesArea.scrollHeight;
         }
@@ -3712,8 +3712,10 @@ async function enviarMensagemTutor() {
                 input.disabled = true;
                 input.placeholder = "Sessão finalizada com sucesso! 🏆";
                 btn.innerText = "Fechar";
+                btn.disabled = false; // <--- ADICIONE ESTA LINHA AQUI
                 btn.onclick = fecharTutorDrawer;
-            }
+
+                            }
 
         } else {
             area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
