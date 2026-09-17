@@ -1,0 +1,1674 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+% --- TAG SEMÂNTICA PARA LEITURA DE IA (INVISÍVEL NO PDF) ---
+\newenvironment{enunciadoLiteral}{}{}
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} UNIDADE 7 - INTRODUÇÃO À ÁLGEBRA}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- NOVA CAIXA PEDAGÓGICA E CORES (NOTA VERDE) ---
+\definecolor{CorNotaBorda}{HTML}{10B981} 
+\definecolor{CorNotaFundo}{HTML}{F0FDF4} 
+\newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: UNIDADE 7 - INTRODUÇÃO À ÁLGEBRA}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA - ÁLGEBRA \hfill \textbf{NÍVEL:} 6º ANO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1: Expressões Algébricas}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} 
+\begin{enunciadoLiteral}
+O valor de uma expressão algébrica muda dependendo do valor numérico atribuído à sua letra (variável). Calcule o valor numérico da expressão $ 3x + 5 $ para os seguintes casos:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item Para $ x = 2 $.
+    \item Para $ x = 7 $.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se eu te cobrar 3 reais por cada pacote de figurinhas e somar 5 reais de frete, quanto você paga se comprar 2 pacotes? O $x$ é a quantidade de pacotes!\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Substituir o $x$ por 2 na expressão $\rightarrow$ $ 3 \cdot 2 + 5 $\\
+    \textit{Passo 2:} Realizar a multiplicação primeiro $\rightarrow$ $ 6 + 5 $\\
+    \textit{Passo 3:} Somar para obter o resultado final $\rightarrow$ $ 11 $\\
+    \textit{Passo 4:} Repetir o processo para o item b, substituindo $x$ por 7 $\rightarrow$ $ 3 \cdot 7 + 5 = 21 + 5 = 26 $\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} É muito comum o aluno no 6º ano olhar para $3x$, trocar $x$ por 2 e escrever "32" em vez de multiplicar. O tutor deve lembrar que há um sinal de multiplicação "escondido" entre o número e a letra.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Na lousa, chame a letra de "caixinha mágica". Escreva $3 \cdot \text{[caixa]} + 5$. Diga que o $x$ é só uma caixa onde podemos colocar qualquer número dentro. O importante é lembrar que o número que está colado na caixa (o coeficiente 3) está multiplicando o que tem lá dentro!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} 
+\begin{enunciadoLiteral}
+No pátio da escola, será pintado um mural retangular. O comprimento desse mural mede o dobro da sua altura, que é representada pela letra $h$. Sendo assim, a área do mural pode ser expressa por $ 2 \cdot h \cdot h $ ou simplesmente $ 2h^2 $. Determine a área total desse mural em metros quadrados se a altura $h$ for igual a \textbf{3 m}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Como calculamos a área de um retângulo? Se a altura é 3 e o comprimento é o dobro, qual é o comprimento?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Compreender que a altura é $h=3$.\\
+    \textit{Passo 2:} Substituir na expressão da área $\rightarrow$ $ 2 \cdot 3^2 $\\
+    \textit{Passo 3:} Resolver a potência primeiro $\rightarrow$ $ 3^2 = 9 $\\
+    \textit{Passo 4:} Multiplicar o resultado por 2 $\rightarrow$ $ 2 \cdot 9 = 18 \text{ m}^2 $\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode querer multiplicar $2 \cdot 3$ primeiro e depois elevar ao quadrado, resultando em $36$. Lembre-o da ordem das operações: potências vêm antes das multiplicações.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Se o aluno travar na expressão $2h^2$, faça ele desenhar! Peça para desenhar um retângulo. Coloque a altura como 3. Pergunte: "se o comprimento é o dobro, quanto é?". Ele responderá 6. Então Área = $3 \cdot 6 = 18$. Depois mostre que usar a expressão algébrica $2 \cdot 3^2$ dá exatamente o mesmo resultado de um jeito mais direto.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} 
+\begin{enunciadoLiteral}
+Um estudante precisava calcular o valor numérico da expressão $ 4x + 7 $ para quando $ x = 5 $. Veja como ele montou a resolução no seu caderno:
+
+\textit{"Troquei o x pelo 5. Então ficou $ 4 + 5 + 7 $. Somando tudo, cheguei ao resultado 16."}
+
+\begin{boxresponda}
+\textbf{Responda:} Qual foi a falha no conceito de Álgebra cometida por esse estudante? Corrija a resolução e apresente o resultado matematicamente correto.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} O que significa quando um número está "grudado" em uma letra, sem nenhum sinal de mais ou de menos entre eles?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Identificar o erro $\rightarrow$ O estudante achou que $4x$ significava uma soma ou apenas juntar os símbolos, escrevendo $4+5$.\\
+    \textit{Passo 2:} Esclarecer a regra $\rightarrow$ O termo $4x$ significa $4 \cdot x$ (quatro vezes o valor de x).\\
+    \textit{Passo 3:} Calcular corretamente $\rightarrow$ $ 4 \cdot 5 + 7 $\\
+    \textit{Passo 4:} Finalizar a operação $\rightarrow$ $ 20 + 7 = 27 $\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Esta é uma questão metacognitiva. O aluno não pode apenas dar o número "27", ele deve obrigatoriamente escrever com palavras qual foi o erro do estudante fictício para ganhar a pontuação completa.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Mede a capacidade do aluno de diagnosticar e corrigir um erro de sintaxe matemática muito comum na transição da aritmética para a álgebra (a omissão do sinal de multiplicação).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} 
+\begin{enunciadoLiteral}
+Em um campeonato escolar, a pontuação final de uma equipe é calculada pelo triplo do número de vitórias mais um bônus fixo de cinco pontos. Se chamarmos o número de vitórias de $v$, qual das expressões abaixo representa corretamente a pontuação final da equipe? 
+
+Justifique por que as outras três alternativas estão incorretas, escrevendo o que elas significariam na prática.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ 3(v + 5) $
+    \item $ v^3 + 5 $
+    \item $ 3 + v + 5 $
+    \item $ 3v + 5 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Como você escreve "o triplo de algo" em matemática? E "mais um bônus de 5"?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Validar a certa $\rightarrow$ Alternativa D. O triplo de vitórias é $3 \cdot v$ ou $3v$. Somando o bônus de 5, temos $3v + 5$.\\
+    \textit{Passo 2:} Refutar A $\rightarrow$ $3(v+5)$ significa que o bônus de 5 foi somado ANTES, e a equipe ganhou o triplo de tudo (vitórias + bônus).\\
+    \textit{Passo 3:} Refutar B $\rightarrow$ $v^3 + 5$ significa as vitórias elevadas ao cubo (multiplicadas por si mesmas 3 vezes), e não o triplo.\\
+    \textit{Passo 4:} Refutar C $\rightarrow$ $3+v+5$ significa apenas somar 3 pontos com as vitórias, em vez de multiplicá-las por 3.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode escolher a correta (D) e esquecer de refutar as outras. O Tutor deve cobrar a justificativa escrita dos distratores, pois é aí que ocorre a verdadeira alfabetização algébrica.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Na lousa, traduza a linguagem falada para o "matematiquês" pausadamente. Leia "o triplo" e escreva "3 $\cdot$ ". Leia "do número de vitórias" e escreva "$v$". Leia "mais um bônus de 5" e escreva "$+ 5$". Mostre como a frase monta a equação passo a passo.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} 
+\begin{enunciadoLiteral}
+A matemática se comporta como uma fábrica: entra uma matéria-prima (valor de $x$), passa por um processo (expressão algébrica) e sai um produto (resultado). 
+
+Para a máquina cuja regra de funcionamento é a expressão algébrica $ 4x - 2 $, crie uma tabela preenchendo os resultados de saída caso os valores de entrada $x$ sejam, respectivamente, \textbf{1, 3 e 5}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se a máquina tem a regra "multiplique por 4 e depois tire 2", o que acontece se eu jogar o número 3 lá dentro?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Para $x = 1 \rightarrow 4 \cdot 1 - 2 = 4 - 2 = 2$\\
+    \textit{Passo 2:} Para $x = 3 \rightarrow 4 \cdot 3 - 2 = 12 - 2 = 10$\\
+    \textit{Passo 3:} Para $x = 5 \rightarrow 4 \cdot 5 - 2 = 20 - 2 = 18$\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Cuidado com a ordem. A multiplicação DEVE ser feita antes da subtração. O aluno não pode fazer $1-2$ primeiro.
+    
+    % --- APLICANDO DROP SHADOW ---
+    \begin{center}
+    \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.5\linewidth}
+    \begin{tikzpicture}
+        \definecolor{fundo}{HTML}{F8F9FA}
+        \definecolor{borda}{HTML}{BDC3C7}
+        \definecolor{destaque}{HTML}{2ECC71}
+        
+        \node[draw=borda, fill=fundo, rounded corners=3pt, drop shadow={opacity=0.15, shadow xshift=2pt, shadow yshift=-2pt}, inner sep=0pt] {
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabular}{c|c|c}
+                \textbf{Entrada ($x$)} & \textbf{Processo ($4x-2$)} & \textbf{Saída} \\
+                \hline
+                $1$ & $4(1) - 2$ & \textbf{2} \\
+                $3$ & $4(3) - 2$ & \textbf{10} \\
+                $5$ & $4(5) - 2$ & \textbf{18} \\
+            \end{tabular}
+        };
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando: A álgebra funciona como uma máquina de transformação de números. Isso prepara a intuição deles para entenderem "Funções" no 9º ano sem nenhum susto.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} 
+\begin{enunciadoLiteral}
+Uma empresa de engenharia utiliza blocos pré-moldados padronizados para construir pequenas passarelas. O comprimento total da passarela, em metros, é calculado somando as partes fixas das extremidades (rampas) com a parte central, que é formada por $x$ blocos encaixados. A figura ilustra o projeto.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: Mude os zeros do trim (Esquerda, Baixo, Direita, Topo). Ex: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: Para encolher só esta imagem, troque \larguraTikz por um valor (Ex: 0.5\linewidth)
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{concreto}{HTML}{95A5A6}
+    \definecolor{asfalto}{HTML}{2F3640}
+    \definecolor{grama}{HTML}{27AE60}
+    
+    % LAYER 1: Fundo (Grama/Chão)
+    \fill[grama, rounded corners=2pt] (-2, -1.5) rectangle (10, -0.5);
+    
+    % LAYER 2: Passarela (Rampas fixas e blocos)
+    % Rampa Esquerda (fixa 3m)
+    \fill[concreto, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (-1, -0.5) -- (0, 1) -- (2, 1) -- (2, -0.5) -- cycle;
+    \draw[thick, asfalto] (-1, -0.5) -- (0, 1) -- (2, 1) -- (2, -0.5) -- cycle;
+    
+    % Blocos Centrais (Tamanho varia com x)
+    \fill[concreto!80, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (2.2, -0.5) rectangle (5.8, 1);
+    \draw[thick, asfalto] (2.2, -0.5) rectangle (5.8, 1);
+    \node[align=center, font=\bfseries\large] at (4, 0.25) {$x$ blocos\\ centrais};
+    
+    % Rampa Direita (fixa 2m)
+    \fill[concreto, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (6, -0.5) -- (6, 1) -- (7, 1) -- (8.5, -0.5) -- cycle;
+    \draw[thick, asfalto] (6, -0.5) -- (6, 1) -- (7, 1) -- (8.5, -0.5) -- cycle;
+    
+    % Cotas (Medidas)
+    \draw[|<->|, thick] (-1, 1.5) -- (2, 1.5) node[midway, fill=white, inner sep=2pt, rounded corners=1pt] {\textbf{3 m}};
+    \draw[|<->|, thick] (2.2, 1.5) -- (5.8, 1.5) node[midway, fill=white, inner sep=2pt, rounded corners=1pt] {Cada bloco mede \textbf{4 m}};
+    \draw[|<->|, thick] (6, 1.5) -- (8.5, 1.5) node[midway, fill=white, inner sep=2pt, rounded corners=1pt] {\textbf{2 m}};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base no esquema ilustrado, se o engenheiro utilizar \textbf{5 blocos} centrais ($x=5$), qual será o comprimento total da passarela? Apresente a expressão algébrica que modela o problema e a sua resolução.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se você olhar a imagem, o tamanho da passarela tem uma parte que nunca muda (as pontas) e uma parte que cresce se eu colocar mais blocos. Quanto mede a parte que nunca muda somada?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Identificar a parte fixa visualmente $\rightarrow$ Rampa esquerda (\textbf{3 m}) + Rampa direita (\textbf{2 m}) = \textbf{5 m}.\\
+    \textit{Passo 2:} Identificar a parte variável $\rightarrow$ Cada bloco mede \textbf{4 m}. Para $x$ blocos, a medida é $4 \cdot x$ ou $4x$.\\
+    \textit{Passo 3:} Montar a expressão algébrica geral $\rightarrow$ Comprimento = $ 4x + 5 $.\\
+    \textit{Passo 4:} Calcular para $x=5$ $\rightarrow$ $ 4 \cdot 5 + 5 = 20 + 5 = 25 \text{ metros}. $\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Teste Cego Absoluto aplicado. O aluno que não olhar a imagem não conseguirá resolver, pois as medidas (3m, 2m, 4m por bloco) estão exclusivamente no TikZ. Se ele errar, pergunte: "Você notou que as duas pontas da ponte têm medidas diferentes na figura?".
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Aqui começamos a modelagem Matemática Real. A álgebra serve justamente para isso: criar uma "fórmula" geral para um construtor não ter que pensar do zero toda vez que for montar uma ponte de tamanhos diferentes.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} 
+\begin{enunciadoLiteral}
+(Estilo ENEM - Adaptada) O preço de uma corrida de táxi em certa cidade é composto por uma taxa fixa, chamada de bandeirada, e um valor que depende da distância percorrida (por quilômetro). Sabendo que a bandeirada custa $ \text{R\$} \ 6,00 $ e cada quilômetro rodado custa $ \text{R\$} \ 3,00 $, o valor final $V$ da corrida, para $k$ quilômetros rodados, pode ser expresso por:
+$ V = 6 + 3k $.
+
+Dessa forma, quanto um passageiro pagará por uma viagem que percorreu uma distância de \textbf{12 quilômetros}?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se você entrar no táxi e não andar nem um metro (0 quilômetros), você já tem que pagar alguma coisa? Por quê?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Relacionar os dados do texto com a expressão dada $\rightarrow$ $k = 12$ (quilômetros rodados).\\
+    \textit{Passo 2:} Substituir na expressão $\rightarrow$ $ V = 6 + 3 \cdot 12 $\\
+    \textit{Passo 3:} Fazer a multiplicação do custo da distância $\rightarrow$ $ 3 \cdot 12 = 36 $\\
+    \textit{Passo 4:} Somar a taxa fixa (bandeirada) $\rightarrow$ $ 6 + 36 = 42 $\\
+    \textit{Passo 5:} Resposta $\rightarrow$ O passageiro pagará $\text{R\$} \ 42,00$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos menos atentos leem "6 reais e 3 reais", somam logo de cara ($6+3=9$) e multiplicam por 12. Lembre-os que apenas os "3 reais" sofrem a multiplicação pela distância percorrida.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Situações de Taxa Fixa + Taxa Variável são o feijão com arroz da matemática financeira básica e modelam as futuras Funções de 1º Grau. Reforce o conceito de "Fixo" (fica sozinho na conta) e "Variável" (fica multiplicando a letra).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} 
+\begin{enunciadoLiteral}
+Julgue as afirmativas abaixo sobre a estrutura das expressões algébricas, classificando-as como Verdadeiras (V) ou Falsas (F). Justifique matematicamente as afirmativas que você considerar falsas.
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+    \item Na expressão $ 5x + 10 $, o número 10 é chamado de termo constante porque seu valor não se altera, independentemente do valor de $x$.
+    \item A expressão $ 2a + 3b $ significa que temos dois valores desconhecidos e iguais, representados pelas letras diferentes $a$ e $b$.
+    \item Se atribuirmos $ x = 0 $ na expressão $ 8x + 4 $, o resultado da expressão será 0.
+\end{enunciadoLiteral}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se você tem caixas de dois tamanhos diferentes, você as chamaria pela mesma letra na matemática?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Analisar a Afirmativa I $\rightarrow$ Verdadeira. O número solto (sem letra multiplicando) é a constante.\\
+    \textit{Passo 2:} Analisar a Afirmativa II $\rightarrow$ Falsa. Letras diferentes ($a$ e $b$) representam, por definição, variáveis independentes que, em regra, guardam valores diferentes, não iguais.\\
+    \textit{Passo 3:} Analisar a Afirmativa III $\rightarrow$ Falsa. Ao fazer $x = 0$, teremos $8 \cdot 0 + 4 = 0 + 4 = 4$. O resultado é 4, não zero.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Na afirmativa III, o aluno pode pensar intuitivamente que "se a letra zera, tudo zera". Prove calculando para derrubar esse mito.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando: Constante é o que "fica parado" (não tem letra). Variável é o que muda. Se existem duas coisas que mudam de formas diferentes na mesma história (ex: preço de pizza e preço de refri), usamos letras diferentes para não misturar as contas.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\subsection*{Capítulo 2: Linguagem Algébrica}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{9.} 
+\begin{enunciadoLiteral}
+O grande segredo da Álgebra é funcionar como um tradutor, transformando o Português em Matemática. Usando a letra $x$ para representar um "número desconhecido", traduza as frases abaixo para a linguagem algébrica:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item A metade de um número mais dez.
+    \item O dobro de um número, diminuído de quatro unidades.
+    \item A soma de dois números consecutivos.
+\end{enunciadoLiteral}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se eu te perguntar a metade de 10, você divide por quanto? E se for a metade de $x$? O que significa ser "consecutivo" de um número que você conhece?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Traduzir o item a $\rightarrow$ A metade é dividir por 2. Então: $ \mfrac{x}{2} + 10 $.\\
+    \textit{Passo 2:} Traduzir o item b $\rightarrow$ O dobro é multiplicar por 2. Então: $ 2x - 4 $.\\
+    \textit{Passo 3:} Traduzir o item c $\rightarrow$ Se um número é $x$, o seu consecutivo (o próximo) é $x+1$. A soma deles é $ x + (x + 1) $ ou simplificado $ 2x + 1 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} No item (c), a representação de "números consecutivos" trava muitos alunos. É vital não aceitarem $x+y$, pois $x$ e $y$ podem não ser consecutivos (ex: 2 e 9). Para garantir que são seguidos, usa-se a regra de $+1$.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Ensine o aluno a ler "picotado". Mostre a frase: [A metade de um número] | [mais] | [dez]. Cada bloco vira uma parte matemática. O consecutivo merece um exemplo real: "Se eu tenho o 5, o consecutivo é 6 (que é 5+1). Se eu tenho o x, o consecutivo é x+1".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} 
+\begin{enunciadoLiteral}
+A figura a seguir ilustra a planta baixa de um canteiro retangular em uma praça pública. As medidas das laterais estão representadas por expressões algébricas, em metros.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{cimento}{HTML}{BDC3C7}
+    \definecolor{grama}{HTML}{2ECC71}
+    
+    % LAYER 1: Canteiro com borda arredondada
+    \fill[grama, rounded corners=3pt, drop shadow={opacity=0.2, shadow xshift=3pt, shadow yshift=-3pt}] (0,0) rectangle (6,3);
+    \draw[thick, cimento, rounded corners=3pt] (0,0) rectangle (6,3);
+    
+    % LAYER 2: Textos das medidas, usando máscara de fundo para leitura
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries] at (3, -0.4) {$2x + 1$};
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries] at (6.6, 1.5) {$x$};
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries] at (3, 3.4) {$2x + 1$};
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries] at (-0.6, 1.5) {$x$};
+    
+    % Cotas ilustrativas (linhas finas)
+    \draw[dashed, thin, gray] (0,-0.1) -- (0,-0.4) -- (2.3,-0.4);
+    \draw[dashed, thin, gray] (6,-0.1) -- (6,-0.4) -- (3.7,-0.4);
+    \draw[dashed, thin, gray] (6.1,0) -- (6.6,0) -- (6.6,1.2);
+    \draw[dashed, thin, gray] (6.1,3) -- (6.6,3) -- (6.6,1.8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Determine a expressão algébrica simplificada que representa o \textbf{perímetro} total deste canteiro. Se for necessário, agrupe os termos semelhantes (junte todas as letras $x$ e todos os números sozinhos).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} O que é perímetro na geometria? Se eu for dar uma volta completa andando pela borda desse jardim, quais são as 4 medidas que vou somar?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Definir perímetro $\rightarrow$ É a soma de todos os 4 lados do retângulo.\\
+    \textit{Passo 2:} Escrever a soma completa baseada na imagem $\rightarrow$ Perímetro = $ (2x + 1) + (x) + (2x + 1) + (x) $\\
+    \textit{Passo 3:} Agrupar os termos semelhantes (família do x com família do x, números com números) $\rightarrow$ $ 2x + x + 2x + x $ e $ 1 + 1 $\\
+    \textit{Passo 4:} Reduzir a expressão $\rightarrow$ Perímetro = $ 6x + 2 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode confundir perímetro com área e tentar multiplicar as expressões. Foque firmemente no conceito de "contorno". Outro erro comum é somar apenas a base e uma altura ($3x+1$) esquecendo os outros dois lados paralelos.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} "Termos semelhantes" é como separar frutas. "x" são maçãs, números sozinhos são laranjas. Você não pode somar 2 maçãs com 1 laranja e dizer que tem "3 maçã-laranjas". Some todos os $x$ de um lado ($2x+1x+2x+1x = 6x$) e os números do outro ($1+1=2$).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{11.} 
+\begin{enunciadoLiteral}
+Uma professora desenhou um quadrado na lousa e indicou que a medida do seu lado vale $3a$. Em seguida, ela pediu para a turma escrever a expressão que representa a \textbf{área} dessa figura.
+
+O aluno Joãozinho rapidamente respondeu: "A área do quadrado é $ 3a \cdot 4 $, o que resulta em $ 12a $."
+
+\begin{boxresponda}
+\textbf{Responda:} Joãozinho acertou? Caso ele tenha cometido um equívoco conceitual entre área e perímetro, explique qual foi a sua confusão e apresente a expressão algébrica correta para a Área deste quadrado.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Qual é a diferença na fórmula entre o "contorno" de um quadrado e a "superfície interna" dele?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnosticar o erro $\rightarrow$ Joãozinho não acertou. Ele calculou o Perímetro (soma dos 4 lados ou lado vezes 4), mas a professora pediu a Área.\\
+    \textit{Passo 2:} Lembrar a fórmula da Área $\rightarrow$ A área de um quadrado é lado $\cdot$ lado (ou lado ao quadrado).\\
+    \textit{Passo 3:} Construir a conta correta $\rightarrow$ Área = $ 3a \cdot 3a $\\
+    \textit{Passo 4:} Multiplicar corretamente (número com número, letra com letra) $\rightarrow$ $ 3 \cdot 3 = 9 $ e $ a \cdot a = a^2 $.\\
+    \textit{Passo 5:} Resposta final $\rightarrow$ A expressão correta da Área é $ 9a^2 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} No $6^\circ$ ano, potências com letras ($a \cdot a = a^2$) causam certa hesitação. É importante mostrar que, assim como $5 \cdot 5 = 5^2$, $a \cdot a = a^2$. O Joãozinho fez $3a \cdot 4$ (perímetro).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Avalia de forma simultânea a geometria plana (diferenciação de grandezas de 1D vs 2D) e a operação algébrica básica com monômios.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} 
+\begin{enunciadoLiteral}
+Considere um terreno retangular onde um dos lados mede \textbf{5 metros} e o outro lado mede $ (x + 2) \textbf{ metros} $. Qual das alternativas abaixo apresenta a expressão algébrica correta da Área desse terreno, caso apliquemos a propriedade distributiva ("chuveirinho")?
+
+Prove por que a alternativa escolhida está certa refutando, por meio de cálculos, as falhas das alternativas incorretas.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ 5x + 2 $
+    \item $ x + 10 $
+    \item $ 5x + 10 $
+    \item $ 5 + x + 2 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Para achar a área de um retângulo multiplicamos a base pela altura. Se eu for multiplicar o 5 por toda a expressão $(x+2)$, o 5 multiplica só o $x$, ou multiplica o 2 também?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Montar o cálculo da Área $\rightarrow$ $ 5 \cdot (x + 2) $.\\
+    \textit{Passo 2:} Validar a certa (C) $\rightarrow$ Aplicando a propriedade distributiva (o "chuveirinho"): $5 \cdot x + 5 \cdot 2 = 5x + 10$.\\
+    \textit{Passo 3:} Refutar A $\rightarrow$ Em $5x + 2$, a pessoa multiplicou o 5 apenas pelo $x$ e "esqueceu" de aplicar a distributiva no número 2.\\
+    \textit{Passo 4:} Refutar B $\rightarrow$ Em $x + 10$, a pessoa multiplicou o 5 apenas pelo 2, esquecendo do $x$.\\
+    \textit{Passo 5:} Refutar D $\rightarrow$ Em $5 + x + 2$, a pessoa confundiu as regras geométricas e apenas tentou somar os termos em vez de multiplicá-los.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} A falha de distributiva parcial (distrair-se e multiplicar apenas o primeiro termo do parêntese, gerando a alternativa A) é o erro algébrico mais duradouro até o Ensino Médio. Corte o mal pela raiz exigindo o desenho das "setinhas" indicando as multiplicações.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Use a metáfora da entrega de correio. O 5, que está fora do parêntese, é o carteiro. Os termos $x$ e $2$, que estão dentro da casa (parênteses), são moradores. O carteiro tem que entregar a carta para TODOS os moradores da casa. Se ele entregar só para o $x$ (gerando $5x+2$), o morador "2" vai ficar bravo!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\subsubsection*{13.} 
+\begin{enunciadoLiteral}
+Uma fábrica embala sucos de laranja em caixas de papelão. Cada caixa fechada contém exatamente $x$ garrafas. Para atender ao pedido de um supermercado, a fábrica enviou um lote composto por \textbf{5 caixas} completas e mais \textbf{3 garrafas} avulsas. 
+
+Qual expressão algébrica representa o total de garrafas enviadas neste pedido? 
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se eu te der 5 caixas fechadas e dentro de cada uma tiver, digamos, 10 garrafas, que conta você faz para descobrir o total nas caixas? E se em vez de 10 for $x$?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Quantificar o que está dentro das caixas $\rightarrow$ São 5 caixas, cada uma com $x$ garrafas. Isso significa $ 5 \cdot x $ ou $ 5x $.\\
+    \textit{Passo 2:} Adicionar as garrafas soltas $\rightarrow$ Somamos 3 ao valor das caixas.\\
+    \textit{Passo 3:} Escrever a expressão final $\rightarrow$ Total = $ 5x + 3 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos tendem a querer somar tudo, gerando $5+3+x$ ou $8x$. Reforce a ideia de "grupos" (multiplicação) versus "unidades avulsas" (adição).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O uso de "caixas" e "itens avulsos" é a melhor imagem mental para $ax + b$. A caixa esconde o valor de $x$ (não sabemos quanto tem lá dentro), e o número que acompanha o $x$ é quantas caixas temos. O número solto (o 3) é o que ficou fora da caixa e a gente consegue contar a olho nu.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) Para realizar uma viagem escolar, o custo do aluguel do ônibus foi dividido igualmente entre os alunos participantes. O motorista cobrou uma taxa fixa de $ \text{R\$} \ 250,00 $ pelo serviço e mais $ \text{R\$} \ 15,00 $ por cada aluno que entrasse no ônibus. Sabendo que $x$ representa o número de alunos que foram à viagem, qual das alternativas apresenta a expressão algébrica do valor \textbf{total} cobrado pelo motorista?
+
+Justifique a resposta correta e demonstre matematicamente o erro das alternativas falsas.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ 250 \cdot 15x $
+    \item $ 250 + 15 + x $
+    \item $ 15x + 250 $
+    \item $ 250x + 15 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se fossem apenas 2 alunos, você pagaria 15 reais uma vez só, ou duas vezes? E os 250 reais, mudam se forem 2 ou 10 alunos?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Validar a certa $\rightarrow$ Alternativa C. O valor de 15 reais multiplica a quantidade de alunos ($15x$) e soma-se à taxa fixa de 250, gerando $15x + 250$.\\
+    \textit{Passo 2:} Refutar A $\rightarrow$ A alternativa multiplica a taxa fixa pela variável ($250 \cdot 15x$), o que seria um absurdo econômico (uma taxa fixa multiplicando um valor que já multiplica os alunos).\\
+    \textit{Passo 3:} Refutar B $\rightarrow$ Ela propõe que o preço por aluno não multiplique a quantidade de alunos, mas apenas some $15 + x$. Se fossem 2 alunos, seriam apenas 17 reais em vez de $15 \cdot 2$.\\
+    \textit{Passo 4:} Refutar D $\rightarrow$ Aqui a taxa fixa e a variável foram invertidas. Estão cobrando $250$ por aluno e fixando $15$ reais, o oposto do texto.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Inverter o coeficiente variável com o termo constante (Alternativa D) é um erro de leitura muito comum. O aluno lê 250 primeiro no texto e gruda o $x$ nele instintivamente. Peça atenção à palavra "por cada".
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando a aula anterior: a palavra mágica para descobrir quem ganha o "$x$" é "POR" ou "CADA". 15 reais *por cada* aluno significa que o 15 será multiplicado ($15x$). O valor que vem escrito como "taxa fixa" fica sempre sozinho, sem letra.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} 
+\begin{enunciadoLiteral}
+Um maratonista treina correndo trajetos diferentes na cidade. O mapa abaixo mostra o percurso do corredor, saindo do ponto \textbf{A}, passando pelo ponto \textbf{B} e chegando ao ponto \textbf{C}. A distância entre os pontos está indicada por expressões algébricas em quilômetros.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{asfalto}{HTML}{34495E}
+    \definecolor{ponto}{HTML}{E74C3C}
+    \definecolor{trilha}{HTML}{F1C40F}
+    
+    % LAYER 1: Caminho (Rua)
+    \draw[line width=10pt, asfalto, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) -- (4,2) -- (8,0);
+    \draw[line width=2pt, dashed, trilha] (0,0) -- (4,2) -- (8,0);
+    
+    % LAYER 2: Pontos A, B, C
+    \filldraw[ponto, draw=white, thick] (0,0) circle (6pt) node[above left, black, font=\bfseries] {Ponto A};
+    \filldraw[ponto, draw=white, thick] (4,2) circle (6pt) node[above, black, font=\bfseries, yshift=2pt] {Ponto B};
+    \filldraw[ponto, draw=white, thick] (8,0) circle (6pt) node[above right, black, font=\bfseries] {Ponto C};
+    
+    % LAYER 3: Textos das medidas (Cotas)
+    \node[fill=white, inner sep=3pt, rounded corners=2pt, font=\bfseries] at (1.8, 1.4) {$2x + 1$};
+    \node[fill=white, inner sep=3pt, rounded corners=2pt, font=\bfseries] at (6.2, 1.4) {$3x - 1$};
+    
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se a distância total percorrida pelo maratonista do Ponto A até o Ponto C for de \textbf{15 quilômetros}, escreva a igualdade (equação) matemática que descreve essa situação, traduzindo o mapa para a Álgebra. \textit{(Atenção: Não é necessário resolver a equação agora, apenas monte a igualdade)}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se eu te disser que caminhei um pedaço e depois caminhei outro pedaço, como eu descubro o total? O que o símbolo de "igual" significa em um problema onde eu já te dou o resultado final?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Identificar a primeira parte do trajeto (A até B) $\rightarrow$ $ 2x + 1 $.\\
+    \textit{Passo 2:} Identificar a segunda parte do trajeto (B até C) $\rightarrow$ $ 3x - 1 $.\\
+    \textit{Passo 3:} Montar a soma dos trajetos $\rightarrow$ $ (2x + 1) + (3x - 1) $.\\
+    \textit{Passo 4:} Igualar ao total dado no texto para montar a equação $\rightarrow$ $ (2x + 1) + (3x - 1) = 15 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Os alunos no início da álgebra esquecem de colocar o sinal de "$=$" e o total ("$= 15$"). Eles montam apenas a expressão da soma. Lembre-os de que a diferença entre uma *Expressão* e uma *Equação* é a presença de uma balança de igualdade.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Esta questão é a ponte dourada entre Expressões e Equações. Mostre que até agora nós brincávamos de montar a conta sem saber o fim dela. Na Equação, nós SABEMOS o fim (é 15). O trabalho do detetive agora será descobrir quem é o $x$ que faz essa soma mágica dar 15.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\subsection*{Capítulo 3: Equações do 1º Grau - Introdução}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{16.} 
+\begin{enunciadoLiteral}
+Uma equação funciona exatamente como uma balança de pratos que está em perfeito equilíbrio. Observe a balança a seguir: de um lado temos duas caixas de massa desconhecida $x$ e um peso de \textbf{5 kg}. Do outro lado, temos um único peso de \textbf{17 kg}.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{madeira}{HTML}{D35400}
+    \definecolor{metal}{HTML}{7F8C8D}
+    \definecolor{peso}{HTML}{34495E}
+    \definecolor{caixa}{HTML}{F1C40F}
+    
+    % LAYER 1: Base e fulcro da balança
+    \fill[metal, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-1, -0.5) rectangle (1, 0);
+    \fill[metal, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (-0.2, 0) -- (0.2, 0) -- (0, 2) -- cycle;
+    
+    % LAYER 2: Haste e pratos (Equilíbrio horizontal)
+    \draw[line width=4pt, metal] (-4, 2) -- (4, 2);
+    % Cordas prato esquerdo
+    \draw[thick, gray] (-4, 2) -- (-5, 0.5);
+    \draw[thick, gray] (-4, 2) -- (-3, 0.5);
+    % Cordas prato direito
+    \draw[thick, gray] (4, 2) -- (3, 0.5);
+    \draw[thick, gray] (4, 2) -- (5, 0.5);
+    
+    % Pratos
+    \fill[madeira, rounded corners=2pt] (-5.5, 0.3) rectangle (-2.5, 0.5);
+    \fill[madeira, rounded corners=2pt] (2.5, 0.3) rectangle (5.5, 0.5);
+    
+    % LAYER 3: Pesos no prato ESQUERDO
+    \fill[caixa, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (-4.8, 0.5) rectangle (-3.8, 1.5);
+    \node[font=\bfseries\large] at (-4.3, 1) {$x$};
+    
+    \fill[caixa, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (-3.7, 0.5) rectangle (-2.7, 1.5);
+    \node[font=\bfseries\large] at (-3.2, 1) {$x$};
+    
+    \fill[peso, rounded corners=1pt] (-5.4, 0.5) -- (-4.9, 0.5) -- (-5.0, 1) -- (-5.3, 1) -- cycle;
+    \node[font=\bfseries, text=white, scale=0.7] at (-5.15, 0.75) {5kg};
+    
+    % LAYER 4: Pesos no prato DIREITO
+    \fill[peso, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (3.5, 0.5) -- (4.5, 0.5) -- (4.3, 1.8) -- (3.7, 1.8) -- cycle;
+    \node[font=\bfseries, text=white, scale=1.1] at (4, 1.1) {17kg};
+    
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Escreva a equação matemática que representa o equilíbrio dessa balança e, usando a lógica das operações (retirar pesos iguais dos dois lados), descubra a massa $x$ de cada caixa.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se eu tirar o peso de 5 kg do prato da esquerda, a balança vai desequilibrar. O que eu tenho que fazer no prato da direita para manter o equilíbrio exato?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Montar a equação visual $\rightarrow$ O prato esquerdo é $x + x + 5$ ou $2x + 5$. O direito é $17$. A igualdade é: $ 2x + 5 = 17 $.\\
+    \textit{Passo 2:} Usar a lógica do equilíbrio (Princípio Aditivo) $\rightarrow$ Retiramos 5 kg de AMBOS os lados para isolar as caixas: $ 2x = 17 - 5 $.\\
+    \textit{Passo 3:} Calcular a diferença $\rightarrow$ $ 2x = 12 $. (Duas caixas pesam 12 kg).\\
+    \textit{Passo 4:} Usar o Princípio Multiplicativo $\rightarrow$ Se duas caixas iguais pesam 12, para achar uma, dividimos por 2: $ x = \mfrac{12}{2} $.\\
+    \textit{Passo 5:} Resposta $\rightarrow$ $ x = 6 \text{ kg} $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} No $6^\circ$ ano, a regra do "passa para o outro lado mudando o sinal" ainda NÃO DEVE ser ensinada de forma decorada. A justificativa rigorosa deve ser sempre a manutenção da balança: "Tudo o que eu faço de um lado, faço do outro".
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Desenhe na lousa uma balança simples. O objetivo de toda equação é deixar o $x$ SOZINHO em um dos pratos. Como? Limpando o terreno. Primeiro, tira os números soltos. Tirou de um lado? Obrigatoriamente tira do outro (senão a balança cai). Depois de tirar os "intrusos", é só dividir!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} 
+\begin{enunciadoLiteral}
+Em matemática, a "raiz" (ou solução) de uma equação é o valor exato que devemos colocar no lugar do $x$ para que a balança de igualdade seja verdadeira. 
+
+Verifique, realizando os cálculos, se o número \textbf{5} é a raiz da equação $ 3x + 2 = 17 $.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Em vez de tentar "resolver" a conta, vamos fazer o caminho inverso. O que acontece se a gente simplesmente pegar o 5, colocar na "caixinha" do $x$ e calcular? O resultado dá 17?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Substituir $x$ por 5 no primeiro membro da equação $\rightarrow$ $ 3 \cdot 5 + 2 $.\\
+    \textit{Passo 2:} Realizar a multiplicação primeiro $\rightarrow$ $ 15 + 2 $.\\
+    \textit{Passo 3:} Realizar a soma $\rightarrow$ $ 17 $.\\
+    \textit{Passo 4:} Comparar com o segundo membro da equação original $\rightarrow$ $ 17 = 17 $. É uma igualdade verdadeira.\\
+    \textit{Passo 5:} Conclusão $\rightarrow$ Sim, o número 5 é a raiz da equação.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode tentar resolver a equação isolando o $x$, errar na conta e concluir falsamente que 5 não é a raiz. A orientação deve ser estrita: problemas de "verificar" não se resolvem de trás pra frente, apenas substituímos o número sugerido e validamos a igualdade (prova real).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} "Verificar a raiz" é igual a testar uma chave na fechadura. Você não precisa desmontar a porta para saber se a chave funciona, basta colocá-la na maçaneta (substituir o x) e ver se a porta abre (se a igualdade final dá lados iguais).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} 
+\begin{enunciadoLiteral}
+Um estudante estava tentando resolver a equação $ x + 8 = 20 $. Para tentar deixar a letra $x$ isolada no lado esquerdo da balança, ele fez a seguinte anotação no caderno:
+
+\textit{"Eu preciso tirar o 8 que está atrapalhando o $x$. Então, eu retiro 8 do lado esquerdo e, para compensar, eu somo 8 do lado direito, chegando na resposta $ x = 28 $."}
+
+\begin{boxresponda}
+\textbf{Responda:} Baseando-se no princípio da balança em equilíbrio, qual foi o erro de raciocínio lógico cometido por este estudante? Qual é o valor real de $x$?
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Imagine uma gangorra perfeitamente equilibrada com duas pessoas de pesos iguais. Se você tira uma mochila de 8 kg das costas da pessoa da esquerda e PENDURA nas costas da pessoa da direita, a gangorra vai continuar em equilíbrio?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnosticar o erro $\rightarrow$ O estudante feriu o Princípio de Equivalência. Ele subtraiu de um lado e SOMOU do outro. Isso desequilibra completamente a balança.\\
+    \textit{Passo 2:} Explicar a regra correta $\rightarrow$ O que se faz de um lado, deve-se fazer \textbf{exatamente igual} do outro. Se tirou 8 da esquerda, TEM que tirar 8 da direita.\\
+    \textit{Passo 3:} Resolver corretamente $\rightarrow$ $ x + 8 - 8 = 20 - 8 $.\\
+    \textit{Passo 4:} Resposta final $\rightarrow$ $ x = 12 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Este é o clássico reflexo condicionado precoce do "passar mudando o sinal" ensinado de forma errada nos anos anteriores, onde a criança confunde as operações. Esta questão metacognitiva quebra o "macete" e resgata o conceito real.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Uma habilidade vital no 6º ano é descontruir algoritmos cegos (os macetes). O aluno que entende o porquê de diminuir 8 de ambos os lados raramente cometerá erros de sinal mais à frente.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} 
+\begin{enunciadoLiteral}
+Tente descobrir mentalmente (ou fazendo os cálculos reversos) a solução do seguinte desafio algébrico: "O quádruplo de um número misterioso, subtraído de 2 unidades, resulta em 18". 
+
+Ou seja, $ 4x - 2 = 18 $.
+
+Qual das opções abaixo corresponde ao número misterioso $x$? Justifique provando matematicamente que as outras opções NÃO funcionam.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ x = 3 $
+    \item $ x = 4 $
+    \item $ x = 5 $
+    \item $ x = 6 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Que número que multiplicado por 4 e tirando 2 dá 18? Vamos testar os candidatos?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Testar e refutar A ($x=3$) $\rightarrow$ $ 4 \cdot 3 - 2 = 12 - 2 = 10 $ (Falso, precisava dar 18).\\
+    \textit{Passo 2:} Testar e refutar B ($x=4$) $\rightarrow$ $ 4 \cdot 4 - 2 = 16 - 2 = 14 $ (Falso).\\
+    \textit{Passo 3:} Validar a alternativa correta C ($x=5$) $\rightarrow$ $ 4 \cdot 5 - 2 = 20 - 2 = 18 $ (Verdadeiro, balança equilibrou).\\
+    \textit{Passo 4:} Testar e refutar D ($x=6$) $\rightarrow$ $ 4 \cdot 6 - 2 = 24 - 2 = 22 $ (Falso).\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno que tentar resolver pela lógica operacional invertida e falhar ($18-2=16 \rightarrow x=4$) deve ser convidado a fazer o teste de substituição. Ele próprio perceberá a falha da sua lógica ao substituir o 4 e dar 14.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} "Método da Tentativa e Erro Estruturado". No início da Álgebra, forçar o aluno a chutar valores organizadamente cria nele o "senso de proporção". Ele percebe que ao chutar 3, deu um número baixo. Ao chutar 4, aproximou-se. Assim, ele intui que a equação tem um comportamento linear!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} 
+\begin{enunciadoLiteral}
+Uma fita retangular foi dividida em partes. A primeira parte tem tamanho de \textbf{15 cm}. As outras três partes menores têm tamanhos iguais, representados por $x$. Sabendo que a fita inteira possui \textbf{30 cm} no total, observe o esquema em blocos:
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.7\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{fitaG}{HTML}{3498DB}
+    \definecolor{fitaP}{HTML}{E67E22}
+    
+    % Fita inteira (fundo comparativo)
+    \fill[gray!20, rounded corners=2pt, drop shadow={opacity=0.1, shadow xshift=2pt, shadow yshift=-2pt}] (0, 1.5) rectangle (8, 2.5);
+    \draw[thick, gray!50, rounded corners=2pt] (0, 1.5) rectangle (8, 2.5);
+    \node[font=\bfseries, text=black] at (4, 2) {Total = 30 cm};
+    
+    % Peças recortadas
+    \fill[fitaG, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (0, 0) rectangle (4, 1);
+    \draw[thick, black] (0, 0) rectangle (4, 1);
+    \node[font=\bfseries, text=white] at (2, 0.5) {15 cm};
+    
+    \fill[fitaP, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (4.2, 0) rectangle (5.3, 1);
+    \draw[thick, black] (4.2, 0) rectangle (5.3, 1);
+    \node[font=\bfseries, text=white] at (4.75, 0.5) {$x$};
+    
+    \fill[fitaP, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (5.5, 0) rectangle (6.6, 1);
+    \draw[thick, black] (5.5, 0) rectangle (6.6, 1);
+    \node[font=\bfseries, text=white] at (6.05, 0.5) {$x$};
+    
+    \fill[fitaP, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (6.8, 0) rectangle (7.9, 1);
+    \draw[thick, black] (6.8, 0) rectangle (7.9, 1);
+    \node[font=\bfseries, text=white] at (7.35, 0.5) {$x$};
+    
+    % Chave de agrupamento (brace)
+    \draw [decorate, decoration={brace, amplitude=5pt}, thick] (7.9, -0.2) -- (0, -0.2) node [midway, below, yshift=-4pt, font=\bfseries] {Comprimento equivalente};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na figura, escreva a equação correspondente e determine o valor (tamanho) de cada pedaço $x$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se a fita toda tem 30 cm e a parte azul gasta 15 cm, quantos centímetros "sobram" para serem divididos pelos blocos laranjas?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Montar a equação lendo a imagem $\rightarrow$ Temos três blocos de $x$ somados a um de $15$, que juntos formam o total $30$. Equação: $ 3x + 15 = 30 $.\\
+    \textit{Passo 2:} Isolar as incógnitas $\rightarrow$ Subtraímos 15 dos dois lados (ou "o pedaço grande de 15 gasta metade da fita, sobram 15 para o resto"): $ 3x = 30 - 15 \Rightarrow 3x = 15 $.\\
+    \textit{Passo 3:} Dividir os bloquinhos $\rightarrow$ Se três blocos valem 15, dividimos 15 por 3: $ x = \mfrac{15}{3} $.\\
+    \textit{Passo 4:} Resposta $\rightarrow$ $ x = 5 \text{ cm} $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} A modelagem visual (Método de Singapura) ajuda muito, mas o aluno pode tentar adivinhar a resposta de cabeça sem escrever a equação. Exija a escrita formal: $3x + 15 = 30$. O objetivo não é apenas achar 5, é alfabetizar algebricamente.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Este formato em barras retangulares é mundialmente famoso como "Matemática de Singapura". Ele materializa a álgebra, mostrando que resolver uma equação é apenas "recortar" o pedaço que você conhece (15) do total (30), e o que sobra você "fatia" igualmente (por 3).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{21.} 
+\begin{enunciadoLiteral}
+Em uma brincadeira matemática de adivinhação, Marina disse a seguinte frase ao seu irmão: 
+
+\textit{"Pensei em um número natural. Multipliquei esse número por dois e, em seguida, adicionei seis. O resultado final dessa conta foi vinte."}
+
+Transforme o desafio de Marina em uma equação do 1º grau (chamando o número pensado de $x$) e resolva para descobrir em qual número ela pensou.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se ela no final somou 6 para chegar no 20, que número ela tinha *antes* de somar esse 6?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Tradução (Montar a Equação) $\rightarrow$ O dobro do número ($2x$) mais seis ($+ 6$) é igual a vinte ($= 20$). Equação: $ 2x + 6 = 20 $.\\
+    \textit{Passo 2:} Isolamento do termo com letra $\rightarrow$ Subtraindo 6 dos dois lados da balança (ou passando na operação inversa): $ 2x = 20 - 6 $.\\
+    \textit{Passo 3:} Calcular a diferença $\rightarrow$ $ 2x = 14 $.\\
+    \textit{Passo 4:} Dividir $\rightarrow$ O número que multiplicado por 2 dá 14 é $ 14 \div 2 $. Logo, $ x = 7 $.\\
+    \textit{Passo 5:} Resposta $\rightarrow$ Marina pensou no número 7.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno tentará fazer a "operação inversa" de cabeça e pode errar a ordem, dividindo o 20 por 2 primeiro e depois tirando 6 (chegando em 4). Alerte que a ordem de desfazer é inversa à ordem de fazer: se o $+6$ foi o último passo, ele é o primeiro a ser desfeito.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Resolver equações é como "desfazer as malas" depois de uma viagem. Você tira por último o que colocou primeiro. Na brincadeira, a Marina primeiro multiplicou, e por último somou 6. Na hora de resolver, nós tiramos o 6 primeiro, e por último desfazemos a multiplicação!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} 
+\begin{enunciadoLiteral}
+(Estilo FUVEST - Adaptada) Um cliente comprou um caderno por $ \text{R\$} \ 15,00 $ e \textbf{quatro canetas idênticas} de mesmo valor, gastando um total de $ \text{R\$} \ 35,00 $. Se representarmos o valor de cada caneta por $y$, qual das equações abaixo representa corretamente essa compra e qual o valor de cada caneta? 
+
+Demonstre por meio de cálculos o motivo de as outras três equações estarem erradas em relação à história narrada.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ 15y + 4 = 35 $
+    \item $ 4y = 35 + 15 $
+    \item $ 4y + 15 = 35 $
+    \item $ y + 15 = 35 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se o caderno já custou 15, quanto sobrou do seu dinheiro (dos 35) apenas para pagar as quatro canetas?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Validar a certa (C) $\rightarrow$ 4 canetas vezes $y$ mais 15 reais é igual a 35 reais ($4y + 15 = 35$).\\
+    \textit{Passo 2:} Resolver a C $\rightarrow$ $ 4y = 35 - 15 \Rightarrow 4y = 20 \Rightarrow y = 5 $. Cada caneta custou 5 reais.\\
+    \textit{Passo 3:} Refutar A $\rightarrow$ Em $15y + 4 = 35$, a pessoa está comprando 15 canetas e somando 4 reais de taxa (inverteu as quantidades).\\
+    \textit{Passo 4:} Refutar B $\rightarrow$ Em $4y = 35 + 15$, estaríamos dizendo que as canetas sozinhas custaram 50 reais (a soma da compra com o caderno), o que é impossível pois o total era 35.\\
+    \textit{Passo 5:} Refutar D $\rightarrow$ Em $y + 15 = 35$, a pessoa comprou apenas UMA caneta, esquecendo-se do coeficiente 4.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Cuidado extremo com a alternativa B. Visualmente ela atrai alunos que lembram da regra de "passar o número pra lá", mas eles erram o sinal, somando o 15 em vez de subtraí-lo do total de 35.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O erro da alternativa B ($35+15$) é fantástico para mostrar por que não podemos apenas decorar regras de "sinal". Se você comprou tudo por 35 reais, como é que só as canetas vão custar 50? O bom senso matemático é o melhor fiscal da álgebra.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} 
+\begin{enunciadoLiteral}
+Um carpinteiro construiu uma moldura de madeira no formato de um triângulo, onde a medida de um lado é desconhecida e representada por $x$. Os outros dois lados medem, em metros, o dobro do primeiro lado ($2x$) e o triplo do primeiro lado ($3x$), conforme ilustrado no desenho a seguir.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{madeiraTri}{HTML}{D35400}
+    \definecolor{madeiraBorda}{HTML}{A04000}
+    
+    % LAYER 1: Triângulo moldura
+    \filldraw[fill=madeiraTri!80, draw=madeiraBorda, line width=4pt, line join=round, drop shadow={opacity=0.3, shadow xshift=3pt, shadow yshift=-2pt}] (0,0) -- (6,0) -- (1.5,4) -- cycle;
+    
+    % LAYER 2: Textos vazados
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries\large] at (3, -0.4) {$3x$};
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries\large, rotate=68] at (0.35, 2.3) {$x$};
+    \node[fill=white, inner sep=2pt, rounded corners=2pt, font=\bfseries\large, rotate=-40] at (4.2, 2.5) {$2x$};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se o carpinteiro utilizou exatamente \textbf{12 metros} lineares de madeira para construir a volta completa dessa moldura (ou seja, seu perímetro), monte a equação adequada e descubra a medida, em metros, do menor lado ($x$).
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Perímetro é a soma do contorno. Quantos "x" nós temos somando os três lados juntos da figura?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Montar a soma dos lados $\rightarrow$ $ x + 2x + 3x $.\\
+    \textit{Passo 2:} Igualar ao perímetro total dado no texto $\rightarrow$ $ x + 2x + 3x = 12 $.\\
+    \textit{Passo 3:} Reduzir os termos semelhantes (somar a família do x) $\rightarrow$ Lembre-se que $x$ sozinho é $1x$. Assim, $1x + 2x + 3x = 6x$. Logo, $ 6x = 12 $.\\
+    \textit{Passo 4:} Isolar a variável $\rightarrow$ $ x = \mfrac{12}{6} $.\\
+    \textit{Passo 5:} Resposta final $\rightarrow$ O menor lado ($x$) mede \textbf{2 metros}.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro mais letal aqui é o aluno somar $2x + 3x$ dando $5x$, ignorando olimpicamente que a letra $x$ sozinha carrega um $1$ oculto na frente. Se o aluno encontrar $5x=12$ (não resultando em natural), questione: "E aquele primeiro lado do triângulo, ele não vale nada?".
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O Fantasma do Número 1! A álgebra tem fantasmas amigáveis. Na frente de toda letra $x$ sozinha, existe um fantasma de jaleco escrito $1$. Portanto, $x+2x$ nunca dá $2x$, dá $3x$. É só somar $1$ lousa mais $2$ lousas.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\subsection*{Capítulo 4: Sequências Numéricas}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{24.} 
+\begin{enunciadoLiteral}
+Em uma aula de lógica, os alunos formaram figuras montando quadrados com palitos de fósforo. Observe a lei de formação desta sequência visual:
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.8\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{palito}{HTML}{E74C3C}
+    \definecolor{cabeca}{HTML}{8E44AD}
+    \tikzset{
+        stick/.style={line width=2.5pt, palito, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}},
+        dot/.style={circle, fill=cabeca, inner sep=1.5pt}
+    }
+    
+    % FIGURA 1 (1 quadrado = 4 palitos)
+    \node[font=\bfseries, text=black] at (0.5, 1.5) {Figura 1};
+    \draw[stick] (0,0) -- (1,0); \node[dot] at (1,0) {};
+    \draw[stick] (1,0) -- (1,1); \node[dot] at (1,1) {};
+    \draw[stick] (1,1) -- (0,1); \node[dot] at (0,1) {};
+    \draw[stick] (0,1) -- (0,0); \node[dot] at (0,0) {};
+    
+    % FIGURA 2 (2 quadrados = 7 palitos)
+    \node[font=\bfseries, text=black] at (3.5, 1.5) {Figura 2};
+    % quad 1
+    \draw[stick] (2.5,0) -- (3.5,0); \node[dot] at (3.5,0) {};
+    \draw[stick] (3.5,0) -- (3.5,1); \node[dot] at (3.5,1) {};
+    \draw[stick] (3.5,1) -- (2.5,1); \node[dot] at (2.5,1) {};
+    \draw[stick] (2.5,1) -- (2.5,0); \node[dot] at (2.5,0) {};
+    % quad 2 adicionado
+    \draw[stick] (3.5,0) -- (4.5,0); \node[dot] at (4.5,0) {};
+    \draw[stick] (4.5,0) -- (4.5,1); \node[dot] at (4.5,1) {};
+    \draw[stick] (4.5,1) -- (3.5,1); 
+    
+    % FIGURA 3 (3 quadrados = 10 palitos)
+    \node[font=\bfseries, text=black] at (7.5, 1.5) {Figura 3};
+    % quad 1
+    \draw[stick] (6,0) -- (7,0); \node[dot] at (7,0) {};
+    \draw[stick] (7,0) -- (7,1); \node[dot] at (7,1) {};
+    \draw[stick] (7,1) -- (6,1); \node[dot] at (6,1) {};
+    \draw[stick] (6,1) -- (6,0); \node[dot] at (6,0) {};
+    % quad 2
+    \draw[stick] (7,0) -- (8,0); \node[dot] at (8,0) {};
+    \draw[stick] (8,0) -- (8,1); \node[dot] at (8,1) {};
+    \draw[stick] (8,1) -- (7,1); 
+    % quad 3 adicionado
+    \draw[stick] (8,0) -- (9,0); \node[dot] at (9,0) {};
+    \draw[stick] (9,0) -- (9,1); \node[dot] at (9,1) {};
+    \draw[stick] (9,1) -- (8,1); 
+    
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Analisando o padrão de crescimento, para adicionar um novo quadrado adjacente à sequência, quantos palitos "novos" são acrescentados na estrutura? 
+
+Descubra quantos palitos no total seriam necessários para montar a \textbf{Figura 5} usando essa mesma regularidade numérica.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Conte os palitos da Figura 1. Deu 4? Ok. Agora conte os da Figura 2. Deu 8? Não! Por que deu 7? O que aconteceu com a "parede" que encostou no outro quadrado?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Contagem inicial $\rightarrow$ Fig.1 = 4 palitos, Fig.2 = 7 palitos, Fig.3 = 10 palitos.\\
+    \textit{Passo 2:} Identificar a regularidade (razão de crescimento) $\rightarrow$ Do 4 para o 7, aumentou 3. Do 7 para o 10, aumentou 3. Logo, cada novo quadrado acrescenta apenas \textbf{3 palitos} novos (pois compartilha uma haste central).\\
+    \textit{Passo 3:} Projetar os próximos $\rightarrow$ Fig.4 seria $10 + 3 = 13$ palitos.\\
+    \textit{Passo 4:} Responder a Fig.5 $\rightarrow$ Fig.5 será $13 + 3 = 16$ palitos.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno lógico-dedutivo precipitado vai pensar: "Se a Figura 1 tem 4 palitos, a Figura 5 vai ter $5 \cdot 4 = 20$ palitos". O tutor deve exigir que ele desenhe a figura se errar, para ele perceber que os quadrados do meio não usam 4 palitos cada, pois dividem a parede vizinha.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Sequências são os alicerces da álgebra avançada (PA e PB no Ensino Médio). Ensine os alunos a criarem uma tabelinha no canto do caderno: [Figura - Palitos]. Olhando para os números enfileirados (4, 7, 10, ...), fica óbvio para qualquer criança que a "tabuada oculta" ali é a de contar de 3 em 3.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} 
+\begin{enunciadoLiteral}
+Uma professora de Matemática escreveu a seguinte sequência de números na lousa, mas apagou o quinto termo de propósito, deixando um espaço representado pela letra $y$:
+
+$ 5, \ 11, \ 17, \ 23, \ y, \ 35, \ 41 $
+
+Determine o valor numérico que deve estar no lugar de $y$ para que a sequência mantenha a sua regularidade e explique qual é a regra de formação (o padrão) utilizada para ir de um número para o próximo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Como você faz para descobrir a distância (a diferença) entre o 5 e o 11? Essa mesma distância funciona do 11 para o 17?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Analisar a diferença entre os primeiros termos $\rightarrow$ $11 - 5 = 6$. Aumentou 6.\\
+    \textit{Passo 2:} Testar se o padrão se repete $\rightarrow$ $11 + 6 = 17$ (Certo). $17 + 6 = 23$ (Certo).\\
+    \textit{Passo 3:} Definir a regra de formação $\rightarrow$ A sequência aumenta de 6 em 6 (adiciona-se 6 ao termo anterior).\\
+    \textit{Passo 4:} Calcular o valor de $y$ $\rightarrow$ $ 23 + 6 = 29 $. Logo, $y = 29$.\\
+    \textit{Passo 5:} Tirar a prova real com o próximo $\rightarrow$ $29 + 6 = 35$ (Bate com a sequência da lousa).\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos podem tentar multiplicar ou achar que a regra muda no meio do caminho. Exija sempre a "prova real", testando se o número descoberto ($29$) se conecta corretamente com o próximo número já revelado ($35$).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Brinque de "Detetive de Padrões". O detetive sempre olha as pegadas (os números). Se o passo for sempre do mesmo tamanho (+6), achamos a regra. Isso é a base absoluta das Progressões Aritméticas que eles verão no Ensino Médio, mas ensinada de forma intuitiva.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} 
+\begin{enunciadoLiteral}
+Para uma festa na escola, as mesas do refeitório (representadas por retângulos escuros) estão sendo unidas em fileiras. As cadeiras (representadas por círculos claros) são colocadas ao redor das mesas. 
+
+Observe como o número de cadeiras aumenta conforme juntamos mais mesas:
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{mesaCor}{HTML}{8E44AD}
+    \definecolor{cadeiraCor}{HTML}{F1C40F}
+    \tikzset{
+        mesa/.style={fill=mesaCor, rounded corners=2pt, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}},
+        cadeira/.style={circle, fill=cadeiraCor, draw=white, thick, inner sep=4pt, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}}
+    }
+    
+    % CONFIG 1: 1 Mesa
+    \node[font=\bfseries, text=black] at (1, 2) {1 Mesa};
+    \draw[mesa] (0.2, 0.5) rectangle (1.8, 1.3);
+    % Cadeiras
+    \node[cadeira] at (0, 0.9) {}; % esq
+    \node[cadeira] at (2, 0.9) {}; % dir
+    \node[cadeira] at (1, 1.5) {}; % cima
+    \node[cadeira] at (1, 0.3) {}; % baixo
+    
+    % CONFIG 2: 2 Mesas
+    \node[font=\bfseries, text=black] at (4.5, 2) {2 Mesas juntas};
+    \draw[mesa] (3, 0.5) rectangle (6, 1.3);
+    % Cadeiras
+    \node[cadeira] at (2.8, 0.9) {}; % esq
+    \node[cadeira] at (6.2, 0.9) {}; % dir
+    \node[cadeira] at (3.8, 1.5) {}; % cima 1
+    \node[cadeira] at (5.2, 1.5) {}; % cima 2
+    \node[cadeira] at (3.8, 0.3) {}; % baixo 1
+    \node[cadeira] at (5.2, 0.3) {}; % baixo 2
+    
+    % CONFIG 3: 3 Mesas
+    \node[font=\bfseries, text=black] at (9, 2) {3 Mesas juntas};
+    \draw[mesa] (7, 0.5) rectangle (11, 1.3);
+    % Cadeiras
+    \node[cadeira] at (6.8, 0.9) {}; % esq
+    \node[cadeira] at (11.2, 0.9) {}; % dir
+    \node[cadeira] at (7.8, 1.5) {}; % cima 1
+    \node[cadeira] at (9.0, 1.5) {}; % cima 2
+    \node[cadeira] at (10.2, 1.5) {}; % cima 3
+    \node[cadeira] at (7.8, 0.3) {}; % baixo 1
+    \node[cadeira] at (9.0, 0.3) {}; % baixo 2
+    \node[cadeira] at (10.2, 0.3) {}; % baixo 3
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se juntarmos \textbf{6 mesas} em uma única fileira, quantas cadeiras caberão ao redor dessa fileira? Explique a sua lógica de contagem sem precisar desenhar todas as mesas.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Toda vez que a gente gruda uma mesa nova na ponta, a gente perde o espaço da cadeira que ficava no meio. Olhando a imagem, cada mesa nova traz quantas cadeiras a mais para a festa?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Contar o estado inicial $\rightarrow$ 1 mesa = 4 cadeiras.\\
+    \textit{Passo 2:} Contar os próximos e achar a razão $\rightarrow$ 2 mesas = 6 cadeiras. 3 mesas = 8 cadeiras. Aumenta de 2 em 2 (uma cadeira em cima, outra embaixo da mesa nova).\\
+    \textit{Passo 3:} Projetar para 6 mesas $\rightarrow$ 4 mesas = 10 cadeiras; 5 mesas = 12 cadeiras; 6 mesas = 14 cadeiras.\\
+    \textit{Passo 4:} Lógica Algébrica (Alternativa) $\rightarrow$ A regra é: o dobro do número de mesas mais as 2 cadeiras das pontas ($2n + 2$). Para 6 mesas: $2 \cdot 6 + 2 = 12 + 2 = 14$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro de proporcionalidade direta é fatal aqui. O aluno pensa: "Se 3 mesas têm 8 cadeiras, 6 mesas terão o dobro (16)". Refute essa lógica desenhando que a junção "rouba" as cadeiras que ficariam entre as mesas.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Esse é o melhor exemplo visual para mostrar que a álgebra modela a vida real. Mostre que não importa quantas mesas colocarmos, sempre teremos as cadeiras "de cima e de baixo" ($2 \cdot n$) e as famosas cadeiras dos "chefes da mesa" nas duas pontas ($+2$). Regra visual pura!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} 
+\begin{enunciadoLiteral}
+Um grupo de estudos estava analisando o crescimento das visualizações de um vídeo na internet. No primeiro dia, houve \textbf{2 visualizações}. No segundo dia, foram \textbf{4}. No terceiro dia, \textbf{8}. No quarto dia, \textbf{16 visualizações}.
+
+Um dos alunos anotou no quadro: \textit{"A regra da sequência 2, 4, 8, 16 é que estamos sempre somando 2 ao número anterior."}
+
+\begin{boxresponda}
+\textbf{Responda:} A afirmação do aluno está correta? Caso esteja errada, explique o que realmente está acontecendo matematicamente com os números dia após dia e qual será o número de visualizações no quinto dia.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se fosse verdade que está sempre somando 2, depois do 4 viria qual número? E na nossa sequência, veio o 8. Qual operação transforma o 4 em 8 e o 8 em 16?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnosticar o erro $\rightarrow$ A afirmação está errada. Se estivesse somando 2, a sequência seria 2, 4, 6, 8, 10.\\
+    \textit{Passo 2:} Identificar a regra real $\rightarrow$ A sequência está dobrando de valor a cada dia (multiplicando por 2).\\
+    \textit{Passo 3:} Calcular o quinto dia $\rightarrow$ Se no quarto dia foram 16, no quinto será o dobro de 16.\\
+    \textit{Passo 4:} Finalizar a conta $\rightarrow$ $ 16 \cdot 2 = 32 $ visualizações.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Crianças frequentemente testam a regra apenas nos dois primeiros números. De 2 para 4, somar 2 funciona, então o cérebro "aceita" a regra. O tutor deve ensinar o hábito de testar a hipótese no terceiro termo antes de validá-la.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Introduz sutilmente o comportamento multiplicativo (exponencial e PG) em oposição ao aditivo (linear e PA), treinando a flexibilidade cognitiva para não achar que toda sequência é baseada em soma.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} 
+\begin{enunciadoLiteral}
+Lucas começou a poupar dinheiro em seu cofrinho. O gráfico em barras abaixo mostra a quantia acumulada por ele, em reais, ao longo dos primeiros três meses.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.6\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{barraCor}{HTML}{2ECC71}
+    \definecolor{eixoCor}{HTML}{2C3E50}
+    
+    \begin{axis}[
+        ybar,
+        bar width=20pt,
+        axis lines=left,
+        axis line style={eixoCor, thick},
+        enlarge x limits=0.25,
+        ymin=0, ymax=60,
+        ylabel={\textbf{Valor (R\$)}},
+        xlabel={\textbf{Meses}},
+        xtick=data,
+        xticklabels={Mês 1, Mês 2, Mês 3},
+        nodes near coords,
+        nodes near coords align={vertical},
+        every node near coord/.append style={font=\bfseries},
+        tick label style={font=\small\bfseries},
+        label style={font=\bfseries},
+        hide x axis=false,
+        axis x line=bottom,
+        axis y line=left,
+        ymajorgrids=true,
+        grid style={dashed, gray!30}
+    ]
+    % Adicionando sombra manualmente via estilo não nativo do pgfplots é complexo, 
+    % vamos usar filldenso e borda arredondada na definição do plot
+    \addplot[fill=barraCor, draw=eixoCor, thick, rounded corners=1pt] coordinates {
+        (1, 20)
+        (2, 32)
+        (3, 44)
+    };
+    \end{axis}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Se Lucas mantiver exatamente o mesmo padrão de economia todos os meses (poupando o mesmo valor fixo mensalmente), qual será a quantia total, em reais, que ele terá acumulado ao chegar no \textbf{Mês 6}?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se ele tinha 20 e foi para 32, quantos reais ele colocou no cofrinho no segundo mês? Será que no terceiro mês ele colocou esse mesmo valor?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Ler o gráfico e identificar a sequência $\rightarrow$ Mês 1: 20, Mês 2: 32, Mês 3: 44.\\
+    \textit{Passo 2:} Achar a razão de crescimento $\rightarrow$ $32 - 20 = 12$. A cada mês, ele deposita 12 reais.\\
+    \textit{Passo 3:} Projetar Mês 4 $\rightarrow$ $44 + 12 = 56$.\\
+    \textit{Passo 4:} Projetar Mês 5 $\rightarrow$ $56 + 12 = 68$.\\
+    \textit{Passo 5:} Projetar Mês 6 $\rightarrow$ $68 + 12 = 80$.\\
+    \textit{Passo 6:} Resposta $\rightarrow$ Lucas terá $ \text{R\$} \ 80,00 $.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Cuidado com a interpretação de que o valor do mês é $12 \cdot 6 = 72$. A regra não é "ele guarda 12", a regra é "ele JÁ TINHA um começo". Ele começou com 20, então o 20 faz parte da base. Se o aluno errar, faça-o somar passo a passo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Gráficos de barras que crescem em "escadinha" igual mostram perfeitamente o que é uma regularidade linear. O tamanho do "degrau" que você sobe de uma barra para a outra é sempre o mesmo. Neste caso, o degrau vale exatos 12 reais.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} 
+\begin{enunciadoLiteral}
+Uma sequência numérica é dada pelos múltiplos não nulos do número 5, ou seja: $ 5, 10, 15, 20, 25 \dots $. A expressão algébrica que define qualquer termo dessa sequência é $5n$, onde $n$ é a posição do número (posição 1, posição 2, etc).
+
+Seguindo esse mesmo raciocínio, qual das alternativas abaixo apresenta a expressão algébrica correta para gerar a sequência $ 4, 8, 12, 16, 20 \dots $ ? 
+
+Justifique por que as outras três expressões estão erradas, testando-as para a primeira posição ($n=1$).
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+    \item $ n + 4 $
+    \item $ 4n $
+    \item $ n \cdot n $ (ou $n^2$)
+    \item $ 2n + 2 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Se a tabuada do 5 usa a fórmula $5n$, como será a fórmula da tabuada do 4?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Validar a certa (B) $\rightarrow$ A sequência é a tabuada do 4. Logo, é multiplicar a posição por 4 ($4n$). Teste para $n=1$: $4 \cdot 1 = 4$ (Certo).\\
+    \textit{Passo 2:} Refutar A ($n+4$) $\rightarrow$ Testando para a posição 1 ($n=1$), teremos $1+4=5$. O primeiro número seria 5 e não 4.\\
+    \textit{Passo 3:} Refutar C ($n^2$) $\rightarrow$ Testando para $n=1$, teremos $1 \cdot 1 = 1$. O primeiro número seria 1.\\
+    \textit{Passo 4:} Refutar D ($2n+2$) $\rightarrow$ Testando para $n=1$, teremos $2 \cdot 1 + 2 = 4$. Deu certo no primeiro! Mas vamos testar $n=2$: $2 \cdot 2 + 2 = 6$. O segundo número seria 6, e na sequência o segundo é 8. Logo, é falsa.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} A alternativa D é a clássica "pegadinha" matemática. Ela funciona para o primeiro termo, criando uma falsa sensação de segurança. O aluno OBRIGATORIAMENTE precisa testar o segundo termo para refutá-la.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Substituir a posição ($n$) na fórmula é o mesmo que perguntar para o oráculo matemático: "Qual é a senha do cofre número 1?". Se o oráculo der a senha 5 (como na alternativa A), você sabe que a fórmula está quebrada, pois o cofre 1 deve ter a senha 4.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} 
+\begin{enunciadoLiteral}
+(Desafio Visual) Um arquiteto está projetando a paginação de um piso usando ladrilhos claros e escuros. Ele criou um padrão de "ilhas", onde o ladrilho escuro central (representando $n$) é sempre rodeado por uma moldura de ladrilhos claros, como mostra o projeto:
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E REGRAS PREMIUM ---
+    \definecolor{escuro}{HTML}{2C3E50}
+    \definecolor{claro}{HTML}{ECF0F1}
+    \definecolor{rejunte}{HTML}{95A5A6}
+    
+    \tikzset{
+        blocoEscuro/.style={fill=escuro, draw=rejunte, thick, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}},
+        blocoClaro/.style={fill=claro, draw=rejunte, thick, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}}
+    }
+    
+    % FIGURA 1 (1 escuro, 8 claros)
+    \node[font=\bfseries, text=black] at (1, 3.5) {Projeto 1};
+    % claros ao redor
+    \draw[blocoClaro] (0, 0) rectangle (1, 1);
+    \draw[blocoClaro] (1, 0) rectangle (2, 1);
+    \draw[blocoClaro] (2, 0) rectangle (3, 1);
+    \draw[blocoClaro] (0, 1) rectangle (1, 2);
+    \draw[blocoClaro] (2, 1) rectangle (3, 2);
+    \draw[blocoClaro] (0, 2) rectangle (1, 3);
+    \draw[blocoClaro] (1, 2) rectangle (2, 3);
+    \draw[blocoClaro] (2, 2) rectangle (3, 3);
+    % escuro centro
+    \draw[blocoEscuro] (1, 1) rectangle (2, 2);
+    
+    % FIGURA 2 (2 escuros, 10 claros)
+    \node[font=\bfseries, text=black] at (6, 3.5) {Projeto 2};
+    \draw[blocoClaro] (4, 0) rectangle (5, 1);
+    \draw[blocoClaro] (5, 0) rectangle (6, 1);
+    \draw[blocoClaro] (6, 0) rectangle (7, 1);
+    \draw[blocoClaro] (7, 0) rectangle (8, 1);
+    
+    \draw[blocoClaro] (4, 1) rectangle (5, 2);
+    \draw[blocoClaro] (7, 1) rectangle (8, 2);
+    
+    \draw[blocoClaro] (4, 2) rectangle (5, 3);
+    \draw[blocoClaro] (5, 2) rectangle (6, 3);
+    \draw[blocoClaro] (6, 2) rectangle (7, 3);
+    \draw[blocoClaro] (7, 2) rectangle (8, 3);
+    % escuros
+    \draw[blocoEscuro] (5, 1) rectangle (6, 2);
+    \draw[blocoEscuro] (6, 1) rectangle (7, 2);
+
+    % FIGURA 3 (3 escuros, 12 claros)
+    \node[font=\bfseries, text=black] at (11.5, 3.5) {Projeto 3};
+    \foreach \x in {9, 10, 11, 12, 13} {
+        \draw[blocoClaro] (\x, 0) rectangle (\x+1, 1);
+        \draw[blocoClaro] (\x, 2) rectangle (\x+1, 3);
+    }
+    \draw[blocoClaro] (9, 1) rectangle (10, 2);
+    \draw[blocoClaro] (13, 1) rectangle (14, 2);
+    % escuros
+    \draw[blocoEscuro] (10, 1) rectangle (11, 2);
+    \draw[blocoEscuro] (11, 1) rectangle (12, 2);
+    \draw[blocoEscuro] (12, 1) rectangle (13, 2);
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Observe bem a quantidade de ladrilhos claros em relação ao número de ladrilhos escuros em cada projeto. Se o arquiteto fizer um projeto gigantesco utilizando \textbf{20 ladrilhos escuros} no centro, quantos ladrilhos claros ele precisará comprar para fazer toda a moldura?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Desenhe só a linha de cima e a de baixo de ladrilhos claros. Elas têm a mesma quantidade, certo? E além delas, quantos ladrilhos ficam fixos fechando as duas laterais nas pontas?\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Contar os padrões $\rightarrow$ Proj.1: 1 escuro = 8 claros. Proj.2: 2 escuros = 10 claros. Proj.3: 3 escuros = 12 claros.\\
+    \textit{Passo 2:} Extrair a lógica visual $\rightarrow$ Para cada ladrilho escuro $n$, existe um claro em cima dele e um embaixo ($2 \cdot n$). Além disso, sempre existem 6 claros fixos nas laterais (3 de cada lado). Ou seja: $ 2n + 6 $.\\
+    \textit{Passo 3:} Calcular para $n = 20$ $\rightarrow$ Se são 20 escuros, teremos 20 claros em cima e 20 claros embaixo (total 40). Mais os 6 das pontas laterais.\\
+    \textit{Passo 4:} Expressão Final $\rightarrow$ $ 2 \cdot 20 + 6 = 40 + 6 = 46 $ ladrilhos claros.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Sem modelagem algébrica, o aluno tentará desenhar 20 ladrilhos escuros no caderno e se perderá na contagem. Aja como mentor: "E se fossem 1000 ladrilhos, você desenharia? Tente achar a conta que funciona para qualquer tamanho."
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Este é o ápice da introdução à álgebra. O aluno percebe que o desenho ("geometria") e os números ("álgebra") são a mesma coisa falada em línguas diferentes. Separar as laterais constantes ($+6$) das partes que crescem ($2n$) é o melhor exercício mental para preparar a mente deles para Funções.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}
