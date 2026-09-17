@@ -215,12 +215,10 @@
             padding: 0 1.5rem;
             width: 100%;
             flex: 1;
-            /* Container flex para acomodar Split-Screen */
             display: flex; 
             flex-direction: column;
         }
 
-        /* --- Container Genérico de Grid --- */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -253,7 +251,6 @@
             line-height: 1.5;
         }
 
-        /* --- Cards Estilizados --- */
         .interactive-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border-card);
@@ -332,7 +329,6 @@
             gap: 0.4rem;
         }
 
-        /* --- Grids Específicos --- */
         .years-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -524,6 +520,39 @@
             background: #a855f7;
             color: #0b0f19;
         }
+        
+        .video-card-item {
+            background-color: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            margin-top: 0.6rem;
+            transition: all 0.2s;
+        }
+
+        .video-card-item:hover {
+            background-color: rgba(56, 189, 248, 0.08);
+            border-color: var(--accent-blue);
+        }
+
+        .video-duvida {
+            font-size: 0.75rem;
+            color: #38bdf8;
+            font-weight: 500;
+        }
+
+        .video-titulo {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+
+        .video-autor {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
 
         /* --- Modais --- */
         .modal-overlay {
@@ -552,6 +581,31 @@
             padding: 2rem;
             max-width: 440px;
             width: 100%;
+        }
+        
+        .modal-video-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .modal-video-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .btn-close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .modal-box h3 {
@@ -603,9 +657,9 @@
 
         /* --- Novo Layout: Split-Screen para Tutor e Questão --- */
         .split-screen-container {
-            display: none; /* Inicia oculto */
+            display: none; 
             width: 100%;
-            height: calc(100vh - 180px); /* Ocupa a tela inteira menos header e footer */
+            height: calc(100vh - 180px); 
             border: 1px solid var(--border-card);
             border-radius: 16px;
             overflow: hidden;
@@ -643,7 +697,7 @@
 
         /* Lado Direito: O Chat */
         .split-right-pane {
-            width: 450px; /* Largura fixa do chat no desktop */
+            width: 450px; 
             display: flex;
             flex-direction: column;
             background: var(--bg-card);
@@ -722,20 +776,19 @@
             cursor: pointer;
         }
 
-        /* Responsividade para Celulares: Empilha a Questão em Cima e o Chat Embaixo */
         @media (max-width: 800px) {
             .split-screen-container {
                 flex-direction: column;
-                height: 85vh; /* Ocupa quase toda a tela do celular */
+                height: 85vh; 
             }
             .split-left-pane {
                 border-right: none;
                 border-bottom: 2px solid var(--border-card);
-                max-height: 40%; /* Questão ocupa 40% da tela */
+                max-height: 40%; 
             }
             .split-right-pane {
                 width: 100%;
-                max-height: 60%; /* Chat ocupa 60% da tela */
+                max-height: 60%; 
             }
         }
 
@@ -779,12 +832,12 @@
         <p>Desenvolvido para apoio escolar e preparação acadêmica &bull; Atualizado automaticamente via Git</p>
     </footer>
 
-    <!-- Modais Genéricos (Video, Chave e Setup) continuam ocultos até serem chamados -->
+    <!-- Modais Genéricos -->
     <div class="modal-overlay" id="modalVideo">
         <div class="modal-video-box">
             <div class="modal-video-header">
                 <h4 id="videoModalTitulo">Videoaula</h4>
-                <button class="btn-close-modal" onclick="fecharModalVideo()" style="background:transparent; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+                <button class="btn-close-modal" onclick="fecharModalVideo()">&times;</button>
             </div>
             <div style="position:relative; padding-bottom:56.25%; height:0;">
                 <iframe id="videoIframe" src="" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
@@ -804,7 +857,6 @@
         </div>
     </div>
 
-    <!-- Modal de Configuração do Tutor (Para escolher a Turma e a Questão) -->
     <!-- Modal de Configuração do Tutor (Escudo LGPD Aplicado) -->
     <div class="modal-overlay" id="modalSetupTutor">
         <div class="modal-box">
@@ -1314,27 +1366,6 @@
                                                                                     }
                                                                         }
                                                             },
-                                                            "2_Serie": {
-                                                                        "nome": "2ª Série (EM)",
-                                                                        "unidades": {
-                                                                                    "UNIDADE 6": {
-                                                                                                "titulo": "Polinômios e Operações",
-                                                                                                "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
-                                                                                                "materiais": [
-                                                                                                            {
-                                                                                                                        "tipo": "Autoral",
-                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
-                                                                                                                        "id_prefixo": "Matematica_Algebra__2_Serie__UNIDADE6__Autoral",
-                                                                                                                        "pdf": "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf",
-                                                                                                                        "pdfProf": null,
-                                                                                                                        "tex": "Matematica_Algebra/2_Serie/UNIDADE6/fonte_tex/ALG_2EM_AUT_U06-POLINOMIOS_BASE.tex",
-                                                                                                                        "trilhas_de_aprendizagem": [],
-                                                                                                                        "estrutura": []
-                                                                                                            }
-                                                                                                ]
-                                                                                    }
-                                                                        }
-                                                            },
                                                             "3_Serie": {
                                                                         "nome": "3ª Série (Intensivo)",
                                                                         "unidades": {
@@ -1468,6 +1499,21 @@
                                                                                                                                                             50,
                                                                                                                                                             51
                                                                                                                                                 ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "indice": 4,
+                                                                                                                                                "titulo": "Capítulo 4: Sequências Numéricas",
+                                                                                                                                                "inicio": 24,
+                                                                                                                                                "fim": 30,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            24,
+                                                                                                                                                            25,
+                                                                                                                                                            26,
+                                                                                                                                                            27,
+                                                                                                                                                            28,
+                                                                                                                                                            29,
+                                                                                                                                                            30
+                                                                                                                                                ]
                                                                                                                                     }
                                                                                                                         ]
                                                                                                             }
@@ -1521,6 +1567,58 @@
                                                                                                                                                                         "titulo": "COMO RESOLVER EQUAÇÃO DO 1º GRAU - PASSO A PASSO",
                                                                                                                                                                         "autor": "Equaciona com Paulo Pereira",
                                                                                                                                                                         "url": "https://www.youtube.com/embed/7V-xK1wz6yM"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Se você se perde quando a equação tem parênteses, veja como aplicar a propriedade distributiva (chuveirinho):",
+                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU COM DISTRIBUTIVA",
+                                                                                                                                                                        "autor": "Gis com Giz",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/xOyC50CMdi8"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Travou nas equações que parecem gigantes? O professor Ferretto ensina os primeiros passos práticos:",
+                                                                                                                                                                        "titulo": "Equação do primeiro grau!! Saiba como resolver!!",
+                                                                                                                                                                        "autor": "Professor Ferretto",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/q9SmHURN9u0"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Odeia trabalhar com frações? Aprenda como usar o MMC para sumir com os denominadores da equação:",
+                                                                                                                                                                        "titulo": "RESOLUÇÃO DE EXPRESSÕES COM FRAÇÕES ALGÉBRICAS",
+                                                                                                                                                                        "autor": "Equaciona Com Paulo Pereira",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/nmXj4yYRL50"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Problemas Contextualizados com Equações (Tradução Algébrica)",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Como transformar um texto longo em uma continha pequena? Aprenda a traduzir o português para a matemática:",
+                                                                                                                                                                        "titulo": "Equação do 1º Grau - Matemática Básica - Revisão",
+                                                                                                                                                                        "autor": "Professora Angela Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/OKQq_Prn4ps"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Caiu aquele problema chato pedindo 'o triplo de um número' ou 'números consecutivos'? O Marcos Aba descomplica para você:",
+                                                                                                                                                                        "titulo": "COMO RESOLVER PROBLEMAS DE EQUAÇÃO DO 1º GRAU",
+                                                                                                                                                                        "autor": "Marcos Aba Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/AoQfB59aLJ0"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Inequações do 1º Grau e Reta Numérica",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "O que diferencia uma inequação de uma equação? Entenda a lógica do 'maior que' e 'menor que':",
+                                                                                                                                                                        "titulo": "Inequação do primeiro grau: exemplos iniciais",
+                                                                                                                                                                        "autor": "Professor Ferretto",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/MGs-LVYSuRw"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Errar a regra do número negativo é fatal. Veja na prática quando e por que o bico do sinal inverte de lado:",
+                                                                                                                                                                        "titulo": "INEQUAÇÃO DO 1º GRAU x – 3 ≥ 1– x",
+                                                                                                                                                                        "autor": "Gis com Giz",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/XcBqMOKvJUc"
                                                                                                                                                             }
                                                                                                                                                 ]
                                                                                                                                     }
@@ -1575,10 +1673,11 @@
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 4,
-                                                                                                                                                "titulo": "Capítulo 4: Sequências Numéricas",
-                                                                                                                                                "inicio": 24,
+                                                                                                                                                "titulo": "Capítulo 4: Sistema de Medidas",
+                                                                                                                                                "inicio": 23,
                                                                                                                                                 "fim": 30,
                                                                                                                                                 "questoes": [
+                                                                                                                                                            23,
                                                                                                                                                             24,
                                                                                                                                                             25,
                                                                                                                                                             26,
@@ -1692,141 +1791,6 @@
                                                                                                                                                             50,
                                                                                                                                                             51,
                                                                                                                                                             52
-                                                                                                                                                ]
-                                                                                                                                    }
-                                                                                                                        ]
-                                                                                                            }
-                                                                                                ]
-                                                                                    },
-                                                                                    "UNIDADE 7": {
-                                                                                                "titulo": "Equações e Inequações do 1º Grau",
-                                                                                                "desc": "Desenvolvimento do raciocínio algébrico, propriedades da igualdade, resolução de equações/inequações (com frações e distributiva) e modelagem de problemas contextuais.",
-                                                                                                "materiais": [
-                                                                                                            {
-                                                                                                                        "tipo": "Autoral",
-                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
-                                                                                                                        "id_prefixo": "Matematica_Algebra__7_Ano__UNIDADE7__Autoral",
-                                                                                                                        "pdf": "Matematica_Algebra/7_Ano/UNIDADE7/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
-                                                                                                                        "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE7/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
-                                                                                                                        "tex": "Matematica_Algebra/7_Ano/UNIDADE7/fonte_tex/ALG_7EF_AUT_U07-EQUACOES_BASE.tex",
-                                                                                                                        "trilhas_de_aprendizagem": [
-                                                                                                                                    {
-                                                                                                                                                "subtema": "Conceitos Fundamentais e Resolução de Equações",
-                                                                                                                                                "videos": [
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Precisa construir a base do zero? Entenda o princípio da balança e a regra dos sinais de forma visual:",
-                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU - Professora Angela Matemática",
-                                                                                                                                                                        "autor": "Professora Angela Matemática",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/Ylvb03POwGE"
-                                                                                                                                                            },
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Se você se perde quando a equação tem parênteses, veja como aplicar a propriedade distributiva (chuveirinho):",
-                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU COM DISTRIBUTIVA",
-                                                                                                                                                                        "autor": "Gis com Giz",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/xOyC50CMdi8"
-                                                                                                                                                            },
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Travou nas equações que parecem gigantes? O professor Ferretto ensina os primeiros passos práticos:",
-                                                                                                                                                                        "titulo": "Equação do primeiro grau!! Saiba como resolver!!",
-                                                                                                                                                                        "autor": "Professor Ferretto",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/q9SmHURN9u0"
-                                                                                                                                                            },
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Odeia trabalhar com frações? Aprenda como usar o MMC para sumir com os denominadores da equação:",
-                                                                                                                                                                        "titulo": "RESOLUÇÃO DE EXPRESSÕES COM FRAÇÕES ALGÉBRICAS",
-                                                                                                                                                                        "autor": "Equaciona Com Paulo Pereira",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/nmXj4yYRL50"
-                                                                                                                                                            }
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "subtema": "Problemas Contextualizados com Equações (Tradução Algébrica)",
-                                                                                                                                                "videos": [
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Como transformar um texto longo em uma continha pequena? Aprenda a traduzir o português para a matemática:",
-                                                                                                                                                                        "titulo": "Equação do 1º Grau - Matemática Básica - Revisão",
-                                                                                                                                                                        "autor": "Professora Angela Matemática",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/OKQq_Prn4ps"
-                                                                                                                                                            },
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Caiu aquele problema chato pedindo 'o triplo de um número' ou 'números consecutivos'? O Marcos Aba descomplica para você:",
-                                                                                                                                                                        "titulo": "COMO RESOLVER PROBLEMAS DE EQUAÇÃO DO 1º GRAU",
-                                                                                                                                                                        "autor": "Marcos Aba Matemática",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/AoQfB59aLJ0"
-                                                                                                                                                            }
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "subtema": "Inequações do 1º Grau e Reta Numérica",
-                                                                                                                                                "videos": [
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "O que diferencia uma inequação de uma equação? Entenda a lógica do 'maior que' e 'menor que':",
-                                                                                                                                                                        "titulo": "Inequação do primeiro grau: exemplos iniciais",
-                                                                                                                                                                        "autor": "Professor Ferretto",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/MGs-LVYSuRw"
-                                                                                                                                                            },
-                                                                                                                                                            {
-                                                                                                                                                                        "chamada": "Errar a regra do número negativo é fatal. Veja na prática quando e por que o bico do sinal inverte de lado:",
-                                                                                                                                                                        "titulo": "INEQUAÇÃO DO 1º GRAU x – 3 ≥ 1– x",
-                                                                                                                                                                        "autor": "Gis com Giz",
-                                                                                                                                                                        "url": "https://www.youtube.com/embed/XcBqMOKvJUc"
-                                                                                                                                                            }
-                                                                                                                                                ]
-                                                                                                                                    }
-                                                                                                                        ],
-                                                                                                                        "estrutura": [
-                                                                                                                                    {
-                                                                                                                                                "indice": 1,
-                                                                                                                                                "titulo": "Capítulo 1 e 2: Conceitos e Resolução de Equações",
-                                                                                                                                                "inicio": 1,
-                                                                                                                                                "fim": 10,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            1,
-                                                                                                                                                            2,
-                                                                                                                                                            3,
-                                                                                                                                                            4,
-                                                                                                                                                            5,
-                                                                                                                                                            6,
-                                                                                                                                                            7,
-                                                                                                                                                            8,
-                                                                                                                                                            9,
-                                                                                                                                                            10
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 2,
-                                                                                                                                                "titulo": "Capítulo 3: Problemas com Equações",
-                                                                                                                                                "inicio": 11,
-                                                                                                                                                "fim": 20,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            11,
-                                                                                                                                                            12,
-                                                                                                                                                            13,
-                                                                                                                                                            14,
-                                                                                                                                                            15,
-                                                                                                                                                            16,
-                                                                                                                                                            17,
-                                                                                                                                                            18,
-                                                                                                                                                            19,
-                                                                                                                                                            20
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 3,
-                                                                                                                                                "titulo": "Capítulo 4: Inequações do 1º Grau",
-                                                                                                                                                "inicio": 21,
-                                                                                                                                                "fim": 30,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            21,
-                                                                                                                                                            22,
-                                                                                                                                                            23,
-                                                                                                                                                            24,
-                                                                                                                                                            25,
-                                                                                                                                                            26,
-                                                                                                                                                            27,
-                                                                                                                                                            28,
-                                                                                                                                                            29,
-                                                                                                                                                            30
                                                                                                                                                 ]
                                                                                                                                     }
                                                                                                                         ]
@@ -2052,9 +2016,9 @@
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
-                                                                                                                                                "titulo": "Capítulo 1: Definição e Lei de Formação",
+                                                                                                                                                "titulo": "Definição e gráfico da função quadrática",
                                                                                                                                                 "inicio": 1,
-                                                                                                                                                "fim": 10,
+                                                                                                                                                "fim": 8,
                                                                                                                                                 "questoes": [
                                                                                                                                                             1,
                                                                                                                                                             2,
@@ -2063,75 +2027,55 @@
                                                                                                                                                             5,
                                                                                                                                                             6,
                                                                                                                                                             7,
-                                                                                                                                                            8,
-                                                                                                                                                            9,
-                                                                                                                                                            10
+                                                                                                                                                            8
                                                                                                                                                 ]
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 2,
-                                                                                                                                                "titulo": "Capítulo 2: Gráfico - Parábola",
-                                                                                                                                                "inicio": 11,
-                                                                                                                                                "fim": 25,
+                                                                                                                                                "titulo": "Vértice e eixo de simetria",
+                                                                                                                                                "inicio": 1,
+                                                                                                                                                "fim": 8,
                                                                                                                                                 "questoes": [
-                                                                                                                                                            11,
-                                                                                                                                                            12,
-                                                                                                                                                            13,
-                                                                                                                                                            14,
-                                                                                                                                                            15,
-                                                                                                                                                            16,
-                                                                                                                                                            17,
-                                                                                                                                                            18,
-                                                                                                                                                            19,
-                                                                                                                                                            20,
-                                                                                                                                                            21,
-                                                                                                                                                            22,
-                                                                                                                                                            23,
-                                                                                                                                                            24,
-                                                                                                                                                            25
+                                                                                                                                                            1,
+                                                                                                                                                            2,
+                                                                                                                                                            3,
+                                                                                                                                                            4,
+                                                                                                                                                            5,
+                                                                                                                                                            6,
+                                                                                                                                                            7,
+                                                                                                                                                            8
                                                                                                                                                 ]
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 3,
-                                                                                                                                                "titulo": "Capítulo 3: Vértice e Eixo de Simetria",
-                                                                                                                                                "inicio": 26,
-                                                                                                                                                "fim": 40,
+                                                                                                                                                "titulo": "Discriminante e construção de gráficos",
+                                                                                                                                                "inicio": 1,
+                                                                                                                                                "fim": 8,
                                                                                                                                                 "questoes": [
-                                                                                                                                                            26,
-                                                                                                                                                            27,
-                                                                                                                                                            28,
-                                                                                                                                                            29,
-                                                                                                                                                            30,
-                                                                                                                                                            31,
-                                                                                                                                                            32,
-                                                                                                                                                            33,
-                                                                                                                                                            34,
-                                                                                                                                                            35,
-                                                                                                                                                            36,
-                                                                                                                                                            37,
-                                                                                                                                                            38,
-                                                                                                                                                            39,
-                                                                                                                                                            40
+                                                                                                                                                            1,
+                                                                                                                                                            2,
+                                                                                                                                                            3,
+                                                                                                                                                            4,
+                                                                                                                                                            5,
+                                                                                                                                                            6,
+                                                                                                                                                            7,
+                                                                                                                                                            8
                                                                                                                                                 ]
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 4,
-                                                                                                                                                "titulo": "Capítulo 4: Raízes e Discriminante",
-                                                                                                                                                "inicio": 41,
-                                                                                                                                                "fim": 52,
+                                                                                                                                                "titulo": "Aplicações e problemas de otimização",
+                                                                                                                                                "inicio": 1,
+                                                                                                                                                "fim": 8,
                                                                                                                                                 "questoes": [
-                                                                                                                                                            41,
-                                                                                                                                                            42,
-                                                                                                                                                            43,
-                                                                                                                                                            44,
-                                                                                                                                                            45,
-                                                                                                                                                            46,
-                                                                                                                                                            47,
-                                                                                                                                                            48,
-                                                                                                                                                            49,
-                                                                                                                                                            50,
-                                                                                                                                                            51,
-                                                                                                                                                            52
+                                                                                                                                                            1,
+                                                                                                                                                            2,
+                                                                                                                                                            3,
+                                                                                                                                                            4,
+                                                                                                                                                            5,
+                                                                                                                                                            6,
+                                                                                                                                                            7,
+                                                                                                                                                            8
                                                                                                                                                 ]
                                                                                                                                     }
                                                                                                                         ]
@@ -2274,7 +2218,45 @@
                                                                                                                                                             22,
                                                                                                                                                             23,
                                                                                                                                                             24,
-                                                                                                                                                            25
+                                                                                                                                                            25,
+                                                                                                                                                            26,
+                                                                                                                                                            27,
+                                                                                                                                                            28,
+                                                                                                                                                            29,
+                                                                                                                                                            30
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "indice": 3,
+                                                                                                                                                "titulo": "Capítulo 3: Composição e Decomposição de Figuras",
+                                                                                                                                                "inicio": 16,
+                                                                                                                                                "fim": 22,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            16,
+                                                                                                                                                            17,
+                                                                                                                                                            18,
+                                                                                                                                                            19,
+                                                                                                                                                            20,
+                                                                                                                                                            21,
+                                                                                                                                                            22
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "indice": 4,
+                                                                                                                                                "titulo": "Capítulo 4: Área do Círculo e Figuras Compostas",
+                                                                                                                                                "inicio": 21,
+                                                                                                                                                "fim": 30,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            21,
+                                                                                                                                                            22,
+                                                                                                                                                            23,
+                                                                                                                                                            24,
+                                                                                                                                                            25,
+                                                                                                                                                            26,
+                                                                                                                                                            27,
+                                                                                                                                                            28,
+                                                                                                                                                            29,
+                                                                                                                                                            30
                                                                                                                                                 ]
                                                                                                                                     }
                                                                                                                         ]
@@ -2497,12 +2479,10 @@
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 4,
-                                                                                                                                                "titulo": "Capítulo 4: Área do Círculo e Figuras Compostas",
-                                                                                                                                                "inicio": 21,
+                                                                                                                                                "titulo": "Capítulo 4: Problemas de Área",
+                                                                                                                                                "inicio": 23,
                                                                                                                                                 "fim": 30,
                                                                                                                                                 "questoes": [
-                                                                                                                                                            21,
-                                                                                                                                                            22,
                                                                                                                                                             23,
                                                                                                                                                             24,
                                                                                                                                                             25,
@@ -2553,9 +2533,9 @@
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                                 "indice": 2,
-                                                                                                                                                "titulo": "Capítulo 2: Área do Triângulo",
+                                                                                                                                                "titulo": "Capítulo 2: Vistas Ortogonais",
                                                                                                                                                 "inicio": 9,
-                                                                                                                                                "fim": 15,
+                                                                                                                                                "fim": 16,
                                                                                                                                                 "questoes": [
                                                                                                                                                             9,
                                                                                                                                                             10,
@@ -2563,38 +2543,8 @@
                                                                                                                                                             12,
                                                                                                                                                             13,
                                                                                                                                                             14,
-                                                                                                                                                            15
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 3,
-                                                                                                                                                "titulo": "Capítulo 3: Composição e Decomposição de Figuras",
-                                                                                                                                                "inicio": 16,
-                                                                                                                                                "fim": 22,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            16,
-                                                                                                                                                            17,
-                                                                                                                                                            18,
-                                                                                                                                                            19,
-                                                                                                                                                            20,
-                                                                                                                                                            21,
-                                                                                                                                                            22
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 4,
-                                                                                                                                                "titulo": "Capítulo 4: Problemas de Área",
-                                                                                                                                                "inicio": 23,
-                                                                                                                                                "fim": 30,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            23,
-                                                                                                                                                            24,
-                                                                                                                                                            25,
-                                                                                                                                                            26,
-                                                                                                                                                            27,
-                                                                                                                                                            28,
-                                                                                                                                                            29,
-                                                                                                                                                            30
+                                                                                                                                                            15,
+                                                                                                                                                            16
                                                                                                                                                 ]
                                                                                                                                     }
                                                                                                                         ]
@@ -2634,52 +2584,6 @@
                                                                                                                                                             7,
                                                                                                                                                             8
                                                                                                                                                 ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 2,
-                                                                                                                                                "titulo": "Capítulo 2: Vistas Ortogonais",
-                                                                                                                                                "inicio": 9,
-                                                                                                                                                "fim": 16,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            9,
-                                                                                                                                                            10,
-                                                                                                                                                            11,
-                                                                                                                                                            12,
-                                                                                                                                                            13,
-                                                                                                                                                            14,
-                                                                                                                                                            15,
-                                                                                                                                                            16
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 3,
-                                                                                                                                                "titulo": "Capítulo 3: Representações Técnicas",
-                                                                                                                                                "inicio": 17,
-                                                                                                                                                "fim": 22,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            17,
-                                                                                                                                                            18,
-                                                                                                                                                            19,
-                                                                                                                                                            20,
-                                                                                                                                                            21,
-                                                                                                                                                            22
-                                                                                                                                                ]
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "indice": 4,
-                                                                                                                                                "titulo": "Capítulo 4: Sistema de Medidas",
-                                                                                                                                                "inicio": 23,
-                                                                                                                                                "fim": 30,
-                                                                                                                                                "questoes": [
-                                                                                                                                                            23,
-                                                                                                                                                            24,
-                                                                                                                                                            25,
-                                                                                                                                                            26,
-                                                                                                                                                            27,
-                                                                                                                                                            28,
-                                                                                                                                                            29,
-                                                                                                                                                            30
-                                                                                                                                                ]
                                                                                                                                     }
                                                                                                                         ]
                                                                                                             }
@@ -2715,7 +2619,7 @@
             capituloIndice: 1,
             numeroQuestao: 1,
             sessionId: null,
-            bancoQuestoes: null // Guardará a instância do SQL.js
+            bancoQuestoes: null 
         };
 
         // INICIALIZAÇÃO
@@ -2743,8 +2647,6 @@
         function buscarQuestaoNoBanco(prefixo, numQuestao) {
             if (!tutorState.bancoQuestoes) return null;
             
-            // O ID é construído com base na lógica do Python: Prefixo__C[idx]__Q[num]
-            // Como podemos não saber o capítulo de cabeça aqui, buscamos pelo prefixo e número
             const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado, codigo_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao = $num LIMIT 1");
             stmt.bind({ $prefixo: `${prefixo}%`, $num: numQuestao });
             
@@ -2756,7 +2658,6 @@
             stmt.free();
             return null;
         }
-
 
         // NAVEGAÇÃO
         function irNivel(novoNivel, params = {}) {
@@ -2773,13 +2674,13 @@
                 nav.ano = null;
                 nav.unidadeId = null;
                 nav.cadernoIndex = null;
-                fecharSplitScreen(); // Garante que fecha o chat se voltar pra home
+                fecharSplitScreen(); 
             }
             renderizar();
         }
 
         function voltarNivelAnterior() {
-            fecharSplitScreen(); // Se o usuário clicar em voltar, fecha a tela dividida
+            fecharSplitScreen(); 
             switch (nav.nivel) {
                 case 'detalhe_caderno': irNivel('selecao_caderno'); break;
                 case 'selecao_caderno': irNivel('unidades'); break;
@@ -2853,38 +2754,38 @@
         }
 
         function renderHome(container) {
-    container.innerHTML = `
-        <div class="view-header">
-            <h2>Ecossistema Pedagógico</h2>
-            <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
-        </div>
-
-        <div class="grid-cards">
-            <div class="interactive-card" onclick="irNivel('frentes')">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
-                        <h3>Repositório de Estudos</h3>
-                    </div>
-                    <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
+            container.innerHTML = `
+                <div class="view-header">
+                    <h2>Ecossistema Pedagógico</h2>
+                    <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
                 </div>
-                <div class="card-footer-link">Entrar no Repositório &rarr;</div>
-            </div>
 
-            <div class="interactive-card card-disabled">
-                <span class="badge-em-breve">Em Breve</span>
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">🔬</div>
-                        <h3>Laboratório e Simuladores</h3>
+                <div class="grid-cards">
+                    <div class="interactive-card" onclick="irNivel('frentes')">
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
+                                <h3>Repositório de Estudos</h3>
+                            </div>
+                            <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
+                        </div>
+                        <div class="card-footer-link">Entrar no Repositório &rarr;</div>
                     </div>
-                    <p>Modelagens interativas no GeoGebra, simulações dinâmicas de mecânica da física clássica e ferramentas de projeção 3D.</p>
+
+                    <div class="interactive-card card-disabled">
+                        <span class="badge-em-breve">Em Breve</span>
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">🔬</div>
+                                <h3>Laboratório e Simuladores</h3>
+                            </div>
+                            <p>Modelagens interativas no GeoGebra, simulações dinâmicas de mecânica da física clássica e ferramentas de projeção 3D.</p>
+                        </div>
+                        <div class="card-footer-link" style="color: var(--text-muted);">Módulo em Desenvolvimento &bull;</div>
+                    </div>
                 </div>
-                <div class="card-footer-link" style="color: var(--text-muted);">Módulo em Desenvolvimento &bull;</div>
-            </div>
-        </div>
-    `;
-}
+            `;
+        }
 
         function renderFrentes(container) {
             container.innerHTML = `
@@ -3016,7 +2917,7 @@
         }
 
         // =========================================================
-        // A NOVA TELA DE DETALHE DE CADERNO (COM O SPLIT SCREEN)
+        // A NOVA TELA DE DETALHE DE CADERNO (COM O SPLIT SCREEN E TRILHAS)
         // =========================================================
         function renderDetalheCaderno(container) {
             let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
@@ -3063,7 +2964,7 @@
             }
 
             container.innerHTML = `
-                <!-- VISÃO PADRÃO DO CADERNO (Some quando o Tutor abre) -->
+                <!-- VISÃO PADRÃO DO CADERNO -->
                 <div class="material-view-box" id="materialViewBox">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem;">
                         <div>
@@ -3094,13 +2995,11 @@
 
                 <!-- TELA DIVIDIDA DO TUTOR (Inicia Oculta) -->
                 <div class="split-screen-container" id="splitScreenContainer">
-                    <!-- Lado Esquerdo (Enunciado da Questão) -->
                     <div class="split-left-pane">
                         <div class="enunciado-title" id="paneQuestaoTitulo">Carregando Questão...</div>
                         <div class="enunciado-content" id="paneQuestaoConteudo"></div>
                     </div>
 
-                    <!-- Lado Direito (Chat Socrático) -->
                     <div class="split-right-pane">
                         <div class="tutor-header">
                             <div>
@@ -3150,18 +3049,15 @@
         function limparLaTeXParaWeb(texto) {
             if (!texto) return "";
             
-            // 1. Remove os blocos de imagem e formatação de página (que já vão ser desenhados pelo TikZJax)
             let limpo = texto.replace(/\\begin\{center\}[\s\S]*?\\end\{center\}/g, '');
             limpo = limpo.replace(/\\begin\{adjustbox\}[\s\S]*?\\end\{adjustbox\}/g, '');
             limpo = limpo.replace(/\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}/g, '');
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
-            // 2. Converte formatações básicas de texto do LaTeX para o HTML
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
-            // 3. Converte as quebras duplas do LaTeX em parágrafos reais no HTML
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
             return limpo.trim();
@@ -3175,29 +3071,8 @@
             return (uni && uni.materiais) ? uni.materiais[nav.cadernoIndex || 0] : null;
         }
 
-        // --- Funções do Setup (Modal de Escolha) ---
+        // --- Funções do Setup ---
         function abrirSetupTutor() {
-            const selTurma = document.getElementById("selectTurmaTutor");
-            selTurma.innerHTML = "";
-            for (const t in listaAlunos) {
-                const opt = document.createElement("option");
-                opt.value = t;
-                opt.innerText = t;
-                selTurma.appendChild(opt);
-            }
-
-            if (nav.ano) {
-                const numAno = nav.ano.replace(/\D/g, '');
-                for (let i = 0; i < selTurma.options.length; i++) {
-                    if (selTurma.options[i].value.includes(`${numAno}º`)) {
-                        selTurma.selectedIndex = i;
-                        break;
-                    }
-                }
-            }
-
-            atualizarAlunosTutor();
-
             const capituloSelect = document.getElementById("selectCapituloTutor");
             const matAtual = obterMaterialAtual();
 
@@ -3215,23 +3090,6 @@
             }
 
             document.getElementById("modalSetupTutor").classList.add("open");
-        }
-
-        function atualizarAlunosTutor() {
-            const selTurma = document.getElementById("selectTurmaTutor");
-            const selAluno = document.getElementById("selectNomeAlunoTutor");
-            if (!selTurma || !selAluno) return;
-
-            const turmaSelecionada = selTurma.value;
-            const alunos = listaAlunos[turmaSelecionada] || [];
-
-            selAluno.innerHTML = "";
-            alunos.forEach(nome => {
-                const opt = document.createElement("option");
-                opt.value = nome;
-                opt.innerText = nome;
-                selAluno.appendChild(opt);
-            });
         }
 
         function atualizarQuestoesPorCapitulo() {
@@ -3257,7 +3115,6 @@
             document.getElementById("modalSetupTutor").classList.remove("open");
         }
 
-        // Fecha a tela dividida e mostra a caixa principal do Caderno novamente
         function fecharSplitScreen() {
             const split = document.getElementById("splitScreenContainer");
             const viewBox = document.getElementById("materialViewBox");
@@ -3265,16 +3122,15 @@
             if (viewBox) viewBox.style.display = "block";
         }
 
-        // --- O BOTÃO "INICIAR PLANTÃO" ---
+        // --- INICIAR PLANTÃO ---
         async function iniciarSessaoTutor() {
             try {
                 const selAluno = document.getElementById("selectNomeAlunoTutor");
-                const selTurma = document.getElementById("selectTurmaTutor");
                 const selCapitulo = document.getElementById("selectCapituloTutor");
                 const selQuestao = document.getElementById("selectQuestaoTutor");
                 
-                if (!selAluno || !selAluno.value) {
-                    alert("Por favor, selecione seu nome.");
+                if (!selAluno || !selAluno.value.trim()) {
+                    alert("Por favor, informe seu nome ou RA.");
                     return;
                 }
 
@@ -3282,8 +3138,8 @@
                 const idxCap = parseInt(selCapitulo ? selCapitulo.value : 0) || 0;
                 const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
 
-                tutorState.aluno = selAluno.value;
-                tutorState.turma = selTurma ? selTurma.value : "";
+                tutorState.aluno = selAluno.value.trim();
+                tutorState.turma = ""; // A turma foi desativada no HTML pelo LGPD
                 tutorState.capituloNome = capObj.titulo || "Capítulo 1";
                 tutorState.capituloIndice = capObj.indice || 1;
                 tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
@@ -3298,7 +3154,7 @@
 
                 fecharSetupTutor();
                 
-                // --- INJEÇÃO DA TELA ESQUERDA (O BANCO DE DADOS) ---
+                // INJEÇÃO DA TELA ESQUERDA (O BANCO DE DADOS LIMPO)
                 const paneTitulo = document.getElementById("paneQuestaoTitulo");
                 const paneConteudo = document.getElementById("paneQuestaoConteudo");
                 paneTitulo.innerText = `Questão ${tutorState.numeroQuestao}`;
@@ -3307,7 +3163,6 @@
                 const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
                 
                 if (questaoDoBanco) {
-                    // Aqui entra a nossa vassoura nova limpando o enunciado!
                     let htmlEsquerda = `<div style="margin-bottom: 1.5rem; line-height: 1.6;">${limparLaTeXParaWeb(questaoDoBanco.enunciado)}</div>`;
                     
                     if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
@@ -3329,13 +3184,10 @@
                     paneConteudo.innerHTML = `<span style="color:#ef4444;">Questão não encontrada no banco offline. O Tutor Socrático tentará usar a memória remota.</span>`;
                 }
 
-
-                // --- INJEÇÃO DA TELA DIREITA (CHAT) ---
-                // Oculta a visualização padrão e mostra a Split Screen
+                // INJEÇÃO DA TELA DIREITA (CHAT)
                 document.getElementById("materialViewBox").style.display = "none";
                 document.getElementById("splitScreenContainer").classList.add("open");
 
-                // Prepara a interface do chat
                 const input = document.getElementById("inputDuvidaTutor");
                 const btn = document.getElementById("btnEnviarTutor");
                 input.disabled = false;
@@ -3368,7 +3220,7 @@
                         aluno: tutorState.aluno,
                         turma: tutorState.turma,
                         sessionId: tutorState.sessionId,
-                        chatInput: "Olá! Pode me ajudar com esta questão? Onde eu devo começar?" // <-- Isso força o Tutor a ativar o modo socrático de abertura
+                        chatInput: "Olá! Pode me ajudar com esta questão? Onde eu devo começar?"
                     })
                 });
 
@@ -3490,10 +3342,8 @@
             const chave = document.getElementById("inputChave").value.trim();
             if (!chave) return;
 
-            // DEFina a sua senha mestra exata aqui
             const SENHA_CORRETA = "PortalCarecudo2"; 
 
-            // Validação real: se for diferente da correta, barra na hora
             if (chave !== SENHA_CORRETA) {
                 alert("⛔ Senha incorreta! Acesso negado aos materiais restritos.");
                 document.getElementById("inputChave").value = "";
