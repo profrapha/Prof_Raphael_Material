@@ -3314,8 +3314,9 @@
                     let htmlEsquerda = `<div style="margin-bottom: 1.5rem; line-height: 1.6;">${limparLaTeXParaWeb(questaoDoBanco.enunciado)}</div>`;
                     
                     if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
+                        // CORREÇÃO 2: Removido o background branco e o padding. Se o TikZ falhar por ter comandos avançados, ele apenas não aparece, mantendo a tela limpa.
                         htmlEsquerda += `
-                            <div style="background: #ffffff; padding: 1rem; border-radius: 8px; text-align: center;">
+                            <div style="display: flex; justify-content: center; margin-top: 1rem; overflow-x: auto;">
                                 <script type="text/tikz">
                                     ${questaoDoBanco.codigo_tikz}
                                 <\/script>
@@ -3368,7 +3369,8 @@
                         aluno: tutorState.aluno,
                         turma: tutorState.turma,
                         sessionId: tutorState.sessionId,
-                        chatInput: "Olá! Pode me ajudar com esta questão? Onde eu devo começar?"
+                        // CORREÇÃO 1: Ordem estrita enviada ao Claude para forçar a pergunta inicial.
+                        chatInput: "Olá, professor! Acabei de abrir a questão. Por favor, não me dê nenhuma dica ainda. Apenas me cumprimente pelo meu nome e pergunte qual é a minha dúvida ou em qual passo eu travei." 
                     })
                 });
 
