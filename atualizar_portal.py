@@ -5,7 +5,6 @@ import sqlite3
 
 raiz = os.path.dirname(os.path.abspath(__file__))
 arquivo_html = os.path.join(raiz, "index.html")
-arquivo_alunos = os.path.join(raiz, "alunos.json")
 arquivo_banco = os.path.join(raiz, "questoes.db")
 arquivo_dados_json = os.path.join(raiz, "questoes_dados.json")
 
@@ -113,7 +112,6 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
         if nota_pedagogica:
             contexto += f"\n--- ORIENTAÇÃO PEDAGÓGICA AO TUTOR ---\n{nota_pedagogica}\n"
 
-        # ID canônico derivado diretamente do prefixo oficial do caderno
         id_unico = f"{prefixo_material}__C{idx_cap:02d}__Q{num_q:02d}"
 
         cur.execute("""
@@ -183,13 +181,6 @@ def extrair_estrutura_tex(caminho_abs_tex):
             idx += 1
 
     return capitulos
-
-def carregar_alunos():
-    if not os.path.exists(arquivo_alunos):
-        print(f"[AVISO] Arquivo alunos.json não encontrado em {arquivo_alunos}")
-        return {}
-    with open(arquivo_alunos, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 def construir_catalogo(cur_banco):
     catalogo = {
@@ -264,7 +255,6 @@ def construir_catalogo(cur_banco):
                 
                 estrutura_capitulos = extrair_estrutura_tex(caminho_abs_tex)
 
-                # Prefixo oficial da fonte de verdade (sem abreviações artificiais)
                 prefixo_material = f"{disciplina_pasta}__{ano_pasta}__{unidade_pasta}__{tipo_mat}"
 
                 if caminho_abs_tex:
@@ -273,11 +263,11 @@ def construir_catalogo(cur_banco):
                 materiais.append({
                     "tipo": tipo_mat,
                     "rotulo": d.get("rotulo", "Caderno de Atividades Suplementar" if tipo_mat == "Autoral" else "Caderno de Atividades"),
-                    "id_prefixo": prefixo_material,  # Carimbo oficial injetado no HTML
+                    "id_prefixo": prefixo_material,  
                     "pdf": pdf_aluno,
                     "pdfProf": pdf_prof,
                     "tex": caminho_tex,
-                    "videos": d.get("videos", []),
+                    "trilhas_de_aprendizagem": d.get("trilhas_de_aprendizagem", []),
                     "estrutura": estrutura_capitulos
                 })
 
@@ -336,16 +326,6 @@ def atualizar_html():
     padrao_cat = re.compile(f"{re.escape(tag_inicio_cat)}.*?{re.escape(tag_fim_cat)}", re.DOTALL)
     bloco_cat = f"{tag_inicio_cat}\n        const catalogo = {json_catalogo};\n        {tag_fim_cat}"
     conteudo = padrao_cat.sub(bloco_cat, conteudo)
-
-    tag_inicio_alu = "/* === ALUNOS_INICIO === */"
-    tag_fim_alu = "/* === ALUNOS_FIM === */"
-
-    if tag_inicio_alu in conteudo and tag_fim_alu in conteudo:
-        alunos = carregar_alunos()
-        json_alunos = json.dumps(alunos, ensure_ascii=False, indent=12)
-        padrao_alu = re.compile(f"{re.escape(tag_inicio_alu)}.*?{re.escape(tag_fim_alu)}", re.DOTALL)
-        bloco_alu = f"{tag_inicio_alu}\n        const listaAlunos = {json_alunos};\n        {tag_fim_alu}"
-        conteudo = padrao_alu.sub(bloco_alu, conteudo)
 
     with open(arquivo_html, "w", encoding="utf-8") as f:
         f.write(conteudo)

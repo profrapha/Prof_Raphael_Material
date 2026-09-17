@@ -805,24 +805,28 @@
     </div>
 
     <!-- Modal de Configuração do Tutor (Para escolher a Turma e a Questão) -->
+    <!-- Modal de Configuração do Tutor (Escudo LGPD Aplicado) -->
     <div class="modal-overlay" id="modalSetupTutor">
         <div class="modal-box">
             <h3 style="color: var(--accent-violet);">🤖 Plantão Tutor IA</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                Selecione seus dados para iniciarmos:
+                Selecione a questão e informe seu nome para iniciarmos:
             </p>
-            
-            <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Turma:</label>
-            <select id="selectTurmaTutor" onchange="atualizarAlunosTutor()"></select>
 
-            <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Seu Nome:</label>
-            <select id="selectNomeAlunoTutor"></select>
+            <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Seu Nome Completo (ou RA):</label>
+            <input type="text" id="selectNomeAlunoTutor" placeholder="Digite seu nome..." style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-card); background-color: var(--bg-primary); color: var(--text-main); font-size: 0.95rem; margin-bottom: 1rem; outline: none;">
 
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Capítulo / Seção:</label>
             <select id="selectCapituloTutor" onchange="atualizarQuestoesPorCapitulo()"></select>
 
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Qual a Dúvida? (Questão):</label>
             <select id="selectQuestaoTutor"></select>
+
+            <div style="background: rgba(56, 189, 248, 0.05); border: 1px dashed var(--border-card); border-radius: 8px; padding: 10px; margin-bottom: 1rem;">
+                <p style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.4; text-align: justify; margin: 0;">
+                    <strong>🔒 Privacidade (LGPD):</strong> Suas dúvidas serão processadas por Inteligência Artificial exclusivamente para apoio pedagógico. Suas interações poderão ser revisadas pelo professor para melhoria contínua das aulas. Os dados não são utilizados para treinar modelos externos.
+                </p>
+            </div>
 
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="fecharSetupTutor()">Cancelar</button>
@@ -835,285 +839,6 @@
         /* =========================================================================
            AQUI FICAM AS SUAS TAGS DE INJEÇÃO (DO ARQUIVO PYTHON)
            ========================================================================= */
-
-/* === ALUNOS_INICIO === */
-        const listaAlunos = {
-            "6º Ano A": [
-                        "Alice de Freitas Alvarenga Souza",
-                        "Alice de Souza Paschoal Silva",
-                        "Alice Oliveira",
-                        "Antonio Gumerato Bianco",
-                        "Arthur de Almeida Silva",
-                        "Arthur Pelissari Baldin",
-                        "Beatriz Martin de Almeida",
-                        "Caio Carlos Rodrigues de Oliveira",
-                        "Caio Santana Barbosa",
-                        "Cauan Gramani Marques",
-                        "Daniel Pamplona de Oliveira",
-                        "Davi Aparecido dos Reis Pereira Junior",
-                        "Davi Luiz dos Santos Melo",
-                        "Enrico Meda D'Ascenção",
-                        "Giovanna Camaran Rodrigues",
-                        "Gustavo Urbinatti Grisotto",
-                        "Helena Cruz Bocci",
-                        "João Arthur Medeiros de Souza",
-                        "Livia Fernandes Izaias",
-                        "Livia Rodrigues Floriano",
-                        "Livia Rubião Selenguini",
-                        "Maria Eduarda Torre dos Santos",
-                        "Miguel Ferreira Afonso",
-                        "Pedro Almeida Lopes",
-                        "Rafaela Azevedo de Araujo",
-                        "Sarah Viana de Almeida",
-                        "Sophia de Jorge Raguazzi Guimarães"
-            ],
-            "6º Ano B": [
-                        "Amanda Inouye Cavalieri",
-                        "Bernardo Pilatti Taveiros",
-                        "Cauã Previatto Giorgetti",
-                        "Davi Contin Quirino",
-                        "Enzo Teixeira Mendonça",
-                        "Gabriel Rodrigues Viana",
-                        "Guilherme Escobar Bleinroth",
-                        "Gustavo Cabral Gonçalves",
-                        "Heitor Moreira Sampaio",
-                        "Lara Rafaela Reis",
-                        "Lavinia de Souza Mesquita",
-                        "Levi Assis Ferreira",
-                        "Luís Otávio Garcia Leandro Rocha",
-                        "Luisa Magro Vieira",
-                        "Luiza Maris Ferreira Rodrigues",
-                        "Luiza Scatralhe Buetto",
-                        "Maria Eduarda Siquinato Ventavoli",
-                        "Mariane Maio Felix",
-                        "Miguel Capuzzo Fonzar",
-                        "Murilo Scatralhe Buetto",
-                        "Nathan Fernandes Ishimoto",
-                        "Nicolas Fernandes Ishimoto",
-                        "Saulo Rafael Penaforte dos Santos Lapa",
-                        "Sophia Gunello Pereira",
-                        "Sophia Pereira",
-                        "Theo Ferreira Jaime"
-            ],
-            "7º Ano A": [
-                        "Ana Luiza Francisco dos Reis dos Santos",
-                        "Andre Luiz Antolini Alves",
-                        "Arthur Borsato Miguel",
-                        "Bruna Baroni Carnot",
-                        "Caua Carlos Rodrigues de Oliveira",
-                        "Cauã Mini Mendes",
-                        "Davi Evangelista Bochio",
-                        "Davi Ferreira Belarmino",
-                        "Felipe Bueno de Almeida",
-                        "Giovanna Malavolta",
-                        "Helena Pizani Froes",
-                        "Heloisa Ghiraldini Castaldelli de Faria",
-                        "Isaac de Oliveira Silva",
-                        "João Gabriel Lucarini Rosa Almeida",
-                        "João Lucca Gironi Fonseca Galdino",
-                        "Lorenzo Spadella",
-                        "Lúcio Mendes Freitas",
-                        "Manuella Ferreira Caetano",
-                        "Marcella Mulari Tortorelli Heidrich",
-                        "Maria Beatriz de Morais Gimenes",
-                        "Maria Eduarda Rodrigues de Oliveira",
-                        "Maria Julia Pool Rosa",
-                        "Miguel dos Santos",
-                        "Thais Egídio Moura"
-            ],
-            "7º Ano B": [
-                        "Ana Alice Santos Candido",
-                        "Artur Oliveira de Siqueira",
-                        "Benjamin Alves de Jesus",
-                        "Davi Lima Sandoval",
-                        "Davi Lucca Veiga Andreucci",
-                        "Davi Petean Paris",
-                        "Emanuelly de Oliveira Ferreira Sampaio",
-                        "Emily Franceschini de Sousa",
-                        "Esther Maira Lopes de Carvalho",
-                        "Giovana da Silva Grespan",
-                        "Giovanna Camargo Rosa",
-                        "Heitor Labaki Chinaglia",
-                        "Henry Teixeira Buzzo",
-                        "Isabella Mello Reis",
-                        "Julia Porto Hall",
-                        "Lorena Cortijo Haddad",
-                        "Lorenzo Rocha Ribeiro",
-                        "Nathan Siqueira da Silva",
-                        "Rafhael Guimarães Oliveira",
-                        "Samuel Resolen Vallim",
-                        "Thales Yan dos Reis Alves",
-                        "Victor Henrique Rosa de Sousa"
-            ],
-            "8º Ano A": [
-                        "Beatrice Ishikawa Ricci",
-                        "Caua Henrique Pagliotto Silva",
-                        "Davi Andrade Bessa",
-                        "Davi Francisco de Nicola",
-                        "Diego Ribeiro",
-                        "Diogo Peres Spengler",
-                        "Elisa Otsuki Neves",
-                        "Enzo Rizzo França",
-                        "Felipe Casalicchio Antonelli",
-                        "Karen de Souza Araujo dos Santos",
-                        "Leandra Lima de Andrade",
-                        "Lorena Silverio Amor",
-                        "Lorena Stabile",
-                        "Luiza Posca Ferreira",
-                        "Manuela Fontellas Taveira",
-                        "Maria Beatriz Pinato Barbosa",
-                        "Mateus Nunes Pacheco de Oliveira",
-                        "Miguel Francisco Malheiro Andrade Amaral",
-                        "Otávio Molina Bittencourt Rodrigues",
-                        "Rafael Augusto Pereira Lima Filho",
-                        "Rebeca Assis Ferreira",
-                        "Samuel Andrade Clagnan"
-            ],
-            "8º Ano B": [
-                        "Alice Bezerra Freire",
-                        "Alice Santos Calil Moreira",
-                        "Alicia Crispim Baetta",
-                        "Alicya Laureen Fernandes de Souza",
-                        "Ana Beatriz Macedo de Faria",
-                        "Ana Júlia de Mattos Lara",
-                        "Caique Figueiredo Sibilhano",
-                        "Enzo Parra Fernandes",
-                        "Guilherme Fabbris Franco",
-                        "Isabelle Stefano Fluvel",
-                        "Joao Victor Silva Costa",
-                        "Julia Novaes Renzi",
-                        "Laura Beatriz Azenari da Silva",
-                        "Laura Calil Dayrell Martins Lopes Baratto",
-                        "Lucca Romero Rosa",
-                        "Maria Eduarda Oliveira Hermes",
-                        "Matheus França dos Santos",
-                        "Miguel Della Vecchia Santana",
-                        "Sophia Alves Bonomi",
-                        "Valentina Silva Furquim"
-            ],
-            "9º Ano A": [
-                        "Alana Buzzato Gutierrez",
-                        "Alice Aneli Abdala",
-                        "Alice Aparecida Silva",
-                        "Amanda Guimarães Zanon",
-                        "Antônio de Angelis de Sousa",
-                        "Arthur Alexandre",
-                        "Benicio Meda D' Ascenção",
-                        "Cauê Junio Joaquim Guedes Chaves",
-                        "Davi Henrique Alves da Silva",
-                        "Gabriel Pereira Rocha Leite",
-                        "Igor Ruivo Nascimento",
-                        "João Pedro de Oliveira Germano de Miranda",
-                        "Joao Pedro Mariano Felix",
-                        "Juana Carolina Gomes da Silva",
-                        "Julia de Barros Camolez",
-                        "Larissa Queiroz Teixeira",
-                        "Laura Ambrósio Elias",
-                        "Lorenzo Fabricio Momesso dos Santos",
-                        "Ludmyla Vilela Lima",
-                        "Manuela Ferreira Jaime",
-                        "Manuella Medeiros Secundino dos Santos",
-                        "Matheus Israel Hardt Dionizio",
-                        "Matheus Sanchez Paulino",
-                        "Miguel Batista Fernandes",
-                        "Miguel de Oliveira Cintra",
-                        "Miguel Ferreira Caritá",
-                        "Miguel Lisbôa de Souza",
-                        "Murilo Matias Abreu",
-                        "Pedro Henrique Martin de Almeida",
-                        "Ryan Gabriel Pereira Lima",
-                        "Sophia Ambrósio Elias"
-            ],
-            "1ª Série A": [
-                        "Anna Clara Araujo Basso",
-                        "Anny Sophie Alcantara Rezende",
-                        "Brayan Henrique Dias Romagnoli",
-                        "Breno Ribeiro de Paula Eduardo",
-                        "Carlos Rodrigues de Oliveira Júnior",
-                        "Cauã Lisboa Monteiro",
-                        "Davi Araujo de Oliveira",
-                        "Emanuel Davi Silva Forti",
-                        "Enzo Baratella dos Reis",
-                        "Gabriel Ramos Sousa",
-                        "Gabriela Menezes Nicoletti",
-                        "Guilherme Henrique Rodrigues Paim",
-                        "Henrique Lisboa Monteiro",
-                        "Isaac Rafael Rodrigues de Oliveira",
-                        "Júlia Batiston de Souza",
-                        "Julia de Brito Moroti",
-                        "Laura Lima Sandoval",
-                        "Lorenzo Ricci Aparicio de Carvalho",
-                        "Luan Gabriel Vieira Damasceno",
-                        "Luan Nahas Lima",
-                        "Luara Aparecida Gonçalves Risso",
-                        "Luiz Almeida Salermo",
-                        "Manuela de Souza Beda",
-                        "Maria Clara Araujo Ruiz",
-                        "Maria Clara Gil",
-                        "Mariana Ildefonso Gon",
-                        "Matteo Moretto Ferreira",
-                        "Nicolas Menezes Nicoletti",
-                        "Pedro Henrique Martins",
-                        "Pedro Henrique Souza Soares",
-                        "Pietra Silverio Amor",
-                        "Sarah Joveliano Zanutto",
-                        "Thais Gonçalves Beccari",
-                        "Valentina Caroline Santana Souza",
-                        "Vitor Novaes Teixeira Lima",
-                        "Yasmin Michaliszyn Alves Ferreira"
-            ],
-            "2ª Série A": [
-                        "Alycia da Silva Marchezi Mora",
-                        "Amanda Victória Hardt Dionizio",
-                        "Ana Carolina Vallejos Silva",
-                        "Ana Clara Domingos Faleiros",
-                        "Ana Laura Furquim Gallo",
-                        "Ana Vitória Guimarães Zanon",
-                        "Arthur Cesar Corrêa",
-                        "Arthur Putti Martins",
-                        "Beatriz Andrade dos Santos",
-                        "Bianca Maciel Colmanetti",
-                        "Bruno da Silva Martins",
-                        "Bruno Ghiraldini Castaldelli de Faria",
-                        "Camilli Vitória Filippin",
-                        "Caroline Rosa de Sousa",
-                        "Davi Alves Morales",
-                        "Enzo Reis Lopes",
-                        "Fábio Henrique Ferreira Belarmino",
-                        "Giovanna Silva Fernandez",
-                        "Gustavo da Silva Grespan",
-                        "Higor Santiago Pioto Junior",
-                        "João Pedro Gumerato Rosa",
-                        "João Vitor Calderoni de Oliveira",
-                        "Julia Martins Durães",
-                        "Júlia Santos Carvalho",
-                        "Lara Aymi Nakahara",
-                        "Lívia Maris Ferreira Rodrigues",
-                        "Luiza Nicolino Parada",
-                        "Lundy Vilela Lima",
-                        "Manuella Facci Carpi Silvério",
-                        "Manuella Faleiros Menezes Silva",
-                        "Maria Eduarda Silva Guidoni Nascimento",
-                        "Maria Júlia Rodovalho de Melo",
-                        "Maria Luísa Pinato Barbosa",
-                        "Maria Vitória Souza Merlo da Silva",
-                        "Mateus Resolen Vallim",
-                        "Melissa Emy Nakahara",
-                        "Othávio Santos Gonçalves",
-                        "Pedro Henrique Della Vecchia Santana",
-                        "Rafael Antloga Lopes Rodovalho",
-                        "Rafael Nabruzzi Cambra",
-                        "Samuel Caetano Bonini Frojoni",
-                        "Sofhia de Oliveira Macedo",
-                        "Victor Hugo Alvarenga Lopes",
-                        "Vinicius Paixão Borges de Lima"
-            ],
-            "3ª Série A": [
-                        "Kauan Cezar Siffoni Previato",
-                        "Pietro de Faria Guimarães"
-            ]
-};
-        /* === ALUNOS_FIM === */
 
 /* === CATALOGO_INICIO === */
         const catalogo = {
@@ -1135,20 +860,7 @@
                                                                                                 "pdf": "Fisica/1_Serie/UNIDADE6/publica/FIS_1EM_AUT_U06-DINAMICA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/1_Serie/UNIDADE6/fonte_tex/FIS_1EM_AUT_U06-DINAMICA_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida em resolver problemas de Plano inclinado com atrito?",
-                                                                                                                        "titulo": "Plano inclinado com atrito",
-                                                                                                                        "autor": "Matemática no Papel",
-                                                                                                                        "url": "https://www.youtube.com/embed/FtpCPAbptbE"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dificuldade na Força Resultante Centrípeta?",
-                                                                                                                        "titulo": "FORÇA RESULTANTE CENTRÍPETA",
-                                                                                                                        "autor": "Felipe Sampaio",
-                                                                                                                        "url": "https://www.youtube.com/embed/JDuFDGMqdCk"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1203,20 +915,7 @@
                                                                                                 "pdf": "Fisica/2_Serie/UNIDADE6/publica/FIS_2EM_AUT_U06-REFRACAO_LENTES_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/2_Serie/UNIDADE6/fonte_tex/FIS_2EM_AUT_U06-REFRACAO_LENTES_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida em como usar a Lei de Snell?",
-                                                                                                                        "titulo": "Lei de Snell - Exercícios",
-                                                                                                                        "autor": "Maurício Física",
-                                                                                                                        "url": "https://www.youtube.com/embed/8eoC6frYFsU"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando entender Ângulo limite e reflexão total?",
-                                                                                                                        "titulo": "Refração: Ângulo limite",
-                                                                                                                        "autor": "Pedro Grossi",
-                                                                                                                        "url": "https://www.youtube.com/embed/ObEp8eFLGT4"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1292,44 +991,7 @@
                                                                                                 "pdf": "Fisica/6_Ano/UNIDADE6/publica/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/6_Ano/UNIDADE6/fonte_tex/FIS_6EF_AUT_U06-ESTRUTURA_TERRA_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida nas Camadas Internas da Terra?",
-                                                                                                                        "titulo": "As Camadas Internas da Terra",
-                                                                                                                        "autor": "Com Ciência",
-                                                                                                                        "url": "https://www.youtube.com/embed/hSsCSz03Svo"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando relembrar as Camadas da Terra?",
-                                                                                                                        "titulo": "Camadas da Terra",
-                                                                                                                        "autor": "Brasil Escola",
-                                                                                                                        "url": "https://www.youtube.com/embed/yM1Bn5wvFwc"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dificuldade em entender as 5 camadas da atmosfera terrestre?",
-                                                                                                                        "titulo": "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!",
-                                                                                                                        "autor": "Geo Ilustrada",
-                                                                                                                        "url": "https://www.youtube.com/embed/435_RueBRkY"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "querendo ver os Tipos de rochas para o 6º ano?",
-                                                                                                                        "titulo": "Tipos de rochas – Ciências – 6º ano",
-                                                                                                                        "autor": "Canal Futura",
-                                                                                                                        "url": "https://www.youtube.com/embed/zq54OCjKRN4"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida em um resumo sobre os Tipos de Rochas?",
-                                                                                                                        "titulo": "Tipos de Rochas - Resumo",
-                                                                                                                        "autor": "Com Ciência",
-                                                                                                                        "url": "https://www.youtube.com/embed/cwSOj4KGdmU"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando entender sobre Tipos de Rochas e Fósseis?",
-                                                                                                                        "titulo": "Tipos de Rochas e Fósseis",
-                                                                                                                        "autor": "Com Ciência",
-                                                                                                                        "url": "https://www.youtube.com/embed/Za8WmDI4iXA"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1408,38 +1070,7 @@
                                                                                                 "pdf": "Fisica/7_Ano/UNIDADE6/publica/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/7_Ano/UNIDADE6/fonte_tex/FIS_7EF_AUT_U06-MAQUINA_SIMPLES_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida nas aplicações de Máquinas simples para o 7º ano?",
-                                                                                                                        "titulo": "Máquinas simples – Ciências – 7º ano",
-                                                                                                                        "autor": "Canal Futura",
-                                                                                                                        "url": "https://www.youtube.com/embed/1cLd3zoe5WQ"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando ver as Principais informações sobre Máquinas Simples?",
-                                                                                                                        "titulo": "MÁQUINAS SIMPLES - Principais informações",
-                                                                                                                        "autor": "Com Ciência",
-                                                                                                                        "url": "https://www.youtube.com/embed/tvIk729n_rI"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dificuldade em entender o funcionamento de Alavancas?",
-                                                                                                                        "titulo": "MABA FÍSICA - ALAVANCAS",
-                                                                                                                        "autor": "Marcos Aba / Prof. Giovanelli",
-                                                                                                                        "url": "https://www.youtube.com/embed/EcJK51nMzl8"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "querendo ver como funcionam as Polias e roldanas fixas e móveis?",
-                                                                                                                        "titulo": "Polias e roldanas fixas e móveis",
-                                                                                                                        "autor": "Matemática no Papel",
-                                                                                                                        "url": "https://www.youtube.com/embed/DVh5zU9tUwk"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida sobre Plano inclinado sem atrito?",
-                                                                                                                        "titulo": "Plano inclinado sem atrito",
-                                                                                                                        "autor": "Matemática no Papel",
-                                                                                                                        "url": "https://www.youtube.com/embed/mAegzrG1Ofs"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1510,38 +1141,7 @@
                                                                                                 "pdf": "Fisica/8_Ano/UNIDADE6/publica/FIS_8EF_AUT_U06-SOL_TERRA_LUA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/8_Ano/UNIDADE6/fonte_tex/FIS_8EF_AUT_U06-SOL_TERRA_LUA_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida sobre a verdadeira distância entre a Terra e a Lua?",
-                                                                                                                        "titulo": "essa é a VERDADEIRA distância entre a TERRA e a LUA",
-                                                                                                                        "autor": "Ciência Todo Dia",
-                                                                                                                        "url": "https://www.youtube.com/embed/anFl3WcsDFo"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando entender os movimentos de Rotação e Translação?",
-                                                                                                                        "titulo": "Os movimentos da Terra",
-                                                                                                                        "autor": "Geo Ilustrada",
-                                                                                                                        "url": "https://www.youtube.com/embed/B3fBDGR1G1Y"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dificuldade em compreender Solstício e Equinócio?",
-                                                                                                                        "titulo": "SOLSTÍCIO E EQUINÓCIO",
-                                                                                                                        "autor": "Geobrasil",
-                                                                                                                        "url": "https://www.youtube.com/embed/Lj_VQXzIeyE"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "querendo ver como funcionam As fases da lua?",
-                                                                                                                        "titulo": "A lua e suas fases",
-                                                                                                                        "autor": "Canal Futura",
-                                                                                                                        "url": "https://www.youtube.com/embed/3Wefx4Vpx1M"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida sobre Fases da Lua e Eclipses na Óptica Geométrica?",
-                                                                                                                        "titulo": "Fases da Lua e Eclipse",
-                                                                                                                        "autor": "Chama o Físico",
-                                                                                                                        "url": "https://www.youtube.com/embed/CZPpi5Q9O_0"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1612,44 +1212,7 @@
                                                                                                 "pdf": "Fisica/9_Ano/UNIDADE6/publica/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_ALUNO.pdf",
                                                                                                 "pdfProf": null,
                                                                                                 "tex": "Fisica/9_Ano/UNIDADE6/fonte_tex/FIS_9EF_AUT_U06-ENERGIA_POTENCIA_BASE.tex",
-                                                                                                "videos": [
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida sobre o Teorema da energia cinética?",
-                                                                                                                        "titulo": "Teorema da energia cinética",
-                                                                                                                        "autor": "Matemática no Papel",
-                                                                                                                        "url": "https://www.youtube.com/embed/g7OfZUyiexQ"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?",
-                                                                                                                        "titulo": "Teorema da Energia Cinética - Exercícios",
-                                                                                                                        "autor": "Davi Oliveira",
-                                                                                                                        "url": "https://www.youtube.com/embed/NLKS7AqHv0Y"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dificuldade em diferenciar Energia Cinética e Potencial?",
-                                                                                                                        "titulo": "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL",
-                                                                                                                        "autor": "Eureka Matemática",
-                                                                                                                        "url": "https://www.youtube.com/embed/CQFnmOIuxi8"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "querendo revisar a Conservação da Energia Mecânica?",
-                                                                                                                        "titulo": "CONSERVAÇÃO DA ENERGIA MECÂNICA",
-                                                                                                                        "autor": "Felipe Sampaio",
-                                                                                                                        "url": "https://www.youtube.com/embed/pV7KvsH_yEA"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "com dúvida sobre Sistemas Conservativos?",
-                                                                                                                        "titulo": "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I",
-                                                                                                                        "autor": "Professor Boaro",
-                                                                                                                        "url": "https://www.youtube.com/embed/cyRn0Hla-TM"
-                                                                                                            },
-                                                                                                            {
-                                                                                                                        "duvida": "precisando entender Potência Mecânica e Consumo?",
-                                                                                                                        "titulo": "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO",
-                                                                                                                        "autor": "Curso Enem Gratuito",
-                                                                                                                        "url": "https://www.youtube.com/embed/objIr0eQIWQ"
-                                                                                                            }
-                                                                                                ],
+                                                                                                "trilhas_de_aprendizagem": [],
                                                                                                 "estrutura": [
                                                                                                             {
                                                                                                                         "indice": 1,
@@ -1744,14 +1307,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/1_Serie/UNIDADE6/publica/ALG_1EM_AUT_U06-INEQUACOES_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Algebra/1_Serie/UNIDADE6/fonte_tex/ALG_1EM_AUT_U06-INEQUACOES_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Inequações de 1° e 2° Graus?",
-                                                                                                                                                "titulo": "INEQUAÇÕES de 1° e 2° GRAUS",
-                                                                                                                                                "autor": "Prof. Sérgio Mendes",
-                                                                                                                                                "url": "https://www.youtube.com/embed/6gmieH_OVZA"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": []
                                                                                                             }
                                                                                                 ]
@@ -1772,14 +1328,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/2_Serie/UNIDADE6/publica/ALG_2EM_AUT_U06-POLINOMIOS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Algebra/2_Serie/UNIDADE6/fonte_tex/ALG_2EM_AUT_U06-POLINOMIOS_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dificuldade no Dispositivo Briot-Ruffini?",
-                                                                                                                                                "titulo": "Dispositivo Briot-Ruffini",
-                                                                                                                                                "autor": "Matemática Rio",
-                                                                                                                                                "url": "https://www.youtube.com/embed/LpjWG7koTBE"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": []
                                                                                                             }
                                                                                                 ]
@@ -1800,7 +1349,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/publica/ALG_3EM_AUT_S10-REVISAO_VEST_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA10/restrita/ALG_3EM_AUT_S10-REVISAO_VEST_PROF.pdf",
                                                                                                                         "tex": null,
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": []
                                                                                                             }
                                                                                                 ]
@@ -1816,7 +1365,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/publica/ALG_3EM_AUT_S11-PLANA_SOLIDOS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/restrita/ALG_3EM_AUT_S11-PLANA_SOLIDOS_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/3_Serie/Intensivo/SEMANA11/fonte_tex/ALG_3EM_AUT_S11-PLANA_SOLIDOS_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -1856,26 +1405,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/6_Ano/UNIDADE6/publica/ALG_6EF_AUT_U06-NUM_RACIONAIS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/6_Ano/UNIDADE6/restrita/ALG_6EF_AUT_U06-NUM_RACIONAIS_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/6_Ano/UNIDADE6/fonte_tex/ALG_6EF_AUT_U06-NUM_RACIONAIS_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Leitura e Escrita de Números Decimais?",
-                                                                                                                                                "titulo": "Leitura e Escrita de Números Decimais",
-                                                                                                                                                "autor": "Prof.ª Gis",
-                                                                                                                                                "url": "https://www.youtube.com/embed/EMAoOklEA5w"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Adição e Subtração com Vírgula?",
-                                                                                                                                                "titulo": "Adição e Subtração com Vírgula",
-                                                                                                                                                "autor": "Sandro Curió",
-                                                                                                                                                "url": "https://www.youtube.com/embed/UXs1R5mDY6o"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Porcentagem | Como Calcular?",
-                                                                                                                                                "titulo": "Porcentagem | Como Calcular",
-                                                                                                                                                "autor": "Prof.ª Gis",
-                                                                                                                                                "url": "https://www.youtube.com/embed/OjOyNmTt7Mw"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -1954,7 +1484,47 @@
                                                                                                                         "pdf": "Matematica_Algebra/6_Ano/UNIDADE7/publica/ALG_6EF_AUT_U07-INTRO_ALGEBRA_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/6_Ano/UNIDADE7/restrita/ALG_6EF_AUT_U07-INTRO_ALGEBRA_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/6_Ano/UNIDADE7/fonte_tex/ALG_6EF_AUT_U07-INTRO_ALGEBRA_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Valor Numérico de Expressões Algébricas",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Errou a conta ao trocar a letra pelo número nas primeiras questões? Lembre-se de que o número colado na letra está multiplicando! Assista a este passo a passo para revisar:",
+                                                                                                                                                                        "titulo": "VALOR NUMÉRICO DE UMA EXPRESSÃO ALGÉBRICA",
+                                                                                                                                                                        "autor": "Gis com Giz Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/V6N7zO9y1l0"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Linguagem Algébrica (Tradução de Textos)",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Travou na hora de transformar 'o dobro de um número' ou 'consecutivos' em matemática? Veja como traduzir qualquer problema do português para o 'matematiquês':",
+                                                                                                                                                                        "titulo": "LINGUAGEM MATEMÁTICA E EXPRESSÕES ALGÉBRICAS",
+                                                                                                                                                                        "autor": "Professor Ferretto",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/5T5Wj6S6Q4E"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Equações do 1º Grau - Princípio da Balança",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Ficou confuso sobre por que não podemos simplesmente 'passar para o outro lado'? Descubra o segredo da balança e não erre mais o sinal:",
+                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU - O PRINCÍPIO DA BALANÇA",
+                                                                                                                                                                        "autor": "Matemática Rio com Prof. Rafael Procopio",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/Z8Nl3x3m1Jc"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Precisa treinar mais como isolar o X e resolver o cálculo final? Acompanhe esta resolução detalhada:",
+                                                                                                                                                                        "titulo": "COMO RESOLVER EQUAÇÃO DO 1º GRAU - PASSO A PASSO",
+                                                                                                                                                                        "autor": "Equaciona com Paulo Pereira",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/7V-xK1wz6yM"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    }
+                                                                                                                        ],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2038,20 +1608,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/7_Ano/UNIDADE6/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE6/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/7_Ano/UNIDADE6/fonte_tex/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dificuldade em Potenciação com Fração e Decimal?",
-                                                                                                                                                "titulo": "Potenciação com Fração e Decimal",
-                                                                                                                                                "autor": "Prof.ª Gis",
-                                                                                                                                                "url": "https://www.youtube.com/embed/4f57_lJg3zQ"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Razão e Proporção?",
-                                                                                                                                                "titulo": "Razão e Proporção",
-                                                                                                                                                "autor": "Prof.ª Gis",
-                                                                                                                                                "url": "https://www.youtube.com/embed/Kf_YzZ0CnIs"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2152,7 +1709,71 @@
                                                                                                                         "pdf": "Matematica_Algebra/7_Ano/UNIDADE7/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE7/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/7_Ano/UNIDADE7/fonte_tex/ALG_7EF_AUT_U07-EQUACOES_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Conceitos Fundamentais e Resolução de Equações",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Precisa construir a base do zero? Entenda o princípio da balança e a regra dos sinais de forma visual:",
+                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU - Professora Angela Matemática",
+                                                                                                                                                                        "autor": "Professora Angela Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/Ylvb03POwGE"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Se você se perde quando a equação tem parênteses, veja como aplicar a propriedade distributiva (chuveirinho):",
+                                                                                                                                                                        "titulo": "EQUAÇÃO DO 1º GRAU COM DISTRIBUTIVA",
+                                                                                                                                                                        "autor": "Gis com Giz",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/xOyC50CMdi8"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Travou nas equações que parecem gigantes? O professor Ferretto ensina os primeiros passos práticos:",
+                                                                                                                                                                        "titulo": "Equação do primeiro grau!! Saiba como resolver!!",
+                                                                                                                                                                        "autor": "Professor Ferretto",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/q9SmHURN9u0"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Odeia trabalhar com frações? Aprenda como usar o MMC para sumir com os denominadores da equação:",
+                                                                                                                                                                        "titulo": "RESOLUÇÃO DE EXPRESSÕES COM FRAÇÕES ALGÉBRICAS",
+                                                                                                                                                                        "autor": "Equaciona Com Paulo Pereira",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/nmXj4yYRL50"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Problemas Contextualizados com Equações (Tradução Algébrica)",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Como transformar um texto longo em uma continha pequena? Aprenda a traduzir o português para a matemática:",
+                                                                                                                                                                        "titulo": "Equação do 1º Grau - Matemática Básica - Revisão",
+                                                                                                                                                                        "autor": "Professora Angela Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/OKQq_Prn4ps"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Caiu aquele problema chato pedindo 'o triplo de um número' ou 'números consecutivos'? O Marcos Aba descomplica para você:",
+                                                                                                                                                                        "titulo": "COMO RESOLVER PROBLEMAS DE EQUAÇÃO DO 1º GRAU",
+                                                                                                                                                                        "autor": "Marcos Aba Matemática",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/AoQfB59aLJ0"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "subtema": "Inequações do 1º Grau e Reta Numérica",
+                                                                                                                                                "videos": [
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "O que diferencia uma inequação de uma equação? Entenda a lógica do 'maior que' e 'menor que':",
+                                                                                                                                                                        "titulo": "Inequação do primeiro grau: exemplos iniciais",
+                                                                                                                                                                        "autor": "Professor Ferretto",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/MGs-LVYSuRw"
+                                                                                                                                                            },
+                                                                                                                                                            {
+                                                                                                                                                                        "chamada": "Errar a regra do número negativo é fatal. Veja na prática quando e por que o bico do sinal inverte de lado:",
+                                                                                                                                                                        "titulo": "INEQUAÇÃO DO 1º GRAU x – 3 ≥ 1– x",
+                                                                                                                                                                        "autor": "Gis com Giz",
+                                                                                                                                                                        "url": "https://www.youtube.com/embed/XcBqMOKvJUc"
+                                                                                                                                                            }
+                                                                                                                                                ]
+                                                                                                                                    }
+                                                                                                                        ],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2228,20 +1849,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/8_Ano/UNIDADE6/publica/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/8_Ano/UNIDADE6/restrita/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/8_Ano/UNIDADE6/fonte_tex/ALG_8EF_AUT_U06-EQ_INCOMPLETAS_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Equação do 2º Grau Incompleta?",
-                                                                                                                                                "titulo": "Equação do 2º Grau Incompleta",
-                                                                                                                                                "autor": "Prof.ª Gis",
-                                                                                                                                                "url": "https://www.youtube.com/embed/GX2qKdb5ATE"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "querendo aprender de forma Rápida e Fácil?",
-                                                                                                                                                "titulo": "Equação Incompleta Rápida",
-                                                                                                                                                "autor": "Sandro Curió",
-                                                                                                                                                "url": "https://www.youtube.com/embed/6PHQDKnO-Mw"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2350,32 +1958,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/8_Ano/UNIDADE8/publica/ALG_8EF_AUT_U08-PROD_NOTAVEIS_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/8_Ano/UNIDADE8/restrita/ALG_8EF_AUT_U08-PROD_NOTAVEIS_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/8_Ano/UNIDADE8/fonte_tex/ALG_8EF_AUT_U08-PROD_NOTAVEIS_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Fator Comum?",
-                                                                                                                                                "titulo": "FATORAÇÃO: FATOR COMUM em EVIDÊNCIA",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/bHIP8Ei5PFA"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no Quadrado da Soma ou da Diferença?",
-                                                                                                                                                "titulo": "PRODUTOS NOTÁVEIS: Principais Casos",
-                                                                                                                                                "autor": "Professor Ferretto",
-                                                                                                                                                "url": "https://www.youtube.com/embed/_3YQvVKbqn0"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em Fatoração e Trinômios?",
-                                                                                                                                                "titulo": "FATORAÇÃO (C/ exemplos)",
-                                                                                                                                                "autor": "Equaciona Com Paulo Pereira",
-                                                                                                                                                "url": "https://www.youtube.com/embed/_I9_xvGU0xw"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no Produto da Soma pela Diferença?",
-                                                                                                                                                "titulo": "Produtos Notáveis - Produto da Soma pela Diferença",
-                                                                                                                                                "autor": "Professora Angela Matemática",
-                                                                                                                                                "url": "https://www.youtube.com/embed/TGSrdY8qUV4"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2465,86 +2048,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_AUT_U06-FUN_QUAD_P1_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_AUT_U06-FUN_QUAD_P1_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/9_Ano/UNIDADE6/fonte_tex/ALG_9EF_AUT_U06-FUN_QUAD_P1_BASE.tex",
-                                                                                                                        "videos": [
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida nos conceitos iniciais de função do 2º grau?",
-                                                                                                                                                "titulo": "FUNÇÃO DO 2º GRAU - FUNÇÃO QUADRÁTICA",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/mX3Xeq4QEyQ"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em como encontrar as raízes ou zeros da função?",
-                                                                                                                                                "titulo": "RAÍZES OU ZEROS DA FUNÇÃO QUADRÁTICA | FUNÇÃO DO SEGUNDO 2º GRAU",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/a0ndXBGjqCU"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no cálculo das coordenadas do vértice?",
-                                                                                                                                                "titulo": "COORDENADAS DO VÉRTICE DA PARÁBOLA - FUNÇÃO QUADRÁTICA",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/DCT9jRSAwfs"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em como aplicar a Fórmula de Bhaskara?",
-                                                                                                                                                "titulo": "FÓRMULA DE BHÁSKARA | COMO FAZER EQUAÇÃO DO 2º GRAU",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/LNLvMo1PWok"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida na matéria toda e precisa de um resumão?",
-                                                                                                                                                "titulo": "RESUMÃO DE FUNÇÃO QUADRÁTICA: TUDO QUE CAI NA SUA PROVA!",
-                                                                                                                                                "autor": "Gis com Giz",
-                                                                                                                                                "url": "https://www.youtube.com/embed/hiuIUHRwI_o"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida na definição matemática inicial da parábola?",
-                                                                                                                                                "titulo": "Função do Segundo Grau (Função Quadrática): Conceitos Iniciais",
-                                                                                                                                                "autor": "Professor Ferretto",
-                                                                                                                                                "url": "https://www.youtube.com/embed/Z5aVW_Zgifk"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida na construção e propriedades do gráfico da parábola?",
-                                                                                                                                                "titulo": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 5)",
-                                                                                                                                                "autor": "Professor Ferretto",
-                                                                                                                                                "url": "https://www.youtube.com/embed/ZnxMdyN4Xp8"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no estudo avançado do gráfico da parábola?",
-                                                                                                                                                "titulo": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 6)",
-                                                                                                                                                "autor": "Professor Ferretto",
-                                                                                                                                                "url": "https://www.youtube.com/embed/U9I1LFFcUkw"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida na definição da lei de formação?",
-                                                                                                                                                "titulo": "Aula 01 - Função do Segundo Grau: Definição da Função Quadrática",
-                                                                                                                                                "autor": "Matemática no Papel",
-                                                                                                                                                "url": "https://www.youtube.com/embed/mzEGFoEenh8"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no esboço prático do gráfico da função?",
-                                                                                                                                                "titulo": "Aula 06 - Função do Segundo Grau: Gráfico da Função Quadrática",
-                                                                                                                                                "autor": "Matemática no Papel",
-                                                                                                                                                "url": "https://www.youtube.com/embed/wgpmGZSj_R4"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no domínio e na imagem da função quadrática?",
-                                                                                                                                                "titulo": "Aula 07 - Função do Segundo Grau: Domínio e a Imagem",
-                                                                                                                                                "autor": "Matemática no Papel",
-                                                                                                                                                "url": "https://www.youtube.com/embed/VY3C9t3DwKo"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida em identificar o ponto de máximo e mínimo?",
-                                                                                                                                                "titulo": "VÉRTICE DA PARÁBOLA - PONTO DE MÁXIMO E PONTO DE MÍNIMO",
-                                                                                                                                                "autor": "Professora Angela Matemática",
-                                                                                                                                                "url": "https://www.youtube.com/embed/fjSWmSPtfww"
-                                                                                                                                    },
-                                                                                                                                    {
-                                                                                                                                                "duvida": "com dúvida no passo a passo rápido para desenhar a parábola?",
-                                                                                                                                                "titulo": "4 PASSOS PARA CONSTRUIR UMA PARÁBOLA | GRÁFICO DO 2º GRAU",
-                                                                                                                                                "autor": "Dicasdemat Sandro Curió",
-                                                                                                                                                "url": "https://www.youtube.com/embed/rHal93QAGyo"
-                                                                                                                                    }
-                                                                                                                        ],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2639,7 +2143,7 @@
                                                                                                                         "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
                                                                                                                         "tex": "Matematica_Algebra/9_Ano/UNIDADE6/fonte_tex/ALG_9EF_ESC_U06-FUN_QUAD_P1_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2730,7 +2234,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/1_Serie/UNIDADE6/publica/GEO_1EM_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Geometria/1_Serie/UNIDADE6/fonte_tex/GEO_1EM_AUT_U06-FIGURAS_PLANAS_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2793,7 +2297,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/2_Serie/UNIDADE6/publica/GEO_2EM_AUT_U06-CONES_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Geometria/2_Serie/UNIDADE6/fonte_tex/GEO_2EM_AUT_U06-CONES_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2861,7 +2365,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/6_Ano/UNIDADE6/publica/GEO_6EF_AUT_U06-AREA_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Geometria/6_Ano/UNIDADE6/fonte_tex/GEO_6EF_AUT_U06-AREA_PLANAS_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -2945,7 +2449,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/7_Ano/UNIDADE6/publica/GEO_7EF_AUT_U06-AREA_PERIMETRO_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Geometria/7_Ano/UNIDADE6/fonte_tex/GEO_7EF_AUT_U06-AREA_PERIMETRO_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -3029,7 +2533,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/8_Ano/UNIDADE6/publica/GEO_8EF_AUT_U06-FIGURAS_PLANAS_ALUNO.pdf",
                                                                                                                         "pdfProf": null,
                                                                                                                         "tex": "Matematica_Geometria/8_Ano/UNIDADE6/fonte_tex/GEO_8EF_AUT_U06-FIGURAS_PLANAS_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -3113,7 +2617,7 @@
                                                                                                                         "pdf": "Matematica_Geometria/9_Ano/UNIDADE6/publica/GEO_9EF_AUT_U06-GEOM_ESPACIAL_ALUNO.pdf",
                                                                                                                         "pdfProf": "Matematica_Geometria/9_Ano/UNIDADE6/restrita/GEO_9EF_AUT_U06-GEOM_ESPACIAL_PROF.pdf",
                                                                                                                         "tex": "Matematica_Geometria/9_Ano/UNIDADE6/fonte_tex/GEO_9EF_AUT_U06-GEOM_ESPACIAL_BASE.tex",
-                                                                                                                        "videos": [],
+                                                                                                                        "trilhas_de_aprendizagem": [],
                                                                                                                         "estrutura": [
                                                                                                                                     {
                                                                                                                                                 "indice": 1,
@@ -3349,38 +2853,38 @@
         }
 
         function renderHome(container) {
-            container.innerHTML = `
-                <div class="view-header">
-                    <h2>Ecossistema Pedagógico</h2>
-                    <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
-                </div>
+    container.innerHTML = `
+        <div class="view-header">
+            <h2>Ecossistema Pedagógico</h2>
+            <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
+        </div>
 
-                <div class="grid-cards">
-                    <div class="interactive-card" onclick="irNivel('frentes')">
-                        <div>
-                            <div class="card-top">
-                                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
-                                <h3>Repositório de Estudos</h3>
-                            </div>
-                            <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
-                        </div>
-                        <div class="card-footer-link">Entrar no Repositório &rarr;</div>
+        <div class="grid-cards">
+            <div class="interactive-card" onclick="irNivel('frentes')">
+                <div>
+                    <div class="card-top">
+                        <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
+                        <h3>Repositório de Estudos</h3>
                     </div>
-
-                    <div class="interactive-card card-disabled">
-                        <span class="badge-em-breve">Em Breve</span>
-                        <div>
-                            <div class="card-top">
-                                <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">🤖</div>
-                                <h3>Professor Virtual</h3>
-                            </div>
-                            <p>Plantão socrático tira-dúvidas: o tutor guia o seu raciocínio passo a passo dentro do caderno em que você estiver estudando.</p>
-                        </div>
-                        <div class="card-footer-link" style="color: var(--text-muted);">Acesso transferido para dentro dos cadernos &rarr;</div>
-                    </div>
+                    <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
                 </div>
-            `;
-        }
+                <div class="card-footer-link">Entrar no Repositório &rarr;</div>
+            </div>
+
+            <div class="interactive-card card-disabled">
+                <span class="badge-em-breve">Em Breve</span>
+                <div>
+                    <div class="card-top">
+                        <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">🔬</div>
+                        <h3>Laboratório e Simuladores</h3>
+                    </div>
+                    <p>Modelagens interativas no GeoGebra, simulações dinâmicas de mecânica da física clássica e ferramentas de projeção 3D.</p>
+                </div>
+                <div class="card-footer-link" style="color: var(--text-muted);">Módulo em Desenvolvimento &bull;</div>
+            </div>
+        </div>
+    `;
+}
 
         function renderFrentes(container) {
             container.innerHTML = `
@@ -3530,18 +3034,27 @@
             }
 
             let videosHtml = "";
-            if (mat.videos && mat.videos.length > 0) {
+            if (mat.trilhas_de_aprendizagem && mat.trilhas_de_aprendizagem.length > 0) {
                 videosHtml = `
-                    <div style="margin-top: 2rem; border-top: 1px solid var(--border-card); padding-top: 1.5rem;">
-                        <h4 style="font-size: 0.95rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 0.5rem;">
-                            ▶ Videoaulas Recomendadas para Fundamentação (${mat.videos.length}):
-                        </h4>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            ${mat.videos.map(v => `
-                                <div class="video-card-item" onclick="abrirModalVideo('${v.url}', '${v.titulo}')">
-                                    <div class="video-duvida">💡 ${v.duvida}</div>
-                                    <div class="video-titulo">📺 ${v.titulo}</div>
-                                    <div class="video-autor">${v.autor}</div>
+                    <div style="margin-top: 2.5rem; border-top: 1px solid var(--border-card); padding-top: 2rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main);">
+                            🗺️ Trilhas de Aprendizagem Recomendadas
+                        </h3>
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            ${mat.trilhas_de_aprendizagem.map(trilha => `
+                                <div style="background: rgba(19, 27, 46, 0.4); border: 1px solid var(--border-card); border-radius: 12px; padding: 1.5rem;">
+                                    <h4 style="font-size: 1.05rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 1rem; border-bottom: 1px dashed var(--border-card); padding-bottom: 0.5rem;">
+                                        📌 Foco: ${trilha.subtema}
+                                    </h4>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                                        ${trilha.videos.map(v => `
+                                            <div class="video-card-item" onclick="abrirModalVideo('${v.url}', '${v.titulo}')" style="margin-top: 0;">
+                                                <div class="video-duvida" style="margin-bottom: 8px;">💡 ${v.chamada || 'Assista a esta aula'}</div>
+                                                <div class="video-titulo">📺 ${v.titulo}</div>
+                                                <div class="video-autor" style="margin-top: 4px;">👤 Prof(a): ${v.autor}</div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>
@@ -3634,6 +3147,26 @@
                 .replace(/\*(.*?)\*/g, '<em>$1</em>');
         }
 
+        function limparLaTeXParaWeb(texto) {
+            if (!texto) return "";
+            
+            // 1. Remove os blocos de imagem e formatação de página (que já vão ser desenhados pelo TikZJax)
+            let limpo = texto.replace(/\\begin\{center\}[\s\S]*?\\end\{center\}/g, '');
+            limpo = limpo.replace(/\\begin\{adjustbox\}[\s\S]*?\\end\{adjustbox\}/g, '');
+            limpo = limpo.replace(/\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}/g, '');
+            limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
+            
+            // 2. Converte formatações básicas de texto do LaTeX para o HTML
+            limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
+            limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
+            limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
+            
+            // 3. Converte as quebras duplas do LaTeX em parágrafos reais no HTML
+            limpo = limpo.replace(/\n\n/g, '<br><br>');
+            
+            return limpo.trim();
+        }
+        
         function obterMaterialAtual() {
             if (!nav.ano || !nav.unidadeId) return null;
             let uni = (nav.materia === "Fisica") 
@@ -3774,10 +3307,9 @@
                 const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
                 
                 if (questaoDoBanco) {
-                    // Monta o texto puro (com KaTeX)
-                    let htmlEsquerda = `<div style="margin-bottom: 1.5rem;">${tratarTextoIA(questaoDoBanco.enunciado)}</div>`;
+                    // Aqui entra a nossa vassoura nova limpando o enunciado!
+                    let htmlEsquerda = `<div style="margin-bottom: 1.5rem; line-height: 1.6;">${limparLaTeXParaWeb(questaoDoBanco.enunciado)}</div>`;
                     
-                    // Se tiver imagem, injeta a tag <script type="text/tikz"> para o TikZJax desenhar
                     if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
                         htmlEsquerda += `
                             <div style="background: #ffffff; padding: 1rem; border-radius: 8px; text-align: center;">
@@ -3788,14 +3320,12 @@
                         `;
                     }
                     paneConteudo.innerHTML = htmlEsquerda;
-                    
-                    // Manda o KaTeX formatar os cifrões na esquerda
                     renderizarKaTeX(paneConteudo);
-                    // Avisa o navegador que tem um novo código TikZ para ele desenhar
                     if (questaoDoBanco.codigo_tikz && typeof document.processTikzScripts !== "undefined") {
                         document.processTikzScripts();
                     }
-                } else {
+                }
+                else {
                     paneConteudo.innerHTML = `<span style="color:#ef4444;">Questão não encontrada no banco offline. O Tutor Socrático tentará usar a memória remota.</span>`;
                 }
 
@@ -3838,7 +3368,7 @@
                         aluno: tutorState.aluno,
                         turma: tutorState.turma,
                         sessionId: tutorState.sessionId,
-                        chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
+                        chatInput: "Olá! Pode me ajudar com esta questão? Onde eu devo começar?" // <-- Isso força o Tutor a ativar o modo socrático de abertura
                     })
                 });
 
