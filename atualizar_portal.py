@@ -138,6 +138,10 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
         idx_cap += 1
 
 def extrair_estrutura_tex(caminho_abs_tex):
+    """
+    Novo extrator de estrutura: Simula o loop de indexação para contar corretamente
+    as questões de forma sequencial.
+    """
     if not caminho_abs_tex or not os.path.exists(caminho_abs_tex):
         return []
 
@@ -148,37 +152,41 @@ def extrair_estrutura_tex(caminho_abs_tex):
         print(f"[AVISO] Não foi possível ler o TeX para estrutura: {e}")
         return []
 
-    partes = re.split(r'\\subsection\*\{([^}]+)\}', conteudo)
+    secoes = re.split(r'\\subsection\*\{([^}]+)\}', conteudo)
     capitulos = []
-    
-    questoes_avulsas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', partes[0])
-    if questoes_avulsas:
-        nums = [int(q) for q in questoes_avulsas]
-        capitulos.append({
-            "indice": 1,
-            "titulo": "Lista Principal",
-            "inicio": min(nums),
-            "fim": max(nums),
-            "questoes": nums
-        })
+    idx_cap = 1
 
-    idx = len(capitulos) + 1
-    for i in range(1, len(partes), 2):
-        titulo_bruto = partes[i].strip()
-        titulo_limpo = re.sub(r'\\[a-zA-Z]+', '', titulo_bruto).replace('{', '').replace('}', '').strip()
-        corpo = partes[i+1]
-        
-        questoes_encontradas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', corpo)
-        if questoes_encontradas:
-            nums = [int(q) for q in questoes_encontradas]
+    # Trata as questões antes do primeiro \subsection (Lista Principal)
+    if len(secoes) > 0 and secoes[0]:
+        questoes_avulsas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', secoes[0])
+        if questoes_avulsas:
+            nums = sorted([int(q) for q in questoes_avulsas])
             capitulos.append({
-                "indice": idx,
-                "titulo": titulo_limpo or f"Capítulo {idx}",
-                "inicio": min(nums),
-                "fim": max(nums),
+                "indice": idx_cap,
+                "titulo": "Lista Principal",
+                "inicio": nums[0],
+                "fim": nums[-1],
                 "questoes": nums
             })
-            idx += 1
+            idx_cap += 1
+
+    # Trata os capítulos criados pelos \subsection
+    for i in range(1, len(secoes), 2):
+        titulo_bruto = secoes[i].strip()
+        titulo_limpo = re.sub(r'\\[a-zA-Z]+', '', titulo_bruto).replace('{', '').replace('}', '').strip()
+        corpo_cap = secoes[i+1]
+        
+        questoes_encontradas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', corpo_cap)
+        if questoes_encontradas:
+            nums = sorted([int(q) for q in questoes_encontradas])
+            capitulos.append({
+                "indice": idx_cap,
+                "titulo": titulo_limpo or f"Capítulo {idx_cap}",
+                "inicio": nums[0],
+                "fim": nums[-1],
+                "questoes": nums
+            })
+        idx_cap += 1
 
     return capitulos
 
