@@ -7,12 +7,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bibliotecas de Criptografia -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
-    <!-- KaTeX para renderização de fórmulas matemáticas -->
+    <!-- KaTeX: Para as fórmulas Matemáticas -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- TikZJax: O Motor Mágico para desenhar gráficos LaTeX na web -->
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    
+    <!-- Biblioteca SQL.js para ler o banco SQLite direto do navegador -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
 
     <style>
         :root {
@@ -25,7 +34,6 @@
             --accent-blue: #38bdf8;
             --accent-blue-hover: #0ea5e9;
             --accent-emerald: #10b981;
-            --accent-emerald-hover: #059669;
             --accent-amber: #f59e0b;
             --accent-violet: #a855f7;
         }
@@ -207,11 +215,23 @@
             padding: 0 1.5rem;
             width: 100%;
             flex: 1;
+            /* Container flex para acomodar Split-Screen */
+            display: flex; 
+            flex-direction: column;
+        }
+
+        /* --- Container Genérico de Grid --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
         }
 
         .view-header {
             text-align: center;
             margin-bottom: 2.5rem;
+            width: 100%;
         }
 
         .view-header h2 {
@@ -233,12 +253,7 @@
             line-height: 1.5;
         }
 
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
+        /* --- Cards Estilizados --- */
         .interactive-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border-card);
@@ -317,6 +332,7 @@
             gap: 0.4rem;
         }
 
+        /* --- Grids Específicos --- */
         .years-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -425,10 +441,6 @@
             border-color: var(--accent-blue);
         }
 
-        .caderno-option-card.autoral-card:hover {
-            border-color: var(--accent-blue);
-        }
-
         .caderno-option-card.escola-card:hover {
             border-color: var(--accent-amber);
         }
@@ -513,39 +525,7 @@
             color: #0b0f19;
         }
 
-        .video-card-item {
-            background-color: rgba(11, 15, 25, 0.6);
-            border: 1px solid var(--border-card);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            margin-top: 0.6rem;
-            transition: all 0.2s;
-        }
-
-        .video-card-item:hover {
-            background-color: rgba(56, 189, 248, 0.08);
-            border-color: var(--accent-blue);
-        }
-
-        .video-duvida {
-            font-size: 0.75rem;
-            color: #38bdf8;
-            font-weight: 500;
-        }
-
-        .video-titulo {
-            font-size: 0.85rem;
-            color: var(--text-main);
-            font-weight: 600;
-            margin: 0.25rem 0;
-        }
-
-        .video-autor {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
+        /* --- Modais --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -565,53 +545,13 @@
             display: flex;
         }
 
-        .modal-video-box {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden;
-        }
-
-        .modal-video-header {
-            padding: 1rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-card);
-        }
-
-        .btn-close-modal {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            cursor: pointer;
-        }
-
-        .video-iframe-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-        }
-
-        .video-iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         .modal-box {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-card);
             border-radius: 16px;
             padding: 2rem;
             max-width: 440px;
-            width: 90%;
+            width: 100%;
         }
 
         .modal-box h3 {
@@ -661,32 +601,57 @@
             cursor: pointer;
         }
 
-        /* --- Drawer do Chat do Tutor --- */
-        #tutor-drawer {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 420px;
-            max-width: calc(100vw - 40px);
-            height: 600px;
-            max-height: calc(100vh - 100px);
-            background: var(--bg-card);
+        /* --- Novo Layout: Split-Screen para Tutor e Questão --- */
+        .split-screen-container {
+            display: none; /* Inicia oculto */
+            width: 100%;
+            height: calc(100vh - 180px); /* Ocupa a tela inteira menos header e footer */
             border: 1px solid var(--border-card);
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
             overflow: hidden;
+            background: var(--bg-secondary);
+            flex-direction: row;
         }
 
-        #tutor-drawer.open {
+        .split-screen-container.open {
             display: flex;
         }
 
+        /* Lado Esquerdo: A Questão */
+        .split-left-pane {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-card);
+            background: var(--bg-primary);
+        }
+
+        .enunciado-title {
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .enunciado-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #f8fafc;
+        }
+
+        /* Lado Direito: O Chat */
+        .split-right-pane {
+            width: 450px; /* Largura fixa do chat no desktop */
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+        }
+
         .tutor-header {
-            background: var(--bg-secondary);
-            padding: 12px 16px;
+            background: rgba(19, 27, 46, 0.95);
+            padding: 16px;
             border-bottom: 1px solid var(--border-card);
             display: flex;
             justify-content: space-between;
@@ -695,12 +660,12 @@
 
         .tutor-messages {
             flex: 1;
-            padding: 14px;
+            padding: 16px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             line-height: 1.5;
         }
 
@@ -709,20 +674,12 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-card);
             border-left: 3px solid var(--accent-violet);
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
             max-width: 90%;
-            /* Novas regras para evitar o vazamento de equações longas: */
             word-wrap: break-word; 
             overflow-wrap: break-word;
-            overflow-x: auto; /* Permite rolar apenas a equação se ela for intransigente */
-        }
-
-        /* Garante que o KaTeX em modo 'display' se comporte dentro do contêiner */
-        .msg-tutor .katex-display {
             overflow-x: auto;
-            overflow-y: hidden;
-            padding-bottom: 5px; /* Evita cortar a parte de baixo das equações */
         }
 
         .msg-aluno {
@@ -730,18 +687,18 @@
             background: var(--accent-blue);
             color: #0b0f19;
             font-weight: 500;
-            padding: 10px 14px;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
             max-width: 85%;
             word-break: break-word;
         }
 
         .tutor-input-area {
-            padding: 10px 14px;
+            padding: 16px;
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-card);
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .tutor-input-area input {
@@ -749,9 +706,9 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-card);
             border-radius: 8px;
-            padding: 8px 12px;
+            padding: 10px 14px;
             color: #fff;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             outline: none;
         }
 
@@ -760,9 +717,26 @@
             color: #fff;
             border: none;
             border-radius: 8px;
-            padding: 8px 14px;
+            padding: 10px 18px;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        /* Responsividade para Celulares: Empilha a Questão em Cima e o Chat Embaixo */
+        @media (max-width: 800px) {
+            .split-screen-container {
+                flex-direction: column;
+                height: 85vh; /* Ocupa quase toda a tela do celular */
+            }
+            .split-left-pane {
+                border-right: none;
+                border-bottom: 2px solid var(--border-card);
+                max-height: 40%; /* Questão ocupa 40% da tela */
+            }
+            .split-right-pane {
+                width: 100%;
+                max-height: 60%; /* Chat ocupa 60% da tela */
+            }
         }
 
         footer {
@@ -772,6 +746,7 @@
             font-size: 0.8rem;
             border-top: 1px solid var(--border-card);
             background-color: var(--bg-secondary);
+            margin-top: auto;
         }
     </style>
 </head>
@@ -797,30 +772,30 @@
         <div class="breadcrumb-bar" id="breadcrumbBar"></div>
     </div>
 
+    <!-- Container Dinâmico Principal -->
     <main id="mainContainer"></main>
 
     <footer>
         <p>Desenvolvido para apoio escolar e preparação acadêmica &bull; Atualizado automaticamente via Git</p>
     </footer>
 
-    <!-- Modal Vídeo -->
+    <!-- Modais Genéricos (Video, Chave e Setup) continuam ocultos até serem chamados -->
     <div class="modal-overlay" id="modalVideo">
         <div class="modal-video-box">
             <div class="modal-video-header">
                 <h4 id="videoModalTitulo">Videoaula</h4>
-                <button class="btn-close-modal" onclick="fecharModalVideo()">&times;</button>
+                <button class="btn-close-modal" onclick="fecharModalVideo()" style="background:transparent; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
             </div>
-            <div class="video-iframe-container">
-                <iframe id="videoIframe" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <div style="position:relative; padding-bottom:56.25%; height:0;">
+                <iframe id="videoIframe" src="" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Modal Professor -->
     <div class="modal-overlay" id="modalChave">
         <div class="modal-box">
             <h3>Área do Professor</h3>
-            <p>Digite a chave mestra configurada no servidor para liberar os gabaritos com link temporário:</p>
+            <p>Digite a chave mestra configurada no servidor para liberar os gabaritos:</p>
             <input type="password" id="inputChave" placeholder="Digite a chave mestra..." onkeydown="if(event.key==='Enter') confirmarChave()">
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="fecharModal()">Cancelar</button>
@@ -829,32 +804,25 @@
         </div>
     </div>
 
-    <!-- Modal Setup Tutor IA -->
+    <!-- Modal de Configuração do Tutor (Para escolher a Turma e a Questão) -->
     <div class="modal-overlay" id="modalSetupTutor">
         <div class="modal-box">
             <h3 style="color: var(--accent-violet);">🤖 Plantão Tutor IA</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                Preencha seus dados para iniciar o diálogo com o tutor:
+                Selecione seus dados para iniciarmos:
             </p>
             
-            <!-- Bloco do Aluno -->
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Turma:</label>
             <select id="selectTurmaTutor" onchange="atualizarAlunosTutor()"></select>
 
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Seu Nome:</label>
             <select id="selectNomeAlunoTutor"></select>
 
-            <!-- Seletor de Capítulo -->
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Capítulo / Seção:</label>
-            <select id="selectCapituloTutor" onchange="atualizarQuestoesPorCapitulo()">
-                <option value="0">Carregando capítulos...</option>
-            </select>
+            <select id="selectCapituloTutor" onchange="atualizarQuestoesPorCapitulo()"></select>
 
-            <!-- Seletor de Questão -->
-            <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Questão:</label>
-            <select id="selectQuestaoTutor">
-                <option value="1">Questão 1</option>
-            </select>
+            <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Qual a Dúvida? (Questão):</label>
+            <select id="selectQuestaoTutor"></select>
 
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="fecharSetupTutor()">Cancelar</button>
@@ -863,25 +831,11 @@
         </div>
     </div>
 
-    <!-- Drawer de Chat do Tutor IA -->
-    <div id="tutor-drawer">
-        <div class="tutor-header">
-            <div>
-                <span style="color: var(--accent-violet); font-weight: 700; font-size: 0.9rem;">🤖 Tutor Socrático</span>
-                <span id="tutor-badge-contexto" style="color: var(--text-muted); font-size: 0.75rem; display: block;"></span>
-            </div>
-            <button onclick="fecharTutorDrawer()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">&times;</button>
-        </div>
-
-        <div class="tutor-messages" id="tutorMessages"></div>
-
-        <div class="tutor-input-area">
-            <input type="text" id="inputDuvidaTutor" placeholder="Digite sua dúvida ou resposta..." onkeydown="if(event.key==='Enter') enviarMensagemTutor()">
-            <button id="btnEnviarTutor" onclick="enviarMensagemTutor()">Enviar</button>
-        </div>
-    </div>
-
     <script>
+        /* =========================================================================
+           AQUI FICAM AS SUAS TAGS DE INJEÇÃO (DO ARQUIVO PYTHON)
+           ========================================================================= */
+
 /* === ALUNOS_INICIO === */
         const listaAlunos = {
             "6º Ano A": [
@@ -2186,6 +2140,77 @@
                                                                                                                         ]
                                                                                                             }
                                                                                                 ]
+                                                                                    },
+                                                                                    "UNIDADE 7": {
+                                                                                                "titulo": "Equações e Inequações do 1º Grau",
+                                                                                                "desc": "Desenvolvimento do raciocínio algébrico, propriedades da igualdade, resolução de equações/inequações (com frações e distributiva) e modelagem de problemas contextuais.",
+                                                                                                "materiais": [
+                                                                                                            {
+                                                                                                                        "tipo": "Autoral",
+                                                                                                                        "rotulo": "Caderno de Atividades Suplementar",
+                                                                                                                        "id_prefixo": "Matematica_Algebra__7_Ano__UNIDADE7__Autoral",
+                                                                                                                        "pdf": "Matematica_Algebra/7_Ano/UNIDADE7/publica/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_ALUNO.pdf",
+                                                                                                                        "pdfProf": "Matematica_Algebra/7_Ano/UNIDADE7/restrita/ALG_7EF_AUT_U06-DECIMAIS_POT_RAD_PROF.pdf",
+                                                                                                                        "tex": "Matematica_Algebra/7_Ano/UNIDADE7/fonte_tex/ALG_7EF_AUT_U07-EQUACOES_BASE.tex",
+                                                                                                                        "videos": [],
+                                                                                                                        "estrutura": [
+                                                                                                                                    {
+                                                                                                                                                "indice": 1,
+                                                                                                                                                "titulo": "Capítulo 1 e 2: Conceitos e Resolução de Equações",
+                                                                                                                                                "inicio": 1,
+                                                                                                                                                "fim": 10,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            1,
+                                                                                                                                                            2,
+                                                                                                                                                            3,
+                                                                                                                                                            4,
+                                                                                                                                                            5,
+                                                                                                                                                            6,
+                                                                                                                                                            7,
+                                                                                                                                                            8,
+                                                                                                                                                            9,
+                                                                                                                                                            10
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "indice": 2,
+                                                                                                                                                "titulo": "Capítulo 3: Problemas com Equações",
+                                                                                                                                                "inicio": 11,
+                                                                                                                                                "fim": 20,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            11,
+                                                                                                                                                            12,
+                                                                                                                                                            13,
+                                                                                                                                                            14,
+                                                                                                                                                            15,
+                                                                                                                                                            16,
+                                                                                                                                                            17,
+                                                                                                                                                            18,
+                                                                                                                                                            19,
+                                                                                                                                                            20
+                                                                                                                                                ]
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                                "indice": 3,
+                                                                                                                                                "titulo": "Capítulo 4: Inequações do 1º Grau",
+                                                                                                                                                "inicio": 21,
+                                                                                                                                                "fim": 30,
+                                                                                                                                                "questoes": [
+                                                                                                                                                            21,
+                                                                                                                                                            22,
+                                                                                                                                                            23,
+                                                                                                                                                            24,
+                                                                                                                                                            25,
+                                                                                                                                                            26,
+                                                                                                                                                            27,
+                                                                                                                                                            28,
+                                                                                                                                                            29,
+                                                                                                                                                            30
+                                                                                                                                                ]
+                                                                                                                                    }
+                                                                                                                        ]
+                                                                                                            }
+                                                                                                ]
                                                                                     }
                                                                         }
                                                             },
@@ -3165,302 +3190,336 @@
 };
         /* === CATALOGO_FIM === */
 
-let nav = {
-    nivel: 'home',
-    materia: null,
-    frente: null,
-    ano: null,
-    unidadeId: null,
-    cadernoIndex: null
-};
+        /* =========================================================================
+           LÓGICA DE NAVEGAÇÃO E ESTADO
+           ========================================================================= */
+        let nav = {
+            nivel: 'home',
+            materia: null,
+            frente: null,
+            ano: null,
+            unidadeId: null,
+            cadernoIndex: null
+        };
 
-let tutorState = {
-    ambiente: window.location.hostname.includes("dev") ? "dev" : "prod",
-    id_questao: "",
-    aluno: "",
-    turma: "",
-    capituloNome: "",
-    capituloIndice: 1,
-    numeroQuestao: 1,
-    sessionId: null
-};
+        let tutorState = {
+            ambiente: window.location.hostname.includes("dev") ? "dev" : "prod",
+            id_questao: "",
+            aluno: "",
+            turma: "",
+            capituloNome: "",
+            capituloIndice: 1,
+            numeroQuestao: 1,
+            sessionId: null,
+            bancoQuestoes: null // Guardará a instância do SQL.js
+        };
 
-function iniciar() {
-    renderizar();
-    atualizarBotaoProf();
-}
+        // INICIALIZAÇÃO
+        async function iniciar() {
+            renderizar();
+            atualizarBotaoProf();
+            await carregarBancoDadosSQLite();
+        }
 
-function irNivel(novoNivel, params = {}) {
-    nav.nivel = novoNivel;
-    if (params.materia !== undefined) nav.materia = params.materia;
-    if (params.frente !== undefined) nav.frente = params.frente;
-    if (params.ano !== undefined) nav.ano = params.ano;
-    if (params.unidadeId !== undefined) nav.unidadeId = params.unidadeId;
-    if (params.cadernoIndex !== undefined) nav.cadernoIndex = params.cadernoIndex;
+        // CARREGA O BANCO DE DADOS .DB (SQLITE) PARA A MEMÓRIA DO NAVEGADOR
+        async function carregarBancoDadosSQLite() {
+            try {
+                const sqlPromise = initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
+                const dataPromise = fetch("questoes.db").then(res => res.arrayBuffer());
+                
+                const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
+                tutorState.bancoQuestoes = new SQL.Database(new Uint8Array(buf));
+                console.log("[OK] Banco de questões carregado na memória do navegador.");
+            } catch (err) {
+                console.error("[ERRO] Falha ao carregar o banco de dados questoes.db", err);
+            }
+        }
 
-    if (novoNivel === 'home') {
-        nav.materia = null;
-        nav.frente = null;
-        nav.ano = null;
-        nav.unidadeId = null;
-        nav.cadernoIndex = null;
-    }
-    renderizar();
-}
+        // BUSCA A QUESTÃO EXATA NO BANCO SQLITE
+        function buscarQuestaoNoBanco(prefixo, numQuestao) {
+            if (!tutorState.bancoQuestoes) return null;
+            
+            // O ID é construído com base na lógica do Python: Prefixo__C[idx]__Q[num]
+            // Como podemos não saber o capítulo de cabeça aqui, buscamos pelo prefixo e número
+            const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado, codigo_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao = $num LIMIT 1");
+            stmt.bind({ $prefixo: `${prefixo}%`, $num: numQuestao });
+            
+            if (stmt.step()) {
+                const resultado = stmt.getAsObject();
+                stmt.free();
+                return resultado;
+            }
+            stmt.free();
+            return null;
+        }
 
-function voltarNivelAnterior() {
-    switch (nav.nivel) {
-        case 'detalhe_caderno': irNivel('selecao_caderno'); break;
-        case 'selecao_caderno': irNivel('unidades'); break;
-        case 'unidades': irNivel('anos'); break;
-        case 'anos': irNivel('frentes'); break;
-        case 'frentes': irNivel('home'); break;
-    }
-}
 
-function renderBreadcrumb() {
-    const navHelper = document.getElementById("navHelper");
-    const bar = document.getElementById("breadcrumbBar");
+        // NAVEGAÇÃO
+        function irNivel(novoNivel, params = {}) {
+            nav.nivel = novoNivel;
+            if (params.materia !== undefined) nav.materia = params.materia;
+            if (params.frente !== undefined) nav.frente = params.frente;
+            if (params.ano !== undefined) nav.ano = params.ano;
+            if (params.unidadeId !== undefined) nav.unidadeId = params.unidadeId;
+            if (params.cadernoIndex !== undefined) nav.cadernoIndex = params.cadernoIndex;
 
-    if (nav.nivel === 'home') {
-        navHelper.style.display = "none";
-        bar.innerHTML = "";
-        return;
-    }
+            if (novoNivel === 'home') {
+                nav.materia = null;
+                nav.frente = null;
+                nav.ano = null;
+                nav.unidadeId = null;
+                nav.cadernoIndex = null;
+                fecharSplitScreen(); // Garante que fecha o chat se voltar pra home
+            }
+            renderizar();
+        }
 
-    navHelper.style.display = "flex";
-    let crumbs = `<span class="breadcrumb-item" onclick="irNivel('home')">🏠 Início</span>`;
+        function voltarNivelAnterior() {
+            fecharSplitScreen(); // Se o usuário clicar em voltar, fecha a tela dividida
+            switch (nav.nivel) {
+                case 'detalhe_caderno': irNivel('selecao_caderno'); break;
+                case 'selecao_caderno': irNivel('unidades'); break;
+                case 'unidades': irNivel('anos'); break;
+                case 'anos': irNivel('frentes'); break;
+                case 'frentes': irNivel('home'); break;
+            }
+        }
 
-    if (nav.materia) {
-        const labelMateria = nav.frente ? `${catalogo[nav.materia].nome}: ${catalogo[nav.materia].frentes[nav.frente].nome}` : catalogo[nav.materia].nome;
-        crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'anos' ? 'active' : ''}" onclick="irNivel('anos')">${labelMateria}</span>`;
-    }
+        function renderBreadcrumb() {
+            const navHelper = document.getElementById("navHelper");
+            const bar = document.getElementById("breadcrumbBar");
 
-    if (nav.ano) {
-        let anoNome = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].nome : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].nome;
-        crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'unidades' ? 'active' : ''}" onclick="irNivel('unidades')">${anoNome}</span>`;
-    }
+            if (nav.nivel === 'home') {
+                navHelper.style.display = "none";
+                bar.innerHTML = "";
+                return;
+            }
 
-    if (nav.unidadeId) {
-        crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'selecao_caderno' ? 'active' : ''}" onclick="irNivel('selecao_caderno')">${nav.unidadeId}</span>`;
-    }
+            navHelper.style.display = "flex";
+            let crumbs = `<span class="breadcrumb-item" onclick="irNivel('home')">🏠 Início</span>`;
 
-    if (nav.cadernoIndex !== null && nav.nivel === 'detalhe_caderno') {
-        let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
-        crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item active">${uni.materiais[nav.cadernoIndex].rotulo}</span>`;
-    }
+            if (nav.materia) {
+                const labelMateria = nav.frente ? `${catalogo[nav.materia].nome}: ${catalogo[nav.materia].frentes[nav.frente].nome}` : catalogo[nav.materia].nome;
+                crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'anos' ? 'active' : ''}" onclick="irNivel('anos')">${labelMateria}</span>`;
+            }
 
-    bar.innerHTML = crumbs;
-}
+            if (nav.ano) {
+                let anoNome = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].nome : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].nome;
+                crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'unidades' ? 'active' : ''}" onclick="irNivel('unidades')">${anoNome}</span>`;
+            }
 
-function criarCabecalhoComVoltar(titulo, subtitulo) {
-    return `
-        <div class="view-header-bar">
-            <div class="view-header-info">
-                <h2>${titulo}</h2>
-                <p>${subtitulo}</p>
-            </div>
-            <button class="btn-voltar-card" onclick="voltarNivelAnterior()">
-                <span style="font-size: 1.1rem; line-height: 1;">&#8617;</span> Voltar
-            </button>
-        </div>
-    `;
-}
+            if (nav.unidadeId) {
+                crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item ${nav.nivel === 'selecao_caderno' ? 'active' : ''}" onclick="irNivel('selecao_caderno')">${nav.unidadeId}</span>`;
+            }
 
-function renderizar() {
-    renderBreadcrumb();
-    const container = document.getElementById("mainContainer");
+            if (nav.cadernoIndex !== null && nav.nivel === 'detalhe_caderno') {
+                let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
+                crumbs += ` <span>&rsaquo;</span> <span class="breadcrumb-item active">${uni.materiais[nav.cadernoIndex].rotulo}</span>`;
+            }
 
-    switch (nav.nivel) {
-        case 'home': renderHome(container); break;
-        case 'frentes': renderFrentes(container); break;
-        case 'anos': renderAnos(container); break;
-        case 'unidades': renderUnidades(container); break;
-        case 'selecao_caderno': renderSelecaoCaderno(container); break;
-        case 'detalhe_caderno': renderDetalheCaderno(container); break;
-    }
-}
+            bar.innerHTML = crumbs;
+        }
 
-function renderHome(container) {
-    container.innerHTML = `
-        <div class="view-header">
-            <h2>Ecossistema Pedagógico</h2>
-            <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
-        </div>
-
-        <div class="grid-cards">
-            <div class="interactive-card" onclick="irNivel('frentes')">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
-                        <h3>Repositório de Estudos</h3>
+        function criarCabecalhoComVoltar(titulo, subtitulo) {
+            return `
+                <div class="view-header-bar">
+                    <div class="view-header-info">
+                        <h2>${titulo}</h2>
+                        <p>${subtitulo}</p>
                     </div>
-                    <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
+                    <button class="btn-voltar-card" onclick="voltarNivelAnterior()">
+                        <span style="font-size: 1.1rem; line-height: 1;">&#8617;</span> Voltar
+                    </button>
                 </div>
-                <div class="card-footer-link">Entrar no Repositório &rarr;</div>
-            </div>
+            `;
+        }
 
-            <div class="interactive-card" onclick="irNivel('frentes')">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">🤖</div>
-                        <h3>Professor Virtual</h3>
-                    </div>
-                    <p>Plantão socrático tira-dúvidas: o tutor guia o seu raciocínio passo a passo dentro do caderno em que você estiver estudando.</p>
+        function renderizar() {
+            renderBreadcrumb();
+            const container = document.getElementById("mainContainer");
+
+            switch (nav.nivel) {
+                case 'home': renderHome(container); break;
+                case 'frentes': renderFrentes(container); break;
+                case 'anos': renderAnos(container); break;
+                case 'unidades': renderUnidades(container); break;
+                case 'selecao_caderno': renderSelecaoCaderno(container); break;
+                case 'detalhe_caderno': renderDetalheCaderno(container); break;
+            }
+        }
+
+        function renderHome(container) {
+            container.innerHTML = `
+                <div class="view-header">
+                    <h2>Ecossistema Pedagógico</h2>
+                    <p>Acesse o repositório completo de cadernos de estudo ou acompanhe as ferramentas integradas em desenvolvimento.</p>
                 </div>
-                <div class="card-footer-link" style="color: var(--accent-violet);">Acessar via Caderno &rarr;</div>
-            </div>
 
-            <div class="interactive-card card-disabled">
-                <span class="badge-em-breve">Em Breve</span>
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">🔬</div>
-                        <h3>Laboratório e Simuladores</h3>
-                    </div>
-                    <p>Modelagens interativas no GeoGebra, simulações dinâmicas de mecânica da física clássica e ferramentas de projeção 3D.</p>
-                </div>
-                <div class="card-footer-link" style="color: var(--text-muted);">Módulo em Desenvolvimento &bull;</div>
-            </div>
-        </div>
-    `;
-}
-
-function renderFrentes(container) {
-    container.innerHTML = `
-        ${criarCabecalhoComVoltar("Selecione a Frente de Estudo", "Escolha qual disciplina você deseja estudar agora:")}
-        <div class="grid-cards">
-            <div class="interactive-card" onclick="irNivel('anos', { materia: 'Matematica', frente: 'Algebra' })">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📐</div>
-                        <h3>Matemática: Álgebra</h3>
-                    </div>
-                    <p>Do 6º Ano ao Terceirão: conjuntos, decimais, radiciação, equações quadráticas, funções e vestibulares.</p>
-                </div>
-                <div class="card-footer-link">Escolher Série &rarr;</div>
-            </div>
-
-            <div class="interactive-card" onclick="irNivel('anos', { materia: 'Matematica', frente: 'Geometria' })">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">📏</div>
-                        <h3>Matemática: Geometria</h3>
-                    </div>
-                    <p>Áreas planas, perímetros, geometria espacial, decomposição de polígonos, vistas ortogonais e cones.</p>
-                </div>
-                <div class="card-footer-link">Escolher Série &rarr;</div>
-            </div>
-
-            <div class="interactive-card" onclick="irNivel('anos', { materia: 'Fisica', frente: null })">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">⚡</div>
-                        <h3>Física</h3>
-                    </div>
-                    <p>Camadas terrestres, astronomia, máquinas simples, conservação de energia, óptica e dinâmica curvilínea.</p>
-                </div>
-                <div class="card-footer-link">Escolher Série &rarr;</div>
-            </div>
-        </div>
-    `;
-}
-
-function renderAnos(container) {
-    let anosDisponiveis = (nav.materia === "Fisica") ? catalogo.Fisica.anos : catalogo.Matematica.frentes[nav.frente].anos;
-    let nomeFrente = (nav.materia === "Fisica") ? "Física" : catalogo.Matematica.frentes[nav.frente].nome;
-
-    let cardsHtml = `
-        ${criarCabecalhoComVoltar(`${nomeFrente} - Selecione o Ano`, "Selecione a sua turma para visualizar as unidades programáticas:")}
-        <div class="years-grid">
-    `;
-
-    for (const chave in anosDisponiveis) {
-        cardsHtml += `
-            <div class="year-card" onclick="irNivel('unidades', { ano: '${chave}' })">
-                <h3>${anosDisponiveis[chave].nome}</h3>
-                <span>Ver unidades &rarr;</span>
-            </div>
-        `;
-    }
-
-    cardsHtml += `</div>`;
-    container.innerHTML = cardsHtml;
-}
-
-function renderUnidades(container) {
-    let anoNome = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].nome : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].nome;
-    let unidadesDisponiveis = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades;
-
-    let cardsHtml = `
-        ${criarCabecalhoComVoltar(`${anoNome} - Unidades Temáticas`, "Selecione a unidade para escolher o caderno de atividades:")}
-        <div class="units-grid">
-    `;
-
-    for (const idUni in unidadesDisponiveis) {
-        const uni = unidadesDisponiveis[idUni];
-        const qtdMateriais = uni.materiais.length;
-
-        cardsHtml += `
-            <div class="unit-summary-card" onclick="irNivel('selecao_caderno', { unidadeId: '${idUni}' })">
-                <div>
-                    <span class="unit-number-badge">${idUni}</span>
-                    <h3>${uni.titulo}</h3>
-                    <p>${uni.desc}</p>
-                </div>
-                <div class="card-footer-link">${qtdMateriais} caderno(s) disponível(is) &rarr;</div>
-            </div>
-        `;
-    }
-
-    cardsHtml += `</div>`;
-    container.innerHTML = cardsHtml;
-}
-
-function renderSelecaoCaderno(container) {
-    let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
-
-    let html = `
-        ${criarCabecalhoComVoltar(`${nav.unidadeId}: ${uni.titulo}`, "Qual material você deseja acessar agora?")}
-        <div class="cadernos-selector-grid">
-    `;
-
-    uni.materiais.forEach((mat, idx) => {
-        const isAutoral = mat.tipo === "Autoral";
-
-        html += `
-            <div class="caderno-option-card ${isAutoral ? 'autoral-card' : 'escola-card'}" onclick="irNivel('detalhe_caderno', { cadernoIndex: ${idx} })">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon" style="background: ${isAutoral ? 'rgba(56, 189, 248, 0.15)' : 'rgba(245, 158, 11, 0.15)'}; color: ${isAutoral ? '#38bdf8' : '#f59e0b'};">
-                            ${isAutoral ? '📘' : '📙'}
-                        </div>
+                <div class="grid-cards">
+                    <div class="interactive-card" onclick="irNivel('frentes')">
                         <div>
-                            <h3 style="font-size: 1.15rem;">${mat.rotulo}</h3>
-                            <span style="font-size: 0.75rem; color: var(--text-muted);">${isAutoral ? 'Material Próprio Autoral' : 'Material da Escola'}</span>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📚</div>
+                                <h3>Repositório de Estudos</h3>
+                            </div>
+                            <p>Cadernos de atividades suplementares, listas adaptadas da escola, gabaritos e videoaulas de fundamentação teórica.</p>
+                        </div>
+                        <div class="card-footer-link">Entrar no Repositório &rarr;</div>
+                    </div>
+
+                    <div class="interactive-card card-disabled">
+                        <span class="badge-em-breve">Em Breve</span>
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">🤖</div>
+                                <h3>Professor Virtual</h3>
+                            </div>
+                            <p>Plantão socrático tira-dúvidas: o tutor guia o seu raciocínio passo a passo dentro do caderno em que você estiver estudando.</p>
+                        </div>
+                        <div class="card-footer-link" style="color: var(--text-muted);">Acesso transferido para dentro dos cadernos &rarr;</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFrentes(container) {
+            container.innerHTML = `
+                ${criarCabecalhoComVoltar("Selecione a Frente de Estudo", "Escolha qual disciplina você deseja estudar agora:")}
+                <div class="grid-cards">
+                    <div class="interactive-card" onclick="irNivel('anos', { materia: 'Matematica', frente: 'Algebra' })">
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📐</div>
+                                <h3>Matemática: Álgebra</h3>
+                            </div>
+                            <p>Do 6º Ano ao Terceirão: conjuntos, decimais, radiciação, equações quadráticas, funções e vestibulares.</p>
+                        </div>
+                        <div class="card-footer-link">Escolher Série &rarr;</div>
+                    </div>
+
+                    <div class="interactive-card" onclick="irNivel('anos', { materia: 'Matematica', frente: 'Geometria' })">
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">📏</div>
+                                <h3>Matemática: Geometria</h3>
+                            </div>
+                            <p>Áreas planas, perímetros, geometria espacial, decomposição de polígonos, vistas ortogonais e cones.</p>
+                        </div>
+                        <div class="card-footer-link">Escolher Série &rarr;</div>
+                    </div>
+
+                    <div class="interactive-card" onclick="irNivel('anos', { materia: 'Fisica', frente: null })">
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">⚡</div>
+                                <h3>Física</h3>
+                            </div>
+                            <p>Camadas terrestres, astronomia, máquinas simples, conservação de energia, óptica e dinâmica curvilínea.</p>
+                        </div>
+                        <div class="card-footer-link">Escolher Série &rarr;</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAnos(container) {
+            let anosDisponiveis = (nav.materia === "Fisica") ? catalogo.Fisica.anos : catalogo.Matematica.frentes[nav.frente].anos;
+            let nomeFrente = (nav.materia === "Fisica") ? "Física" : catalogo.Matematica.frentes[nav.frente].nome;
+
+            let cardsHtml = `
+                ${criarCabecalhoComVoltar(`${nomeFrente} - Selecione o Ano`, "Selecione a sua turma para visualizar as unidades programáticas:")}
+                <div class="years-grid">
+            `;
+
+            for (const chave in anosDisponiveis) {
+                cardsHtml += `
+                    <div class="year-card" onclick="irNivel('unidades', { ano: '${chave}' })">
+                        <h3>${anosDisponiveis[chave].nome}</h3>
+                        <span>Ver unidades &rarr;</span>
+                    </div>
+                `;
+            }
+
+            cardsHtml += `</div>`;
+            container.innerHTML = cardsHtml;
+        }
+
+        function renderUnidades(container) {
+            let anoNome = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].nome : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].nome;
+            let unidadesDisponiveis = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades;
+
+            let cardsHtml = `
+                ${criarCabecalhoComVoltar(`${anoNome} - Unidades Temáticas`, "Selecione a unidade para escolher o caderno de atividades:")}
+                <div class="units-grid">
+            `;
+
+            for (const idUni in unidadesDisponiveis) {
+                const uni = unidadesDisponiveis[idUni];
+                const qtdMateriais = uni.materiais.length;
+
+                cardsHtml += `
+                    <div class="unit-summary-card" onclick="irNivel('selecao_caderno', { unidadeId: '${idUni}' })">
+                        <div>
+                            <span class="unit-number-badge">${idUni}</span>
+                            <h3>${uni.titulo}</h3>
+                            <p>${uni.desc}</p>
+                        </div>
+                        <div class="card-footer-link">${qtdMateriais} caderno(s) disponível(is) &rarr;</div>
+                    </div>
+                `;
+            }
+
+            cardsHtml += `</div>`;
+            container.innerHTML = cardsHtml;
+        }
+
+        function renderSelecaoCaderno(container) {
+            let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
+
+            let html = `
+                ${criarCabecalhoComVoltar(`${nav.unidadeId}: ${uni.titulo}`, "Qual material você deseja acessar agora?")}
+                <div class="cadernos-selector-grid">
+            `;
+
+            uni.materiais.forEach((mat, idx) => {
+                const isAutoral = mat.tipo === "Autoral";
+
+                html += `
+                    <div class="caderno-option-card ${isAutoral ? 'autoral-card' : 'escola-card'}" onclick="irNivel('detalhe_caderno', { cadernoIndex: ${idx} })">
+                        <div>
+                            <div class="card-top">
+                                <div class="card-icon" style="background: ${isAutoral ? 'rgba(56, 189, 248, 0.15)' : 'rgba(245, 158, 11, 0.15)'}; color: ${isAutoral ? '#38bdf8' : '#f59e0b'};">
+                                    ${isAutoral ? '📘' : '📙'}
+                                </div>
+                                <div>
+                                    <h3 style="font-size: 1.15rem;">${mat.rotulo}</h3>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted);">${isAutoral ? 'Material Próprio Autoral' : 'Material da Escola'}</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                                ${isAutoral ? 'Caderno autoral completo com exercícios estruturados por habilidades, aprofundamento e curadoria de videoaulas teóricas.' : 'Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.'}
+                            </p>
+                        </div>
+                        <div class="card-footer-link" style="color: ${isAutoral ? 'var(--accent-blue)' : 'var(--accent-amber)'};">
+                            Abrir este caderno &rarr;
                         </div>
                     </div>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
-                        ${isAutoral ? 'Caderno autoral completo com exercícios estruturados por habilidades, aprofundamento e curadoria de videoaulas teóricas.' : 'Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.'}
-                    </p>
-                </div>
-                <div class="card-footer-link" style="color: ${isAutoral ? 'var(--accent-blue)' : 'var(--accent-amber)'};">
-                    Abrir este caderno &rarr;
-                </div>
-            </div>
-        `;
-    });
+                `;
+            });
 
-    html += `</div>`;
-    container.innerHTML = html;
-}
+            html += `</div>`;
+            container.innerHTML = html;
+        }
 
-function renderDetalheCaderno(container) {
-    let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
-    let mat = uni.materiais[nav.cadernoIndex];
-    const isAutoral = mat.tipo === "Autoral";
+        // =========================================================
+        // A NOVA TELA DE DETALHE DE CADERNO (COM O SPLIT SCREEN)
+        // =========================================================
+        function renderDetalheCaderno(container) {
+            let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
+            let mat = uni.materiais[nav.cadernoIndex];
+            const isAutoral = mat.tipo === "Autoral";
 
-    let btnProfHtml = "";
+            let btnProfHtml = "";
             if (mat.pdfProf) {
                 const isUnlocked = sessionStorage.getItem("prof_secret_key") !== null;
                 btnProfHtml = `
@@ -3470,377 +3529,434 @@ function renderDetalheCaderno(container) {
                 `;
             }
 
-    let videosHtml = "";
-    if (mat.videos && mat.videos.length > 0) {
-        videosHtml = `
-            <div style="margin-top: 2rem; border-top: 1px solid var(--border-card); padding-top: 1.5rem;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 0.5rem;">
-                    ▶ Videoaulas Recomendadas para Fundamentação (${mat.videos.length}):
-                </h4>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    ${mat.videos.map(v => `
-                        <div class="video-card-item" onclick="abrirModalVideo('${v.url}', '${v.titulo}')">
-                            <div class="video-duvida">💡 ${v.duvida}</div>
-                            <div class="video-titulo">📺 ${v.titulo}</div>
-                            <div class="video-autor">${v.autor}</div>
+            let videosHtml = "";
+            if (mat.videos && mat.videos.length > 0) {
+                videosHtml = `
+                    <div style="margin-top: 2rem; border-top: 1px solid var(--border-card); padding-top: 1.5rem;">
+                        <h4 style="font-size: 0.95rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 0.5rem;">
+                            ▶ Videoaulas Recomendadas para Fundamentação (${mat.videos.length}):
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            ${mat.videos.map(v => `
+                                <div class="video-card-item" onclick="abrirModalVideo('${v.url}', '${v.titulo}')">
+                                    <div class="video-duvida">💡 ${v.duvida}</div>
+                                    <div class="video-titulo">📺 ${v.titulo}</div>
+                                    <div class="video-autor">${v.autor}</div>
+                                </div>
+                            `).join('')}
                         </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-    }
-
-    container.innerHTML = `
-        <div class="material-view-box">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem;">
-                <div>
-                    <span style="font-size: 0.75rem; font-weight: 700; color: ${isAutoral ? 'var(--accent-blue)' : 'var(--accent-amber)'}; text-transform: uppercase;">
-                        ${nav.unidadeId} &bull; ${mat.rotulo}
-                    </span>
-                    <h2 style="font-size: 1.6rem; margin: 0.5rem 0; font-weight: 700;">${uni.titulo}</h2>
-                </div>
-                <button class="btn-voltar-card" onclick="voltarNivelAnterior()">
-                    &#8592; Voltar
-                </button>
-            </div>
-
-            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">${uni.desc}</p>
-
-            <div class="material-actions">
-                <a href="${mat.pdf}" target="_blank" class="btn-pdf">
-                    📄 Baixar Lista do Aluno (PDF)
-                </a>
-                <button class="btn-tutor" onclick="acionarTutorCaderno()">
-                    🤖 Tutor Socrático IA
-                </button>
-                ${btnProfHtml}
-            </div>
-
-            ${videosHtml}
-        </div>
-    `;
-}
-
-// ==========================================
-// MOTOR DO TUTOR SOCRÁTICO
-// ==========================================
-
-// Função de renderização matemática corrigida
-function renderizarKaTeX(elementoAlvo) {
-    if (typeof renderMathInElement !== 'undefined') {
-        renderMathInElement(elementoAlvo || document.body, {
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false}
-            ],
-            throwOnError: false,
-            errorColor: '#ef4444'
-        });
-    } else {
-        console.warn("Biblioteca KaTeX não inicializada.");
-    }
-}
-
-// Função de pré-tratamento de texto vindo do JSON do n8n
-function tratarTextoIA(textoBruto) {
-    if (!textoBruto) return "";
-    
-    return textoBruto
-        .replace(/\\n/g, '<br>')   // Transforma as barras de escape em quebra de linha real
-        .replace(/\n/g, '<br>')    // Transforma quebras normais
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
-}
-
-function obterMaterialAtual() {
-    if (!nav.ano || !nav.unidadeId) return null;
-    let uni = (nav.materia === "Fisica") 
-        ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] 
-        : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
-    return (uni && uni.materiais) ? uni.materiais[nav.cadernoIndex || 0] : null;
-}
-
-function acionarTutorCaderno() {
-    abrirSetupTutor();
-}
-
-function abrirSetupTutor() {
-    const selTurma = document.getElementById("selectTurmaTutor");
-    selTurma.innerHTML = "";
-    for (const t in listaAlunos) {
-        const opt = document.createElement("option");
-        opt.value = t;
-        opt.innerText = t;
-        selTurma.appendChild(opt);
-    }
-
-    if (nav.ano) {
-        const numAno = nav.ano.replace(/\D/g, '');
-        for (let i = 0; i < selTurma.options.length; i++) {
-            if (selTurma.options[i].value.includes(`${numAno}º`)) {
-                selTurma.selectedIndex = i;
-                break;
+                    </div>
+                `;
             }
-        }
-    }
 
-    atualizarAlunosTutor();
+            container.innerHTML = `
+                <!-- VISÃO PADRÃO DO CADERNO (Some quando o Tutor abre) -->
+                <div class="material-view-box" id="materialViewBox">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem;">
+                        <div>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: ${isAutoral ? 'var(--accent-blue)' : 'var(--accent-amber)'}; text-transform: uppercase;">
+                                ${nav.unidadeId} &bull; ${mat.rotulo}
+                            </span>
+                            <h2 style="font-size: 1.6rem; margin: 0.5rem 0; font-weight: 700;">${uni.titulo}</h2>
+                        </div>
+                        <button class="btn-voltar-card" onclick="voltarNivelAnterior()">
+                            &#8592; Voltar
+                        </button>
+                    </div>
 
-    const capituloSelect = document.getElementById("selectCapituloTutor");
-    const matAtual = obterMaterialAtual();
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">${uni.desc}</p>
 
-    if (capituloSelect) {
-        if (matAtual && matAtual.estrutura && matAtual.estrutura.length > 0) {
-            capituloSelect.innerHTML = matAtual.estrutura.map((cap, idx) => `
-                <option value="${idx}">
-                    ${cap.titulo} (Q${cap.inicio} a Q${cap.fim})
-                </option>
-            `).join("");
-        } else {
-            capituloSelect.innerHTML = `<option value="0">Capítulo 1 (Lista Geral)</option>`;
-        }
-        atualizarQuestoesPorCapitulo();
-    }
+                    <div class="material-actions">
+                        <a href="${mat.pdf}" target="_blank" class="btn-pdf">
+                            📄 Baixar Lista do Aluno (PDF)
+                        </a>
+                        <button class="btn-tutor" onclick="abrirSetupTutor()">
+                            🤖 Tutor Socrático IA
+                        </button>
+                        ${btnProfHtml}
+                    </div>
 
-    document.getElementById("modalSetupTutor").classList.add("open");
-}
+                    ${videosHtml}
+                </div>
 
-function atualizarAlunosTutor() {
-    const selTurma = document.getElementById("selectTurmaTutor");
-    const selAluno = document.getElementById("selectNomeAlunoTutor");
-    if (!selTurma || !selAluno) return;
+                <!-- TELA DIVIDIDA DO TUTOR (Inicia Oculta) -->
+                <div class="split-screen-container" id="splitScreenContainer">
+                    <!-- Lado Esquerdo (Enunciado da Questão) -->
+                    <div class="split-left-pane">
+                        <div class="enunciado-title" id="paneQuestaoTitulo">Carregando Questão...</div>
+                        <div class="enunciado-content" id="paneQuestaoConteudo"></div>
+                    </div>
 
-    const turmaSelecionada = selTurma.value;
-    const alunos = listaAlunos[turmaSelecionada] || [];
+                    <!-- Lado Direito (Chat Socrático) -->
+                    <div class="split-right-pane">
+                        <div class="tutor-header">
+                            <div>
+                                <span style="color: var(--accent-violet); font-weight: 700; font-size: 0.9rem;">🤖 Tutor Socrático</span>
+                                <span id="tutor-badge-contexto" style="color: var(--text-muted); font-size: 0.75rem; display: block;"></span>
+                            </div>
+                            <button onclick="fecharSplitScreen()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+                        </div>
 
-    selAluno.innerHTML = "";
-    alunos.forEach(nome => {
-        const opt = document.createElement("option");
-        opt.value = nome;
-        opt.innerText = nome;
-        selAluno.appendChild(opt);
-    });
-}
+                        <div class="tutor-messages" id="tutorMessages"></div>
 
-function atualizarQuestoesPorCapitulo() {
-    const capituloSelect = document.getElementById("selectCapituloTutor");
-    const questaoSelect = document.getElementById("selectQuestaoTutor");
-    if (!capituloSelect || !questaoSelect) return;
-
-    const matAtual = obterMaterialAtual();
-    if (matAtual && matAtual.estrutura && matAtual.estrutura.length > 0) {
-        const capEscolhido = matAtual.estrutura[parseInt(capituloSelect.value) || 0];
-        if (capEscolhido && capEscolhido.questoes) {
-            questaoSelect.innerHTML = capEscolhido.questoes.map(q => `<option value="${q}">Questão ${q}</option>`).join("");
-            return;
-        }
-    }
-
-    let opts = "";
-    for (let i = 1; i <= 40; i++) opts += `<option value="${i}">Questão ${i}</option>`;
-    questaoSelect.innerHTML = opts;
-}
-
-function fecharSetupTutor() {
-    document.getElementById("modalSetupTutor").classList.remove("open");
-}
-
-function fecharTutorDrawer() {
-    document.getElementById("tutor-drawer").classList.remove("open");
-}
-
-async function iniciarSessaoTutor() {
-    try {
-        const selAluno = document.getElementById("selectNomeAlunoTutor");
-        const selTurma = document.getElementById("selectTurmaTutor");
-        const selCapitulo = document.getElementById("selectCapituloTutor");
-        const selQuestao = document.getElementById("selectQuestaoTutor");
-        // RESET da interface caso um chat anterior tenha sido travado
-        const input = document.getElementById("inputDuvidaTutor");
-        const btn = document.getElementById("btnEnviarTutor");
-        if(input && btn) {
-            input.disabled = false;
-            input.placeholder = "Digite sua dúvida ou resposta...";
-            input.value = "";
-            btn.innerText = "Enviar";
-            btn.disabled = false;
-            btn.onclick = enviarMensagemTutor;
-        }
-
-        if (!selAluno || !selAluno.value) {
-            alert("Por favor, selecione seu nome.");
-            return;
-        }
-
-        const matAtual = obterMaterialAtual() || {};
-        const idxCap = parseInt(selCapitulo ? selCapitulo.value : 0) || 0;
-        const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
-
-        tutorState.aluno = selAluno.value;
-        tutorState.turma = selTurma ? selTurma.value : "";
-        tutorState.capituloNome = capObj.titulo || "Capítulo 1";
-        tutorState.capituloIndice = capObj.indice || 1;
-        tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
-        
-        const prefixo = matAtual.id_prefixo || "Matematica_Algebra__8_Ano__UNIDADE8__Autoral";
-        const capStr = String(tutorState.capituloIndice).padStart(2, '0');
-        const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
-        tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
-
-        const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
-        tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
-
-        fecharSetupTutor();
-        const drawer = document.getElementById("tutor-drawer");
-        if (drawer) drawer.classList.add("open");
-
-        const badge = document.getElementById("tutor-badge-contexto");
-        if (badge) {
-            badge.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.capituloNome})`;
-        }
-
-        const messagesArea = document.getElementById("tutorMessages");
-        if (messagesArea) {
-            messagesArea.innerHTML = `
-                <div class="msg-tutor" id="msg-tutor-abertura" style="flex-shrink: 0; max-width: 90%; height: auto; word-wrap: break-word; overflow-wrap: break-word;">
-    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou consultando a <strong>Questão ${tutorState.numeroQuestao}</strong> no caderno oficial...
-</div>
+                        <div class="tutor-input-area">
+                            <input type="text" id="inputDuvidaTutor" placeholder="Digite sua dúvida ou cálculo..." onkeydown="if(event.key==='Enter') enviarMensagemTutor()">
+                            <button id="btnEnviarTutor" onclick="enviarMensagemTutor()">Enviar</button>
+                        </div>
+                    </div>
+                </div>
             `;
-            messagesArea.scrollTop = messagesArea.scrollHeight;
         }
 
-        const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
-            method: "POST",
-            body: JSON.stringify({
-                ambiente: tutorState.ambiente,
-                id_questao: tutorState.id_questao,
-                aluno: tutorState.aluno,
-                turma: tutorState.turma,
-                sessionId: tutorState.sessionId,
-                chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
-            })
-        });
+        // ==========================================
+        // MOTOR DO TUTOR SOCRÁTICO E TELA DIVIDIDA
+        // ==========================================
 
-        const data = await res.json();
-        const msgAbertura = document.getElementById("msg-tutor-abertura");
-        if (data && data.output && msgAbertura) {
-            msgAbertura.innerHTML = tratarTextoIA(data.output);
-            renderizarKaTeX(msgAbertura);
+        function renderizarKaTeX(elementoAlvo) {
+            if (typeof renderMathInElement !== 'undefined') {
+                renderMathInElement(elementoAlvo || document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false,
+                    errorColor: '#ef4444'
+                });
+            }
         }
-    } catch (err) {
-        console.error("Falha ao iniciar plantão:", err);
-    }
-}
 
-async function enviarMensagemTutor() {
-    const input = document.getElementById("inputDuvidaTutor");
-    const duvida = input.value.trim();
-    if (!duvida) return;
+        function tratarTextoIA(textoBruto) {
+            if (!textoBruto) return "";
+            return textoBruto
+                .replace(/\\n/g, '<br>')   
+                .replace(/\n/g, '<br>')    
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        }
 
-    const area = document.getElementById("tutorMessages");
-    const btn = document.getElementById("btnEnviarTutor");
+        function obterMaterialAtual() {
+            if (!nav.ano || !nav.unidadeId) return null;
+            let uni = (nav.materia === "Fisica") 
+                ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] 
+                : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
+            return (uni && uni.materiais) ? uni.materiais[nav.cadernoIndex || 0] : null;
+        }
 
-   area.innerHTML += `<div class="msg-aluno" style="flex-shrink: 0; max-width: 85%; height: auto; word-break: break-word;">${duvida}</div>`;
-    input.value = "";
-    btn.disabled = true;
-    area.scrollTop = area.scrollHeight;
-
-    const tempId = "loading-" + Date.now();
-    area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="flex-shrink: 0; color: var(--text-muted); font-style: italic;">Analisando seu raciocínio...</div>`;
-    area.scrollTop = area.scrollHeight;
-
-    try {
-        const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                ambiente: tutorState.ambiente,
-                id_questao: tutorState.id_questao,
-                aluno: tutorState.aluno,
-                turma: tutorState.turma,
-                sessionId: tutorState.sessionId,
-                chatInput: duvida
-            })
-        });
-
-        const data = await response.json();
-        const loadEl = document.getElementById(tempId);
-        if (loadEl) loadEl.remove();
-
-        if (data && data.output) {
-            let textoMural = data.output;
-            let encerrarChat = false;
-
-            // Verifica se a IA enviou o gatilho de encerramento
-            if (textoMural.includes("[CHAT_ENCERRADO]")) {
-                encerrarChat = true;
-                textoMural = textoMural.replace("[CHAT_ENCERRADO]", ""); // Limpa a tag para o aluno não ver
+        // --- Funções do Setup (Modal de Escolha) ---
+        function abrirSetupTutor() {
+            const selTurma = document.getElementById("selectTurmaTutor");
+            selTurma.innerHTML = "";
+            for (const t in listaAlunos) {
+                const opt = document.createElement("option");
+                opt.value = t;
+                opt.innerText = t;
+                selTurma.appendChild(opt);
             }
 
-            const newMsgWrapper = document.createElement('div');
-                newMsgWrapper.className = 'msg-tutor';
-                newMsgWrapper.style.cssText = "flex-shrink: 0; max-width: 90%; height: auto; word-wrap: break-word; overflow-wrap: break-word;";
-                newMsgWrapper.innerHTML = tratarTextoIA(textoMural);
-                area.appendChild(newMsgWrapper);
-                renderizarKaTeX(newMsgWrapper);
+            if (nav.ano) {
+                const numAno = nav.ano.replace(/\D/g, '');
+                for (let i = 0; i < selTurma.options.length; i++) {
+                    if (selTurma.options[i].value.includes(`${numAno}º`)) {
+                        selTurma.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
 
-            // Se o chat encerrou, trava a interface
-            if (encerrarChat) {
-                input.disabled = true;
-                input.placeholder = "Sessão finalizada com sucesso! 🏆";
-                btn.innerText = "Fechar";
-                btn.disabled = false; // <--- ADICIONE ESTA LINHA AQUI
-                btn.onclick = fecharTutorDrawer;
+            atualizarAlunosTutor();
 
-                            }
+            const capituloSelect = document.getElementById("selectCapituloTutor");
+            const matAtual = obterMaterialAtual();
 
-        } else {
-            area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
+            if (capituloSelect) {
+                if (matAtual && matAtual.estrutura && matAtual.estrutura.length > 0) {
+                    capituloSelect.innerHTML = matAtual.estrutura.map((cap, idx) => `
+                        <option value="${idx}">
+                            ${cap.titulo} (Q${cap.inicio} a Q${cap.fim})
+                        </option>
+                    `).join("");
+                } else {
+                    capituloSelect.innerHTML = `<option value="0">Capítulo 1 (Lista Geral)</option>`;
+                }
+                atualizarQuestoesPorCapitulo();
+            }
+
+            document.getElementById("modalSetupTutor").classList.add("open");
         }
-    } catch (err) {
-        const loadEl = document.getElementById(tempId);
-        if (loadEl) loadEl.remove();
-        area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Erro de conexão com o tutor virtual.</div>`;
-    } finally {
-        // Só reabilita o botão se o chat NÃO tiver sido encerrado
-        if (btn.innerText !== "Fechar") {
-            btn.disabled = false;
+
+        function atualizarAlunosTutor() {
+            const selTurma = document.getElementById("selectTurmaTutor");
+            const selAluno = document.getElementById("selectNomeAlunoTutor");
+            if (!selTurma || !selAluno) return;
+
+            const turmaSelecionada = selTurma.value;
+            const alunos = listaAlunos[turmaSelecionada] || [];
+
+            selAluno.innerHTML = "";
+            alunos.forEach(nome => {
+                const opt = document.createElement("option");
+                opt.value = nome;
+                opt.innerText = nome;
+                selAluno.appendChild(opt);
+            });
         }
-        area.scrollTop = area.scrollHeight;
-    }
-}
 
-// ==========================================
-// VÍDEOS E GABARITOS
-// ==========================================
-function abrirModalVideo(url, titulo) {
-    document.getElementById("videoModalTitulo").innerText = titulo;
-    document.getElementById("videoIframe").src = url;
-    document.getElementById("modalVideo").classList.add("open");
-}
+        function atualizarQuestoesPorCapitulo() {
+            const capituloSelect = document.getElementById("selectCapituloTutor");
+            const questaoSelect = document.getElementById("selectQuestaoTutor");
+            if (!capituloSelect || !questaoSelect) return;
 
-function fecharModalVideo() {
-    document.getElementById("modalVideo").classList.remove("open");
-    document.getElementById("videoIframe").src = "";
-}
+            const matAtual = obterMaterialAtual();
+            if (matAtual && matAtual.estrutura && matAtual.estrutura.length > 0) {
+                const capEscolhido = matAtual.estrutura[parseInt(capituloSelect.value) || 0];
+                if (capEscolhido && capEscolhido.questoes) {
+                    questaoSelect.innerHTML = capEscolhido.questoes.map(q => `<option value="${q}">Questão ${q}</option>`).join("");
+                    return;
+                }
+            }
 
-let urlGabaritoPendente = null;
+            let opts = "";
+            for (let i = 1; i <= 40; i++) opts += `<option value="${i}">Questão ${i}</option>`;
+            questaoSelect.innerHTML = opts;
+        }
 
-function abrirModalChave(url = null) {
-    urlGabaritoPendente = url;
-    document.getElementById("modalChave").classList.add("open");
-    document.getElementById("inputChave").focus();
-}
+        function fecharSetupTutor() {
+            document.getElementById("modalSetupTutor").classList.remove("open");
+        }
 
-function fecharModal() {
-    document.getElementById("modalChave").classList.remove("open");
-    document.getElementById("inputChave").value = "";
-    urlGabaritoPendente = null;
-}
+        // Fecha a tela dividida e mostra a caixa principal do Caderno novamente
+        function fecharSplitScreen() {
+            const split = document.getElementById("splitScreenContainer");
+            const viewBox = document.getElementById("materialViewBox");
+            if (split) split.classList.remove("open");
+            if (viewBox) viewBox.style.display = "block";
+        }
 
-function confirmarChave() {
+        // --- O BOTÃO "INICIAR PLANTÃO" ---
+        async function iniciarSessaoTutor() {
+            try {
+                const selAluno = document.getElementById("selectNomeAlunoTutor");
+                const selTurma = document.getElementById("selectTurmaTutor");
+                const selCapitulo = document.getElementById("selectCapituloTutor");
+                const selQuestao = document.getElementById("selectQuestaoTutor");
+                
+                if (!selAluno || !selAluno.value) {
+                    alert("Por favor, selecione seu nome.");
+                    return;
+                }
+
+                const matAtual = obterMaterialAtual() || {};
+                const idxCap = parseInt(selCapitulo ? selCapitulo.value : 0) || 0;
+                const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
+
+                tutorState.aluno = selAluno.value;
+                tutorState.turma = selTurma ? selTurma.value : "";
+                tutorState.capituloNome = capObj.titulo || "Capítulo 1";
+                tutorState.capituloIndice = capObj.indice || 1;
+                tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
+                
+                const prefixo = matAtual.id_prefixo || "";
+                const capStr = String(tutorState.capituloIndice).padStart(2, '0');
+                const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
+                tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
+
+                const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
+                tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
+
+                fecharSetupTutor();
+                
+                // --- INJEÇÃO DA TELA ESQUERDA (O BANCO DE DADOS) ---
+                const paneTitulo = document.getElementById("paneQuestaoTitulo");
+                const paneConteudo = document.getElementById("paneQuestaoConteudo");
+                paneTitulo.innerText = `Questão ${tutorState.numeroQuestao}`;
+                paneConteudo.innerHTML = `<span style="color:var(--text-muted);">Consultando banco de dados...</span>`;
+                
+                const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
+                
+                if (questaoDoBanco) {
+                    // Monta o texto puro (com KaTeX)
+                    let htmlEsquerda = `<div style="margin-bottom: 1.5rem;">${tratarTextoIA(questaoDoBanco.enunciado)}</div>`;
+                    
+                    // Se tiver imagem, injeta a tag <script type="text/tikz"> para o TikZJax desenhar
+                    if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
+                        htmlEsquerda += `
+                            <div style="background: #ffffff; padding: 1rem; border-radius: 8px; text-align: center;">
+                                <script type="text/tikz">
+                                    ${questaoDoBanco.codigo_tikz}
+                                <\/script>
+                            </div>
+                        `;
+                    }
+                    paneConteudo.innerHTML = htmlEsquerda;
+                    
+                    // Manda o KaTeX formatar os cifrões na esquerda
+                    renderizarKaTeX(paneConteudo);
+                    // Avisa o navegador que tem um novo código TikZ para ele desenhar
+                    if (questaoDoBanco.codigo_tikz && typeof document.processTikzScripts !== "undefined") {
+                        document.processTikzScripts();
+                    }
+                } else {
+                    paneConteudo.innerHTML = `<span style="color:#ef4444;">Questão não encontrada no banco offline. O Tutor Socrático tentará usar a memória remota.</span>`;
+                }
+
+
+                // --- INJEÇÃO DA TELA DIREITA (CHAT) ---
+                // Oculta a visualização padrão e mostra a Split Screen
+                document.getElementById("materialViewBox").style.display = "none";
+                document.getElementById("splitScreenContainer").classList.add("open");
+
+                // Prepara a interface do chat
+                const input = document.getElementById("inputDuvidaTutor");
+                const btn = document.getElementById("btnEnviarTutor");
+                input.disabled = false;
+                input.placeholder = "Digite sua dúvida ou cálculo...";
+                input.value = "";
+                btn.innerText = "Enviar";
+                btn.disabled = false;
+                btn.onclick = enviarMensagemTutor;
+
+                const badge = document.getElementById("tutor-badge-contexto");
+                if (badge) {
+                    badge.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.capituloNome})`;
+                }
+
+                const messagesArea = document.getElementById("tutorMessages");
+                if (messagesArea) {
+                    messagesArea.innerHTML = `
+                        <div class="msg-tutor" id="msg-tutor-abertura">
+    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou analisando a Questão ${tutorState.numeroQuestao}...
+                        </div>
+                    `;
+                    messagesArea.scrollTop = messagesArea.scrollHeight;
+                }
+
+                const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        ambiente: tutorState.ambiente,
+                        id_questao: tutorState.id_questao,
+                        aluno: tutorState.aluno,
+                        turma: tutorState.turma,
+                        sessionId: tutorState.sessionId,
+                        chatInput: "INICIAR_SESSAO_EXIBIR_ENUNCIADO"
+                    })
+                });
+
+                const data = await res.json();
+                const msgAbertura = document.getElementById("msg-tutor-abertura");
+                if (data && data.output && msgAbertura) {
+                    msgAbertura.innerHTML = tratarTextoIA(data.output);
+                    renderizarKaTeX(msgAbertura);
+                }
+            } catch (err) {
+                console.error("Falha ao iniciar plantão:", err);
+            }
+        }
+
+        async function enviarMensagemTutor() {
+            const input = document.getElementById("inputDuvidaTutor");
+            const duvida = input.value.trim();
+            if (!duvida) return;
+
+            const area = document.getElementById("tutorMessages");
+            const btn = document.getElementById("btnEnviarTutor");
+
+            area.innerHTML += `<div class="msg-aluno">${duvida}</div>`;
+            input.value = "";
+            btn.disabled = true;
+            area.scrollTop = area.scrollHeight;
+
+            const tempId = "loading-" + Date.now();
+            area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Analisando seu raciocínio...</div>`;
+            area.scrollTop = area.scrollHeight;
+
+            try {
+                const response = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        ambiente: tutorState.ambiente,
+                        id_questao: tutorState.id_questao,
+                        aluno: tutorState.aluno,
+                        turma: tutorState.turma,
+                        sessionId: tutorState.sessionId,
+                        chatInput: duvida
+                    })
+                });
+
+                const data = await response.json();
+                const loadEl = document.getElementById(tempId);
+                if (loadEl) loadEl.remove();
+
+                if (data && data.output) {
+                    let textoMural = data.output;
+                    let encerrarChat = false;
+
+                    if (textoMural.includes("[CHAT_ENCERRADO]")) {
+                        encerrarChat = true;
+                        textoMural = textoMural.replace("[CHAT_ENCERRADO]", ""); 
+                    }
+
+                    const newMsgWrapper = document.createElement('div');
+                        newMsgWrapper.className = 'msg-tutor';
+                        newMsgWrapper.innerHTML = tratarTextoIA(textoMural);
+                        area.appendChild(newMsgWrapper);
+                        renderizarKaTeX(newMsgWrapper);
+
+                    if (encerrarChat) {
+                        input.disabled = true;
+                        input.placeholder = "Sessão finalizada com sucesso! 🏆";
+                        btn.innerText = "Fechar";
+                        btn.disabled = false; 
+                        btn.onclick = fecharSplitScreen;
+                    }
+
+                } else {
+                    area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
+                }
+            } catch (err) {
+                const loadEl = document.getElementById(tempId);
+                if (loadEl) loadEl.remove();
+                area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Erro de conexão com o tutor virtual.</div>`;
+            } finally {
+                if (btn.innerText !== "Fechar") {
+                    btn.disabled = false;
+                }
+                area.scrollTop = area.scrollHeight;
+            }
+        }
+
+        // ==========================================
+        // VÍDEOS E GABARITOS
+        // ==========================================
+        function abrirModalVideo(url, titulo) {
+            document.getElementById("videoModalTitulo").innerText = titulo;
+            document.getElementById("videoIframe").src = url;
+            document.getElementById("modalVideo").classList.add("open");
+        }
+
+        function fecharModalVideo() {
+            document.getElementById("modalVideo").classList.remove("open");
+            document.getElementById("videoIframe").src = "";
+        }
+
+        let urlGabaritoPendente = null;
+
+        function abrirModalChave(url = null) {
+            urlGabaritoPendente = url;
+            document.getElementById("modalChave").classList.add("open");
+            document.getElementById("inputChave").focus();
+        }
+
+        function fecharModal() {
+            document.getElementById("modalChave").classList.remove("open");
+            document.getElementById("inputChave").value = "";
+            urlGabaritoPendente = null;
+        }
+
+        function confirmarChave() {
             const chave = document.getElementById("inputChave").value.trim();
             if (!chave) return;
 
@@ -3850,8 +3966,8 @@ function confirmarChave() {
             // Validação real: se for diferente da correta, barra na hora
             if (chave !== SENHA_CORRETA) {
                 alert("⛔ Senha incorreta! Acesso negado aos materiais restritos.");
-                document.getElementById("inputChave").value = ""; // Limpa a caixa de texto
-                return; // Interrompe o processo
+                document.getElementById("inputChave").value = "";
+                return;
             }
 
             sessionStorage.setItem("prof_secret_key", chave);
@@ -3863,17 +3979,16 @@ function confirmarChave() {
             }
         }
 
-function atualizarBotaoProf() {
+        function atualizarBotaoProf() {
             const btn = document.getElementById("btnProfToggle");
             const isUnlocked = sessionStorage.getItem("prof_secret_key") !== null;
 
-            // Atualiza o botão superior do cabeçalho
             if (isUnlocked) {
                 btn.className = "btn-status-prof active";
                 btn.innerHTML = "🔓 Professor Ativo (Sair)";
                 btn.onclick = () => {
                     sessionStorage.removeItem("prof_secret_key");
-                    atualizarBotaoProf(); // Atualiza a tela após sair
+                    atualizarBotaoProf(); 
                 };
             } else {
                 btn.className = "btn-status-prof";
@@ -3881,7 +3996,6 @@ function atualizarBotaoProf() {
                 btn.onclick = () => abrirModalChave();
             }
 
-            // Procura e atualiza o botão de gabarito dentro da tela (se houver algum aberto)
             const btnInterno = document.querySelector(".btn-prof");
             if (btnInterno) {
                 if (isUnlocked) {
@@ -3894,33 +4008,33 @@ function atualizarBotaoProf() {
             }
         }
 
-function acessarGabarito(caminhoPdf) {
-    const chaveSalva = sessionStorage.getItem("prof_secret_key");
-    if (!chaveSalva) {
-        abrirModalChave(caminhoPdf);
-    } else {
-        gerarLinkEAbrir(caminhoPdf, chaveSalva);
-    }
-}
+        function acessarGabarito(caminhoPdf) {
+            const chaveSalva = sessionStorage.getItem("prof_secret_key");
+            if (!chaveSalva) {
+                abrirModalChave(caminhoPdf);
+            } else {
+                gerarLinkEAbrir(caminhoPdf, chaveSalva);
+            }
+        }
 
-function gerarLinkEAbrir(caminhoRelativo, chaveMestra) {
-    const agoraUnix = Math.floor(Date.now() / 1000);
-    const expiraEm = agoraUnix + 180;
+        function gerarLinkEAbrir(caminhoRelativo, chaveMestra) {
+            const agoraUnix = Math.floor(Date.now() / 1000);
+            const expiraEm = agoraUnix + 180;
 
-    const uri = caminhoRelativo.startsWith('/') ? caminhoRelativo : '/' + caminhoRelativo;
-    const stringParaAssinar = `${expiraEm}${uri} PortalCarecudo2`;
+            const uri = caminhoRelativo.startsWith('/') ? caminhoRelativo : '/' + caminhoRelativo;
+            const stringParaAssinar = `${expiraEm}${uri} PortalCarecudo2`;
 
-    const hash = CryptoJS.MD5(stringParaAssinar);
-    let base64Hash = CryptoJS.enc.Base64.stringify(hash)
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
+            const hash = CryptoJS.MD5(stringParaAssinar);
+            let base64Hash = CryptoJS.enc.Base64.stringify(hash)
+                .replace(/\+/g, '-')
+                .replace(/\//g, '_')
+                .replace(/=/g, '');
 
-    const urlFinal = `${uri}?st=${base64Hash}&e=${expiraEm}`;
-    window.open(urlFinal, '_blank');
-}
+            const urlFinal = `${uri}?st=${base64Hash}&e=${expiraEm}`;
+            window.open(urlFinal, '_blank');
+        }
 
-iniciar();
+        iniciar();
     </script>
 </body>
 </html>
