@@ -1,16 +1,3 @@
-``` 
-```plaintext
-COMANDO DE REESCRITA BLINDADA (COMPILER MODE)
-
-O OBJETIVO:
-Gere a Versão v1.1 Autônoma (Modo Autor - Caderno de Atividades com Motor TikZ Integrado e Sintaxe LaTeX Nativa).
-
-A MUDANÇA CIRÚRGICA:
-1. Isolamento do Silo 1 como um Protocolo Independente.
-2. Fusão rigorosa das regras de "Design Premium" (antigo Silo 3) no escopo de geração do TikZ LaTeX.
-3. Preservação integral da matriz pedagógica original, ERRADICANDO completamente qualquer formatação Markdown (substituída por sintaxe LaTeX estrita).
-
---- INÍCIO DO PROTOCOLO MESTRE ---
 
 ### **SILO 1: MODO AUTOR (LISTA DE EXERCÍCIOS C/ MOTOR TIKZ INTEGRADO)**
 
@@ -146,20 +133,26 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
         \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
         \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
         \color{CinzaEscuro}
-        \textbf{1. Ancoragem:} [Pergunta inicial para destravar o raciocínio do aluno sem dar a resposta].\par\vspace{0.1cm}
-        \textbf{2. Resolução Matemática:}\\
-        [Passo a passo detalhado da resolução]
+        \textbf{1. Ancoragem (Abordagem Socrática):} [Gere uma pergunta conceitual para destravar a lógica inicial do aluno ANTES de ele encostar nos números da questão].\par\vspace{0.1cm}
         
-        % (Opcional) Injeção de recurso visual de síntese:
-        % Ex: Tabela limpa \begin{tabular}... ou Fluxograma/Mapa conceitual TikZ
+        \textbf{2. Micro-passos da Resolução:}\\
+        % [A IA DEVE OBRIGATORIAMENTE gerar a resolução desconstruída em Passos, mesclando a instrução didática com a matemática.]
+        \textit{Passo 1:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 2:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 3:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\par\vspace{0.1cm}
+        
+        \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} [Descreva qual é o erro clássico que os alunos cometem nesta questão (ex: errar sinal, não interpretar o gráfico) e instrua o Tutor sobre como corrigir a rota sem entregar a resposta].
+        
+        % [TRAVA DE RECURSO VISUAL OBRIGATÓRIA]: Se a questão pedir ao aluno a criação de um mapa conceitual, fluxograma, tabela ou gráfico, você é OBRIGADO a renderizar aqui o ambiente TikZ ou tabular com a resposta oficial esperada.
         \end{tcolorbox}
         \vspace{0.15cm}
         
-        % --- CAIXA VERDE (Nota Pedagógica) ---
-        \definecolor{CorNotaBorda}{HTML}{10B981} 
-        \definecolor{CorNotaFundo}{HTML}{F0FDF4} 
-        \newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt, fontupper=\small}
+        % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+        \begin{boxexplicacao}
+        \textbf{Porto Seguro Didático (O "Pulo do Gato"):} [Faça um resgate do conceito central de forma TRADUZIDA e DIDÁTICA, fugindo de jargões técnicos engessados. Se der um "branco", como o professor pode explicar isso de um jeito fácil na lousa? Use uma metáfora, um macete ou explique "o porquê" da regra funcionar (em vez de apenas jogar a fórmula fria). Dê o nome correto dos termos, mas foque em COMO ensinar isso de forma simples. \textbf{REGRA DE REDUNDÂNCIA:} Se o conceito já foi mastigado em uma questão anterior deste bloco, não repita; escreva apenas "Recapitulando: [a essência da dica em 1 linha]" para não poluir o PDF].
+        \end{boxexplicacao}
     \fi
+        
     
     \par\vspace{\espacoQuestao}
 
@@ -176,17 +169,23 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
         \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
         \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
         \color{CinzaEscuro}
-        \textbf{1. Ancoragem:} [Pergunta inicial para destravar o raciocínio do aluno sem dar a resposta].\par\vspace{0.1cm}
-        \textbf{2. Resolução Matemática:}\\
-        [Passo a passo detalhado da resolução]
+        \textbf{1. Ancoragem (Abordagem Socrática):} [Gere uma pergunta conceitual para destravar a lógica inicial do aluno ANTES de ele encostar nos números da questão].\par\vspace{0.1cm}
         
-        % (Opcional) Injeção de recurso visual de síntese:
+        \textbf{2. Micro-passos da Resolução:}\\
+        % [A IA DEVE OBRIGATORIAMENTE gerar a resolução desconstruída em Passos, mesclando a instrução didática com a matemática.]
+        \textit{Passo 1:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 2:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 3:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\par\vspace{0.1cm}
+        
+        \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} [Descreva qual é o erro clássico que os alunos cometem nesta questão (ex: errar sinal, não interpretar o gráfico) e instrua o Tutor sobre como corrigir a rota sem entregar a resposta].
+        
+        % [TRAVA DE RECURSO VISUAL OBRIGATÓRIA]: Se a questão pedir ao aluno a criação de um mapa conceitual, fluxograma, tabela ou gráfico, você é OBRIGADO a renderizar aqui o ambiente TikZ ou tabular com a resposta oficial esperada.
         \end{tcolorbox}
         \vspace{0.15cm}
         
-        % --- CAIXA VERDE (Nota Pedagógica) ---
+        % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
         \begin{boxexplicacao}
-        \textbf{Nota Pedagógica (Bastidores do Conceito):} [Explicação detalhada dos motivos, armadilhas comuns dos alunos e dicas de abordagem em sala].
+        \textbf{Porto Seguro Didático (O "Pulo do Gato"):} [Faça um resgate do conceito central de forma TRADUZIDA e DIDÁTICA, fugindo de jargões técnicos engessados. Se der um "branco", como o professor pode explicar isso de um jeito fácil na lousa? Use uma metáfora, um macete ou explique "o porquê" da regra funcionar (em vez de apenas jogar a fórmula fria). Dê o nome correto dos termos, mas foque em COMO ensinar isso de forma simples. \textbf{REGRA DE REDUNDÂNCIA:} Se o conceito já foi mastigado em uma questão anterior deste bloco, não repita; escreva apenas "Recapitulando: [a essência da dica em 1 linha]" para não poluir o PDF].
         \end{boxexplicacao}
     \fi
     
@@ -209,17 +208,28 @@ Atue como um Especialista em Material Didático e Engenheiro TikZ. Ao ler este p
         \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
         \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
         \color{CinzaEscuro}
-        \textbf{1. Ancoragem:} [Pergunta inicial focada no erro lógico para destravar a análise do aluno].\par\vspace{0.1cm}
-        \textbf{2. Resolução Matemática:}\\
-        [Passo a passo detalhado do diagnóstico e correção da falha]
+        \textbf{1. Ancoragem (Abordagem Socrática):} [Gere uma pergunta conceitual para destravar a lógica inicial do aluno ANTES de ele encostar nos números da questão].\par\vspace{0.1cm}
         
-        % (Opcional) Injeção de recurso visual de síntese:
+        \textbf{2. Micro-passos da Resolução:}\\
+        % [A IA DEVE OBRIGATORIAMENTE gerar a resolução desconstruída em Passos, mesclando a instrução didática com a matemática.]
+        \textit{Passo 1:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 2:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\\
+        \textit{Passo 3:} [Instrução didática] $\rightarrow$ [Cálculo/Equação]\par\vspace{0.1cm}
+        
+        \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} [Descreva qual é o erro clássico que os alunos cometem nesta questão (ex: errar sinal, não interpretar o gráfico) e instrua o Tutor sobre como corrigir a rota sem entregar a resposta].
+        
+        % [TRAVA DE RECURSO VISUAL OBRIGATÓRIA]: Se a questão pedir ao aluno a criação de um mapa conceitual, fluxograma, tabela ou gráfico, você é OBRIGADO a renderizar aqui o ambiente TikZ ou tabular com a resposta oficial esperada.
         \end{tcolorbox}
         \vspace{0.15cm}
         
         % --- CAIXA VERDE (Nota Pedagógica) ---
         \begin{boxexplicacao}
-        \textbf{Nota Pedagógica (Bastidores do Conceito):} [Explicação detalhada dos motivos lógicos, armadilhas comuns e dicas de abordagem em sala].
+        \textbf{Justificativa Curricular (Raio-X da Questão):} [Explique em 2 linhas o alvo cognitivo desta questão. Ex: "Mede a capacidade do aluno de transitar da linguagem escrita para a modelagem algébrica", ou "Avalia o conceito de proporção isolado de fórmulas prontas". Isso justifica por que a questão pertence a esta Fase do aprendizado.]
+        \end{boxexplicacao}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+        \begin{boxexplicacao}
+        \textbf{Porto Seguro Didático (O "Pulo do Gato"):} [Faça um resgate do conceito central de forma TRADUZIDA e DIDÁTICA, fugindo de jargões técnicos engessados. Se der um "branco", como o professor pode explicar isso de um jeito fácil na lousa? Use uma metáfora, um macete ou explique "o porquê" da regra funcionar (em vez de apenas jogar a fórmula fria). Dê o nome correto dos termos, mas foque em COMO ensinar isso de forma simples. \textbf{REGRA DE REDUNDÂNCIA:} Se o conceito já foi mastigado em uma questão anterior deste bloco, não repita; escreva apenas "Recapitulando: [a essência da dica em 1 linha]" para não poluir o PDF].
         \end{boxexplicacao}
     \fi
     
@@ -597,8 +607,8 @@ Finalize a sua resposta imprimindo exatamente a seguinte estrutura:
 > **Material LaTeX auditado e concluído com sucesso.**
 > Deseja gerar o arquivo de metadados para o Portal Pedagógico? 
 > Por favor, confirme o modo da lista:
-> - **[1] Silo 1 (Autoral):** Gera `info_AUT.json` com curadoria de 2 a 5 videoaulas no YouTube.
-> - **[2] Silo 2 (Escola):** Gera `info_ESC.json` sem vídeos (`"videos": []`).
+> - **[1] Silo 1 (Autoral):** Gera `info_AUT.json` com trilhas de vídeos reais (Busca Web obrigatória).
+> - **[2] Silo 2 (Escola):** Gera `info_ESC.json` sem vídeos.
 
 ---
 
@@ -606,6 +616,8 @@ Finalize a sua resposta imprimindo exatamente a seguinte estrutura:
 Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado seguindo o padrão correspondente com o cabeçalho estrutural no topo:
 
 #### Se Silo 1 (Autoral) -> Salvar como `info_AUT.json` na raiz da unidade:
+*(TRAVA DE BUSCA WEB: Antes de gerar este JSON, você é ESTRITAMENTE OBRIGADO a acionar a sua ferramenta de busca na internet para encontrar os links reais do YouTube. É proibido usar desculpas de falta de acesso à web. Pesquise por canais como "Gis com Giz", "Professor Ferretto", "Equaciona", "Professor Boaro", etc).*
+
 ```json
 {
   "disciplina": "Fisica / Matematica_Algebra / Matematica_Geometria",
@@ -615,17 +627,40 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Nome da Unidade Curricular",
   "desc": "Resumo de 1 a 2 linhas dos tópicos e habilidades cobradas.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida em [Tópico]?",
-      "titulo": "Título da Aula",
-      "autor": "Canal / Professor",
-      "url": "[https://www.youtube.com/embed/ID_DO_VIDEO](https://www.youtube.com/embed/ID_DO_VIDEO)"
+      "subtema": "[Nome exato do Subtema 1 cobrado nas questões. Ex: Fatoração por Agrupamento]",
+      "videos": [
+        {
+          "chamada": "Travou na hora de colocar os termos em evidência? Assista a este passo a passo:",
+          "titulo": "Título Real do Vídeo",
+          "autor": "Nome do Canal",
+          "url": "[https://www.youtube.com/embed/ID_REAL_VALIDADO](https://www.youtube.com/embed/ID_REAL_VALIDADO)"
+        }
+      ]
+    },
+    {
+      "subtema": "[Nome exato do Subtema 2. Ex: Produtos Notáveis - Quadrado da Soma]",
+      "videos": [
+        {
+          "chamada": "Esqueceu a regra do 'quadrado do primeiro mais duas vezes...'? Revise aqui:",
+          "titulo": "Título Real do Vídeo",
+          "autor": "Nome do Canal",
+          "url": "[https://www.youtube.com/embed/ID_REAL_VALIDADO](https://www.youtube.com/embed/ID_REAL_VALIDADO)"
+        }
+      ]
     }
   ]
 }
 
 ```
+
+#### Regras Rigorosas para o JSON do Silo 1 (Autoral):
+
+1. **Mapeamento de Necessidade:** Você DEVE analisar as questões da Fase 1 e Fase 2 que você acabou de gerar. Identifique de 2 a 4 subtemas centrais onde os alunos costumam travar. Crie um bloco `"subtema"` para cada um deles.
+2. **Quantidade de Vídeos:** Cada subtema deve conter de 1 a 2 vídeos focados. Se a lista aborda 3 subtemas, o JSON final terá entre 3 e 6 vídeos agrupados organizadamente.
+3. **URL de Incorporação:** O link DEVE ser OBRIGATORIAMENTE no formato de embed (`https://www.youtube.com/embed/ID`). Pegue o ID real da url `watch?v=ID` e transforme.
+4. **Chamada Didática:** O campo `"chamada"` não pode ser genérico. Ele deve falar diretamente com a "dor" do aluno baseada no exercício (ex: *"Se você confundiu o sinal do delta na questão 5, veja este vídeo"*).
 
 #### Se Silo 2 (Escola) -> Salvar como info_ESC.json na raiz da unidade:
 
@@ -637,18 +672,11 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
   "tipo": "Escola",
   "rotulo": "Caderno de Atividades",
   "titulo": "Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.",
-  "videos": []
+  "trilhas_de_aprendizagem": []
 }
 
 ```
 
-#### Critérios Estritos e Blindagem Anti-Alucinação para Vídeos no Silo 1:
-
-* **PROIBIÇÃO TOTAL DE INVENÇÃO DE URLs / IDs:** É expressamente proibido prever, deduzir ou inventar IDs do YouTube (como combinações aleatórias de 11 caracteres). Todo vídeo sugerido DEVE ser validado via ferramenta de busca ativa na web (Google/YouTube).
-* **COMPORTAMENTO EM CASO DE AUSÊNCIA DE BUSCA WEB:** Se o ambiente de execução da IA não tiver acesso à busca ativa na web no momento da geração, a chave `"videos"` DEVE ser entregue obrigatoriamente vazia (`"videos": []`), acompanhada de um aviso ao usuário: *"Vídeos não preenchidos automaticamente para evitar links inexistentes. Por favor, adicione os IDs manualmente."*
-* **FORMATO DA URL:** Os links devem ser strings limpas no formato de incorporação: `"https://www.youtube.com/embed/ID_REAL"`. Nunca envolva a URL em tags Markdown (`[link](url)`) dentro do JSON.
-* **CANAIS PRIORITÁRIOS:** Priorizar canais de didática comprovada para o Ensino Fundamental e Médio (ex.: *Gis com Giz*, *Professor Ferretto*, *Equaciona com Paulo Pereira*, *Professora Angela Matemática*, *Matemática no Papel*).
-* **FOCO DIDÁTICO:** As aulas devem cobrir as dúvidas procedimentais diretas dos exercícios presentes no material (ex.: fator comum, agrupamento, trinômio do quadrado perfeito).
 ---
 
 ### 3. Sugestão de Commit Seguro (Pós-Geração do JSON)
@@ -660,16 +688,4 @@ git add [Caminho_Mapeado_No_Passo_1]/
 git commit -m "feat([modulo]-[serie]): adiciona caderno de [tema] ([unidade])" -m "Inclui arquivos .tex (base e cascas), PDFs compilados em /publica e /restrita com N questoes e metadados info_...json."
 
 ```
-
-*(Exemplo prático que a IA deve gerar baseada no seu mapeamento:*
-`git add Matematica_Algebra/8_Ano/UNIDADE8/`
-`git commit -m "feat(algebra-8ano): adiciona caderno de produtos notaveis e fatoracao (U08)" -m "Inclui arquivos .tex (base e cascas), PDFs compilados em /publica e /restrita com 50 questoes e metadados info_AUT.json.")*
-
 --- FIM DO PROTOCOLO MESTRE ---
-
-```
-
-```
-```
-
-
