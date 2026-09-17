@@ -1,0 +1,50 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "6_Ano",
+  "unidade": "UNIDADE7",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Introdução à Álgebra",
+  "desc": "Fundamentos de expressões algébricas, tradução de problemas da linguagem natural para matemática, e introdução às equações do 1º grau (princípio da equivalência).",
+  "trilhas_de_aprendizagem": [
+    {
+      "subtema": "Valor Numérico de Expressões Algébricas",
+      "videos": [
+        {
+          "chamada": "Errou a conta ao trocar a letra pelo número nas primeiras questões? Lembre-se de que o número colado na letra está multiplicando! Assista a este passo a passo para revisar:",
+          "titulo": "VALOR NUMÉRICO DE UMA EXPRESSÃO ALGÉBRICA",
+          "autor": "Gis com Giz Matemática",
+          "url": "https://www.youtube.com/embed/V6N7zO9y1l0"
+        }
+      ]
+    },
+    {
+      "subtema": "Linguagem Algébrica (Tradução de Textos)",
+      "videos": [
+        {
+          "chamada": "Travou na hora de transformar 'o dobro de um número' ou 'consecutivos' em matemática? Veja como traduzir qualquer problema do português para o 'matematiquês':",
+          "titulo": "LINGUAGEM MATEMÁTICA E EXPRESSÕES ALGÉBRICAS",
+          "autor": "Professor Ferretto",
+          "url": "https://www.youtube.com/embed/5T5Wj6S6Q4E"
+        }
+      ]
+    },
+    {
+      "subtema": "Equações do 1º Grau - Princípio da Balança",
+      "videos": [
+        {
+          "chamada": "Ficou confuso sobre por que não podemos simplesmente 'passar para o outro lado'? Descubra o segredo da balança e não erre mais o sinal:",
+          "titulo": "EQUAÇÃO DO 1º GRAU - O PRINCÍPIO DA BALANÇA",
+          "autor": "Matemática Rio com Prof. Rafael Procopio",
+          "url": "https://www.youtube.com/embed/Z8Nl3x3m1Jc"
+        },
+        {
+          "chamada": "Precisa treinar mais como isolar o X e resolver o cálculo final? Acompanhe esta resolução detalhada:",
+          "titulo": "COMO RESOLVER EQUAÇÃO DO 1º GRAU - PASSO A PASSO",
+          "autor": "Equaciona com Paulo Pereira",
+          "url": "https://www.youtube.com/embed/7V-xK1wz6yM"
+        }
+      ]
+    }
+  ]
+}
