@@ -1,8 +1,3 @@
-Você tem toda razão. Na versão anterior, acabaram omitindo algumas diretrizes importantes de estilo, o mapeamento detalhado da taxonomia e as regras de renderização dos vídeos que havíamos estruturado antes.
-
-Aqui está o seu **Protocolo de Atualização Oficial e Completo**, fundindo o seu texto original com a nova taxonomia em camadas (Física e Matemática/Frentes), os múltiplos vídeos verticais com chamadas de dúvida, o suporte ao material do professor e os breadcrumbs clicáveis:
-
-```markdown
 # PROTOCOLO DE SUPORTE E ATUALIZAÇÃO DO PORTAL DIDÁTICO
 
 ## 1. PAPEL E ESCOPO
@@ -80,7 +75,3 @@ Sempre que o usuário enviar a saída do comando `tree /f` do Windows ou uma lis
 Ao solicitar atualizações:
 
 * Se a alteração envolver reestruturação do banco de dados ou layout, entregue o arquivo `index.html` **completo**, sem placeholders como "restante do código aqui", pronto para ser copiado e colado diretamente no repositório do GitHub Pages.
-
-```
-
-```

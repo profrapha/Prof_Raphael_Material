@@ -13,7 +13,7 @@ except ImportError:
     print("[AVISO] PyMuPDF não instalado. As imagens TikZ não serão geradas. Rode: pip install pymupdf")
 
 raiz = os.path.dirname(os.path.abspath(__file__))
-arquivo_html = os.path.join(raiz, "index.html")
+arquivo_catalogo_js = os.path.join(raiz, "catalogo.js")
 arquivo_banco = os.path.join(raiz, "questoes.db")
 arquivo_dados_json = os.path.join(raiz, "questoes_dados.json")
 
@@ -454,13 +454,10 @@ def exportar_indice_n8n():
     with open(arquivo_dados_json, "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False)
 
-def atualizar_html():
+def atualizar_portal():
     print("\nIniciando varredura e estruturação do banco...")
     conn_banco = inicializar_banco()
     cur_banco = conn_banco.cursor()
-
-    with open(arquivo_html, "r", encoding="utf-8") as f:
-        conteudo = f.read()
 
     catalogo = construir_catalogo(cur_banco)
     conn_banco.commit()
@@ -468,15 +465,12 @@ def atualizar_html():
 
     exportar_indice_n8n()
 
-    json_catalogo = json.dumps(catalogo, ensure_ascii=False, indent=12)
-    tag_inicio_cat = "/* === CATALOGO_INICIO === */"
-    tag_fim_cat = "/* === CATALOGO_FIM === */"
-    padrao_cat = re.compile(f"{re.escape(tag_inicio_cat)}.*?{re.escape(tag_fim_cat)}", re.DOTALL)
-    bloco_cat = f"{tag_inicio_cat}\n        const catalogo = {json_catalogo};\n        {tag_fim_cat}"
-    conteudo = padrao_cat.sub(bloco_cat, conteudo)
+    # Cria o arquivo JS separado (sem tocar no index.html)
+    json_catalogo = json.dumps(catalogo, ensure_ascii=False, indent=4)
+    conteudo_js = f"const catalogo = {json_catalogo};\n"
 
-    with open(arquivo_html, "w", encoding="utf-8") as f:
-        f.write(conteudo)
+    with open(arquivo_catalogo_js, "w", encoding="utf-8") as f:
+        f.write(conteudo_js)
 
     # Painel Gerencial (Dashboard) impresso no Terminal
     print("\n" + "="*50)
@@ -494,4 +488,4 @@ def atualizar_html():
         print("[AVISO] Verifique os erros acima.\n")
 
 if __name__ == "__main__":
-    atualizar_html()
+    atualizar_portal()
