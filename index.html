@@ -805,6 +805,25 @@
             background-color: var(--bg-secondary);
             margin-top: auto;
         }
+        /* --- Avaliação em Estrelas --- */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 2.2rem;
+            color: #334155;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f59e0b;
+        }
     </style>
 </head>
 <body>
@@ -890,7 +909,28 @@
             </div>
         </div>
     </div>
+<!-- Modal de Feedback do Tutor -->
+    <div class="modal-overlay" id="modalFeedback">
+        <div class="modal-box">
+            <h3 style="color: var(--accent-amber);">⭐ Avaliar Tutor</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Como está sendo a sua experiência com a IA nesta questão?</p>
+            
+            <div class="star-rating" style="margin-bottom: 1rem;">
+                <input type="radio" id="star5" name="rate" value="5"><label for="star5" title="Excelente">★</label>
+                <input type="radio" id="star4" name="rate" value="4"><label for="star4" title="Muito Bom">★</label>
+                <input type="radio" id="star3" name="rate" value="3"><label for="star3" title="Bom">★</label>
+                <input type="radio" id="star2" name="rate" value="2"><label for="star2" title="Ruim">★</label>
+                <input type="radio" id="star1" name="rate" value="1"><label for="star1" title="Péssimo">★</label>
+            </div>
 
+            <textarea id="textoFeedback" rows="3" placeholder="(Opcional) Relate algum problema, erro de cálculo da IA ou deixe um elogio..." style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-card); background-color: var(--bg-primary); color: var(--text-main); font-size: 0.9rem; margin-bottom: 1rem; outline: none; resize: none;"></textarea>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="fecharModalFeedback()">Cancelar</button>
+                <button class="btn-confirm" id="btnConfirmarFeedback" style="background-color: var(--accent-amber); color: #0b0f19;" onclick="enviarFeedback()">Enviar Avaliação</button>
+            </div>
+        </div>
+    </div>
     <script>
         /* =========================================================================
            AQUI FICAM AS SUAS TAGS DE INJEÇÃO (DO ARQUIVO PYTHON)
@@ -3162,7 +3202,12 @@
                                 <span style="color: var(--accent-violet); font-weight: 700; font-size: 0.9rem;">🤖 Tutor Socrático</span>
                                 <span id="tutor-badge-contexto" style="color: var(--text-muted); font-size: 0.75rem; display: block;"></span>
                             </div>
-                            <button onclick="fecharSplitScreen()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <button id="btnAbrirFeedback" onclick="abrirModalFeedback()" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: none; transition: all 0.2s;">⭐ Avaliar</button>
+                                <button onclick="fecharSplitScreen()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+                            </div>
+                        </div>
+                                <button onclick="fecharSplitScreen()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
                         </div>
 
                         <div class="tutor-messages" id="tutorMessages"></div>
