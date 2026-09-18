@@ -22,8 +22,8 @@
     
     <!-- Biblioteca SQL.js para ler o banco SQLite direto do navegador -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
-    
-    <!-- AQUI ESTÁ A MÁGICA: PUXANDO O CATÁLOGO DE UM ARQUIVO EXTERNO -->
+
+    <!-- Importando o catálogo de dados separadamente -->
     <script src="catalogo.js"></script>
 
     <style>
@@ -887,9 +887,9 @@
     <!-- Modal de Configuração do Tutor (Escudo LGPD Aplicado) -->
     <div class="modal-overlay" id="modalSetupTutor">
         <div class="modal-box">
-            <h3 style="color: var(--accent-violet);">🤖 Plantão Tutor IA</h3>
+            <h3 style="color: var(--accent-violet);">🤖 Tutor Socrático IA</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                Selecione a questão e informe seu nome para iniciarmos:
+                Selecione a questão e informe seu nome para abrirmos a interface:
             </p>
 
             <label style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Seu Nome Completo (ou RA):</label>
@@ -909,7 +909,7 @@
 
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="fecharSetupTutor()">Cancelar</button>
-                <button class="btn-confirm" style="background-color: var(--accent-violet); color: #fff;" onclick="iniciarSessaoTutor()">Iniciar Plantão</button>
+                <button class="btn-confirm" style="background-color: var(--accent-violet); color: #fff;" onclick="prepararSessaoTutor()">Ver Questão</button>
             </div>
         </div>
     </div>
@@ -974,7 +974,6 @@
             try {
                 const sqlPromise = initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
                 
-                // A MÁGICA AQUI: O "?v=" + Date.now() força o download do banco novo ignorando o cache
                 const dataPromise = fetch("questoes.db?v=" + Date.now()).then(res => res.arrayBuffer());
                 
                 const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
@@ -989,7 +988,6 @@
         function buscarQuestaoNoBanco(prefixo, numQuestao) {
             if (!tutorState.bancoQuestoes) return null;
             
-            // Lendo as duas colunas novas
             const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado_parte1, enunciado_parte2, codigo_tikz, imagem_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao =$num LIMIT 1");
             stmt.bind({ $prefixo: `${prefixo}%`, $num: numQuestao });
             
@@ -1305,7 +1303,6 @@
                     </div>
                 `;
             } else if (mat.videos && mat.videos.length > 0) {
-                // FALLBACK: Mantendo a retrocompatibilidade com o formato antigo (sem Trilhas)
                 videosHtml = `
                     <div style="margin-top: 2.5rem; border-top: 1px solid var(--border-card); padding-top: 2rem;">
                         <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main);">
@@ -1424,7 +1421,7 @@
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
             
-            // 2. TRADUÇÃO DE AMBIENTES VISUAIS (Transforma boxresponda numa div estilizada igual ao PDF)
+            // 2. TRADUÇÃO DE AMBIENTES VISUAIS (Transforma boxresponda numa div estilizada)
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
 
@@ -1508,7 +1505,6 @@
             if (viewBox) viewBox.style.display = "block";
         }
 
-        // --- INICIAR PLANTÃO ---
         // --- PREPARAR TELA DIVIDIDA (NÃO GASTA TOKENS) ---
         async function prepararSessaoTutor() {
             const selAluno = document.getElementById("selectNomeAlunoTutor");
@@ -1644,10 +1640,10 @@
         async function iniciarChatTutor() {
             const messagesArea = document.getElementById("tutorMessages");
             
-            // Substitui o botão inicial pela mensagem de carregamento
+            // Substitui o botão inicial pela mensagem de carregamento com a sua cara
             messagesArea.innerHTML = `
                 <div class="msg-tutor" id="msg-tutor-abertura">
-                    Conectando ao Tutor Socrático...
+                    Um momento enquanto conecto meus cabos e ativo meus neurônios... 🔌🧠
                 </div>
             `;
             messagesArea.scrollTop = messagesArea.scrollHeight;
@@ -1675,7 +1671,6 @@
                     msgAbertura.innerHTML = tratarTextoIA(data.output);
                     renderizarKaTeX(msgAbertura);
                     
-                    // Libera o input para o aluno começar a digitar
                     input.disabled = false;
                     input.placeholder = "Digite sua dúvida ou cálculo...";
                     btn.disabled = false;
@@ -1685,7 +1680,7 @@
                 console.error("Falha ao iniciar chat:", err);
                 const msgAbertura = document.getElementById("msg-tutor-abertura");
                 if (msgAbertura) {
-                    msgAbertura.innerHTML = "Erro de conexão com o servidor. Tente novamente mais tarde.";
+                    msgAbertura.innerHTML = "Desculpe, mas o meu Tico está brigado com o meu Teco e eles não querem trabalhar agora. Pode tentar de novo mais tarde? 😅";
                     msgAbertura.style.borderLeftColor = "#ef4444";
                 }
             }
@@ -1705,7 +1700,8 @@
             area.scrollTop = area.scrollHeight;
 
             const tempId = "loading-" + Date.now();
-            area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Analisando seu raciocínio...</div>`;
+            // Mensagem de carregamento enquanto a IA pensa
+            area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Colocando a engrenagem pra girar e analisando sua dúvida... ⚙️</div>`;
             area.scrollTop = area.scrollHeight;
 
             try {
@@ -1752,12 +1748,12 @@
                     }
 
                 } else {
-                    area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Não consegui processar sua dúvida agora. Tente reenviar.</div>`;
+                    area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Epa! Deu um curto-circuito aqui nas minhas ideias. Tente enviar de novo! 💥</div>`;
                 }
             } catch (err) {
                 const loadEl = document.getElementById(tempId);
                 if (loadEl) loadEl.remove();
-                area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Erro de conexão com o tutor virtual.</div>`;
+                area.innerHTML += `<div class="msg-tutor" style="border-left-color: #ef4444;">Desculpe, o Tico e o Teco tropeçaram nos cabos do servidor. Tente de novo! 🔌</div>`;
             } finally {
                 if (btn.innerText !== "Fechar") {
                     btn.disabled = false;
