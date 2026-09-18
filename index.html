@@ -2792,10 +2792,12 @@
         }
 
         // BUSCA A QUESTÃO EXATA NO BANCO SQLITE
+        // BUSCA A QUESTÃO EXATA NO BANCO SQLITE
         function buscarQuestaoNoBanco(prefixo, numQuestao) {
             if (!tutorState.bancoQuestoes) return null;
             
-            const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado, codigo_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao = $num LIMIT 1");
+            // CORREÇÃO: Adicionamos "imagem_tikz" na consulta SQL para o HTML enxergar a foto gerada pelo Python
+            const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado, codigo_tikz, imagem_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao =$num LIMIT 1");
             stmt.bind({ $prefixo: `${prefixo}%`, $num: numQuestao });
             
             if (stmt.step()) {
