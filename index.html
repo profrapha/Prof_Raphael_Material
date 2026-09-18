@@ -1431,22 +1431,26 @@
             
             let limpo = texto;
 
-            // 1. ESCUDO PROTETOR DE MATEMÁTICA (Protege a matemática antes de mexer no texto)
+            // 1. ESCUDO PROTETOR DE MATEMÁTICA
             let mathBlocks = [];
             limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
-                // Traduz \mfrac para \dfrac pro KaTeX entender
                 let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
                 mathBlocks.push(fixedMath);
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
             
-            // 2. TRADUÇÃO DE AMBIENTES VISUAIS (Transforma boxresponda numa div estilizada)
+            // 2. TRADUÇÃO DE AMBIENTES VISUAIS E LISTAS LATEX
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
+            
+            // Transforma o enumerate e os itens em listas HTML limpas
+            limpo = limpo.replace(/\\begin\{enumerate\}(?:\[.*?\])?/g, '<div style="margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem;">');
+            limpo = limpo.replace(/\\end\{enumerate\}/g, '</div>');
+            limpo = limpo.replace(/\\item\s*/g, '• ');
 
             // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
             limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
-            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}/g, '');
+            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
             // 4. FORMATAÇÕES DE ESTILO TEXTUAL
@@ -1457,7 +1461,7 @@
             // 5. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
-            // 6. DEVOLVER A MATEMÁTICA INTACTA PARA A TELA
+            // 6. DEVOLVER A MATEMÁTICA INTACTA
             mathBlocks.forEach((block, index) => {
                 limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
             });
