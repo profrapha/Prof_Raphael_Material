@@ -392,11 +392,24 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
 
-        .unit-summary-card:hover {
+        .unit-summary-card:hover:not(.unit-disabled) {
             border-color: var(--accent-blue);
             transform: translateY(-3px);
+        }
+
+        /* ESTILO PARA UNIDADE DESATIVADA */
+        .unit-summary-card.unit-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+
+        .unit-summary-card.unit-disabled:hover {
+            transform: none;
+            border-color: var(--border-card);
         }
 
         .unit-number-badge {
@@ -408,6 +421,11 @@
             background: rgba(56, 189, 248, 0.15);
             color: var(--accent-blue);
             margin-bottom: 0.75rem;
+        }
+
+        .unit-summary-card.unit-disabled .unit-number-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
         }
 
         .unit-summary-card h3 {
@@ -1222,18 +1240,35 @@
 
             for (const idUni in unidadesDisponiveis) {
                 const uni = unidadesDisponiveis[idUni];
-                const qtdMateriais = uni.materiais.length;
-
-                cardsHtml += `
-                    <div class="unit-summary-card" onclick="irNivel('selecao_caderno', { unidadeId: '${idUni}' })">
-                        <div>
-                            <span class="unit-number-badge">${idUni}</span>
-                            <h3>${uni.titulo}</h3>
-                            <p>${uni.desc}</p>
+                const qtdMateriais = uni.materiais ? uni.materiais.length : 0;
+                
+                // Lógica de bloqueio: se a unidade tiver ativa: false no catalogo, renderiza como desativada
+                const isAtiva = uni.ativa !== false; 
+                
+                if (isAtiva) {
+                    cardsHtml += `
+                        <div class="unit-summary-card" onclick="irNivel('selecao_caderno', { unidadeId: '${idUni}' })">
+                            <div>
+                                <span class="unit-number-badge">${idUni}</span>
+                                <h3>${uni.titulo}</h3>
+                                <p>${uni.desc}</p>
+                            </div>
+                            <div class="card-footer-link">${qtdMateriais} caderno(s) disponível(is) &rarr;</div>
                         </div>
-                        <div class="card-footer-link">${qtdMateriais} caderno(s) disponível(is) &rarr;</div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    cardsHtml += `
+                        <div class="unit-summary-card unit-disabled">
+                            <span class="badge-em-breve" style="top: 1.75rem; right: 1.75rem;">Em Breve</span>
+                            <div>
+                                <span class="unit-number-badge">${idUni}</span>
+                                <h3>${uni.titulo}</h3>
+                                <p>Conteúdo bloqueado. Esta unidade será liberada em breve, no momento oportuno do bimestre.</p>
+                            </div>
+                            <div class="card-footer-link" style="color: var(--text-muted);">🔒 Disponível Futuramente</div>
+                        </div>
+                    `;
+                }
             }
 
             cardsHtml += `</div>`;
@@ -1431,7 +1466,6 @@
             
             let limpo = texto;
 
-            // 1. ESCUDO PROTETOR DE MATEMÁTICA
             let mathBlocks = [];
             limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
                 let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
@@ -1439,35 +1473,26 @@
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
             
-            // 2. TRADUÇÃO DE AMBIENTES VISUAIS E LISTAS LATEX
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
             
-            // Converte o enumerate do LaTeX em uma lista HTML estruturada e limpa
             limpo = limpo.replace(/\\begin\{enumerate\}(?:\[.*?\])?/g, '<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem;">');
             limpo = limpo.replace(/\\end\{enumerate\}/g, '</div>');
             
-            // Substitui o \item por blocos organizados, removendo quebras indesejadas logo após
             limpo = limpo.replace(/\\item\s*/g, '</div><div style="display: flex; gap: 0.5rem;"><span style="color: var(--accent-blue); font-weight: 600;">•</span><span>');
-            // Fecha a tag aberta acima logo antes do próximo item ou fim da lista
             limpo = limpo + '</span></div>';
-            // Limpa eventuais duplicações de tags geradas na conversão
             limpo = limpo.replace(/<div style="margin: 1.0rem 0; display: flex; flex-direction: column; gap: 0\.75rem;">\<\/div>/g, '');
 
-            // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
             limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
             limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
-            // 4. FORMATAÇÕES DE ESTILO TEXTUAL
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
-            // 5. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
-            // 6. DEVOLVER A MATEMÁTICA INTACTA
             mathBlocks.forEach((block, index) => {
                 limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
             });
@@ -1559,6 +1584,8 @@
             const prefixo = matAtual.id_prefixo || "";
             const capStr = String(tutorState.capituloIndice).padStart(2, '0');
             const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
+            
+            // Aqui a gente define o ID_QUESTAO e grava no estado
             tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
 
             const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
@@ -1795,6 +1822,7 @@
             return {
                 session_id: tutorState.sessionId,
                 aluno: tutorState.aluno,
+                id_questao: tutorState.id_questao, // <== AQUI ESTÁ A CORREÇÃO!
                 materia: nav.materia,
                 frente: nav.frente || "Única",
                 ano: nav.ano,
