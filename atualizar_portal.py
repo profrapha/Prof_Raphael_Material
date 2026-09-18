@@ -241,15 +241,30 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
 
         id_unico = f"{prefixo_material}__C{idx_cap:02d}__Q{num_q:02d}"
         
+        # --- FUNÇÃO FAXINEIRA (Limpa o lixo que sobra do LaTeX) ---
+        def limpar_sujeira_latex(texto):
+            if not texto: return ""
+            t = texto
+            t = re.sub(r'\\begin\{center\}', '', t)
+            t = re.sub(r'\\end\{center\}', '', t)
+            # Remove \begin{adjustbox} com qualquer configuração que ele tenha nas chaves/colchetes
+            t = re.sub(r'\\begin\{adjustbox\}(\[.*?\])?\{.*?\}', '', t, flags=re.DOTALL)
+            t = re.sub(r'\\end\{adjustbox\}', '', t)
+            # Remove as linhas pontilhadas (comentários %) que sobraram no banco
+            t = re.sub(r'%\s*=+\s*', '', t)
+            return t.strip()
+
         # --- A MÁGICA DA DIVISÃO DO ENUNCIADO ---
         parte1 = enunciado_bruto
         parte2 = ""
 
         if tikz and tikz in enunciado_bruto:
-            # Fatiamos o texto exatamente onde o código do gráfico estava no LaTeX
+            # Fatiamos o texto e passamos o faxineiro em cada metade
             partes = enunciado_bruto.split(tikz)
-            parte1 = partes[0].strip()
-            parte2 = partes[1].strip() if len(partes) > 1 else ""
+            parte1 = limpar_sujeira_latex(partes[0])
+            parte2 = limpar_sujeira_latex(partes[1]) if len(partes) > 1 else ""
+        else:
+            parte1 = limpar_sujeira_latex(enunciado_bruto)
 
         # AUDITORIA E ESTATÍSTICAS
         ESTATISTICAS["total_questoes"] += 1
