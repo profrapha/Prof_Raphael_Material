@@ -1,0 +1,74 @@
+{
+  "disciplina": "Matematica_Algebra",
+  "ano": "7_Ano",
+  "unidade": "UNIDADE7",
+  "tipo": "Autoral",
+  "rotulo": "Caderno de Atividades Suplementar",
+  "titulo": "Equações e Inequações do 1º Grau",
+  "desc": "Desenvolvimento do raciocínio algébrico, propriedades da igualdade, resolução de equações/inequações (com frações e distributiva) e modelagem de problemas contextuais.",
+  "trilhas_de_aprendizagem": [
+    {
+      "subtema": "Conceitos Fundamentais e Resolução de Equações",
+      "videos": [
+        {
+          "chamada": "Precisa construir a base do zero? Entenda o princípio da balança e a regra dos sinais de forma visual:",
+          "titulo": "EQUAÇÃO DO 1º GRAU - Professora Angela Matemática",
+          "autor": "Professora Angela Matemática",
+          "url": "https://www.youtube.com/embed/Ylvb03POwGE"
+        },
+        {
+          "chamada": "Se você se perde quando a equação tem parênteses, veja como aplicar a propriedade distributiva (chuveirinho):",
+          "titulo": "EQUAÇÃO DO 1º GRAU COM DISTRIBUTIVA",
+          "autor": "Gis com Giz",
+          "url": "https://www.youtube.com/embed/xOyC50CMdi8"
+        },
+        {
+          "chamada": "Travou nas equações que parecem gigantes? O professor Ferretto ensina os primeiros passos práticos:",
+          "titulo": "Equação do primeiro grau!! Saiba como resolver!!",
+          "autor": "Professor Ferretto",
+          "url": "https://www.youtube.com/embed/q9SmHURN9u0"
+        },
+        {
+          "chamada": "Odeia trabalhar com frações? Aprenda como usar o MMC para sumir com os denominadores da equação:",
+          "titulo": "RESOLUÇÃO DE EXPRESSÕES COM FRAÇÕES ALGÉBRICAS",
+          "autor": "Equaciona Com Paulo Pereira",
+          "url": "https://www.youtube.com/embed/nmXj4yYRL50"
+        }
+      ]
+    },
+    {
+      "subtema": "Problemas Contextualizados com Equações (Tradução Algébrica)",
+      "videos": [
+        {
+          "chamada": "Como transformar um texto longo em uma continha pequena? Aprenda a traduzir o português para a matemática:",
+          "titulo": "Equação do 1º Grau - Matemática Básica - Revisão",
+          "autor": "Professora Angela Matemática",
+          "url": "https://www.youtube.com/embed/OKQq_Prn4ps"
+        },
+        {
+          "chamada": "Caiu aquele problema chato pedindo 'o triplo de um número' ou 'números consecutivos'? O Marcos Aba descomplica para você:",
+          "titulo": "COMO RESOLVER PROBLEMAS DE EQUAÇÃO DO 1º GRAU",
+          "autor": "Marcos Aba Matemática",
+          "url": "https://www.youtube.com/embed/AoQfB59aLJ0"
+        }
+      ]
+    },
+    {
+      "subtema": "Inequações do 1º Grau e Reta Numérica",
+      "videos": [
+        {
+          "chamada": "O que diferencia uma inequação de uma equação? Entenda a lógica do 'maior que' e 'menor que':",
+          "titulo": "Inequação do primeiro grau: exemplos iniciais",
+          "autor": "Professor Ferretto",
+          "url": "https://www.youtube.com/embed/MGs-LVYSuRw"
+        },
+        {
+          "chamada": "Errar a regra do número negativo é fatal. Veja na prática quando e por que o bico do sinal inverte de lado:",
+          "titulo": "INEQUAÇÃO DO 1º GRAU x – 3 ≥ 1– x",
+          "autor": "Gis com Giz",
+          "url": "https://www.youtube.com/embed/XcBqMOKvJUc"
+        }
+      ]
+    }
+  ]
+}

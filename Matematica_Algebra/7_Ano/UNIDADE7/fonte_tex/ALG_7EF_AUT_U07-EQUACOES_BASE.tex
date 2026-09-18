@@ -1,0 +1,1686 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+
+% --- FONTE PADRÃO (Estilo Didático Encorpado) ---
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- GEOMETRIA E ESPAÇAMENTO ---
+\usepackage[top=1.6cm, bottom=1.5cm, left=0.9cm, right=0.9cm, headheight=22pt, headsep=0.4cm]{geometry}
+\usepackage{microtype} 
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip}
+\setlength{\parskip}{2pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\espacoPosTitulo}\setlength{\espacoPosTitulo}{0.3cm}
+\newlength{\espacoPreQuestao}\setlength{\espacoPreQuestao}{0.1cm}
+\newlength{\espacoQuestao}\setlength{\espacoQuestao}{0.2cm}
+\newlength{\espacoAlt}\setlength{\espacoAlt}{0.2cm}
+
+\usepackage{enumitem}
+\setlist{itemsep=0.4cm, topsep=0.1cm, parsep=0pt, partopsep=0pt}
+\newcommand{\larguraTikz}{0.85\linewidth} 
+% --- TAG SEMÂNTICA PARA LEITURA DE IA (INVISÍVEL NO PDF) ---
+\newenvironment{enunciadoLiteral}{}{}
+
+% --- MATEMÁTICA E CORES ---
+\usepackage{amsmath, amsfonts, amssymb, nccmath, mathastext}
+\usepackage{xcolor}
+\definecolor{indigo}{HTML}{4F46E5}
+\definecolor{CorTitUm}{HTML}{FF6F61}
+\definecolor{CorTitDois}{HTML}{FF6F61}
+\definecolor{CorTitTres}{HTML}{658894}
+\definecolor{CorLinha}{HTML}{B0B0B0} 
+\definecolor{metal}{HTML}{7F8C8D}
+\definecolor{vidro}{HTML}{3498DB}
+\definecolor{ouro}{HTML}{F1C40F}
+\definecolor{concreto}{HTML}{95A5A6}
+\definecolor{madeira}{HTML}{D35400}
+\definecolor{CinzaEscuro}{HTML}{4A4A4A} 
+\definecolor{CinzaMedio}{HTML}{848484} 
+\definecolor{Cinzablack}{HTML}{353535} 
+
+% --- MINI-CABEÇALHO E RODAPÉ AUTORAL (TWOSIDE) ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.3pt} 
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[LE]{\small\sffamily\bfseries\color{gray!75} EQUAÇÕES E INEQUAÇÕES DO 1º GRAU}
+\ifgabarito
+    \fancyhead[RO]{\small\sffamily\bfseries\color{CorTitUm}{LIVRO DO PROFESSOR -- SUPLEMENTAR}}
+\else
+    \fancyhead[RO]{\small\sffamily\color{gray!75} \texttt{www.profraphaelpaulino.com.br}}
+\fi
+\fancyfoot[LE]{\small \textbf{\thepage}}
+\fancyfoot[RO]{\small \textbf{\thepage}}
+
+% --- CAIXAS DE DESTAQUE ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{boxresponda}{colback=white, colframe=gray!45, boxrule=0pt, leftrule=1.7pt, sharp corners, enlarge left by=0.4cm, width=\linewidth-0.4cm, left=8pt, right=0pt, top=2pt, bottom=2pt, fontupper=\small}
+\definecolor{CorDicaBorda}{HTML}{17c1be} 
+\definecolor{CorDicaFundo}{HTML}{f3fbfb} 
+\newtcolorbox{boxdica}{colback=CorDicaFundo, colframe=CorDicaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, halign=center, fontupper=\small}
+
+% --- NOVA CAIXA PEDAGÓGICA E CORES (NOTA VERDE) ---
+\definecolor{CorNotaBorda}{HTML}{10B981} 
+\definecolor{CorNotaFundo}{HTML}{F0FDF4} 
+\newtcolorbox{boxexplicacao}{colback=CorNotaFundo, colframe=CorNotaBorda, boxrule=0pt, leftrule=2.5pt, sharp corners, width=\linewidth, left=8pt, right=8pt, top=6pt, bottom=6pt, fontupper=\small}
+
+% --- TÍTULOS ---
+\usepackage{titlesec}
+\titleformat{\section}{\color{black}\large\bfseries}{\thesection}{0em}{\vspace{0.1cm}\titlerule[0.8pt]}
+\titlespacing*{\section}{0pt}{10pt}{6pt} 
+\titleformat{\subsubsection}[runin]{\color{black}\bfseries}{}{0em}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0.15cm}
+
+% --- COLUNAS E GRÁFICOS ---
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{CorLinha}}
+\usepackage{adjustbox, tikz, pgfplots, circuitikz}
+\usetikzlibrary{shadows, shapes.misc, positioning, calc}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\thispagestyle{empty}
+\color{Cinzablack}
+\vspace*{-1.8cm}
+
+% --- CABEÇALHO PRINCIPAL AUTORAL (Apenas 1ª página) ---
+\noindent
+\begin{minipage}{\textwidth}
+    \fontfamily{phv}\selectfont
+    \noindent
+    \begin{minipage}[t]{0.65\linewidth}
+        {\Large \bfseries \MakeUppercase{Caderno de Atividades Suplementares}}\\[0.1cm]
+        {\large \textmd{\textcolor{CinzaEscuro}{Unidade: EQUAÇÕES E INEQUAÇÕES DO 1º GRAU}}}
+    \end{minipage}%
+    \begin{minipage}[t]{0.35\linewidth}
+        \raggedleft
+        \ifgabarito
+            {\large \bfseries \textcolor{CorTitUm}{[PROFESSOR]}}\\[0.05cm]
+        \fi
+        \small \textbf{Prof. Raphael Paulino}\\
+        \textsf{\small \textcolor{indigo}{\texttt{profraphaelpaulino.com.br}}}
+    \end{minipage}
+    
+    \vspace{0.15cm}
+    \noindent\rule{\linewidth}{1.2pt}
+    \vspace{-0.1cm}
+    \footnotesize\textsf{\textbf{ÁREA:} MATEMÁTICA \hfill \textbf{NÍVEL:} 7º ANO}
+    \vspace{0.1cm}
+    \noindent\rule{\linewidth}{0.4pt}
+\end{minipage}
+
+\par\vspace{0.3cm} 
+\raggedcolumns
+\begin{multicols*}{2}
+\vspace{0.1cm}
+
+\subsection*{Capítulo 1 e 2: Conceitos e Resolução de Equações}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{1.} 
+\begin{enunciadoLiteral}
+A figura ilustra uma balança de pratos clássica em perfeito estado de equilíbrio. No prato da esquerda, foram colocados três blocos metálicos de massa \textbf{x} e um peso padrão aferido em \textbf{500 g}. No prato da direita, encontra-se um único peso padrão de \textbf{2 kg}.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=1cm 0cm 1cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=\larguraTikz}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{baseScale}{HTML}{2C3E50}
+\definecolor{prato}{HTML}{95A5A6}
+\definecolor{pesoFixo}{HTML}{C0392B}
+\definecolor{pesoIncognito}{HTML}{F39C12}
+
+% LAYER 1: Base e Eixo Central
+\fill[baseScale, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=2pt] (-0.5,0) rectangle (0.5,0.4);
+\fill[baseScale, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (-0.1,0.4) rectangle (0.1,3);
+
+% LAYER 2: Braço de equilíbrio
+\fill[baseScale!80, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=1pt] (-3,2.8) rectangle (3,3.0);
+\fill[baseScale] (0,2.9) circle (0.15);
+
+% LAYER 3: Fios e Pratos
+\draw[thick, gray] (-2.9,2.8) -- (-3.5,1.5);
+\draw[thick, gray] (-2.9,2.8) -- (-2.3,1.5);
+\draw[thick, gray] (2.9,2.8) -- (2.3,1.5);
+\draw[thick, gray] (2.9,2.8) -- (3.5,1.5);
+
+\fill[prato, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (-3.7,1.4) to[out=-20,in=200] (-2.1,1.4) -- (-2.1,1.5) -- (-3.7,1.5) -- cycle;
+\fill[prato, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (2.1,1.4) to[out=-20,in=200] (3.7,1.4) -- (3.7,1.5) -- (2.1,1.5) -- cycle;
+
+% LAYER 4: Pesos Prato Esquerdo (3x + 500g)
+\fill[pesoIncognito, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (-3.4,1.5) rectangle (-2.9,2.0);
+\node[white, font=\bfseries\small] at (-3.15,1.75) {x};
+\fill[pesoIncognito, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (-2.8,1.5) rectangle (-2.3,2.0);
+\node[white, font=\bfseries\small] at (-2.55,1.75) {x};
+\fill[pesoIncognito, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (-3.1,2.0) rectangle (-2.6,2.5);
+\node[white, font=\bfseries\small] at (-2.85,2.25) {x};
+
+\fill[pesoFixo, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}] (-2.2,1.5) -- (-2.0,1.8) -- (-1.8,1.5) -- cycle;
+\fill[pesoFixo] (-2.1,1.8) rectangle (-1.9,1.9);
+\node[fill=white, inner sep=1pt, font=\tiny\bfseries, rounded corners=1pt] at (-2.0,2.1) {500g};
+
+% LAYER 5: Peso Prato Direito (2kg)
+\fill[pesoFixo, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-1pt}] (2.5,1.5) -- (2.9,2.2) -- (3.3,1.5) -- cycle;
+\fill[pesoFixo] (2.7,2.2) rectangle (3.1,2.4);
+\node[fill=white, inner sep=1pt, font=\bfseries\small, rounded corners=1pt] at (2.9,2.7) {2 kg};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base no princípio da equivalência, determine a massa matemática exata de um único bloco \textbf{x}, expressa em gramas. 
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Antes de montar qualquer equação, pergunte ao aluno: "Se a balança está equilibrada, o peso total da esquerda é igual ou diferente do da direita? Como escrevemos 'equilíbrio' na matemática? Podemos trabalhar com gramas e quilogramas misturados na mesma conta?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Unificação de grandezas. Converter \textbf{2 kg} para gramas $\rightarrow$ $2 \text{ kg} = 2000 \text{ g}$.\\
+    \textit{Passo 2:} Tradução da imagem para linguagem algébrica. O prato esquerdo tem três massas \textbf{x} mais \textbf{500 g}. O equilíbrio vira o sinal de igualdade $\rightarrow$ $3x + 500 = 2000$.\\
+    \textit{Passo 3:} Isolar o termo desconhecido subtraindo 500 dos dois lados $\rightarrow$ $3x = 2000 - 500 \Rightarrow 3x = 1500$.\\
+    \textit{Passo 4:} Dividir o resultado pela quantidade de blocos $\rightarrow$ $x = \mfrac{1500}{3} \Rightarrow x = 500 \text{ g}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro mais clássico aqui é o aluno ignorar a conversão de unidades e montar a equação $3x + 500 = 2$. Isso geraria um valor negativo para a massa. Se o aluno travar, questione sobre quantos gramas cabem em um quilo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Uma equação do 1º grau nada mais é do que uma gangorra nivelada. Tudo o que você tira ou coloca de um lado, é OBRIGADO a tirar ou colocar do outro na mesma proporção para a gangorra não despencar. O sinal de igual ($=$) é o eixo central que sustenta o equilíbrio. E nunca se esqueça: não podemos somar "bananas com laranjas" — ou seja, converta as unidades para a mesma base antes de calcular!
+    \end{boxexplicacao}
+\fi
+    
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{2.} 
+\begin{enunciadoLiteral}
+Em laboratórios de engenharia de materiais, a temperatura de fusão ideal de uma liga de alumínio é calibrada por meio de uma constante \textbf{T}. O cálculo rigoroso para encontrar essa constante obedece à modelagem matemática:
+
+$ 5(T - 12) + 3T = 8T - 4(15 - 2T) $
+
+Execute as manipulações algébricas necessárias, aplicando a propriedade distributiva, e determine o valor da constante \textbf{T}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Pergunte: "Temos parênteses nesta equação. Quem tem prioridade de resolução? Como fazemos para 'quebrar' os parênteses multiplicando o termo de fora por todos os de dentro?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Aplicar a propriedade distributiva no primeiro membro $\rightarrow$ $5T - 60 + 3T$.\\
+    \textit{Passo 2:} Aplicar a distributiva no segundo membro (atenção redobrada ao sinal negativo multiplicando outro negativo) $\rightarrow$ $8T - 60 + 8T$.\\
+    \textit{Passo 3:} Juntar os termos semelhantes em cada lado $\rightarrow$ $8T - 60 = 16T - 60$.\\
+    \textit{Passo 4:} Organizar as variáveis de um lado e números do outro $\rightarrow$ $8T - 16T = -60 + 60$.\\
+    \textit{Passo 5:} Solução final $\rightarrow$ $-8T = 0 \Rightarrow T = 0$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro principal está no segundo membro: ao fazer $-4 \cdot (-2T)$, muitos alunos colocam $-8T$ em vez de $+8T$. Se o aluno errar, guie-o a revisar a regra de sinais da multiplicação. Outro erro comum é chegar em $-8T = 0$ e concluir que "não tem solução", confundindo com divisão por zero.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O famoso "chuveirinho" (propriedade distributiva) molha todo mundo que está dentro do box (os parênteses). Lembre o aluno de que o sinal que acompanha o número do lado de fora também entra na dança! E se chegar ao final e der zero de um lado da balança ($8T = 0$), fique calmo: o número zero é uma resposta válida e respeitável, só significa que a variável não tem peso.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{3.} 
+\begin{enunciadoLiteral}
+Um estudante de robótica precisava calcular a tensão \textbf{x} de um circuito usando a seguinte equação inicial:
+
+$ 4x - (x + 6) = 2(x - 1) $
+
+O estudante realizou os cálculos e apresentou o seguinte registro no seu caderno de anotações:
+
+\textit{Linha 1:} $ 4x - x + 6 = 2x - 2 $ \\
+\textit{Linha 2:} $ 3x + 6 = 2x - 2 $ \\
+\textit{Linha 3:} $ 3x - 2x = -2 + 6 $ \\
+\textit{Linha 4:} $ x = 4 $
+
+Houve uma falha conceitual severa durante a execução dos procedimentos. Analise minuciosamente o caderno do estudante.
+
+\begin{boxresponda}
+\textbf{Responda:} Em qual linha o estudante cometeu o primeiro erro matemático? Justifique textualmente o que causou o equívoco e apresente a resolução correta a partir daquele ponto.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} Peça ao aluno para não olhar os números grandes e focar apenas no sinal de "menos" antes do parênteses. "Quando há um sinal negativo na frente de uma chave ou parêntese, o que ele faz com quem mora lá dentro?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnóstico do erro. O erro ocorreu logo na \textbf{Linha 1}. O estudante não distribuiu o sinal negativo para o $+6$ que estava dentro dos parênteses. Ele apenas retirou os parênteses, escrevendo $+6$ em vez de $-6$.\\
+    \textit{Passo 2:} Justificativa. Um sinal negativo na frente do parênteses indica o "oposto" de tudo que está lá dentro, funcionando como se fosse uma multiplicação por $-1$.\\
+    \textit{Passo 3:} Resolução corrigida (Linha 1 correta) $\rightarrow$ $4x - x - 6 = 2x - 2$.\\
+    \textit{Passo 4:} Redução (Linha 2) $\rightarrow$ $3x - 6 = 2x - 2$.\\
+    \textit{Passo 5:} Agrupamento (Linha 3) $\rightarrow$ $3x - 2x = -2 + 6$.\\
+    \textit{Passo 6:} Solução Final $\rightarrow$ $x = 4$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Ironicamente, o erro de sinal na Linha 1 e o erro de agrupamento na Linha 3 (passar o $+6$ como $+6$ e não como $-6$) acabaram se anulando no resultado, mas o processo está duplamente errado. Se o aluno não perceber, peça para ele substituir $x = 4$ na equação original e provar se a balança equilibra (não equilibra).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Avalia a capacidade metacognitiva do aluno (aprender com o erro do outro). Identificar falhas processuais sedimenta melhor a regra de distribuição de sinais do que resolver dezenas de contas mecanicamente.
+    \end{boxexplicacao}
+
+% --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O sinal de "menos" colado no parênteses age como um "inversor universal". Ele entra na casa (os parênteses) e inverte a polaridade elétrica de todos os moradores. Se era positivo, fica negativo. Se era negativo, vira positivo. Esquecer de inverter o último termo é a principal causa de acidentes nas equações.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{4.} 
+\begin{enunciadoLiteral}
+Durante a execução de um projeto de urbanismo, a divisão de um terreno foi calculada de forma que a soma da metade da área total (\textbf{x}) com sua terça parte seja igual a exatos 1000 metros quadrados, gerando a seguinte modelagem:
+
+$ \mfrac{x}{2} + \mfrac{x}{3} = 1000 $
+
+Com base nos princípios de resolução de equações envolvendo coeficientes fracionários, avalie as alternativas a seguir e identifique o valor da área total \textbf{x}. Em seguida, justifique obrigatoriamente o erro conceitual presente na alternativa B.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ x = 500 $
+\item $ x = 200 $
+\item $ x = 1200 $
+\item $ x = 6000 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Você pode somar duas frações que têm fatias de tamanhos diferentes (denominadores 2 e 3)? Como encontramos um tamanho de fatia comum para toda a equação?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Encontrar o Mínimo Múltiplo Comum (MMC) dos denominadores 2, 3 e 1 (que está oculto sob o 1000). O MMC é 6.\\
+    \textit{Passo 2:} Multiplicar TODOS os termos da equação pelo MMC para eliminar as frações $\rightarrow$ $6 \cdot (\mfrac{x}{2}) + 6 \cdot (\mfrac{x}{3}) = 6 \cdot (1000)$.\\
+    \textit{Passo 3:} Simplificar as frações $\rightarrow$ $3x + 2x = 6000$.\\
+    \textit{Passo 4:} Juntar os termos semelhantes $\rightarrow$ $5x = 6000$.\\
+    \textit{Passo 5:} Isolar \textbf{x} $\rightarrow$ $x = \mfrac{6000}{5} \Rightarrow x = 1200$. A resposta correta é a letra \textbf{C}.\\
+    \textit{Passo 6:} Refutação da Letra B. O erro da alternativa B ($x = 200$) ocorre quando o aluno soma os denominadores de forma errada ($2+3=5$) e monta $\mfrac{x}{5} = 1000$, esquecendo-se da regra básica de frações de tirar o MMC, e depois divide 1000 por 5.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro mais clássico em equações fracionárias é o aluno tirar o MMC apenas do lado esquerdo (onde estão as letras) e esquecer de multiplicar o lado direito (o 1000). Se isso acontecer, ele acharia $x = 200$ (justificando também a letra B por outro caminho). Corrija lembrando da gangorra: o que faz de um lado, faz do outro.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Odeia trabalhar com frações em equações? O MMC é o seu "raio desintegrador". Basta descobrir o MMC de todo mundo e multiplicar a equação inteira por ele (sem dó). Como num passe de mágica, todos os denominadores serão cortados e você voltará a trabalhar apenas com números inteiros no "chão de fábrica".
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{5.} 
+\begin{enunciadoLiteral}
+Em computação, a resolução de equações é ensinada às máquinas por meio de fluxogramas lógicos, que são passos sequenciais organizados em blocos de decisão. 
+
+Crie, em formato de texto, um fluxograma sequencial listando pelo menos três passos fundamentais obrigatórios para programar um computador a resolver corretamente a equação $\mfrac{3x}{4} - 2 = x - 5$.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Se você fosse um robô que só executa ordens simples, qual seria a primeira sujeira que você limparia desta equação para deixá-la mais fácil de ler?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução (Expectativa do Fluxograma):}\\
+    O aluno deve descrever verbalmente ou em esquema a seguinte sequência (não os cálculos, mas os COMANDOS):\\
+    \textit{Passo 1 (Remoção de Frações):} Multiplicar toda a equação pelo denominador comum (no caso, 4) para eliminar as frações.\\
+    \textit{Passo 2 (Organização):} Aplicar o princípio aditivo, movendo todos os termos que contêm a variável \textbf{x} para o primeiro membro e as constantes numéricas para o segundo membro, invertendo as operações.\\
+    \textit{Passo 3 (Isolamento Final):} Aplicar o princípio multiplicativo, dividindo ambos os lados da equação pelo coeficiente numérico que acompanha o \textbf{x}, garantindo o conjunto solução.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode querer resolver a equação no caderno e entregar apenas $x = 12$ como resposta. Não aceite. O comando cognitivo da questão é traduzir O MÉTODO em linguagem algorítmica, provando a metacognição.
+    
+    % MAPA CONCEITUAL TIKZ
+    \begin{center}
+    \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+    \begin{tikzpicture}[node distance=1.5cm,
+        box/.style={rectangle, draw=CinzaEscuro, rounded corners=3pt, fill=white, drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-1pt}, text width=5cm, align=center, minimum height=1cm, font=\small},
+        seta/.style={->, thick, CinzaEscuro}]
+        
+        \node[box, fill=CorTitUm!10, draw=CorTitUm, font=\bfseries] (start) {INÍCIO};
+        \node[box, below=0.6cm of start] (passo1) {Multiplicar todos os termos por 4 (eliminar fração)};
+        \node[box, below=0.6cm of passo1] (passo2) {Agrupar variáveis de um lado e números do outro};
+        \node[box, below=0.6cm of passo2] (passo3) {Dividir pelo coeficiente de x};
+        \node[box, fill=CorNotaBorda!10, draw=CorNotaBorda, font=\bfseries, below=0.6cm of passo3] (end) {FIM: Conjunto Solução S};
+
+        \draw[seta] (start) -- (passo1);
+        \draw[seta] (passo1) -- (passo2);
+        \draw[seta] (passo2) -- (passo3);
+        \draw[seta] (passo3) -- (end);
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Ensinar matemática não é só fazer continha, é criar sistemas lógicos na cabeça. Quando o aluno consegue explicar os passos de como se faz algo (um tutorial), ele prova que dominou a "receita do bolo" e nunca mais esquecerá.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{6.} 
+\begin{enunciadoLiteral}
+Considere o esquema a seguir representando a planta baixa de uma quadra poliesportiva de geometria retangular. O projeto informa que o contorno total (perímetro) pintado no chão corresponde a 108 metros lineares.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0.5cm 0cm 0.5cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.65\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{quadraFundo}{HTML}{E67E22}
+\definecolor{quadraLinha}{HTML}{ECF0F1}
+
+% LAYER 1: Grama/Piso externo (Opcional contextual)
+\fill[gray!10, drop shadow={opacity=0.1, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=3pt] (-1,-1) rectangle (6,4);
+
+% LAYER 2: A Quadra (Retângulo Principal)
+\fill[quadraFundo, rounded corners=1pt] (0,0) rectangle (5,3);
+\draw[quadraLinha, thick] (0,0) rectangle (5,3);
+
+% LAYER 3: Detalhes da Quadra (Círculo central e linhas)
+\draw[quadraLinha, thick] (2.5,0) -- (2.5,3);
+\draw[quadraLinha, thick] (2.5,1.5) circle (0.6);
+\draw[quadraLinha, thick] (0,1.0) rectangle (0.8,2.0);
+\draw[quadraLinha, thick] (5,1.0) rectangle (4.2,2.0);
+
+% LAYER 4: Cotas e Expressões Algébricas
+\draw[|<->|, thick, Cinzablack] (0,-0.4) -- (5,-0.4) node[midway, fill=gray!10, font=\bfseries, text=black, inner sep=2pt] {3x - 4};
+\draw[|<->|, thick, Cinzablack] (-0.4,0) -- (-0.4,3) node[midway, fill=gray!10, font=\bfseries, text=black, inner sep=2pt, rotate=90] {x + 10};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Traduza as informações visuais da quadra para uma equação algébrica e determine o valor da constante \textbf{x}, que viabiliza a construção correta do projeto.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Se olharmos para o desenho, temos dados em apenas dois lados. Mas o que é o perímetro de um retângulo? Quantos lados ele tem e como são os lados opostos?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} O perímetro é a soma de todos os 4 lados. Como é um retângulo, os lados opostos são paralelos e iguais. Portanto, temos duas larguras e dois comprimentos.\\
+    \textit{Passo 2:} Montagem estrutural $\rightarrow$ $2 \cdot (\text{comprimento}) + 2 \cdot (\text{largura}) = \text{Perímetro}$.\\
+    \textit{Passo 3:} Substituição algébrica $\rightarrow$ $2 \cdot (3x - 4) + 2 \cdot (x + 10) = 108$.\\
+    \textit{Passo 4:} Aplicação da distributiva $\rightarrow$ $6x - 8 + 2x + 20 = 108$.\\
+    \textit{Passo 5:} Agrupamento $\rightarrow$ $8x + 12 = 108$.\\
+    \textit{Passo 6:} Isolamento e solução $\rightarrow$ $8x = 108 - 12 \Rightarrow 8x = 96 \Rightarrow x = 12$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro imperdoável e mais frequente aqui é o aluno somar apenas os dois lados que aparecem escritos na imagem, gerando a equação $3x - 4 + x + 10 = 108$. Isso daria $x = 25,5$. Faça o aluno preencher a lápis as expressões nos quatro lados da figura antes de somar.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Na geometria conectada à álgebra, o "invisível" também pesa. Nunca construa uma equação de perímetro sem antes dar a volta completa na figura apontando com o dedo. A palavra perímetro vem do grego (peri = em torno, metron = medida), ou seja, é a cerca completa da fazenda, não apenas duas cercas.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{7.} 
+\begin{enunciadoLiteral}
+Na álgebra do primeiro grau, o princípio da equivalência dita as regras de segurança sobre o que podemos ou não fazer com os lados de uma igualdade sem que a balança perca o equilíbrio. Analise de forma minuciosa as afirmações matemáticas abaixo:
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item Ao adicionarmos ou subtrairmos o mesmo valor numérico simultaneamente nos dois membros de uma equação, suas raízes (conjunto solução) permanecem inalteradas.
+\item Se elevarmos ao quadrado apenas o primeiro membro de uma equação do 1º grau, a balança se manterá equilibrada desde que o segundo membro seja multiplicado por zero.
+\item A equação $2x = 10$ e a equação $6x = 30$ são consideradas equações equivalentes, pois possuem exatamente o mesmo conjunto solução.
+\end{enumerate}
+
+É matematicamente rigoroso e verdadeiro o que se afirma em:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item I e II, apenas.
+\item I e III, apenas.
+\item II e III, apenas.
+\item I, II e III.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que define se duas equações, mesmo sendo visualmente diferentes, são 'gêmeas de resultado'? Se fizermos algo de um lado e não do outro, a balança sobrevive?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Análise da I (VERDADEIRA). Este é o Princípio Aditivo. Somar ou subtrair o mesmo valor dos dois lados mantém o equilíbrio elástico perfeito.\\
+    \textit{Passo 2:} Análise da II (FALSA). A afirmação sugere fazer operações completamente distintas nos membros (elevar ao quadrado de um lado, multiplicar por zero de outro). Isso destrói o Princípio da Equivalência, e multiplicar por zero "apaga" a informação do segundo membro, corrompendo a equação fatalmente.\\
+    \textit{Passo 3:} Análise da III (VERDADEIRA). Equações equivalentes são aquelas que admitem a mesma raiz. Na primeira, $2x = 10 \Rightarrow x = 5$. Na segunda, $6x = 30 \Rightarrow x = 5$. Ambas partilham a solução $\{5\}$. O gabarito é \textbf{Letra B}.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos têm dificuldade com a palavra "equivalentes" na afirmativa III, achando que as equações precisam ser escritas com os mesmos algarismos. Peça para eles resolverem as duas rapidamente.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando: a palavra "equivalente" na álgebra não significa "igual no visual". Significa "mesmo destino, mesmos resultados". Um real é equivalente a quatro moedas de 25 centavos. Visualmente diferentes, mas o poder de compra (a raiz da equação) é exatamente o mesmo.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{8.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Uma empresa de logística analisa o custo para alugar pequenos furgões de carga com duas locadoras diferentes. A composição dos custos mensais funciona da seguinte forma:
+
+\begin{itemize}[itemsep=\espacoAlt]
+\item \textbf{Locadora Rápida:} Cobra uma taxa fixa de manutenção mensal de R\$ 1.200,00 mais R\$ 0,50 por quilômetro rodado.
+\item \textbf{Locadora Segura:} Cobra uma taxa fixa de manutenção mensal de R\$ 900,00 mais R\$ 0,75 por quilômetro rodado.
+\end{itemize}
+
+O gerente de logística deseja saber o ponto de equilíbrio financeiro. Modelando essa situação por meio de uma equação do 1º grau, descubra a quilometragem exata (\textbf{k}) que a empresa deve rodar no mês para que o custo de aluguel seja rigorosamente o mesmo em qualquer uma das locadoras.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "No texto, a palavra-chave é 'mesmo custo'. Em linguagem matemática, qual símbolo usamos para representar coisas iguais? Vamos escrever uma 'receita' para o preço da Rápida e outra para a Segura e cruzá-las."\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Modelar o Custo da Rápida $\rightarrow$ $C_R = 1200 + 0,50k$.\\
+    \textit{Passo 2:} Modelar o Custo da Segura $\rightarrow$ $C_S = 900 + 0,75k$.\\
+    \textit{Passo 3:} Igualar as duas equações (o "ponto de equilíbrio") $\rightarrow$ $1200 + 0,50k = 900 + 0,75k$.\\
+    \textit{Passo 4:} Agrupar os termos com \textbf{k} de um lado e valores fixos do outro $\rightarrow$ $1200 - 900 = 0,75k - 0,50k$.\\
+    \textit{Passo 5:} Operacionalizar com decimais $\rightarrow$ $300 = 0,25k$.\\
+    \textit{Passo 6:} Isolar o \textbf{k} $\rightarrow$ $k = \mfrac{300}{0,25}$.\\
+    \textit{Passo 7:} Como dividir por 0,25 (um quarto) é o mesmo que multiplicar por 4, temos $k = 1200$ quilômetros.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno costuma travar na divisão final por número decimal ($\mfrac{300}{0,25}$). Se isso acontecer, sugira multiplicar tanto o numerador quanto o denominador por 100 para eliminar a vírgula ($\mfrac{30000}{25}$), destravando a operação braçal.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Problemas de "ponto de equilíbrio" (comparar plano de celular, táxi, aluguel) são figurinhas carimbadas do ENEM. O macete estrutural é sempre o mesmo: descubra o "Fixo 1" e "Variável 1" e coloque de um lado do sinal de igual ($=$). Descubra o "Fixo 2" e "Variável 2" e coloque do outro lado. 
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{9.} 
+\begin{enunciadoLiteral}
+Uma caixa d'água municipal começou a apresentar vazamentos. Um fiscal da prefeitura fez a medição técnica e registrou no relatório de avarias que a água que restou no reservatório equivale a exatamente:
+
+"A metade da capacidade total do tanque (\textbf{V}), somada à quarta parte da mesma capacidade total, resultando em exatos 180 mil litros de volume retido."
+
+Monte a equação matemática fracionária que retrata a leitura do fiscal e resolva-a para descobrir qual é a capacidade total original \textbf{V} desse reservatório antes do vazamento.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Como traduzimos 'a metade' e 'a quarta parte' em frações usando a letra V? E o que significa matematicamente a palavra 'resultando' no relatório?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Tradução da linguagem corrente para algébrica. "Metade" $\rightarrow$ $\mfrac{V}{2}$. "Quarta parte" $\rightarrow$ $\mfrac{V}{4}$.\\
+    \textit{Passo 2:} Montagem da Equação $\rightarrow$ $\mfrac{V}{2} + \mfrac{V}{4} = 180$.\\
+    \textit{Passo 3:} Tirar o MMC entre os denominadores 2, 4 e 1. O MMC é 4.\\
+    \textit{Passo 4:} Multiplicar a equação inteira por 4 $\rightarrow$ $4 \cdot (\mfrac{V}{2}) + 4 \cdot (\mfrac{V}{4}) = 4 \cdot (180)$.\\
+    \textit{Passo 5:} Redução ao nível do chão $\rightarrow$ $2V + 1V = 720$.\\
+    \textit{Passo 6:} Agrupamento $\rightarrow$ $3V = 720$.\\
+    \textit{Passo 7:} Solução $\rightarrow$ $V = \mfrac{720}{3} \Rightarrow V = 240$ mil litros.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode tentar fugir da equação montando um desenho ou lógica mental. Embora válido no dia a dia, force a escrita algébrica, pois a BNCC e as matrizes exigem a "tradução" do texto para a linguagem matemática simbólica.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando a regra do MMC: ao multiplicar a equação inteira pelo MMC, você está aplicando o Princípio Multiplicativo da balança de forma inteligente e matando o "bicho-papão" das frações no mesmo golpe.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{10.} 
+\begin{enunciadoLiteral}
+Numa fábrica, um braço robótico foi programado para colocar caixas em uma esteira pesadora. O manual da esteira apresenta um alerta em formato de equação para evitar sobrecarga (onde \textbf{c} é a massa da caixa):
+
+$ 3(c - 2) + 2c = 4c + 10 $
+
+Um técnico iniciante afirmou que a esteira vai suportar com segurança caixas de até \textbf{20 kg}. Usando manipulação algébrica e resolução de equações como base argumentativa, faça uma refutação analítica, provando matematicamente por que o técnico está perigosamente errado e qual é, de fato, a massa da caixa descrita na equação da máquina.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O técnico deduziu algo. Mas como provamos que ele está errado sem basear nossa opinião em 'achismos'? Precisamos resolver a equação para encontrar a verdade mecânica."\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Iniciar a resolução algébrica distribuindo o 3 no primeiro membro $\rightarrow$ $3c - 6 + 2c = 4c + 10$.\\
+    \textit{Passo 2:} Agrupar os termos semelhantes do lado esquerdo antes de mudar as peças de lugar $\rightarrow$ $5c - 6 = 4c + 10$.\\
+    \textit{Passo 3:} Transportar e inverter sinais (Princípio Aditivo). Trazer o $4c$ para a esquerda e o $-6$ para a direita $\rightarrow$ $5c - 4c = 10 + 6$.\\
+    \textit{Passo 4:} Redução final. Chega-se diretamente ao conjunto solução $\rightarrow$ $1c = 16 \Rightarrow c = 16 \text{ kg}$.\\
+    \textit{Passo 5:} A refutação argumentativa. O técnico está errado porque o modelo matemático do limite da máquina exige que o equilíbrio de tensões ocorra exatamente em caixas de $16 \text{ kg}$. Colocar $20 \text{ kg}$ causaria sobrecarga e rompimento estrutural.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno que erra a distributiva do sinal ($3 \cdot -2$) gera um $+6$, montando $5c + 6 = 4c + 10$, o que daria $c = 4$. Reforce a revisão rigorosa do "chuveirinho" com sinais negativos, pois um erro desses num contexto prático quebra a máquina.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Na matemática do mundo real (na física, na engenharia e na programação), a equação não é apenas um "joguinho de descobrir o X para tirar dez na prova". A equação é a alma do projeto. Errar o "X" significa que a ponte cai, a esteira quebra e o foguete desvia. A refutação algébrica é a prova pericial do engenheiro!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 3: Problemas com Equações}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{11.} 
+\begin{enunciadoLiteral}
+O professor de Matemática propôs um desafio lógico para a turma do 7º Ano. Ele disse: "Se vocês pegarem a minha idade atual, multiplicarem por três e, em seguida, subtraírem 15 anos desse resultado, encontrarão exatamente a idade do meu avô, que tem 84 anos". 
+
+Traduza o desafio do professor para a linguagem algébrica e determine a idade atual dele.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que não conhecemos nessa história? A idade do professor. Vamos chamá-la de uma letra, por exemplo, \textbf{x}. Como escrevemos 'multiplicar por três' e 'subtrair 15' usando o \textbf{x}?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Definir a variável: Idade do professor $= x$.\\
+    \textit{Passo 2:} Tradução algébrica: "multiplicar por três" ($3x$), "subtrair 15" ($- 15$), "exatamente a idade do avô" ($= 84$). Logo: $3x - 15 = 84$.\\
+    \textit{Passo 3:} Princípio aditivo (isolar o \textbf{x}): $3x = 84 + 15 \Rightarrow 3x = 99$.\\
+    \textit{Passo 4:} Princípio multiplicativo: $x = \mfrac{99}{3} \Rightarrow x = 33$ anos.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno pode errar a montagem escrevendo $15 - 3x = 84$, invertendo a ordem da subtração. Lembre-o de que a frase "subtraírem 15 anos desse resultado" indica que o 15 é quem está sendo retirado, portanto o sinal de menos acompanha o 15.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Resolver problemas em matemática é como ser um tradutor de idiomas. Você precisa ler a frase em "Português" e escrever embaixo a exata mesma frase no idioma "Álgebra". Palavras como 'dobro', 'triplo' e 'metade' viram multiplicações e frações. Palavras como 'resulta', 'dá' e 'equivale' viram o sinal de igualdade ($=$).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{12.} 
+\begin{enunciadoLiteral}
+Um marceneiro está cortando uma longa ripa de madeira para construir a moldura de um quadro. Ele fez dois cortes, dividindo a peça inteira em três segmentos, cujos comprimentos estão descritos algebricamente no esquema abaixo.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0cm 0cm 0cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{madeiraBase}{HTML}{D35400}
+\definecolor{madeiraClara}{HTML}{E67E22}
+\definecolor{corteCor}{HTML}{34495E}
+
+% LAYER 1: Pedaço 1
+\fill[madeiraClara, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=1pt] (0,0) rectangle (2.5,0.6);
+\draw[corteCor, thick, rounded corners=1pt] (0,0) rectangle (2.5,0.6);
+\node[font=\bfseries, text=black] at (1.25, 0.3) {x};
+
+% LAYER 2: Pedaço 2
+\fill[madeiraClara, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=1pt] (2.7,0) rectangle (6.2,0.6);
+\draw[corteCor, thick, rounded corners=1pt] (2.7,0) rectangle (6.2,0.6);
+\node[font=\bfseries, text=black] at (4.45, 0.3) {x + 10};
+
+% LAYER 3: Pedaço 3
+\fill[madeiraClara, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}, rounded corners=1pt] (6.4,0) rectangle (10,0.6);
+\draw[corteCor, thick, rounded corners=1pt] (6.4,0) rectangle (10,0.6);
+\node[font=\bfseries, text=black] at (8.2, 0.3) {2x - 6};
+
+% LAYER 4: Linhas de Cota Total
+\draw[|<->|, thick, Cinzablack] (0,-0.5) -- (10,-0.5) node[midway, fill=white, font=\bfseries, inner sep=2pt] {Comprimento Total = 124 cm};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Com base na interpretação visual e algébrica, calcule o valor da variável \textbf{x} e responda: qual é, em centímetros, a medida do maior pedaço cortado pelo marceneiro?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Se juntarmos (somarmos) os três pedaços de madeira, qual deve ser o comprimento total da ripa? O que a linha com as setas no desenho nos diz?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Montagem. A soma dos segmentos é igual ao total $\rightarrow$ $x + (x + 10) + (2x - 6) = 124$.\\
+    \textit{Passo 2:} Agrupamento dos termos semelhantes $\rightarrow$ $x + x + 2x = 4x$ e $10 - 6 = +4$. Equação simplificada: $4x + 4 = 124$.\\
+    \textit{Passo 3:} Resolução algébrica $\rightarrow$ $4x = 124 - 4 \Rightarrow 4x = 120 \Rightarrow x = 30$.\\
+    \textit{Passo 4:} Substituição. O problema pede o maior pedaço, não apenas o \textbf{x}. Substituindo $x=30$ nos três pedaços:\\
+    - Pedaço 1: $30 \text{ cm}$\\
+    - Pedaço 2: $30 + 10 = 40 \text{ cm}$\\
+    - Pedaço 3: $2(30) - 6 = 60 - 6 = 54 \text{ cm}$.\\
+    Portanto, o maior pedaço mede $54 \text{ cm}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} A maior armadilha não é o cálculo, é a interpretação final. O aluno acha o valor $x = 30$, sublinha, comemora e passa para a próxima. O Tutor deve perguntar: "O texto pediu o valor de x ou o tamanho do maior pedaço da madeira?".
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Matemática não é corrida de 100 metros onde achar o "x" é a linha de chegada. Muitas vezes, achar o "x" é só comprar a passagem; você ainda precisa viajar. Sempre releia a última frase da pergunta antes de entregar a resposta final.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{13.} 
+\begin{enunciadoLiteral}
+Uma questão clássica de olimpíada de matemática dizia o seguinte: "A soma de dois números inteiros e consecutivos é igual a 87. Quais são esses números?".
+
+Um aluno tentou resolver o problema e modelou a seguinte equação: $x + y = 87$. Em seguida, ele travou, pois percebeu que uma equação com duas letras diferentes não poderia ser resolvida diretamente com as ferramentas que possuía.
+
+\begin{boxresponda}
+\textbf{Responda:} Qual erro de tradução algébrica o aluno cometeu ao usar $x$ e $y$? Mostre a equação correta utilizando apenas uma variável e resolva o problema, encontrando os dois números.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que significa a palavra 'consecutivo'? Se o primeiro número fosse 10, qual seria o consecutivo dele? Como você fez para chegar do 10 para o 11 matematicamente?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnóstico do erro. Ao usar $x$ e $y$, o aluno modelou "a soma de dois números quaisquer", ignorando a palavra-chave "consecutivos".\\
+    \textit{Passo 2:} Correção. Números consecutivos possuem uma diferença exata de 1 unidade. Se o primeiro número é \textbf{x}, o próximo será obrigatoriamente \textbf{x + 1}.\\
+    \textit{Passo 3:} Equação correta $\rightarrow$ $x + (x + 1) = 87$.\\
+    \textit{Passo 4:} Resolução $\rightarrow$ $2x + 1 = 87 \Rightarrow 2x = 86 \Rightarrow x = 43$.\\
+    \textit{Passo 5:} Resposta final. O primeiro número (\textbf{x}) é 43. O número consecutivo (\textbf{x + 1}) é 44.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Os alunos tendem a resolver de cabeça, tentando chutar números próximos a 40 (ex: $40+47$). Não aceite tentativas de "tentativa e erro". Exija que o aluno escreva o modelo algébrico, pois essa é a habilidade avaliada no capítulo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Avalia a habilidade de traduzir relações de dependência (consecutivos, pares, ímpares) para a álgebra usando a mesma base variável, rompendo o vício de criar uma letra nova para cada elemento do texto.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{14.} 
+\begin{enunciadoLiteral}
+Em um aplicativo de transporte, o custo de uma viagem é composto por um valor fixo de embarque (a "bandeirada") de R\$ 4,50, mais um valor variável de R\$ 1,20 para cada quilômetro rodado. 
+
+Um passageiro pagou exatamente R\$ 28,50 por uma corrida. Sendo \textbf{k} a quantidade de quilômetros rodados, marque a alternativa que indica corretamente o tamanho do trajeto percorrido e, em seguida, apresente os cálculos provando por que a alternativa D é matematicamente falsa.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ k = 15 \text{ km} $
+\item $ k = 18 \text{ km} $
+\item $ k = 20 \text{ km} $
+\item $ k = 27 \text{ km} $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O valor final da corrida depende de quê? A bandeirada muda se a corrida for longa ou curta? Como juntamos o valor fixo com o valor variável que depende de 'k'?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Modelagem. Custo Total = Fixo + (Variável $\cdot$ quilômetros) $\rightarrow$ $4,50 + 1,20k = 28,50$.\\
+    \textit{Passo 2:} Isolamento. Mover o custo fixo $\rightarrow$ $1,20k = 28,50 - 4,50 \Rightarrow 1,20k = 24,00$.\\
+    \textit{Passo 3:} Divisão. $k = \mfrac{24}{1,20}$. Para facilitar, multiplica-se numerador e denominador por 10: $k = \mfrac{240}{12} \Rightarrow k = 20 \text{ km}$. A alternativa correta é a \textbf{letra C}.\\
+    \textit{Passo 4:} Refutação da Letra D. O erro da letra D ($k = 27$) ocorre quando o passageiro soma de forma equivocada os valores do enunciado ($28,50 - 1,50 \text{ (erro de conta)} = 27$), ou ignora totalmente o modelo e tenta chutar valores aleatórios que beiram os 30 km.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Operar com decimais ($1,20$) costuma paralisar o aluno. Lembre-o de que o zero à direita após a vírgula não tem valor ($1,2$) e use o truque de transformar dinheiro em centavos se preferir ($450 + 120k = 2850$).
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando a modelagem de negócios: Valor Fixo + (Valor Variável $\times$ Quantidade) = Total. Essa é a estrutura mestre de praticamente todas as contas de táxi, telefone, aluguel de carros e salário de vendedores!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{15.} 
+\begin{enunciadoLiteral}
+A linguagem algébrica permite sintetizar frases inteiras em pequenas fórmulas precisas. Escreva, em formato de itens, a tradução matemática para cada uma das sentenças a seguir. Utilize sempre a letra \textbf{n} para representar o "número desconhecido".
+
+1. "O dobro de um número, adicionado à sua terça parte."
+2. "A metade do sucessor de um número."
+3. "A diferença entre o quádruplo de um número e 15."
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Vamos por partes. Como se escreve 'dobro'? E 'terça parte'? Na frase 2, quem deve ser dividido pela metade: o número sozinho ou o sucessor dele inteiro?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Tradução 1:} "Dobro" é $2n$. "Adicionado" é $+$. "Terça parte" é $\mfrac{n}{3}$. Expressão: $2n + \mfrac{n}{3}$.\\
+    \textit{Tradução 2:} "Sucessor" de um número é $n + 1$. A "metade" deve abraçar todo o sucessor, exigindo uma fração global. Expressão: $\mfrac{n + 1}{2}$.\\
+    \textit{Tradução 3:} "Diferença" é o sinal de $-$. "Quádruplo" é $4n$. Expressão: $4n - 15$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O perigo maior está na frase 2. O aluno costuma traduzir literalmente da esquerda para a direita e escrever $\mfrac{n}{2} + 1$. Isso é "a metade do número mais um", e não "a metade do sucessor". Force a leitura semântica do bloco antes de escrever.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} A língua portuguesa engana a matemática! A vírgula ou a ordem das palavras muda toda a conta. "O dobro de (um número mais cinco)" é $2 \cdot (x + 5)$. Já "O dobro de um número, mais cinco" é $2x + 5$. Muita atenção à sintaxe textual!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{16.} 
+\begin{enunciadoLiteral}
+No layout arquitetônico de um laboratório, uma grande esteira de triagem eletrônica precisa ser instalada exatamente entre duas vigas mestras de sustentação. O espaço total disponível de parede a parede está cotado no projeto abaixo. A esteira é composta por três módulos idênticos de comprimento \textbf{x} e dois espaços de manutenção obrigatórios de \textbf{2,5 metros} cada.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0cm 0cm 0cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.9\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{vigaCor}{HTML}{7F8C8D}
+\definecolor{esteiraCor}{HTML}{2980B9}
+\definecolor{espacoCor}{HTML}{BDC3C7}
+
+% LAYER 1: Vigas laterais
+\fill[vigaCor, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}] (0,0) rectangle (0.8,3);
+\fill[vigaCor, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-2pt}] (11.2,0) rectangle (12,3);
+\node[font=\bfseries, text=white, rotate=90] at (0.4, 1.5) {Viga Esquerda};
+\node[font=\bfseries, text=white, rotate=90] at (11.6, 1.5) {Viga Direita};
+
+% LAYER 2: Módulos da Esteira
+\fill[esteiraCor, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (0.8,1) rectangle (3.3,1.8);
+\node[font=\bfseries, text=white] at (2.05, 1.4) {Módulo x};
+
+\fill[esteiraCor, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (4.7,1) rectangle (7.2,1.8);
+\node[font=\bfseries, text=white] at (5.95, 1.4) {Módulo x};
+
+\fill[esteiraCor, rounded corners=2pt, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-2pt}] (8.6,1) rectangle (11.1,1.8);
+\node[font=\bfseries, text=white] at (9.85, 1.4) {Módulo x};
+
+% LAYER 3: Espaços de Manutenção (Conectores)
+\fill[espacoCor, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (3.3,1.3) rectangle (4.7,1.5);
+\node[font=\small\bfseries, text=black] at (4.0, 1.0) {2,5 m};
+
+\fill[espacoCor, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (7.2,1.3) rectangle (8.6,1.5);
+\node[font=\small\bfseries, text=black] at (7.9, 1.0) {2,5 m};
+
+% LAYER 4: Cota Total (Distância entre vigas)
+\draw[|<->|, thick, Cinzablack] (0.8,-0.5) -- (11.2,-0.5) node[midway, fill=white, font=\bfseries, inner sep=2pt] {Comprimento Vão Livre = 26 metros};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Considerando que a esteira coube perfeitamente e encosta nas duas vigas sem sobras, modele a equação que descreve esse sistema e descubra o comprimento unitário (\textbf{x}) de cada módulo.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Quantos módulos com letra 'x' nós temos enfileirados? E quantos espaços de 2,5 metros existem entre eles? Juntando tudo, que distância eles precisam preencher?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Leitura visual da planta (Teste Cego). Temos 3 módulos \textbf{x} e 2 espaços de manutenção de $2,5 \text{ m}$.\\
+    \textit{Passo 2:} Modelagem matemática $\rightarrow$ $x + 2,5 + x + 2,5 + x = 26$.\\
+    \textit{Passo 3:} Redução dos termos $\rightarrow$ $3x + 5 = 26$.\\
+    \textit{Passo 4:} Isolamento da incógnita $\rightarrow$ $3x = 26 - 5 \Rightarrow 3x = 21$.\\
+    \textit{Passo 5:} Solução Final $\rightarrow$ $x = \mfrac{21}{3} \Rightarrow x = 7 \text{ metros}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno descuidado costuma ler "3 módulos e espaços de 2,5" e modelar $3x + 2,5 = 26$, esquecendo que o esquema exige DOIS espaços de manutenção para conectar três peças. Aponte para o desenho e mande-o contar com o dedo.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando a regra da geometria aplicada: o todo é igual à soma exata das suas partes. A álgebra é só a ferramenta que usamos para costurar esses retalhos em uma linha contínua!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{17.} 
+\begin{enunciadoLiteral}
+(Estilo VUNESP) Em um pátio de fiscalização de trânsito estão apreendidos apenas carros (veículos de 4 rodas) e motocicletas (veículos de 2 rodas). O inspetor de pátio anotou que há um total de 60 veículos estacionados. Durante a contagem, ele observou uma proporção rigorosa: o número de carros é exatamente o triplo do número de motocicletas.
+
+Não é necessário saber o total de rodas para resolver o caso. Utilizando apenas uma equação do 1º grau (com uma única variável), determine a quantidade exata de motocicletas e de carros presentes no pátio.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Se existem duas coisas desconhecidas (carros e motos), como usamos a frase 'o número de carros é o triplo das motos' para usar a mesma letra para os dois?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Definição da base algébrica. Como os carros dependem do número de motos, chamamos as motocicletas de \textbf{m}. Logo, os carros serão \textbf{3m}.\\
+    \textit{Passo 2:} Montagem da Equação. O total de veículos soma 60. Equação: $m + 3m = 60$.\\
+    \textit{Passo 3:} Resolução $\rightarrow$ $4m = 60 \Rightarrow m = \mfrac{60}{4} \Rightarrow m = 15$ motocicletas.\\
+    \textit{Passo 4:} Determinar os carros. Como carros $= 3m$, calculamos $3 \cdot 15 = 45$ carros.\\
+    \textit{Passo 5:} Prova real. $15 \text{ (motos)} + 45 \text{ (carros)} = 60 \text{ veículos}$. O cálculo bate.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos do 7º ano muitas vezes tentam forçar um Sistema de Equações ($C + M = 60$) e travam por não terem bagagem ainda. Direcione-os a escrever tudo em função de uma única variável. A pergunta "quem depende de quem" salva o problema.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Quando um problema apresenta dois "desconhecidos" (carros e motos, João e Maria, adultos e crianças), mas te dá uma dica de proporção (triplo, metade, mais dez), você NÃO precisa de duas letras. Dê o "x" para o elo mais fraco (a base) e construa a expressão do outro dependendo desse "x". 
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{18.} 
+\begin{enunciadoLiteral}
+Uma rede de academias de ginástica oferece dois planos de mensalidade para seus clientes, dependendo de quantas aulas semanais o aluno fará no mês:
+
+\begin{itemize}[itemsep=\espacoAlt]
+\item \textbf{Plano Light:} Taxa de matrícula fixa anual de R\$ 120,00, mais R\$ 15,00 por aula frequentada.
+\item \textbf{Plano Pro:} Taxa de matrícula fixa anual de R\$ 180,00, mais R\$ 10,00 por aula frequentada.
+\end{itemize}
+
+Seja \textbf{x} o número de aulas que um cliente frequenta ao longo do ano. Avalie as afirmações a seguir:
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item A equação que determina o ponto de equilíbrio (onde os dois planos custam o mesmo valor) é $120 + 15x = 180 + 10x$.
+\item Resolvendo a equação do ponto de equilíbrio, descobre-se que ela ocorre exatamente quando o aluno frequenta 12 aulas.
+\item Se um aluno pretende fazer 20 aulas no ano, o Plano Light sairá matematicamente mais barato que o Plano Pro.
+\end{enumerate}
+
+É correto o que se afirma em:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item I, apenas.
+\item I e II, apenas.
+\item II e III, apenas.
+\item I, II e III.
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Como testamos se um plano é mais vantajoso que o outro? Primeiro, achamos o momento exato em que há um 'empate' de preços (equilíbrio) e depois simulamos valores."\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Análise da I (VERDADEIRA). O modelo está perfeito. Plano Light $= 120 + 15x$. Plano Pro $= 180 + 10x$.\\
+    \textit{Passo 2:} Análise da II (VERDADEIRA). Resolvendo a equação do equilíbrio: $15x - 10x = 180 - 120 \Rightarrow 5x = 60 \Rightarrow x = 12$ aulas.\\
+    \textit{Passo 3:} Análise da III (FALSA). Testando para $x = 20$ aulas:\\
+    Custo Light $= 120 + 15(20) = 120 + 300 = \text{R\$ } 420,00$.\\
+    Custo Pro $= 180 + 10(20) = 180 + 200 = \text{R\$ } 380,00$.\\
+    Logo, para 20 aulas, o Plano Pro é mais barato. A afirmativa III mentiu. Resposta: \textbf{Letra B}.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Os alunos podem julgar a III como verdadeira no instinto, porque associam a palavra "Light" a algo mais barato, sem calcular matematicamente. Obrigue a testagem de hipóteses braçal.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} O ponto de equilíbrio é um divisor de águas! Se o empate deu 12 aulas, significa que abaixo de 12 aulas, vale a pena pagar a matrícula mais barata (Light). Mas se o aluno for assíduo e passar das 12 aulas, o custo variável mais alto do Light vai destruir a carteira dele, fazendo o Pro ser a escolha inteligente.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{19.} 
+\begin{enunciadoLiteral}
+Em um problema contextualizado sobre descontos, constava o seguinte desafio: 
+"Um par de tênis estava sendo vendido, em promoção, com R\$ 40,00 de desconto no caixa. Devido à promoção, o valor final a ser pago foi parcelado em 3 vezes iguais (sem juros) de R\$ 60,00 cada. Qual era o preço original desse tênis?"
+
+Um aluno da turma modelou e resolveu a equação da seguinte forma:
+$ \mfrac{x}{3} - 40 = 60 \rightarrow \mfrac{x}{3} = 100 \rightarrow x = 300 $ reais.
+
+Ao chegar no caixa, se a etiqueta marcasse 300 reais, a matemática não bateria com as parcelas descritas.
+
+\begin{boxresponda}
+\textbf{Responda:} Qual foi o erro grotesco de modelagem do aluno? Mostre a montagem algébrica correta e encontre o real valor da etiqueta original (\textbf{x}).
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que aconteceu primeiro no mundo real: a loja dividiu o valor em 3 vezes e depois deu o desconto em uma das parcelas, ou a loja deu o desconto no total e depois dividiu o que sobrou?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnóstico do Erro. A equação do aluno $\mfrac{x}{3} - 40$ significa que ele pegou o preço total, dividiu em 3 parcelas e aplicou um desconto de 40 apenas na parcela. Isso subverte a cronologia comercial lógica.\\
+    \textit{Passo 2:} Correção da Modelagem. O desconto de 40 acontece sobre o valor original inteiro (\textbf{x}). Todo esse bloco $(x - 40)$ é que sofre a divisão por 3. A equação correta é: $\mfrac{x - 40}{3} = 60$.\\
+    \textit{Passo 3:} Resolução $\rightarrow$ O 3 que está dividindo tudo passa multiplicando: $x - 40 = 60 \cdot 3 \Rightarrow x - 40 = 180$.\\
+    \textit{Passo 4:} Solução Final $\rightarrow$ $x = 180 + 40 \Rightarrow x = 220$ reais. O tênis custava R\$ 220,00.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Frações globais requerem atenção. Tudo que está no numerador (acima da linha de fração) funciona como se estivesse entre parênteses inquebráveis. Você precisa lidar com o denominador (o 3) primeiro, antes de tocar no 40.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Mede a capacidade do aluno de transitar da linguagem escrita para a modelagem algébrica respeitando a ordem cronológica e hierárquica das operações. Avalia o uso correto do traço de fração como agrupador sintático.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{20.} 
+\begin{enunciadoLiteral}
+Uma prefeitura municipal aprovou a desapropriação de dois terrenos vizinhos para a construção de um pequeno posto de saúde. O projeto arquitetônico exige que os dois lotes tenham, matematicamente, áreas absolutamente iguais, embora tenham formatos diferentes.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0cm 0cm 0cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{terrenoUm}{HTML}{27AE60}
+\definecolor{terrenoDois}{HTML}{2980B9}
+\definecolor{asfalto}{HTML}{2F3640}
+
+% LAYER 1: Rua / Asfalto
+\fill[asfalto, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}] (-1, -1) rectangle (12, 0);
+\draw[white, dashed, thick] (-1, -0.5) -- (12, -0.5);
+\node[font=\bfseries, text=white] at (5.5, -0.2) {Rua Principal};
+
+% LAYER 2: Lote A
+\fill[terrenoUm, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (0,0) rectangle (4,5);
+\draw[Cinzablack, thick] (0,0) rectangle (4,5);
+\node[font=\large\bfseries, text=white] at (2, 2.5) {LOTE A};
+\node[font=\bfseries, text=black] at (2, 5.3) {x};
+\node[font=\bfseries, text=black, rotate=90] at (-0.3, 2.5) {5 metros};
+
+% LAYER 3: Lote B
+\fill[terrenoDois, drop shadow={opacity=0.2, shadow xshift=2pt, shadow yshift=-2pt}] (5,0) rectangle (11,4);
+\draw[Cinzablack, thick] (5,0) rectangle (11,4);
+\node[font=\large\bfseries, text=white] at (8, 2) {LOTE B};
+\node[font=\bfseries, text=black] at (8, 4.3) {x + 2};
+\node[font=\bfseries, text=black, rotate=90] at (11.3, 2) {4 metros};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Lembrando que a área de um retângulo é calculada multiplicando-se a sua base pela sua altura, modele a equação mestre deste problema, descubra o valor da constante \textbf{x} e responda: qual é a área total de cada lote em metros quadrados?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O texto nos dá uma ordem direta e absoluta: as áreas devem ser iguais. Como montamos a conta de área do Lote A? E a do Lote B, lembrando que a base dele tem dois termos?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Expressão da Área A $\rightarrow$ $\text{Base} \cdot \text{Altura} = x \cdot 5 = 5x$.\\
+    \textit{Passo 2:} Expressão da Área B $\rightarrow$ $\text{Base} \cdot \text{Altura} = (x + 2) \cdot 4$. O parênteses é obrigatório porque o 4 multiplica tudo.\\
+    \textit{Passo 3:} Equacionamento. Área A $=$ Área B $\rightarrow$ $5x = 4(x + 2)$.\\
+    \textit{Passo 4:} Distributiva no Lote B $\rightarrow$ $5x = 4x + 8$.\\
+    \textit{Passo 5:} Resolução $\rightarrow$ $5x - 4x = 8 \Rightarrow x = 8$.\\
+    \textit{Passo 6:} Resposta Final. A pergunta não é apenas o valor de x, mas a Área do Lote. Substituindo $x=8$ no Lote A: Área $= 5 \cdot 8 = 40 \text{ m}^2$. (No Lote B seria $4 \cdot (8+2) = 4 \cdot 10 = 40 \text{ m}^2$, provando a igualdade).\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Omitir os parênteses no Lote B é o erro fatal mais comum (modelar $5x = x + 2 \cdot 4$, gerando $5x = x + 8 \Rightarrow 4x = 8 \Rightarrow x=2$). Vigie de perto a aplicação da propriedade distributiva quando houver bases compostas.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Na geometria, sempre que o lado de uma figura for uma expressão algébrica composta (com sinal de mais ou menos, tipo $x+2$), essa expressão VIVE permanentemente dentro de parênteses invisíveis. Se ela for se chocar com qualquer outra operação (multiplicação de área, etc), os parênteses precisam aparecer para proteger o bloco todo!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+\subsection*{Capítulo 4: Inequações do 1º Grau}
+\vspace{-0.2cm}\noindent\rule{\linewidth}{1.5pt} 
+\par\vspace{\espacoPosTitulo}
+\subsubsection*{21.} 
+\begin{enunciadoLiteral}
+Uma desigualdade matemática difere de uma equação porque ela não busca um valor único e isolado, mas sim uma região inteira de números reais que tornam a sentença verdadeira.
+
+Considere a seguinte inequação elementar do primeiro grau:
+
+$ 4x - 18 < 2 $
+
+Resolva a inequação no conjunto dos números Racionais ($\mathbb{Q}$) e indique a representação gráfica correta do seu conjunto solução na reta numérica real.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que o símbolo '$<$' significa? Se tivéssemos um sinal de igual, o que faríamos com o $-18$? Será que o princípio da balança ainda funciona para desigualdades se somarmos números positivos?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Princípio aditivo. Isolar o termo com incógnita adicionando 18 a ambos os membros $\rightarrow$ $4x < 2 + 18 \Rightarrow 4x < 20$.\\
+    \textit{Passo 2:} Princípio multiplicativo. Dividir ambos os membros pelo número positivo 4 (o sentido da desigualdade permanece idêntico) $\rightarrow$ $x < \mfrac{20}{4} \Rightarrow x < 5$.\\
+    \textit{Passo 3:} Conjunto Solução: $S = \{x \in \mathbb{Q} \mid x < 5\}$.\\
+    \textit{Passo 4:} Construção na reta numérica: O ponto 5 deve receber bolinha aberta (não inclui o 5, pois é estritamente menor), com a semirreta destacada para a esquerda.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro comum é o aluno preencher a bolinha no número 5 (confundindo menor estrito com menor ou igual), ou inverter o sentido da semirreta na reta numérica. Mostre que qualquer número menor que 5 (como 0 ou 4) satisfaz a sentença original ($4(0) - 18 = -18 < 2$).
+    
+    % RETA NUMÉRICA TIKZ DA RESOLUÇÃO
+    \begin{center}
+    \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+    \begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E CORES ---
+    \definecolor{eixoReta}{HTML}{2C3E50}
+    \definecolor{solucaoCor}{HTML}{E74C3C}
+    
+    % LAYER 1: Reta Numérica Base
+    \draw[->, thick, eixoReta] (1,0) -- (8,0) node[right, font=\footnotesize\bfseries] {$\mathbb{R}$};
+    
+    % LAYER 2: Graduação
+    \foreach \n in {2,3,4,5,6,7} {
+        \draw[thick, eixoReta] (\n, 0.1) -- (\n, -0.1) node[below, font=\footnotesize] {\n};
+    }
+    
+    % LAYER 3: Semirreta Solução (x < 5)
+    \draw[ultra thick, solucaoCor] (1.2, 0) -- (5, 0);
+    \fill[white] (5,0) circle (0.1);
+    \draw[thick, solucaoCor] (5,0) circle (0.1);
+    \node[fill=white, inner sep=1pt, text=solucaoCor, font=\bfseries\scriptsize] at (3, 0.4) {Região Solução: x < 5};
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Uma equação é um "ponto fixo" na reta. Uma inequação é um "mar aberto" de possibilidades. A bolinha aberta significa: "posso chegar perto de você (4,999...), mas não posso encostar no 5!". Se tivesse a barra embaixo ($\le$), a bolinha seria pintada de preto (fechada), permitindo pisar no número exato.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{22.} 
+\begin{enunciadoLiteral}
+A propriedade mais crítica no estudo das inequações do 1º grau envolve a multiplicação ou divisão de seus membros por um número negativo.
+
+Resolva a inequação a seguir, explicitando todo o passo a passo da regra de inversão de sinal da desigualdade:
+
+$ 5 - 3x \ge 26 $
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Se $2 < 5$, o que acontece se multiplicarmos os dois números por $-1$? $-2$ é maior ou menor que $-5$? Na reta numérica, quem fica mais à direita?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Princípio aditivo. Subtrair 5 de ambos os membros $\rightarrow$ $-3x \ge 26 - 5 \Rightarrow -3x \ge 21$.\\
+    \textit{Passo 2:} O Ponto Crítico da Inequação. Multiplicar toda a sentença por $-1$ (ou dividir diretamente por $-3$). Ao fazer isso, o sinal de desigualdade DEVE obrigatoriamente inverter de sentido $\rightarrow$ $3x \le -21$.\\
+    \textit{Passo 3:} Princípio multiplicativo $\rightarrow$ $x \le \mfrac{-21}{3} \Rightarrow x \le -7$.\\
+    \textit{Passo 4:} Conjunto Solução: $S = \{x \in \mathbb{Q} \mid x \le -7\}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro número 1 em todo o Ensino Fundamental é o aluno manter o sinal inalterado ao passar o $-3$ dividindo, escrevendo $x \ge -7$. Faça o aluno testar o valor $x = 0$ (que é maior que $-7$): $5 - 3(0) = 5$, e 5 NÃO é maior ou igual a 26! Isso comprova a falha na hora.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Pense na reta numérica como um espelho. O número 10 é maior que 2. Mas quando você olha no espelho dos negativos, o $-10$ está congelando muito mais longe do zero à esquerda, ou seja, $-10$ é menor que $-2$. Por isso, multiplicar por negativo inverte a hierarquia do universo numérico; a ponta da flecha tem que girar na mesma hora!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}}
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{23.} 
+\begin{enunciadoLiteral}
+Um estudante estava resolvendo a seguinte inequação no caderno:
+
+$ 7 - 2(x + 4) > 13 $
+
+Ele apresentou a seguinte sequência de linhas:
+
+\textit{Linha 1:} $ 7 - 2x - 8 > 13 $ \\
+\textit{Linha 2:} $ -2x - 1 > 13 $ \\
+\textit{Linha 3:} $ -2x > 14 $ \\
+\textit{Linha 4:} $ x > -7 $
+
+O professor assinalou a Linha 4 com caneta vermelha, apontando um erro conceitual grave que comprometeu todo o resultado final.
+
+\begin{boxresponda}
+\textbf{Responda:} Identifique o erro cometido pelo estudante na transição da Linha 3 para a Linha 4. Explique textualmente a regra matemática violada e apresente o conjunto solução rigorosamente correto.
+\end{boxresponda}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O estudante fez tudo certinho até a Linha 3. Mas quando ele isolou o 'x' dividindo por $-2$, o que aconteceu com o bico da desigualdade?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Diagnóstico do erro. O estudante calculou a divisão corretamente ($14 / -2 = -7$), mas esqueceu de inverter o operador de desigualdade de '$>$' (maior que) para '$<$' (menor que).\\
+    \textit{Passo 2:} Explicação conceitual. Toda vez que dividimos ou multiplicamos ambos os membros de uma desigualdade por uma grandeza estritamente negativa, a ordem da relação de grandeza se inverte.\\
+    \textit{Passo 3:} Resolução correta a partir da Linha 3 $\rightarrow$ $-2x > 14 \Rightarrow x < \mfrac{14}{-2} \Rightarrow x < -7$.\\
+    \textit{Passo 4:} Conjunto solução correto: $S = \{x \in \mathbb{Q} \mid x < -7\}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Não permita que o aluno responda apenas "ele errou o sinal". Ele precisa dizer com clareza: "ele esqueceu de inverter o sentido da desigualdade". Precisão cirúrgica de vocabulário é o objetivo pedagógico aqui.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Nota Pedagógica) ---
+    \begin{boxexplicacao}
+    \textbf{Justificativa Curricular (Raio-X da Questão):} Fixa a metacognição sobre a inversão do sinal em inequações, distinguindo operacionalmente o comportamento de equações (onde o sinal de igual nunca muda) e inequações.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{24.} 
+\begin{enunciadoLiteral}
+A figura a seguir exibe a representação gráfica de um conjunto solução sobre a reta dos números inteiros ($\mathbb{Z}$).
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0cm 0cm 0cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{eixoReta}{HTML}{2C3E50}
+\definecolor{solucaoCor}{HTML}{27AE60}
+
+% LAYER 1: Reta Numérica Base
+\draw[->, thick, eixoReta] (-3,0) -- (5,0) node[right, font=\footnotesize\bfseries] {$\mathbb{Z}$};
+
+% LAYER 2: Graduação de inteiros
+\foreach \n in {-2,-1,0,1,2,3,4} {
+    \draw[thick, eixoReta] (\n, 0.1) -- (\n, -0.1) node[below, font=\footnotesize] {\n};
+}
+
+% LAYER 3: Região destacada (x >= 1)
+\draw[ultra thick, solucaoCor] (1, 0) -- (4.8, 0);
+\fill[solucaoCor, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}] (1,0) circle (0.12);
+\node[fill=white, inner sep=2pt, rounded corners=1pt, text=solucaoCor, font=\bfseries\footnotesize] at (2.8, 0.45) {Intervalo Solução};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Assinale a alternativa que contém a inequação do 1º grau cuja resolução produz rigorosamente a representação visual destacada na figura. Em seguida, prove por que a alternativa A está errada.
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ 2x + 5 \le 7 $
+\item $ 3x - 4 \ge -1 $
+\item $ -2x + 8 < 6 $
+\item $ 4x - 10 \ge 6 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Olhando para a reta numérica: o ponto marcado é o número 1. A bolinha está cheia ou oca? A região pintada vai para a direita (maiores) ou para a esquerda (menores)? Qual condição matemática isso gera?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Leitura gráfica (Teste Cego). A bolinha preta cheia no número 1 com a flecha apontando para a direita representa a condição algébrica: $x \ge 1$.\\
+    \textit{Passo 2:} Testando as alternativas:\\
+    - Letra A: $2x + 5 \le 7 \Rightarrow 2x \le 2 \Rightarrow x \le 1$ (Sinal invertido, aponta para a esquerda).\\
+    - Letra B: $3x - 4 \ge -1 \Rightarrow 3x \ge 3 \Rightarrow x \ge 1$ (Bate perfeitamente com a figura!).\\
+    - Letra C: $-2x + 8 < 6 \Rightarrow -2x < -2 \Rightarrow x > 1$ (Bolinha seria aberta, não cheia).\\
+    - Letra D: $4x - 10 \ge 6 \Rightarrow 4x \ge 16 \Rightarrow x \ge 4$ (Ponto inicial em 4).\\
+    A alternativa correta é a \textbf{letra B}.\\
+    \textit{Passo 3:} Refutação da Letra A. O erro da letra A está no sentido da desigualdade ($\le$). Embora o número 1 seja o ponto limite, a solução $x \le 1$ exige que os valores sejam menores que 1 (à esquerda), contradizendo o gráfico que avança para a direita.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno que resolve rápido costuma apenas olhar o número "1" e marcar a letra A sem reparar no símbolo de maior/menor. Chame a atenção para a ponta da semirreta colorida.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Traduzir desenho para conta: se a flecha vai para a DIREITA, o 'x' quer crescer, então usamos maior que ($>$ ou $\ge$). Se a bolinha tem recheio de chocolate (pintada), tem tracinho de igual embaixo ($\ge$). Se for oca, é estritamente maior ($>$).
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{25.} 
+\begin{enunciadoLiteral}
+As inequações fracionárias exigem a mesma disciplina de agrupamento e desobstrução de denominadores que as equações.
+
+Resolva a inequação a seguir no conjunto dos números Racionais ($\mathbb{Q}$), apresentando o conjunto solução formal:
+
+$ \mfrac{x - 3}{2} - \mfrac{x + 1}{4} \le 1 $
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que faremos com os denominadores 2 e 4? O MMC é 4. Como o número 4 é positivo, o sinal de desigualdade vai mudar de lado quando multiplicarmos a inequação inteira por ele?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} O MMC entre 2, 4 e 1 é 4. Multiplicar todos os membros por 4 (sendo 4 positivo, a desigualdade se mantém inalterada) $\rightarrow$ $4 \cdot \left(\mfrac{x - 3}{2}\right) - 4 \cdot \left(\mfrac{x + 1}{4}\right) \le 4 \cdot (1)$.\\
+    \textit{Passo 2:} Simplificar os coeficientes mantendo parênteses protetores nos numeradores $\rightarrow$ $2(x - 3) - 1(x + 1) \le 4$.\\
+    \textit{Passo 3:} Distributiva cuidadosa com o sinal negativo do segundo bloco $\rightarrow$ $2x - 6 - x - 1 \le 4$.\\
+    \textit{Passo 4:} Redução dos termos semelhantes $\rightarrow$ $x - 7 \le 4$.\\
+    \textit{Passo 5:} Princípio aditivo final $\rightarrow$ $x \le 4 + 7 \Rightarrow x \le 11$.\\
+    \textit{Passo 6:} Conjunto Solução: $S = \{x \in \mathbb{Q} \mid x \le 11\}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Cuidado extremo com a fração $-\mfrac{x+1}{4}$. Quase todos os estudantes esquecem que o sinal de menos na frente da fração age como um parêntese e vira $-x - 1$, e não $-x + 1$. Aponte o lápis para o traço da fração.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Recapitulando a regra de ouro das frações: o traço de uma fração funciona exatamente como uma corda amarrando todo mundo que está lá em cima. Se tiver um sinal negativo na frente dessa corda, quando você cortar o denominador pelo MMC, use parênteses protetores, senão o sinal de menos "engole" a sua nota!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{26.} 
+\begin{enunciadoLiteral}
+Um elevador de carga em uma obra da construção civil possui limite rigoroso de segurança para evitar acidentes mecânicos no cabo de aço. O operador da obra sabe que o peso máximo que a cabine suporta sem entrar em sobrecarga é de \textbf{650 kg}.
+
+O operador do elevador, que pesa exatamente \textbf{80 kg}, precisa transportar blocos de cimento estrutural. O diagrama técnico a seguir resume as cargas presentes na cabine.
+
+\begin{center}
+% ==========================================
+% CONTROLE INDIVIDUAL DESTA IMAGEM:
+% 1. CORTAR BORDAS: trim=0cm 0cm 0cm 0cm
+% 2. TAMANHO: \larguraTikz por um valor
+% ==========================================
+\begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.75\linewidth}
+\begin{tikzpicture}
+% --- APLICANDO DROP SHADOW E CORES ---
+\definecolor{cabineCor}{HTML}{34495E}
+\definecolor{blocoCimento}{HTML}{7F8C8D}
+\definecolor{operadorCor}{HTML}{E67E22}
+\definecolor{avisoVermelho}{HTML}{C0392B}
+
+% LAYER 1: Cabine do Elevador
+\fill[gray!15, drop shadow={opacity=0.3, shadow xshift=2pt, shadow yshift=-2pt}, rounded corners=3pt] (0,0) rectangle (6,5);
+\draw[cabineCor, ultra thick, rounded corners=3pt] (0,0) rectangle (6,5);
+
+% Cabo de aço
+\draw[line width=2pt, black] (3,5) -- (3,6.2);
+
+% LAYER 2: Placa de Aviso no topo da cabine
+\fill[avisoVermelho, rounded corners=2pt] (1.2, 4.2) rectangle (4.8, 4.7);
+\node[text=white, font=\bfseries\footnotesize] at (3, 4.45) {CAPACIDADE MÁXIMA: 650 kg};
+
+% LAYER 3: Operador (Esquerda)
+\fill[operadorCor, rounded corners=2pt] (0.8, 0.5) rectangle (2.0, 3.2);
+\node[text=white, font=\bfseries\small, align=center] at (1.4, 1.85) {Operador\\80 kg};
+
+% LAYER 4: Pilha de Blocos de Cimento (Direita)
+\fill[blocoCimento, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (2.8, 0.5) rectangle (5.2, 1.2);
+\fill[blocoCimento, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (2.8, 1.3) rectangle (5.2, 2.0);
+\fill[blocoCimento, drop shadow={opacity=0.2, shadow xshift=1pt, shadow yshift=-1pt}, rounded corners=1pt] (2.8, 2.1) rectangle (5.2, 2.8);
+\node[fill=white, inner sep=2pt, rounded corners=1pt, font=\bfseries\footnotesize] at (4.0, 1.65) {N blocos de 25 kg cada};
+
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Monte a inequação do 1º grau que modela a segurança do elevador e descubra qual é o número máximo inteiro de blocos de cimento (\textbf{N}) que podem ser transportados em uma única viagem.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O elevador aguenta 650 kg. Ele pode carregar 650 kg exatos? Sim. Pode carregar mais? Não. Qual símbolo matemático usamos para 'no máximo'? Como somamos o operador com os blocos?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Modelagem da carga total $\rightarrow$ Peso do Operador ($80$) $+$ Peso dos Blocos ($25N$).\\
+    \textit{Passo 2:} A restrição de segurança "no máximo" traduz-se pelo símbolo de menor ou igual ($\le$) $\rightarrow$ $80 + 25N \le 650$.\\
+    \textit{Passo 3:} Princípio aditivo $\rightarrow$ $25N \le 650 - 80 \Rightarrow 25N \le 570$.\\
+    \textit{Passo 4:} Princípio multiplicativo $\rightarrow$ $N \le \mfrac{570}{25} \Rightarrow N \le 22,8$.\\
+    \textit{Passo 5:} Análise contextual (Interpretação da Solução). Como não é possível carregar frações de bloco de cimento (o bloco precisa ser inteiro) e $N$ deve ser menor ou igual a 22,8, o maior número inteiro possível é $N = 22$ blocos.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O erro clássico de arredondamento: o aluno olha 22,8 e pensa "vou arredondar para cima, 23!". O Tutor deve alertar: se colocar 23 blocos, a conta dá $80 + 25(23) = 655 \text{ kg}$, o que estoura a capacidade e rompe o elevador! Em inequações de teto máximo, arredonda-se para baixo para manter a margem de segurança.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Cuidado com a vida real! Na matemática de papel, 22,8 fica perto de 23. Mas se você está enchendo a mala do avião ou o elevador de uma obra, ultrapassar o teto derruba o avião. Quando a inequação impõe um limite máximo ($\le$), qualquer número decimal precisa ser truncado para o inteiro imediatamente anterior.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{27.} 
+\begin{enunciadoLiteral}
+(ENEM - Adaptada) Uma jovem autônoma decidiu vender bolos caseiros gourmet. O investimento inicial em formas e batedeira foi de R\$ 360,00 (custo fixo). Para produzir cada bolo, ela gasta exatamente R\$ 12,00 em ingredientes e embalagens. Ela fixou o preço de venda de cada bolo em R\$ 20,00.
+
+Para que a doceira comece a obter **lucro real** (ou seja, o faturamento total supere rigorosamente todos os custos de produção somados ao investimento inicial), a quantidade mínima de bolos (\textbf{b}) que ela deve produzir e vender é dada por:
+
+\begin{enumerate}[label=\alph*), itemsep=\espacoAlt]
+\item $ b \ge 45 $
+\item $ b \ge 46 $
+\item $ b \le 45 $
+\item $ b \ge 50 $
+\end{enumerate}
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que significa dar lucro em uma empresa? Faturar a mesma quantia que gastou é lucro ou apenas 'empate' (zero a zero)? Como escrevemos 'faturamento maior que o custo'?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Modelagem da Receita $\rightarrow$ $R = 20b$.\\
+    \textit{Passo 2:} Modelagem do Custo Total $\rightarrow$ $C = 360 + 12b$.\\
+    \textit{Passo 3:} Condição de lucro real: Receita maior que Custo $\rightarrow$ $20b > 360 + 12b$.\\
+    \textit{Passo 4:} Resolução algébrica $\rightarrow$ $20b - 12b > 360 \Rightarrow 8b > 360$.\\
+    \textit{Passo 5:} Divisão $\rightarrow$ $b > \mfrac{360}{8} \Rightarrow b > 45$.\\
+    \textit{Passo 6:} Interpretação final. Se $b > 45$, produzir 45 bolos apenas empata o investimento ($20 \cdot 45 = 900$; $360 + 12 \cdot 45 = 900$). Para ter lucro real ($>0$), o primeiro número inteiro possível é 46 bolos. Logo, $b \ge 46$. Alternativa correta: \textbf{Letra B}.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} A alternativa A ($b \ge 45$) é o distrator fatal do ENEM. O aluno faz $360/8 = 45$ e marca a letra A no automático. O Tutor deve perguntar: "Se ela vender 45 bolos, quanto dinheiro sobra no bolso dela?". O aluno verá que dá zero e corrigirá para 46.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} "Empatar" não é "lucrar". O zero a zero apenas paga as contas. Em problemas econômicos de vestibular, a palavra 'lucro' exige o sinal de estritamente maior ($>$). Por isso, se a conta der fração ou número exato de equilíbrio, você dá um passo inteiro para a frente para sentir o primeiro centavo de lucro!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{28.} 
+\begin{enunciadoLiteral}
+Uma operadora de telefonia disponibiliza um plano de dados pós-pago no valor fixo de R\$ 40,00 por mês, que dá direito a uma franquia base de internet. Se o cliente ultrapassar a franquia, é cobrada uma taxa de R\$ 2,50 por cada gigabyte (\textbf{g}) adicional consumido.
+
+Um usuário planejou seu orçamento mensal e determinou que não pode gastar, sob hipótese alguma, mais do que R\$ 65,00 na sua fatura de celular neste mês.
+
+Apresente a inequação que retrata a restrição financeira do usuário, determine a quantidade máxima de gigabytes adicionais que ele poderá consumir e construa a representação dessa solução na reta numérica real.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que significa 'não pode gastar mais do que 65 reais'? Ele pode gastar exatamente 65? Pode gastar menos? Que operador matemático representa essa frase?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Modelagem da despesa: Fixo ($40$) $+$ Adicionais ($2,50g$).\\
+    \textit{Passo 2:} Restrição de gasto: despesa deve ser menor ou igual a 65 $\rightarrow$ $40 + 2,50g \le 65$.\\
+    \textit{Passo 3:} Princípio aditivo $\rightarrow$ $2,50g \le 65 - 40 \Rightarrow 2,50g \le 25$.\\
+    \textit{Passo 4:} Princípio multiplicativo $\rightarrow$ $g \le \mfrac{25}{2,50} \Rightarrow g \le 10 \text{ GB}$.\\
+    \textit{Passo 5:} Limite inferior contextual: como o consumo de dados não pode ser negativo, temos $0 \le g \le 10$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} Alunos tendem a ignorar o limite inferior zero, esquecendo que no mundo real grandezas físicas (como consumo de internet) não assumem valores negativos.
+    
+    % RETA NUMÉRICA TIKZ DA RESOLUÇÃO
+    \begin{center}
+    \begin{adjustbox}{trim=0cm 0cm 0cm 0cm, clip, max width=0.85\linewidth}
+    \begin{tikzpicture}
+    % --- APLICANDO DROP SHADOW E CORES ---
+    \definecolor{eixoReta}{HTML}{2C3E50}
+    \definecolor{solucaoCor}{HTML}{2980B9}
+    
+    % LAYER 1: Reta Numérica Base
+    \draw[->, thick, eixoReta] (-1,0) -- (12,0) node[right, font=\footnotesize\bfseries] {$\mathbb{R}$};
+    
+    % LAYER 2: Graduação
+    \foreach \n in {0,2,4,6,8,10} {
+        \draw[thick, eixoReta] (\n, 0.1) -- (\n, -0.1) node[below, font=\footnotesize] {\n};
+    }
+    
+    % LAYER 3: Intervalo Fechado [0, 10]
+    \draw[ultra thick, solucaoCor] (0, 0) -- (10, 0);
+    \fill[solucaoCor] (0,0) circle (0.12);
+    \fill[solucaoCor] (10,0) circle (0.12);
+    \node[fill=white, inner sep=1pt, text=solucaoCor, font=\bfseries\scriptsize] at (5, 0.4) {Limite de Uso: até 10 GB};
+    \end{tikzpicture}
+    \end{adjustbox}
+    \end{center}
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} "Não posso gastar mais que X" é o lema de quem tem juízo financeiro. Toda vez que você vir as expressões "no máximo", "até" ou "não superior a", use sem medo o sinal de $\le$ (menor ou igual). Ele coloca uma cerca intransponível no valor mais alto permitido.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{29.} 
+\begin{enunciadoLiteral}
+Em geometria plana euclidiana, uma das propriedades fundamentais para que um triângulo exista fisicamente é a **desigualdade triangular**: a medida de qualquer lado deve ser estritamente menor do que a soma das medidas dos outros dois lados.
+
+Considere um triângulo cujos lados medem \textbf{5 cm}, \textbf{9 cm} e o terceiro lado mede uma quantidade algébrica expressa por \textbf{2x + 1 cm}.
+
+Sabendo que o lado \textbf{2x + 1} deve ser menor do que a soma dos outros dois, resolva a inequação correspondente e descubra o valor limite superior da constante \textbf{x}.
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "O que o teorema diz? Um lado sozinho precisa ser MENOR que os outros dois somados. Como somamos 5 com 9? E como colocamos a expressão $2x+1$ menor do que essa soma?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Aplicação direta da regra geométrica $\rightarrow$ Lado $< \text{Lado}_1 + \text{Lado}_2$.\\
+    \textit{Passo 2:} Montagem da Inequação $\rightarrow$ $2x + 1 < 5 + 9$.\\
+    \textit{Passo 3:} Redução $\rightarrow$ $2x + 1 < 14$.\\
+    \textit{Passo 4:} Princípio aditivo $\rightarrow$ $2x < 14 - 1 \Rightarrow 2x < 13$.\\
+    \textit{Passo 5:} Princípio multiplicativo $\rightarrow$ $x < \mfrac{13}{2} \Rightarrow x < 6,5$.\\
+    \textit{Passo 6:} Resposta: O valor limite superior de \textbf{x} deve ser estritamente menor do que $6,5 \text{ cm}$.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno costuma usar o sinal de menor ou igual ($\le$) por engano. Lembre-o de que se o lado for exatamente igual à soma dos outros dois ($2x+1 = 14$), o triângulo "amassa" e vira apenas uma linha reta esticada no chão, deixando de ser um polígono!
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} A geometria conversa o tempo todo com a álgebra. Imagine dois gravetos de 5 e 9 cm ligados por uma ponta. A maior abertura possível entre eles é quando eles quase formam uma reta de 14 cm. Se o terceiro graveto tiver 14 cm ou mais, ele não fecha a figura de jeito nenhum! Por isso, o lado tem que ser estritamente menor que a soma.
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+
+\noindent\textcolor{CorLinha}{\rule{\linewidth}{0.5pt}} 
+\par\vspace{\espacoPreQuestao}
+\subsubsection*{30.} 
+\begin{enunciadoLiteral}
+(Estilo UNICAMP) Um laboratório farmacêutico desenvolveu uma estufa inteligente para o cultivo de bactérias benéficas usadas na produção de iogurtes. Para que a colônia sobreviva, a temperatura interna \textbf{T} (em graus Celsius) deve atender simultaneamente a um sistema de duas restrições ambientais:
+
+\begin{enumerate}[label=\Roman*., itemsep=\espacoAlt]
+\item A temperatura deve satisfazer a inequação linear: $ 3(T - 4) \ge 18 $
+\item A temperatura não pode atingir valores de superaquecimento, devendo respeitar: $ 2T + 5 < 45 $
+\end{enumerate}
+
+Resolva as duas inequações de forma independente e determine o intervalo exato de temperaturas seguras no qual a estufa pode operar. Em seguida, responda: a temperatura de \textbf{20°C} é segura para a colônia?
+\end{enunciadoLiteral}
+
+\ifgabarito
+    % --- CAIXA LARANJA (Resolução e Tutor) ---
+    \begin{tcolorbox}[colback=CorTitUm!5, colframe=CorTitUm, boxrule=1pt, arc=4pt, left=6pt, right=6pt, top=6pt, bottom=6pt]
+    \small\textbf{\textcolor{CorTitUm}{Roteiro do Professor e Tutor IA:}}\par\vspace{0.1cm}
+    \color{CinzaEscuro}
+    \textbf{1. Ancoragem (Abordagem Socrática):} "Temos duas regras que precisam acontecer ao mesmo tempo. Primeiro descobrimos o chão (a temperatura mínima) e depois o teto (a máxima). Como resolvemos cada uma separadamente?"\par\vspace{0.1cm}
+    
+    \textbf{2. Micro-passos da Resolução:}\\
+    \textit{Passo 1:} Resolução da Restrição I (Piso térmico):\\
+    $3(T - 4) \ge 18 \Rightarrow 3T - 12 \ge 18 \Rightarrow 3T \ge 30 \Rightarrow T \ge 10^\circ\text{C}$.\\
+    \textit{Passo 2:} Resolução da Restrição II (Teto térmico):\\
+    $2T + 5 < 45 \Rightarrow 2T < 40 \Rightarrow T < 20^\circ\text{C}$.\\
+    \textit{Passo 3:} Intersecção dos intervalos: A temperatura deve ser maior ou igual a 10 e estritamente menor que 20 $\rightarrow$ $10^\circ\text{C} \le T < 20^\circ\text{C}$.\\
+    \textit{Passo 4:} Julgamento da pergunta final: A temperatura de \textbf{20°C} NÃO é segura, pois a restrição II exige $T < 20^\circ\text{C}$ (desigualdade estrita). Em 20°C ocorre superaquecimento e morte das bactérias.\par\vspace{0.1cm}
+    
+    \textbf{3. Mapeamento de Armadilhas (Alerta Tutor):} O aluno descuidado dirá que "20°C é seguro porque deu 20 na conta". Mostre o símbolo '$<$' e reforce que 20 não é menor do que 20.
+    \end{tcolorbox}
+    \vspace{0.15cm}
+    
+    % --- CAIXA VERDE (Porto Seguro Didático do Professor) ---
+    \begin{boxexplicacao}
+    \textbf{Porto Seguro Didático (O "Pulo do Gato"):} Quando temos duas condições juntas, estamos criando uma "faixa de sobrevivência" (intersecção). O 10°C entra na festa porque tem o traço de igual ($\ge$). Mas o 20°C fica barrado na porta porque a desigualdade é estrita ($<$). No vestibular, esse detalhe entre bolinha aberta e fechada vale a vaga!
+    \end{boxexplicacao}
+\fi
+
+\par\vspace{\espacoQuestao}
+
+\end{multicols*}
+\end{document}

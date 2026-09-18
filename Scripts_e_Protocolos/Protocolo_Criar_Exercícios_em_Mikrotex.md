@@ -533,7 +533,6 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 \vspace*{-1.7cm}
 
 % --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
-% --- CABEÇALHO PRINCIPAL ESTILO CADERNO (Apenas 1ª página) ---
 \noindent
 \begin{minipage}[t]{0.12\linewidth}
     \vspace{8pt}
@@ -599,25 +598,39 @@ Frações e Fórmulas: É OBRIGATÓRIO usar o comando \mfrac{...}{...} para toda
 
 # FASE 6: CHECKPOINT DE FINALIZAÇÃO, METADADOS DO PORTAL E GIT SEGURO
 
-Após concluir o código LaTeX, a tabela de auditoria matemática e fechar o ambiente `\end{document}`, você NÃO deve gerar o arquivo JSON imediatamente. Sua resposta deve ser interrompida com um pedido de confirmação ao usuário.
+Esta fase possui DOIS TURNOS estritos. É ESTRITAMENTE PROIBIDO gerar o arquivo JSON no mesmo turno em que finalizar o LaTeX. A curadoria de vídeos exige análise prévia e busca real.
 
-### 1. Mensagem de Checkpoint Obrigatória
-Finalize a sua resposta imprimindo exatamente a seguinte estrutura:
+### TURNO 1: Mensagem de Checkpoint e Análise Curricular OBRIGATÓRIA
+Imediatamente após concluir a Etapa Beta da Auditoria e fechar o `\end{document}`, finalize sua resposta OBRIGATORIAMENTE com a estrutura abaixo e PARE A GERAÇÃO:
 
-> **Material LaTeX auditado e concluído com sucesso.**
-> Deseja gerar o arquivo de metadados para o Portal Pedagógico? 
-> Por favor, confirme o modo da lista:
-> - **[1] Silo 1 (Autoral):** Gera `info_AUT.json` com trilhas de vídeos reais (Busca Web obrigatória).
+> **✅ Material LaTeX auditado e concluído com sucesso.**
+> 
+> **🧠 Mapeamento Curricular (Pré-JSON):**
+> Analisei a lista recém-criada e mapeei os seguintes gargalos cognitivos (Subtemas) que exigirão suporte em vídeo no Portal:
+> 1. [Nome exato do Subtema 1. Ex: Fatoração por Agrupamento]
+> 2. [Nome exato do Subtema 2. Ex: Diferença de Quadrados]
+> 3. [Nome exato do Subtema 3, se houver]
+> 
+> Por favor, confirme o modo para eu estruturar as Trilhas de Aprendizagem e gerar o JSON final:
+> - **[1] Silo 1 (Autoral):** Gera `info_AUT.json` com trilhas de vídeos (2 professores diferentes por tema).
 > - **[2] Silo 2 (Escola):** Gera `info_ESC.json` sem vídeos.
+
+*(TRAVA DE PARADA: Você DEVE parar de escrever aqui. Aguarde a confirmação do usuário).*
 
 ---
 
-### 2. Ação após a Confirmação do Usuário
-Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado seguindo o padrão correspondente com o cabeçalho estrutural no topo:
+### TURNO 2: Busca Real no YouTube e Geração do JSON (Após resposta)
+
+Se o usuário escolher [1], você DEVE aplicar a **Regra da Pluralidade Didática**:
+Para CADA subtema mapeado no Turno 1, você entregará EXATAMENTE 2 vídeos de **CANAIS/PROFESSORES DIFERENTES** (Ex: um da *Gis com Giz* e outro do *Professor Ferretto*). 
+
+**(TRAVA DE INTEGRAÇÃO YOUTUBE - OBRIGATÓRIA):** Como você possui acesso nativo à internet, você é OBRIGADO a realizar uma busca real na sua base do YouTube por aulas desses subtemas nos canais de educação brasileiros mais conceituados ANTES de escrever o JSON. 
+1. Extraia o ID exato do vídeo real. É ESTRITAMENTE PROIBIDO inventar/alucinar códigos de 11 caracteres.
+2. Formate obrigatoriamente a URL final como: `https://www.youtube.com/embed/ID_REAL`.
+
+Gere o bloco JSON isolado seguindo esta arquitetura:
 
 #### Se Silo 1 (Autoral) -> Salvar como `info_AUT.json` na raiz da unidade:
-*(TRAVA DE BUSCA WEB: Antes de gerar este JSON, você é ESTRITAMENTE OBRIGADO a acionar a sua ferramenta de busca na internet para encontrar os links reais do YouTube. É proibido usar desculpas de falta de acesso à web. Pesquise por canais como "Gis com Giz", "Professor Ferretto", "Equaciona", "Professor Boaro", etc).*
-
 ```json
 {
   "disciplina": "Fisica / Matematica_Algebra / Matematica_Geometria",
@@ -629,24 +642,19 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
   "desc": "Resumo de 1 a 2 linhas dos tópicos e habilidades cobradas.",
   "trilhas_de_aprendizagem": [
     {
-      "subtema": "[Nome exato do Subtema 1 cobrado nas questões. Ex: Fatoração por Agrupamento]",
+      "subtema": "[Subtema 1 Mapeado no Turno 1]",
       "videos": [
         {
-          "chamada": "Travou na hora de colocar os termos em evidência? Assista a este passo a passo:",
-          "titulo": "Título Real do Vídeo",
-          "autor": "Nome do Canal",
-          "url": "[https://www.youtube.com/embed/ID_REAL_VALIDADO](https://www.youtube.com/embed/ID_REAL_VALIDADO)"
-        }
-      ]
-    },
-    {
-      "subtema": "[Nome exato do Subtema 2. Ex: Produtos Notáveis - Quadrado da Soma]",
-      "videos": [
+          "chamada": "Didática 1: Passo a passo visual e detalhado.",
+          "titulo": "Título Exato do Vídeo Encontrado",
+          "autor": "Nome do Canal A (Ex: Gis com Giz)",
+          "url": "[https://www.youtube.com/embed/ID_REAL](https://www.youtube.com/embed/ID_REAL)"
+        },
         {
-          "chamada": "Esqueceu a regra do 'quadrado do primeiro mais duas vezes...'? Revise aqui:",
-          "titulo": "Título Real do Vídeo",
-          "autor": "Nome do Canal",
-          "url": "[https://www.youtube.com/embed/ID_REAL_VALIDADO](https://www.youtube.com/embed/ID_REAL_VALIDADO)"
+          "chamada": "Didática 2: Explicação direta com foco em macetes e resolução rápida.",
+          "titulo": "Título Exato do Vídeo Encontrado",
+          "autor": "Nome do Canal B (Ex: Prof. Paulo Pereira)",
+          "url": "[https://www.youtube.com/embed/ID_REAL](https://www.youtube.com/embed/ID_REAL)"
         }
       ]
     }
@@ -655,14 +663,7 @@ Somente após o usuário confirmar o modo, gere um bloco de código JSON isolado
 
 ```
 
-#### Regras Rigorosas para o JSON do Silo 1 (Autoral):
-
-1. **Mapeamento de Necessidade:** Você DEVE analisar as questões da Fase 1 e Fase 2 que você acabou de gerar. Identifique de 2 a 4 subtemas centrais onde os alunos costumam travar. Crie um bloco `"subtema"` para cada um deles.
-2. **Quantidade de Vídeos:** Cada subtema deve conter de 1 a 2 vídeos focados. Se a lista aborda 3 subtemas, o JSON final terá entre 3 e 6 vídeos agrupados organizadamente.
-3. **URL de Incorporação:** O link DEVE ser OBRIGATORIAMENTE no formato de embed (`https://www.youtube.com/embed/ID`). Pegue o ID real da url `watch?v=ID` e transforme.
-4. **Chamada Didática:** O campo `"chamada"` não pode ser genérico. Ele deve falar diretamente com a "dor" do aluno baseada no exercício (ex: *"Se você confundiu o sinal do delta na questão 5, veja este vídeo"*).
-
-#### Se Silo 2 (Escola) -> Salvar como info_ESC.json na raiz da unidade:
+#### Se Silo 2 (Escola) -> Salvar como `info_ESC.json` na raiz da unidade:
 
 ```json
 {
@@ -688,4 +689,7 @@ git add [Caminho_Mapeado_No_Passo_1]/
 git commit -m "feat([modulo]-[serie]): adiciona caderno de [tema] ([unidade])" -m "Inclui arquivos .tex (base e cascas), PDFs compilados em /publica e /restrita com N questoes e metadados info_...json."
 
 ```
---- FIM DO PROTOCOLO MESTRE ---
+
+```
+
+```
