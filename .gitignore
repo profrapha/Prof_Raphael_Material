@@ -12,6 +12,11 @@
 *.bbl
 *.blg
 
+# Cache do script Python (Imagens TikZ)
+*.hash
+imagens_tikz/*.tex
+imagens_tikz/*.pdf
+
 # Arquivos do sistema operacional e do VS Code
 .vscode/
 Thumbs.db

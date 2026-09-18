@@ -2777,11 +2777,13 @@
             await carregarBancoDadosSQLite();
         }
 
-        // CARREGA O BANCO DE DADOS .DB (SQLITE) PARA A MEMÓRIA DO NAVEGADOR
+       // CARREGA O BANCO DE DADOS .DB (SQLITE) PARA A MEMÓRIA DO NAVEGADOR
         async function carregarBancoDadosSQLite() {
             try {
                 const sqlPromise = initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
-                const dataPromise = fetch("questoes.db").then(res => res.arrayBuffer());
+                
+                // A MÁGICA AQUI: O "?v=" + Date.now() força o download do banco novo ignorando o cache
+                const dataPromise = fetch("questoes.db?v=" + Date.now()).then(res => res.arrayBuffer());
                 
                 const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
                 tutorState.bancoQuestoes = new SQL.Database(new Uint8Array(buf));
