@@ -1413,31 +1413,35 @@
         function limparLaTeXParaWeb(texto) {
             if (!texto) return "";
             
-            // 1. ARRANCANDO A "SUJEIRA" DO LATEX
-            // Remove apenas os blocos de ambiente de página, mantendo a matemática a salvo
-            let limpo = texto.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
-            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}/g, '');
-            limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
+            let limpo = texto;
 
-            // 2. ESCUDO PROTETOR DE MATEMÁTICA
-            // Removemos temporariamente as fórmulas para o HTML não quebrar o KaTeX
+            // 1. ESCUDO PROTETOR DE MATEMÁTICA (Protege a matemática antes de mexer no texto)
             let mathBlocks = [];
             limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
-                // Corrige o \mfrac para \dfrac apenas dentro da matemática (para web)
+                // Traduz \mfrac para \dfrac pro KaTeX entender
                 let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
                 mathBlocks.push(fixedMath);
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
             
-            // 3. FORMATAÇÕES DE ESTILO (Agora só afeta o texto normal)
+            // 2. TRADUÇÃO DE AMBIENTES VISUAIS (Transforma boxresponda numa div estilizada igual ao PDF)
+            limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
+            limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
+
+            // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
+            limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
+            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}/g, '');
+            limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
+            
+            // 4. FORMATAÇÕES DE ESTILO TEXTUAL
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
-            // 4. QUEBRAS DE LINHA REAIS PARA A WEB
+            // 5. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
-            // 5. DEVOLVER A MATEMÁTICA INTACTA
+            // 6. DEVOLVER A MATEMÁTICA INTACTA PARA A TELA
             mathBlocks.forEach((block, index) => {
                 limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
             });
@@ -1505,137 +1509,156 @@
         }
 
         // --- INICIAR PLANTÃO ---
-        async function iniciarSessaoTutor() {
+        // --- PREPARAR TELA DIVIDIDA (NÃO GASTA TOKENS) ---
+        async function prepararSessaoTutor() {
+            const selAluno = document.getElementById("selectNomeAlunoTutor");
+            const selCapitulo = document.getElementById("selectCapituloTutor");
+            const selQuestao = document.getElementById("selectQuestaoTutor");
+            
+            if (!selAluno || !selAluno.value.trim()) {
+                alert("Por favor, informe seu nome ou RA.");
+                return;
+            }
+
+            const matAtual = obterMaterialAtual() || {};
+            const idxCap = parseInt(selCapitulo ? selCapitulo.value : 0) || 0;
+            const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
+
+            tutorState.aluno = selAluno.value.trim();
+            tutorState.turma = ""; 
+            tutorState.capituloNome = capObj.titulo || "Capítulo 1";
+            tutorState.capituloIndice = capObj.indice || 1;
+            tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
+            
+            const prefixo = matAtual.id_prefixo || "";
+            const capStr = String(tutorState.capituloIndice).padStart(2, '0');
+            const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
+            tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
+
+            const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
+            tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
+
+            fecharSetupTutor();
+            
+            // INJEÇÃO DA TELA ESQUERDA (QUESTÃO)
+            const paneTitulo = document.getElementById("paneQuestaoTitulo");
+            const paneConteudo = document.getElementById("paneQuestaoConteudo");
+            paneTitulo.innerText = `Questão ${tutorState.numeroQuestao}`;
+            paneConteudo.innerHTML = `<span style="color:var(--text-muted);">Consultando banco de dados...</span>`;
+            
+            const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
+            
+            if (questaoDoBanco) {
+                let p1 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte1);
+                let p2 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte2);
+                let htmlImagem = "";
+                
+                if (questaoDoBanco.imagem_tikz && questaoDoBanco.imagem_tikz.trim() !== "") {
+                    const caminhoCerto = questaoDoBanco.imagem_tikz.startsWith('/') ? questaoDoBanco.imagem_tikz : '/' + questaoDoBanco.imagem_tikz;
+                    htmlImagem = `
+                        <div style="display: flex; justify-content: center; width: 100%; margin: 1.25rem 0; padding: 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+                            <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                        </div>
+                    `;
+                } else if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
+                    htmlImagem = `
+                        <div style="display: flex; justify-content: center; margin: 1.5rem 0; overflow-x: auto;">
+                            <script type="text/tikz">
+                                ${questaoDoBanco.codigo_tikz}
+                            <\/script>
+                        </div>
+                    `;
+                }
+
+                let htmlCompleto = `
+                    <div style="margin-bottom: 1.5rem; line-height: 1.6;">
+                        ${p1}
+                        ${htmlImagem}
+                        ${p2 ? `<div style="margin-top: 1rem;">${p2}</div>` : ''}
+                    </div>
+                `;
+
+                paneConteudo.innerHTML = htmlCompleto;
+                renderizarKaTeX(paneConteudo);
+                if (!questaoDoBanco.imagem_tikz && typeof document.processTikzScripts !== "undefined") {
+                    document.processTikzScripts();
+                }
+            }
+
+            // INJEÇÃO DA TELA DIREITA (MODO DE ESPERA)
+            document.getElementById("materialViewBox").style.display = "none";
+            document.getElementById("splitScreenContainer").classList.add("open");
+
+            const input = document.getElementById("inputDuvidaTutor");
+            const btn = document.getElementById("btnEnviarTutor");
+            
+            // Trava o input até o chat ser iniciado
+            input.disabled = true;
+            input.placeholder = "Clique em Iniciar Chat para interagir...";
+            input.value = "";
+            btn.innerText = "Enviar";
+            btn.disabled = true;
+
+            const badge = document.getElementById("tutor-badge-contexto");
+            if (badge) {
+                badge.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.capituloNome})`;
+            }
+            
+            const btnFeedback = document.getElementById("btnAbrirFeedback");
+            if (btnFeedback) {
+                btnFeedback.style.display = "block";
+                if (sessionStorage.getItem(`feedback_${tutorState.sessionId}`)) {
+                    btnFeedback.innerText = "✅ Avaliado";
+                    btnFeedback.disabled = true;
+                    btnFeedback.style.opacity = "0.5";
+                    btnFeedback.style.cursor = "default";
+                } else {
+                    btnFeedback.innerText = "⭐ Avaliar";
+                    btnFeedback.disabled = false;
+                    btnFeedback.style.opacity = "1";
+                    btnFeedback.style.cursor = "pointer";
+                }
+                const checkedStar = document.querySelector('input[name="rate"]:checked');
+                if(checkedStar) checkedStar.checked = false;
+                const txtFeedback = document.getElementById("textoFeedback");
+                if(txtFeedback) txtFeedback.value = "";
+            }
+
+            // Mostra o botão para o aluno decidir se quer gastar API chamando a IA
+            const messagesArea = document.getElementById("tutorMessages");
+            if (messagesArea) {
+                messagesArea.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 1rem; color: var(--text-muted); text-align: center;">
+                        <div style="font-size: 3.5rem;">🤖</div>
+                        <p style="max-width: 85%; line-height: 1.5;">A questão está aberta ao lado. Leia com atenção e tente resolver.</p>
+                        <p style="max-width: 85%; line-height: 1.5; font-size: 0.85rem;">Se precisar de ajuda para destravar o raciocínio, chame o Tutor.</p>
+                        <button onclick="iniciarChatTutor()" style="background-color: var(--accent-violet); color: #fff; border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; font-size: 1rem; margin-top: 10px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3); transition: all 0.2s;">
+                            Iniciar Chat
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // --- INICIAR CHAT (AGORA SIM, CONECTA AO n8n) ---
+        async function iniciarChatTutor() {
+            const messagesArea = document.getElementById("tutorMessages");
+            
+            // Substitui o botão inicial pela mensagem de carregamento
+            messagesArea.innerHTML = `
+                <div class="msg-tutor" id="msg-tutor-abertura">
+                    Conectando ao Tutor Socrático...
+                </div>
+            `;
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            
+            const input = document.getElementById("inputDuvidaTutor");
+            const btn = document.getElementById("btnEnviarTutor");
+            
             try {
-                const selAluno = document.getElementById("selectNomeAlunoTutor");
-                const selCapitulo = document.getElementById("selectCapituloTutor");
-                const selQuestao = document.getElementById("selectQuestaoTutor");
-                
-                if (!selAluno || !selAluno.value.trim()) {
-                    alert("Por favor, informe seu nome ou RA.");
-                    return;
-                }
-
-                const matAtual = obterMaterialAtual() || {};
-                const idxCap = parseInt(selCapitulo ? selCapitulo.value : 0) || 0;
-                const capObj = (matAtual.estrutura && matAtual.estrutura[idxCap]) || {};
-
-                tutorState.aluno = selAluno.value.trim();
-                tutorState.turma = ""; // A turma foi desativada no HTML pelo LGPD
-                tutorState.capituloNome = capObj.titulo || "Capítulo 1";
-                tutorState.capituloIndice = capObj.indice || 1;
-                tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
-                
-                const prefixo = matAtual.id_prefixo || "";
-                const capStr = String(tutorState.capituloIndice).padStart(2, '0');
-                const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
-                tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
-
-                const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
-                tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
-
-                fecharSetupTutor();
-                
-                // INJEÇÃO DA TELA ESQUERDA
-                const paneTitulo = document.getElementById("paneQuestaoTitulo");
-                const paneConteudo = document.getElementById("paneQuestaoConteudo");
-                paneTitulo.innerText = `Questão ${tutorState.numeroQuestao}`;
-                paneConteudo.innerHTML = `<span style="color:var(--text-muted);">Consultando banco de dados...</span>`;
-                
-                const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
-                
-               if (questaoDoBanco) {
-                    // Limpamos cada parte separadamente
-                    let p1 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte1);
-                    let p2 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte2);
-                    let htmlImagem = "";
-                    
-                    if (questaoDoBanco.imagem_tikz && questaoDoBanco.imagem_tikz.trim() !== "") {
-                        const caminhoCerto = questaoDoBanco.imagem_tikz.startsWith('/') ? questaoDoBanco.imagem_tikz : '/' + questaoDoBanco.imagem_tikz;
-                        htmlImagem = `
-                            <div style="display: flex; justify-content: center; width: 100%; margin: 1.25rem 0; padding: 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
-                                <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
-                            </div>
-                        `;
-                    } 
-                    else if (questaoDoBanco.codigo_tikz && questaoDoBanco.codigo_tikz.trim().length > 0) {
-                        htmlImagem = `
-                            <div style="display: flex; justify-content: center; margin: 1.5rem 0; overflow-x: auto;">
-                                <script type="text/tikz">
-                                    ${questaoDoBanco.codigo_tikz}
-                                <\/script>
-                            </div>
-                        `;
-                    }
-
-                    // A Montagem do Sanduíche!
-                    let htmlCompleto = `
-                        <div style="margin-bottom: 1.5rem; line-height: 1.6;">
-                            ${p1}
-                            ${htmlImagem}
-                            ${p2 ? `<div style="margin-top: 1rem;">${p2}</div>` : ''}
-                        </div>
-                    `;
-
-                    paneConteudo.innerHTML = htmlCompleto;
-                    renderizarKaTeX(paneConteudo);
-                    if (!questaoDoBanco.imagem_tikz && typeof document.processTikzScripts !== "undefined") {
-                        document.processTikzScripts();
-                    }
-                }
-
-                // INJEÇÃO DA TELA DIREITA (CHAT)
-                document.getElementById("materialViewBox").style.display = "none";
-                document.getElementById("splitScreenContainer").classList.add("open");
-
-                const input = document.getElementById("inputDuvidaTutor");
-                const btn = document.getElementById("btnEnviarTutor");
-                input.disabled = false;
-                input.placeholder = "Digite sua dúvida ou cálculo...";
-                input.value = "";
-                btn.innerText = "Enviar";
-                btn.disabled = false;
-                btn.onclick = enviarMensagemTutor;
-
-                const badge = document.getElementById("tutor-badge-contexto");
-                if (badge) {
-                    badge.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.capituloNome})`;
-                }
-                
-                // Configura o botão de feedback garantindo 1 por sessão
-                const btnFeedback = document.getElementById("btnAbrirFeedback");
-                if (btnFeedback) {
-                    btnFeedback.style.display = "block";
-                    if (sessionStorage.getItem(`feedback_${tutorState.sessionId}`)) {
-                        btnFeedback.innerText = "✅ Avaliado";
-                        btnFeedback.disabled = true;
-                        btnFeedback.style.opacity = "0.5";
-                        btnFeedback.style.cursor = "default";
-                    } else {
-                        btnFeedback.innerText = "⭐ Avaliar";
-                        btnFeedback.disabled = false;
-                        btnFeedback.style.opacity = "1";
-                        btnFeedback.style.cursor = "pointer";
-                    }
-                    // Zera o modal sempre que abrir uma questão nova
-                    const checkedStar = document.querySelector('input[name="rate"]:checked');
-                    if(checkedStar) checkedStar.checked = false;
-                    const txtFeedback = document.getElementById("textoFeedback");
-                    if(txtFeedback) txtFeedback.value = "";
-                }
-
-                const messagesArea = document.getElementById("tutorMessages");
-                if (messagesArea) {
-                    messagesArea.innerHTML = `
-                        <div class="msg-tutor" id="msg-tutor-abertura">
-    Olá, <strong>${tutorState.aluno.split(' ')[0]}</strong>! Estou analisando a Questão ${tutorState.numeroQuestao}...
-                        </div>
-                    `;
-                    messagesArea.scrollTop = messagesArea.scrollHeight;
-                }
-
                 const res = await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-virtual-chat", {
                     method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         ambiente: tutorState.ambiente,
                         id_questao: tutorState.id_questao,
@@ -1651,9 +1674,20 @@
                 if (data && data.output && msgAbertura) {
                     msgAbertura.innerHTML = tratarTextoIA(data.output);
                     renderizarKaTeX(msgAbertura);
+                    
+                    // Libera o input para o aluno começar a digitar
+                    input.disabled = false;
+                    input.placeholder = "Digite sua dúvida ou cálculo...";
+                    btn.disabled = false;
+                    input.focus();
                 }
             } catch (err) {
-                console.error("Falha ao iniciar plantão:", err);
+                console.error("Falha ao iniciar chat:", err);
+                const msgAbertura = document.getElementById("msg-tutor-abertura");
+                if (msgAbertura) {
+                    msgAbertura.innerHTML = "Erro de conexão com o servidor. Tente novamente mais tarde.";
+                    msgAbertura.style.borderLeftColor = "#ef4444";
+                }
             }
         }
 
