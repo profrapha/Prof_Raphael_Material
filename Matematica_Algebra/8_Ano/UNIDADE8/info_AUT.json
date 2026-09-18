@@ -3,6 +3,7 @@
   "ano": "8_Ano",
   "unidade": "UNIDADE8",
   "tipo": "Autoral",
+  "ativa": false,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Produtos Notáveis e Fatoração Algébrica",
   "desc": "Lista focada no desenvolvimento e simplificação de expressões algébricas, abordando fatoração por evidência, agrupamento, trinômio quadrado perfeito e diferença de quadrados com aplicações geométricas.",

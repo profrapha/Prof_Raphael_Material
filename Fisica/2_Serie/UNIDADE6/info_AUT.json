@@ -3,6 +3,7 @@
   "ano": "2_Serie",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Refração e Lentes",
   "desc": "Refração luminosa, Lei de Snell, ângulo limite, reflexão total e equação de Gauss.",

@@ -3,6 +3,7 @@
   "ano": "6_Ano",
   "unidade": "UNIDADE7",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Introdução à Álgebra",
   "desc": "Fundamentos de expressões algébricas, tradução de problemas da linguagem natural para matemática, e introdução às equações do 1º grau (princípio da equivalência).",

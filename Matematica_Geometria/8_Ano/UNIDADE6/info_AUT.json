@@ -3,6 +3,7 @@
   "ano": "8_Ano",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Áreas Planas e Decomposição",
   "desc": "Cálculo de áreas por métodos de composição e decomposição.",

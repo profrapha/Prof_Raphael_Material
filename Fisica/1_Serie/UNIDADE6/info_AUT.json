@@ -3,6 +3,7 @@
   "ano": "1_Serie",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Aplicações da Dinâmica",
   "desc": "Forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.",

@@ -3,6 +3,7 @@
   "ano": "2_Serie",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Polinômios e Operações",
   "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
