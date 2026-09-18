@@ -3205,15 +3205,21 @@
         function limparLaTeXParaWeb(texto) {
             if (!texto) return "";
             
-            let limpo = texto.replace(/\\begin\{center\}[\s\S]*?\\end\{center\}/g, '');
-            limpo = limpo.replace(/\\begin\{adjustbox\}[\s\S]*?\\end\{adjustbox\}/g, '');
-            limpo = limpo.replace(/\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}/g, '');
+            // 1. ARRANCANDO A "SUJEIRA" DO LATEX
+            // Como fatiamos o texto no Python, os comandos de ambiente sobraram nas pontas.
+            // Esta Regex varre e destrói QUALQUER \begin{...} e \end{...} e seus parâmetros [..] ou {..} que sobraram soltos.
+            let limpo = texto.replace(/\\begin\{[a-zA-Z]+\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
+            limpo = limpo.replace(/\\end\{[a-zA-Z]+\}/g, '');
+            
+            // 2. Limpa o comando \includegraphics isolado que possa ter sobrado
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
+            // 3. Formatações de estilo de texto
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
+            // 4. Quebras de linha reais para a web
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
             return limpo.trim();
@@ -3327,8 +3333,8 @@
                     if (questaoDoBanco.imagem_tikz && questaoDoBanco.imagem_tikz.trim() !== "") {
                         const caminhoCerto = questaoDoBanco.imagem_tikz.startsWith('/') ? questaoDoBanco.imagem_tikz : '/' + questaoDoBanco.imagem_tikz;
                         htmlImagem = `
-                            <div style="display: flex; justify-content: center; width: 100%; margin: 1.5rem 0; padding: 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
-                                <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; max-height: 350px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+                            <div style="display: flex; justify-content: center; width: 100%; margin: 1.25rem 0; padding: 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+                                <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
                             </div>
                         `;
                     } 
