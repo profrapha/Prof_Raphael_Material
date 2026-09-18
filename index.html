@@ -1878,7 +1878,14 @@
                 const historico = coletarHistoricoChat();
                 if (historico.length > 150) { 
                     const payloadObj = montarPayloadFeedback(0, "Sessão encerrada (Aba fechada pelo usuário).", historico);
-                    navigator.sendBeacon("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", JSON.stringify(payloadObj));
+                    
+                    // Abordagem moderna e segura usando fetch + keepalive
+                    fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payloadObj),
+                        keepalive: true // Obriga o navegador a despachar o pacote antes de "morrer"
+                    }).catch(() => {});
                 }
             }
         });
