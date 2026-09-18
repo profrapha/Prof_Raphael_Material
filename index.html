@@ -968,8 +968,7 @@
             <textarea id="textoFeedback" rows="3" placeholder="(Opcional) Relate algum problema, erro de cálculo da IA ou deixe um elogio..." style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-card); background-color: var(--bg-primary); color: var(--text-main); font-size: 0.9rem; margin-bottom: 1rem; outline: none; resize: none;"></textarea>
 
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="pularAvaliacaoEFechar()">Pular e Sair</button>
-                <button class="btn-confirm" id="btnConfirmarFeedback" style="background-color: var(--accent-amber); color: #0b0f19;" onclick="enviarFeedback()">Enviar e Sair</button>
+                <button class="btn-confirm" id="btnConfirmarFeedback" style="background-color: var(--accent-amber); color: #0b0f19; width: 100%;" onclick="enviarFeedback()">Avaliar e Encerrar Sessão</button>
             </div>
         </div>
     </div>
@@ -1578,6 +1577,7 @@
             tutorState.aluno = selAluno.value.trim();
             tutorState.turma = ""; 
             tutorState.capituloNome = capObj.titulo || "Capítulo 1";
+            // ... (início da função continua igual)
             tutorState.capituloIndice = capObj.indice || 1;
             tutorState.numeroQuestao = parseInt(selQuestao ? selQuestao.value : 1) || 1;
             
@@ -1585,13 +1585,16 @@
             const capStr = String(tutorState.capituloIndice).padStart(2, '0');
             const qStr = String(tutorState.numeroQuestao).padStart(2, '0');
             
-            // Aqui a gente define o ID_QUESTAO e grava no estado
+            // 1. O IDENTIFICADOR DA QUESTÃO (Fixo, igual no banco de dados)
             tutorState.id_questao = `${prefixo}__C${capStr}__Q${qStr}`;
 
+            // 2. O IDENTIFICADOR ÚNICO DA SESSÃO (Adicionado um Timestamp)
             const nomeClean = tutorState.aluno.toLowerCase().replace(/\s+/g, '_');
-            tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}`;
+            const timestampUnico = Date.now(); // Gera os milissegundos atuais
+            tutorState.sessionId = `${tutorState.ambiente}_${tutorState.id_questao}_${nomeClean}_${timestampUnico}`;
 
             fecharSetupTutor();
+// ... (resto da função continua igual)
             
             // INJEÇÃO DA TELA ESQUERDA (QUESTÃO)
             const paneTitulo = document.getElementById("paneQuestaoTitulo");
@@ -1820,9 +1823,9 @@
 
         function montarPayloadFeedback(estrelas, textoFeedback, historico) {
             return {
-                session_id: tutorState.sessionId,
+                session_id: tutorState.sessionId,  // Agora será único por uso
                 aluno: tutorState.aluno,
-                id_questao: tutorState.id_questao, // <== AQUI ESTÁ A CORREÇÃO!
+                id_questao: tutorState.id_questao, // Agora vai separado e correto
                 materia: nav.materia,
                 frente: nav.frente || "Única",
                 ano: nav.ano,
@@ -1833,20 +1836,6 @@
                 feedback_texto: textoFeedback,
                 historico_chat: historico
             };
-        }
-
-        async function pularAvaliacaoEFechar() {
-            document.getElementById("modalFeedback").classList.remove("open");
-            const payload = montarPayloadFeedback(0, "Usuário pulou a avaliação.", coletarHistoricoChat());
-
-            fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            }).catch(() => {});
-
-            sessionStorage.setItem(`feedback_${tutorState.sessionId}`, "pulou");
-            fecharSplitScreen();
         }
 
         async function enviarFeedback() {
