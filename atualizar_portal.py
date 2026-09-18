@@ -436,6 +436,7 @@ def construir_catalogo(cur_banco):
             anos_dict[ano_pasta]["unidades"][id_unidade_formatada] = {
                 "titulo": titulo_unidade,
                 "desc": desc_unidade,
+                "ativa": d.get("ativa", True), # <--- Adicione apenas esta linha
                 "materiais": materiais
             }
 
