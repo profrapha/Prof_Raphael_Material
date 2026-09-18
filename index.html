@@ -1443,10 +1443,16 @@
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
             
-            // Transforma o enumerate e os itens em listas HTML limpas
-            limpo = limpo.replace(/\\begin\{enumerate\}(?:\[.*?\])?/g, '<div style="margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.5rem;">');
+            // Converte o enumerate do LaTeX em uma lista HTML estruturada e limpa
+            limpo = limpo.replace(/\\begin\{enumerate\}(?:\[.*?\])?/g, '<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem;">');
             limpo = limpo.replace(/\\end\{enumerate\}/g, '</div>');
-            limpo = limpo.replace(/\\item\s*/g, '• ');
+            
+            // Substitui o \item por blocos organizados, removendo quebras indesejadas logo após
+            limpo = limpo.replace(/\\item\s*/g, '</div><div style="display: flex; gap: 0.5rem;"><span style="color: var(--accent-blue); font-weight: 600;">•</span><span>');
+            // Fecha a tag aberta acima logo antes do próximo item ou fim da lista
+            limpo = limpo + '</span></div>';
+            // Limpa eventuais duplicações de tags geradas na conversão
+            limpo = limpo.replace(/<div style="margin: 1.0rem 0; display: flex; flex-direction: column; gap: 0\.75rem;">\<\/div>/g, '');
 
             // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
             limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
