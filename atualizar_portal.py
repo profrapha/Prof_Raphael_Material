@@ -253,7 +253,10 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
             t = re.sub(r'\\end\{center\}', '', t)
             t = re.sub(r'\\begin\{adjustbox\}(\[.*?\])?\{.*?\}', '', t, flags=re.DOTALL)
             t = re.sub(r'\\end\{adjustbox\}', '', t)
-            t = re.sub(r'%\s*=+\s*', '', t)
+            
+            # Remove QUALQUER comentário LaTeX (tudo que vem depois do % até o fim da linha)
+            t = re.sub(r'(?m)%.*$', '', t) 
+            
             return t.strip()
 
         # --- A MÁGICA DA DIVISÃO DO ENUNCIADO ---
