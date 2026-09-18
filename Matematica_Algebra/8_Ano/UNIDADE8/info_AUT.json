@@ -6,30 +6,50 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Produtos Notáveis e Fatoração Algébrica",
   "desc": "Lista focada no desenvolvimento e simplificação de expressões algébricas, abordando fatoração por evidência, agrupamento, trinômio quadrado perfeito e diferença de quadrados com aplicações geométricas.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida em Fator Comum?",
-      "titulo": "FATORAÇÃO: FATOR COMUM em EVIDÊNCIA",
-      "autor": "Gis com Giz",
-      "url": "https://www.youtube.com/embed/bHIP8Ei5PFA"
+      "subtema": "FATORAÇÃO: FATOR COMUM em EVIDÊNCIA",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Fator Comum?",
+          "titulo": "FATORAÇÃO: FATOR COMUM em EVIDÊNCIA",
+          "autor": "Gis com Giz",
+          "url": "https://www.youtube.com/embed/bHIP8Ei5PFA"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida no Quadrado da Soma ou da Diferença?",
-      "titulo": "PRODUTOS NOTÁVEIS: Principais Casos",
-      "autor": "Professor Ferretto",
-      "url": "https://www.youtube.com/embed/_3YQvVKbqn0"
+      "subtema": "PRODUTOS NOTÁVEIS: Principais Casos",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida no Quadrado da Soma ou da Diferença?",
+          "titulo": "PRODUTOS NOTÁVEIS: Principais Casos",
+          "autor": "Professor Ferretto",
+          "url": "https://www.youtube.com/embed/_3YQvVKbqn0"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida em Fatoração e Trinômios?",
-      "titulo": "FATORAÇÃO (C/ exemplos)",
-      "autor": "Equaciona Com Paulo Pereira",
-      "url": "https://www.youtube.com/embed/_I9_xvGU0xw"
+      "subtema": "FATORAÇÃO (C/ exemplos)",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Fatoração e Trinômios?",
+          "titulo": "FATORAÇÃO (C/ exemplos)",
+          "autor": "Equaciona Com Paulo Pereira",
+          "url": "https://www.youtube.com/embed/_I9_xvGU0xw"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida no Produto da Soma pela Diferença?",
-      "titulo": "Produtos Notáveis - Produto da Soma pela Diferença",
-      "autor": "Professora Angela Matemática",
-      "url": "https://www.youtube.com/embed/TGSrdY8qUV4"
+      "subtema": "Produtos Notáveis - Produto da Soma pela Diferença",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida no Produto da Soma pela Diferença?",
+          "titulo": "Produtos Notáveis - Produto da Soma pela Diferença",
+          "autor": "Professora Angela Matemática",
+          "url": "https://www.youtube.com/embed/TGSrdY8qUV4"
+        }
+      ]
     }
   ]
 }

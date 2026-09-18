@@ -6,12 +6,17 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Inequações",
   "desc": "Inequações do 1º e 2º grau, resolução de sistemas, produto e quociente.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida em Inequações de 1° e 2° Graus?",
-      "titulo": "INEQUAÇÕES de 1° e 2° GRAUS",
-      "autor": "Prof. Sérgio Mendes",
-      "url": "https://www.youtube.com/embed/6gmieH_OVZA"
+      "subtema": "INEQUAÇÕES de 1° e 2° GRAUS",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Inequações de 1° e 2° Graus?",
+          "titulo": "INEQUAÇÕES de 1° e 2° GRAUS",
+          "autor": "Prof. Sérgio Mendes",
+          "url": "https://www.youtube.com/embed/6gmieH_OVZA"
+        }
+      ]
     }
   ]
 }

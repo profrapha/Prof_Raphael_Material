@@ -6,42 +6,72 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Estrutura da Terra",
   "desc": "Estudo das camadas internas da Terra, atmosfera, rochas, minerais e fósseis.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida nas Camadas Internas da Terra?",
-      "titulo": "As Camadas Internas da Terra",
-      "autor": "Com Ciência",
-      "url": "https://www.youtube.com/embed/hSsCSz03Svo"
+      "subtema": "As Camadas Internas da Terra",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida nas Camadas Internas da Terra?",
+          "titulo": "As Camadas Internas da Terra",
+          "autor": "Com Ciência",
+          "url": "https://www.youtube.com/embed/hSsCSz03Svo"
+        }
+      ]
     },
     {
-      "duvida": "precisando relembrar as Camadas da Terra?",
-      "titulo": "Camadas da Terra",
-      "autor": "Brasil Escola",
-      "url": "https://www.youtube.com/embed/yM1Bn5wvFwc"
+      "subtema": "Camadas da Terra",
+      "videos": [
+        {
+          "chamada": "Você está precisando relembrar as Camadas da Terra?",
+          "titulo": "Camadas da Terra",
+          "autor": "Brasil Escola",
+          "url": "https://www.youtube.com/embed/yM1Bn5wvFwc"
+        }
+      ]
     },
     {
-      "duvida": "com dificuldade em entender as 5 camadas da atmosfera terrestre?",
-      "titulo": "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!",
-      "autor": "Geo Ilustrada",
-      "url": "https://www.youtube.com/embed/435_RueBRkY"
+      "subtema": "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!",
+      "videos": [
+        {
+          "chamada": "Você está com dificuldade em entender as 5 camadas da atmosfera terrestre?",
+          "titulo": "As 5 camadas da atmosfera terrestre - Entenda e Decore fácil!",
+          "autor": "Geo Ilustrada",
+          "url": "https://www.youtube.com/embed/435_RueBRkY"
+        }
+      ]
     },
     {
-      "duvida": "querendo ver os Tipos de rochas para o 6º ano?",
-      "titulo": "Tipos de rochas – Ciências – 6º ano",
-      "autor": "Canal Futura",
-      "url": "https://www.youtube.com/embed/zq54OCjKRN4"
+      "subtema": "Tipos de rochas – Ciências – 6º ano",
+      "videos": [
+        {
+          "chamada": "Você está querendo ver os Tipos de rochas para o 6º ano?",
+          "titulo": "Tipos de rochas – Ciências – 6º ano",
+          "autor": "Canal Futura",
+          "url": "https://www.youtube.com/embed/zq54OCjKRN4"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida em um resumo sobre os Tipos de Rochas?",
-      "titulo": "Tipos de Rochas - Resumo",
-      "autor": "Com Ciência",
-      "url": "https://www.youtube.com/embed/cwSOj4KGdmU"
+      "subtema": "Tipos de Rochas - Resumo",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em um resumo sobre os Tipos de Rochas?",
+          "titulo": "Tipos de Rochas - Resumo",
+          "autor": "Com Ciência",
+          "url": "https://www.youtube.com/embed/cwSOj4KGdmU"
+        }
+      ]
     },
     {
-      "duvida": "precisando entender sobre Tipos de Rochas e Fósseis?",
-      "titulo": "Tipos de Rochas e Fósseis",
-      "autor": "Com Ciência",
-      "url": "https://www.youtube.com/embed/Za8WmDI4iXA"
+      "subtema": "Tipos de Rochas e Fósseis",
+      "videos": [
+        {
+          "chamada": "Você está precisando entender sobre Tipos de Rochas e Fósseis?",
+          "titulo": "Tipos de Rochas e Fósseis",
+          "autor": "Com Ciência",
+          "url": "https://www.youtube.com/embed/Za8WmDI4iXA"
+        }
+      ]
     }
   ]
 }

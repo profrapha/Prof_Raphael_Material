@@ -6,42 +6,72 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Energia Mecânica e Potência",
   "desc": "Energia cinética, potencial, teorema do trabalho e energia, conservação mecânica e rendimento.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida sobre o Teorema da energia cinética?",
-      "titulo": "Teorema da energia cinética",
-      "autor": "Matemática no Papel",
-      "url": "https://www.youtube.com/embed/g7OfZUyiexQ"
+      "subtema": "Teorema da energia cinética",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida sobre o Teorema da energia cinética?",
+          "titulo": "Teorema da energia cinética",
+          "autor": "Matemática no Papel",
+          "url": "https://www.youtube.com/embed/g7OfZUyiexQ"
+        }
+      ]
     },
     {
-      "duvida": "precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?",
-      "titulo": "Teorema da Energia Cinética - Exercícios",
-      "autor": "Davi Oliveira",
-      "url": "https://www.youtube.com/embed/NLKS7AqHv0Y"
+      "subtema": "Teorema da Energia Cinética - Exercícios",
+      "videos": [
+        {
+          "chamada": "Você está precisando ver exercícios resolvidos sobre o Teorema da Energia Cinética?",
+          "titulo": "Teorema da Energia Cinética - Exercícios",
+          "autor": "Davi Oliveira",
+          "url": "https://www.youtube.com/embed/NLKS7AqHv0Y"
+        }
+      ]
     },
     {
-      "duvida": "com dificuldade em diferenciar Energia Cinética e Potencial?",
-      "titulo": "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL",
-      "autor": "Eureka Matemática",
-      "url": "https://www.youtube.com/embed/CQFnmOIuxi8"
+      "subtema": "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL",
+      "videos": [
+        {
+          "chamada": "Você está com dificuldade em diferenciar Energia Cinética e Potencial?",
+          "titulo": "ENERGIA CINÉTICA E POTENCIAL GRAVITACIONAL",
+          "autor": "Eureka Matemática",
+          "url": "https://www.youtube.com/embed/CQFnmOIuxi8"
+        }
+      ]
     },
     {
-      "duvida": "querendo revisar a Conservação da Energia Mecânica?",
-      "titulo": "CONSERVAÇÃO DA ENERGIA MECÂNICA",
-      "autor": "Felipe Sampaio",
-      "url": "https://www.youtube.com/embed/pV7KvsH_yEA"
+      "subtema": "CONSERVAÇÃO DA ENERGIA MECÂNICA",
+      "videos": [
+        {
+          "chamada": "Você está querendo revisar a Conservação da Energia Mecânica?",
+          "titulo": "CONSERVAÇÃO DA ENERGIA MECÂNICA",
+          "autor": "Felipe Sampaio",
+          "url": "https://www.youtube.com/embed/pV7KvsH_yEA"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida sobre Sistemas Conservativos?",
-      "titulo": "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I",
-      "autor": "Professor Boaro",
-      "url": "https://www.youtube.com/embed/cyRn0Hla-TM"
+      "subtema": "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida sobre Sistemas Conservativos?",
+          "titulo": "ENERGIA MECÂNICA E SISTEMAS CONSERVATIVOS I",
+          "autor": "Professor Boaro",
+          "url": "https://www.youtube.com/embed/cyRn0Hla-TM"
+        }
+      ]
     },
     {
-      "duvida": "precisando entender Potência Mecânica e Consumo?",
-      "titulo": "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO",
-      "autor": "Curso Enem Gratuito",
-      "url": "https://www.youtube.com/embed/objIr0eQIWQ"
+      "subtema": "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO",
+      "videos": [
+        {
+          "chamada": "Você está precisando entender Potência Mecânica e Consumo?",
+          "titulo": "POTÊNCIA MECÂNICA: CONSUMO E RENDIMENTO",
+          "autor": "Curso Enem Gratuito",
+          "url": "https://www.youtube.com/embed/objIr0eQIWQ"
+        }
+      ]
     }
   ]
 }

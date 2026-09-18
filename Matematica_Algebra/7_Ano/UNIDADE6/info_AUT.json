@@ -6,18 +6,28 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Decimais, Potenciação e Radiciação",
   "desc": "Operações com números decimais, potenciação de racionais, raiz quadrada e proporções.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dificuldade em Potenciação com Fração e Decimal?",
-      "titulo": "Potenciação com Fração e Decimal",
-      "autor": "Prof.ª Gis",
-      "url": "https://www.youtube.com/embed/4f57_lJg3zQ"
+      "subtema": "Potenciação com Fração e Decimal",
+      "videos": [
+        {
+          "chamada": "Você está com dificuldade em Potenciação com Fração e Decimal?",
+          "titulo": "Potenciação com Fração e Decimal",
+          "autor": "Prof.ª Gis",
+          "url": "https://www.youtube.com/embed/4f57_lJg3zQ"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida em Razão e Proporção?",
-      "titulo": "Razão e Proporção",
-      "autor": "Prof.ª Gis",
-      "url": "https://www.youtube.com/embed/Kf_YzZ0CnIs"
+      "subtema": "Razão e Proporção",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Razão e Proporção?",
+          "titulo": "Razão e Proporção",
+          "autor": "Prof.ª Gis",
+          "url": "https://www.youtube.com/embed/Kf_YzZ0CnIs"
+        }
+      ]
     }
   ]
 }

@@ -6,24 +6,39 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Números Racionais: Decimais e Porcentagem",
   "desc": "Frações, representação decimal, operações com vírgula e porcentagem.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida em Leitura e Escrita de Números Decimais?",
-      "titulo": "Leitura e Escrita de Números Decimais",
-      "autor": "Prof.ª Gis",
-      "url": "https://www.youtube.com/embed/EMAoOklEA5w"
+      "subtema": "Leitura e Escrita de Números Decimais",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Leitura e Escrita de Números Decimais?",
+          "titulo": "Leitura e Escrita de Números Decimais",
+          "autor": "Prof.ª Gis",
+          "url": "https://www.youtube.com/embed/EMAoOklEA5w"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida em Adição e Subtração com Vírgula?",
-      "titulo": "Adição e Subtração com Vírgula",
-      "autor": "Sandro Curió",
-      "url": "https://www.youtube.com/embed/UXs1R5mDY6o"
+      "subtema": "Adição e Subtração com Vírgula",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Adição e Subtração com Vírgula?",
+          "titulo": "Adição e Subtração com Vírgula",
+          "autor": "Sandro Curió",
+          "url": "https://www.youtube.com/embed/UXs1R5mDY6o"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida em Porcentagem | Como Calcular?",
-      "titulo": "Porcentagem | Como Calcular",
-      "autor": "Prof.ª Gis",
-      "url": "https://www.youtube.com/embed/OjOyNmTt7Mw"
+      "subtema": "Porcentagem | Como Calcular",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em Porcentagem | Como Calcular?",
+          "titulo": "Porcentagem | Como Calcular",
+          "autor": "Prof.ª Gis",
+          "url": "https://www.youtube.com/embed/OjOyNmTt7Mw"
+        }
+      ]
     }
   ]
 }

@@ -6,18 +6,28 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Refração e Lentes",
   "desc": "Refração luminosa, Lei de Snell, ângulo limite, reflexão total e equação de Gauss.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida em como usar a Lei de Snell?",
-      "titulo": "Lei de Snell - Exercícios",
-      "autor": "Maurício Física",
-      "url": "https://www.youtube.com/embed/8eoC6frYFsU"
+      "subtema": "Lei de Snell - Exercícios",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida em como usar a Lei de Snell?",
+          "titulo": "Lei de Snell - Exercícios",
+          "autor": "Maurício Física",
+          "url": "https://www.youtube.com/embed/8eoC6frYFsU"
+        }
+      ]
     },
     {
-      "duvida": "precisando entender Ângulo limite e reflexão total?",
-      "titulo": "Refração: Ângulo limite",
-      "autor": "Pedro Grossi",
-      "url": "https://www.youtube.com/embed/ObEp8eFLGT4"
+      "subtema": "Refração: Ângulo limite",
+      "videos": [
+        {
+          "chamada": "Você está precisando entender Ângulo limite e reflexão total?",
+          "titulo": "Refração: Ângulo limite",
+          "autor": "Pedro Grossi",
+          "url": "https://www.youtube.com/embed/ObEp8eFLGT4"
+        }
+      ]
     }
   ]
 }

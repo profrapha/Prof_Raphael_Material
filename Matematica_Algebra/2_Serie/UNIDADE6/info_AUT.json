@@ -6,12 +6,17 @@
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Polinômios e Operações",
   "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dificuldade no Dispositivo Briot-Ruffini?",
-      "titulo": "Dispositivo Briot-Ruffini",
-      "autor": "Matemática Rio",
-      "url": "https://www.youtube.com/embed/LpjWG7koTBE"
+      "subtema": "Dispositivo Briot-Ruffini",
+      "videos": [
+        {
+          "chamada": "Você está com dificuldade no Dispositivo Briot-Ruffini?",
+          "titulo": "Dispositivo Briot-Ruffini",
+          "autor": "Matemática Rio",
+          "url": "https://www.youtube.com/embed/LpjWG7koTBE"
+        }
+      ]
     }
   ]
 }
