@@ -17,7 +17,6 @@ arquivo_catalogo_js = os.path.join(raiz, "catalogo.js")
 arquivo_banco = os.path.join(raiz, "questoes.db")
 arquivo_dados_json = os.path.join(raiz, "questoes_dados.json")
 
-# Dicionário global para monitorar tudo o que o script faz
 ESTATISTICAS = {
     "total_questoes": 0,
     "com_tikz": 0,
@@ -227,8 +226,13 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
     def salvar_bloco(num_q, corpo_bruto, capitulo_nome, idx_cap):
         corpo_quest = re.split(r'\\subsubsection\*|\\subsection\*', corpo_bruto)[0]
 
+        # Expressão Regular tolerante: Procura a tag, se não achar, recorta até o gabarito
         m_enun = re.search(r'\\begin\{enunciadoLiteral\}(.*?)\\end\{enunciadoLiteral\}', corpo_quest, re.DOTALL)
-        enunciado_bruto = m_enun.group(1).strip() if m_enun else ""
+        if m_enun:
+            enunciado_bruto = m_enun.group(1).strip()
+        else:
+            enunciado_bruto = re.split(r'\\ifgabarito', corpo_quest)[0].strip()
+            enunciado_bruto = re.sub(r'^[\s\-]*', '', enunciado_bruto) # Limpa o travessão inicial se houver
 
         m_tikz = re.search(r'(\\begin\{tikzpicture\}.*?\\end\{tikzpicture\})', corpo_quest, re.DOTALL)
         tikz = m_tikz.group(1).strip() if m_tikz else ""
@@ -247,10 +251,8 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
             t = texto
             t = re.sub(r'\\begin\{center\}', '', t)
             t = re.sub(r'\\end\{center\}', '', t)
-            # Remove \begin{adjustbox} com qualquer configuração que ele tenha nas chaves/colchetes
             t = re.sub(r'\\begin\{adjustbox\}(\[.*?\])?\{.*?\}', '', t, flags=re.DOTALL)
             t = re.sub(r'\\end\{adjustbox\}', '', t)
-            # Remove as linhas pontilhadas (comentários %) que sobraram no banco
             t = re.sub(r'%\s*=+\s*', '', t)
             return t.strip()
 
@@ -259,7 +261,6 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
         parte2 = ""
 
         if tikz and tikz in enunciado_bruto:
-            # Fatiamos o texto e passamos o faxineiro em cada metade
             partes = enunciado_bruto.split(tikz)
             parte1 = limpar_sujeira_latex(partes[0])
             parte2 = limpar_sujeira_latex(partes[1]) if len(partes) > 1 else ""
@@ -294,7 +295,7 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
         
     idx_cap = 1
     if len(secoes) > 0 and secoes[0]:
-        partes_iniciais = re.split(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', secoes[0])
+        partes_iniciais = re.split(r'\\subsubsection\*\{\s*0*(\d+)[^}]*\}', secoes[0])
         if len(partes_iniciais) > 1:
             for j in range(1, len(partes_iniciais), 2):
                 salvar_bloco(int(partes_iniciais[j]), partes_iniciais[j+1], "Lista Principal", idx_cap)
@@ -303,7 +304,7 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
     for i in range(1, len(secoes), 2):
         cap_titulo = re.sub(r'\\[a-zA-Z]+', '', secoes[i]).replace('{', '').replace('}', '').strip()
         corpo_cap = secoes[i + 1]
-        partes_cap = re.split(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', corpo_cap)
+        partes_cap = re.split(r'\\subsubsection\*\{\s*0*(\d+)[^}]*\}', corpo_cap)
         for j in range(1, len(partes_cap), 2):
             salvar_bloco(int(partes_cap[j]), partes_cap[j+1], cap_titulo or f"Capítulo {idx_cap}", idx_cap)
         idx_cap += 1
@@ -322,7 +323,7 @@ def extrair_estrutura_tex(caminho_abs_tex):
     idx_cap = 1
 
     if len(secoes) > 0 and secoes[0]:
-        questoes_avulsas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', secoes[0])
+        questoes_avulsas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)[^}]*\}', secoes[0])
         if questoes_avulsas:
             nums = sorted([int(q) for q in questoes_avulsas])
             capitulos.append({
@@ -338,7 +339,7 @@ def extrair_estrutura_tex(caminho_abs_tex):
         titulo_bruto = secoes[i].strip()
         titulo_limpo = re.sub(r'\\[a-zA-Z]+', '', titulo_bruto).replace('{', '').replace('}', '').strip()
         corpo_cap = secoes[i+1]
-        questoes_encontradas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', corpo_cap)
+        questoes_encontradas = re.findall(r'\\subsubsection\*\{\s*0*(\d+)[^}]*\}', corpo_cap)
         if questoes_encontradas:
             nums = sorted([int(q) for q in questoes_encontradas])
             capitulos.append({
