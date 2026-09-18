@@ -734,6 +734,8 @@
             word-wrap: break-word; 
             overflow-wrap: break-word;
             overflow-x: auto;
+            flex-shrink: 0; /* Impede o balão de ser espremido */
+            height: fit-content; /* Força a altura real do texto */
         }
 
         .msg-aluno {
@@ -745,6 +747,8 @@
             border-radius: 12px;
             max-width: 85%;
             word-break: break-word;
+            flex-shrink: 0;
+            height: fit-content;
         }
 
         .tutor-input-area {
@@ -3320,9 +3324,9 @@
                     // NOVA LÓGICA: Se o Python gerou a imagem PNG, mostra a imagem!
                     if (questaoDoBanco.imagem_tikz && questaoDoBanco.imagem_tikz.trim() !== "") {
                         const caminhoCerto = questaoDoBanco.imagem_tikz.startsWith('/') ? questaoDoBanco.imagem_tikz : '/' + questaoDoBanco.imagem_tikz;
-                        htmlEsquerda += `
-                            <div style="display: flex; justify-content: center; margin-top: 1.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
-                                <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+                        htmlImagem = `
+                            <div style="display: flex; justify-content: center; width: 100%; margin: 1.5rem 0; padding: 0.5rem; box-sizing: border-box; background: rgba(255, 255, 255, 0.03); border-radius: 8px;">
+                                <img src="${caminhoCerto}?v=${Date.now()}" style="max-width: 100%; height: auto; max-height: 40vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
                             </div>
                         `;
                     } 
