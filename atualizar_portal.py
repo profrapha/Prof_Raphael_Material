@@ -190,7 +190,7 @@ def compilar_tikz_para_png(tikz_code, id_questao, pasta_unidade_completa, pasta_
         return "ERRO", ""
 
     try:
-        doc = fitz.open(caminho_pdf)
+        doc = pymupdf.open(caminho_pdf)
         page = doc[0]
         pix = page.get_pixmap(dpi=300)
         pix.save(caminho_png)
