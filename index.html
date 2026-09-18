@@ -27,6 +27,9 @@
     <script src="catalogo.js"></script>
 
     <style>
+        /* =========================================================================
+           [ESTILOS GERAIS]
+           ========================================================================= */
         :root {
             --bg-primary: #0b0f19;
             --bg-secondary: #131b2e;
@@ -129,6 +132,9 @@
             border-color: rgba(16, 185, 129, 0.4);
         }
 
+        /* =========================================================================
+           [NAVEGAÇÃO E COMPONENTES]
+           ========================================================================= */
         .navigation-helper {
             max-width: 1200px;
             margin: 1rem auto 0;
@@ -222,6 +228,9 @@
             flex-direction: column;
         }
 
+        /* =========================================================================
+           [CARDS E LISTAS]
+           ========================================================================= */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -444,6 +453,9 @@
             border-color: var(--accent-amber);
         }
 
+        /* =========================================================================
+           [TUTOR SOCRÁTICO E TELA DE QUESTÕES]
+           ========================================================================= */
         .material-view-box {
             background: var(--bg-secondary);
             border: 1px solid var(--border-card);
@@ -557,7 +569,131 @@
             color: var(--text-muted);
         }
 
-        /* --- Modais --- */
+        .split-screen-container {
+            display: none; 
+            width: 100%;
+            height: calc(100vh - 180px); 
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            flex-direction: row;
+        }
+
+        .split-screen-container.open {
+            display: flex;
+        }
+
+        .split-left-pane {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-card);
+            background: var(--bg-primary);
+        }
+
+        .enunciado-title {
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .enunciado-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #f8fafc;
+        }
+
+        .split-right-pane {
+            width: 450px; 
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+        }
+
+        .tutor-header {
+            background: rgba(19, 27, 46, 0.95);
+            padding: 16px;
+            border-bottom: 1px solid var(--border-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tutor-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .msg-tutor {
+            align-self: flex-start;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-card);
+            border-left: 3px solid var(--accent-violet);
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 90%;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            overflow-x: auto;
+            flex-shrink: 0;
+            height: fit-content;
+        }
+
+        .msg-aluno {
+            align-self: flex-end;
+            background: var(--accent-blue);
+            color: #0b0f19;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 85%;
+            word-break: break-word;
+            flex-shrink: 0;
+            height: fit-content;
+        }
+
+        .tutor-input-area {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-card);
+            display: flex;
+            gap: 10px;
+        }
+
+        .tutor-input-area input {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .tutor-input-area button {
+            background: var(--accent-violet);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* =========================================================================
+           [MODAIS (POP-UPS)]
+           ========================================================================= */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -657,130 +793,24 @@
             border-radius: 8px;
             cursor: pointer;
         }
-
-        /* --- Novo Layout: Split-Screen para Tutor e Questão --- */
-        .split-screen-container {
-            display: none; 
-            width: 100%;
-            height: calc(100vh - 180px); 
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            overflow: hidden;
-            background: var(--bg-secondary);
-            flex-direction: row;
-        }
-
-        .split-screen-container.open {
+        
+        .star-rating {
             display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
-
-        /* Lado Esquerdo: A Questão */
-        .split-left-pane {
-            flex: 1;
-            padding: 2rem;
-            overflow-y: auto;
-            border-right: 1px solid var(--border-card);
-            background: var(--bg-primary);
-        }
-
-        .enunciado-title {
-            color: var(--accent-blue);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-card);
-        }
-
-        .enunciado-content {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #f8fafc;
-        }
-
-        /* Lado Direito: O Chat */
-        .split-right-pane {
-            width: 450px; 
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-card);
-        }
-
-        .tutor-header {
-            background: rgba(19, 27, 46, 0.95);
-            padding: 16px;
-            border-bottom: 1px solid var(--border-card);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .tutor-messages {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .msg-tutor {
-            align-self: flex-start;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-card);
-            border-left: 3px solid var(--accent-violet);
-            padding: 12px 16px;
-            border-radius: 12px;
-            max-width: 90%;
-            word-wrap: break-word; 
-            overflow-wrap: break-word;
-            overflow-x: auto;
-            flex-shrink: 0;
-            height: fit-content;
-        }
-
-        .msg-aluno {
-            align-self: flex-end;
-            background: var(--accent-blue);
-            color: #0b0f19;
-            font-weight: 500;
-            padding: 12px 16px;
-            border-radius: 12px;
-            max-width: 85%;
-            word-break: break-word;
-            flex-shrink: 0;
-            height: fit-content;
-        }
-
-        .tutor-input-area {
-            padding: 16px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-card);
-            display: flex;
-            gap: 10px;
-        }
-
-        .tutor-input-area input {
-            flex: 1;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-card);
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: #fff;
-            font-size: 0.9rem;
-            outline: none;
-        }
-
-        .tutor-input-area button {
-            background: var(--accent-violet);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 18px;
-            font-weight: 600;
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 2.2rem;
+            color: #334155;
             cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f59e0b;
         }
 
         @media (max-width: 800px) {
@@ -807,26 +837,6 @@
             border-top: 1px solid var(--border-card);
             background-color: var(--bg-secondary);
             margin-top: auto;
-        }
-        
-        /* --- Avaliação em Estrelas --- */
-        .star-rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            gap: 0.5rem;
-        }
-        .star-rating input { display: none; }
-        .star-rating label {
-            font-size: 2.2rem;
-            color: #334155;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .star-rating input:checked ~ label,
-        .star-rating label:hover,
-        .star-rating label:hover ~ label {
-            color: #f59e0b;
         }
     </style>
 </head>
@@ -859,7 +869,9 @@
         <p>Desenvolvido para apoio escolar e preparação acadêmica &bull; Atualizado automaticamente via Git</p>
     </footer>
 
-    <!-- Modais Genéricos -->
+    <!-- =========================================================================
+         [MODAL DE VÍDEO]
+         ========================================================================= -->
     <div class="modal-overlay" id="modalVideo">
         <div class="modal-video-box">
             <div class="modal-video-header">
@@ -872,6 +884,9 @@
         </div>
     </div>
 
+    <!-- =========================================================================
+         [MODAL CHAVE DO PROFESSOR]
+         ========================================================================= -->
     <div class="modal-overlay" id="modalChave">
         <div class="modal-box">
             <h3>Área do Professor</h3>
@@ -884,7 +899,9 @@
         </div>
     </div>
 
-    <!-- Modal de Configuração do Tutor (Escudo LGPD Aplicado) -->
+    <!-- =========================================================================
+         [MODAL SETUP DO TUTOR (ESCOLHA DA QUESTÃO)]
+         ========================================================================= -->
     <div class="modal-overlay" id="modalSetupTutor">
         <div class="modal-box">
             <h3 style="color: var(--accent-violet);">🤖 Tutor Socrático IA</h3>
@@ -914,7 +931,9 @@
         </div>
     </div>
     
-    <!-- Modal de Feedback do Tutor -->
+    <!-- =========================================================================
+         [MODAL DE FEEDBACK DA IA]
+         ========================================================================= -->
     <div class="modal-overlay" id="modalFeedback">
         <div class="modal-box">
             <h3 style="color: var(--accent-amber);">⭐ Avaliar Tutor</h3>
@@ -931,15 +950,15 @@
             <textarea id="textoFeedback" rows="3" placeholder="(Opcional) Relate algum problema, erro de cálculo da IA ou deixe um elogio..." style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-card); background-color: var(--bg-primary); color: var(--text-main); font-size: 0.9rem; margin-bottom: 1rem; outline: none; resize: none;"></textarea>
 
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="fecharModalFeedback()">Cancelar</button>
-                <button class="btn-confirm" id="btnConfirmarFeedback" style="background-color: var(--accent-amber); color: #0b0f19;" onclick="enviarFeedback()">Enviar Avaliação</button>
+                <button class="btn-cancel" onclick="pularAvaliacaoEFechar()">Pular e Sair</button>
+                <button class="btn-confirm" id="btnConfirmarFeedback" style="background-color: var(--accent-amber); color: #0b0f19;" onclick="enviarFeedback()">Enviar e Sair</button>
             </div>
         </div>
     </div>
     
     <script>
         /* =========================================================================
-           LÓGICA DE NAVEGAÇÃO E ESTADO
+           [01] VARIÁVEIS GLOBAIS E ESTADO DA NAVEGAÇÃO
            ========================================================================= */
         let nav = {
             nivel: 'home',
@@ -962,14 +981,15 @@
             bancoQuestoes: null 
         };
 
-        // INICIALIZAÇÃO
+        /* =========================================================================
+           [02] INICIALIZAÇÃO E BANCO DE DADOS (SQLite)
+           ========================================================================= */
         async function iniciar() {
             renderizar();
             atualizarBotaoProf();
             await carregarBancoDadosSQLite();
         }
 
-       // CARREGA O BANCO DE DADOS .DB (SQLITE) PARA A MEMÓRIA DO NAVEGADOR
         async function carregarBancoDadosSQLite() {
             try {
                 const sqlPromise = initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
@@ -984,7 +1004,6 @@
             }
         }
 
-        // BUSCA A QUESTÃO EXATA NO BANCO SQLITE
         function buscarQuestaoNoBanco(prefixo, numQuestao) {
             if (!tutorState.bancoQuestoes) return null;
             
@@ -1000,7 +1019,9 @@
             return null;
         }
 
-        // NAVEGAÇÃO
+        /* =========================================================================
+           [03] LÓGICA DE NAVEGAÇÃO E RENDERS (Cria as telas dinamicamente)
+           ========================================================================= */
         function irNivel(novoNivel, params = {}) {
             nav.nivel = novoNivel;
             if (params.materia !== undefined) nav.materia = params.materia;
@@ -1257,9 +1278,9 @@
             container.innerHTML = html;
         }
 
-        // =========================================================
-        // A NOVA TELA DE DETALHE DE CADERNO (COM O SPLIT SCREEN E TRILHAS)
-        // =========================================================
+        /* =========================================================================
+           [04] TELA PRINCIPAL DO CADERNO (Trilhas, PDF e Painel Dividido)
+           ========================================================================= */
         function renderDetalheCaderno(container) {
             let uni = (nav.materia === "Fisica") ? catalogo.Fisica.anos[nav.ano].unidades[nav.unidadeId] : catalogo.Matematica.frentes[nav.frente].anos[nav.ano].unidades[nav.unidadeId];
             let mat = uni.materiais[nav.cadernoIndex];
@@ -1365,8 +1386,7 @@
                                 <span id="tutor-badge-contexto" style="color: var(--text-muted); font-size: 0.75rem; display: block;"></span>
                             </div>
                             <div style="display: flex; gap: 15px; align-items: center;">
-                                <button id="btnAbrirFeedback" onclick="abrirModalFeedback()" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); border-radius: 6px; padding: 4px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: none; transition: all 0.2s;">⭐ Avaliar</button>
-                                <button onclick="fecharSplitScreen()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">&times;</button>
+                                <button onclick="tentarFecharSessao()" style="background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#f8fafc'" onmouseout="this.style.color='var(--text-muted)'">&times;</button>
                             </div>
                         </div>
 
@@ -1381,10 +1401,9 @@
             `;
         }
 
-        // ==========================================
-        // MOTOR DO TUTOR SOCRÁTICO E TELA DIVIDIDA
-        // ==========================================
-
+        /* =========================================================================
+           [05] LIMPEZA E PREPARAÇÃO DO TEXTO DO BANCO (LaTeX para HTML)
+           ========================================================================= */
         function renderizarKaTeX(elementoAlvo) {
             if (typeof renderMathInElement !== 'undefined') {
                 renderMathInElement(elementoAlvo || document.body, {
@@ -1454,7 +1473,9 @@
             return (uni && uni.materiais) ? uni.materiais[nav.cadernoIndex || 0] : null;
         }
 
-        // --- Funções do Setup ---
+        /* =========================================================================
+           [06] LÓGICA DO TUTOR SOCRÁTICO (Abrir modal, injetar conteúdo e chat IA)
+           ========================================================================= */
         function abrirSetupTutor() {
             const capituloSelect = document.getElementById("selectCapituloTutor");
             const matAtual = obterMaterialAtual();
@@ -1505,7 +1526,6 @@
             if (viewBox) viewBox.style.display = "block";
         }
 
-        // --- PREPARAR TELA DIVIDIDA (NÃO GASTA TOKENS) ---
         async function prepararSessaoTutor() {
             const selAluno = document.getElementById("selectNomeAlunoTutor");
             const selCapitulo = document.getElementById("selectCapituloTutor");
@@ -1581,14 +1601,13 @@
                 }
             }
 
-            // INJEÇÃO DA TELA DIREITA (MODO DE ESPERA)
+            // INJEÇÃO DA TELA DIREITA (MODO DE ESPERA DA IA)
             document.getElementById("materialViewBox").style.display = "none";
             document.getElementById("splitScreenContainer").classList.add("open");
 
             const input = document.getElementById("inputDuvidaTutor");
             const btn = document.getElementById("btnEnviarTutor");
             
-            // Trava o input até o chat ser iniciado
             input.disabled = true;
             input.placeholder = "Clique em Iniciar Chat para interagir...";
             input.value = "";
@@ -1599,28 +1618,7 @@
             if (badge) {
                 badge.innerText = `${tutorState.aluno.split(' ')[0]} • Q${tutorState.numeroQuestao} (${tutorState.capituloNome})`;
             }
-            
-            const btnFeedback = document.getElementById("btnAbrirFeedback");
-            if (btnFeedback) {
-                btnFeedback.style.display = "block";
-                if (sessionStorage.getItem(`feedback_${tutorState.sessionId}`)) {
-                    btnFeedback.innerText = "✅ Avaliado";
-                    btnFeedback.disabled = true;
-                    btnFeedback.style.opacity = "0.5";
-                    btnFeedback.style.cursor = "default";
-                } else {
-                    btnFeedback.innerText = "⭐ Avaliar";
-                    btnFeedback.disabled = false;
-                    btnFeedback.style.opacity = "1";
-                    btnFeedback.style.cursor = "pointer";
-                }
-                const checkedStar = document.querySelector('input[name="rate"]:checked');
-                if(checkedStar) checkedStar.checked = false;
-                const txtFeedback = document.getElementById("textoFeedback");
-                if(txtFeedback) txtFeedback.value = "";
-            }
 
-            // Mostra o botão para o aluno decidir se quer gastar API chamando a IA
             const messagesArea = document.getElementById("tutorMessages");
             if (messagesArea) {
                 messagesArea.innerHTML = `
@@ -1636,11 +1634,9 @@
             }
         }
 
-        // --- INICIAR CHAT (AGORA SIM, CONECTA AO n8n) ---
         async function iniciarChatTutor() {
             const messagesArea = document.getElementById("tutorMessages");
             
-            // Substitui o botão inicial pela mensagem de carregamento com a sua cara
             messagesArea.innerHTML = `
                 <div class="msg-tutor" id="msg-tutor-abertura">
                     Um momento enquanto conecto meus cabos e ativo meus neurônios... 🔌🧠
@@ -1700,7 +1696,6 @@
             area.scrollTop = area.scrollHeight;
 
             const tempId = "loading-" + Date.now();
-            // Mensagem de carregamento enquanto a IA pensa
             area.innerHTML += `<div class="msg-tutor" id="${tempId}" style="color: var(--text-muted); font-style: italic;">Colocando a engrenagem pra girar e analisando sua dúvida... ⚙️</div>`;
             area.scrollTop = area.scrollHeight;
 
@@ -1744,7 +1739,7 @@
                         input.placeholder = "Sessão finalizada com sucesso! 🏆";
                         btn.innerText = "Fechar";
                         btn.disabled = false; 
-                        btn.onclick = fecharSplitScreen;
+                        btn.onclick = tentarFecharSessao;
                     }
 
                 } else {
@@ -1761,16 +1756,59 @@
                 area.scrollTop = area.scrollHeight;
             }
         }
-        
-        // ==========================================
-        // FEEDBACK DO TUTOR
-        // ==========================================
-        function abrirModalFeedback() {
+
+        /* =========================================================================
+           [07] CONTROLE DE SAÍDA E FEEDBACK DO TUTOR (Com Coleta de Histórico)
+           ========================================================================= */
+        function tentarFecharSessao() {
+            if (sessionStorage.getItem(`feedback_${tutorState.sessionId}`)) {
+                fecharSplitScreen();
+                return;
+            }
             document.getElementById("modalFeedback").classList.add("open");
         }
 
-        function fecharModalFeedback() {
+        function coletarHistoricoChat() {
+            const divMensagens = document.querySelectorAll('#tutorMessages > div');
+            let transcricao = "";
+            divMensagens.forEach(msg => {
+                if(msg.classList.contains('msg-aluno')) {
+                    transcricao += "ALUNO: " + msg.innerText + "\n\n";
+                } else if(msg.classList.contains('msg-tutor')) {
+                    transcricao += "TUTOR: " + msg.innerText + "\n\n";
+                }
+            });
+            return transcricao.trim();
+        }
+
+        function montarPayloadFeedback(estrelas, textoFeedback, historico) {
+            return {
+                session_id: tutorState.sessionId,
+                aluno: tutorState.aluno,
+                materia: nav.materia,
+                frente: nav.frente || "Única",
+                ano: nav.ano,
+                unidade: nav.unidadeId,
+                capitulo: tutorState.capituloNome,
+                questao: tutorState.numeroQuestao,
+                avaliacao_estrelas: estrelas,
+                feedback_texto: textoFeedback,
+                historico_chat: historico
+            };
+        }
+
+        async function pularAvaliacaoEFechar() {
             document.getElementById("modalFeedback").classList.remove("open");
+            const payload = montarPayloadFeedback(0, "Usuário pulou a avaliação.", coletarHistoricoChat());
+
+            fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).catch(() => {});
+
+            sessionStorage.setItem(`feedback_${tutorState.sessionId}`, "pulou");
+            fecharSplitScreen();
         }
 
         async function enviarFeedback() {
@@ -1778,7 +1816,7 @@
             const texto = document.getElementById("textoFeedback").value.trim();
             
             if (!stars) {
-                alert("Por favor, selecione pelo menos uma estrela para avaliar.");
+                alert("Por favor, selecione pelo menos uma estrela ou clique em 'Pular e Sair'.");
                 return;
             }
 
@@ -1786,11 +1824,7 @@
             btnConfirm.innerText = "Enviando...";
             btnConfirm.disabled = true;
 
-            const payload = {
-                session_id: tutorState.sessionId,
-                avaliacao_estrelas: parseInt(stars.value),
-                feedback_texto: texto
-            };
+            const payload = montarPayloadFeedback(parseInt(stars.value), texto, coletarHistoricoChat());
 
             try {
                 await fetch("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", {
@@ -1799,29 +1833,32 @@
                     body: JSON.stringify(payload)
                 });
                 
-                fecharModalFeedback();
-                
-                const btnFeedback = document.getElementById("btnAbrirFeedback");
-                if (btnFeedback) {
-                    btnFeedback.innerText = "✅ Avaliado";
-                    btnFeedback.disabled = true;
-                    btnFeedback.style.opacity = "0.5";
-                    btnFeedback.style.cursor = "default";
-                }
-                
-                sessionStorage.setItem(`feedback_${tutorState.sessionId}`, "true");
+                sessionStorage.setItem(`feedback_${tutorState.sessionId}`, "avaliado");
+                document.getElementById("modalFeedback").classList.remove("open");
+                fecharSplitScreen();
                 
             } catch (err) {
                 alert("Erro ao enviar avaliação. Tente novamente.");
             } finally {
-                btnConfirm.innerText = "Enviar Avaliação";
+                btnConfirm.innerText = "Enviar e Sair";
                 btnConfirm.disabled = false;
             }
         }
 
-        // ==========================================
-        // VÍDEOS E GABARITOS
-        // ==========================================
+        // Armadilha do Último Suspiro (se o aluno fechar a aba abruptamente)
+        window.addEventListener("beforeunload", function (e) {
+            if (tutorState.sessionId && !sessionStorage.getItem(`feedback_${tutorState.sessionId}`)) {
+                const historico = coletarHistoricoChat();
+                if (historico.length > 150) { 
+                    const payloadObj = montarPayloadFeedback(0, "Sessão encerrada (Aba fechada pelo usuário).", historico);
+                    navigator.sendBeacon("https://n8n.profraphaelpaulino.com.br/webhook/tutor-feedback", JSON.stringify(payloadObj));
+                }
+            }
+        });
+
+        /* =========================================================================
+           [08] GESTÃO DE ACESSO DO PROFESSOR (PDFs E Gabaritos)
+           ========================================================================= */
         function abrirModalVideo(url, titulo) {
             document.getElementById("videoModalTitulo").innerText = titulo;
             document.getElementById("videoIframe").src = url;
