@@ -2783,13 +2783,13 @@
                 const sqlPromise = initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
                 
                 // A MÁGICA AQUI: O "?v=" + Date.now() força o download do banco novo ignorando o cache
-                const dataPromise = fetch("questoes.db?v=" + Date.now()).then(res => res.arrayBuffer());
+                const dataPromise = fetch("questoes_v2.db?v=" + Date.now()).then(res => res.arrayBuffer());
                 
                 const [SQL, buf] = await Promise.all([sqlPromise, dataPromise]);
                 tutorState.bancoQuestoes = new SQL.Database(new Uint8Array(buf));
                 console.log("[OK] Banco de questões carregado na memória do navegador.");
             } catch (err) {
-                console.error("[ERRO] Falha ao carregar o banco de dados questoes.db", err);
+                console.error("[ERRO] Falha ao carregar o banco de dados questoes_v2.db", err);
             }
         }
 
