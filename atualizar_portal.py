@@ -103,7 +103,8 @@ def inicializar_banco():
             capitulo_indice INTEGER,
             capitulo TEXT,
             numero_questao INTEGER,
-            enunciado TEXT,
+            enunciado_parte1 TEXT,  
+            enunciado_parte2 TEXT,  
             codigo_tikz TEXT,
             imagem_tikz TEXT,
             resolucao TEXT,
@@ -227,7 +228,7 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
         corpo_quest = re.split(r'\\subsubsection\*|\\subsection\*', corpo_bruto)[0]
 
         m_enun = re.search(r'\\begin\{enunciadoLiteral\}(.*?)\\end\{enunciadoLiteral\}', corpo_quest, re.DOTALL)
-        enunciado = m_enun.group(1).strip() if m_enun else ""
+        enunciado_bruto = m_enun.group(1).strip() if m_enun else ""
 
         m_tikz = re.search(r'(\\begin\{tikzpicture\}.*?\\end\{tikzpicture\})', corpo_quest, re.DOTALL)
         tikz = m_tikz.group(1).strip() if m_tikz else ""
@@ -240,6 +241,16 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
 
         id_unico = f"{prefixo_material}__C{idx_cap:02d}__Q{num_q:02d}"
         
+        # --- A MÁGICA DA DIVISÃO DO ENUNCIADO ---
+        parte1 = enunciado_bruto
+        parte2 = ""
+
+        if tikz and tikz in enunciado_bruto:
+            # Fatiamos o texto exatamente onde o código do gráfico estava no LaTeX
+            partes = enunciado_bruto.split(tikz)
+            parte1 = partes[0].strip()
+            parte2 = partes[1].strip() if len(partes) > 1 else ""
+
         # AUDITORIA E ESTATÍSTICAS
         ESTATISTICAS["total_questoes"] += 1
         caminho_imagem = ""
@@ -256,16 +267,16 @@ def indexar_questoes_no_banco(caminho_abs_tex, prefixo_material, disciplina, ano
             elif status == "ERRO":
                 ESTATISTICAS["erros"] += 1
 
-        contexto = f"--- ENUNCIADO OFICIAL DA QUESTÃO {num_q} (Capítulo {idx_cap}: {capitulo_nome}) ---\n{enunciado}\n"
+        contexto = f"--- ENUNCIADO OFICIAL DA QUESTÃO {num_q} (Capítulo {idx_cap}: {capitulo_nome}) ---\n{parte1}\n[GRÁFICO DA QUESTÃO]\n{parte2}\n"
         if resolucao: contexto += f"\n--- RESOLUÇÃO E GABARITO OFICIAL ---\n{resolucao}\n"
         if nota_pedagogica: contexto += f"\n--- ORIENTAÇÃO PEDAGÓGICA AO TUTOR ---\n{nota_pedagogica}\n"
 
         cur.execute("""
             INSERT OR REPLACE INTO questoes 
-            (id, disciplina, ano, unidade, tipo_caderno, capitulo_indice, capitulo, numero_questao, enunciado, codigo_tikz, imagem_tikz, resolucao, nota_pedagogica, contexto_pronto)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (id_unico, disciplina, ano, unidade, tipo_caderno, idx_cap, capitulo_nome, num_q, enunciado, tikz, caminho_imagem, resolucao, nota_pedagogica, contexto))
-
+            (id, disciplina, ano, unidade, tipo_caderno, capitulo_indice, capitulo, numero_questao, enunciado_parte1, enunciado_parte2, codigo_tikz, imagem_tikz, resolucao, nota_pedagogica, contexto_pronto)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (id_unico, disciplina, ano, unidade, tipo_caderno, idx_cap, capitulo_nome, num_q, parte1, parte2, tikz, caminho_imagem, resolucao, nota_pedagogica, contexto))
+        
     idx_cap = 1
     if len(secoes) > 0 and secoes[0]:
         partes_iniciais = re.split(r'\\subsubsection\*\{\s*0*(\d+)\.?\s*\}', secoes[0])

@@ -2802,8 +2802,8 @@
         function buscarQuestaoNoBanco(prefixo, numQuestao) {
             if (!tutorState.bancoQuestoes) return null;
             
-            // CORREÇÃO: Adicionamos "imagem_tikz" na consulta SQL para o HTML enxergar a foto gerada pelo Python
-            const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado, codigo_tikz, imagem_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao =$num LIMIT 1");
+            // Lendo as duas colunas novas
+            const stmt = tutorState.bancoQuestoes.prepare("SELECT enunciado_parte1, enunciado_parte2, codigo_tikz, imagem_tikz FROM questoes WHERE id LIKE $prefixo AND numero_questao =$num LIMIT 1");
             stmt.bind({ $prefixo: `${prefixo}%`, $num: numQuestao });
             
             if (stmt.step()) {
@@ -3319,10 +3319,11 @@
                 const questaoDoBanco = buscarQuestaoNoBanco(prefixo, tutorState.numeroQuestao);
                 
                if (questaoDoBanco) {
-                    let htmlEsquerda = limparLaTeXParaWeb(questaoDoBanco.enunciado);
+                    // Limpamos cada parte separadamente
+                    let p1 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte1);
+                    let p2 = limparLaTeXParaWeb(questaoDoBanco.enunciado_parte2);
                     let htmlImagem = "";
                     
-                    // NOVA LÓGICA DE TAMANHO E POSICIONAMENTO
                     if (questaoDoBanco.imagem_tikz && questaoDoBanco.imagem_tikz.trim() !== "") {
                         const caminhoCerto = questaoDoBanco.imagem_tikz.startsWith('/') ? questaoDoBanco.imagem_tikz : '/' + questaoDoBanco.imagem_tikz;
                         htmlImagem = `
@@ -3341,14 +3342,16 @@
                         `;
                     }
 
-                    // Injeta a imagem blindada: troca a tag [GRAFICO_AQUI] pela imagem real
-                    if (htmlEsquerda.includes('[GRAFICO_AQUI]')) {
-                        htmlEsquerda = htmlEsquerda.split('[GRAFICO_AQUI]').join(htmlImagem);
-                    } else {
-                        htmlEsquerda += htmlImagem;
-                    }
+                    // A Montagem do Sanduíche!
+                    let htmlCompleto = `
+                        <div style="margin-bottom: 1.5rem; line-height: 1.6;">
+                            ${p1}
+                            ${htmlImagem}
+                            ${p2 ? `<div style="margin-top: 1rem;">${p2}</div>` : ''}
+                        </div>
+                    `;
 
-                    paneConteudo.innerHTML = `<div style="margin-bottom: 1.5rem; line-height: 1.6;">${htmlEsquerda}</div>`;
+                    paneConteudo.innerHTML = htmlCompleto;
                     renderizarKaTeX(paneConteudo);
                     if (!questaoDoBanco.imagem_tikz && typeof document.processTikzScripts !== "undefined") {
                         document.processTikzScripts();
