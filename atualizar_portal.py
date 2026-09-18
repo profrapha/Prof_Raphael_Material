@@ -14,7 +14,7 @@ except ImportError:
 
 raiz = os.path.dirname(os.path.abspath(__file__))
 arquivo_html = os.path.join(raiz, "index.html")
-arquivo_banco = os.path.join(raiz, "questoes_v2.db")
+arquivo_banco = os.path.join(raiz, "questoes.db")
 arquivo_dados_json = os.path.join(raiz, "questoes_dados.json")
 
 # Dicionário global para monitorar tudo o que o script faz
