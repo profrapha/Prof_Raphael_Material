@@ -9,6 +9,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Aplicações da Dinâmica",
                         "desc": "Forças de atrito em planos inclinados, dinâmica curvilínea e força centrípeta.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -87,6 +88,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Refração e Lentes",
                         "desc": "Refração luminosa, Lei de Snell, ângulo limite, reflexão total e equação de Gauss.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -186,6 +188,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Estrutura da Terra",
                         "desc": "Estudo das camadas internas da Terra, atmosfera, rochas, minerais e fósseis.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -332,6 +335,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Máquinas Simples e Trabalho",
                         "desc": "Estudo das máquinas simples, aplicações cotidianas, alavancas, polias e planos inclinados.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -459,6 +463,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Sol, Terra e Lua",
                         "desc": "Sistema Sol-Terra-Lua, distâncias reais, translação, solstício, equinócio e eclipses.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -586,6 +591,7 @@ const catalogo = {
                     "UNIDADE 6": {
                         "titulo": "Energia Mecânica e Potência",
                         "desc": "Energia cinética, potencial, teorema do trabalho e energia, conservação mecânica e rendimento.",
+                        "ativa": true,
                         "materiais": [
                             {
                                 "tipo": "Autoral",
@@ -748,6 +754,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Inequações",
                                 "desc": "Inequações do 1º e 2º grau, resolução de sistemas, produto e quociente.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -781,6 +788,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Polinômios e Operações",
                                 "desc": "Conceitos fundamentais, divisão pelo método da chave e Briot-Ruffini.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -814,6 +822,7 @@ const catalogo = {
                             "SEMANA 10": {
                                 "titulo": "Revisão e Aprofundamento para Vestibulares",
                                 "desc": "Caderno intensivo focado nas bancas oficiais.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -830,6 +839,7 @@ const catalogo = {
                             "SEMANA 11": {
                                 "titulo": "Geometria Plana e Sólidos",
                                 "desc": "Caderno intensivo com foco em geometria plana e sólidos geométricos.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -870,6 +880,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Números Racionais: Decimais e Porcentagem",
                                 "desc": "Frações, representação decimal, operações com vírgula e porcentagem.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -997,6 +1008,7 @@ const catalogo = {
                             "UNIDADE 7": {
                                 "titulo": "Introdução à Álgebra",
                                 "desc": "Fundamentos de expressões algébricas, tradução de problemas da linguagem natural para matemática, e introdução às equações do 1º grau (princípio da equivalência).",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1121,6 +1133,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Decimais, Potenciação e Radiciação",
                                 "desc": "Operações com números decimais, potenciação de racionais, raiz quadrada e proporções.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1245,6 +1258,7 @@ const catalogo = {
                             "UNIDADE 7": {
                                 "titulo": "Equações e Inequações do 1º Grau",
                                 "desc": "Desenvolvimento do raciocínio algébrico, propriedades da igualdade, resolução de equações/inequações (com frações e distributiva) e modelagem de problemas contextuais.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1385,6 +1399,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Equações Quadráticas Incompletas",
                                 "desc": "Resolução e modelagem de equações do 2º grau incompletas e coeficientes.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1517,6 +1532,7 @@ const catalogo = {
                             "UNIDADE 8": {
                                 "titulo": "Produtos Notáveis e Fatoração Algébrica",
                                 "desc": "Lista focada no desenvolvimento e simplificação de expressões algébricas, abordando fatoração por evidência, agrupamento, trinômio quadrado perfeito e diferença de quadrados com aplicações geométricas.",
+                                "ativa": false,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1652,6 +1668,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Função Quadrática",
                                 "desc": "Estudo completo sobre funções do 2º grau, englobando lei de formação, cálculo de raízes reais, discriminante, coordenadas do vértice, modelagem algébrica e análise gráfica aplicada.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -1899,7 +1916,151 @@ const catalogo = {
                                         "pdf": "Matematica_Algebra/9_Ano/UNIDADE6/publica/ALG_9EF_ESC_U06-FUN_QUAD_P1_ALUNO.pdf",
                                         "pdfProf": "Matematica_Algebra/9_Ano/UNIDADE6/restrita/ALG_9EF_ESC_U06-FUN_QUAD_P1_PROF.pdf",
                                         "tex": "Matematica_Algebra/9_Ano/UNIDADE6/fonte_tex/ALG_9EF_ESC_U06-FUN_QUAD_P1_BASE.tex",
-                                        "trilhas_de_aprendizagem": [],
+                                        "trilhas_de_aprendizagem": [
+                                            {
+                                                "subtema": "FUNÇÃO DO 2º GRAU - FUNÇÃO QUADRÁTICA",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida nos conceitos iniciais de função do 2º grau?",
+                                                        "titulo": "FUNÇÃO DO 2º GRAU - FUNÇÃO QUADRÁTICA",
+                                                        "autor": "Gis com Giz",
+                                                        "url": "https://www.youtube.com/embed/mX3Xeq4QEyQ"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "RAÍZES OU ZEROS DA FUNÇÃO QUADRÁTICA | FUNÇÃO DO SEGUNDO 2º GRAU",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida em como encontrar as raízes ou zeros da função?",
+                                                        "titulo": "RAÍZES OU ZEROS DA FUNÇÃO QUADRÁTICA | FUNÇÃO DO SEGUNDO 2º GRAU",
+                                                        "autor": "Gis com Giz",
+                                                        "url": "https://www.youtube.com/embed/a0ndXBGjqCU"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "COORDENADAS DO VÉRTICE DA PARÁBOLA - FUNÇÃO QUADRÁTICA",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida no cálculo das coordenadas do vértice?",
+                                                        "titulo": "COORDENADAS DO VÉRTICE DA PARÁBOLA - FUNÇÃO QUADRÁTICA",
+                                                        "autor": "Gis com Giz",
+                                                        "url": "https://www.youtube.com/embed/DCT9jRSAwfs"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "FÓRMULA DE BHÁSKARA | COMO FAZER EQUAÇÃO DO 2º GRAU",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida em como aplicar a Fórmula de Bhaskara?",
+                                                        "titulo": "FÓRMULA DE BHÁSKARA | COMO FAZER EQUAÇÃO DO 2º GRAU",
+                                                        "autor": "Gis com Giz",
+                                                        "url": "https://www.youtube.com/embed/LNLvMo1PWok"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "RESUMÃO DE FUNÇÃO QUADRÁTICA: TUDO QUE CAI NA SUA PROVA!",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida na matéria toda e precisa de um resumão?",
+                                                        "titulo": "RESUMÃO DE FUNÇÃO QUADRÁTICA: TUDO QUE CAI NA SUA PROVA!",
+                                                        "autor": "Gis com Giz",
+                                                        "url": "https://www.youtube.com/embed/hiuIUHRwI_o"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Função do Segundo Grau (Função Quadrática): Conceitos Iniciais",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida na definição matemática inicial da parábola?",
+                                                        "titulo": "Função do Segundo Grau (Função Quadrática): Conceitos Iniciais",
+                                                        "autor": "Professor Ferretto",
+                                                        "url": "https://www.youtube.com/embed/Z5aVW_Zgifk"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 5)",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida na construção e propriedades do gráfico da parábola?",
+                                                        "titulo": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 5)",
+                                                        "autor": "Professor Ferretto",
+                                                        "url": "https://www.youtube.com/embed/ZnxMdyN4Xp8"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 6)",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida no estudo avançado do gráfico da parábola?",
+                                                        "titulo": "Função do Segundo Grau (Função Quadrática): Gráfico Parábola (Aula 6)",
+                                                        "autor": "Professor Ferretto",
+                                                        "url": "https://www.youtube.com/embed/U9I1LFFcUkw"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Aula 01 - Função do Segundo Grau: Definição da Função Quadrática",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida na definição da lei de formação?",
+                                                        "titulo": "Aula 01 - Função do Segundo Grau: Definição da Função Quadrática",
+                                                        "autor": "Matemática no Papel",
+                                                        "url": "https://www.youtube.com/embed/mzEGFoEenh8"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Aula 06 - Função do Segundo Grau: Gráfico da Função Quadrática",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida no esboço prático do gráfico da função?",
+                                                        "titulo": "Aula 06 - Função do Segundo Grau: Gráfico da Função Quadrática",
+                                                        "autor": "Matemática no Papel",
+                                                        "url": "https://www.youtube.com/embed/wgpmGZSj_R4"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "Aula 07 - Função do Segundo Grau: Domínio e a Imagem",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida no domínio e na imagem da função quadrática?",
+                                                        "titulo": "Aula 07 - Função do Segundo Grau: Domínio e a Imagem",
+                                                        "autor": "Matemática no Papel",
+                                                        "url": "https://www.youtube.com/embed/VY3C9t3DwKo"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "VÉRTICE DA PARÁBOLA - PONTO DE MÁXIMO E PONTO DE MÍNIMO",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida em identificar o ponto de máximo e mínimo?",
+                                                        "titulo": "VÉRTICE DA PARÁBOLA - PONTO DE MÁXIMO E PONTO DE MÍNIMO",
+                                                        "autor": "Professora Angela Matemática",
+                                                        "url": "https://www.youtube.com/embed/fjSWmSPtfww"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "subtema": "4 PASSOS PARA CONSTRUIR UMA PARÁBOLA | GRÁFICO DO 2º GRAU",
+                                                "videos": [
+                                                    {
+                                                        "chamada": "Você está com dúvida no passo a passo rápido para desenhar a parábola?",
+                                                        "titulo": "4 PASSOS PARA CONSTRUIR UMA PARÁBOLA | GRÁFICO DO 2º GRAU",
+                                                        "autor": "Dicasdemat Sandro Curió",
+                                                        "url": "https://www.youtube.com/embed/rHal93QAGyo"
+                                                    }
+                                                ]
+                                            }
+                                        ],
                                         "estrutura": [
                                             {
                                                 "indice": 1,
@@ -1982,6 +2143,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Polígonos e Círculos",
                                 "desc": "Apótemas, setores circulares, coroa circular e figuras inscritas.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -2045,6 +2207,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Cones e Troncos",
                                 "desc": "Áreas totais, volumes e seções cônicas na geometria espacial.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -2113,6 +2276,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Área de Figuras Planas",
                                 "desc": "Superfície de retângulos, quadrados, triângulos e paralelogramos.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -2197,6 +2361,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Área e Perímetro",
                                 "desc": "Conceitos fundamentais de contorno e superfície, cálculo de áreas compostas.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -2281,6 +2446,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Áreas Planas e Decomposição",
                                 "desc": "Cálculo de áreas por métodos de composição e decomposição.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
@@ -2365,6 +2531,7 @@ const catalogo = {
                             "UNIDADE 6": {
                                 "titulo": "Geometria Espacial e Vistas",
                                 "desc": "Poliedros, relação de Euler, vistas ortogonais e projeções técnicas.",
+                                "ativa": true,
                                 "materiais": [
                                     {
                                         "tipo": "Autoral",
