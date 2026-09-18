@@ -1414,24 +1414,33 @@
             if (!texto) return "";
             
             // 1. ARRANCANDO A "SUJEIRA" DO LATEX
-            // Remove apenas ambientes textuais, PRESERVANDO a matemática (aligned, matrix, cases, etc)
+            // Remove apenas os blocos de ambiente de página, mantendo a matemática a salvo
             let limpo = texto.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
             limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}/g, '');
-            
-            // 2. Limpa o comando \includegraphics isolado que possa ter sobrado
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
+
+            // 2. ESCUDO PROTETOR DE MATEMÁTICA
+            // Removemos temporariamente as fórmulas para o HTML não quebrar o KaTeX
+            let mathBlocks = [];
+            limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
+                // Corrige o \mfrac para \dfrac apenas dentro da matemática (para web)
+                let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
+                mathBlocks.push(fixedMath);
+                return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
+            });
             
-            // 3. Formatações de estilo de texto
+            // 3. FORMATAÇÕES DE ESTILO (Agora só afeta o texto normal)
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
-
-            // 4. TRADUÇÃO DE MATEMÁTICA AVANÇADA PARA A WEB
-            // O KaTeX não suporta \mfrac nativamente, então convertemos para \dfrac na tela do aluno
-            limpo = limpo.replace(/\\mfrac/g, '\\dfrac');
             
-            // 5. Quebras de linha reais para a web
+            // 4. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
+            
+            // 5. DEVOLVER A MATEMÁTICA INTACTA
+            mathBlocks.forEach((block, index) => {
+                limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
+            });
             
             return limpo.trim();
         }
