@@ -1464,44 +1464,54 @@
             if (!texto) return "";
             let limpo = texto;
 
-            // 0. PROTEGER SÍMBOLO DE MOEDA (R$ e R\$)
-            // Substitui por entidade HTML para não ser capturado como bloco matemático
-            limpo = limpo.replace(/R\\\$/g, 'R&#36;');
-            limpo = limpo.replace(/R\$/g, 'R&#36;');
+            // 0. BLINDAGEM DO SÍMBOLO DE MOEDA (R$)
+            // Normaliza tudo para R\$ (escapado), assim o KaTeX e nosso regex ignoram como delimitador
+            limpo = limpo.replace(/R\\\$/g, 'R$'); 
+            limpo = limpo.replace(/R\$/g, 'R\\$'); 
 
-            // 1. ESCUDO PROTETOR DE MATEMÁTICA
+            // 1. ESCONDER ESCAPES TEMPORARIAMENTE (Compatibilidade Cross-Browser)
+            // Transforma o \$ literal em uma string provisória
+            limpo = limpo.replace(/\\\$/g, '__ESCAPED_DOLLAR__');
+
+            // 2. EXTRAÇÃO DOS BLOCOS MATEMÁTICOS
+            // Captura tudo entre $$...$$ ou $...$
             let mathBlocks = [];
             limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
                 let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
                 mathBlocks.push(fixedMath);
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
-            
-            // 2. TRADUÇÃO DE AMBIENTES VISUAIS E LISTAS LATEX
+
+            // 3. RESTAURAR ESCAPES NO TEXTO PRINCIPAL E NOS BLOCOS
+            // Devolve o \$ original para a tela e para dentro das fórmulas
+            limpo = limpo.replace(/__ESCAPED_DOLLAR__/g, '\\$');
+            mathBlocks = mathBlocks.map(b => b.replace(/__ESCAPED_DOLLAR__/g, '\\$'));
+
+            // 4. TRADUÇÃO DE AMBIENTES VISUAIS E LISTAS LATEX
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
             
-            // Converte enumerate/itemize do LaTeX em uma lista HTML estruturada de forma blindada
+            // Listas (enumerate/itemize) blindadas
             limpo = limpo.replace(/\\begin\{(?:enumerate|itemize)\}(?:\[[\s\S]*?\])?([\s\S]*?)\\end\{(?:enumerate|itemize)\}/g, function(match, innerContent) {
                 let items = innerContent.split(/\\item\s*/).filter(i => i.trim());
                 let htmlItems = items.map(item => `<div style="display: flex; gap: 0.5rem;"><span style="color: var(--accent-blue); font-weight: 600;">•</span><span>${item.trim()}</span></div>`);
                 return `<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem;">${htmlItems.join('')}</div>`;
             });
 
-            // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
+            // 5. ARRANCAR A SUJEIRA DO LATEX
             limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[[\s\S]*?\])?(?:\{[\s\S]*?\})?/g, '');
             limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[[\s\S]*?\])?(?:\{[\s\S]*?\})?/g, '');
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
-            // 4. FORMATAÇÕES DE ESTILO TEXTUAL
+            // 6. FORMATAÇÕES DE ESTILO TEXTUAL
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
-            // 5. QUEBRAS DE LINHA REAIS PARA A WEB
+            // 7. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
-            // 6. DEVOLVER A MATEMÁTICA INTACTA
+            // 8. DEVOLVER A MATEMÁTICA INTACTA
             mathBlocks.forEach((block, index) => {
                 limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
             });
