@@ -671,7 +671,8 @@ Gere o bloco JSON isolado seguindo esta arquitetura:
   "tipo": "Escola",
   "ativa": true,
   "rotulo": "Caderno de Atividades",
-  "titulo": "Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.",
+  "titulo": "Nome da Unidade Curricular",
+  "desc": "Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.",
   "trilhas_de_aprendizagem": []
 }
 ```
