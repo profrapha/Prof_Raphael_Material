@@ -1462,9 +1462,14 @@
 
         function limparLaTeXParaWeb(texto) {
             if (!texto) return "";
-            
             let limpo = texto;
 
+            // 0. PROTEGER SÍMBOLO DE MOEDA (R$ e R\$)
+            // Substitui por entidade HTML para não ser capturado como bloco matemático
+            limpo = limpo.replace(/R\\\$/g, 'R&#36;');
+            limpo = limpo.replace(/R\$/g, 'R&#36;');
+
+            // 1. ESCUDO PROTETOR DE MATEMÁTICA
             let mathBlocks = [];
             limpo = limpo.replace(/\$\$([\s\S]*?)\$\$|\$([\s\S]*?)\$/g, function(match) {
                 let fixedMath = match.replace(/\\mfrac/g, '\\dfrac');
@@ -1472,26 +1477,31 @@
                 return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
             });
             
+            // 2. TRADUÇÃO DE AMBIENTES VISUAIS E LISTAS LATEX
             limpo = limpo.replace(/\\begin\{boxresponda\}/g, '<div style="border-left: 4px solid var(--text-muted); padding-left: 1rem; margin: 1.5rem 0;">');
             limpo = limpo.replace(/\\end\{boxresponda\}/g, '</div>');
             
-            limpo = limpo.replace(/\\begin\{enumerate\}(?:\[.*?\])?/g, '<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem;">');
-            limpo = limpo.replace(/\\end\{enumerate\}/g, '</div>');
-            
-            limpo = limpo.replace(/\\item\s*/g, '</div><div style="display: flex; gap: 0.5rem;"><span style="color: var(--accent-blue); font-weight: 600;">•</span><span>');
-            limpo = limpo + '</span></div>';
-            limpo = limpo.replace(/<div style="margin: 1.0rem 0; display: flex; flex-direction: column; gap: 0\.75rem;">\<\/div>/g, '');
+            // Converte enumerate/itemize do LaTeX em uma lista HTML estruturada de forma blindada
+            limpo = limpo.replace(/\\begin\{(?:enumerate|itemize)\}(?:\[[\s\S]*?\])?([\s\S]*?)\\end\{(?:enumerate|itemize)\}/g, function(match, innerContent) {
+                let items = innerContent.split(/\\item\s*/).filter(i => i.trim());
+                let htmlItems = items.map(item => `<div style="display: flex; gap: 0.5rem;"><span style="color: var(--accent-blue); font-weight: 600;">•</span><span>${item.trim()}</span></div>`);
+                return `<div style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem;">${htmlItems.join('')}</div>`;
+            });
 
-            limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
-            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[.*?\])?(?:\{.*?\})?/g, '');
+            // 3. ARRANCANDO A "SUJEIRA" DO LATEX RESTANTE
+            limpo = limpo.replace(/\\begin\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[[\s\S]*?\])?(?:\{[\s\S]*?\})?/g, '');
+            limpo = limpo.replace(/\\end\{(enunciadoLiteral|center|adjustbox|minipage)\}(?:\[[\s\S]*?\])?(?:\{[\s\S]*?\})?/g, '');
             limpo = limpo.replace(/\\includegraphics\[.*?\]\{.*?\}/g, '');
             
+            // 4. FORMATAÇÕES DE ESTILO TEXTUAL
             limpo = limpo.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
             limpo = limpo.replace(/\\textit\{([^}]+)\}/g, '<em>$1</em>');
             limpo = limpo.replace(/\\underline\{([^}]+)\}/g, '<u>$1</u>');
             
+            // 5. QUEBRAS DE LINHA REAIS PARA A WEB
             limpo = limpo.replace(/\n\n/g, '<br><br>');
             
+            // 6. DEVOLVER A MATEMÁTICA INTACTA
             mathBlocks.forEach((block, index) => {
                 limpo = limpo.replace(`__MATH_BLOCK_${index}__`, block);
             });
