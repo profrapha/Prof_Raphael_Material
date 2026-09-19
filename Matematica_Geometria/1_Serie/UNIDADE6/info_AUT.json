@@ -3,8 +3,9 @@
   "ano": "1_Serie",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Polígonos e Círculos",
   "desc": "Apótemas, setores circulares, coroa circular e figuras inscritas.",
-  "videos": []
+  "trilhas_de_aprendizagem": []
 }

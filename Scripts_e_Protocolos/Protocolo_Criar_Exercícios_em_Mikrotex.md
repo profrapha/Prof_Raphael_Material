@@ -637,6 +637,7 @@ Gere o bloco JSON isolado seguindo esta arquitetura:
   "ano": "6_Ano / 7_Ano / 8_Ano / 9_Ano / 1_Serie / 2_Serie / 3_Serie",
   "unidade": "UNIDADE6 / SEMANA10",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Nome da Unidade Curricular",
   "desc": "Resumo de 1 a 2 linhas dos tópicos e habilidades cobradas.",
@@ -661,21 +662,18 @@ Gere o bloco JSON isolado seguindo esta arquitetura:
   ]
 }
 
-```
-
 #### Se Silo 2 (Escola) -> Salvar como `info_ESC.json` na raiz da unidade:
 
-```json
 {
   "disciplina": "Fisica / Matematica_Algebra / Matematica_Geometria",
   "ano": "6_Ano / 7_Ano / 8_Ano / 9_Ano / 1_Serie / 2_Serie / 3_Serie",
   "unidade": "UNIDADE6 / SEMANA10",
   "tipo": "Escola",
+  "ativa": true,
   "rotulo": "Caderno de Atividades",
   "titulo": "Exercícios adaptados e organizados a partir da apostila oficial adotada em sala de aula.",
   "trilhas_de_aprendizagem": []
 }
-
 ```
 
 ---

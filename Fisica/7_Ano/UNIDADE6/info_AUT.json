@@ -3,39 +3,65 @@
   "ano": "7_Ano",
   "unidade": "UNIDADE6",
   "tipo": "Autoral",
+  "ativa": true,
   "rotulo": "Caderno de Atividades Suplementar",
   "titulo": "Máquinas Simples e Trabalho",
   "desc": "Estudo das máquinas simples, aplicações cotidianas, alavancas, polias e planos inclinados.",
-  "videos": [
+  "trilhas_de_aprendizagem": [
     {
-      "duvida": "com dúvida nas aplicações de Máquinas simples para o 7º ano?",
-      "titulo": "Máquinas simples – Ciências – 7º ano",
-      "autor": "Canal Futura",
-      "url": "https://www.youtube.com/embed/1cLd3zoe5WQ"
+      "subtema": "Máquinas simples – Ciências – 7º ano",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida nas aplicações de Máquinas simples para o 7º ano?",
+          "titulo": "Máquinas simples – Ciências – 7º ano",
+          "autor": "Canal Futura",
+          "url": "https://www.youtube.com/embed/1cLd3zoe5WQ"
+        }
+      ]
     },
     {
-      "duvida": "precisando ver as Principais informações sobre Máquinas Simples?",
-      "titulo": "MÁQUINAS SIMPLES - Principais informações",
-      "autor": "Com Ciência",
-      "url": "https://www.youtube.com/embed/tvIk729n_rI"
+      "subtema": "MÁQUINAS SIMPLES - Principais informações",
+      "videos": [
+        {
+          "chamada": "Você está precisando ver as Principais informações sobre Máquinas Simples?",
+          "titulo": "MÁQUINAS SIMPLES - Principais informações",
+          "autor": "Com Ciência",
+          "url": "https://www.youtube.com/embed/tvIk729n_rI"
+        }
+      ]
     },
     {
-      "duvida": "com dificuldade em entender o funcionamento de Alavancas?",
-      "titulo": "MABA FÍSICA - ALAVANCAS",
-      "autor": "Marcos Aba / Prof. Giovanelli",
-      "url": "https://www.youtube.com/embed/EcJK51nMzl8"
+      "subtema": "MABA FÍSICA - ALAVANCAS",
+      "videos": [
+        {
+          "chamada": "Você está com dificuldade em entender o funcionamento de Alavancas?",
+          "titulo": "MABA FÍSICA - ALAVANCAS",
+          "autor": "Marcos Aba / Prof. Giovanelli",
+          "url": "https://www.youtube.com/embed/EcJK51nMzl8"
+        }
+      ]
     },
     {
-      "duvida": "querendo ver como funcionam as Polias e roldanas fixas e móveis?",
-      "titulo": "Polias e roldanas fixas e móveis",
-      "autor": "Matemática no Papel",
-      "url": "https://www.youtube.com/embed/DVh5zU9tUwk"
+      "subtema": "Polias e roldanas fixas e móveis",
+      "videos": [
+        {
+          "chamada": "Você está querendo ver como funcionam as Polias e roldanas fixas e móveis?",
+          "titulo": "Polias e roldanas fixas e móveis",
+          "autor": "Matemática no Papel",
+          "url": "https://www.youtube.com/embed/DVh5zU9tUwk"
+        }
+      ]
     },
     {
-      "duvida": "com dúvida sobre Plano inclinado sem atrito?",
-      "titulo": "Plano inclinado sem atrito",
-      "autor": "Matemática no Papel",
-      "url": "https://www.youtube.com/embed/mAegzrG1Ofs"
+      "subtema": "Plano inclinado sem atrito",
+      "videos": [
+        {
+          "chamada": "Você está com dúvida sobre Plano inclinado sem atrito?",
+          "titulo": "Plano inclinado sem atrito",
+          "autor": "Matemática no Papel",
+          "url": "https://www.youtube.com/embed/mAegzrG1Ofs"
+        }
+      ]
     }
   ]
 }
